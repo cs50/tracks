@@ -6,14 +6,19 @@ For any questions, please contact Christian Saravia (christian@cs50.harvard.edu)
 
 ---
 
+## [English](english/README.md)
+
+### Lead collaborator
+Colton Ogden
+
+
+---
+
 ## [Spanish](spanish/README.md)
 
 ### Lead collaborator
 Walter J. Méndez
 
-
-### Other collaborators
-[Coming soon]
 
 ---
 
@@ -21,40 +26,3 @@ Walter J. Méndez
 
 ### Lead collaborator
 Mohamed Ashraf
-
-
-### Other collaborators
-[Coming soon]
-
----
-
-## Mandarin
-
-### Lead collaborator
-[Coming soon]
-
-
-### Other collaborators
-[Coming soon]
-
----
-
-## Hindi
-
-### Lead collaborator
-[Coming soon]
-
-
-### Other collaborators
-[Coming soon]
-
----
-
-## Portuguese
-
-### Lead collaborator
-[Coming soon]
-
-
-### Other collaborators
-[Coming soon]
