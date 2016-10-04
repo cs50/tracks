@@ -5,6 +5,7 @@
 * [Arabic](arabic/README.md)
 * [English](english/README.md)
    * [Lecture Subtitles](english/lectures/README.md)
-       * [Week 1](english/lectures/week1)
-       * [Week 2](english/lectures/week2)
+       * [Week 0](english/lectures/week0.md)
+       * [Week 1](english/lectures/week1.md)
+       * [Week 2](english/lectures/week2.md)
 
