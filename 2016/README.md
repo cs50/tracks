@@ -1,4 +1,4 @@
-# Translations 2016
+# Translators
 
 | Language      | Name             | Role          |
 | ------------- | ---------------- | ------------- |
@@ -6,9 +6,7 @@
 | Spanish       | Walter J. Méndez | Moderator     |
 | Arabic        | Mohamed Ashraf   | Moderator     |
 
----
-
-# Lecture Subtitles
+## Lecture Subtitles
 
 | Episode       | English       | Spanish       | Arabic        | Hindi         | Portuguese    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -20,7 +18,7 @@
 | Week 5        | &#10004;      |               |               |               |               |
 
 
-# Lecture Chapters
+## Lecture Chapters
 
 | Episode       | English       | Spanish       | Arabic        | Hindi         | Portuguese    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -32,7 +30,7 @@
 | Week 5        | &#10004;      |               |               |               |               |
 
 
-# Walkthrough Subtitles
+## Walkthrough Subtitles
 
 | Episode       | English       | Spanish       | Arabic        | Hindi         | Portuguese    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
