@@ -41,3 +41,7 @@ A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections
     git push origin new-feature
     ```
 6. Submit a pull request at https://github.com/cs50/tracks/pulls.
+
+## License
+
+CS50's content is licensed by David J. Malan of Harvard University under a [Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
