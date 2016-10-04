@@ -6,21 +6,25 @@ A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections
 
 ## [English](en/README.md)
 
-### Lead collaborator
+### Moderator
 Colton Ogden
-
 
 ---
 
 ## [Spanish](es/README.md)
 
-### Lead collaborator
+### Moderator
 Walter J. Méndez
 
+#### Contributors
+- Arturo Real
 
 ---
 
 ## [Arabic](ar/README.md)
 
-### Lead collaborator
+### Moderator
 Mohamed Ashraf
+
+#### Contributors
+- Kareem Zidane
