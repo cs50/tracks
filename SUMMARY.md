@@ -2,5 +2,5 @@
 
 * [Introduction](README.md)
 * [Spanish](spanish/README.md)
-* Arabic
+* [Arabic](arabic/README.md)
 
