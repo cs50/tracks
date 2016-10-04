@@ -1,7 +1,7 @@
 # Spanish
 
 ##Lecture Subtitles
-* [Week 0](spanish/2016-lecture-subtitles-spanish.md)
+* [Week 0](/2016-lecture-subtitles-spanish.md)
 * Week 1
 * Week 2
 * Week 3
