@@ -5,4 +5,4 @@
 
 ##Spanish Subtitles
 
-[...]
+Esto es CS50....
