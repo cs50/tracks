@@ -1,8 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-* [Spanish](spanish/README.md)
-* [Arabic](arabic/README.md)
 * [English](english/README.md)
    * [Lecture Subtitles](english/lectures/README.md)
        * [Week 0](english/lectures/week0.md)
@@ -11,3 +9,5 @@
        * [Week 3](english/lectures/week3.md)
        * [Week 4](english/lectures/week4.md)
        * [Week 5](english/lectures/week5.md)
+* [Spanish](spanish/README.md)
+* [Arabic](arabic/README.md)
