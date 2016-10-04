@@ -1,0 +1,1036 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+2
+00:00:00,500 --> 00:00:04,810
+[MUSIC PLAYING]
+
+3
+00:00:04,810 --> 00:00:06,940
+>> DOUG LLOYD: So one more
+sort of notion that
+
+4
+00:00:06,940 --> 00:00:12,120
+sort of falls under the umbrella of
+JavaScript is something called AJAX.
+
+5
+00:00:12,120 --> 00:00:15,310
+Up until this point, our
+interaction with JavaScript
+
+6
+00:00:15,310 --> 00:00:17,727
+has been limited to push a
+button and something happens.
+
+7
+00:00:17,727 --> 00:00:19,560
+And specifically, the
+something that happens
+
+8
+00:00:19,560 --> 00:00:22,950
+is our websites look and feel changes.
+
+9
+00:00:22,950 --> 00:00:23,450
+Right?
+
+10
+00:00:23,450 --> 00:00:26,540
+Like in particular, in the
+document object model video,
+
+11
+00:00:26,540 --> 00:00:29,060
+I changed the background color.
+
+12
+00:00:29,060 --> 00:00:33,240
+But when I did that, I didn't have
+to do any special extra requests.
+
+13
+00:00:33,240 --> 00:00:36,800
+I didn't have to request that
+the server send me a new page.
+
+14
+00:00:36,800 --> 00:00:39,620
+I just changed what I already had.
+
+15
+00:00:39,620 --> 00:00:42,245
+I didn't have to reload my page,
+and things definitely changed,
+
+16
+00:00:42,245 --> 00:00:43,760
+so that's great.
+
+17
+00:00:43,760 --> 00:00:48,400
+But there's definitely some
+manual user interaction involved.
+
+18
+00:00:48,400 --> 00:00:53,140
+AJAX is a cool technique that allows
+us to update a page's content,
+
+19
+00:00:53,140 --> 00:00:55,750
+and not just the look and
+feel, without reloading.
+
+20
+00:00:55,750 --> 00:00:58,610
+>> And by specifically when I
+say updating a page's content,
+
+21
+00:00:58,610 --> 00:01:01,990
+I'm not saying we rewrite
+the page using JavaScript.
+
+22
+00:01:01,990 --> 00:01:06,560
+I'm saying we actually request
+more information from the server
+
+23
+00:01:06,560 --> 00:01:08,640
+without our page having to reload.
+
+24
+00:01:08,640 --> 00:01:10,850
+>> Now that sort of a bit of
+a more advanced technique
+
+25
+00:01:10,850 --> 00:01:11,950
+that we're going to talk
+about in this video.
+
+26
+00:01:11,950 --> 00:01:13,720
+We're going to have some interaction.
+
+27
+00:01:13,720 --> 00:01:17,750
+But when we do, I'm going to be
+making requests to the web server.
+
+28
+00:01:17,750 --> 00:01:21,140
+In this case, just what's
+running my Apache web server.
+
+29
+00:01:21,140 --> 00:01:25,010
+I'm going to be making additional
+requests while I'm visiting a web page,
+
+30
+00:01:25,010 --> 00:01:26,890
+but my page won't refresh.
+
+31
+00:01:26,890 --> 00:01:30,000
+>> It's just going to
+asynchronously update my page.
+
+32
+00:01:30,000 --> 00:01:31,840
+And that's, in fact,
+which AJAX stands for,
+
+33
+00:01:31,840 --> 00:01:35,400
+is Asynchronous JavaScript and XML.
+
+34
+00:01:35,400 --> 00:01:37,910
+XML is another kind of markup
+language, and you can sort of
+
+35
+00:01:37,910 --> 00:01:39,680
+think of it just like HTML.
+
+36
+00:01:39,680 --> 00:01:42,990
+It's not quite the same thing, but
+it's basically just a markup language.
+
+37
+00:01:42,990 --> 00:01:47,770
+So it's an asynchronous
+JavaScript and a markup language.
+
+38
+00:01:47,770 --> 00:01:50,590
+>> So in order to use this
+AJAX technique-- AJAX
+
+39
+00:01:50,590 --> 00:01:52,230
+is not a separate programming language.
+
+40
+00:01:52,230 --> 00:01:55,300
+It's just sort of a
+set of techniques-- we
+
+41
+00:01:55,300 --> 00:01:57,870
+need to create a special
+JavaScript object, which
+
+42
+00:01:57,870 --> 00:02:00,689
+is called an XMLHttpRequest.
+
+43
+00:02:00,689 --> 00:02:01,980
+Now, it's very easy to do this.
+
+44
+00:02:01,980 --> 00:02:04,550
+We just say var, whatever
+we want to call this object,
+
+45
+00:02:04,550 --> 00:02:07,030
+equals new XMLHttpRequest.
+
+46
+00:02:07,030 --> 00:02:11,050
+And now we have now obtained
+an AJAX sort of object,
+
+47
+00:02:11,050 --> 00:02:14,370
+or an XMLHttpRequest
+object, which will allow
+
+48
+00:02:14,370 --> 00:02:18,360
+us to asynchronously update our page.
+
+49
+00:02:18,360 --> 00:02:23,100
+>> After we have gotten this new
+object, this XMLHttpRequest,
+
+50
+00:02:23,100 --> 00:02:27,760
+we have to do something to its
+onreadystatechange behavior.
+
+51
+00:02:27,760 --> 00:02:30,360
+Onreadystatechange
+behavior is really just
+
+52
+00:02:30,360 --> 00:02:34,080
+when you make a request
+to a web page, the page
+
+53
+00:02:34,080 --> 00:02:35,880
+goes through a number of steps.
+
+54
+00:02:35,880 --> 00:02:37,370
+First, a request hasn't been sent.
+
+55
+00:02:37,370 --> 00:02:39,860
+Then, the request has been
+sent, but not acted upon.
+
+56
+00:02:39,860 --> 00:02:41,580
+Then the request has been acted upon.
+
+57
+00:02:41,580 --> 00:02:43,680
+Then the request is
+being sent back to you.
+
+58
+00:02:43,680 --> 00:02:46,930
+>> Then, the request is
+fully loaded in your page.
+
+59
+00:02:46,930 --> 00:02:48,640
+Those are different states.
+
+60
+00:02:48,640 --> 00:02:53,890
+And so we need to set our
+new XMLHttpRequest object
+
+61
+00:02:53,890 --> 00:02:58,740
+to change when the ready state changes.
+
+62
+00:02:58,740 --> 00:03:01,925
+And typically, we do this by
+defining an anonymous function, which
+
+63
+00:03:01,925 --> 00:03:04,490
+we're familiar with from
+JavaScript now, that
+
+64
+00:03:04,490 --> 00:03:09,840
+is called when the ready state changes.
+
+65
+00:03:09,840 --> 00:03:11,340
+It's really not much more than that.
+
+66
+00:03:11,340 --> 00:03:14,340
+We're just going to be defining an
+anonymous function, sort of like what
+
+67
+00:03:14,340 --> 00:03:16,440
+we were doing in
+JavaScript, where we would
+
+68
+00:03:16,440 --> 00:03:18,750
+have an anonymous function
+respond to an on click,
+
+69
+00:03:18,750 --> 00:03:23,230
+or when we were doing a map of
+the various objects in an array.
+
+70
+00:03:23,230 --> 00:03:25,220
+>> Something happened when
+something was clicked.
+
+71
+00:03:25,220 --> 00:03:28,810
+In this case, it's just something is
+happening when the state of our page
+
+72
+00:03:28,810 --> 00:03:30,160
+changes.
+
+73
+00:03:30,160 --> 00:03:32,730
+There are two other properties
+that are sort of-- they're not
+
+74
+00:03:32,730 --> 00:03:35,524
+the only properties that are
+inherent to XMLHttpRequest,
+
+75
+00:03:35,524 --> 00:03:36,940
+but they're pretty important ones.
+
+76
+00:03:36,940 --> 00:03:39,815
+There's something called readyState,
+which as you can probably guess,
+
+77
+00:03:39,815 --> 00:03:41,750
+is related to onreadystatechange.
+
+78
+00:03:41,750 --> 00:03:44,250
+It actually tells you
+what the readyState is.
+
+79
+00:03:44,250 --> 00:03:46,289
+0, 1, 2, 3, and 4 are
+the possibilities there,
+
+80
+00:03:46,289 --> 00:03:48,080
+and they sort of roughly
+correspond to what
+
+81
+00:03:48,080 --> 00:03:50,030
+I was just talking about a second ago.
+
+82
+00:03:50,030 --> 00:03:53,100
+>> And then status, which
+hopefully if everything went OK,
+
+83
+00:03:53,100 --> 00:03:56,710
+is 200, which is short
+for, of course, OK,
+
+84
+00:03:56,710 --> 00:03:58,330
+which we're familiar with from Http.
+
+85
+00:03:58,330 --> 00:04:03,735
+So we're hoping that our ready state
+is four, and our status is 200.
+
+86
+00:04:03,735 --> 00:04:07,940
+And if our ready state
+is four, and the response
+
+87
+00:04:07,940 --> 00:04:11,490
+is ready to be put on the
+page, and the status is 200,
+
+88
+00:04:11,490 --> 00:04:13,580
+we were able to do
+everything successfully,
+
+89
+00:04:13,580 --> 00:04:17,209
+now we can asynchronously
+update our page
+
+90
+00:04:17,209 --> 00:04:21,730
+without having to reload
+the entire content of it.
+
+91
+00:04:21,730 --> 00:04:27,710
+>> After we've defined what happens
+to the onreadystatechange behavior,
+
+92
+00:04:27,710 --> 00:04:31,020
+and we've checked that readyState
+is 4 and status is 200,
+
+93
+00:04:31,020 --> 00:04:33,900
+then all we need to do is
+open up an asynchronous
+
+94
+00:04:33,900 --> 00:04:38,530
+request, which is just making
+an Http generally GET request.
+
+95
+00:04:38,530 --> 00:04:41,950
+Just doing it programmatically,
+instead of through our web browser.
+
+96
+00:04:41,950 --> 00:04:43,786
+And then we send that request.
+
+97
+00:04:43,786 --> 00:04:45,660
+So what does this maybe
+look like in context?
+
+98
+00:04:45,660 --> 00:04:49,790
+So here's a function that
+deals with AJAX requests.
+
+99
+00:04:49,790 --> 00:04:50,290
+OK?
+
+100
+00:04:50,290 --> 00:04:52,430
+And I've arbitrarily said
+it accepts an argument.
+
+101
+00:04:52,430 --> 00:04:55,550
+And this a sort of a
+general skeleton here.
+
+102
+00:04:55,550 --> 00:05:00,890
+At the very beginning, we get
+ourselves a new XMLHttpRequest object.
+
+103
+00:05:00,890 --> 00:05:03,830
+Then, I need to set the
+onreadystatechange behavior.
+
+104
+00:05:03,830 --> 00:05:06,970
+And so I'm going to say
+when the readyState changes,
+
+105
+00:05:06,970 --> 00:05:10,110
+I want you to call this function.
+
+106
+00:05:10,110 --> 00:05:12,570
+>> Which is going to ask the
+question, if the readyState
+
+107
+00:05:12,570 --> 00:05:17,240
+is 4, if the readyState has changed
+to be 4, and the status was 200,
+
+108
+00:05:17,240 --> 00:05:20,799
+so we had a successful request, I
+want to do something to the page.
+
+109
+00:05:20,799 --> 00:05:22,590
+And we'll take a look
+at an example of what
+
+110
+00:05:22,590 --> 00:05:25,010
+that something might be in a second.
+
+111
+00:05:25,010 --> 00:05:27,830
+So then, now I have defined
+my anonymous function,
+
+112
+00:05:27,830 --> 00:05:31,340
+my response function whenever
+the readyState changes.
+
+113
+00:05:31,340 --> 00:05:37,120
+>> So then I just need to open up a
+request, using the Open method.
+
+114
+00:05:37,120 --> 00:05:39,160
+And then, I send that request.
+
+115
+00:05:39,160 --> 00:05:41,980
+And let's take a look at
+a more concrete example
+
+116
+00:05:41,980 --> 00:05:46,290
+of what AJAX can do on our web pages.
+
+117
+00:05:46,290 --> 00:05:49,740
+So I have here a very simple
+page called home.html.
+
+118
+00:05:49,740 --> 00:05:53,620
+And I've got an information goes
+here and some sort of drop-down menu.
+
+119
+00:05:53,620 --> 00:05:55,390
+>> And we'll revisit this in one second.
+
+120
+00:05:55,390 --> 00:05:59,150
+But I think we should now take a
+look at the actual source code.
+
+121
+00:05:59,150 --> 00:06:01,080
+And so, I'm going to open up home.html.
+
+122
+00:06:01,080 --> 00:06:03,490
+
+123
+00:06:03,490 --> 00:06:04,740
+And we'll see what's going on.
+
+124
+00:06:04,740 --> 00:06:08,240
+So up at the very top here, I have
+some JavaScript stuff that's going on.
+
+125
+00:06:08,240 --> 00:06:12,470
+>> And here, I apparently have
+a div whose ID is infodiv,
+
+126
+00:06:12,470 --> 00:06:15,290
+and some information
+is going to go there.
+
+127
+00:06:15,290 --> 00:06:16,374
+And then I have this form.
+
+128
+00:06:16,374 --> 00:06:18,081
+And inside of this
+form, I have something
+
+129
+00:06:18,081 --> 00:06:20,200
+called a Select, which
+is just a drop-down menu
+
+130
+00:06:20,200 --> 00:06:22,150
+with a bunch of different options.
+
+131
+00:06:22,150 --> 00:06:26,150
+And apparently when that changes, when
+the option that has been selected has
+
+132
+00:06:26,150 --> 00:06:30,600
+changed, I'm going to call
+some function cs50Info,
+
+133
+00:06:30,600 --> 00:06:33,190
+and then I'm going to
+pass in this.value,
+
+134
+00:06:33,190 --> 00:06:35,740
+where this refers to
+which option was selected,
+
+135
+00:06:35,740 --> 00:06:39,820
+and value is one of these here, option
+value= equals empty, "blumberg,"
+
+136
+00:06:39,820 --> 00:06:42,610
+"bowden ," "chan," and "malan."
+
+137
+00:06:42,610 --> 00:06:45,090
+>> So what might actually
+happen here when I do this?
+
+138
+00:06:45,090 --> 00:06:48,800
+Well, let's take a
+look at blumberg.html.
+
+139
+00:06:48,800 --> 00:06:51,330
+
+140
+00:06:51,330 --> 00:06:53,924
+Looks like it's just a
+snippet of some Html.
+
+141
+00:06:53,924 --> 00:06:56,090
+And in fact, what I'm hoping
+is going to happen here
+
+142
+00:06:56,090 --> 00:07:00,020
+is I'm going to be able to plug
+this Html directly into my web page
+
+143
+00:07:00,020 --> 00:07:02,970
+without having to reload
+the page, such that when
+
+144
+00:07:02,970 --> 00:07:07,510
+I choose Hannah from the drop-down
+menu, information about Hannah,
+
+145
+00:07:07,510 --> 00:07:11,100
+in particular, this information
+here in blumberg.html,
+
+146
+00:07:11,100 --> 00:07:12,574
+is what shows up on the page.
+
+147
+00:07:12,574 --> 00:07:13,740
+And I don't have to refresh.
+
+148
+00:07:13,740 --> 00:07:16,842
+And if I chose somebody else,
+their information would show up.
+
+149
+00:07:16,842 --> 00:07:17,550
+How do I do this?
+
+150
+00:07:17,550 --> 00:07:20,290
+Again, this requires
+us to use some AJAX.
+
+151
+00:07:20,290 --> 00:07:22,540
+And so, we'll open up ajax.js.
+
+152
+00:07:22,540 --> 00:07:25,550
+And here is that function, cs50Info.
+
+153
+00:07:25,550 --> 00:07:27,410
+If name is nothing, I return.
+
+154
+00:07:27,410 --> 00:07:31,450
+I'm not going to do anything if
+the empty option has been chosen.
+
+155
+00:07:31,450 --> 00:07:35,420
+Otherwise, I'm going to
+create a new XMLHttpRequest.
+
+156
+00:07:35,420 --> 00:07:39,020
+And then I'm going to say, when the
+readyState changes, call this function.
+
+157
+00:07:39,020 --> 00:07:43,630
+>> And if the readyState is
+4 and the status is 200,
+
+158
+00:07:43,630 --> 00:07:45,740
+here's a little bit
+of jQuery on line 13.
+
+159
+00:07:45,740 --> 00:07:50,450
+But all I'm doing is saying,
+change the contents of infodiv
+
+160
+00:07:50,450 --> 00:07:57,820
+to be whatever I got back as a
+response from my HttpRequest.
+
+161
+00:07:57,820 --> 00:07:59,590
+>> What is my HttpRequest?
+
+162
+00:07:59,590 --> 00:08:02,020
+Well, that's right
+here on line 18 and 19.
+
+163
+00:08:02,020 --> 00:08:08,550
+Line 18, I'm basically preparing
+a GET request for name + .html.
+
+164
+00:08:08,550 --> 00:08:11,170
+And again, name here is
+the argument that was
+
+165
+00:08:11,170 --> 00:08:14,280
+passed in as a parameter to cs50Info.
+
+166
+00:08:14,280 --> 00:08:18,460
+>> So basically, I am passing in somebody's
+name, which was that set of options
+
+167
+00:08:18,460 --> 00:08:22,980
+that we saw in the
+drop-down menu in the form.
+
+168
+00:08:22,980 --> 00:08:24,450
+I'm getting that name.
+
+169
+00:08:24,450 --> 00:08:29,530
+And I'm saying I would like you to
+please obtain for me that file.html,
+
+170
+00:08:29,530 --> 00:08:31,020
+and then send that request.
+
+171
+00:08:31,020 --> 00:08:34,820
+>> And so that onreadystatechange is going
+to be listening and waiting and waiting
+
+172
+00:08:34,820 --> 00:08:39,460
+and waiting, until the readyState
+is 4, and the status is 200.
+
+173
+00:08:39,460 --> 00:08:44,970
+So it's ready to be served,
+and the request was successful.
+
+174
+00:08:44,970 --> 00:08:49,500
+And then if it is, it's going to
+change the contents of infodiv
+
+175
+00:08:49,500 --> 00:08:53,030
+to be the response text that I got back.
+
+176
+00:08:53,030 --> 00:08:54,930
+>> So let's see how this
+might actually work.
+
+177
+00:08:54,930 --> 00:08:58,860
+So we'll head over to my browser
+window, and we'll look here.
+
+178
+00:08:58,860 --> 00:09:01,359
+So let's take a look at
+what's going on here in AJAX.
+
+179
+00:09:01,359 --> 00:09:03,400
+So we'll choose somebody
+from the drop-down menu.
+
+180
+00:09:03,400 --> 00:09:06,079
+So in this case, let's
+just choose Hannah.
+
+181
+00:09:06,079 --> 00:09:08,120
+And notice that Hannah's
+information has changed,
+
+182
+00:09:08,120 --> 00:09:11,030
+but I didn't have any-- my
+page didn't entirely reload.
+
+183
+00:09:11,030 --> 00:09:12,190
+The stuff stayed.
+
+184
+00:09:12,190 --> 00:09:13,320
+Most of the stuff stayed.
+
+185
+00:09:13,320 --> 00:09:14,320
+AJAX Test didn't change.
+
+186
+00:09:14,320 --> 00:09:16,700
+The button itself, this
+drop-down menu didn't change.
+
+187
+00:09:16,700 --> 00:09:18,260
+But information there did change.
+
+188
+00:09:18,260 --> 00:09:20,218
+And depending on how
+quickly my computer moves,
+
+189
+00:09:20,218 --> 00:09:24,430
+you actually might see that the content
+disappears and then reappears really
+
+190
+00:09:24,430 --> 00:09:24,930
+quickly.
+
+191
+00:09:24,930 --> 00:09:27,320
+That's the content being
+deleted from infodiv,
+
+192
+00:09:27,320 --> 00:09:29,940
+and then replaced with a
+new asynchronous request.
+
+193
+00:09:29,940 --> 00:09:34,410
+>> So if I switch it to be say,
+Rob-- and again, take a look,
+
+194
+00:09:34,410 --> 00:09:38,379
+and maybe we'll see it actually
+disappear and reappear quickly.
+
+195
+00:09:38,379 --> 00:09:38,920
+You see that?
+
+196
+00:09:38,920 --> 00:09:41,400
+How it just popped away,
+and then it refilled?
+
+197
+00:09:41,400 --> 00:09:43,640
+That's the AJAX request
+sort of taking place.
+
+198
+00:09:43,640 --> 00:09:46,060
+And so depending on the
+person I choose, I'm
+
+199
+00:09:46,060 --> 00:09:50,690
+making a different asynchronous
+request to a different file
+
+200
+00:09:50,690 --> 00:09:52,730
+that I have on my server.
+
+201
+00:09:52,730 --> 00:09:55,550
+And the contents of my
+infodiv are updating,
+
+202
+00:09:55,550 --> 00:09:58,457
+based on which of these I've chosen.
+
+203
+00:09:58,457 --> 00:10:00,040
+So that's really all there is to AJAX.
+
+204
+00:10:00,040 --> 00:10:04,090
+It allows us to make these asynchronous
+requests, updates to a page.
+
+205
+00:10:04,090 --> 00:10:06,450
+Without having to
+refresh the entire page,
+
+206
+00:10:06,450 --> 00:10:08,520
+we're going to get new
+content from it by making
+
+207
+00:10:08,520 --> 00:10:11,170
+a new fresh request to the server.
+
+208
+00:10:11,170 --> 00:10:13,420
+And so, our pages can become
+quite a bit more dynamic.
+
+209
+00:10:13,420 --> 00:10:15,128
+>> And as we get more
+and more advanced, you
+
+210
+00:10:15,128 --> 00:10:17,700
+might get things like
+say, your email inbox,
+
+211
+00:10:17,700 --> 00:10:19,850
+where you don't have to do anything.
+
+212
+00:10:19,850 --> 00:10:22,560
+You don't have to click a
+drop-down menu or click anything,
+
+213
+00:10:22,560 --> 00:10:25,920
+and all of a sudden, your newest
+email shows up at the top.
+
+214
+00:10:25,920 --> 00:10:27,840
+That's also just an Ajax request.
+
+215
+00:10:27,840 --> 00:10:30,460
+Ajax is requesting your
+server, the email server,
+
+216
+00:10:30,460 --> 00:10:33,360
+to send over all the information
+about your latest emails,
+
+217
+00:10:33,360 --> 00:10:38,110
+and changing what you see on the
+screen to be your newest set of emails.
+
+218
+00:10:38,110 --> 00:10:41,080
+And if you have a new one in
+there, then the content of that div
+
+219
+00:10:41,080 --> 00:10:44,580
+will change to reflect
+the updated content.
+
+220
+00:10:44,580 --> 00:10:45,480
+I'm Doug Lloyd.
+
+221
+00:10:45,480 --> 00:10:47,500
+This is CS50.
+
+222
+00:10:47,500 --> 00:10:49,229

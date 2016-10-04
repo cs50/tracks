@@ -1,0 +1,3404 @@
+1
+00:00:00,000 --> 00:00:02,928
+>> [MUSIC PLAYING]
+
+2
+00:00:02,928 --> 00:00:11,230
+
+3
+00:00:11,230 --> 00:00:12,790
+>> DAVID MALAN: This is CS50.
+
+4
+00:00:12,790 --> 00:00:14,072
+This is the end of week 10.
+
+5
+00:00:14,072 --> 00:00:16,030
+And boy, do we have a
+good class for you today.
+
+6
+00:00:16,030 --> 00:00:20,040
+We are so excited to invite two of
+our friends from Yale up to us today
+
+7
+00:00:20,040 --> 00:00:23,920
+and to look at the intersection of
+artificial intelligence, robotics,
+
+8
+00:00:23,920 --> 00:00:25,710
+natural language processing, and more.
+
+9
+00:00:25,710 --> 00:00:27,090
+>> And indeed, over the
+past few weeks, we've
+
+10
+00:00:27,090 --> 00:00:29,714
+certainly spent a lot of time,
+especially in the earlier psets,
+
+11
+00:00:29,714 --> 00:00:31,560
+focusing on pretty low-level details.
+
+12
+00:00:31,560 --> 00:00:34,520
+And it's very easy to lose sight
+of the forest for the trees
+
+13
+00:00:34,520 --> 00:00:38,170
+and get hung up on loops and conditions
+and pointers, certainly, and the like.
+
+14
+00:00:38,170 --> 00:00:41,770
+But the reality is you guys now have the
+ingredients with which you can really
+
+15
+00:00:41,770 --> 00:00:45,300
+solve some interesting problems, among
+them those that our friends at Yale
+
+16
+00:00:45,300 --> 00:00:48,790
+work on just shy of Cambridge.
+
+17
+00:00:48,790 --> 00:00:52,410
+>> So allow me first to introduce our head
+teaching assistant from Yale, Andy.
+
+18
+00:00:52,410 --> 00:00:55,182
+>> [APPLAUSE]
+
+19
+00:00:55,182 --> 00:00:57,030
+
+20
+00:00:57,030 --> 00:01:00,710
+>> ANDY: First of all, just thank
+you for allowing a couple Yalies
+
+21
+00:01:00,710 --> 00:01:02,700
+to pop on down to Cambridge today.
+
+22
+00:01:02,700 --> 00:01:05,299
+We really appreciate it.
+
+23
+00:01:05,299 --> 00:01:07,090
+Secondly, to our friends
+back home-- Jason,
+
+24
+00:01:07,090 --> 00:01:09,670
+thanks for staying and running lecture.
+
+25
+00:01:09,670 --> 00:01:12,970
+Hope it's all good in New Haven.
+
+26
+00:01:12,970 --> 00:01:15,720
+>> So yeah, I'm super excited
+to introduce Scaz today.
+
+27
+00:01:15,720 --> 00:01:17,020
+Scaz runs the robotics lab.
+
+28
+00:01:17,020 --> 00:01:19,690
+He's a professor of, like, five
+different departments at Yale.
+
+29
+00:01:19,690 --> 00:01:23,159
+In his lab, he has many, many
+robots that he likes to play with.
+
+30
+00:01:23,159 --> 00:01:24,950
+He has, like, the
+coolest job in the world.
+
+31
+00:01:24,950 --> 00:01:27,116
+And he gets to kind of mess
+around with that all day
+
+32
+00:01:27,116 --> 00:01:29,090
+long and do some work, as well.
+
+33
+00:01:29,090 --> 00:01:33,070
+>> And so we actually brought one
+of them down with us today.
+
+34
+00:01:33,070 --> 00:01:36,900
+So without further ado, Scaz is
+going to go ahead and introduce us
+
+35
+00:01:36,900 --> 00:01:38,660
+to his robot friend.
+
+36
+00:01:38,660 --> 00:01:41,546
+>> [APPLAUSE]
+
+37
+00:01:41,546 --> 00:01:42,935
+
+38
+00:01:42,935 --> 00:01:44,310
+BRIAN SCASSELLATI: Thanks, David.
+
+39
+00:01:44,310 --> 00:01:45,380
+Thanks, Andy.
+
+40
+00:01:45,380 --> 00:01:50,050
+It is so wonderful to be
+here with everyone today.
+
+41
+00:01:50,050 --> 00:01:56,490
+I want to first be very clear that
+the CS50 staff here in Cambridge
+
+42
+00:01:56,490 --> 00:01:59,190
+has been incredibly hospitable to us.
+
+43
+00:01:59,190 --> 00:02:02,130
+We are so thankful for everything
+they've done to support us.
+
+44
+00:02:02,130 --> 00:02:05,690
+And so we'd like to be able
+to return the kindness.
+
+45
+00:02:05,690 --> 00:02:09,370
+>> So today, we get to announce
+that we're going to have a new,
+
+46
+00:02:09,370 --> 00:02:15,240
+one-of-a-kind CS50 event
+happening in New Haven next week.
+
+47
+00:02:15,240 --> 00:02:18,040
+And this is the CS50 Research Expo.
+
+48
+00:02:18,040 --> 00:02:21,300
+So we're going to be inviting
+everyone-- CS50 students,
+
+49
+00:02:21,300 --> 00:02:26,510
+staff from both Harvard and Yale-- to
+come down and visit with us on Friday.
+
+50
+00:02:26,510 --> 00:02:30,400
+We'll have a wide variety of over
+30 different people presenting
+
+51
+00:02:30,400 --> 00:02:34,830
+and exhibiting-- upperclassmen showing
+off some of their research products.
+
+52
+00:02:34,830 --> 00:02:38,480
+We'll have some startups, even, looking
+for a little bit of new tech talent,
+
+53
+00:02:38,480 --> 00:02:40,460
+startups from both Harvard and Yale.
+
+54
+00:02:40,460 --> 00:02:44,550
+And we'll have some student groups
+looking for some new membership.
+
+55
+00:02:44,550 --> 00:02:46,357
+>> It's going to be a very exciting time.
+
+56
+00:02:46,357 --> 00:02:49,190
+Hopefully those of you who are
+coming down for the Harvard-Yale game
+
+57
+00:02:49,190 --> 00:02:51,360
+will be able to stop
+by a little bit early,
+
+58
+00:02:51,360 --> 00:02:54,060
+right in the center of campus,
+Sterling Memorial Library.
+
+59
+00:02:54,060 --> 00:02:58,040
+We're going to have a set of
+exhibits that range from autonomous
+
+60
+00:02:58,040 --> 00:03:04,460
+sailboats to ways of using software
+to preserve medieval manuscripts.
+
+61
+00:03:04,460 --> 00:03:07,860
+>> We're going to have ad
+hoc networking and people
+
+62
+00:03:07,860 --> 00:03:11,230
+teaching software coding in Cape Town.
+
+63
+00:03:11,230 --> 00:03:13,730
+We'll have computer
+music demonstrations.
+
+64
+00:03:13,730 --> 00:03:16,020
+And we'll of course have more robots.
+
+65
+00:03:16,020 --> 00:03:18,900
+So we do hope you'll
+join us for this event.
+
+66
+00:03:18,900 --> 00:03:21,350
+It should be a lot of
+fun, a little bit of food,
+
+67
+00:03:21,350 --> 00:03:24,430
+and a lot of interesting
+things to talk about.
+
+68
+00:03:24,430 --> 00:03:28,230
+>> So today, we're going to talk
+about natural language processing.
+
+69
+00:03:28,230 --> 00:03:32,560
+And this is the attempt for us
+to build a new way of interfacing
+
+70
+00:03:32,560 --> 00:03:35,150
+with our devices because
+for the last few weeks,
+
+71
+00:03:35,150 --> 00:03:40,800
+you've been focused on how it is that
+you can write code, write software
+
+72
+00:03:40,800 --> 00:03:47,110
+that is a way of being able to say to a
+machine, this is what I want you to do.
+
+73
+00:03:47,110 --> 00:03:50,210
+>> But we shouldn't need to
+expect that everything
+
+74
+00:03:50,210 --> 00:03:53,760
+that's out there that's used
+by everyone in the world
+
+75
+00:03:53,760 --> 00:03:57,480
+is going to be proficient
+in this kind of instruction.
+
+76
+00:03:57,480 --> 00:04:02,540
+So we distinguish between computer
+languages and natural languages--
+
+77
+00:04:02,540 --> 00:04:06,720
+that is, things that humans use
+to communicate with other humans.
+
+78
+00:04:06,720 --> 00:04:12,270
+And we try to build interfaces that use
+these natural communication mechanisms.
+
+79
+00:04:12,270 --> 00:04:16,029
+>> Now, just like every other topic
+that we've started with in CS50,
+
+80
+00:04:16,029 --> 00:04:19,589
+we're going to start with the simplest
+bit of natural language processing
+
+81
+00:04:19,589 --> 00:04:21,269
+that we can imagine.
+
+82
+00:04:21,269 --> 00:04:24,940
+We're going to start with the
+historical part of natural language.
+
+83
+00:04:24,940 --> 00:04:28,740
+And then we'll build up to
+more and more recent systems
+
+84
+00:04:28,740 --> 00:04:31,450
+and have some fun demos along the way.
+
+85
+00:04:31,450 --> 00:04:35,900
+>> So we're going to start with what was
+probably the first natural language
+
+86
+00:04:35,900 --> 00:04:38,210
+processing system.
+
+87
+00:04:38,210 --> 00:04:45,080
+This was a software system written in
+1966 by Joseph Weizenbaum called ELIZA.
+
+88
+00:04:45,080 --> 00:04:49,640
+And ELIZA was designed to
+replicate the kind of interaction
+
+89
+00:04:49,640 --> 00:04:53,850
+you would have with a
+Rogerian psychotherapist.
+
+90
+00:04:53,850 --> 00:04:57,210
+Now, the Rogerians, they had
+an idea that psychotherapy
+
+91
+00:04:57,210 --> 00:05:02,800
+involved being able to mirror back
+to a patient and talk to them,
+
+92
+00:05:02,800 --> 00:05:08,100
+basically, by only giving them a
+tiny little bit of the therapist.
+
+93
+00:05:08,100 --> 00:05:09,920
+That is, everything
+that the therapist said
+
+94
+00:05:09,920 --> 00:05:16,500
+was supposed to be just a reflection of
+what the patient was telling to them.
+
+95
+00:05:16,500 --> 00:05:18,990
+>> So let's try and demo this.
+
+96
+00:05:18,990 --> 00:05:22,820
+Do we have a volunteer who'd be
+willing to share their deepest,
+
+97
+00:05:22,820 --> 00:05:26,650
+darkest, and/or fake secrets with ELIZA?
+
+98
+00:05:26,650 --> 00:05:29,680
+Sure, why don't you come on up.
+
+99
+00:05:29,680 --> 00:05:30,847
+Fantastic.
+
+100
+00:05:30,847 --> 00:05:31,430
+And your name?
+
+101
+00:05:31,430 --> 00:05:32,000
+>> MILES: Miles.
+
+102
+00:05:32,000 --> 00:05:33,041
+>> BRIAN SCASSELLATI: Miles.
+
+103
+00:05:33,041 --> 00:05:34,270
+Nice to meet you, Miles.
+
+104
+00:05:34,270 --> 00:05:36,270
+If you would hold onto that.
+
+105
+00:05:36,270 --> 00:05:40,840
+And we're going to
+use a version of ELIZA
+
+106
+00:05:40,840 --> 00:05:44,640
+that we've replicated
+within the CS50 IDE.
+
+107
+00:05:44,640 --> 00:05:47,140
+And we'll look at the source
+code to this in a little while.
+
+108
+00:05:47,140 --> 00:05:49,910
+But for right now, we're just
+going to invoke it by typing eliza.
+
+109
+00:05:49,910 --> 00:05:55,480
+>> And ELIZA is going to give you responses
+that are going to be in all capitals.
+
+110
+00:05:55,480 --> 00:05:57,950
+And going to ask you some questions.
+
+111
+00:05:57,950 --> 00:06:02,130
+And we'll respond and type
+in responses to ELIZA.
+
+112
+00:06:02,130 --> 00:06:04,310
+So ELIZA has said, "Hi, I'm ELIZA.
+
+113
+00:06:04,310 --> 00:06:05,462
+What's your problem?"
+
+114
+00:06:05,462 --> 00:06:08,092
+What would you like to
+tell ELIZA about today?
+
+115
+00:06:08,092 --> 00:06:10,750
+>> MILES: I can only fall asleep
+if I have bunny slippers on.
+
+116
+00:06:10,750 --> 00:06:12,440
+>> BRIAN SCASSELLATI: All right.
+
+117
+00:06:12,440 --> 00:06:13,360
+All right.
+
+118
+00:06:13,360 --> 00:06:15,300
+>> [LAUGHTER]
+
+119
+00:06:15,300 --> 00:06:22,410
+>> "I can only fall asleep
+with bunny slippers on."
+
+120
+00:06:22,410 --> 00:06:29,000
+And ELIZA says, "Say, do you
+have any psychological problems?
+
+121
+00:06:29,000 --> 00:06:30,450
+Maybe this is a good indicator."
+
+122
+00:06:30,450 --> 00:06:30,780
+>> OK.
+
+123
+00:06:30,780 --> 00:06:32,245
+So what would you like to respond?
+
+124
+00:06:32,245 --> 00:06:36,110
+
+125
+00:06:36,110 --> 00:06:36,970
+>> MILES: Yes.
+
+126
+00:06:36,970 --> 00:06:38,660
+>> BRIAN SCASSELLATI: Yes.
+
+127
+00:06:38,660 --> 00:06:39,570
+Man of many words.
+
+128
+00:06:39,570 --> 00:06:41,870
+I enjoy that.
+
+129
+00:06:41,870 --> 00:06:50,200
+Eliza says, "You seem quite positive."
+
+130
+00:06:50,200 --> 00:06:53,200
+>> MILES: No, I am, in fact, an electron.
+
+131
+00:06:53,200 --> 00:06:55,150
+>> BRIAN SCASSELLATI: "No.
+
+132
+00:06:55,150 --> 00:07:02,240
+In fact, I am an electron."
+"Did you come to me
+
+133
+00:07:02,240 --> 00:07:06,954
+because you are an electron?"
+
+134
+00:07:06,954 --> 00:07:08,870
+Now, we can see some of
+the things-- I'm going
+
+135
+00:07:08,870 --> 00:07:10,200
+to pause you for just a second, Miles.
+
+136
+00:07:10,200 --> 00:07:11,010
+Don't go anywhere.
+
+137
+00:07:11,010 --> 00:07:12,650
+We're not done with you yet.
+
+138
+00:07:12,650 --> 00:07:16,490
+ELIZA is, in some ways,
+responding to certain things
+
+139
+00:07:16,490 --> 00:07:21,140
+that he's saying but without
+any real understanding.
+
+140
+00:07:21,140 --> 00:07:26,090
+And it's also parroting back some
+of the parts of his sentence.
+
+141
+00:07:26,090 --> 00:07:27,310
+>> So we said, "No.
+
+142
+00:07:27,310 --> 00:07:29,090
+In fact, I am an electron."
+
+143
+00:07:29,090 --> 00:07:34,190
+Eliza responded back, "Did you come
+to me because you are an electron?"
+
+144
+00:07:34,190 --> 00:07:34,690
+All right.
+
+145
+00:07:34,690 --> 00:07:36,050
+Let's give it one more response here.
+
+146
+00:07:36,050 --> 00:07:37,140
+Give it a good one, Miles.
+
+147
+00:07:37,140 --> 00:07:37,806
+>> MILES: Good one?
+
+148
+00:07:37,806 --> 00:07:48,400
+
+149
+00:07:48,400 --> 00:07:49,570
+>> Yes, please help me.
+
+150
+00:07:49,570 --> 00:07:50,570
+BRIAN SCASSELLATI: "Yes.
+
+151
+00:07:50,570 --> 00:07:58,010
+Please help me." "Are you sure?"
+
+152
+00:07:58,010 --> 00:07:58,510
+MILES: No.
+
+153
+00:07:58,510 --> 00:08:00,860
+BRIAN SCASSELLATI: No.
+
+154
+00:08:00,860 --> 00:08:03,562
+"What does that suggest to you?"
+
+155
+00:08:03,562 --> 00:08:06,760
+>> MILES: I may not be an electron.
+
+156
+00:08:06,760 --> 00:08:11,170
+>> BRIAN SCASSELLATI: "I
+may not be an electron."
+
+157
+00:08:11,170 --> 00:08:13,790
+"Are you saying no just to be negative?"
+
+158
+00:08:13,790 --> 00:08:14,390
+>> All right.
+
+159
+00:08:14,390 --> 00:08:16,030
+So Miles, thank you so much.
+
+160
+00:08:16,030 --> 00:08:16,860
+>> MILES: Thank you.
+
+161
+00:08:16,860 --> 00:08:18,360
+>> BRIAN SCASSELLATI: Thanks very much.
+
+162
+00:08:18,360 --> 00:08:20,230
+[APPLAUSE]
+
+163
+00:08:20,230 --> 00:08:21,230
+
+164
+00:08:21,230 --> 00:08:26,700
+>> So this ELIZA program, in many ways,
+is responding just to the pieces
+
+165
+00:08:26,700 --> 00:08:32,730
+that we're providing without any deep
+understanding of what's happening here.
+
+166
+00:08:32,730 --> 00:08:36,640
+This is a kind of system
+called pattern matching, where
+
+167
+00:08:36,640 --> 00:08:40,490
+we're looking for certain
+bits of text that we're then
+
+168
+00:08:40,490 --> 00:08:44,860
+going to take out of what
+was provided as input,
+
+169
+00:08:44,860 --> 00:08:52,580
+convert it, potentially, in some way,
+and then give it back to the user.
+
+170
+00:08:52,580 --> 00:08:55,150
+>> Do any of you think
+that ELIZA is actually
+
+171
+00:08:55,150 --> 00:08:58,230
+performing valid psychoanalysis here?
+
+172
+00:08:58,230 --> 00:08:59,250
+One person, maybe.
+
+173
+00:08:59,250 --> 00:09:00,166
+>> AUDIENCE: [INAUDIBLE].
+
+174
+00:09:00,166 --> 00:09:03,315
+
+175
+00:09:03,315 --> 00:09:05,440
+BRIAN SCASSELLATI: And how
+does that make you feel?
+
+176
+00:09:05,440 --> 00:09:06,530
+Yes, in fact, it does.
+
+177
+00:09:06,530 --> 00:09:10,890
+And we're going to see, actually, the
+source code for it in just a moment.
+
+178
+00:09:10,890 --> 00:09:13,580
+And so you're going to be
+able to do exactly this.
+
+179
+00:09:13,580 --> 00:09:17,420
+>> Now, ELIZA is one form of what
+we would call today a chat bot.
+
+180
+00:09:17,420 --> 00:09:19,950
+It just goes through the
+text that you're providing,
+
+181
+00:09:19,950 --> 00:09:24,030
+provides the bare minimum amount
+of understanding or processing,
+
+182
+00:09:24,030 --> 00:09:26,790
+and then parrots it back to you.
+
+183
+00:09:26,790 --> 00:09:31,830
+So let's take a look,
+conceptually, and talk about what
+
+184
+00:09:31,830 --> 00:09:34,690
+it is that ELIZA is actually doing.
+
+185
+00:09:34,690 --> 00:09:42,000
+>> ELIZA is taking a sentence-- let's
+say, "I want to impress my boss."
+
+186
+00:09:42,000 --> 00:09:45,130
+And ELIZA is looking
+through that sentence
+
+187
+00:09:45,130 --> 00:09:48,730
+and trying to find and
+match certain patterns.
+
+188
+00:09:48,730 --> 00:09:52,850
+So, for example, one of the patterns
+that ELIZA is looking for are the words
+
+189
+00:09:52,850 --> 00:09:55,110
+"I want."
+
+190
+00:09:55,110 --> 00:09:59,330
+And any time it sees something
+that has "I want" in it,
+
+191
+00:09:59,330 --> 00:10:01,770
+it formulates a response.
+
+192
+00:10:01,770 --> 00:10:05,040
+And that response is a fixed string.
+
+193
+00:10:05,040 --> 00:10:07,915
+In this case, it's "why do you want?"
+
+194
+00:10:07,915 --> 00:10:11,330
+And I put a little star at
+the end because that's just
+
+195
+00:10:11,330 --> 00:10:13,310
+the beginning of our response.
+
+196
+00:10:13,310 --> 00:10:16,310
+And the star indicates that
+we're going to take the rest
+
+197
+00:10:16,310 --> 00:10:19,850
+of the user's utterance--
+"to impress my boss"--
+
+198
+00:10:19,850 --> 00:10:24,500
+and we're going to append that
+onto the end of this string.
+
+199
+00:10:24,500 --> 00:10:28,990
+>> So now, rather than saying, "why
+do you want to impress my boss,"
+
+200
+00:10:28,990 --> 00:10:31,800
+there's a little bit of additional
+processing that we'll do.
+
+201
+00:10:31,800 --> 00:10:34,440
+That is, we'll have to
+convert some of the pronouns
+
+202
+00:10:34,440 --> 00:10:38,670
+here from "my boss" to "your boss."
+
+203
+00:10:38,670 --> 00:10:41,300
+And there might be a few other
+changes that we need to make.
+
+204
+00:10:41,300 --> 00:10:44,990
+So rather than just sticking it
+directly onto the end, what we'll do
+
+205
+00:10:44,990 --> 00:10:49,160
+is we'll take the rest of the
+user's utterance-- in white here--
+
+206
+00:10:49,160 --> 00:10:54,090
+and we'll take it one piece at
+a time and convert each string
+
+207
+00:10:54,090 --> 00:10:58,180
+token, each word, into the sentence.
+
+208
+00:10:58,180 --> 00:10:59,580
+>> So we'll take the word "to."
+
+209
+00:10:59,580 --> 00:11:01,650
+There's no conversion
+that we need to do that.
+
+210
+00:11:01,650 --> 00:11:02,340
+"Impress."
+
+211
+00:11:02,340 --> 00:11:04,140
+There's no conversion
+we need to do there.
+
+212
+00:11:04,140 --> 00:11:06,670
+"My" will convert to "your."
+
+213
+00:11:06,670 --> 00:11:10,070
+And "boss" we'll just leave as "boss."
+
+214
+00:11:10,070 --> 00:11:12,740
+And then finally, anything
+that ends with a period,
+
+215
+00:11:12,740 --> 00:11:16,640
+we'll convert it into a question.
+
+216
+00:11:16,640 --> 00:11:22,600
+>> This very simple pattern matching
+is actually quite successful.
+
+217
+00:11:22,600 --> 00:11:27,260
+And when this was introduced
+in 1966-- Joseph Weizenbaum
+
+218
+00:11:27,260 --> 00:11:28,986
+programmed this on a computer.
+
+219
+00:11:28,986 --> 00:11:31,110
+Now, computers at that time
+weren't desktop models.
+
+220
+00:11:31,110 --> 00:11:33,950
+They were shared resources.
+
+221
+00:11:33,950 --> 00:11:39,090
+And his students would
+go and chat with ELIZA.
+
+222
+00:11:39,090 --> 00:11:41,570
+Eventually, he had to
+restrict access to it
+
+223
+00:11:41,570 --> 00:11:43,890
+because his students weren't
+getting any work done.
+
+224
+00:11:43,890 --> 00:11:46,190
+They were just chatting with ELIZA.
+
+225
+00:11:46,190 --> 00:11:48,850
+And, in fact, he had to
+fire his assistant, who
+
+226
+00:11:48,850 --> 00:11:55,840
+spent all of her time talking to ELIZA
+about her deep and worrisome problems.
+
+227
+00:11:55,840 --> 00:12:00,350
+>> Everyone who used these systems
+started to anthropomorphize them.
+
+228
+00:12:00,350 --> 00:12:04,490
+They started to think of them as
+being animate and real people.
+
+229
+00:12:04,490 --> 00:12:07,969
+They started to recognize some of
+the things that they were saying
+
+230
+00:12:07,969 --> 00:12:09,010
+were coming back to them.
+
+231
+00:12:09,010 --> 00:12:12,120
+And they were finding out
+things about themselves.
+
+232
+00:12:12,120 --> 00:12:17,290
+And, in fact, even the experts,
+even the psychotherapists,
+
+233
+00:12:17,290 --> 00:12:22,930
+started to worry that, in fact,
+maybe ELIZA would be replacing them.
+
+234
+00:12:22,930 --> 00:12:25,640
+And even the computer
+scientists worried that we were
+
+235
+00:12:25,640 --> 00:12:30,040
+so close to solving natural language.
+
+236
+00:12:30,040 --> 00:12:33,520
+>> Now, that wasn't anywhere close to true.
+
+237
+00:12:33,520 --> 00:12:37,280
+But that's how impressive
+these systems can seem.
+
+238
+00:12:37,280 --> 00:12:40,080
+So let's start to look
+underneath and try
+
+239
+00:12:40,080 --> 00:12:46,190
+to get a little bit of a question
+of where this code actually happens.
+
+240
+00:12:46,190 --> 00:12:48,170
+So we'll make this code
+available afterwards.
+
+241
+00:12:48,170 --> 00:12:50,880
+And this is a very
+simple and direct port
+
+242
+00:12:50,880 --> 00:12:53,240
+of the original ELIZA implementation.
+
+243
+00:12:53,240 --> 00:12:56,350
+>> So some of these stylistic
+things that you'll see here
+
+244
+00:12:56,350 --> 00:12:59,360
+are not stylistically what
+we would want you to do
+
+245
+00:12:59,360 --> 00:13:01,480
+or what we've been teaching you to do.
+
+246
+00:13:01,480 --> 00:13:04,770
+But we've tried to keep them
+the same across the many ports
+
+247
+00:13:04,770 --> 00:13:08,087
+that this has had so that it
+has the flavor of the original.
+
+248
+00:13:08,087 --> 00:13:09,920
+So we're going to include
+a bunch of things,
+
+249
+00:13:09,920 --> 00:13:12,920
+and then we'll have a
+set of keywords, things
+
+250
+00:13:12,920 --> 00:13:16,460
+that ELIZA will recognize
+and respond to directly.
+
+251
+00:13:16,460 --> 00:13:20,780
+So if you have words like
+"can you" or "I don't" or "no"
+
+252
+00:13:20,780 --> 00:13:24,680
+or "yes" or "dream"
+or "hello," then ELIZA
+
+253
+00:13:24,680 --> 00:13:27,920
+will respond selectively to those.
+
+254
+00:13:27,920 --> 00:13:30,010
+We'll also have a
+certain number of things
+
+255
+00:13:30,010 --> 00:13:34,940
+that we will swap, like
+converting "my" to "your."
+
+256
+00:13:34,940 --> 00:13:39,920
+>> And then we'll have a set of responses
+that for each of these keywords,
+
+257
+00:13:39,920 --> 00:13:42,580
+we'll rotate through
+these different responses.
+
+258
+00:13:42,580 --> 00:13:45,350
+So if I say "yes"
+three times in a row, I
+
+259
+00:13:45,350 --> 00:13:50,429
+might get three different
+responses from ELIZA.
+
+260
+00:13:50,429 --> 00:13:52,345
+Our code, then, is
+actually remarkably simple.
+
+261
+00:13:52,345 --> 00:13:59,490
+If I scroll down past all of these
+responses that we have programmed in
+
+262
+00:13:59,490 --> 00:14:02,920
+and we get down to our main,
+we're going to initialize
+
+263
+00:14:02,920 --> 00:14:06,540
+a couple of different variables
+and do a little bit of housekeeping
+
+264
+00:14:06,540 --> 00:14:08,480
+in the beginning.
+
+265
+00:14:08,480 --> 00:14:11,760
+But then there's absolutely a set
+of code that you can understand.
+
+266
+00:14:11,760 --> 00:14:15,820
+One big while loop that says I'm
+going to repeat this over and over.
+
+267
+00:14:15,820 --> 00:14:20,420
+I'll read in a line, and I'll
+store that in an input string.
+
+268
+00:14:20,420 --> 00:14:23,880
+I'll check and see if it's the
+special keyword "bye," which
+
+269
+00:14:23,880 --> 00:14:26,199
+means exit the program.
+
+270
+00:14:26,199 --> 00:14:29,240
+And then I'll check and see whether
+somebody is just repeating themselves
+
+271
+00:14:29,240 --> 00:14:29,800
+over and over.
+
+272
+00:14:29,800 --> 00:14:31,174
+And I'll yell at them if they do.
+
+273
+00:14:31,174 --> 00:14:34,820
+I'll say "don't repeat yourself."
+
+274
+00:14:34,820 --> 00:14:40,500
+>> As long as none of those happen, we'll
+then scan through and loop through,
+
+275
+00:14:40,500 --> 00:14:45,330
+on lines 308 to 313
+here, and check and see
+
+276
+00:14:45,330 --> 00:14:49,090
+are any of those keyword
+phrases contained in the input
+
+277
+00:14:49,090 --> 00:14:50,620
+that I was just given?
+
+278
+00:14:50,620 --> 00:14:54,845
+If there is a match for them, well
+then, I'll remember that location.
+
+279
+00:14:54,845 --> 00:14:57,050
+I'll remember that keyword.
+
+280
+00:14:57,050 --> 00:14:58,620
+And I'll be able to build a response.
+
+281
+00:14:58,620 --> 00:15:03,150
+>> If I don't find one, well then,
+the last thing in my keyword array
+
+282
+00:15:03,150 --> 00:15:08,070
+will be my default responses,
+when nothing else matches.
+
+283
+00:15:08,070 --> 00:15:14,160
+I'll ask questions like "Why did you
+come here?" or "How can I help you?"
+
+284
+00:15:14,160 --> 00:15:19,710
+that are just partially appropriate
+no matter what the input is.
+
+285
+00:15:19,710 --> 00:15:22,580
+>> We'll then build up ELIZA's response.
+
+286
+00:15:22,580 --> 00:15:26,040
+We'll be able to take
+that base response,
+
+287
+00:15:26,040 --> 00:15:28,370
+just as we did in that
+"my boss" example.
+
+288
+00:15:28,370 --> 00:15:30,970
+
+289
+00:15:30,970 --> 00:15:33,990
+If that's all that there
+is-- if it's just one
+
+290
+00:15:33,990 --> 00:15:36,860
+string that I'm supposed to respond--
+I can just send it back out.
+
+291
+00:15:36,860 --> 00:15:40,610
+If it has an asterisk at
+the end of it, then I'll
+
+292
+00:15:40,610 --> 00:15:45,710
+process each individual token in
+the rest of the user's response
+
+293
+00:15:45,710 --> 00:15:51,590
+and add those in, swapping out
+word for word as I need to.
+
+294
+00:15:51,590 --> 00:15:56,100
+>> All of this is absolutely
+something that you could build.
+
+295
+00:15:56,100 --> 00:15:59,230
+And in fact, the ways in which we
+have processed command line arguments,
+
+296
+00:15:59,230 --> 00:16:03,570
+the way in which you have
+processed through HTTP requests
+
+297
+00:16:03,570 --> 00:16:05,510
+follow the same kinds of rules.
+
+298
+00:16:05,510 --> 00:16:08,220
+They're pattern matching.
+
+299
+00:16:08,220 --> 00:16:15,170
+>> So ELIZA had a relatively important
+impact on natural language
+
+300
+00:16:15,170 --> 00:16:21,620
+because it made it seem like it was a
+very attainable goal, like somehow we'd
+
+301
+00:16:21,620 --> 00:16:25,550
+be able to solve this problem directly.
+
+302
+00:16:25,550 --> 00:16:30,670
+Now, that's not to say that ELIZA does
+everything that we would want to do.
+
+303
+00:16:30,670 --> 00:16:33,710
+Certainly not.
+
+304
+00:16:33,710 --> 00:16:35,660
+But we should be able
+to do something more.
+
+305
+00:16:35,660 --> 00:16:38,280
+
+306
+00:16:38,280 --> 00:16:41,490
+>> Our first step to go
+beyond ELIZA is going
+
+307
+00:16:41,490 --> 00:16:44,840
+to be able to look at
+not text being entered
+
+308
+00:16:44,840 --> 00:16:53,750
+into the keyboard but speech, actual
+speech recorded into a microphone.
+
+309
+00:16:53,750 --> 00:16:56,880
+So as we look at these
+different pieces, we're
+
+310
+00:16:56,880 --> 00:17:00,304
+going to have to build a set of models.
+
+311
+00:17:00,304 --> 00:17:02,970
+We're going to have to be able
+to go from the low-level acoustic
+
+312
+00:17:02,970 --> 00:17:07,180
+information-- pitch,
+amplitude, frequency--
+
+313
+00:17:07,180 --> 00:17:09,530
+and convert that into
+some units that we're
+
+314
+00:17:09,530 --> 00:17:14,619
+able to more easily manipulate
+and, finally, manipulate them
+
+315
+00:17:14,619 --> 00:17:18,609
+into words and sentences.
+
+316
+00:17:18,609 --> 00:17:22,880
+>> So most speech recognition
+systems that are out there today
+
+317
+00:17:22,880 --> 00:17:26,069
+follow a statistical
+model in which we build
+
+318
+00:17:26,069 --> 00:17:35,090
+three separate representations of what
+that audio signal actually contains.
+
+319
+00:17:35,090 --> 00:17:38,640
+We start with a phonetic model
+that talks about just the base
+
+320
+00:17:38,640 --> 00:17:41,250
+sounds that I'm producing.
+
+321
+00:17:41,250 --> 00:17:46,900
+Am I producing something that is
+a B as in boy or a D as in dog?
+
+322
+00:17:46,900 --> 00:17:53,220
+How do I recognize those two different
+phones as separate and distinct?
+
+323
+00:17:53,220 --> 00:17:56,600
+>> On top of that, we'll then build
+a word pronunciation model,
+
+324
+00:17:56,600 --> 00:18:01,350
+something that links together
+those individual phones
+
+325
+00:18:01,350 --> 00:18:04,724
+and combines them into a word.
+
+326
+00:18:04,724 --> 00:18:07,890
+And after that, we'll take the words
+and we'll assemble them with a language
+
+327
+00:18:07,890 --> 00:18:13,010
+model into a complete sentence.
+
+328
+00:18:13,010 --> 00:18:17,230
+>> Now, we're going to talk about each
+of these independently and separately.
+
+329
+00:18:17,230 --> 00:18:21,580
+But these three models are all
+just going to be statistics.
+
+330
+00:18:21,580 --> 00:18:23,502
+And that means when we
+work with them, we'll
+
+331
+00:18:23,502 --> 00:18:25,376
+be able to work with
+them all simultaneously.
+
+332
+00:18:25,376 --> 00:18:28,100
+
+333
+00:18:28,100 --> 00:18:28,600
+All right.
+
+334
+00:18:28,600 --> 00:18:30,890
+Let's start with our phonetic model.
+
+335
+00:18:30,890 --> 00:18:34,470
+So phonetic models rely on
+a computational technique
+
+336
+00:18:34,470 --> 00:18:37,320
+called hidden Markov models.
+
+337
+00:18:37,320 --> 00:18:43,050
+These are graphical models in which I
+have and recognize a state of the world
+
+338
+00:18:43,050 --> 00:18:46,500
+as being characterized
+by a set of features.
+
+339
+00:18:46,500 --> 00:18:51,960
+And that state describes one part
+of an action that I'm engaged in.
+
+340
+00:18:51,960 --> 00:19:00,190
+>> So if I think about making
+the sound "ma" like mother,
+
+341
+00:19:00,190 --> 00:19:03,970
+there are different
+components to that sound.
+
+342
+00:19:03,970 --> 00:19:07,230
+There's a part where I draw in breath.
+
+343
+00:19:07,230 --> 00:19:09,560
+And then I purse my lips.
+
+344
+00:19:09,560 --> 00:19:13,710
+And I roll my lips back a little
+bit to make that "ma" sound.
+
+345
+00:19:13,710 --> 00:19:15,340
+And then there's a release.
+
+346
+00:19:15,340 --> 00:19:17,020
+My lips come apart.
+
+347
+00:19:17,020 --> 00:19:19,030
+Air is expelled.
+
+348
+00:19:19,030 --> 00:19:22,650
+"Ma."
+
+349
+00:19:22,650 --> 00:19:29,250
+>> Those three different parts would be
+represented by states in this graph--
+
+350
+00:19:29,250 --> 00:19:33,420
+the onset, the middle, and the end.
+
+351
+00:19:33,420 --> 00:19:38,060
+And I would have transitions that
+allowed me to travel from one state
+
+352
+00:19:38,060 --> 00:19:42,260
+to the next with a certain probability.
+
+353
+00:19:42,260 --> 00:19:47,250
+So, for example, that M
+sound might have a very,
+
+354
+00:19:47,250 --> 00:19:51,850
+very short intake at the beginning--
+"mm"-- and then a longer,
+
+355
+00:19:51,850 --> 00:19:55,640
+vibratory phase where I'm holding my
+lips together and almost humming--
+
+356
+00:19:55,640 --> 00:20:05,090
+"mmmm"-- and then a very short
+plosive where I expel breath-- "ma."
+
+357
+00:20:05,090 --> 00:20:09,370
+>> The hidden Markov model is
+designed to capture the fact
+
+358
+00:20:09,370 --> 00:20:13,340
+that the way that I make
+that sound "ma" is going
+
+359
+00:20:13,340 --> 00:20:17,350
+to be slightly different in
+its timing, is frequency,
+
+360
+00:20:17,350 --> 00:20:21,030
+and its features than
+the way that you make it
+
+361
+00:20:21,030 --> 00:20:23,300
+or the way that I might
+make it when I'm talking
+
+362
+00:20:23,300 --> 00:20:26,030
+about different uses of the letter.
+
+363
+00:20:26,030 --> 00:20:33,240
+"Mother" and "may I" will
+sound slightly differently.
+
+364
+00:20:33,240 --> 00:20:36,800
+>> So to recognize a
+particular sound, we would
+
+365
+00:20:36,800 --> 00:20:42,020
+build Markov models, these hidden Markov
+models, of every possible phone that I
+
+366
+00:20:42,020 --> 00:20:45,840
+might want to recognize,
+every possible sound,
+
+367
+00:20:45,840 --> 00:20:49,750
+and then look at the
+acoustic data that I have
+
+368
+00:20:49,750 --> 00:20:54,430
+and determine statistically
+which one is the most likely one
+
+369
+00:20:54,430 --> 00:20:58,110
+to have produced this sound.
+
+370
+00:20:58,110 --> 00:20:58,610
+OK.
+
+371
+00:20:58,610 --> 00:21:01,540
+
+372
+00:21:01,540 --> 00:21:06,750
+With that model, we then
+start to build on top of it.
+
+373
+00:21:06,750 --> 00:21:09,330
+We take a pronunciation model.
+
+374
+00:21:09,330 --> 00:21:11,790
+Now, sometimes pronunciation
+models are simple and easy
+
+375
+00:21:11,790 --> 00:21:14,440
+because there's only one
+way to pronounce something.
+
+376
+00:21:14,440 --> 00:21:17,990
+Other times, they're a
+little bit more complicated.
+
+377
+00:21:17,990 --> 00:21:21,340
+Here's a pronunciation guide
+for that red thing that is
+
+378
+00:21:21,340 --> 00:21:25,210
+a fruit that you make ketchup out of.
+
+379
+00:21:25,210 --> 00:21:27,360
+People don't think it's a fruit.
+
+380
+00:21:27,360 --> 00:21:27,860
+Right?
+
+381
+00:21:27,860 --> 00:21:30,880
+
+382
+00:21:30,880 --> 00:21:35,300
+>> Now, there are many different ways
+that people will pronounce this word.
+
+383
+00:21:35,300 --> 00:21:37,780
+Some will say "toe-may-toe."
+
+384
+00:21:37,780 --> 00:21:40,880
+Some will say "toe-mah-toe."
+
+385
+00:21:40,880 --> 00:21:44,800
+And we can capture that with
+one of these graphical models
+
+386
+00:21:44,800 --> 00:21:48,305
+where, again, we represent transitions
+as having a certain probability
+
+387
+00:21:48,305 --> 00:21:51,360
+and associated probability with them.
+
+388
+00:21:51,360 --> 00:21:58,290
+>> So in this case, if I were to follow
+the top route through this entire graph,
+
+389
+00:21:58,290 --> 00:22:03,330
+I would be starting at the letter
+on the far left, the "ta" sound.
+
+390
+00:22:03,330 --> 00:22:07,570
+I would take the top half,
+the "oh," and then a "ma,"
+
+391
+00:22:07,570 --> 00:22:14,530
+and then an "a," and then a
+"ta," and an "oh." "Toe-may-toe."
+
+392
+00:22:14,530 --> 00:22:19,610
+If I took the bottom path through
+this, I will get "ta-mah-toe."
+
+393
+00:22:19,610 --> 00:22:26,810
+And if I went down and then
+up, I would get "ta-may-toe."
+
+394
+00:22:26,810 --> 00:22:29,950
+>> These models capture these
+differences because whenever
+
+395
+00:22:29,950 --> 00:22:32,410
+we deploy one of these
+recognition systems,
+
+396
+00:22:32,410 --> 00:22:35,340
+it's going to have to work with
+lots of different kind of people,
+
+397
+00:22:35,340 --> 00:22:39,295
+lots of different accents, and even
+different uses of the same words.
+
+398
+00:22:39,295 --> 00:22:42,204
+
+399
+00:22:42,204 --> 00:22:44,120
+Finally, on top of that,
+we'll build something
+
+400
+00:22:44,120 --> 00:22:48,780
+that looks really complicated,
+called the language model,
+
+401
+00:22:48,780 --> 00:22:52,950
+but in fact is the simplest of
+the three because these operate
+
+402
+00:22:52,950 --> 00:22:56,041
+on what are called n-gram models.
+
+403
+00:22:56,041 --> 00:23:02,270
+And in this case, I'm showing you
+a two-part n-gram model, a bigram.
+
+404
+00:23:02,270 --> 00:23:08,910
+We're going to make physical the idea
+that sometimes, certain words are
+
+405
+00:23:08,910 --> 00:23:14,680
+more likely to follow a
+given word than others.
+
+406
+00:23:14,680 --> 00:23:25,210
+If I just said "weather forecast,"
+the next word could likely be "today"
+
+407
+00:23:25,210 --> 00:23:31,510
+or could be "the weather
+forecast tomorrow."
+
+408
+00:23:31,510 --> 00:23:38,870
+But it's unlikely to be "the
+weather forecast artichoke."
+
+409
+00:23:38,870 --> 00:23:42,980
+>> What a language model does is
+it captures those statistically
+
+410
+00:23:42,980 --> 00:23:47,450
+by counting, from some very large
+corpus, all of the instances
+
+411
+00:23:47,450 --> 00:23:50,890
+in which one word follows another.
+
+412
+00:23:50,890 --> 00:23:54,300
+So if I take a large corpus--
+like every Wall Street Journal
+
+413
+00:23:54,300 --> 00:24:00,750
+that has been produced since 1930,
+which is one of the standard corpuses--
+
+414
+00:24:00,750 --> 00:24:03,910
+and I look through all
+that text, and I count
+
+415
+00:24:03,910 --> 00:24:09,770
+up how many times after
+"forecast" do I see "today"
+
+416
+00:24:09,770 --> 00:24:17,454
+and how many times do I see
+"forecast" followed by "artichoke,"
+
+417
+00:24:17,454 --> 00:24:19,370
+the first one is going
+to be much more likely.
+
+418
+00:24:19,370 --> 00:24:21,540
+It's going to appear
+far more frequently.
+
+419
+00:24:21,540 --> 00:24:24,610
+And so it'll have a higher
+probability associated with it.
+
+420
+00:24:24,610 --> 00:24:27,340
+>> If I want to figure out the
+probability of an entire utterance,
+
+421
+00:24:27,340 --> 00:24:29,940
+then, I just break it up.
+
+422
+00:24:29,940 --> 00:24:35,990
+So the probability of hearing
+the sentence "the rat ate cheese"
+
+423
+00:24:35,990 --> 00:24:39,110
+is the probability of the word
+"the" starting a sentence,
+
+424
+00:24:39,110 --> 00:24:42,540
+and then the probability that the
+word "rat" follows the word "the,"
+
+425
+00:24:42,540 --> 00:24:44,910
+and the probability that the
+word "ate" follows "rat,"
+
+426
+00:24:44,910 --> 00:24:51,120
+and the probability that
+"cheese" follows "ate."
+
+427
+00:24:51,120 --> 00:24:55,160
+>> This sounds like a lot of
+statistics, a lot of probabilities.
+
+428
+00:24:55,160 --> 00:24:57,510
+And that's all that it is.
+
+429
+00:24:57,510 --> 00:25:02,920
+But the amazing thing is if you do this
+with a large enough sample of data,
+
+430
+00:25:02,920 --> 00:25:03,670
+it works.
+
+431
+00:25:03,670 --> 00:25:05,250
+And it works tremendously well.
+
+432
+00:25:05,250 --> 00:25:07,810
+
+433
+00:25:07,810 --> 00:25:11,420
+We all know these technologies.
+
+434
+00:25:11,420 --> 00:25:16,500
+Most operating systems come with
+voice recognition at this point.
+
+435
+00:25:16,500 --> 00:25:20,940
+We use Siri and Cortana and Echo.
+
+436
+00:25:20,940 --> 00:25:25,070
+And these things are based upon
+this type of three-layer model--
+
+437
+00:25:25,070 --> 00:25:30,620
+a phonetic model at the bottom, a
+pronunciation model in the middle,
+
+438
+00:25:30,620 --> 00:25:33,690
+and a language model on top of them.
+
+439
+00:25:33,690 --> 00:25:37,630
+>> Now, they have to do a little bit more
+than that in order to answer questions.
+
+440
+00:25:37,630 --> 00:25:43,000
+But the recognition of what you're
+saying depends exactly on that.
+
+441
+00:25:43,000 --> 00:25:45,700
+So let's take an example here.
+
+442
+00:25:45,700 --> 00:25:52,020
+So I have my phone sitting up here
+underneath the document camera.
+
+443
+00:25:52,020 --> 00:25:56,110
+And we're going to asks
+Siri a few questions.
+
+444
+00:25:56,110 --> 00:25:57,150
+All right?
+
+445
+00:25:57,150 --> 00:25:59,940
+>> So let's wake up my phone here.
+
+446
+00:25:59,940 --> 00:26:02,710
+
+447
+00:26:02,710 --> 00:26:05,000
+Siri, what is the weather
+like in New Haven today?
+
+448
+00:26:05,000 --> 00:26:07,670
+
+449
+00:26:07,670 --> 00:26:10,780
+>> SIRI: Here's the weather for
+New Haven, Connecticut today.
+
+450
+00:26:10,780 --> 00:26:11,890
+>> BRIAN SCASSELLATI: OK.
+
+451
+00:26:11,890 --> 00:26:16,720
+So first you saw that Siri recognized
+each of the individual words
+
+452
+00:26:16,720 --> 00:26:19,050
+and then produced a response.
+
+453
+00:26:19,050 --> 00:26:22,277
+We'll talk about how that response
+comes about in a little bit.
+
+454
+00:26:22,277 --> 00:26:24,110
+But now that we know
+that this is just based
+
+455
+00:26:24,110 --> 00:26:28,880
+on the raw statistics and this
+pattern matching type of approach,
+
+456
+00:26:28,880 --> 00:26:31,120
+we can play some games with Siri.
+
+457
+00:26:31,120 --> 00:26:34,560
+>> So I can try again.
+
+458
+00:26:34,560 --> 00:26:38,864
+Siri, what is the weather
+hippopotamus New Haven, today?
+
+459
+00:26:38,864 --> 00:26:39,810
+>> SIRI: OK.
+
+460
+00:26:39,810 --> 00:26:44,245
+Here's the weather for New
+Haven, Connecticut for today.
+
+461
+00:26:44,245 --> 00:26:46,120
+BRIAN SCASSELLATI: Siri's
+not daunted by that
+
+462
+00:26:46,120 --> 00:26:50,980
+because it's found the pattern--
+"weather," "today," "New Haven."
+
+463
+00:26:50,980 --> 00:26:54,420
+That's what it's responding
+to, just like ELIZA.
+
+464
+00:26:54,420 --> 00:26:54,920
+All right.
+
+465
+00:26:54,920 --> 00:26:59,390
+Let's give it one more even
+more ridiculous example.
+
+466
+00:26:59,390 --> 00:27:03,075
+Siri, weather artichoke
+armadillo hippopotamus New Haven?
+
+467
+00:27:03,075 --> 00:27:06,806
+
+468
+00:27:06,806 --> 00:27:08,400
+>> SIRI: Let me check on that.
+
+469
+00:27:08,400 --> 00:27:11,280
+Here's what I found on the web
+for what are artichokes armadillo
+
+470
+00:27:11,280 --> 00:27:13,780
+hippopotamus New Haven.
+
+471
+00:27:13,780 --> 00:27:14,760
+>> BRIAN SCASSELLATI: OK.
+
+472
+00:27:14,760 --> 00:27:20,400
+So if I go far enough
+away from this model,
+
+473
+00:27:20,400 --> 00:27:24,365
+I'm able to confuse it because it no
+longer matches the pattern that it has.
+
+474
+00:27:24,365 --> 00:27:27,370
+
+475
+00:27:27,370 --> 00:27:29,390
+And that statistical
+engine that's saying,
+
+476
+00:27:29,390 --> 00:27:32,850
+what's the likelihood that you've got
+the words hippopotamus and artichoke
+
+477
+00:27:32,850 --> 00:27:34,440
+together, and armadillo?
+
+478
+00:27:34,440 --> 00:27:36,050
+That's got to be something new.
+
+479
+00:27:36,050 --> 00:27:38,840
+
+480
+00:27:38,840 --> 00:27:40,610
+>> So these technologies we use every day.
+
+481
+00:27:40,610 --> 00:27:43,670
+
+482
+00:27:43,670 --> 00:27:47,800
+If we want to take them one step
+further, though, if we actually
+
+483
+00:27:47,800 --> 00:27:53,930
+want to be able to talk about what it
+is that these systems are responding to,
+
+484
+00:27:53,930 --> 00:28:00,630
+we have to talk, again, about a
+more fundamental set of questions.
+
+485
+00:28:00,630 --> 00:28:05,370
+And that's a topic in communication
+that we call question answering.
+
+486
+00:28:05,370 --> 00:28:07,028
+That is, we want to be able to-- yeah?
+
+487
+00:28:07,028 --> 00:28:07,944
+AUDIENCE: [INAUDIBLE].
+
+488
+00:28:07,944 --> 00:28:10,789
+
+489
+00:28:10,789 --> 00:28:13,330
+BRIAN SCASSELLATI: Do we get
+into latent semantic processing?
+
+490
+00:28:13,330 --> 00:28:14,070
+So yes.
+
+491
+00:28:14,070 --> 00:28:17,820
+There are a lot of things that are
+happening below the surface with Siri
+
+492
+00:28:17,820 --> 00:28:20,210
+and in some of the examples
+I'm going to show you next
+
+493
+00:28:20,210 --> 00:28:22,610
+where there is quite a bit
+in terms of the structure
+
+494
+00:28:22,610 --> 00:28:25,260
+of what you're saying that's important.
+
+495
+00:28:25,260 --> 00:28:31,890
+And, in fact, that's a great
+precursor for the next slide for me.
+
+496
+00:28:31,890 --> 00:28:35,110
+>> So in the same way that our
+speech recognition was built up
+
+497
+00:28:35,110 --> 00:28:39,620
+of multiple layers, if we want to
+understand what it is that's actually
+
+498
+00:28:39,620 --> 00:28:44,620
+being said, we're going to again
+rely on a multi-layer analysis
+
+499
+00:28:44,620 --> 00:28:47,020
+of the text that's being recognized.
+
+500
+00:28:47,020 --> 00:28:52,560
+So when Siri is actually able to
+say, look I found these words.
+
+501
+00:28:52,560 --> 00:28:55,230
+Now what do I do with them?
+
+502
+00:28:55,230 --> 00:28:59,110
+The first component is often to
+go through and try to analyze
+
+503
+00:28:59,110 --> 00:29:03,010
+the structure of the sentence.
+
+504
+00:29:03,010 --> 00:29:05,410
+And in what we've seen
+in grade school, often,
+
+505
+00:29:05,410 --> 00:29:08,920
+as sort of diagramming
+sentences, we're going
+
+506
+00:29:08,920 --> 00:29:12,774
+to recognize that certain
+words have certain roles.
+
+507
+00:29:12,774 --> 00:29:13,440
+These are nouns.
+
+508
+00:29:13,440 --> 00:29:14,231
+These are pronouns.
+
+509
+00:29:14,231 --> 00:29:16,200
+These are verbs.
+
+510
+00:29:16,200 --> 00:29:19,460
+And we're going to recognize
+that for a particular grammar,
+
+511
+00:29:19,460 --> 00:29:24,700
+in this case English grammar, there are
+valid ways in which I can combine them
+
+512
+00:29:24,700 --> 00:29:26,280
+and other ways that are not valid.
+
+513
+00:29:26,280 --> 00:29:29,920
+
+514
+00:29:29,920 --> 00:29:33,870
+>> That recognition, that structure,
+might be enough to help guide us
+
+515
+00:29:33,870 --> 00:29:36,720
+a little bit.
+
+516
+00:29:36,720 --> 00:29:39,820
+But it's not quite enough
+for us to be able to give
+
+517
+00:29:39,820 --> 00:29:43,290
+any meaning to what's being said here.
+
+518
+00:29:43,290 --> 00:29:46,615
+To do that, we'll have to rely on
+some amount of semantic processing.
+
+519
+00:29:46,615 --> 00:29:49,590
+
+520
+00:29:49,590 --> 00:29:55,080
+That is, we're going to have to look
+at underneath what each of these words
+
+521
+00:29:55,080 --> 00:29:57,400
+actually carries as a meaning.
+
+522
+00:29:57,400 --> 00:30:01,150
+And in the simplest way of doing this,
+we're going to associate with each word
+
+523
+00:30:01,150 --> 00:30:06,930
+that we know a certain function,
+a certain transformation that it
+
+524
+00:30:06,930 --> 00:30:09,300
+allows to happen.
+
+525
+00:30:09,300 --> 00:30:14,470
+>> In this case, we might label the
+word "John" as being a proper name,
+
+526
+00:30:14,470 --> 00:30:18,160
+that it carries with it an identity.
+
+527
+00:30:18,160 --> 00:30:21,530
+And we might label
+"Mary" as the same way.
+
+528
+00:30:21,530 --> 00:30:27,900
+Whereas a verb like "loves," that
+constitutes a particular relationship
+
+529
+00:30:27,900 --> 00:30:31,582
+that we're able to represent.
+
+530
+00:30:31,582 --> 00:30:33,290
+Now, that doesn't mean
+that we understand
+
+531
+00:30:33,290 --> 00:30:37,680
+what love is but only that we understand
+it in the way of a symbolic system.
+
+532
+00:30:37,680 --> 00:30:40,480
+That is, we can label
+it and manipulate it.
+
+533
+00:30:40,480 --> 00:30:44,230
+
+534
+00:30:44,230 --> 00:30:49,120
+>> With each of these types of approaches,
+any type of semantic processing
+
+535
+00:30:49,120 --> 00:30:57,060
+here is going to require a little
+bit of knowledge and a lot of work
+
+536
+00:30:57,060 --> 00:30:59,020
+on our part.
+
+537
+00:30:59,020 --> 00:31:03,590
+We're no longer in the realm
+where just plain statistics
+
+538
+00:31:03,590 --> 00:31:07,320
+are going to be enough for us.
+
+539
+00:31:07,320 --> 00:31:11,330
+Now, in order to go
+from this point to being
+
+540
+00:31:11,330 --> 00:31:15,520
+able to talk about the inside of
+what's actually happening here,
+
+541
+00:31:15,520 --> 00:31:19,640
+to being able to manipulate this
+structure and understand a question
+
+542
+00:31:19,640 --> 00:31:23,160
+and then being able
+to go out and search,
+
+543
+00:31:23,160 --> 00:31:27,290
+that requires a more
+complex cognitive model.
+
+544
+00:31:27,290 --> 00:31:34,880
+>> The way in which these systems are built
+is for the most part very, very labor
+
+545
+00:31:34,880 --> 00:31:36,350
+intensive.
+
+546
+00:31:36,350 --> 00:31:39,490
+They involve humans
+spending a great deal
+
+547
+00:31:39,490 --> 00:31:44,100
+of time structuring the ways in
+which these kinds of sentences
+
+548
+00:31:44,100 --> 00:31:47,270
+can be represented in some logic.
+
+549
+00:31:47,270 --> 00:31:51,639
+
+550
+00:31:51,639 --> 00:31:53,430
+It gets even a little
+more complex, though.
+
+551
+00:31:53,430 --> 00:31:56,400
+
+552
+00:31:56,400 --> 00:31:59,660
+>> Even once we've dealt
+with semantics, we'll
+
+553
+00:31:59,660 --> 00:32:03,860
+still have to look at the
+pragmatics of what's being said.
+
+554
+00:32:03,860 --> 00:32:08,620
+That is, how do I relate the words
+that I have to something physically out
+
+555
+00:32:08,620 --> 00:32:12,054
+there in the world or at
+least some information source
+
+556
+00:32:12,054 --> 00:32:12,970
+that I can manipulate?
+
+557
+00:32:12,970 --> 00:32:15,780
+
+558
+00:32:15,780 --> 00:32:20,790
+>> Sometimes, these lead to
+wonderful bits of ambiguity.
+
+559
+00:32:20,790 --> 00:32:24,470
+"Red-hot star to wed astronomer."
+
+560
+00:32:24,470 --> 00:32:25,630
+OK.
+
+561
+00:32:25,630 --> 00:32:28,540
+Now, we read that as the
+funny type of headline
+
+562
+00:32:28,540 --> 00:32:34,690
+that we would see on late night TV
+because we don't interpret "star"
+
+563
+00:32:34,690 --> 00:32:38,630
+to have its celestial body meaning.
+
+564
+00:32:38,630 --> 00:32:43,390
+We know that it means the more
+commonplace actor or actress
+
+565
+00:32:43,390 --> 00:32:45,240
+with high amounts of visibility.
+
+566
+00:32:45,240 --> 00:32:47,770
+
+567
+00:32:47,770 --> 00:32:51,950
+>> "Squad helps dog bite victim."
+
+568
+00:32:51,950 --> 00:32:55,550
+Is it that the squad is actually
+out there assisting a dog
+
+569
+00:32:55,550 --> 00:32:59,620
+in going around and biting victims?
+
+570
+00:32:59,620 --> 00:33:02,380
+Or is it that there was
+an individual who was
+
+571
+00:33:02,380 --> 00:33:04,625
+bitten by a dog who needed some help?
+
+572
+00:33:04,625 --> 00:33:07,650
+
+573
+00:33:07,650 --> 00:33:11,480
+Just from looking at the syntax
+and the semantics of the sentences,
+
+574
+00:33:11,480 --> 00:33:14,660
+we can't determine that.
+
+575
+00:33:14,660 --> 00:33:22,000
+>> "Helicopter powered by human flies."
+
+576
+00:33:22,000 --> 00:33:27,330
+Are there, in fact, actual
+little things flying around that
+
+577
+00:33:27,330 --> 00:33:34,510
+are people with wings powering
+helicopters for the good of mankind?
+
+578
+00:33:34,510 --> 00:33:38,960
+Or is there one mechanical device
+that derives its power from a person?
+
+579
+00:33:38,960 --> 00:33:41,600
+
+580
+00:33:41,600 --> 00:33:46,500
+>> When we look at question
+answering systems,
+
+581
+00:33:46,500 --> 00:33:51,110
+these are the layers that
+we need to deal with.
+
+582
+00:33:51,110 --> 00:33:54,890
+Now, the best and the most sort
+of prevalent of these systems
+
+583
+00:33:54,890 --> 00:34:00,640
+today are able to do
+things at a level that are
+
+584
+00:34:00,640 --> 00:34:05,050
+far beyond what we had 10 years ago.
+
+585
+00:34:05,050 --> 00:34:08,210
+Here's one of the best systems
+that's out there today.
+
+586
+00:34:08,210 --> 00:34:10,519
+And this is a system
+from IBM called Watson.
+
+587
+00:34:10,519 --> 00:34:13,040
+
+588
+00:34:13,040 --> 00:34:15,500
+This is from our friends at IBM.
+
+589
+00:34:15,500 --> 00:34:19,810
+This is Katherine banks, Jia Chen,
+and Priscilla Moraes giving us
+
+590
+00:34:19,810 --> 00:34:26,323
+a demonstration of Watson
+yesterday in IBM Yorktown.
+
+591
+00:34:26,323 --> 00:34:26,989
+[VIDEO PLAYBACK]
+
+592
+00:34:26,989 --> 00:34:27,690
+-How are you?
+
+593
+00:34:27,690 --> 00:34:30,600
+
+594
+00:34:30,600 --> 00:34:31,980
+>> -I am well.
+
+595
+00:34:31,980 --> 00:34:35,429
+I am always happy when I am
+thinking, especially when I
+
+596
+00:34:35,429 --> 00:34:38,920
+can stay cool in these server rooms.
+
+597
+00:34:38,920 --> 00:34:40,170
+-Who is your favorite actress?
+
+598
+00:34:40,170 --> 00:34:43,870
+
+599
+00:34:43,870 --> 00:34:47,555
+>> -My favorite actress
+Angelina Jolie as Lara Croft
+
+600
+00:34:47,555 --> 00:34:54,800
+in Tomb Raider because her original
+form was as a virtual character like me.
+
+601
+00:34:54,800 --> 00:34:56,760
+>> -How can Watson help patients?
+
+602
+00:34:56,760 --> 00:34:59,700
+
+603
+00:34:59,700 --> 00:35:03,755
+>> -Is the plan for patients to
+have access to Watson directly?
+
+604
+00:35:03,755 --> 00:35:08,050
+Access to Watson advisory
+applications will vary by use case.
+
+605
+00:35:08,050 --> 00:35:12,630
+But currently, Watson will only provide
+possible diagnosis and treatment
+
+606
+00:35:12,630 --> 00:35:14,725
+options to medical professional.
+
+607
+00:35:14,725 --> 00:35:17,680
+Where appropriate, patients
+may provide information
+
+608
+00:35:17,680 --> 00:35:21,210
+to Watson, perhaps through a
+portal web interface, tablet,
+
+609
+00:35:21,210 --> 00:35:23,500
+or even a mobile phone.
+
+610
+00:35:23,500 --> 00:35:27,180
+For example, a patient may be
+asked to describe their symptoms
+
+611
+00:35:27,180 --> 00:35:30,460
+in natural language directly
+into a Watson solution,
+
+612
+00:35:30,460 --> 00:35:34,050
+allowing the physician to focus on
+diagnosis and not data collection.
+
+613
+00:35:34,050 --> 00:35:38,379
+
+614
+00:35:38,379 --> 00:35:42,716
+>> -Who assassinated Abraham Lincoln?
+
+615
+00:35:42,716 --> 00:35:46,153
+>> -John Wilkes Booth.
+
+616
+00:35:46,153 --> 00:35:52,373
+>> -In what year did the Arizona
+Diamondbacks win the World Series?
+
+617
+00:35:52,373 --> 00:35:55,295
+>> -2001.
+
+618
+00:35:55,295 --> 00:35:58,710
+>> [END PLAYBACK]
+
+619
+00:35:58,710 --> 00:36:01,610
+>> BRIAN SCASSELLATI: So
+these kinds of systems
+
+620
+00:36:01,610 --> 00:36:07,430
+have to rely upon first of all
+recognizing the speech; second,
+
+621
+00:36:07,430 --> 00:36:12,200
+converting it into a meaningful internal
+representation; and then, third,
+
+622
+00:36:12,200 --> 00:36:17,090
+being able to go out and find
+the information source that
+
+623
+00:36:17,090 --> 00:36:21,140
+allows them to answer that question.
+
+624
+00:36:21,140 --> 00:36:27,320
+This level of complexity involves
+the same types of programmatic things
+
+625
+00:36:27,320 --> 00:36:31,790
+that you have been
+doing in problem sets.
+
+626
+00:36:31,790 --> 00:36:38,000
+>> We're able to parse HTTP requests in
+the same type of low-level pattern
+
+627
+00:36:38,000 --> 00:36:40,810
+matching that ELIZA can do.
+
+628
+00:36:40,810 --> 00:36:45,070
+We're able to convert those
+into an internal representation,
+
+629
+00:36:45,070 --> 00:36:50,360
+and then use them to query some
+external database, possibly using SQL.
+
+630
+00:36:50,360 --> 00:36:53,530
+
+631
+00:36:53,530 --> 00:36:56,260
+All of the systems that
+are being built today
+
+632
+00:36:56,260 --> 00:37:00,520
+to do this type of natural
+language communication
+
+633
+00:37:00,520 --> 00:37:04,100
+are being built upon
+these same principles.
+
+634
+00:37:04,100 --> 00:37:09,530
+>> Now, even a system like
+Watson isn't complex enough
+
+635
+00:37:09,530 --> 00:37:14,820
+to be able to answer arbitrary
+questions about any topic.
+
+636
+00:37:14,820 --> 00:37:20,060
+And in fact, they have to be
+structured within a given domain.
+
+637
+00:37:20,060 --> 00:37:24,440
+So you can go online and you can find
+versions of Watson that operate well
+
+638
+00:37:24,440 --> 00:37:27,700
+within medical informatics.
+
+639
+00:37:27,700 --> 00:37:31,490
+Or there's one online
+that just deals with how
+
+640
+00:37:31,490 --> 00:37:34,540
+to make good recommendations about
+what beer will go with which food.
+
+641
+00:37:34,540 --> 00:37:37,060
+
+642
+00:37:37,060 --> 00:37:41,870
+And within those domains,
+it can answer questions,
+
+643
+00:37:41,870 --> 00:37:46,130
+find the information that it needs.
+
+644
+00:37:46,130 --> 00:37:48,270
+>> But you can't mix and match them.
+
+645
+00:37:48,270 --> 00:37:53,150
+The system that's been trained
+with the database of food and beer
+
+646
+00:37:53,150 --> 00:37:56,830
+doesn't work well when you suddenly
+put it in with the medical informatics
+
+647
+00:37:56,830 --> 00:37:59,770
+database.
+
+648
+00:37:59,770 --> 00:38:05,680
+So even our best systems today
+rely upon a level of processing
+
+649
+00:38:05,680 --> 00:38:11,570
+in which we are hand coding and
+building in the infrastructure in order
+
+650
+00:38:11,570 --> 00:38:13,275
+to make this system run.
+
+651
+00:38:13,275 --> 00:38:16,360
+
+652
+00:38:16,360 --> 00:38:20,710
+>> Now, the last topic I want
+to be able to get to today
+
+653
+00:38:20,710 --> 00:38:23,960
+is about nonverbal communication.
+
+654
+00:38:23,960 --> 00:38:29,290
+A great mass of information that
+we communicate with each other
+
+655
+00:38:29,290 --> 00:38:35,490
+doesn't come about through the
+individual words that we're applying.
+
+656
+00:38:35,490 --> 00:38:40,290
+It has to do with things like
+proximity, gaze, your tone of voice,
+
+657
+00:38:40,290 --> 00:38:42,270
+your inflection.
+
+658
+00:38:42,270 --> 00:38:46,620
+And that communication is also
+something that many different interfaces
+
+659
+00:38:46,620 --> 00:38:49,960
+care a great deal about.
+
+660
+00:38:49,960 --> 00:38:51,500
+It's not what Siri cares about.
+
+661
+00:38:51,500 --> 00:38:56,250
+I can ask Siri something in one voice
+or in a different tone of voice,
+
+662
+00:38:56,250 --> 00:38:59,840
+and Siri's going to
+give me the same answer.
+
+663
+00:38:59,840 --> 00:39:05,260
+But that's not what we build for
+many other types of interfaces.
+
+664
+00:39:05,260 --> 00:39:09,120
+>> I want to introduce you
+now to one of the robots.
+
+665
+00:39:09,120 --> 00:39:12,720
+This was built by my longtime
+friend and colleague Cynthia
+
+666
+00:39:12,720 --> 00:39:16,010
+Breazeal and her company Jibo.
+
+667
+00:39:16,010 --> 00:39:20,090
+And this robot-- we're going
+to have a couple volunteers
+
+668
+00:39:20,090 --> 00:39:22,520
+come up to interact with this.
+
+669
+00:39:22,520 --> 00:39:26,200
+So can I have two people willing
+to play with the robot for me?
+
+670
+00:39:26,200 --> 00:39:29,936
+Why don't you come on up,
+and why don't you come on up.
+
+671
+00:39:29,936 --> 00:39:31,310
+If you'd join me up here, please.
+
+672
+00:39:31,310 --> 00:39:36,520
+
+673
+00:39:36,520 --> 00:39:39,670
+>> And if I could have you
+come right over here.
+
+674
+00:39:39,670 --> 00:39:40,170
+Thanks.
+
+675
+00:39:40,170 --> 00:39:40,480
+Hi.
+
+676
+00:39:40,480 --> 00:39:41,400
+>> ALFREDO: Nice to meet you.
+
+677
+00:39:41,400 --> 00:39:42,010
+Alfredo.
+
+678
+00:39:42,010 --> 00:39:42,520
+>> BRIAN SCASSELLATI: Alfredo.
+
+679
+00:39:42,520 --> 00:39:43,146
+>> RACHEL: Rachel.
+
+680
+00:39:43,146 --> 00:39:44,228
+BRIAN SCASSELLATI: Rachel.
+
+681
+00:39:44,228 --> 00:39:45,154
+Nice to meet you both.
+
+682
+00:39:45,154 --> 00:39:46,820
+Alfredo, I'm going to have you go first.
+
+683
+00:39:46,820 --> 00:39:47,990
+Come right up here.
+
+684
+00:39:47,990 --> 00:39:51,870
+I'm going to introduce
+you-- if I can get this off
+
+685
+00:39:51,870 --> 00:39:58,450
+without knocking the microphone--
+to a little robot named Jibo.
+
+686
+00:39:58,450 --> 00:40:00,140
+OK?
+
+687
+00:40:00,140 --> 00:40:04,260
+>> Now, Jibo is designed to be interactive.
+
+688
+00:40:04,260 --> 00:40:09,339
+And although it can give you speech,
+much of the interaction with the robot
+
+689
+00:40:09,339 --> 00:40:09,880
+is nonverbal.
+
+690
+00:40:09,880 --> 00:40:12,450
+
+691
+00:40:12,450 --> 00:40:17,070
+Alfredo, I'm going to ask you to
+say something nice and complimentary
+
+692
+00:40:17,070 --> 00:40:19,554
+to the robot, please.
+
+693
+00:40:19,554 --> 00:40:20,845
+ALFREDO: I think you look cute.
+
+694
+00:40:20,845 --> 00:40:24,114
+
+695
+00:40:24,114 --> 00:40:25,611
+>> [WHIRRING SOUND]
+
+696
+00:40:25,611 --> 00:40:26,192
+
+697
+00:40:26,192 --> 00:40:27,108
+BRIAN SCASSELLATI: OK.
+
+698
+00:40:27,108 --> 00:40:30,110
+
+699
+00:40:30,110 --> 00:40:33,180
+Its response isn't verbal.
+
+700
+00:40:33,180 --> 00:40:35,180
+And yet it gave you both
+a clear acknowledgement
+
+701
+00:40:35,180 --> 00:40:39,680
+that it had heard what you said
+and also somehow understood that.
+
+702
+00:40:39,680 --> 00:40:40,530
+OK?
+
+703
+00:40:40,530 --> 00:40:42,070
+Step right back here for one second.
+
+704
+00:40:42,070 --> 00:40:43,130
+Thank you.
+
+705
+00:40:43,130 --> 00:40:44,090
+>> Rachel, if you would.
+
+706
+00:40:44,090 --> 00:40:46,070
+Now, I'm going to give
+you the much harder job.
+
+707
+00:40:46,070 --> 00:40:48,361
+If you'd stand right here,
+back up just a little bit so
+
+708
+00:40:48,361 --> 00:40:50,280
+we can get you on camera
+and look this way.
+
+709
+00:40:50,280 --> 00:40:56,840
+I'm going to ask you to say something
+really mean and nasty to the robot.
+
+710
+00:40:56,840 --> 00:41:02,900
+>> RACHEL: What you just seemed
+to do was completely absurd.
+
+711
+00:41:02,900 --> 00:41:03,840
+>> [HUMMING SOUND]
+
+712
+00:41:03,840 --> 00:41:07,610
+
+713
+00:41:07,610 --> 00:41:09,030
+>> That was even more absurd.
+
+714
+00:41:09,030 --> 00:41:10,120
+What's going on with you?
+
+715
+00:41:10,120 --> 00:41:13,487
+
+716
+00:41:13,487 --> 00:41:16,207
+Aw, don't feel bad.
+
+717
+00:41:16,207 --> 00:41:17,040
+I'll give you a hug.
+
+718
+00:41:17,040 --> 00:41:19,882
+
+719
+00:41:19,882 --> 00:41:21,090
+BRIAN SCASSELLATI: All right.
+
+720
+00:41:21,090 --> 00:41:22,280
+Thanks, Rachel.
+
+721
+00:41:22,280 --> 00:41:24,565
+Alfredo, Rachel, thanks guys very much.
+
+722
+00:41:24,565 --> 00:41:26,840
+>> [APPLAUSE]
+
+723
+00:41:26,840 --> 00:41:28,660
+
+724
+00:41:28,660 --> 00:41:34,470
+>> So this kind of interaction has in
+many ways some of the same rules
+
+725
+00:41:34,470 --> 00:41:36,950
+and some of the same
+structure as what we
+
+726
+00:41:36,950 --> 00:41:39,950
+might have in linguistic interaction.
+
+727
+00:41:39,950 --> 00:41:44,530
+It is both communicative and
+serves an important purpose.
+
+728
+00:41:44,530 --> 00:41:48,590
+And that interaction, in
+many ways, is designed
+
+729
+00:41:48,590 --> 00:41:52,890
+to have a particular effect on the
+person interacting with or listening
+
+730
+00:41:52,890 --> 00:41:54,410
+to the robot.
+
+731
+00:41:54,410 --> 00:41:56,450
+>> Now, I'm lucky enough
+to have Jibo here today.
+
+732
+00:41:56,450 --> 00:42:00,550
+Sam Spaulding is here helping
+us out with the robot.
+
+733
+00:42:00,550 --> 00:42:07,470
+And I'm going to ask Sam to give
+us one nice demo of Jibo dancing
+
+734
+00:42:07,470 --> 00:42:09,720
+that we can watch at the end here.
+
+735
+00:42:09,720 --> 00:42:10,590
+So go ahead, Jibo.
+
+736
+00:42:10,590 --> 00:42:11,550
+>> SAM: OK, Jibo.
+
+737
+00:42:11,550 --> 00:42:14,430
+Show us your dance moves.
+
+738
+00:42:14,430 --> 00:42:17,310
+>> [MUSIC PLAYING]
+
+739
+00:42:17,310 --> 00:42:43,114
+
+740
+00:42:43,114 --> 00:42:44,780
+BRIAN SCASSELLATI: All right, everybody.
+
+741
+00:42:44,780 --> 00:42:46,865
+Thanks to our friends at Jibo.
+
+742
+00:42:46,865 --> 00:42:49,426
+>> [APPLAUSE]
+
+743
+00:42:49,426 --> 00:42:50,140
+
+744
+00:42:50,140 --> 00:42:54,990
+>> And thanks to our friends at
+IBM for helping out today.
+
+745
+00:42:54,990 --> 00:42:57,300
+Communication is something
+that you're going
+
+746
+00:42:57,300 --> 00:43:02,280
+to see coming up more and more as
+we build more complex interfaces.
+
+747
+00:43:02,280 --> 00:43:05,760
+Next week, we'll be talking
+about how to interface
+
+748
+00:43:05,760 --> 00:43:08,890
+with computer opponents in games.
+
+749
+00:43:08,890 --> 00:43:12,950
+But if you have questions about this,
+I'll be around at office hours tonight.
+
+750
+00:43:12,950 --> 00:43:17,610
+I'm happy to talk to you about AI
+topics or to get into more detail.
+
+751
+00:43:17,610 --> 00:43:18,927
+Have a great weekend.
+
+752
+00:43:18,927 --> 00:43:21,409
+>> [APPLAUSE]
+
+753
+00:43:21,409 --> 00:43:21,909
+
+754
+00:43:21,909 --> 00:43:26,141
+[MUSIC PLAYING]
+
+755
+00:43:26,141 --> 00:46:42,879

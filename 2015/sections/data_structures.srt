@@ -1,0 +1,919 @@
+1
+00:00:00,000 --> 00:00:05,259
+
+2
+00:00:05,259 --> 00:00:08,300
+DOUG LLOYD: So in CS50, we've covered
+a lot of different data structures,
+
+3
+00:00:08,300 --> 00:00:09,180
+right?
+
+4
+00:00:09,180 --> 00:00:11,420
+We've seen arrays, and linked
+lists, and hash tables,
+
+5
+00:00:11,420 --> 00:00:15,210
+and tries, stacks and queues.
+
+6
+00:00:15,210 --> 00:00:17,579
+We'll also learn a little
+about trees and heaps,
+
+7
+00:00:17,579 --> 00:00:20,120
+but really these all just end
+up being variations on a theme.
+
+8
+00:00:20,120 --> 00:00:22,840
+There really are these
+kind of four basic ideas
+
+9
+00:00:22,840 --> 00:00:25,190
+that everything else can boil down to.
+
+10
+00:00:25,190 --> 00:00:28,150
+Arrays, linked lists,
+hash tables, and tries.
+
+11
+00:00:28,150 --> 00:00:30,720
+And like I said, there
+are variations on them,
+
+12
+00:00:30,720 --> 00:00:32,720
+but this is pretty
+much going to summarize
+
+13
+00:00:32,720 --> 00:00:38,140
+everything we're going to talk
+about in this class in terms of C.
+
+14
+00:00:38,140 --> 00:00:40,140
+>> But how do these all measure up, right?
+
+15
+00:00:40,140 --> 00:00:44,265
+We've talked about the pros and cons
+of each in separate videos on them,
+
+16
+00:00:44,265 --> 00:00:46,390
+but there's a lot of numbers
+getting thrown around.
+
+17
+00:00:46,390 --> 00:00:48,723
+There's a lot of general
+thoughts getting thrown around.
+
+18
+00:00:48,723 --> 00:00:51,950
+Let's try and consolidate
+it into just one place.
+
+19
+00:00:51,950 --> 00:00:55,507
+Let's weigh the pros against
+the cons, and consider
+
+20
+00:00:55,507 --> 00:00:57,340
+which data structure
+might be the right data
+
+21
+00:00:57,340 --> 00:01:01,440
+structure for your particular situation,
+whatever kind of data you're storing.
+
+22
+00:01:01,440 --> 00:01:06,625
+You don't necessarily always need to
+use the super fast insertion, deletion,
+
+23
+00:01:06,625 --> 00:01:10,761
+and lookup of a trie if you really
+don't care about inserting and deleting
+
+24
+00:01:10,761 --> 00:01:11,260
+too much.
+
+25
+00:01:11,260 --> 00:01:13,968
+If you need just quickly random
+access, maybe an array is better.
+
+26
+00:01:13,968 --> 00:01:15,340
+So let's distill that.
+
+27
+00:01:15,340 --> 00:01:18,530
+Let's talk about each of the four
+major kinds of data structures
+
+28
+00:01:18,530 --> 00:01:21,720
+that we've talked about, and
+just see when they might be good,
+
+29
+00:01:21,720 --> 00:01:23,340
+and when they might not be so good.
+
+30
+00:01:23,340 --> 00:01:24,610
+So let's start with arrays.
+
+31
+00:01:24,610 --> 00:01:27,300
+So insertion, that's kind of bad.
+
+32
+00:01:27,300 --> 00:01:31,350
+>> Insertion at the end of an array is OK,
+if we're building an array as we go.
+
+33
+00:01:31,350 --> 00:01:33,570
+But if we need to insert
+elements into the middle,
+
+34
+00:01:33,570 --> 00:01:35,550
+think back to insertion
+sort, there's a lot
+
+35
+00:01:35,550 --> 00:01:37,510
+of shifting to fit an element in there.
+
+36
+00:01:37,510 --> 00:01:41,170
+And so if we're going to insert
+anywhere but the end of an array,
+
+37
+00:01:41,170 --> 00:01:43,590
+that's probably not so great.
+
+38
+00:01:43,590 --> 00:01:46,710
+>> Similarly, deletion, unless we're
+deleting from the end of an array,
+
+39
+00:01:46,710 --> 00:01:49,810
+is probably also not so great if
+we don't want to leave empty gaps,
+
+40
+00:01:49,810 --> 00:01:50,790
+which usually we don't.
+
+41
+00:01:50,790 --> 00:01:54,700
+We want to remove an element, and
+then sort of make it snug again.
+
+42
+00:01:54,700 --> 00:01:57,670
+And so deleting elements from
+an array, also not so great.
+
+43
+00:01:57,670 --> 00:01:58,820
+>> Lookup, though, is great.
+
+44
+00:01:58,820 --> 00:02:00,920
+We have random access,
+constant time lookup.
+
+45
+00:02:00,920 --> 00:02:03,800
+We just say seven, and we go
+to array relocation seven.
+
+46
+00:02:03,800 --> 00:02:05,907
+We say 20, with go to
+array relocation 20.
+
+47
+00:02:05,907 --> 00:02:07,240
+We don't have to iterate across.
+
+48
+00:02:07,240 --> 00:02:08,630
+That's pretty good.
+
+49
+00:02:08,630 --> 00:02:11,020
+>> Arrays are also relatively easy to sort.
+
+50
+00:02:11,020 --> 00:02:14,040
+Every time we talked about a sorting
+algorithm, such as selection sort,
+
+51
+00:02:14,040 --> 00:02:18,820
+insertion sort, bubble sort, merge
+sort, we always used arrays to do it,
+
+52
+00:02:18,820 --> 00:02:21,860
+because arrays are pretty easy to
+sort, relative to the data structures
+
+53
+00:02:21,860 --> 00:02:22,970
+we've seen so far.
+
+54
+00:02:22,970 --> 00:02:24,320
+>> They're also relatively small.
+
+55
+00:02:24,320 --> 00:02:25,695
+There's not a lot of extra space.
+
+56
+00:02:25,695 --> 00:02:29,210
+You just set aside exactly as much
+as you need to hold your data,
+
+57
+00:02:29,210 --> 00:02:30,320
+and that's pretty much it.
+
+58
+00:02:30,320 --> 00:02:33,180
+So they're pretty small
+and efficient in that way.
+
+59
+00:02:33,180 --> 00:02:36,000
+But another downside, though,
+is that they are fixed in size.
+
+60
+00:02:36,000 --> 00:02:38,630
+We have to declare exactly how
+big we want our array to be,
+
+61
+00:02:38,630 --> 00:02:39,940
+and we only get one shot at it.
+
+62
+00:02:39,940 --> 00:02:41,280
+We can't grow and shrink it.
+
+63
+00:02:41,280 --> 00:02:44,582
+>> If we need to grow or shrink it, we
+need to declare an entirely new array,
+
+64
+00:02:44,582 --> 00:02:47,750
+copy all of the elements of the
+first array into the second array.
+
+65
+00:02:47,750 --> 00:02:51,410
+And if we miscalculated that
+time, we need to do it again.
+
+66
+00:02:51,410 --> 00:02:52,760
+Not so great.
+
+67
+00:02:52,760 --> 00:02:58,750
+So arrays don't give us the flexibility
+to have variable numbers of elements.
+
+68
+00:02:58,750 --> 00:03:01,320
+>> With a linked list,
+insertion is pretty easy.
+
+69
+00:03:01,320 --> 00:03:03,290
+We just tack onto the front.
+
+70
+00:03:03,290 --> 00:03:04,892
+Deletion is also pretty easy.
+
+71
+00:03:04,892 --> 00:03:06,100
+We have to find the elements.
+
+72
+00:03:06,100 --> 00:03:07,270
+That involve some searching.
+
+73
+00:03:07,270 --> 00:03:10,270
+>> But once you've found the element
+you're looking for, all you need to do
+
+74
+00:03:10,270 --> 00:03:12,830
+is change a pointer,
+possibly two if you have
+
+75
+00:03:12,830 --> 00:03:15,151
+a linked list-- a doubly
+linked list, rather--
+
+76
+00:03:15,151 --> 00:03:16,650
+and then you can just free the node.
+
+77
+00:03:16,650 --> 00:03:18,399
+You don't have to shift
+everything around.
+
+78
+00:03:18,399 --> 00:03:22,090
+You just change two pointers,
+so that's pretty quick.
+
+79
+00:03:22,090 --> 00:03:23,470
+>> Lookup is bad though, right?
+
+80
+00:03:23,470 --> 00:03:26,280
+In order for us to find an
+element in a linked list,
+
+81
+00:03:26,280 --> 00:03:29,154
+whether singly or doubly linked,
+we have to linear search it.
+
+82
+00:03:29,154 --> 00:03:32,320
+We have to start at the beginning and
+move the end, or start at the end move
+
+83
+00:03:32,320 --> 00:03:33,860
+to the beginning.
+
+84
+00:03:33,860 --> 00:03:35,474
+We don't have random access anymore.
+
+85
+00:03:35,474 --> 00:03:37,265
+So if we're doing a
+lot of searching, maybe
+
+86
+00:03:37,265 --> 00:03:39,830
+a linked list isn't
+quite so good for us.
+
+87
+00:03:39,830 --> 00:03:43,750
+>> They're also really
+difficult to sort, right?
+
+88
+00:03:43,750 --> 00:03:45,666
+The only way you can
+really sort a linked list
+
+89
+00:03:45,666 --> 00:03:47,870
+is to sort it as you construct it.
+
+90
+00:03:47,870 --> 00:03:50,497
+But if you sort it as you
+construct it, you're no longer
+
+91
+00:03:50,497 --> 00:03:51,830
+making quick insertions anymore.
+
+92
+00:03:51,830 --> 00:03:53,746
+You're not just tacking
+things onto the front.
+
+93
+00:03:53,746 --> 00:03:55,710
+You have to find the
+right spot to put it,
+
+94
+00:03:55,710 --> 00:03:57,820
+and then your insertion
+becomes just about as bad
+
+95
+00:03:57,820 --> 00:03:59,390
+as inserting into an array.
+
+96
+00:03:59,390 --> 00:04:03,130
+So linked lists are not
+so great for sorting data.
+
+97
+00:04:03,130 --> 00:04:05,830
+>> They're also pretty small, size-wise.
+
+98
+00:04:05,830 --> 00:04:08,496
+Doubly linked list slightly
+larger than singly linked lists,
+
+99
+00:04:08,496 --> 00:04:10,620
+which are slightly larger
+than arrays, but it's not
+
+100
+00:04:10,620 --> 00:04:13,330
+a huge amount of wasted space.
+
+101
+00:04:13,330 --> 00:04:18,730
+So if space is at a premium, but
+not a really intense premium,
+
+102
+00:04:18,730 --> 00:04:22,180
+this might be the right way to go.
+
+103
+00:04:22,180 --> 00:04:23,330
+>> Hash tables.
+
+104
+00:04:23,330 --> 00:04:25,850
+Insertion into a hash table
+is fairly straightforward.
+
+105
+00:04:25,850 --> 00:04:26,980
+It's a two-step process.
+
+106
+00:04:26,980 --> 00:04:30,700
+First we need to run our data through
+a hash function to get a hash code,
+
+107
+00:04:30,700 --> 00:04:37,550
+and then we insert the element into the
+hash table at that hash code location.
+
+108
+00:04:37,550 --> 00:04:40,879
+>> Deletion, similar to linked list,
+is easy once you find the element.
+
+109
+00:04:40,879 --> 00:04:43,170
+You have to find it first,
+but then when you delete it,
+
+110
+00:04:43,170 --> 00:04:45,128
+you just need to exchange
+a couple of pointers,
+
+111
+00:04:45,128 --> 00:04:47,250
+if you're using separate chaining.
+
+112
+00:04:47,250 --> 00:04:49,942
+If you're using probing,
+or if you're not
+
+113
+00:04:49,942 --> 00:04:51,650
+using chaining at all
+in your hash table,
+
+114
+00:04:51,650 --> 00:04:53,040
+deletion is actually really easy.
+
+115
+00:04:53,040 --> 00:04:57,134
+All you need to do is hash the
+data, and then go to that location.
+
+116
+00:04:57,134 --> 00:04:58,925
+And assuming you don't
+have any collisions,
+
+117
+00:04:58,925 --> 00:05:01,650
+you'll be able to delete very quickly.
+
+118
+00:05:01,650 --> 00:05:04,930
+>> Now, lookup is where things
+get a little more complicated.
+
+119
+00:05:04,930 --> 00:05:06,910
+It's on average better
+than linked lists.
+
+120
+00:05:06,910 --> 00:05:09,560
+If you're using chaining,
+you still have a linked list,
+
+121
+00:05:09,560 --> 00:05:13,170
+which means you still have the
+search detriment a linked list.
+
+122
+00:05:13,170 --> 00:05:18,390
+But because you're taking your linked
+list and splitting it over 100 or 1,000
+
+123
+00:05:18,390 --> 00:05:25,380
+or n elements in your hash table, you're
+linked lists are all one nth the size.
+
+124
+00:05:25,380 --> 00:05:27,650
+They're all substantially smaller.
+
+125
+00:05:27,650 --> 00:05:32,080
+You have n linked lists instead
+of one linked list of size n.
+
+126
+00:05:32,080 --> 00:05:34,960
+>> And so this real-world constant
+factor, which we generally
+
+127
+00:05:34,960 --> 00:05:39,730
+don't talk about in time complexity, it
+does actually make a difference here.
+
+128
+00:05:39,730 --> 00:05:43,020
+So lookup is still linear
+search if you're using chaining,
+
+129
+00:05:43,020 --> 00:05:46,780
+but the length of the list
+you're searching through
+
+130
+00:05:46,780 --> 00:05:50,080
+is very, very short by comparison.
+
+131
+00:05:50,080 --> 00:05:52,995
+Again, if sorting is your
+goal here, hash table's
+
+132
+00:05:52,995 --> 00:05:54,370
+probably not the right way to go.
+
+133
+00:05:54,370 --> 00:05:56,830
+Just use an array if sorting
+is really important to you.
+
+134
+00:05:56,830 --> 00:05:58,590
+>> And they can run the gamut of size.
+
+135
+00:05:58,590 --> 00:06:01,640
+It's hard to say whether a
+hash table is small or big,
+
+136
+00:06:01,640 --> 00:06:04,110
+because it really depends on
+how large your hash table is.
+
+137
+00:06:04,110 --> 00:06:07,340
+If you're only going to be storing
+five elements in your hash table,
+
+138
+00:06:07,340 --> 00:06:10,620
+and you have a hash table
+with 10,000 elements in it,
+
+139
+00:06:10,620 --> 00:06:12,614
+you're probably wasting a lot of space.
+
+140
+00:06:12,614 --> 00:06:15,030
+Contrast being you can also
+have very compact hash tables,
+
+141
+00:06:15,030 --> 00:06:18,720
+but the smaller your hash table gets,
+the longer each of those linked lists
+
+142
+00:06:18,720 --> 00:06:19,220
+gets.
+
+143
+00:06:19,220 --> 00:06:22,607
+And so there's really no way to define
+exactly the size of a hash table,
+
+144
+00:06:22,607 --> 00:06:24,440
+but it's probably safe
+to say it's generally
+
+145
+00:06:24,440 --> 00:06:27,990
+going to be bigger than a linked
+list storing the same data,
+
+146
+00:06:27,990 --> 00:06:30,400
+but smaller than a trie.
+
+147
+00:06:30,400 --> 00:06:32,720
+>> And tries are the fourth
+of these structures
+
+148
+00:06:32,720 --> 00:06:34,070
+that we've been talking about.
+
+149
+00:06:34,070 --> 00:06:36,450
+Inserting into a trie is complex.
+
+150
+00:06:36,450 --> 00:06:38,400
+There's a lot of dynamic
+memory allocation,
+
+151
+00:06:38,400 --> 00:06:40,780
+especially at the beginning,
+as you're starting to build.
+
+152
+00:06:40,780 --> 00:06:43,700
+But it's constant time.
+
+153
+00:06:43,700 --> 00:06:47,690
+It's only the human element
+here that makes it tricky.
+
+154
+00:06:47,690 --> 00:06:53,250
+Having to encounter null pointer, malloc
+space, go there, possibly malloc space
+
+155
+00:06:53,250 --> 00:06:54,490
+from there again.
+
+156
+00:06:54,490 --> 00:06:58,880
+The sort of intimidation factor of
+pointers in dynamic memory allocation
+
+157
+00:06:58,880 --> 00:07:00,130
+is the hurdle to clear.
+
+158
+00:07:00,130 --> 00:07:04,550
+But once you've cleared it, insertion
+actually comes quite simple,
+
+159
+00:07:04,550 --> 00:07:06,810
+and it certainly is constant time.
+
+160
+00:07:06,810 --> 00:07:07,680
+>> Deletion is easy.
+
+161
+00:07:07,680 --> 00:07:11,330
+All you need to do is navigate down a
+couple of pointers and free the node,
+
+162
+00:07:11,330 --> 00:07:12,420
+so that's pretty good.
+
+163
+00:07:12,420 --> 00:07:13,930
+Lookup is also pretty fast.
+
+164
+00:07:13,930 --> 00:07:16,780
+It's only based on the
+length of your data.
+
+165
+00:07:16,780 --> 00:07:19,924
+So if all of your data is
+five character strings,
+
+166
+00:07:19,924 --> 00:07:22,590
+for example, you're storing five
+character strings in your trie,
+
+167
+00:07:22,590 --> 00:07:25,439
+it only takes five steps to
+find what you're looking for.
+
+168
+00:07:25,439 --> 00:07:28,480
+Five is just a constant factor, so
+again, insertion, deletion, and lookup
+
+169
+00:07:28,480 --> 00:07:31,670
+here are all constant time, effectively.
+
+170
+00:07:31,670 --> 00:07:34,880
+>> Another thing is that your trie is
+actually kind of already sorted, right?
+
+171
+00:07:34,880 --> 00:07:36,800
+By virtue of how we're
+inserting elements,
+
+172
+00:07:36,800 --> 00:07:40,060
+by going letter by letter of the
+key, or digit by digit of the key,
+
+173
+00:07:40,060 --> 00:07:45,084
+typically, your trie ends up being
+kind of sorted as you build it.
+
+174
+00:07:45,084 --> 00:07:47,250
+It doesn't really makes
+sense to think about sorting
+
+175
+00:07:47,250 --> 00:07:49,874
+in the same way we think about
+it with arrays, or linked lists,
+
+176
+00:07:49,874 --> 00:07:51,070
+or hash tables.
+
+177
+00:07:51,070 --> 00:07:54,780
+But in some sense, your
+trie is sorted as you go.
+
+178
+00:07:54,780 --> 00:07:58,630
+>> The downside, of course, is that
+a trie rapidly becomes huge.
+
+179
+00:07:58,630 --> 00:08:02,970
+From every junction point, you might
+have-- if your key consists of digits,
+
+180
+00:08:02,970 --> 00:08:04,880
+you have 10 other
+places you can go, which
+
+181
+00:08:04,880 --> 00:08:07,490
+means that every node
+contains information
+
+182
+00:08:07,490 --> 00:08:11,440
+about the data you want to store
+at that node, plus 10 pointers.
+
+183
+00:08:11,440 --> 00:08:14,430
+Which, on CS50 IDE, is 80 bytes.
+
+184
+00:08:14,430 --> 00:08:17,220
+So it's at least 80 bytes for
+every node that you create,
+
+185
+00:08:17,220 --> 00:08:19,240
+and that's not even counting data.
+
+186
+00:08:19,240 --> 00:08:24,950
+And if your nodes are
+letters instead of digits,
+
+187
+00:08:24,950 --> 00:08:27,825
+now you have 26 pointers
+from every location.
+
+188
+00:08:27,825 --> 00:08:32,007
+And 26 times 8 is probably 200
+bytes, or something like that.
+
+189
+00:08:32,007 --> 00:08:33,840
+And you have capital
+and lowercase-- you can
+
+190
+00:08:33,840 --> 00:08:35,381
+see where I'm going with this, right?
+
+191
+00:08:35,381 --> 00:08:37,500
+Your nodes can get really
+big, and so the trie
+
+192
+00:08:37,500 --> 00:08:40,470
+itself, overall, can
+get really big, too.
+
+193
+00:08:40,470 --> 00:08:42,630
+So if space is at a high
+premium on your system,
+
+194
+00:08:42,630 --> 00:08:45,830
+a trie might not be the right way to
+go, even though its other benefits
+
+195
+00:08:45,830 --> 00:08:47,780
+come into play.
+
+196
+00:08:47,780 --> 00:08:48,710
+I'm Doug Lloyd.
+
+197
+00:08:48,710 --> 00:08:50,740
+This is CS50.
+
+198
+00:08:50,740 --> 00:08:52,316

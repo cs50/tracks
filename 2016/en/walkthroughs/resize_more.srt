@@ -1,0 +1,509 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,640
+ZAMYLA CHAN: Let's scale
+things up with resize.
+
+3
+00:00:03,640 --> 00:00:06,960
+In resize, the user will
+provide us with a float
+
+4
+00:00:06,960 --> 00:00:11,670
+by which they want to scale their infile
+and the name for an outfile image.
+
+5
+00:00:11,670 --> 00:00:15,280
+It's up to us to parse that float
+input, update the outfile's header
+
+6
+00:00:15,280 --> 00:00:18,620
+information, and then resize
+our bitmap accordingly,
+
+7
+00:00:18,620 --> 00:00:22,370
+either making it smaller
+or larger than before.
+
+8
+00:00:22,370 --> 00:00:24,630
+If we look at the
+distribution code, then we'll
+
+9
+00:00:24,630 --> 00:00:28,380
+see that the implementation
+of copy.c satisfies
+
+10
+00:00:28,380 --> 00:00:32,150
+a lot of similar functionalities
+to that of resize.
+
+11
+00:00:32,150 --> 00:00:36,270
+copy.c will parse an integer
+input, then open your infile
+
+12
+00:00:36,270 --> 00:00:39,640
+and outfile, updating the header
+information for your outfile
+
+13
+00:00:39,640 --> 00:00:42,260
+and reading into the
+infile scanline pixel
+
+14
+00:00:42,260 --> 00:00:46,300
+by pixel, writing those
+pixels into the output file.
+
+15
+00:00:46,300 --> 00:00:52,440
+So perhaps our first step would
+be to copy copy.c into resize.c.
+
+16
+00:00:52,440 --> 00:00:55,300
+But we need to parse
+floats not integers.
+
+17
+00:00:55,300 --> 00:00:58,820
+So check out the sscanf
+function and the atof function.
+
+18
+00:00:58,820 --> 00:01:01,910
+Also make sure to check
+out corner cases, perhaps
+
+19
+00:01:01,910 --> 00:01:07,360
+taking a peek into CS50's own get
+float function for more hints.
+
+20
+00:01:07,360 --> 00:01:10,870
+Then we need to update the
+outfile's header information.
+
+21
+00:01:10,870 --> 00:01:14,610
+Now, bitmaps are simply an arrangement
+of bytes just like any other file.
+
+22
+00:01:14,610 --> 00:01:17,610
+It's just a matter of how we
+interpret this arrangement.
+
+23
+00:01:17,610 --> 00:01:22,230
+So take a look into bmp.h
+for some documentation.
+
+24
+00:01:22,230 --> 00:01:24,410
+Essentially whenever
+we have a new bitmap,
+
+25
+00:01:24,410 --> 00:01:27,070
+we'll need to update
+the header information.
+
+26
+00:01:27,070 --> 00:01:30,620
+So what's changing when we're
+scaling up or scaling down?
+
+27
+00:01:30,620 --> 00:01:34,370
+Well, the file size is going to change
+as does the image size, the width,
+
+28
+00:01:34,370 --> 00:01:37,550
+and the height of our bitmap.
+
+29
+00:01:37,550 --> 00:01:40,250
+In the bitmap info header,
+we have the biWidth,
+
+30
+00:01:40,250 --> 00:01:43,280
+which includes the width of the
+image in pixels not including
+
+31
+00:01:43,280 --> 00:01:47,260
+padding, and the biHeight, the
+height of the image in pixels.
+
+32
+00:01:47,260 --> 00:01:51,560
+We also have the biSizeImage, which is
+the total size of the image in bytes
+
+33
+00:01:51,560 --> 00:01:54,860
+including the pixels and the padding.
+
+34
+00:01:54,860 --> 00:01:56,930
+Moving to the bitmap
+file header, we have
+
+35
+00:01:56,930 --> 00:02:00,890
+bfSize which contains the total
+size of the file in bytes.
+
+36
+00:02:00,890 --> 00:02:04,560
+So that includes pixels,
+padding, and the headers.
+
+37
+00:02:04,560 --> 00:02:08,410
+So of these values, what's changing
+when we scale our bitmap up or down
+
+38
+00:02:08,410 --> 00:02:09,860
+by a factor of f?
+
+39
+00:02:09,860 --> 00:02:13,310
+Well, biWidth and biHeight
+will definitely scale by f.
+
+40
+00:02:13,310 --> 00:02:18,700
+So figure out how biSizeImage and
+bfSize are also going to change.
+
+41
+00:02:18,700 --> 00:02:22,145
+Now that we've updated the outfile's
+header information, let's talk
+
+42
+00:02:22,145 --> 00:02:24,690
+about resizing horizontally.
+
+43
+00:02:24,690 --> 00:02:27,830
+So say the user gave us a float of 2.
+
+44
+00:02:27,830 --> 00:02:30,300
+Well then, the algorithm
+would be pretty simple.
+
+45
+00:02:30,300 --> 00:02:34,480
+For each pixel in the row, we
+would write that pixel f times
+
+46
+00:02:34,480 --> 00:02:36,290
+into the outfile row.
+
+47
+00:02:36,290 --> 00:02:43,460
+Now what if instead of a whole number
+float, the user gives us 1.5 or 0.5?
+
+48
+00:02:43,460 --> 00:02:47,210
+Well, it's impossible to write
+a pixel a fraction of a time.
+
+49
+00:02:47,210 --> 00:02:50,140
+So let's adjust our thinking.
+
+50
+00:02:50,140 --> 00:02:52,950
+Instead, how about for
+each pixel in the row,
+
+51
+00:02:52,950 --> 00:02:56,760
+we simply write the corresponding
+pixel from the old row?
+
+52
+00:02:56,760 --> 00:02:58,660
+It would look something like this.
+
+53
+00:02:58,660 --> 00:03:01,450
+Here I have the same
+three pixels as before.
+
+54
+00:03:01,450 --> 00:03:03,940
+Now we know that we
+need to scale by 1.5.
+
+55
+00:03:03,940 --> 00:03:08,540
+So we know that the outfile row is
+going to have four pixels in it.
+
+56
+00:03:08,540 --> 00:03:11,920
+So for each one of those
+four pixels in the outfile,
+
+57
+00:03:11,920 --> 00:03:15,670
+I figure out what the
+corresponding pixel is.
+
+58
+00:03:15,670 --> 00:03:20,150
+So see if you can figure out
+what pattern I'm using here.
+
+59
+00:03:20,150 --> 00:03:24,120
+I'll use the same pattern
+for a float input of 0.5.
+
+60
+00:03:24,120 --> 00:03:26,830
+With three pixels in
+the original row, I'll
+
+61
+00:03:26,830 --> 00:03:29,970
+calculate that I'll need two
+pixels in my outfile row.
+
+62
+00:03:29,970 --> 00:03:34,230
+So I'll calculate the
+corresponding pixel as follows.
+
+63
+00:03:34,230 --> 00:03:36,920
+All right, so now that we've
+figured out that pattern,
+
+64
+00:03:36,920 --> 00:03:39,990
+let's talk about the two
+functions that we'll need to use.
+
+65
+00:03:39,990 --> 00:03:42,750
+To read into the file, we'll
+use the fread function.
+
+66
+00:03:42,750 --> 00:03:45,880
+And then to write the
+files, we'll use fwrite.
+
+67
+00:03:45,880 --> 00:03:49,270
+So the next thing that we
+need to talk about is padding.
+
+68
+00:03:49,270 --> 00:03:52,270
+In a bitmap, every pixel
+is three bytes long.
+
+69
+00:03:52,270 --> 00:03:56,700
+Now, a requirement for the bitmap image
+is that the length of each scanline
+
+70
+00:03:56,700 --> 00:03:58,800
+must be a multiple of four bytes.
+
+71
+00:03:58,800 --> 00:04:01,620
+So if the number of pixels
+is not a multiple of four,
+
+72
+00:04:01,620 --> 00:04:05,290
+then we'll need to add padding
+where padding is just a single zero
+
+73
+00:04:05,290 --> 00:04:06,860
+character.
+
+74
+00:04:06,860 --> 00:04:09,960
+In this example, I have
+4 pixels in my row.
+
+75
+00:04:09,960 --> 00:04:14,010
+Now, with 4 pixels 3 bytes
+each, that equates to 12 bytes.
+
+76
+00:04:14,010 --> 00:04:16,160
+So I won't need to add any padding.
+
+77
+00:04:16,160 --> 00:04:22,089
+But instead, if I had 5 triples, then
+5 times 3 is 15, not a multiple of 4.
+
+78
+00:04:22,089 --> 00:04:25,970
+So I'd need to add one
+single padding character.
+
+79
+00:04:25,970 --> 00:04:29,960
+Then if I had six RGBtriples,
+I'd add 2 characters of padding.
+
+80
+00:04:29,960 --> 00:04:34,340
+Finally, with 3 RGBtriples,
+I'd add 3 units of padding.
+
+81
+00:04:34,340 --> 00:04:36,400
+I've included the
+equation for padding here.
+
+82
+00:04:36,400 --> 00:04:39,550
+And it can also be found in
+the problem specification.
+
+83
+00:04:39,550 --> 00:04:42,320
+Notice how padding depends
+on width of the bitmap
+
+84
+00:04:42,320 --> 00:04:44,480
+and the size of an RGBtriple.
+
+85
+00:04:44,480 --> 00:04:47,270
+Now the size of the RGBtriple
+is going to be constant.
+
+86
+00:04:47,270 --> 00:04:50,950
+So the only thing that might be
+changing is the width of the bitmap.
+
+87
+00:04:50,950 --> 00:04:54,120
+So if the outfile and infile
+have different widths,
+
+88
+00:04:54,120 --> 00:04:57,330
+then they may have a
+different amount of padding.
+
+89
+00:04:57,330 --> 00:04:59,700
+Remember our discussion
+about bitmap headers
+
+90
+00:04:59,700 --> 00:05:03,080
+where we calculated how the
+old header information might
+
+91
+00:05:03,080 --> 00:05:04,650
+change for the outfile.
+
+92
+00:05:04,650 --> 00:05:07,870
+Well, because the padding is going
+to be different for the infile
+
+93
+00:05:07,870 --> 00:05:12,840
+and the outfile, then we may also
+need to keep track of that as well.
+
+94
+00:05:12,840 --> 00:05:16,020
+Now, why do we keep track of
+both the old and the new padding?
+
+95
+00:05:16,020 --> 00:05:18,020
+Well, we'll need the old
+padding because we'll
+
+96
+00:05:18,020 --> 00:05:22,010
+want to skip over the padding
+in the infile using fseek.
+
+97
+00:05:22,010 --> 00:05:25,470
+And then we need to know how much
+padding to add into the outfile.
+
+98
+00:05:25,470 --> 00:05:29,720
+And we'll use fputc to
+put those characters in.
+
+99
+00:05:29,720 --> 00:05:31,760
+Now that we have a
+firm grasp on padding,
+
+100
+00:05:31,760 --> 00:05:34,360
+we can resize our entire image.
+
+101
+00:05:34,360 --> 00:05:38,780
+So once we figure out which row should
+be written, then let's seek to that,
+
+102
+00:05:38,780 --> 00:05:43,460
+draw the pixels into the outfile
+and write the outfile's padding.
+
+103
+00:05:43,460 --> 00:05:46,180
+With that, we've resized our image.
+
+104
+00:05:46,180 --> 00:05:47,590
+My name is Zamyla.
+
+105
+00:05:47,590 --> 00:05:50,370
+And this was resize.
+
+106
+00:05:50,370 --> 00:05:52,129

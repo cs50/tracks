@@ -1,0 +1,832 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:03,040
+Let's crack open Whodunit.
+
+3
+00:00:03,040 --> 00:00:07,430
+In Whodunit, our job is to
+take a clue, a bitmap image,
+
+4
+00:00:07,430 --> 00:00:09,980
+and create a verdict,
+another bitmap image that
+
+5
+00:00:09,980 --> 00:00:14,950
+will reveal the hidden message or
+hidden image within that bitmap.
+
+6
+00:00:14,950 --> 00:00:16,580
+So how do we do this?
+
+7
+00:00:16,580 --> 00:00:19,870
+Well, first, after open
+the clue file, then we
+
+8
+00:00:19,870 --> 00:00:24,750
+want to update the headers info
+for the verdict file, the outfile.
+
+9
+00:00:24,750 --> 00:00:28,760
+We want to read into the
+clue scanline pixel by pixel
+
+10
+00:00:28,760 --> 00:00:32,250
+and change that pixel's color
+as necessary in order for us
+
+11
+00:00:32,250 --> 00:00:34,490
+to reveal the hidden clue.
+
+12
+00:00:34,490 --> 00:00:36,510
+Don't worry, more on this later.
+
+13
+00:00:36,510 --> 00:00:41,260
+And then finally, we want to write
+the verdict scanline pixel by pixel.
+
+14
+00:00:41,260 --> 00:00:44,030
+Now, this may seem like a
+lot to do, but don't worry,
+
+15
+00:00:44,030 --> 00:00:45,900
+you don't need to start from scratch.
+
+16
+00:00:45,900 --> 00:00:50,320
+If we open the distribution
+code, take a look at copy.c.
+
+17
+00:00:50,320 --> 00:00:54,280
+copy.c does a lot of the things
+that we need to do for Whodunnit.
+
+18
+00:00:54,280 --> 00:00:57,410
+It opens an infile and
+creates an outfile,
+
+19
+00:00:57,410 --> 00:01:00,040
+updating the header
+info for that outfile,
+
+20
+00:01:00,040 --> 00:01:04,420
+then it reads into the scanline
+for the infile pixel by pixel.
+
+21
+00:01:04,420 --> 00:01:08,170
+And each pixel it writes into
+the output file scanline,
+
+22
+00:01:08,170 --> 00:01:11,870
+creating an identical
+copy of the bitmap.
+
+23
+00:01:11,870 --> 00:01:17,230
+So it's not exactly what we need, but
+it's a great framework to start with.
+
+24
+00:01:17,230 --> 00:01:22,070
+So let's start by copying
+copy.co into our whodunit.c file,
+
+25
+00:01:22,070 --> 00:01:25,940
+making sure that we understand
+what each line does.
+
+26
+00:01:25,940 --> 00:01:28,490
+The first thing that we have
+to do is to open the infile
+
+27
+00:01:28,490 --> 00:01:31,080
+and open and create the outfile.
+
+28
+00:01:31,080 --> 00:01:35,690
+copy.c does this using file
+I/O, creating a file pointer
+
+29
+00:01:35,690 --> 00:01:40,340
+for either reading for the infile
+or writing for the outfile.
+
+30
+00:01:40,340 --> 00:01:44,180
+The next thing to do is to update
+the headers info for the outfile.
+
+31
+00:01:44,180 --> 00:01:46,740
+Bitmaps are simply an
+arrangement of bytes,
+
+32
+00:01:46,740 --> 00:01:49,890
+it's just a matter of how we
+interpret this arrangement.
+
+33
+00:01:49,890 --> 00:01:53,980
+Take a peek inside the bmp.h for
+a little bit more information.
+
+34
+00:01:53,980 --> 00:01:57,430
+A bitmap is comprised of an info
+header, a file header, and then
+
+35
+00:01:57,430 --> 00:01:59,260
+the actual pixels and padding.
+
+36
+00:01:59,260 --> 00:02:02,080
+More on padding in a
+second, but let's just
+
+37
+00:02:02,080 --> 00:02:05,470
+look at the variables within
+the bitmap info header.
+
+38
+00:02:05,470 --> 00:02:10,740
+So bi, bitmap info, width contains
+the width of the image in pixels not
+
+39
+00:02:10,740 --> 00:02:12,170
+including padding.
+
+40
+00:02:12,170 --> 00:02:15,190
+Then the height contains the
+height of the image in pixels.
+
+41
+00:02:15,190 --> 00:02:19,230
+and biSizeImage image contains the
+total size of the image in bytes,
+
+42
+00:02:19,230 --> 00:02:22,830
+including the pixels and the padding.
+
+43
+00:02:22,830 --> 00:02:25,170
+Now let's go to the
+bitmap file header, where
+
+44
+00:02:25,170 --> 00:02:28,760
+bfSize contains the total
+size of the file in bytes,
+
+45
+00:02:28,760 --> 00:02:32,350
+including the pixels, the
+padding, and the headers.
+
+46
+00:02:32,350 --> 00:02:35,350
+So the bfSize can be
+calculated by taking
+
+47
+00:02:35,350 --> 00:02:41,010
+the biSize image plus the
+size of the bitmap file header
+
+48
+00:02:41,010 --> 00:02:44,020
+and the size of the bitmap info header.
+
+49
+00:02:44,020 --> 00:02:46,400
+So how do we read into a file?
+
+50
+00:02:46,400 --> 00:02:48,810
+If you follow along
+in copy.c, then you'll
+
+51
+00:02:48,810 --> 00:02:53,520
+come across the fread function,
+where fread takes in four parameters.
+
+52
+00:02:53,520 --> 00:02:55,730
+The first is a pointer
+to a struct that will
+
+53
+00:02:55,730 --> 00:02:57,900
+contain the bytes that you're reading.
+
+54
+00:02:57,900 --> 00:03:02,280
+Second, the size of each element to
+read, then the number of elements
+
+55
+00:03:02,280 --> 00:03:06,030
+to read, and finally, the file
+pointer that you're reading from.
+
+56
+00:03:06,030 --> 00:03:08,080
+So taking from that in
+pointer, you're going
+
+57
+00:03:08,080 --> 00:03:12,080
+to put those bytes into
+that first parameter, data.
+
+58
+00:03:12,080 --> 00:03:16,050
+Now that we've read into the
+file, let's talk about pixels.
+
+59
+00:03:16,050 --> 00:03:19,000
+Pixels are represented
+by three bytes, where
+
+60
+00:03:19,000 --> 00:03:22,440
+each byte represents the
+amount of blue, green, and red,
+
+61
+00:03:22,440 --> 00:03:24,610
+respectively in that pixel.
+
+62
+00:03:24,610 --> 00:03:29,440
+So if I were to, say, have the maximum
+amount of blue in a pixel then,
+
+63
+00:03:29,440 --> 00:03:32,360
+I would have ff in the blue section.
+
+64
+00:03:32,360 --> 00:03:36,980
+And if it were a pure blue pixel,
+then I'd have 0 green and 0 red.
+
+65
+00:03:36,980 --> 00:03:40,650
+If, say, I had the maximum amount
+for a blue, green, and red, then
+
+66
+00:03:40,650 --> 00:03:42,480
+I'd have a white pixel.
+
+67
+00:03:42,480 --> 00:03:44,930
+Here's a simplified
+example of a bitmap, where
+
+68
+00:03:44,930 --> 00:03:50,450
+I'm representing the pixels by
+their hexadecimal pixel notation.
+
+69
+00:03:50,450 --> 00:03:56,440
+Now, I know that I just told you
+that ffffff indicates a white pixel,
+
+70
+00:03:56,440 --> 00:03:59,950
+but that wouldn't really show up
+nicely on this slide, so bear with me,
+
+71
+00:03:59,950 --> 00:04:02,410
+and let's pretend that these are white.
+
+72
+00:04:02,410 --> 00:04:08,000
+So we have our white pixels, and then
+we have our full red pixels, 0 blue, 0
+
+73
+00:04:08,000 --> 00:04:10,050
+green, and full read.
+
+74
+00:04:10,050 --> 00:04:12,650
+Together with those, we
+can use them as blocks,
+
+75
+00:04:12,650 --> 00:04:14,950
+let's say, to construct an image.
+
+76
+00:04:14,950 --> 00:04:21,140
+For this image, if you squint a little,
+then you might see a smiley face.
+
+77
+00:04:21,140 --> 00:04:22,000
+All right.
+
+78
+00:04:22,000 --> 00:04:27,630
+So let's take this one step further, and
+let's talk about the RGBTRIPLE struct.
+
+79
+00:04:27,630 --> 00:04:30,690
+This struct will represent our pixels.
+
+80
+00:04:30,690 --> 00:04:33,130
+So if I were to, say,
+make a green pixel,
+
+81
+00:04:33,130 --> 00:04:36,610
+then I'd declare my
+RGBTRIPLE called triple
+
+82
+00:04:36,610 --> 00:04:40,076
+and then access the parameters within.
+
+83
+00:04:40,076 --> 00:04:43,330
+rgbtBlue, I'll set that to 0.
+
+84
+00:04:43,330 --> 00:04:46,220
+rgbtGreen, setting that to full green.
+
+85
+00:04:46,220 --> 00:04:48,860
+And rgbtRed, set to 0.
+
+86
+00:04:48,860 --> 00:04:52,390
+And there I have a green pixel.
+
+87
+00:04:52,390 --> 00:04:55,570
+You can access and change
+the RGBTRIPLE colors
+
+88
+00:04:55,570 --> 00:04:58,400
+just as you do for any other variable.
+
+89
+00:04:58,400 --> 00:05:03,900
+For instance, this code here asks
+if a triple's blue component is full
+
+90
+00:05:03,900 --> 00:05:07,160
+and if so, prints, I'm feeling blue.
+
+91
+00:05:07,160 --> 00:05:10,620
+Now, remember that even though a pixel
+might have the full amount of blue
+
+92
+00:05:10,620 --> 00:05:14,800
+in it, it's not necessarily going to
+be a blue pixel, because you still
+
+93
+00:05:14,800 --> 00:05:18,450
+have a contribution from
+the red and from the green.
+
+94
+00:05:18,450 --> 00:05:21,480
+So in order to ensure that
+you have a blue pixel,
+
+95
+00:05:21,480 --> 00:05:26,750
+you might execute the following, setting
+the triples rgbtGreen and red values
+
+96
+00:05:26,750 --> 00:05:29,010
+to 0.
+
+97
+00:05:29,010 --> 00:05:31,840
+Let's go back to our
+smiley, except in this case
+
+98
+00:05:31,840 --> 00:05:36,160
+it looks a lot more like the clue
+input that you'll get in Whodunit.
+
+99
+00:05:36,160 --> 00:05:39,350
+There's a lot of red, and
+it's a bit harder to see.
+
+100
+00:05:39,350 --> 00:05:43,020
+So let's talk about how we
+might modify the colors to make
+
+101
+00:05:43,020 --> 00:05:44,900
+the image more clear.
+
+102
+00:05:44,900 --> 00:05:50,120
+What if we remove the red from each
+pixel, going through each RGBTRIPLE
+
+103
+00:05:50,120 --> 00:05:53,070
+and setting the red value to 0?
+
+104
+00:05:53,070 --> 00:05:55,390
+Well, then it would look
+something like this.
+
+105
+00:05:55,390 --> 00:05:59,620
+Still a little bit hard to see, but we
+can see the smiley a little bit more
+
+106
+00:05:59,620 --> 00:06:00,830
+clearly.
+
+107
+00:06:00,830 --> 00:06:06,870
+Or we might try this, changing
+only pure red pixels to white.
+
+108
+00:06:06,870 --> 00:06:09,510
+And here we have a much
+clearer image, no need
+
+109
+00:06:09,510 --> 00:06:12,060
+to squint or lean back for this one.
+
+110
+00:06:12,060 --> 00:06:14,420
+Now, these are just two
+options for how we might make
+
+111
+00:06:14,420 --> 00:06:17,330
+the clue image a little bit more clear.
+
+112
+00:06:17,330 --> 00:06:20,020
+It's certainly up to
+you to try other ways.
+
+113
+00:06:20,020 --> 00:06:23,350
+You might want to do a
+combination of removing some red,
+
+114
+00:06:23,350 --> 00:06:25,170
+perhaps boosting some blue.
+
+115
+00:06:25,170 --> 00:06:29,300
+Up to you, as long as the
+hidden message becomes clear.
+
+116
+00:06:29,300 --> 00:06:31,850
+So now that we've modified
+those pixels, let's now
+
+117
+00:06:31,850 --> 00:06:36,080
+write those into the
+verdict outfile scanline.
+
+118
+00:06:36,080 --> 00:06:41,060
+We do this with the fwrite function,
+where again, similar to fread,
+
+119
+00:06:41,060 --> 00:06:42,940
+takes in four parameters.
+
+120
+00:06:42,940 --> 00:06:46,410
+The pointer to the struct that
+contains the bytes that we're writing,
+
+121
+00:06:46,410 --> 00:06:49,870
+the size, the number, and
+then the out pointer, the file
+
+122
+00:06:49,870 --> 00:06:52,290
+pointer that we're writing to.
+
+123
+00:06:52,290 --> 00:06:55,400
+So again, check out
+copy.c and see if you
+
+124
+00:06:55,400 --> 00:06:58,150
+can find the section that does this.
+
+125
+00:06:58,150 --> 00:07:01,430
+Last but not least, we
+need to talk about padding.
+
+126
+00:07:01,430 --> 00:07:07,050
+In a bitmap, each pixel is 3 bytes,
+but a requirement for the bitmap file
+
+127
+00:07:07,050 --> 00:07:12,020
+format is that the length of each
+scanline must be a multiple of 4 bytes.
+
+128
+00:07:12,020 --> 00:07:16,070
+So that means that, if the number of
+pixels isn't a multiple of 4, then
+
+129
+00:07:16,070 --> 00:07:17,910
+we need to add some padding.
+
+130
+00:07:17,910 --> 00:07:21,350
+And this padding is just 0s.
+
+131
+00:07:21,350 --> 00:07:26,870
+Say I have 4 RGBTRIPLEs, well, each
+triple is comprised of three bytes.
+
+132
+00:07:26,870 --> 00:07:31,680
+So since I have four of them, 4 times
+3 is 12, and 12 is a multiple of 4,
+
+133
+00:07:31,680 --> 00:07:35,360
+so I don't need to add
+any padding in this case.
+
+134
+00:07:35,360 --> 00:07:43,020
+Now, instead, say in my scanline, I had
+5 RGBTRIPLEs, then 5 times 3 equals 15,
+
+135
+00:07:43,020 --> 00:07:45,000
+so that's not a multiple of 4.
+
+136
+00:07:45,000 --> 00:07:51,240
+In order to get to 16, the next multiple
+of 4, I need to add 1 byte of padding.
+
+137
+00:07:51,240 --> 00:07:54,670
+Then if I have, say, 6
+RGBTRIPLEs, then the amount
+
+138
+00:07:54,670 --> 00:08:00,740
+of padding that I have to add in order
+to get to a multiple of 4 bytes is 2.
+
+139
+00:08:00,740 --> 00:08:04,590
+Lastly, in this example,
+if I have 3 RGBTRIPLEs,
+
+140
+00:08:04,590 --> 00:08:06,950
+then that's equivalent to 9 bytes, So.
+
+141
+00:08:06,950 --> 00:08:11,950
+To bump it up, I have to
+add 3 more bytes of padding.
+
+142
+00:08:11,950 --> 00:08:15,280
+It's important that we have a firm
+grasp on the concept of padding,
+
+143
+00:08:15,280 --> 00:08:18,270
+but we don't need to come up
+with the equation, because it's
+
+144
+00:08:18,270 --> 00:08:22,830
+provided for us at the bottom of
+the slide in the specification
+
+145
+00:08:22,830 --> 00:08:25,320
+and in the distribution code.
+
+146
+00:08:25,320 --> 00:08:30,260
+If we look at the formula, then we see
+that the two parameters are the biWidth
+
+147
+00:08:30,260 --> 00:08:33,390
+and the size of the RGBTRIPLE.
+
+148
+00:08:33,390 --> 00:08:37,140
+Now, the size of an RGBTRIPLE
+is always going to be 3 bytes.
+
+149
+00:08:37,140 --> 00:08:41,210
+So the only thing that will
+ever change is the biWidth.
+
+150
+00:08:41,210 --> 00:08:43,730
+Now, in this case, the
+clue and the verdict
+
+151
+00:08:43,730 --> 00:08:45,640
+have the same width,
+because all we're doing
+
+152
+00:08:45,640 --> 00:08:48,660
+is changing the colors of the pixels.
+
+153
+00:08:48,660 --> 00:08:51,480
+So the padding is going to be the same.
+
+154
+00:08:51,480 --> 00:08:57,060
+Now, padding isn't an RGBTRIPLE, so
+we won't be freading or fwriting it,
+
+155
+00:08:57,060 --> 00:09:01,110
+instead, we use the fputc function,
+which takes in the character to write
+
+156
+00:09:01,110 --> 00:09:03,260
+and the file pointer to write it to.
+
+157
+00:09:03,260 --> 00:09:07,090
+So in this case for padding,
+we'll be putting the zeros
+
+158
+00:09:07,090 --> 00:09:10,930
+into our verdict outfile.
+
+159
+00:09:10,930 --> 00:09:14,680
+The last thing that we need to talk
+about is the file position indicator.
+
+160
+00:09:14,680 --> 00:09:17,130
+Whenever we're reading
+into a file, there's
+
+161
+00:09:17,130 --> 00:09:20,650
+the file position indicator,
+basically like our cursor,
+
+162
+00:09:20,650 --> 00:09:23,220
+that keeps track of
+where in the file we are.
+
+163
+00:09:23,220 --> 00:09:25,750
+So if we ever want to
+move that cursor, then we
+
+164
+00:09:25,750 --> 00:09:30,670
+use the fseek function, which takes the
+file pointer that we're seeking over,
+
+165
+00:09:30,670 --> 00:09:33,860
+the number of bytes to
+move that cursor, and then
+
+166
+00:09:33,860 --> 00:09:36,450
+whether we're moving relative
+to the current position
+
+167
+00:09:36,450 --> 00:09:40,280
+in the file, the beginning
+of the file, or the end.
+
+168
+00:09:40,280 --> 00:09:44,480
+So again, very useful to understand
+this function by going into copy.c,
+
+169
+00:09:44,480 --> 00:09:49,440
+seeing where that function is
+called, and understanding why.
+
+170
+00:09:49,440 --> 00:09:50,150
+All right.
+
+171
+00:09:50,150 --> 00:09:52,110
+We're ready to solve the mystery.
+
+172
+00:09:52,110 --> 00:09:56,820
+We've opened the infile, updated
+the headers in for the outfile, read
+
+173
+00:09:56,820 --> 00:10:01,470
+into the clue scanline pixel by pixel,
+changing those colors as necessary
+
+174
+00:10:01,470 --> 00:10:04,350
+and writing them in to
+the verdict scanline.
+
+175
+00:10:04,350 --> 00:10:07,460
+And with that, you've
+completed the problem.
+
+176
+00:10:07,460 --> 00:10:11,730
+My name is Amaila,
+and this was Whodunit.
+
+177
+00:10:11,730 --> 00:10:13,609

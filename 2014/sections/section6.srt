@@ -1,0 +1,5189 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+2
+00:00:00,500 --> 00:00:05,120
+[MUSIC PLAYING]
+
+3
+00:00:05,120 --> 00:00:12,026
+
+4
+00:00:12,026 --> 00:00:12,900
+SPEAKER 1: All right.
+
+5
+00:00:12,900 --> 00:00:14,600
+Everyone welcome back to section.
+
+6
+00:00:14,600 --> 00:00:18,660
+I hope you all are successfully
+recovered from your quiz
+
+7
+00:00:18,660 --> 00:00:19,510
+from last week.
+
+8
+00:00:19,510 --> 00:00:22,564
+I know it's a little bit crazy at times.
+
+9
+00:00:22,564 --> 00:00:25,230
+As I was saying before, if you're
+within the standard deviation,
+
+10
+00:00:25,230 --> 00:00:28,188
+don't really worry about it, especially
+for a less comfortable section.
+
+11
+00:00:28,188 --> 00:00:30,230
+That's about where you should be.
+
+12
+00:00:30,230 --> 00:00:32,850
+>> If you did great, then awesome.
+
+13
+00:00:32,850 --> 00:00:33,650
+Kudos to you.
+
+14
+00:00:33,650 --> 00:00:36,149
+And if you feel like you need
+a little bit more help, please
+
+15
+00:00:36,149 --> 00:00:38,140
+feel free to reach
+out to any of the TFs.
+
+16
+00:00:38,140 --> 00:00:40,030
+We are all here to help.
+
+17
+00:00:40,030 --> 00:00:40,960
+>> That's why we teach.
+
+18
+00:00:40,960 --> 00:00:44,550
+That's why I'm here every Monday for you
+guys and at office hours on Thursdays.
+
+19
+00:00:44,550 --> 00:00:48,130
+So please feel free to let me know
+if you're worried about anything
+
+20
+00:00:48,130 --> 00:00:52,450
+or if there's anything on the quiz
+that you'd really like to address.
+
+21
+00:00:52,450 --> 00:00:56,940
+>> So the agenda for today is
+all about data structures.
+
+22
+00:00:56,940 --> 00:01:01,520
+Some of these are just going to be just
+to get you familiarized with these.
+
+23
+00:01:01,520 --> 00:01:04,870
+You may not ever implement
+them in this class.
+
+24
+00:01:04,870 --> 00:01:08,690
+Some of them you will,
+like for your speller pset.
+
+25
+00:01:08,690 --> 00:01:11,380
+>> You'll have your choice
+between hash tables and tries.
+
+26
+00:01:11,380 --> 00:01:13,680
+So we'll definitely be going over those.
+
+27
+00:01:13,680 --> 00:01:18,690
+It's going to be definitely more of kind
+of a high level section today, though,
+
+28
+00:01:18,690 --> 00:01:22,630
+because there are a lot of them, and if
+we went into the implementation details
+
+29
+00:01:22,630 --> 00:01:26,490
+on all of these, we wouldn't
+even get through linked lists
+
+30
+00:01:26,490 --> 00:01:28,520
+and maybe a little bit of hash tables.
+
+31
+00:01:28,520 --> 00:01:31,200
+>> So bear with me.
+
+32
+00:01:31,200 --> 00:01:33,530
+We're not going to be doing
+as much coding this time.
+
+33
+00:01:33,530 --> 00:01:36,870
+If you have any questions about it
+or you want to see it implemented
+
+34
+00:01:36,870 --> 00:01:39,260
+or try it for yourself,
+I definitely recommend
+
+35
+00:01:39,260 --> 00:01:44,250
+going to study.cs50.net, which
+has examples of all of these.
+
+36
+00:01:44,250 --> 00:01:46,400
+It'll have my PowerPoints
+with the notes that we
+
+37
+00:01:46,400 --> 00:01:50,860
+tend to use as well as some programming
+exercises, especially for things
+
+38
+00:01:50,860 --> 00:01:55,250
+like linked lists and binary
+trees stacks and cues.
+
+39
+00:01:55,250 --> 00:01:59,590
+So little more high level, which
+might be nice for you guys.
+
+40
+00:01:59,590 --> 00:02:01,320
+>> So with that, we'll get started.
+
+41
+00:02:01,320 --> 00:02:03,060
+And also, yes-- quizzes.
+
+42
+00:02:03,060 --> 00:02:06,550
+I think most of you who are in
+my section have your quizzes,
+
+43
+00:02:06,550 --> 00:02:12,060
+but anyone comes in or some reason you
+don't, they're right here in the front.
+
+44
+00:02:12,060 --> 00:02:12,740
+>> So linked lists.
+
+45
+00:02:12,740 --> 00:02:15,650
+I know this kind of goes
+to back before your quiz.
+
+46
+00:02:15,650 --> 00:02:17,940
+That was the week before
+that we learned about this.
+
+47
+00:02:17,940 --> 00:02:21,040
+But in this case, we'll just
+go a little bit more in depth.
+
+48
+00:02:21,040 --> 00:02:25,900
+>> So why might we choose a
+linked list over an array?
+
+49
+00:02:25,900 --> 00:02:27,130
+What distinguishes them?
+
+50
+00:02:27,130 --> 00:02:27,630
+Yes?
+
+51
+00:02:27,630 --> 00:02:30,464
+>> AUDIENCE: You can expand a linked
+list versus an array's fixed size.
+
+52
+00:02:30,464 --> 00:02:31,171
+SPEAKER 1: Right.
+
+53
+00:02:31,171 --> 00:02:33,970
+An array has fixed size whereas a
+linked list has a variable size.
+
+54
+00:02:33,970 --> 00:02:36,970
+So if we don't know how
+much we want to store,
+
+55
+00:02:36,970 --> 00:02:39,880
+a linked list gives us a great
+way to do that because we can just
+
+56
+00:02:39,880 --> 00:02:43,730
+add on another node and add on
+another node and add on another node.
+
+57
+00:02:43,730 --> 00:02:45,750
+But what might be a trade-off?
+
+58
+00:02:45,750 --> 00:02:49,521
+Does anyone remember the trade-off
+between arrays and linked lists?
+
+59
+00:02:49,521 --> 00:02:50,020
+Mmhmm?
+
+60
+00:02:50,020 --> 00:02:51,460
+>> AUDIENCE: You have to
+go through all the way
+
+61
+00:02:51,460 --> 00:02:53,738
+through the linked list
+find an element in a list.
+
+62
+00:02:53,738 --> 00:02:55,570
+In an array, you can
+just find an element.
+
+63
+00:02:55,570 --> 00:02:56,278
+>> SPEAKER 1: Right.
+
+64
+00:02:56,278 --> 00:02:57,120
+So with arrays--
+
+65
+00:02:57,120 --> 00:02:58,500
+>> AUDIENCE: [INAUDIBLE].
+
+66
+00:02:58,500 --> 00:03:01,090
+>> SPEAKER 1: With arrays, we have
+what's called random access.
+
+67
+00:03:01,090 --> 00:03:04,820
+Means that if we want what is
+ever the fifth point of a list
+
+68
+00:03:04,820 --> 00:03:07,230
+or the fifth point of our
+array, we can just grab it.
+
+69
+00:03:07,230 --> 00:03:10,440
+If it's a linked list, we have
+to iterate through, right?
+
+70
+00:03:10,440 --> 00:03:14,020
+So accessing an element in
+an array is constant time,
+
+71
+00:03:14,020 --> 00:03:19,530
+whereas with a linked list it would
+most likely be linear time because maybe
+
+72
+00:03:19,530 --> 00:03:21,370
+our element is all the way at the end.
+
+73
+00:03:21,370 --> 00:03:23,446
+We have to search through everything.
+
+74
+00:03:23,446 --> 00:03:25,320
+So with all these data
+structures we're going
+
+75
+00:03:25,320 --> 00:03:29,330
+to be spending a little more time on,
+what are the pluses and negatives.
+
+76
+00:03:29,330 --> 00:03:31,480
+When might we want to
+use one over the other?
+
+77
+00:03:31,480 --> 00:03:34,970
+And that's kind of the
+bigger thing to take away.
+
+78
+00:03:34,970 --> 00:03:40,140
+>> So we have here the
+definition of a node.
+
+79
+00:03:40,140 --> 00:03:43,040
+It's like one element in
+our linked list, right?
+
+80
+00:03:43,040 --> 00:03:46,180
+So we're all familiar
+with our typedef structs,
+
+81
+00:03:46,180 --> 00:03:47,980
+which we went over in review last time.
+
+82
+00:03:47,980 --> 00:03:53,180
+It was basically just creating
+another data type that we could use.
+
+83
+00:03:53,180 --> 00:03:57,930
+>> And in this case, it's some node
+that will hold some integer in.
+
+84
+00:03:57,930 --> 00:04:00,210
+And then what's the second part here?
+
+85
+00:04:00,210 --> 00:04:03,192
+
+86
+00:04:03,192 --> 00:04:05,677
+Anyone?
+
+87
+00:04:05,677 --> 00:04:06,680
+>> AUDIENCE: [INAUDIBLE].
+
+88
+00:04:06,680 --> 00:04:07,020
+>> SPEAKER 1: Yeah.
+
+89
+00:04:07,020 --> 00:04:08,400
+It's a pointer to the next node.
+
+90
+00:04:08,400 --> 00:04:12,610
+So this should actually be up here.
+
+91
+00:04:12,610 --> 00:04:18,790
+This is a pointer of type
+node to the next thing.
+
+92
+00:04:18,790 --> 00:04:22,410
+And that's what they
+encompasses our node.
+
+93
+00:04:22,410 --> 00:04:24,060
+Cool.
+
+94
+00:04:24,060 --> 00:04:29,390
+>> All right, so with search, as we were
+just saying before hand, if you're
+
+95
+00:04:29,390 --> 00:04:31,840
+going to search through,
+you have to actually iterate
+
+96
+00:04:31,840 --> 00:04:33,660
+through your linked list.
+
+97
+00:04:33,660 --> 00:04:38,530
+So if we're looking for the number
+9, we would start at our head
+
+98
+00:04:38,530 --> 00:04:41,520
+and that points us at the beginning
+of our linked list, right?
+
+99
+00:04:41,520 --> 00:04:44,600
+And we say, OK, does this
+node contain the number 9?
+
+100
+00:04:44,600 --> 00:04:45,690
+No?
+
+101
+00:04:45,690 --> 00:04:47,500
+>> All right, go to the next one.
+
+102
+00:04:47,500 --> 00:04:48,312
+Follow it.
+
+103
+00:04:48,312 --> 00:04:49,520
+Does it contain the number 9?
+
+104
+00:04:49,520 --> 00:04:50,570
+No.
+
+105
+00:04:50,570 --> 00:04:51,550
+Follow the next one.
+
+106
+00:04:51,550 --> 00:04:55,490
+>> So we have to actually iterate
+through our linked list.
+
+107
+00:04:55,490 --> 00:05:00,070
+We can't just go directly to where 9 is.
+
+108
+00:05:00,070 --> 00:05:05,860
+And if you guys actually want to
+see some pseudo-code up there.
+
+109
+00:05:05,860 --> 00:05:10,420
+We have some search function here
+that takes in-- what does it take in?
+
+110
+00:05:10,420 --> 00:05:13,110
+
+111
+00:05:13,110 --> 00:05:14,320
+What do you think?
+
+112
+00:05:14,320 --> 00:05:15,960
+So easy one.
+
+113
+00:05:15,960 --> 00:05:17,784
+What is this?
+
+114
+00:05:17,784 --> 00:05:18,700
+AUDIENCE: [INAUDIBLE].
+
+115
+00:05:18,700 --> 00:05:20,366
+SPEAKER 1: The number we're looking for.
+
+116
+00:05:20,366 --> 00:05:20,980
+Right?
+
+117
+00:05:20,980 --> 00:05:22,875
+And what would this correspond to?
+
+118
+00:05:22,875 --> 00:05:25,020
+It's a pointer to?
+
+119
+00:05:25,020 --> 00:05:26,000
+>> AUDIENCE: A node.
+
+120
+00:05:26,000 --> 00:05:28,980
+>> SPEAKER 1: A node to the list
+that we're looking at, right?
+
+121
+00:05:28,980 --> 00:05:33,700
+So we have some nodes are pointer here.
+
+122
+00:05:33,700 --> 00:05:37,240
+This is a point that's going to
+actually iterate through our list.
+
+123
+00:05:37,240 --> 00:05:39,630
+We set it equal to list
+because that's just
+
+124
+00:05:39,630 --> 00:05:44,380
+setting it equal to the
+start of our linked list.
+
+125
+00:05:44,380 --> 00:05:50,660
+>> And while it's not NULL, while
+we still have things in our list,
+
+126
+00:05:50,660 --> 00:05:55,580
+check to see if that node has
+the number we're looking for.
+
+127
+00:05:55,580 --> 00:05:57,740
+Return true.
+
+128
+00:05:57,740 --> 00:06:01,070
+Otherwise, update it, right?
+
+129
+00:06:01,070 --> 00:06:04,870
+>> If it is NULL, we exit our
+while loop and return false
+
+130
+00:06:04,870 --> 00:06:08,340
+because that means we haven't found it.
+
+131
+00:06:08,340 --> 00:06:11,048
+Does everyone get how that works?
+
+132
+00:06:11,048 --> 00:06:11,548
+OK.
+
+133
+00:06:11,548 --> 00:06:14,940
+
+134
+00:06:14,940 --> 00:06:20,260
+>> So with insertion, you
+have three different ways.
+
+135
+00:06:20,260 --> 00:06:25,250
+You can prepend, you can append
+and you can insert into assorted.
+
+136
+00:06:25,250 --> 00:06:28,215
+In this case, we're
+going to do a prepend.
+
+137
+00:06:28,215 --> 00:06:33,380
+Does anyone know how those
+three cases might differ?
+
+138
+00:06:33,380 --> 00:06:36,920
+>> So prepend means that you put
+it at the front of your list.
+
+139
+00:06:36,920 --> 00:06:39,770
+So that would mean that no matter
+what your node is, no matter
+
+140
+00:06:39,770 --> 00:06:43,160
+what the value is, you're going
+to put it right here in front, OK?
+
+141
+00:06:43,160 --> 00:06:45,160
+It's going to be the first
+element in your list.
+
+142
+00:06:45,160 --> 00:06:49,510
+>> If you append it, it's going
+to go to the back of your list.
+
+143
+00:06:49,510 --> 00:06:54,010
+And insert into assorted means you're
+going to put actually into the place
+
+144
+00:06:54,010 --> 00:06:57,700
+where it keeps your linked list sorted.
+
+145
+00:06:57,700 --> 00:07:00,810
+Again, how you use
+those and when you use
+
+146
+00:07:00,810 --> 00:07:02,530
+them will vary depending on your case.
+
+147
+00:07:02,530 --> 00:07:05,834
+
+148
+00:07:05,834 --> 00:07:07,750
+If it doesn't need to
+be sorted, prepend tends
+
+149
+00:07:07,750 --> 00:07:10,460
+to be what most people
+use because you don't
+
+150
+00:07:10,460 --> 00:07:15,680
+have to go through the entire list
+to find the end to add it on, right?
+
+151
+00:07:15,680 --> 00:07:17,720
+You can just stick it right in.
+
+152
+00:07:17,720 --> 00:07:21,930
+>> So we will go through an
+insertion 1 right now.
+
+153
+00:07:21,930 --> 00:07:26,360
+So one thing that I'm going to
+highly recommend on this pset
+
+154
+00:07:26,360 --> 00:07:29,820
+is to draw things out, as always.
+
+155
+00:07:29,820 --> 00:07:35,130
+It's very important that you update
+your pointers in the correct order
+
+156
+00:07:35,130 --> 00:07:38,620
+because if you update them
+slightly out of order,
+
+157
+00:07:38,620 --> 00:07:42,210
+you're going to end up
+losing parts of your list.
+
+158
+00:07:42,210 --> 00:07:49,680
+>> So for example, in this case, we're
+telling the head to just point to 1.
+
+159
+00:07:49,680 --> 00:07:56,070
+If we just do that
+without saving this 1,
+
+160
+00:07:56,070 --> 00:07:58,570
+we have no idea what
+1 should point to now
+
+161
+00:07:58,570 --> 00:08:02,490
+because we've lost what
+the head pointed to.
+
+162
+00:08:02,490 --> 00:08:05,530
+So one thing to remember
+when you're doing a prepend
+
+163
+00:08:05,530 --> 00:08:09,630
+is to save what the
+head points to first,
+
+164
+00:08:09,630 --> 00:08:15,210
+then reassign it, and then update
+what your new node should point to.
+
+165
+00:08:15,210 --> 00:08:20,870
+
+166
+00:08:20,870 --> 00:08:22,560
+In this case, this is one way to do it.
+
+167
+00:08:22,560 --> 00:08:25,440
+>> So if we had done it this way
+where we just reassigned head,
+
+168
+00:08:25,440 --> 00:08:30,320
+we lose basically our
+entire list, right?
+
+169
+00:08:30,320 --> 00:08:38,000
+One way to do it is to have 1 point to
+next, and then have head point to 1.
+
+170
+00:08:38,000 --> 00:08:42,650
+Or you can do kind of like the
+temporary storage, which I talked about.
+
+171
+00:08:42,650 --> 00:08:45,670
+>> But reassigning your
+pointers in the correct order
+
+172
+00:08:45,670 --> 00:08:48,750
+is going to be very, very
+important for this pset.
+
+173
+00:08:48,750 --> 00:08:53,140
+Otherwise, you're going to have a hash
+table or a try that's just going to be
+
+174
+00:08:53,140 --> 00:08:56,014
+only part of the words that you
+want and then you're-- mmhmm?
+
+175
+00:08:56,014 --> 00:08:58,930
+AUDIENCE: What was the temporary
+storage thing you were talking about?
+
+176
+00:08:58,930 --> 00:09:00,305
+SPEAKER 1: The temporary storage.
+
+177
+00:09:00,305 --> 00:09:02,760
+So basically another
+way you could do this
+
+178
+00:09:02,760 --> 00:09:07,650
+is store the head of something, like
+store it the temporary variable.
+
+179
+00:09:07,650 --> 00:09:11,250
+Assign it to 1 and
+then update 1 to point
+
+180
+00:09:11,250 --> 00:09:13,830
+to whatever head used to point to.
+
+181
+00:09:13,830 --> 00:09:16,920
+This way is obviously
+more elegant because you
+
+182
+00:09:16,920 --> 00:09:20,770
+don't need a temporary value, but
+just offering another way to do it.
+
+183
+00:09:20,770 --> 00:09:23,999
+
+184
+00:09:23,999 --> 00:09:25,790
+And we actually do have
+some code for this.
+
+185
+00:09:25,790 --> 00:09:28,080
+So for linked list, we
+actually have some code.
+
+186
+00:09:28,080 --> 00:09:31,930
+So insert here, this is prepending.
+
+187
+00:09:31,930 --> 00:09:34,290
+So this enters it at the head.
+
+188
+00:09:34,290 --> 00:09:38,820
+>> So first thing, you need to
+create your new node, of course,
+
+189
+00:09:38,820 --> 00:09:40,790
+and check for NULL.
+
+190
+00:09:40,790 --> 00:09:43,250
+Always good.
+
+191
+00:09:43,250 --> 00:09:47,840
+And then you need to assign the values.
+
+192
+00:09:47,840 --> 00:09:51,260
+Whenever you create a new node, you
+don't know what it's pointing to next,
+
+193
+00:09:51,260 --> 00:09:54,560
+so you want to initialize it to NULL.
+
+194
+00:09:54,560 --> 00:09:58,760
+If it does end up pointing to something
+else, it gets reassigned and it's fine.
+
+195
+00:09:58,760 --> 00:10:00,740
+If it's the first thing
+in the list, it needs
+
+196
+00:10:00,740 --> 00:10:04,270
+to point to NULL because
+that's the end of the list.
+
+197
+00:10:04,270 --> 00:10:12,410
+>> So then to insert it, we see here we
+are assigning the next value of our node
+
+198
+00:10:12,410 --> 00:10:17,380
+to be whatever head is,
+which is what we had here.
+
+199
+00:10:17,380 --> 00:10:19,930
+That's what we just did.
+
+200
+00:10:19,930 --> 00:10:25,820
+And then we're assigning head to point
+to our new node, because remember,
+
+201
+00:10:25,820 --> 00:10:31,090
+new is some pointer to a node,
+and that's exactly what head is.
+
+202
+00:10:31,090 --> 00:10:34,370
+That is exactly why we
+have this arrow accessor.
+
+203
+00:10:34,370 --> 00:10:37,030
+
+204
+00:10:37,030 --> 00:10:37,530
+Cool?
+
+205
+00:10:37,530 --> 00:10:38,130
+Mmhmm?
+
+206
+00:10:38,130 --> 00:10:41,100
+>> AUDIENCE: Do we have to
+initialize new next to NULL first,
+
+207
+00:10:41,100 --> 00:10:44,240
+or can we just initialize it to head?
+
+208
+00:10:44,240 --> 00:10:48,210
+>> SPEAKER 1: New next
+needs to be NULL to start
+
+209
+00:10:48,210 --> 00:10:53,760
+because you don't know
+where it's going to be.
+
+210
+00:10:53,760 --> 00:10:56,100
+Also, this is kind of
+just like a paradigm.
+
+211
+00:10:56,100 --> 00:10:59,900
+You set it equal to NULL just to make
+sure that all your bases are covered
+
+212
+00:10:59,900 --> 00:11:04,070
+before you do any reassignment so that
+you're always guaranteed that it will
+
+213
+00:11:04,070 --> 00:11:08,880
+be pointing to a specific value
+versus like a garbage value.
+
+214
+00:11:08,880 --> 00:11:12,210
+Because, yeah, we assign
+new next automatically,
+
+215
+00:11:12,210 --> 00:11:15,420
+but it's more just like a
+good practice to initialize it
+
+216
+00:11:15,420 --> 00:11:19,270
+in that way and then reassign.
+
+217
+00:11:19,270 --> 00:11:23,420
+>> OK, so doubly linked lists now.
+
+218
+00:11:23,420 --> 00:11:24,601
+What do we think?
+
+219
+00:11:24,601 --> 00:11:26,350
+What's different with
+doubly linked lists?
+
+220
+00:11:26,350 --> 00:11:30,750
+
+221
+00:11:30,750 --> 00:11:34,300
+>> So in our linked lists, we can
+only move in one direction, right?
+
+222
+00:11:34,300 --> 00:11:35,270
+We only have next.
+
+223
+00:11:35,270 --> 00:11:36,760
+We can only go forward.
+
+224
+00:11:36,760 --> 00:11:40,300
+>> With a doubly linked list,
+we can also move backwards.
+
+225
+00:11:40,300 --> 00:11:44,810
+So we have not only the
+number that we want to store,
+
+226
+00:11:44,810 --> 00:11:50,110
+we have where it points to next
+and where we just came from.
+
+227
+00:11:50,110 --> 00:11:52,865
+So this allows for
+some better traversal.
+
+228
+00:11:52,865 --> 00:11:56,620
+
+229
+00:11:56,620 --> 00:12:01,240
+>> So doubly linked nodes,
+very similar, right?
+
+230
+00:12:01,240 --> 00:12:05,000
+Only difference is now we
+have a next and a previous.
+
+231
+00:12:05,000 --> 00:12:06,235
+It's the only difference.
+
+232
+00:12:06,235 --> 00:12:09,570
+
+233
+00:12:09,570 --> 00:12:14,790
+>> So if we were to prepend or append-- we
+don't have any code for this up here--
+
+234
+00:12:14,790 --> 00:12:17,830
+but if you were to try and
+insert it, the important thing
+
+235
+00:12:17,830 --> 00:12:19,980
+is you need to make
+sure you're assigning
+
+236
+00:12:19,980 --> 00:12:23,360
+both your previous and your
+next pointer correctly.
+
+237
+00:12:23,360 --> 00:12:29,010
+So in this case, you would
+not only initialize next,
+
+238
+00:12:29,010 --> 00:12:31,820
+you initialize previous.
+
+239
+00:12:31,820 --> 00:12:36,960
+If we're at the head of the list, we
+would not only make head equal new,
+
+240
+00:12:36,960 --> 00:12:41,750
+but our new previous should
+point to the head, right?
+
+241
+00:12:41,750 --> 00:12:43,380
+>> That's the only difference.
+
+242
+00:12:43,380 --> 00:12:47,200
+And if you want more practice with
+these with linked lists, with inserting,
+
+243
+00:12:47,200 --> 00:12:49,900
+with deleting, with insert
+into an assorted list,
+
+244
+00:12:49,900 --> 00:12:52,670
+please check out study.cs50.net.
+
+245
+00:12:52,670 --> 00:12:54,870
+There's a bunch of great exercises.
+
+246
+00:12:54,870 --> 00:12:55,870
+I highly recommend them.
+
+247
+00:12:55,870 --> 00:12:59,210
+I wish we had time to go through them
+but there's a lot of data structures
+
+248
+00:12:59,210 --> 00:13:01,530
+to get through.
+
+249
+00:13:01,530 --> 00:13:02,650
+>> OK, so hash tables.
+
+250
+00:13:02,650 --> 00:13:07,070
+This is probably the most
+useful bit for your pset
+
+251
+00:13:07,070 --> 00:13:11,090
+here because you're going to be
+implementing one of these, or a try.
+
+252
+00:13:11,090 --> 00:13:12,200
+I really like hash tables.
+
+253
+00:13:12,200 --> 00:13:13,110
+They're pretty cool.
+
+254
+00:13:13,110 --> 00:13:17,080
+>> So basically what
+happens is a hash table
+
+255
+00:13:17,080 --> 00:13:22,050
+is when we really need speedy
+insertion, deletion, and lookup.
+
+256
+00:13:22,050 --> 00:13:25,010
+Those are the things that we're
+prioritizing in a hash table.
+
+257
+00:13:25,010 --> 00:13:29,500
+They can get pretty big,
+but as we'll see with tries,
+
+258
+00:13:29,500 --> 00:13:33,040
+there are things that are much bigger.
+
+259
+00:13:33,040 --> 00:13:38,330
+>> But basically, all a hash
+table is a hash function
+
+260
+00:13:38,330 --> 00:13:47,215
+that tells you which bucket to put each
+of your data, each of your elements in.
+
+261
+00:13:47,215 --> 00:13:51,140
+A simple way to think of a hash table
+is that it's just buckets of things,
+
+262
+00:13:51,140 --> 00:13:51,770
+right?
+
+263
+00:13:51,770 --> 00:13:59,720
+So when you are sorting things by
+like the first letter of their name,
+
+264
+00:13:59,720 --> 00:14:01,820
+that's kind of like a hash table.
+
+265
+00:14:01,820 --> 00:14:06,180
+>> So if I were to group you guys is
+into groups of whoever's name starts
+
+266
+00:14:06,180 --> 00:14:11,670
+with A over here, or whoever's birthday
+is in January, February, March,
+
+267
+00:14:11,670 --> 00:14:15,220
+whatever, that is effectively
+creating a hash table.
+
+268
+00:14:15,220 --> 00:14:18,120
+It's just creating buckets that
+you sort your elements into
+
+269
+00:14:18,120 --> 00:14:19,520
+so that you can find them easier.
+
+270
+00:14:19,520 --> 00:14:22,300
+So this way when I need
+to find one of you,
+
+271
+00:14:22,300 --> 00:14:24,680
+I don't have to search
+through each of your names.
+
+272
+00:14:24,680 --> 00:14:29,490
+I can be like, oh, I know that
+Danielle's birthday is in--
+
+273
+00:14:29,490 --> 00:14:30,240
+AUDIENCE: --April.
+
+274
+00:14:30,240 --> 00:14:30,948
+SPEAKER 1: April.
+
+275
+00:14:30,948 --> 00:14:33,120
+So I look in my April
+bucket, and with any luck,
+
+276
+00:14:33,120 --> 00:14:38,270
+she'll be the only one in there and
+my time was constant in that sense,
+
+277
+00:14:38,270 --> 00:14:41,230
+whereas if I have to look
+through a whole bunch of people,
+
+278
+00:14:41,230 --> 00:14:43,090
+it's going to take much longer.
+
+279
+00:14:43,090 --> 00:14:45,830
+So hash tables are really just buckets.
+
+280
+00:14:45,830 --> 00:14:48,630
+Easy way to think of them.
+
+281
+00:14:48,630 --> 00:14:52,930
+>> So a very important thing about
+a hash table is a hash function.
+
+282
+00:14:52,930 --> 00:14:58,140
+So the things I just talked about, like
+your first letter of your first name
+
+283
+00:14:58,140 --> 00:15:01,450
+or your birthday month,
+these are ideas that
+
+284
+00:15:01,450 --> 00:15:03,070
+really correlate to a hash function.
+
+285
+00:15:03,070 --> 00:15:08,900
+It's just a way of deciding which
+bucket you're element goes into, OK?
+
+286
+00:15:08,900 --> 00:15:14,850
+So for this pset, you can look up
+pretty much any hash function you want.
+
+287
+00:15:14,850 --> 00:15:16,030
+>> Doesn't have to be your own.
+
+288
+00:15:16,030 --> 00:15:21,140
+There are some really cool ones out
+there that do all sorts of crazy math.
+
+289
+00:15:21,140 --> 00:15:25,170
+And if you want to make your
+spellchecker super fast,
+
+290
+00:15:25,170 --> 00:15:27,620
+I would definitely
+look into one of those.
+
+291
+00:15:27,620 --> 00:15:32,390
+>> But there are also the
+simple ones, like compute
+
+292
+00:15:32,390 --> 00:15:39,010
+the sum of the words, like
+each letter has a number.
+
+293
+00:15:39,010 --> 00:15:39,940
+Compute the sum.
+
+294
+00:15:39,940 --> 00:15:42,230
+That determines the bucket.
+
+295
+00:15:42,230 --> 00:15:45,430
+They also have the easy ones that
+are just like all of the A's here,
+
+296
+00:15:45,430 --> 00:15:47,050
+all of the B's here.
+
+297
+00:15:47,050 --> 00:15:48,920
+Any one of those.
+
+298
+00:15:48,920 --> 00:15:55,770
+>> Basically, it just tells you which
+array index your element should go into.
+
+299
+00:15:55,770 --> 00:15:58,690
+Just deciding the bucket--
+it's all a hash function is.
+
+300
+00:15:58,690 --> 00:16:04,180
+So here we have an example which is
+just the first letter of the string
+
+301
+00:16:04,180 --> 00:16:05,900
+that I was just talking about.
+
+302
+00:16:05,900 --> 00:16:11,900
+>> So you have some hash that's just the
+first letter of your string minus A,
+
+303
+00:16:11,900 --> 00:16:16,090
+which will give you some
+number between 0 and 25.
+
+304
+00:16:16,090 --> 00:16:20,790
+And what you want to do is
+make sure that this represents
+
+305
+00:16:20,790 --> 00:16:24,110
+the size of your hash table--
+how many buckets there are.
+
+306
+00:16:24,110 --> 00:16:25,860
+With many of these
+hash functions, they're
+
+307
+00:16:25,860 --> 00:16:31,630
+going to be returning values that might
+be far above the number of buckets
+
+308
+00:16:31,630 --> 00:16:33,610
+that you actually have
+in your hash table,
+
+309
+00:16:33,610 --> 00:16:37,240
+so you need to make
+sure and mod by those.
+
+310
+00:16:37,240 --> 00:16:42,190
+Otherwise, it's going to say,
+oh, it should be in bucket 5,000
+
+311
+00:16:42,190 --> 00:16:46,040
+but you only have 30
+buckets in your hash table.
+
+312
+00:16:46,040 --> 00:16:49,360
+And of course, we all know that's
+going to result in some crazy errors.
+
+313
+00:16:49,360 --> 00:16:52,870
+So make sure to mod by the
+size of your hash table.
+
+314
+00:16:52,870 --> 00:16:58,430
+
+315
+00:16:58,430 --> 00:16:58,930
+Cool.
+
+316
+00:16:58,930 --> 00:17:00,506
+So collisions.
+
+317
+00:17:00,506 --> 00:17:02,620
+Is everyone good so far?
+
+318
+00:17:02,620 --> 00:17:03,120
+Mmhmm?
+
+319
+00:17:03,120 --> 00:17:05,900
+>> AUDIENCE: Why would it
+return such a massive value?
+
+320
+00:17:05,900 --> 00:17:09,210
+>> SPEAKER 1: Depending on the algorithm
+that your hash function uses.
+
+321
+00:17:09,210 --> 00:17:12,270
+Some of them will do
+crazy multiplication.
+
+322
+00:17:12,270 --> 00:17:16,270
+And it's all about getting
+a even distribution,
+
+323
+00:17:16,270 --> 00:17:18,490
+so they do some really
+crazy things sometimes.
+
+324
+00:17:18,490 --> 00:17:20,960
+That's all.
+
+325
+00:17:20,960 --> 00:17:22,140
+Anything else?
+
+326
+00:17:22,140 --> 00:17:22,829
+OK.
+
+327
+00:17:22,829 --> 00:17:24,480
+>> So collisions.
+
+328
+00:17:24,480 --> 00:17:29,270
+Basically, as I said earlier,
+in the best case scenario,
+
+329
+00:17:29,270 --> 00:17:32,040
+any bucket I look into is
+going to have one thing,
+
+330
+00:17:32,040 --> 00:17:34,160
+so I don't have to look at all, right?
+
+331
+00:17:34,160 --> 00:17:37,040
+I either know it's there or it's
+not, and that's what we really want.
+
+332
+00:17:37,040 --> 00:17:43,960
+But if we have tens of thousands of
+data points and less than that number
+
+333
+00:17:43,960 --> 00:17:48,700
+of buckets, we're going to have
+collisions where eventually something
+
+334
+00:17:48,700 --> 00:17:54,210
+is going to have to end up in a
+bucket that already has an element.
+
+335
+00:17:54,210 --> 00:17:57,390
+>> So the question is, what
+do we do in that case?
+
+336
+00:17:57,390 --> 00:17:58,480
+What do we do?
+
+337
+00:17:58,480 --> 00:17:59,300
+We already have something there?
+
+338
+00:17:59,300 --> 00:18:00,060
+Do we just throw it out?
+
+339
+00:18:00,060 --> 00:18:00,700
+>> No.
+
+340
+00:18:00,700 --> 00:18:01,980
+We have to keep both of them.
+
+341
+00:18:01,980 --> 00:18:06,400
+So the way that we
+typically do that is what?
+
+342
+00:18:06,400 --> 00:18:08,400
+What is the data structure
+we just talked about?
+
+343
+00:18:08,400 --> 00:18:09,316
+AUDIENCE: Linked list.
+
+344
+00:18:09,316 --> 00:18:10,500
+SPEAKER 1: A linked list.
+
+345
+00:18:10,500 --> 00:18:16,640
+So now, instead of each of these
+buckets just having one element,
+
+346
+00:18:16,640 --> 00:18:24,020
+it's going to contain a linked list of
+the elements that were hashed into it.
+
+347
+00:18:24,020 --> 00:18:27,588
+OK, does everyone kind of get that idea?
+
+348
+00:18:27,588 --> 00:18:30,546
+Because we couldn't have an array
+because we don't know how many things
+
+349
+00:18:30,546 --> 00:18:31,730
+are going to be in there.
+
+350
+00:18:31,730 --> 00:18:36,540
+A linked list allows us to
+have just the exact number that
+
+351
+00:18:36,540 --> 00:18:38,465
+are hashed into that bucket, right?
+
+352
+00:18:38,465 --> 00:18:42,260
+
+353
+00:18:42,260 --> 00:18:50,500
+>> So linear probing is
+basically this idea--
+
+354
+00:18:50,500 --> 00:18:52,300
+it's one way to deal with a collision.
+
+355
+00:18:52,300 --> 00:18:58,010
+What you can do is if, in this
+case, berry was hashed into 1
+
+356
+00:18:58,010 --> 00:19:01,130
+and we already have
+something there, you just
+
+357
+00:19:01,130 --> 00:19:04,840
+keep going down until
+you find an empty slot.
+
+358
+00:19:04,840 --> 00:19:06,370
+That's one way to handle it.
+
+359
+00:19:06,370 --> 00:19:09,020
+The other way to handle
+it is with what we just
+
+360
+00:19:09,020 --> 00:19:12,280
+called-- the linked
+list is called chaining.
+
+361
+00:19:12,280 --> 00:19:20,510
+>> So this idea works if
+your hash table you think
+
+362
+00:19:20,510 --> 00:19:24,150
+is much larger than
+your data set or if you
+
+363
+00:19:24,150 --> 00:19:28,870
+want to try and minimize chaining
+until it's absolutely necessary.
+
+364
+00:19:28,870 --> 00:19:34,050
+So one thing is linear
+probing obviously means
+
+365
+00:19:34,050 --> 00:19:37,290
+that your hash function
+isn't quite as useful
+
+366
+00:19:37,290 --> 00:19:42,200
+because you're going to end up using
+your hash function, getting to a point,
+
+367
+00:19:42,200 --> 00:19:46,400
+you linear probe down to
+some place that is available.
+
+368
+00:19:46,400 --> 00:19:49,670
+But now, of course, anything
+else that ends up there,
+
+369
+00:19:49,670 --> 00:19:52,050
+you're going to have to
+search even further down.
+
+370
+00:19:52,050 --> 00:19:55,650
+>> And there's a lot more
+search expense that
+
+371
+00:19:55,650 --> 00:19:59,820
+goes into inputting an element
+in your hash table now, right?
+
+372
+00:19:59,820 --> 00:20:05,640
+And now when you go and try and find
+berry again, you're going to hash it,
+
+373
+00:20:05,640 --> 00:20:07,742
+and it's going to say,
+oh, look in bucket 1,
+
+374
+00:20:07,742 --> 00:20:09,700
+and it's not going to be
+in bucket 1, so you're
+
+375
+00:20:09,700 --> 00:20:11,970
+going to have to traverse
+through the rest of these.
+
+376
+00:20:11,970 --> 00:20:17,720
+So it's sometimes useful,
+but in most cases,
+
+377
+00:20:17,720 --> 00:20:22,660
+we're going to say that
+chaining is what you want to do.
+
+378
+00:20:22,660 --> 00:20:25,520
+>> So we talked about this earlier.
+
+379
+00:20:25,520 --> 00:20:27,812
+I got a little ahead of myself.
+
+380
+00:20:27,812 --> 00:20:33,560
+But chaining is basically that
+each bucket in your hash table
+
+381
+00:20:33,560 --> 00:20:36,120
+is just a linked list.
+
+382
+00:20:36,120 --> 00:20:39,660
+>> So another way, or more technical
+way, to think of a hash table
+
+383
+00:20:39,660 --> 00:20:44,490
+is that it's just an array
+of linked lists, which
+
+384
+00:20:44,490 --> 00:20:49,330
+when you're writing your dictionary
+and you're trying to load it,
+
+385
+00:20:49,330 --> 00:20:52,070
+thinking of it as an
+array of linked lists
+
+386
+00:20:52,070 --> 00:20:54,390
+will make it much easier
+for you to initialize.
+
+387
+00:20:54,390 --> 00:20:57,680
+>> AUDIENCE: So hash table
+has a predetermined size,
+
+388
+00:20:57,680 --> 00:20:58,980
+like a [INAUDIBLE] of buckets?
+
+389
+00:20:58,980 --> 00:20:59,220
+>> SPEAKER 1: Right.
+
+390
+00:20:59,220 --> 00:21:01,655
+So it has a set number of
+buckets that you determine--
+
+391
+00:21:01,655 --> 00:21:03,530
+which you guys should
+feel free to play with.
+
+392
+00:21:03,530 --> 00:21:05,269
+It can be pretty cool
+to see what happens
+
+393
+00:21:05,269 --> 00:21:06,810
+as you change your number of buckets.
+
+394
+00:21:06,810 --> 00:21:09,410
+
+395
+00:21:09,410 --> 00:21:11,510
+But yeah, it has a
+set number of buckets.
+
+396
+00:21:11,510 --> 00:21:15,360
+What allows you to fit as
+many elements as you need
+
+397
+00:21:15,360 --> 00:21:19,350
+is this separate chaining where you
+have linked lists in each bucket.
+
+398
+00:21:19,350 --> 00:21:22,850
+That means your hash table
+will be exactly the size
+
+399
+00:21:22,850 --> 00:21:25,440
+that you need it to be, right?
+
+400
+00:21:25,440 --> 00:21:27,358
+That's the whole point of linked lists.
+
+401
+00:21:27,358 --> 00:21:30,850
+
+402
+00:21:30,850 --> 00:21:32,480
+Cool.
+
+403
+00:21:32,480 --> 00:21:38,780
+>> So everyone OK there?
+
+404
+00:21:38,780 --> 00:21:39,801
+All right.
+
+405
+00:21:39,801 --> 00:21:40,300
+Ah.
+
+406
+00:21:40,300 --> 00:21:41,860
+What just happened?
+
+407
+00:21:41,860 --> 00:21:42,960
+Really now.
+
+408
+00:21:42,960 --> 00:21:45,250
+Guess somebody's killing me.
+
+409
+00:21:45,250 --> 00:21:52,060
+>> OK we're going to go into
+tries, which are a little crazy.
+
+410
+00:21:52,060 --> 00:21:53,140
+I like hash tables.
+
+411
+00:21:53,140 --> 00:21:54,460
+I think they're really cool.
+
+412
+00:21:54,460 --> 00:21:56,710
+Tries are cool, too.
+
+413
+00:21:56,710 --> 00:21:59,590
+>> So does anyone remember what a try is?
+
+414
+00:21:59,590 --> 00:22:01,740
+You should have gone over
+it briefly in lecture?
+
+415
+00:22:01,740 --> 00:22:04,570
+
+416
+00:22:04,570 --> 00:22:06,377
+Do you remember kind of how it works?
+
+417
+00:22:06,377 --> 00:22:08,460
+AUDIENCE: I'm just nodding
+that we did go over it.
+
+418
+00:22:08,460 --> 00:22:09,626
+SPEAKER 1: We do go over it.
+
+419
+00:22:09,626 --> 00:22:13,100
+OK, we're really going to go
+over it now is what we're saying.
+
+420
+00:22:13,100 --> 00:22:14,860
+>> AUDIENCE: That's for a retrieval tree.
+
+421
+00:22:14,860 --> 00:22:15,280
+>> SPEAKER 1: Yeah.
+
+422
+00:22:15,280 --> 00:22:16,196
+It's a retrieval tree.
+
+423
+00:22:16,196 --> 00:22:16,960
+Awesome.
+
+424
+00:22:16,960 --> 00:22:23,610
+So one thing to notice here is that we
+are looking at individual characters
+
+425
+00:22:23,610 --> 00:22:24,480
+here, right?
+
+426
+00:22:24,480 --> 00:22:29,710
+>> So before with our hash function, we
+were looking at the words as a whole,
+
+427
+00:22:29,710 --> 00:22:32,270
+and now we're looking more
+at the characters, right?
+
+428
+00:22:32,270 --> 00:22:38,380
+So we have Maxwell over here and Mendel.
+
+429
+00:22:38,380 --> 00:22:47,840
+So basically a try-- a way to think
+about this is that every level here
+
+430
+00:22:47,840 --> 00:22:49,000
+is an array of letters.
+
+431
+00:22:49,000 --> 00:22:53,310
+
+432
+00:22:53,310 --> 00:22:55,790
+So this is your root node here, right?
+
+433
+00:22:55,790 --> 00:23:01,980
+This has all the characters of the
+alphabet for the start of every word.
+
+434
+00:23:01,980 --> 00:23:06,480
+>> And what you want to do is
+say, OK, we have some M word.
+
+435
+00:23:06,480 --> 00:23:10,590
+We're going to look for Maxwell, so
+we go to M. And M points to a whole
+
+436
+00:23:10,590 --> 00:23:14,800
+other a array where every
+word, as long as there
+
+437
+00:23:14,800 --> 00:23:17,044
+is a word that has A
+as the second letter,
+
+438
+00:23:17,044 --> 00:23:19,460
+as long as there's a word that
+has B as the second letter,
+
+439
+00:23:19,460 --> 00:23:24,630
+it will have a pointer
+going to some next array.
+
+440
+00:23:24,630 --> 00:23:29,290
+>> There's probably not a
+word that MP something,
+
+441
+00:23:29,290 --> 00:23:32,980
+so at the P position in this
+array, it would just be NULL.
+
+442
+00:23:32,980 --> 00:23:38,840
+It would say, OK, there is no word
+that has M followed by a P, OK?
+
+443
+00:23:38,840 --> 00:23:43,100
+So if we think about it, each
+one of these smaller things
+
+444
+00:23:43,100 --> 00:23:47,990
+is actually one of these
+large arrays from A through Z.
+
+445
+00:23:47,990 --> 00:23:55,064
+So what might be one of the things
+that is kind of a drawback of a try?
+
+446
+00:23:55,064 --> 00:23:56,500
+>> AUDIENCE: A lot of memory.
+
+447
+00:23:56,500 --> 00:23:59,940
+>> SPEAKER 1: It's a ton of memory, right?
+
+448
+00:23:59,940 --> 00:24:08,750
+Each one of these blocks here
+represents 26 spaces, 26 element array.
+
+449
+00:24:08,750 --> 00:24:13,680
+So tries get incredibly space heavy.
+
+450
+00:24:13,680 --> 00:24:17,100
+>> But they are very fast.
+
+451
+00:24:17,100 --> 00:24:22,540
+So incredibly fast but
+really space inefficient.
+
+452
+00:24:22,540 --> 00:24:24,810
+Kind of have to figure
+out which one you want.
+
+453
+00:24:24,810 --> 00:24:29,470
+These are really cool for your pset,
+but they do take up a lot of memory,
+
+454
+00:24:29,470 --> 00:24:30,290
+so you trade off.
+
+455
+00:24:30,290 --> 00:24:31,480
+Yeah?
+
+456
+00:24:31,480 --> 00:24:34,300
+>> AUDIENCE: Would it be possible
+to set up a try and then
+
+457
+00:24:34,300 --> 00:24:37,967
+once you have all the
+data in it that you need--
+
+458
+00:24:37,967 --> 00:24:39,550
+I don't know if that would make sense.
+
+459
+00:24:39,550 --> 00:24:42,200
+I was getting rid of all the
+NULL characters, but then
+
+460
+00:24:42,200 --> 00:24:42,910
+you wouldn't be able to index them--
+
+461
+00:24:42,910 --> 00:24:43,275
+>> SPEAKER 1: You still need them.
+
+462
+00:24:43,275 --> 00:24:44,854
+>> AUDIENCE: -- the same way each time.
+
+463
+00:24:44,854 --> 00:24:45,520
+SPEAKER 1: Yeah.
+
+464
+00:24:45,520 --> 00:24:50,460
+You need the NULL characters to let
+you know if there's not a word there.
+
+465
+00:24:50,460 --> 00:24:52,040
+Ben did you have something you want?
+
+466
+00:24:52,040 --> 00:24:52,540
+OK.
+
+467
+00:24:52,540 --> 00:24:54,581
+All right, so we're going
+to go a little bit more
+
+468
+00:24:54,581 --> 00:24:58,920
+into the technical detail behind
+a try and work through an example.
+
+469
+00:24:58,920 --> 00:25:01,490
+>> OK, so this is the same thing.
+
+470
+00:25:01,490 --> 00:25:06,290
+Whereas in a linked list, our main
+kind of-- what's the word I want?--
+
+471
+00:25:06,290 --> 00:25:08,350
+like building block was a node.
+
+472
+00:25:08,350 --> 00:25:12,280
+In a try, we also have a node,
+but it's defined differently.
+
+473
+00:25:12,280 --> 00:25:17,000
+>> So we have some bool that
+represents whether a word actually
+
+474
+00:25:17,000 --> 00:25:23,530
+exists at this location, and then
+we have some array here-- or rather,
+
+475
+00:25:23,530 --> 00:25:27,840
+this is a pointer to an
+array of 27 characters.
+
+476
+00:25:27,840 --> 00:25:33,339
+And this is for, in this case, this
+27-- I'm sure all of you are like, wait,
+
+477
+00:25:33,339 --> 00:25:34,880
+there are 26 letters in the alphabet.
+
+478
+00:25:34,880 --> 00:25:36,010
+Why do we have 27?
+
+479
+00:25:36,010 --> 00:25:37,870
+>> So depending on the
+way you implement this,
+
+480
+00:25:37,870 --> 00:25:43,240
+this is from a pset that
+allowed for apostrophes.
+
+481
+00:25:43,240 --> 00:25:46,010
+So that's why the extra one.
+
+482
+00:25:46,010 --> 00:25:50,500
+You'll also have in some
+cases the null terminator
+
+483
+00:25:50,500 --> 00:25:53,230
+is included as one of the
+characters that it's allowed to be,
+
+484
+00:25:53,230 --> 00:25:56,120
+and that's how they check to
+see if it's the end of the word.
+
+485
+00:25:56,120 --> 00:26:01,340
+If you're interested, check out
+Kevin's video on study.cs50,
+
+486
+00:26:01,340 --> 00:26:04,790
+as well as Wikipedia has
+some good resources there.
+
+487
+00:26:04,790 --> 00:26:09,000
+>> But we're going to go through just kind
+of how you might work through a try
+
+488
+00:26:09,000 --> 00:26:11,010
+if you're given one.
+
+489
+00:26:11,010 --> 00:26:16,230
+So we have a super simple one here that
+has the words "bat" and "zoom" in them.
+
+490
+00:26:16,230 --> 00:26:18,920
+And as we see up here,
+this little space here
+
+491
+00:26:18,920 --> 00:26:22,560
+represents our bool that
+says, yes, this is a word.
+
+492
+00:26:22,560 --> 00:26:27,060
+And then this has our
+arrays of characters, right?
+
+493
+00:26:27,060 --> 00:26:33,480
+>> So we are going to go through
+finding "bat" in this try.
+
+494
+00:26:33,480 --> 00:26:38,340
+So begin at the top, right?
+
+495
+00:26:38,340 --> 00:26:46,290
+And we know that b corresponds to
+the second index, the second element
+
+496
+00:26:46,290 --> 00:26:47,840
+in this array, because a and b.
+
+497
+00:26:47,840 --> 00:26:51,340
+So approximately the second one.
+
+498
+00:26:51,340 --> 00:26:58,820
+>> And it says, OK, cool, follow that into
+the next array, because if we remember,
+
+499
+00:26:58,820 --> 00:27:02,160
+it's not that each of these
+actually contains the element.
+
+500
+00:27:02,160 --> 00:27:07,110
+Each one of these arrays
+contains a pointer, right?
+
+501
+00:27:07,110 --> 00:27:10,030
+It's an important distinction to make.
+
+502
+00:27:10,030 --> 00:27:13,450
+>> I know this is going to be-- tries are
+really hard to get on the first time,
+
+503
+00:27:13,450 --> 00:27:15,241
+so even if this is the
+second or third time
+
+504
+00:27:15,241 --> 00:27:18,370
+and it's still kind
+of seeming difficult,
+
+505
+00:27:18,370 --> 00:27:21,199
+I promise if you go watch
+the short again tomorrow,
+
+506
+00:27:21,199 --> 00:27:22,740
+it'll probably make a lot more sense.
+
+507
+00:27:22,740 --> 00:27:23,890
+It takes a lot to digest.
+
+508
+00:27:23,890 --> 00:27:27,800
+I still sometimes am
+like, wait, what is a try?
+
+509
+00:27:27,800 --> 00:27:29,080
+How do I use this?
+
+510
+00:27:29,080 --> 00:27:33,880
+>> So we have b in this case,
+which is our second index.
+
+511
+00:27:33,880 --> 00:27:40,240
+If we had, say, c or
+d or any other letter,
+
+512
+00:27:40,240 --> 00:27:45,810
+we need to map that back to the index
+of our array that that corresponds to.
+
+513
+00:27:45,810 --> 00:27:56,930
+So we would take like rchar and we just
+subtract off a to map it into 0 to 25.
+
+514
+00:27:56,930 --> 00:27:58,728
+Everybody good how we
+map our characters?
+
+515
+00:27:58,728 --> 00:28:00,440
+OK.
+
+516
+00:28:00,440 --> 00:28:05,980
+>> So we go to the second one and we
+see that, yes, it is not to NULL.
+
+517
+00:28:05,980 --> 00:28:07,780
+We can move on to this next array.
+
+518
+00:28:07,780 --> 00:28:12,300
+So we go on to this next array here.
+
+519
+00:28:12,300 --> 00:28:15,500
+>> And we say, OK, now we
+need to see if a is here.
+
+520
+00:28:15,500 --> 00:28:18,590
+Is A null or does it
+actually move forward?
+
+521
+00:28:18,590 --> 00:28:21,880
+So a actually moves
+forward in this array.
+
+522
+00:28:21,880 --> 00:28:24,570
+And we say, OK, t is our last letter.
+
+523
+00:28:24,570 --> 00:28:27,580
+So we go to the t at the index.
+
+524
+00:28:27,580 --> 00:28:30,120
+And then we move forward
+because there's another one.
+
+525
+00:28:30,120 --> 00:28:38,340
+And this one says basically that, yes,
+it says that there is a word here--
+
+526
+00:28:38,340 --> 00:28:41,750
+that if you follow this
+path, you have arrived
+
+527
+00:28:41,750 --> 00:28:43,210
+at a word, which we know is "bat."
+
+528
+00:28:43,210 --> 00:28:43,800
+Yes?
+
+529
+00:28:43,800 --> 00:28:46,770
+>> AUDIENCE: Is it standard to have that
+as index 0 and then have a sort at 1
+
+530
+00:28:46,770 --> 00:28:47,660
+or to have at the end?
+
+531
+00:28:47,660 --> 00:28:48,243
+>> SPEAKER 1: No.
+
+532
+00:28:48,243 --> 00:28:55,360
+So if we look back at our
+declaration here, it's a bool,
+
+533
+00:28:55,360 --> 00:28:59,490
+so it's its own element in your node.
+
+534
+00:28:59,490 --> 00:29:03,331
+So it's not part of the array.
+
+535
+00:29:03,331 --> 00:29:03,830
+Cool.
+
+536
+00:29:03,830 --> 00:29:08,370
+So when we finish our word and we're
+at this array, what we want to do
+
+537
+00:29:08,370 --> 00:29:12,807
+is do a check for is this a word.
+
+538
+00:29:12,807 --> 00:29:14,390
+And in this case, it would return yes.
+
+539
+00:29:14,390 --> 00:29:17,220
+
+540
+00:29:17,220 --> 00:29:24,090
+>> So on that note, we know that "zoo"--
+we know as humans that "zoo" is a word,
+
+541
+00:29:24,090 --> 00:29:24,820
+right?
+
+542
+00:29:24,820 --> 00:29:28,990
+But are try here would
+say, no, it's not.
+
+543
+00:29:28,990 --> 00:29:33,980
+And it would say that because we
+haven't designated it as a word here.
+
+544
+00:29:33,980 --> 00:29:40,440
+Even though we can traverse
+through to this array,
+
+545
+00:29:40,440 --> 00:29:43,890
+this try would say that, no,
+zoo isn't in your dictionary
+
+546
+00:29:43,890 --> 00:29:47,070
+because we haven't
+designated it as such.
+
+547
+00:29:47,070 --> 00:29:52,870
+>> So one way to do that--
+oh, sorry, this one.
+
+548
+00:29:52,870 --> 00:29:59,450
+So in this case, "zoo" is not
+a word, but it is in our try.
+
+549
+00:29:59,450 --> 00:30:05,690
+But in this one, say we want it
+introduce the word "bath," what happens
+
+550
+00:30:05,690 --> 00:30:08,260
+is we follow through-- b, a, t.
+
+551
+00:30:08,260 --> 00:30:11,820
+We're in this array, and
+we go to search for h.
+
+552
+00:30:11,820 --> 00:30:15,220
+>> In this case, when we
+look at the pointer at h,
+
+553
+00:30:15,220 --> 00:30:17,890
+it's pointing to NULL, OK?
+
+554
+00:30:17,890 --> 00:30:20,780
+So unless it's explicitly
+pointing to another array,
+
+555
+00:30:20,780 --> 00:30:25,000
+you assume that all the pointers
+in this array are pointing to null.
+
+556
+00:30:25,000 --> 00:30:28,270
+So in this case, h is pointing
+to null so we can't do anything,
+
+557
+00:30:28,270 --> 00:30:31,540
+so it would also return
+false, "bath" is not in here.
+
+558
+00:30:31,540 --> 00:30:34,102
+
+559
+00:30:34,102 --> 00:30:35,810
+So now we're actually
+going to go through
+
+560
+00:30:35,810 --> 00:30:39,790
+how would we actually say
+that "zoo" is in our try.
+
+561
+00:30:39,790 --> 00:30:42,920
+How do we insert "zoo" into our try?
+
+562
+00:30:42,920 --> 00:30:47,810
+So in the same way that we started with
+our linked list, we start at the root.
+
+563
+00:30:47,810 --> 00:30:50,600
+When in doubt, start at
+the root of these things.
+
+564
+00:30:50,600 --> 00:30:53,330
+>> And we'll say, OK, z.
+
+565
+00:30:53,330 --> 00:30:55,650
+z exists in this, and it does.
+
+566
+00:30:55,650 --> 00:30:58,370
+So you're moving on to
+your next array, OK?
+
+567
+00:30:58,370 --> 00:31:01,482
+And then on the next one,
+we say, OK, does o exist?
+
+568
+00:31:01,482 --> 00:31:03,000
+It does.
+
+569
+00:31:03,000 --> 00:31:04,330
+This again.
+
+570
+00:31:04,330 --> 00:31:08,670
+>> And so on our next one, we've said,
+OK, "zoo" already exists here.
+
+571
+00:31:08,670 --> 00:31:12,440
+All we need to do is set this equal
+to true, that there is a word there.
+
+572
+00:31:12,440 --> 00:31:15,260
+If you had followed everything
+up to before that point,
+
+573
+00:31:15,260 --> 00:31:17,030
+it's a word, so just
+set it equal to such.
+
+574
+00:31:17,030 --> 00:31:17,530
+Yes?
+
+575
+00:31:17,530 --> 00:31:22,550
+>> AUDIENCE: So then does that
+mean that "ba" is a word also?
+
+576
+00:31:22,550 --> 00:31:24,120
+>> SPEAKER 1: No.
+
+577
+00:31:24,120 --> 00:31:28,870
+So in this case, "ba" we would get
+here, we would say is it a word,
+
+578
+00:31:28,870 --> 00:31:31,590
+and it would still be no.
+
+579
+00:31:31,590 --> 00:31:32,822
+OK?
+
+580
+00:31:32,822 --> 00:31:33,740
+Mmhmm?
+
+581
+00:31:33,740 --> 00:31:36,360
+>> AUDIENCE: So once you is it a
+word and you say yes, then it
+
+582
+00:31:36,360 --> 00:31:38,380
+will contain to go to m?
+
+583
+00:31:38,380 --> 00:31:42,260
+>> SPEAKER 1: So this has to do
+with-- you're loading this in.
+
+584
+00:31:42,260 --> 00:31:43,640
+You say "zoo" is a word.
+
+585
+00:31:43,640 --> 00:31:47,020
+When you go to check--
+like, say you want to say,
+
+586
+00:31:47,020 --> 00:31:49,400
+does "zoo" exist in this dictionary?
+
+587
+00:31:49,400 --> 00:31:54,200
+You're only going to search for "zoo,"
+and then check to see if it's a word.
+
+588
+00:31:54,200 --> 00:31:57,291
+You're never going to move
+through to m because that's not
+
+589
+00:31:57,291 --> 00:31:58,290
+what you're looking for.
+
+590
+00:31:58,290 --> 00:32:02,690
+
+591
+00:32:02,690 --> 00:32:08,070
+>> So if we actually wanted to
+add "bath" into this try,
+
+592
+00:32:08,070 --> 00:32:11,390
+we would do the same thing
+as we did with "zoo,"
+
+593
+00:32:11,390 --> 00:32:15,380
+except we would see that when we
+try and get to h, it doesn't exist.
+
+594
+00:32:15,380 --> 00:32:20,090
+So you can think of this as trying
+to add a new node into a linked list,
+
+595
+00:32:20,090 --> 00:32:27,210
+so we would need to add another
+one of these arrays, like so.
+
+596
+00:32:27,210 --> 00:32:35,670
+And then what we do is we just set the h
+element of this array pointing to this.
+
+597
+00:32:35,670 --> 00:32:39,430
+>> And then what would we want to do here?
+
+598
+00:32:39,430 --> 00:32:43,110
+Add it equal to true
+because it's a word.
+
+599
+00:32:43,110 --> 00:32:46,350
+
+600
+00:32:46,350 --> 00:32:48,150
+Cool.
+
+601
+00:32:48,150 --> 00:32:48,700
+I know.
+
+602
+00:32:48,700 --> 00:32:51,170
+Tries are not the most exciting.
+
+603
+00:32:51,170 --> 00:32:54,250
+Trust me, I know.
+
+604
+00:32:54,250 --> 00:32:58,040
+>> So one thing to realize with tries,
+I said, they're very efficient.
+
+605
+00:32:58,040 --> 00:33:00,080
+So we've seen they
+take up a ton of space.
+
+606
+00:33:00,080 --> 00:33:01,370
+They're kind of confusing.
+
+607
+00:33:01,370 --> 00:33:03,367
+So why would we ever use these?
+
+608
+00:33:03,367 --> 00:33:05,450
+We use these because they're
+incredibly efficient.
+
+609
+00:33:05,450 --> 00:33:08,130
+>> So if you're ever looking
+up a word, you are only
+
+610
+00:33:08,130 --> 00:33:10,450
+bounded by the length of the word.
+
+611
+00:33:10,450 --> 00:33:15,210
+So if you're looking for a
+word that is of length five,
+
+612
+00:33:15,210 --> 00:33:20,940
+you're only ever going to have to
+make at most five comparisons, OK?
+
+613
+00:33:20,940 --> 00:33:25,780
+So it makes it basically a constant.
+
+614
+00:33:25,780 --> 00:33:29,150
+Like insertion and lookup
+are basically constant time.
+
+615
+00:33:29,150 --> 00:33:33,750
+>> So if you can ever get
+something in constant time,
+
+616
+00:33:33,750 --> 00:33:35,150
+that's as good as it gets.
+
+617
+00:33:35,150 --> 00:33:37,990
+You can't get better than
+constant time for these things.
+
+618
+00:33:37,990 --> 00:33:43,150
+So that is one of the
+huge pluses of tries.
+
+619
+00:33:43,150 --> 00:33:46,780
+>> But it is a lot of space.
+
+620
+00:33:46,780 --> 00:33:50,380
+So you kind of have to decide
+what's more important to you.
+
+621
+00:33:50,380 --> 00:33:54,700
+And on today's computers, the
+space that a try may take up
+
+622
+00:33:54,700 --> 00:33:57,740
+maybe doesn't affect
+you that much, but maybe
+
+623
+00:33:57,740 --> 00:34:01,350
+you're dealing with something
+that has far, far more things,
+
+624
+00:34:01,350 --> 00:34:02,810
+and a try just isn't reasonable.
+
+625
+00:34:02,810 --> 00:34:03,000
+Yes?
+
+626
+00:34:03,000 --> 00:34:05,610
+>> AUDIENCE: Wait, so you have 26
+letters in every single one?
+
+627
+00:34:05,610 --> 00:34:07,440
+>> SPEAKER 1: Mmhmm.
+
+628
+00:34:07,440 --> 00:34:08,570
+Yeah, you have 26.
+
+629
+00:34:08,570 --> 00:34:16,984
+You have some is word marker and then
+you have 26 pointers in every one.
+
+630
+00:34:16,984 --> 00:34:17,775
+And they're point--
+
+631
+00:34:17,775 --> 00:34:20,280
+>> AUDIENCE: And every 26,
+do they each have 26?
+
+632
+00:34:20,280 --> 00:34:21,500
+>> SPEAKER 1: Yes.
+
+633
+00:34:21,500 --> 00:34:27,460
+And that's why, as you can
+see, it expands quite rapidly.
+
+634
+00:34:27,460 --> 00:34:28,130
+All right.
+
+635
+00:34:28,130 --> 00:34:32,524
+So we're going to get into trees, which
+I feel like is easier and will probably
+
+636
+00:34:32,524 --> 00:34:36,150
+be a nice little reprieve
+from tries there.
+
+637
+00:34:36,150 --> 00:34:39,620
+So hopefully most of you
+have seen a tree before.
+
+638
+00:34:39,620 --> 00:34:41,820
+Not like the pretty
+ones outside, which I
+
+639
+00:34:41,820 --> 00:34:44,340
+don't know if anyone
+went outdoors recently.
+
+640
+00:34:44,340 --> 00:34:49,230
+I went apple picking this weekend,
+and oh my gosh, it was beautiful.
+
+641
+00:34:49,230 --> 00:34:52,250
+I didn't know leaves
+could look that pretty.
+
+642
+00:34:52,250 --> 00:34:53,610
+>> So this is just a tree, right?
+
+643
+00:34:53,610 --> 00:34:56,790
+It's just some node, and it
+points to a bunch of other nodes.
+
+644
+00:34:56,790 --> 00:34:59,570
+As you see here, this is
+kind of a recurring theme.
+
+645
+00:34:59,570 --> 00:35:03,720
+Nodes pointing to nodes is kind of
+the essence of many data structures.
+
+646
+00:35:03,720 --> 00:35:06,670
+It just depends on how we
+have them point to each other
+
+647
+00:35:06,670 --> 00:35:08,600
+and how we traverse
+through them and how we
+
+648
+00:35:08,600 --> 00:35:14,500
+insert things that determines
+their different characteristics.
+
+649
+00:35:14,500 --> 00:35:17,600
+>> So just some terminology,
+which I've used before.
+
+650
+00:35:17,600 --> 00:35:20,010
+So root is whatever is at the very top.
+
+651
+00:35:20,010 --> 00:35:21,200
+it's where we always start.
+
+652
+00:35:21,200 --> 00:35:23,610
+You can think of it as the head also.
+
+653
+00:35:23,610 --> 00:35:28,750
+But for trees, we tend to
+refer to it as the root.
+
+654
+00:35:28,750 --> 00:35:32,820
+>> Anything at the bottom here--
+at the very, very bottom--
+
+655
+00:35:32,820 --> 00:35:34,500
+are considered leaves.
+
+656
+00:35:34,500 --> 00:35:37,210
+So it goes along with the
+whole tree thing, right?
+
+657
+00:35:37,210 --> 00:35:39,860
+Leaves are at the edges of your tree.
+
+658
+00:35:39,860 --> 00:35:45,820
+>> And then we also have a couple of
+terms to talk about nodes in relation
+
+659
+00:35:45,820 --> 00:35:46,680
+to each other.
+
+660
+00:35:46,680 --> 00:35:49,700
+So we have parent,
+children, and siblings.
+
+661
+00:35:49,700 --> 00:35:56,260
+So in this case, 3 is the
+parent of 5, 6, and 7.
+
+662
+00:35:56,260 --> 00:36:00,370
+So the parent is whatever is
+one step above whatever you're
+
+663
+00:36:00,370 --> 00:36:02,940
+referring to, so just
+like a family tree.
+
+664
+00:36:02,940 --> 00:36:07,090
+Hopefully, this is all a little
+bit more intuitive than the tries.
+
+665
+00:36:07,090 --> 00:36:10,970
+>> Siblings are any that have
+the same parent, right?
+
+666
+00:36:10,970 --> 00:36:13,470
+They're on the same level here.
+
+667
+00:36:13,470 --> 00:36:16,960
+And then, as I was
+saying, children are just
+
+668
+00:36:16,960 --> 00:36:22,630
+whatever is one step below
+the node in question, OK?
+
+669
+00:36:22,630 --> 00:36:23,470
+Cool.
+
+670
+00:36:23,470 --> 00:36:25,610
+So a binary tree.
+
+671
+00:36:25,610 --> 00:36:31,450
+Can anyone hazard a guess on one of
+the characteristics of the binary tree?
+
+672
+00:36:31,450 --> 00:36:32,770
+>> AUDIENCE: Max two leaves.
+
+673
+00:36:32,770 --> 00:36:33,478
+>> SPEAKER 1: Right.
+
+674
+00:36:33,478 --> 00:36:34,640
+So max of two leaves.
+
+675
+00:36:34,640 --> 00:36:39,730
+So in this one before, we had this one
+that had three, but in a binary tree,
+
+676
+00:36:39,730 --> 00:36:45,000
+you have a max of two
+children per parent, right?
+
+677
+00:36:45,000 --> 00:36:46,970
+There's another
+interesting characteristic.
+
+678
+00:36:46,970 --> 00:36:51,550
+Does anyone know that?
+
+679
+00:36:51,550 --> 00:36:52,620
+Binary tree.
+
+680
+00:36:52,620 --> 00:37:00,350
+>> So a binary tree will have everything
+on the-- this one isn't sorted--
+
+681
+00:37:00,350 --> 00:37:05,320
+but in a sorted binary tree,
+everything on the right
+
+682
+00:37:05,320 --> 00:37:08,530
+is greater than the parent,
+and everything on the left
+
+683
+00:37:08,530 --> 00:37:10,035
+is less than the parent.
+
+684
+00:37:10,035 --> 00:37:15,690
+And that has been a quiz
+question before, so good to know.
+
+685
+00:37:15,690 --> 00:37:19,500
+So the way we define this,
+again, we have another node.
+
+686
+00:37:19,500 --> 00:37:21,880
+This looks very similar to what?
+
+687
+00:37:21,880 --> 00:37:28,336
+
+688
+00:37:28,336 --> 00:37:28,836
+Doubly
+
+689
+00:37:28,836 --> 00:37:29,320
+>> AUDIENCE: Linked lists
+
+690
+00:37:29,320 --> 00:37:31,100
+>> SPEAKER 1: A double linked list, right?
+
+691
+00:37:31,100 --> 00:37:33,690
+So if we replace this
+with previous and next,
+
+692
+00:37:33,690 --> 00:37:35,670
+this would be a doubly linked list.
+
+693
+00:37:35,670 --> 00:37:40,125
+But in this case, we actually
+have left and right and that's it.
+
+694
+00:37:40,125 --> 00:37:41,500
+Otherwise, it's exactly the same.
+
+695
+00:37:41,500 --> 00:37:43,374
+We still have the element
+you're looking for,
+
+696
+00:37:43,374 --> 00:37:45,988
+and you just have two pointers
+going to whatever's next.
+
+697
+00:37:45,988 --> 00:37:49,210
+
+698
+00:37:49,210 --> 00:37:51,870
+Yeah, so binary search tree.
+
+699
+00:37:51,870 --> 00:37:57,665
+If we notice, everything on the
+right here is greater than--
+
+700
+00:37:57,665 --> 00:37:59,850
+or everything immediately
+to the right here
+
+701
+00:37:59,850 --> 00:38:02,840
+is greater than, everything
+here is less than.
+
+702
+00:38:02,840 --> 00:38:06,980
+
+703
+00:38:06,980 --> 00:38:14,000
+>> So if we were to search through, it
+should look very close to binary search
+
+704
+00:38:14,000 --> 00:38:14,910
+here, right?
+
+705
+00:38:14,910 --> 00:38:17,640
+Except instead of looking
+at half the array,
+
+706
+00:38:17,640 --> 00:38:21,720
+we are just looking at either the left
+side or the right side of the tree.
+
+707
+00:38:21,720 --> 00:38:24,850
+So it gets a little simpler, I think.
+
+708
+00:38:24,850 --> 00:38:29,300
+>> So if your root is NULL,
+obviously it's just false.
+
+709
+00:38:29,300 --> 00:38:33,470
+And if it's there, obviously it's true.
+
+710
+00:38:33,470 --> 00:38:35,320
+If it's less than, we search the left.
+
+711
+00:38:35,320 --> 00:38:37,070
+If it's greater than,
+we search the right.
+
+712
+00:38:37,070 --> 00:38:39,890
+It's exactly like binary search,
+just a different data structure
+
+713
+00:38:39,890 --> 00:38:40,600
+that we're using.
+
+714
+00:38:40,600 --> 00:38:42,790
+Instead of an array,
+it's just a binary tree.
+
+715
+00:38:42,790 --> 00:38:45,820
+
+716
+00:38:45,820 --> 00:38:48,090
+>> OK, stacks.
+
+717
+00:38:48,090 --> 00:38:51,550
+And also, it looks like we
+might have a little bit of time.
+
+718
+00:38:51,550 --> 00:38:54,460
+If we do, I'm happy to go
+over any of this again.
+
+719
+00:38:54,460 --> 00:38:56,856
+OK, so stacks.
+
+720
+00:38:56,856 --> 00:39:02,695
+Does anyone remember what stacks--
+any characteristics of a stack?
+
+721
+00:39:02,695 --> 00:39:05,550
+
+722
+00:39:05,550 --> 00:39:10,400
+>> OK, so most of us, I think,
+eat in the dining halls--
+
+723
+00:39:10,400 --> 00:39:13,100
+as much as we may not like to.
+
+724
+00:39:13,100 --> 00:39:16,900
+But obviously, you can think of a stack
+literally just as a stack of trays
+
+725
+00:39:16,900 --> 00:39:18,460
+or a stack of things.
+
+726
+00:39:18,460 --> 00:39:21,820
+And what's important
+to realize is that it's
+
+727
+00:39:21,820 --> 00:39:26,850
+something-- the characteristic
+that we call it by-- is LIFO.
+
+728
+00:39:26,850 --> 00:39:28,450
+Does anyone know what that stands for?
+
+729
+00:39:28,450 --> 00:39:29,070
+Mmhmm?
+
+730
+00:39:29,070 --> 00:39:30,650
+>> AUDIENCE: Last in, first out.
+
+731
+00:39:30,650 --> 00:39:32,250
+>> SPEAKER 1: Right, last in, first out.
+
+732
+00:39:32,250 --> 00:39:36,585
+So if we know, if we're stacking things
+up, the easiest thing to grab off--
+
+733
+00:39:36,585 --> 00:39:39,570
+and maybe the only thing we can grab
+off if our stack is big enough--
+
+734
+00:39:39,570 --> 00:39:40,850
+is that top element.
+
+735
+00:39:40,850 --> 00:39:43,460
+So whatever was put on
+last-- as we see here,
+
+736
+00:39:43,460 --> 00:39:46,370
+whatever was pushed
+on most recently-- is
+
+737
+00:39:46,370 --> 00:39:51,160
+going to be the first
+thing that we pop off, OK?
+
+738
+00:39:51,160 --> 00:39:56,324
+>> So what we have here is
+another typedef struct.
+
+739
+00:39:56,324 --> 00:39:58,740
+This is really just like a
+crash course in data structure,
+
+740
+00:39:58,740 --> 00:40:01,650
+so there's a lot thrown at you guys.
+
+741
+00:40:01,650 --> 00:40:02,540
+I know.
+
+742
+00:40:02,540 --> 00:40:04,970
+So yet another struct.
+
+743
+00:40:04,970 --> 00:40:06,740
+Yay for structures.
+
+744
+00:40:06,740 --> 00:40:16,660
+>> And in this case, it's some pointer
+to an array that has some capacity.
+
+745
+00:40:16,660 --> 00:40:20,830
+So this represents our stack
+here, like our actual array
+
+746
+00:40:20,830 --> 00:40:22,520
+that's holding our elements.
+
+747
+00:40:22,520 --> 00:40:24,850
+And then here we have some size.
+
+748
+00:40:24,850 --> 00:40:31,170
+>> And typically, you want to keep
+track of how big your stack is
+
+749
+00:40:31,170 --> 00:40:36,180
+because what it's going to allow
+you to do is if you know the size,
+
+750
+00:40:36,180 --> 00:40:39,170
+it allows you to say,
+OK, am I at capacity?
+
+751
+00:40:39,170 --> 00:40:40,570
+Can I add anything more?
+
+752
+00:40:40,570 --> 00:40:44,650
+And it also tells you
+where the top of your stack
+
+753
+00:40:44,650 --> 00:40:48,180
+is so you know what you
+can actually take off.
+
+754
+00:40:48,180 --> 00:40:51,760
+And that's actually going to
+be a little more clear here.
+
+755
+00:40:51,760 --> 00:40:57,350
+>> So for push, one thing, if you
+were ever to implement push,
+
+756
+00:40:57,350 --> 00:41:01,330
+as I was just saying, your
+stack has a limited size, right?
+
+757
+00:41:01,330 --> 00:41:03,990
+Our array had some capacity.
+
+758
+00:41:03,990 --> 00:41:04,910
+It's an array.
+
+759
+00:41:04,910 --> 00:41:08,930
+It's a fixed size, so we need to
+make sure that we're not putting more
+
+760
+00:41:08,930 --> 00:41:11,950
+into our array than we
+actually have space for.
+
+761
+00:41:11,950 --> 00:41:16,900
+>> So when you're creating a push
+function, first thing you do is say, OK,
+
+762
+00:41:16,900 --> 00:41:18,570
+do I have space in my stack?
+
+763
+00:41:18,570 --> 00:41:23,330
+Because if I don't, sorry,
+I can't store your element.
+
+764
+00:41:23,330 --> 00:41:28,980
+If I do, then you want to store
+it at the top of the stack, right?
+
+765
+00:41:28,980 --> 00:41:31,325
+>> And this is why we have
+to keep track of our size.
+
+766
+00:41:31,325 --> 00:41:35,290
+If we don't keep track of our size,
+we don't know where to put it.
+
+767
+00:41:35,290 --> 00:41:39,035
+We don't know how many things
+are in our array already.
+
+768
+00:41:39,035 --> 00:41:41,410
+Like obviously there are ways
+that maybe you could do it.
+
+769
+00:41:41,410 --> 00:41:44,610
+You could initialize everything to NULL
+and then check for the latest NULL,
+
+770
+00:41:44,610 --> 00:41:47,950
+but a much easier thing is just
+to say, OK, keep track of size.
+
+771
+00:41:47,950 --> 00:41:51,840
+Like I know I have four elements
+in my array, so the next thing
+
+772
+00:41:51,840 --> 00:41:55,930
+that we put on, we're
+going to store at index 4.
+
+773
+00:41:55,930 --> 00:42:00,940
+And then, of course, this means that
+you've successfully pushed something
+
+774
+00:42:00,940 --> 00:42:03,320
+onto your stack, you
+want to increase the size
+
+775
+00:42:03,320 --> 00:42:08,880
+so that you know where you are so
+that you can push more things on.
+
+776
+00:42:08,880 --> 00:42:12,730
+>> So if we are trying to pop
+something off the stack,
+
+777
+00:42:12,730 --> 00:42:16,072
+what might be the first thing
+that we want to check for?
+
+778
+00:42:16,072 --> 00:42:18,030
+You're trying to take
+something off your stack.
+
+779
+00:42:18,030 --> 00:42:21,710
+
+780
+00:42:21,710 --> 00:42:24,781
+Are you sure there's
+something in your stack?
+
+781
+00:42:24,781 --> 00:42:25,280
+No.
+
+782
+00:42:25,280 --> 00:42:26,894
+So what might we want to check?
+
+783
+00:42:26,894 --> 00:42:27,810
+>> AUDIENCE: [INAUDIBLE].
+
+784
+00:42:27,810 --> 00:42:29,880
+SPEAKER 1: Check for the size?
+
+785
+00:42:29,880 --> 00:42:31,840
+Size.
+
+786
+00:42:31,840 --> 00:42:38,520
+So we want to check to see if
+our size is greater than 0, OK?
+
+787
+00:42:38,520 --> 00:42:44,970
+And if it is, then we want to decrease
+our size by 0 and return that.
+
+788
+00:42:44,970 --> 00:42:45,840
+Why?
+
+789
+00:42:45,840 --> 00:42:49,950
+>> In the first one we were
+pushing, we pushed it
+
+790
+00:42:49,950 --> 00:42:52,460
+onto size and then updated size.
+
+791
+00:42:52,460 --> 00:42:57,850
+In this case, we're decrementing size
+and then taking it off, plucking it
+
+792
+00:42:57,850 --> 00:42:58,952
+from our array.
+
+793
+00:42:58,952 --> 00:42:59,826
+Why might we do that?
+
+794
+00:42:59,826 --> 00:43:04,800
+
+795
+00:43:04,800 --> 00:43:11,811
+So if I have one thing on my stack,
+what would be my size at that point?
+
+796
+00:43:11,811 --> 00:43:13,140
+1.
+
+797
+00:43:13,140 --> 00:43:15,180
+>> And where is element 1 stored?
+
+798
+00:43:15,180 --> 00:43:17,621
+At what index?
+
+799
+00:43:17,621 --> 00:43:18,120
+AUDIENCE: 0.
+
+800
+00:43:18,120 --> 00:43:19,060
+SPEAKER 1: 0.
+
+801
+00:43:19,060 --> 00:43:22,800
+So in this case, we
+always need to make sure--
+
+802
+00:43:22,800 --> 00:43:27,630
+instead of returning
+size minus 1, because we
+
+803
+00:43:27,630 --> 00:43:31,730
+know that our element is
+going to be stored at 1 less
+
+804
+00:43:31,730 --> 00:43:34,705
+whatever our size is, this
+just takes care of it.
+
+805
+00:43:34,705 --> 00:43:36,080
+It's a slightly more elegant way.
+
+806
+00:43:36,080 --> 00:43:41,220
+And we just decrement our
+size and then return size.
+
+807
+00:43:41,220 --> 00:43:42,330
+Mmhmm?
+
+808
+00:43:42,330 --> 00:43:45,300
+>> AUDIENCE: I guess just in general,
+why would this data structure
+
+809
+00:43:45,300 --> 00:43:47,800
+be beneficial?
+
+810
+00:43:47,800 --> 00:43:50,660
+>> SPEAKER 1: It depends on your context.
+
+811
+00:43:50,660 --> 00:43:57,420
+So for some of the theory,
+if you're working with-- OK,
+
+812
+00:43:57,420 --> 00:44:02,750
+let me see if there is a beneficial one
+that is beneficial to more than outside
+
+813
+00:44:02,750 --> 00:44:05,420
+of CS.
+
+814
+00:44:05,420 --> 00:44:15,780
+With stacks, any time you need
+to keep track of something that
+
+815
+00:44:15,780 --> 00:44:20,456
+is the most recently added is when
+you're going to want to use a stack.
+
+816
+00:44:20,456 --> 00:44:24,770
+>> And I can't think of a good
+example of that right now.
+
+817
+00:44:24,770 --> 00:44:29,955
+But whenever the most recent
+thing is most important to you,
+
+818
+00:44:29,955 --> 00:44:31,705
+that's when a stack
+is going to be useful.
+
+819
+00:44:31,705 --> 00:44:35,797
+
+820
+00:44:35,797 --> 00:44:39,330
+I'm trying to think if
+there's a good one for this.
+
+821
+00:44:39,330 --> 00:44:43,720
+If I think of a good example in the next
+20 minutes, I will definitely tell you.
+
+822
+00:44:43,720 --> 00:44:49,455
+>> But overall, if there's anything,
+like I said most, where most recent
+
+823
+00:44:49,455 --> 00:44:52,470
+is most important, that's
+where a stack comes into play.
+
+824
+00:44:52,470 --> 00:44:58,860
+Whereas queues are kind of the opposite.
+
+825
+00:44:58,860 --> 00:44:59,870
+And all the little dogs.
+
+826
+00:44:59,870 --> 00:45:00,890
+Isn't this great, right?
+
+827
+00:45:00,890 --> 00:45:03,299
+I feel like I should
+just have a bunny video
+
+828
+00:45:03,299 --> 00:45:05,090
+right in the middle of
+section for you guys
+
+829
+00:45:05,090 --> 00:45:08,870
+because this is an intense section.
+
+830
+00:45:08,870 --> 00:45:10,480
+>> So a queue.
+
+831
+00:45:10,480 --> 00:45:12,710
+Basically a queue is like a line.
+
+832
+00:45:12,710 --> 00:45:15,780
+You guys I'm sure use this everyday,
+just like in our dining halls.
+
+833
+00:45:15,780 --> 00:45:18,160
+So we have to go in
+and get our trays, I'm
+
+834
+00:45:18,160 --> 00:45:21,260
+sure you have to wait in line
+to swipe or get your food.
+
+835
+00:45:21,260 --> 00:45:24,650
+>> So the difference here
+is that this is FIFO.
+
+836
+00:45:24,650 --> 00:45:30,090
+So if LIFO was last in, first
+out, FIFO is first in, first out.
+
+837
+00:45:30,090 --> 00:45:33,400
+So this is where whatever you put
+on first is your most important.
+
+838
+00:45:33,400 --> 00:45:35,540
+So if you were waiting
+in a line-- can you
+
+839
+00:45:35,540 --> 00:45:39,130
+imagine if you went to
+go get the new iPhone
+
+840
+00:45:39,130 --> 00:45:42,800
+and it was a stack where the
+last person in line got it first,
+
+841
+00:45:42,800 --> 00:45:44,160
+people would kill each other.
+
+842
+00:45:44,160 --> 00:45:49,800
+>> So FIFO, we're all very familiar
+with in the real world here,
+
+843
+00:45:49,800 --> 00:45:54,930
+and it all has to do with actually
+kind of recreating this whole line
+
+844
+00:45:54,930 --> 00:45:56,900
+and queuing structure.
+
+845
+00:45:56,900 --> 00:46:02,390
+So whereas with the stack,
+we have push and pop.
+
+846
+00:46:02,390 --> 00:46:06,440
+With a queue, we have
+enqueue and dequeue.
+
+847
+00:46:06,440 --> 00:46:10,910
+So enqueue basically means
+put it onto the back,
+
+848
+00:46:10,910 --> 00:46:13,680
+and dequeue means take
+off from the front.
+
+849
+00:46:13,680 --> 00:46:18,680
+So our data structure is a
+little bit more complicated.
+
+850
+00:46:18,680 --> 00:46:21,060
+We have a second thing to keep track of.
+
+851
+00:46:21,060 --> 00:46:25,950
+>> So without the head, this
+is exactly a stack, right?
+
+852
+00:46:25,950 --> 00:46:27,900
+This is the same structure as a stack.
+
+853
+00:46:27,900 --> 00:46:32,480
+The only thing different now is we
+have this head, which what do you think
+
+854
+00:46:32,480 --> 00:46:34,272
+is going to keep track of?
+
+855
+00:46:34,272 --> 00:46:35,510
+>> AUDIENCE: The first one.
+
+856
+00:46:35,510 --> 00:46:38,685
+>> SPEAKER 1: Right, the
+first thing that we put in.
+
+857
+00:46:38,685 --> 00:46:41,130
+The head of our queue.
+
+858
+00:46:41,130 --> 00:46:42,240
+Whoever's first in line.
+
+859
+00:46:42,240 --> 00:46:45,300
+
+860
+00:46:45,300 --> 00:46:49,420
+All right, so if we do enqueue.
+
+861
+00:46:49,420 --> 00:46:52,720
+
+862
+00:46:52,720 --> 00:46:55,920
+Again, with any of
+these data structures,
+
+863
+00:46:55,920 --> 00:46:59,760
+since we're dealing with an array,
+we need to check if we have space.
+
+864
+00:46:59,760 --> 00:47:03,290
+>> This is kind of like me telling
+you guys, if you open a file,
+
+865
+00:47:03,290 --> 00:47:04,760
+you need to check for null.
+
+866
+00:47:04,760 --> 00:47:08,330
+With any of these stacks
+and queues, you need
+
+867
+00:47:08,330 --> 00:47:13,420
+to see if there's space because we're
+dealing with a fixed size array,
+
+868
+00:47:13,420 --> 00:47:16,030
+as we see here-- 0, 1 all up to 5.
+
+869
+00:47:16,030 --> 00:47:20,690
+So what we do in that case is check
+to see if we still have space.
+
+870
+00:47:20,690 --> 00:47:23,110
+Is our size less than capacity?
+
+871
+00:47:23,110 --> 00:47:28,480
+>> If so, we need to store it at
+the tail and we update our size.
+
+872
+00:47:28,480 --> 00:47:30,250
+So what might the tail be in this case?
+
+873
+00:47:30,250 --> 00:47:32,360
+It's not explicitly written out.
+
+874
+00:47:32,360 --> 00:47:33,380
+How would we store it?
+
+875
+00:47:33,380 --> 00:47:34,928
+What would the tail be?
+
+876
+00:47:34,928 --> 00:47:38,600
+
+877
+00:47:38,600 --> 00:47:40,190
+>> So let's walk through this example.
+
+878
+00:47:40,190 --> 00:47:44,590
+So this is an array of size 6, right?
+
+879
+00:47:44,590 --> 00:47:49,220
+And we have right now, our size is 5.
+
+880
+00:47:49,220 --> 00:47:55,240
+And when we put it in, it's going
+to go into the fifth index, right?
+
+881
+00:47:55,240 --> 00:47:57,030
+So store at tail.
+
+882
+00:47:57,030 --> 00:48:05,600
+>> Another way to write tail would just
+be our array at index of size, right?
+
+883
+00:48:05,600 --> 00:48:07,560
+This is size 5.
+
+884
+00:48:07,560 --> 00:48:11,490
+Next thing is going to go into 5.
+
+885
+00:48:11,490 --> 00:48:12,296
+Cool?
+
+886
+00:48:12,296 --> 00:48:13,290
+OK.
+
+887
+00:48:13,290 --> 00:48:16,350
+It gets slightly more complicated
+when we start messing with the head.
+
+888
+00:48:16,350 --> 00:48:17,060
+Yes?
+
+889
+00:48:17,060 --> 00:48:20,090
+>> AUDIENCE: Does that mean that we
+would have declared an array that
+
+890
+00:48:20,090 --> 00:48:23,880
+was five elements long and
+then we're adding onto it?
+
+891
+00:48:23,880 --> 00:48:24,730
+>> SPEAKER 1: No.
+
+892
+00:48:24,730 --> 00:48:27,560
+So in this case, this is a stack.
+
+893
+00:48:27,560 --> 00:48:31,760
+This would be declared
+as an array of size 6.
+
+894
+00:48:31,760 --> 00:48:37,120
+And in this case, we
+just have one space left.
+
+895
+00:48:37,120 --> 00:48:42,720
+>> OK, so one thing is in this
+case, if our head is at 0,
+
+896
+00:48:42,720 --> 00:48:45,270
+then we just can add it at size.
+
+897
+00:48:45,270 --> 00:48:51,020
+But it gets a little trickier
+because actually, they
+
+898
+00:48:51,020 --> 00:48:52,840
+don't have a slide
+for this, so I'm going
+
+899
+00:48:52,840 --> 00:48:56,670
+to draw one because it's not
+quite that simple once you
+
+900
+00:48:56,670 --> 00:48:59,230
+start getting rid of things.
+
+901
+00:48:59,230 --> 00:49:03,920
+So whereas with a stack
+you only ever have
+
+902
+00:49:03,920 --> 00:49:08,920
+to worry about what the size is
+when you're adding something on,
+
+903
+00:49:08,920 --> 00:49:15,710
+with a queue you also need to make
+sure that your head is accounted for,
+
+904
+00:49:15,710 --> 00:49:20,760
+because a cool thing about queues
+is that if you're not at capacity,
+
+905
+00:49:20,760 --> 00:49:23,040
+you can actually make it wrap around.
+
+906
+00:49:23,040 --> 00:49:28,810
+>> OK, so one thing-- oh,
+this is terrible chalk.
+
+907
+00:49:28,810 --> 00:49:31,815
+One thing to consider is the case.
+
+908
+00:49:31,815 --> 00:49:35,514
+
+909
+00:49:35,514 --> 00:49:37,140
+We'll just do five.
+
+910
+00:49:37,140 --> 00:49:41,810
+OK, so we're going to
+say the head is here.
+
+911
+00:49:41,810 --> 00:49:46,140
+This is 0, 1, 2, 3, 4.
+
+912
+00:49:46,140 --> 00:49:54,210
+>> The head's there, and
+please have things in them.
+
+913
+00:49:54,210 --> 00:49:58,340
+And we want to add something in, right?
+
+914
+00:49:58,340 --> 00:50:01,170
+So the thing that we need to
+know is that the head is always
+
+915
+00:50:01,170 --> 00:50:05,620
+going to move this way and
+then loop back around, OK?
+
+916
+00:50:05,620 --> 00:50:10,190
+>> So this queue has space, right?
+
+917
+00:50:10,190 --> 00:50:13,950
+It has space in the very beginning,
+kind of the opposite of this.
+
+918
+00:50:13,950 --> 00:50:17,920
+So what we need to do is we
+need to calculate the tail.
+
+919
+00:50:17,920 --> 00:50:20,530
+If you know that your
+head hasn't moved, tail
+
+920
+00:50:20,530 --> 00:50:24,630
+is just your array at
+the index of the size.
+
+921
+00:50:24,630 --> 00:50:30,000
+>> But in reality, if you're using a queue,
+your head is probably being updated.
+
+922
+00:50:30,000 --> 00:50:33,890
+So what you need to do is
+actually calculate the tail.
+
+923
+00:50:33,890 --> 00:50:39,990
+So what we do is this formula
+here, which I'm going to let you
+
+924
+00:50:39,990 --> 00:50:42,680
+guys think about, and
+then we'll talk about it.
+
+925
+00:50:42,680 --> 00:50:49,567
+
+926
+00:50:49,567 --> 00:50:50,400
+So this is capacity.
+
+927
+00:50:50,400 --> 00:50:55,890
+
+928
+00:50:55,890 --> 00:50:59,660
+>> So this will actually
+give you a way to do it.
+
+929
+00:50:59,660 --> 00:51:03,205
+
+930
+00:51:03,205 --> 00:51:04,330
+Because in this case, what?
+
+931
+00:51:04,330 --> 00:51:09,205
+Our head is at 1, our size is 4.
+
+932
+00:51:09,205 --> 00:51:11,760
+
+933
+00:51:11,760 --> 00:51:18,490
+If we mod that by 5, we get 0,
+which is where we should input it.
+
+934
+00:51:18,490 --> 00:51:23,320
+
+935
+00:51:23,320 --> 00:51:26,080
+>> So then in the next case,
+if we were to do this,
+
+936
+00:51:26,080 --> 00:51:33,390
+we say, OK, let's dequeue something.
+
+937
+00:51:33,390 --> 00:51:34,390
+We dequeue this.
+
+938
+00:51:34,390 --> 00:51:37,740
+We take out this element, right?
+
+939
+00:51:37,740 --> 00:51:47,930
+>> And now our head is pointing here,
+and we want to add in another thing.
+
+940
+00:51:47,930 --> 00:51:52,470
+This is basically the
+back of our line, right?
+
+941
+00:51:52,470 --> 00:51:55,450
+Queues can wrap around the array.
+
+942
+00:51:55,450 --> 00:51:57,310
+That's one of the main differences.
+
+943
+00:51:57,310 --> 00:51:58,780
+Stacks, you can't do this.
+
+944
+00:51:58,780 --> 00:52:01,140
+>> With queues, you can
+because all that matters
+
+945
+00:52:01,140 --> 00:52:03,940
+is that you know what
+was most recently added.
+
+946
+00:52:03,940 --> 00:52:10,650
+Since everything is going to be added in
+this leftward direction, in this case,
+
+947
+00:52:10,650 --> 00:52:16,480
+and then wrap around, you can
+continue putting in new elements
+
+948
+00:52:16,480 --> 00:52:18,830
+at the front of the array
+because it's not really
+
+949
+00:52:18,830 --> 00:52:20,640
+the front of the array anymore.
+
+950
+00:52:20,640 --> 00:52:26,320
+You can think of the beginning of the
+array as where your head actually is.
+
+951
+00:52:26,320 --> 00:52:29,710
+>> So this formula is how
+you calculate your tail.
+
+952
+00:52:29,710 --> 00:52:32,780
+
+953
+00:52:32,780 --> 00:52:35,610
+Does that makes sense?
+
+954
+00:52:35,610 --> 00:52:36,110
+OK.
+
+955
+00:52:36,110 --> 00:52:39,400
+
+956
+00:52:39,400 --> 00:52:44,040
+OK, dequeue, and then
+you guys have 10 minutes
+
+957
+00:52:44,040 --> 00:52:48,840
+to ask me any clarifying questions
+you want, because I know it's crazy.
+
+958
+00:52:48,840 --> 00:52:51,980
+>> All right, so in the same way--
+I don't know if you guys noticed,
+
+959
+00:52:51,980 --> 00:52:53,450
+but CS is all about patterns.
+
+960
+00:52:53,450 --> 00:52:57,370
+Things are pretty much the
+same, just with tiny tweaks.
+
+961
+00:52:57,370 --> 00:52:58,950
+So same thing here.
+
+962
+00:52:58,950 --> 00:53:04,040
+We need to check to see if we actually
+have something in our queue, right?
+
+963
+00:53:04,040 --> 00:53:05,960
+Say, OK, is our size greater than 0?
+
+964
+00:53:05,960 --> 00:53:06,730
+Cool.
+
+965
+00:53:06,730 --> 00:53:10,690
+>> If we do, then we move our head, which
+is what I just demonstrated here.
+
+966
+00:53:10,690 --> 00:53:13,870
+We update our head to be one more.
+
+967
+00:53:13,870 --> 00:53:18,390
+And then we decrement our
+size and return the element.
+
+968
+00:53:18,390 --> 00:53:21,000
+
+969
+00:53:21,000 --> 00:53:26,250
+>> There is much more concrete
+code on study.cs50.net,
+
+970
+00:53:26,250 --> 00:53:29,440
+and I highly recommend going
+through it if you have time,
+
+971
+00:53:29,440 --> 00:53:30,980
+even if it's just a pseudo-code.
+
+972
+00:53:30,980 --> 00:53:35,980
+And if you guys want to talk through
+that with me one on one, please let me
+
+973
+00:53:35,980 --> 00:53:37,500
+know.
+
+974
+00:53:37,500 --> 00:53:38,770
+I'd be happy to.
+
+975
+00:53:38,770 --> 00:53:42,720
+Data structures, if
+you take CS 124, you'll
+
+976
+00:53:42,720 --> 00:53:47,830
+know that data structures get very
+fun and this is just beginning.
+
+977
+00:53:47,830 --> 00:53:50,350
+>> So I know it's hard.
+
+978
+00:53:50,350 --> 00:53:51,300
+It's OK.
+
+979
+00:53:51,300 --> 00:53:52,410
+We struggle.
+
+980
+00:53:52,410 --> 00:53:53,630
+I still do.
+
+981
+00:53:53,630 --> 00:53:56,660
+So don't worry too much about it.
+
+982
+00:53:56,660 --> 00:54:02,390
+>> But that is basically your
+crash course in data structures.
+
+983
+00:54:02,390 --> 00:54:03,400
+I know it's a lot.
+
+984
+00:54:03,400 --> 00:54:06,860
+Is there anything that we
+would like to go over again?
+
+985
+00:54:06,860 --> 00:54:09,400
+Anything we want to talk through?
+
+986
+00:54:09,400 --> 00:54:10,060
+Yes?
+
+987
+00:54:10,060 --> 00:54:16,525
+>> AUDIENCE: For that example, so
+the new tail is at 0 over that?
+
+988
+00:54:16,525 --> 00:54:17,150
+SPEAKER 1: Yes.
+
+989
+00:54:17,150 --> 00:54:18,230
+AUDIENCE: OK.
+
+990
+00:54:18,230 --> 00:54:24,220
+So then going through,
+you'd have 1 plus 4 or--
+
+991
+00:54:24,220 --> 00:54:27,671
+>> SPEAKER 1: So you were saying,
+when we want to go do this again?
+
+992
+00:54:27,671 --> 00:54:28,296
+AUDIENCE: Yeah.
+
+993
+00:54:28,296 --> 00:54:38,290
+So if you were figuring out-- where are
+you calculating the tail from in that?
+
+994
+00:54:38,290 --> 00:54:44,260
+>> SPEAKER 1: So the tail
+was in-- I changed this.
+
+995
+00:54:44,260 --> 00:54:52,010
+So in this example here, this was
+the array we're looking at, OK?
+
+996
+00:54:52,010 --> 00:54:54,670
+So we have things in 1, 2, 3, and 4.
+
+997
+00:54:54,670 --> 00:55:05,850
+So we have our head is equal to 1 at
+this point, and our size is equal to 4
+
+998
+00:55:05,850 --> 00:55:07,050
+at this point, right?
+
+999
+00:55:07,050 --> 00:55:08,960
+>> You all agree that's the case?
+
+1000
+00:55:08,960 --> 00:55:14,620
+So we do the head plus the size, which
+gives us 5, and then we mod by 5.
+
+1001
+00:55:14,620 --> 00:55:20,690
+We get 0, which tells us that 0 is
+where is our tail, where we have space.
+
+1002
+00:55:20,690 --> 00:55:22,010
+>> AUDIENCE: What's a cap?
+
+1003
+00:55:22,010 --> 00:55:23,520
+>> SPEAKER 1: The capacity.
+
+1004
+00:55:23,520 --> 00:55:24,020
+Sorry.
+
+1005
+00:55:24,020 --> 00:55:29,640
+So that is the size of your array.
+
+1006
+00:55:29,640 --> 00:55:35,210
+
+1007
+00:55:35,210 --> 00:55:36,047
+Yes?
+
+1008
+00:55:36,047 --> 00:55:39,210
+>> AUDIENCE: [INAUDIBLE] before
+we return the element?
+
+1009
+00:55:39,210 --> 00:55:46,270
+>> SPEAKER 1: So we move the
+head or return the moment?
+
+1010
+00:55:46,270 --> 00:55:52,680
+So if we move one, decrement the size?
+
+1011
+00:55:52,680 --> 00:55:54,150
+Hold on.
+
+1012
+00:55:54,150 --> 00:55:55,770
+I definitely forgot another.
+
+1013
+00:55:55,770 --> 00:56:00,646
+
+1014
+00:56:00,646 --> 00:56:01,990
+Never mind.
+
+1015
+00:56:01,990 --> 00:56:04,980
+There is not another formula.
+
+1016
+00:56:04,980 --> 00:56:09,980
+Yeah, you would want to return
+the head and then move it back.
+
+1017
+00:56:09,980 --> 00:56:13,270
+>> AUDIENCE: OK, because At this
+point, the head was at 0,
+
+1018
+00:56:13,270 --> 00:56:18,452
+and then you want to return
+index 0 and then make head 1?
+
+1019
+00:56:18,452 --> 00:56:19,870
+>> SPEAKER 1: Right.
+
+1020
+00:56:19,870 --> 00:56:22,820
+I think there's another
+formula kind of like this.
+
+1021
+00:56:22,820 --> 00:56:26,970
+I don't have it on the top my head as
+I don't want to give you the wrong one.
+
+1022
+00:56:26,970 --> 00:56:35,470
+But I think it's perfectly valid to
+say, OK, store this element-- whatever
+
+1023
+00:56:35,470 --> 00:56:40,759
+head's element is-- decrement your
+size, move your head over, and return
+
+1024
+00:56:40,759 --> 00:56:41,800
+whatever that element is.
+
+1025
+00:56:41,800 --> 00:56:44,760
+That's perfectly valid.
+
+1026
+00:56:44,760 --> 00:56:45,260
+OK.
+
+1027
+00:56:45,260 --> 00:56:48,360
+
+1028
+00:56:48,360 --> 00:56:53,560
+I feel like this is not
+like the most-- you're not
+
+1029
+00:56:53,560 --> 00:56:55,740
+going to walk out of here
+like, yes, I know tries.
+
+1030
+00:56:55,740 --> 00:56:56,880
+I got it all.
+
+1031
+00:56:56,880 --> 00:56:57,670
+That's OK.
+
+1032
+00:56:57,670 --> 00:57:00,200
+I promise.
+
+1033
+00:57:00,200 --> 00:57:05,240
+But data structures are something that
+it takes a lot of time to get used to.
+
+1034
+00:57:05,240 --> 00:57:10,010
+Probably one of the hardest
+things, I think, in the course.
+
+1035
+00:57:10,010 --> 00:57:15,330
+>> So it definitely takes
+repetition and looking at-- I
+
+1036
+00:57:15,330 --> 00:57:20,050
+didn't really know linked lists
+until I did far too much with them,
+
+1037
+00:57:20,050 --> 00:57:22,550
+in the same way that I didn't
+really understand pointers
+
+1038
+00:57:22,550 --> 00:57:27,040
+until I've had to teach it for two
+years and do my own psets with it.
+
+1039
+00:57:27,040 --> 00:57:28,990
+It takes a lot of reiteration and time.
+
+1040
+00:57:28,990 --> 00:57:32,600
+And eventually, it will kind of click.
+
+1041
+00:57:32,600 --> 00:57:36,320
+>> But in the meantime, if you have kind
+of a high level understanding of what
+
+1042
+00:57:36,320 --> 00:57:39,321
+these do, their pros
+and cons-- which is what
+
+1043
+00:57:39,321 --> 00:57:41,820
+we really tend to emphasize,
+especially in the intro course.
+
+1044
+00:57:41,820 --> 00:57:45,511
+Like, why would we use
+a try over an array?
+
+1045
+00:57:45,511 --> 00:57:48,010
+Like, what are the positives
+and negatives of each of those?
+
+1046
+00:57:48,010 --> 00:57:51,610
+>> And understanding the trade-offs
+between each of these structures
+
+1047
+00:57:51,610 --> 00:57:54,910
+is what's much more important right now.
+
+1048
+00:57:54,910 --> 00:57:58,140
+There may be one crazy
+question or two that's
+
+1049
+00:57:58,140 --> 00:58:03,710
+going to ask you to implement push or
+implement pop or enqueue and dequeue.
+
+1050
+00:58:03,710 --> 00:58:07,340
+But for the most part, having that
+higher level understanding and more
+
+1051
+00:58:07,340 --> 00:58:09,710
+of an intuitive grasp is
+more important than actually
+
+1052
+00:58:09,710 --> 00:58:11,250
+being able to implement it.
+
+1053
+00:58:11,250 --> 00:58:14,880
+>> It'd be really awesome if all of you
+could go out and go implement a try,
+
+1054
+00:58:14,880 --> 00:58:19,720
+but we understand it's not necessarily
+the most reasonable thing right now.
+
+1055
+00:58:19,720 --> 00:58:23,370
+But you can in your pset, if you want
+to, and then you'll get practice,
+
+1056
+00:58:23,370 --> 00:58:27,200
+and then maybe you'll
+really understand it.
+
+1057
+00:58:27,200 --> 00:58:27,940
+Yes?
+
+1058
+00:58:27,940 --> 00:58:30,440
+>> AUDIENCE: OK, so which ones are
+we meant to use in the pset?
+
+1059
+00:58:30,440 --> 00:58:31,916
+Do I need to use one of them?
+
+1060
+00:58:31,916 --> 00:58:32,540
+SPEAKER 1: Yes.
+
+1061
+00:58:32,540 --> 00:58:34,199
+So you have your choice.
+
+1062
+00:58:34,199 --> 00:58:36,740
+I guess in this case, we can
+talk about the pset a little bit
+
+1063
+00:58:36,740 --> 00:58:40,480
+because I ran through these.
+
+1064
+00:58:40,480 --> 00:58:47,779
+So in your pset, you have your
+choice of tries or hash tables.
+
+1065
+00:58:47,779 --> 00:58:49,570
+Some people will try
+and use bloom filters,
+
+1066
+00:58:49,570 --> 00:58:51,840
+but those technically are not correct.
+
+1067
+00:58:51,840 --> 00:58:55,804
+Because of their probabilistic nature,
+they give false positives sometimes.
+
+1068
+00:58:55,804 --> 00:58:57,095
+They're cool look into, though.
+
+1069
+00:58:57,095 --> 00:58:59,030
+Highly recommend looking
+at them at least.
+
+1070
+00:58:59,030 --> 00:59:03,260
+But you have your choice
+between a hash table and a try.
+
+1071
+00:59:03,260 --> 00:59:06,660
+And that's going to be where
+you load in your dictionary.
+
+1072
+00:59:06,660 --> 00:59:09,230
+>> And you'll need to choose
+your hash function,
+
+1073
+00:59:09,230 --> 00:59:13,420
+you'll need to choose how many
+buckets you have, and it will vary.
+
+1074
+00:59:13,420 --> 00:59:17,440
+Like if you have more buckets,
+maybe it'll run faster.
+
+1075
+00:59:17,440 --> 00:59:22,790
+But maybe you're wasting a
+lot of space that way, though.
+
+1076
+00:59:22,790 --> 00:59:26,320
+You have to figure it out.
+
+1077
+00:59:26,320 --> 00:59:27,140
+Mmhmm?
+
+1078
+00:59:27,140 --> 00:59:29,875
+>> AUDIENCE: You said before that
+we can use other hash functions,
+
+1079
+00:59:29,875 --> 00:59:31,750
+that we don't have to
+create a hash function?
+
+1080
+00:59:31,750 --> 00:59:32,666
+>> SPEAKER 1: Yes, right.
+
+1081
+00:59:32,666 --> 00:59:38,150
+So literally for your hash function,
+like google "hash function"
+
+1082
+00:59:38,150 --> 00:59:40,770
+and look for some cool ones.
+
+1083
+00:59:40,770 --> 00:59:43,250
+You are not expected to build
+your own hash functions.
+
+1084
+00:59:43,250 --> 00:59:46,100
+People spend their
+theses on these things.
+
+1085
+00:59:46,100 --> 00:59:50,250
+>> So don't worry about building your own.
+
+1086
+00:59:50,250 --> 00:59:53,350
+Find one online to start with.
+
+1087
+00:59:53,350 --> 00:59:56,120
+Some of them you have to
+manipulate a little bit
+
+1088
+00:59:56,120 --> 00:59:59,430
+to make sure return types match up
+and whatnot, so in the beginning,
+
+1089
+00:59:59,430 --> 01:00:02,420
+I would recommend using something
+really easy that maybe just
+
+1090
+01:00:02,420 --> 01:00:04,680
+hashes on the first letter.
+
+1091
+01:00:04,680 --> 01:00:08,760
+And then once you have that working,
+incorporating a cooler hash function.
+
+1092
+01:00:08,760 --> 01:00:09,260
+Mmhmm?
+
+1093
+01:00:09,260 --> 01:00:13,020
+>> AUDIENCE: Would a try be or
+efficient but just harder to, like--
+
+1094
+01:00:13,020 --> 01:00:15,880
+>> SPEAKER 1: So a try, I think,
+is intuitively hard to implement
+
+1095
+01:00:15,880 --> 01:00:18,310
+but is very fast.
+
+1096
+01:00:18,310 --> 01:00:20,620
+However, takes up more space.
+
+1097
+01:00:20,620 --> 01:00:25,270
+Again, you can optimize both of those in
+different ways and there are ways to--
+
+1098
+01:00:25,270 --> 01:00:26,770
+AUDIENCE: How are we graded on this?
+
+1099
+01:00:26,770 --> 01:00:27,540
+Does it matter--
+
+1100
+01:00:27,540 --> 01:00:29,164
+>> SPEAKER 1: So you're graded normal way.
+
+1101
+01:00:29,164 --> 01:00:31,330
+You're going to be graded on design.
+
+1102
+01:00:31,330 --> 01:00:36,020
+Whichever way you do, you want to
+make sure it's as elegant as it can be
+
+1103
+01:00:36,020 --> 01:00:38,610
+and as efficient as it can be.
+
+1104
+01:00:38,610 --> 01:00:41,950
+But if you choose a try or hash
+table, as long as it works,
+
+1105
+01:00:41,950 --> 01:00:45,350
+we're happy with that.
+
+1106
+01:00:45,350 --> 01:00:48,370
+And if you use something that hashes
+on the first letter, that's fine,
+
+1107
+01:00:48,370 --> 01:00:51,410
+like maybe like design-wise.
+
+1108
+01:00:51,410 --> 01:00:53,410
+We're also reaching the
+point in this semester--
+
+1109
+01:00:53,410 --> 01:00:55,340
+I don't know if you
+guys noticed-- if you're
+
+1110
+01:00:55,340 --> 01:00:58,780
+pset grades decline a little bit
+because of design and whatnot,
+
+1111
+01:00:58,780 --> 01:00:59,900
+that's perfectly fine.
+
+1112
+01:00:59,900 --> 01:01:02,960
+It's getting to a point where your
+programs are getting more complicated.
+
+1113
+01:01:02,960 --> 01:01:04,830
+There are more places
+you can improve on.
+
+1114
+01:01:04,830 --> 01:01:06,370
+>> So it's perfectly normal.
+
+1115
+01:01:06,370 --> 01:01:08,810
+It's not that you're
+doing worse on your pset.
+
+1116
+01:01:08,810 --> 01:01:11,885
+It's just we're being harder on you now.
+
+1117
+01:01:11,885 --> 01:01:13,732
+So everyone's feeling it.
+
+1118
+01:01:13,732 --> 01:01:14,940
+I just graded all your psets.
+
+1119
+01:01:14,940 --> 01:01:16,490
+I know everyone is feeling it.
+
+1120
+01:01:16,490 --> 01:01:19,600
+>> So don't be worried about that.
+
+1121
+01:01:19,600 --> 01:01:23,580
+And if you have any questions about
+prior psets or ways you can improve,
+
+1122
+01:01:23,580 --> 01:01:27,760
+I try and comment the specific
+places, but sometimes it's late
+
+1123
+01:01:27,760 --> 01:01:30,840
+and I get tired.
+
+1124
+01:01:30,840 --> 01:01:34,885
+Are there any other things
+about data structures?
+
+1125
+01:01:34,885 --> 01:01:37,510
+I'm sure you guys don't really
+want to talk about them anymore,
+
+1126
+01:01:37,510 --> 01:01:42,650
+but if there are, I'm happy to
+go over them, as well as anything
+
+1127
+01:01:42,650 --> 01:01:45,580
+from lecture this past
+week or last week.
+
+1128
+01:01:45,580 --> 01:01:51,580
+>> I know last week was all review, so
+we may have skipped over some review
+
+1129
+01:01:51,580 --> 01:01:54,190
+from lecture.
+
+1130
+01:01:54,190 --> 01:01:58,230
+Any other questions I can answer?
+
+1131
+01:01:58,230 --> 01:01:59,350
+OK, all right.
+
+1132
+01:01:59,350 --> 01:02:02,400
+Well, you guys get out 15 minutes early.
+
+1133
+01:02:02,400 --> 01:02:08,370
+>> I hope this was semi-helpful at least,
+and I will see you guys next week,
+
+1134
+01:02:08,370 --> 01:02:12,150
+or Thursday office hours.
+
+1135
+01:02:12,150 --> 01:02:15,285
+Are there requests for snacks
+for next week, it's the thing?
+
+1136
+01:02:15,285 --> 01:02:17,459
+Because I forgot candy today.
+
+1137
+01:02:17,459 --> 01:02:19,750
+And I brought candy last
+week, but it was Columbus Day,
+
+1138
+01:02:19,750 --> 01:02:25,400
+so there were like six people who
+had four bags of candy to themselves.
+
+1139
+01:02:25,400 --> 01:02:28,820
+I can bring Starbursts
+again if you like.
+
+1140
+01:02:28,820 --> 01:02:29,580
+Starbursts?
+
+1141
+01:02:29,580 --> 01:02:32,250
+OK, sounds good.
+
+1142
+01:02:32,250 --> 01:02:35,050
+Have a great day, guys.
+
+1143
+01:02:35,050 --> 01:02:39,510

@@ -1,0 +1,613 @@
+1
+00:00:00,000 --> 00:00:03,360
+>> [MUSIC PLAYING]
+
+2
+00:00:03,360 --> 00:00:04,522
+
+3
+00:00:04,522 --> 00:00:06,730
+DOUG LLOYD: All right, so
+bubble sort is an algorithm
+
+4
+00:00:06,730 --> 00:00:08,730
+you can use to sort a set of elements.
+
+5
+00:00:08,730 --> 00:00:10,850
+Let's take a look at how it works.
+
+6
+00:00:10,850 --> 00:00:13,240
+>> So the basic idea behind
+bubble sort is this.
+
+7
+00:00:13,240 --> 00:00:17,340
+We generally want to move higher
+valued elements generally to the right,
+
+8
+00:00:17,340 --> 00:00:20,340
+and lower valued elements generally
+to the left, as we would expect.
+
+9
+00:00:20,340 --> 00:00:23,256
+We want the lower things to be at
+the beginning, and the higher things
+
+10
+00:00:23,256 --> 00:00:24,970
+to be at the end.
+
+11
+00:00:24,970 --> 00:00:26,130
+>> How do we do this?
+
+12
+00:00:26,130 --> 00:00:28,040
+Well in pseudocode code,
+we could say, let's
+
+13
+00:00:28,040 --> 00:00:30,320
+set a swap counter to a non-zero value.
+
+14
+00:00:30,320 --> 00:00:32,570
+We'll see why we do that in a second.
+
+15
+00:00:32,570 --> 00:00:36,090
+And then we repeat the following
+process until the swap counter is 0,
+
+16
+00:00:36,090 --> 00:00:39,910
+or until we make no swaps at all.
+
+17
+00:00:39,910 --> 00:00:43,170
+>> Reset the swap counter to
+0 if it's not already 0.
+
+18
+00:00:43,170 --> 00:00:46,420
+Then look at every
+adjacent pair of elements.
+
+19
+00:00:46,420 --> 00:00:49,550
+If those two elements are
+not in order, swap them,
+
+20
+00:00:49,550 --> 00:00:51,620
+and add 1 to the swap counter.
+
+21
+00:00:51,620 --> 00:00:53,870
+If you're thinking about
+this before you visualize it,
+
+22
+00:00:53,870 --> 00:00:57,471
+notice that this will move lower
+valued elements to the left
+
+23
+00:00:57,471 --> 00:01:00,720
+and higher valued elements to the right,
+effectively doing what we want to do,
+
+24
+00:01:00,720 --> 00:01:03,940
+which is move those groups
+of elements in that way.
+
+25
+00:01:03,940 --> 00:01:07,035
+Let's visualize how this
+might look using our array
+
+26
+00:01:07,035 --> 00:01:10,504
+that we used to test
+out these algorithms.
+
+27
+00:01:10,504 --> 00:01:13,420
+We have an unsorted array here again,
+indicated by all of the elements
+
+28
+00:01:13,420 --> 00:01:14,840
+being in red.
+
+29
+00:01:14,840 --> 00:01:17,970
+And I set my swap counter
+to a nonzero value.
+
+30
+00:01:17,970 --> 00:01:20,610
+I arbitrarily chose
+negative 1-- it's not 0.
+
+31
+00:01:20,610 --> 00:01:23,840
+We want to repeat this process
+until the swap counter is 0.
+
+32
+00:01:23,840 --> 00:01:26,540
+This is why I set my swap
+counter to some non-zero value,
+
+33
+00:01:26,540 --> 00:01:29,400
+because otherwise the
+swap counter would be 0.
+
+34
+00:01:29,400 --> 00:01:31,610
+We wouldn't even begin the
+process of the algorithm.
+
+35
+00:01:31,610 --> 00:01:33,610
+So again, the steps are--
+reset the swap counter
+
+36
+00:01:33,610 --> 00:01:37,900
+to 0, then look at every adjacent
+pair, and if they're out of order,
+
+37
+00:01:37,900 --> 00:01:40,514
+swap them, and add 1
+to the swap counter.
+
+38
+00:01:40,514 --> 00:01:41,680
+So let's begin this process.
+
+39
+00:01:41,680 --> 00:01:44,430
+So the first thing we do is
+we set the swap counter to 0,
+
+40
+00:01:44,430 --> 00:01:46,660
+and then we start looking
+at each adjacent pair.
+
+41
+00:01:46,660 --> 00:01:49,140
+>> So we first start looking at 5 and 2.
+
+42
+00:01:49,140 --> 00:01:52,410
+We see that they are out of
+order and so we swap them.
+
+43
+00:01:52,410 --> 00:01:53,830
+And we add 1 to the swap counter.
+
+44
+00:01:53,830 --> 00:01:57,860
+So now our swap counter is 1,
+and 2 and 5 have been switched.
+
+45
+00:01:57,860 --> 00:01:59,370
+Now we repeat the process again.
+
+46
+00:01:59,370 --> 00:02:03,540
+>> We look at the next adjacent pair,
+5 and 1-- they're also out of order,
+
+47
+00:02:03,540 --> 00:02:06,960
+so we swap them and add
+1 to the swap counter.
+
+48
+00:02:06,960 --> 00:02:08,900
+Then we look at 5 and 3.
+
+49
+00:02:08,900 --> 00:02:13,830
+They are out of order, so we swap
+them and we add 1 to the swap counter.
+
+50
+00:02:13,830 --> 00:02:15,550
+Then we look at 5 and 6.
+
+51
+00:02:15,550 --> 00:02:18,630
+They're in order, so we don't actually
+need to swap anything this time.
+
+52
+00:02:18,630 --> 00:02:20,250
+Then we look at 6 and 4.
+
+53
+00:02:20,250 --> 00:02:24,920
+They're also out of order, so we swap
+them and we add 1 to the swap counter.
+
+54
+00:02:24,920 --> 00:02:26,230
+>> Now notice what's happened.
+
+55
+00:02:26,230 --> 00:02:29,514
+We've moved 6 all the way to the end.
+
+56
+00:02:29,514 --> 00:02:32,180
+So in selection sort, if you've
+seen that video, what we did was
+
+57
+00:02:32,180 --> 00:02:35,290
+we ended up moving the
+smallest elements in building
+
+58
+00:02:35,290 --> 00:02:39,640
+the sorted array essentially from
+left to right, smallest to largest.
+
+59
+00:02:39,640 --> 00:02:43,200
+In the case of bubble sort, if we're
+following this particular algorithm,
+
+60
+00:02:43,200 --> 00:02:46,720
+we're actually going to be building
+the sorted array from right
+
+61
+00:02:46,720 --> 00:02:49,100
+to left, largest to smallest.
+
+62
+00:02:49,100 --> 00:02:53,840
+We have effectively bubbled 6, the
+largest value, all the way to the end.
+
+63
+00:02:53,840 --> 00:02:56,165
+>> And so we can now declare
+that that is sorted,
+
+64
+00:02:56,165 --> 00:02:59,130
+and in future iterations--
+going through the array again--
+
+65
+00:02:59,130 --> 00:03:01,280
+we don't have to consider 6 anymore.
+
+66
+00:03:01,280 --> 00:03:03,850
+We only have to consider
+the unsorted elements
+
+67
+00:03:03,850 --> 00:03:06,299
+when we're looking at adjacent pairs.
+
+68
+00:03:06,299 --> 00:03:08,340
+So we have finished one
+pass through bubble sort.
+
+69
+00:03:08,340 --> 00:03:11,941
+So now we go back to the question,
+repeat until the swap counter is 0.
+
+70
+00:03:11,941 --> 00:03:13,690
+Well the swap counter
+is 4, so we're going
+
+71
+00:03:13,690 --> 00:03:15,410
+to keep repeating this process again.
+
+72
+00:03:15,410 --> 00:03:19,180
+>> We're going to reset the swap counter
+to 0, and look at each adjacent pair.
+
+73
+00:03:19,180 --> 00:03:21,890
+So we start with 2 and 1-- they're
+out of order, so we swap them
+
+74
+00:03:21,890 --> 00:03:23,620
+and we add 1 to the swap counter.
+
+75
+00:03:23,620 --> 00:03:25,490
+2 and 3, they're in order.
+
+76
+00:03:25,490 --> 00:03:27,060
+We don't need to do anything.
+
+77
+00:03:27,060 --> 00:03:28,420
+3 and 5 are in order.
+
+78
+00:03:28,420 --> 00:03:30,150
+We don't need to do anything there.
+
+79
+00:03:30,150 --> 00:03:32,515
+>> 5 and 4, they are out
+of order, and so we
+
+80
+00:03:32,515 --> 00:03:35,130
+need to swap them and add
+1 to the swap counter.
+
+81
+00:03:35,130 --> 00:03:38,880
+And now we've moved 5,
+the next largest element,
+
+82
+00:03:38,880 --> 00:03:40,920
+to the end of the unsorted portion.
+
+83
+00:03:40,920 --> 00:03:44,360
+So we can now call that
+part of the sorted portion.
+
+84
+00:03:44,360 --> 00:03:47,180
+>> Now you're looking at the
+screen and probably can tell,
+
+85
+00:03:47,180 --> 00:03:50,130
+as can I, that the array
+is sorted right now.
+
+86
+00:03:50,130 --> 00:03:51,820
+But we can't prove that yet.
+
+87
+00:03:51,820 --> 00:03:54,359
+We don't have a guarantee
+that it's sorted.
+
+88
+00:03:54,359 --> 00:03:56,900
+But this is where the swap
+counter's going to come into play.
+
+89
+00:03:56,900 --> 00:03:59,060
+>> So we've completed a pass.
+
+90
+00:03:59,060 --> 00:04:00,357
+The swap counter is 2.
+
+91
+00:04:00,357 --> 00:04:02,190
+So we're going to repeat
+this process again,
+
+92
+00:04:02,190 --> 00:04:04,290
+repeat until the swap counter is 0.
+
+93
+00:04:04,290 --> 00:04:05,550
+Reset the swap counter to 0.
+
+94
+00:04:05,550 --> 00:04:06,820
+So we'll reset it.
+
+95
+00:04:06,820 --> 00:04:09,810
+>> Now look at each adjacent pair.
+
+96
+00:04:09,810 --> 00:04:11,880
+That's in order, 1 and 2.
+
+97
+00:04:11,880 --> 00:04:13,590
+2 and 3 are in order.
+
+98
+00:04:13,590 --> 00:04:15,010
+3 and 4 are in order.
+
+99
+00:04:15,010 --> 00:04:19,250
+So at this point, notice we've completed
+looking at every adjacent pair,
+
+100
+00:04:19,250 --> 00:04:22,530
+but the swap counter is still 0.
+
+101
+00:04:22,530 --> 00:04:25,520
+>> If we don't have to switch
+any elements, then they
+
+102
+00:04:25,520 --> 00:04:28,340
+must be in order, by
+virtue of this process.
+
+103
+00:04:28,340 --> 00:04:32,000
+And so an efficiency of sorts,
+that we computer scientists love,
+
+104
+00:04:32,000 --> 00:04:35,560
+is we can now declare
+the entire array must
+
+105
+00:04:35,560 --> 00:04:38,160
+be sorted, because we didn't
+have to swap any elements.
+
+106
+00:04:38,160 --> 00:04:40,380
+That's pretty nice.
+
+107
+00:04:40,380 --> 00:04:43,260
+>> So what's the worst case
+scenario with bubble sort?
+
+108
+00:04:43,260 --> 00:04:46,240
+In the worst case the array is
+in completely reverse order,
+
+109
+00:04:46,240 --> 00:04:49,870
+and so we have to bubble each
+of the large elements all
+
+110
+00:04:49,870 --> 00:04:51,780
+the way across the array.
+
+111
+00:04:51,780 --> 00:04:55,350
+And we effectively also have to
+bubble all of the small elements back
+
+112
+00:04:55,350 --> 00:04:57,050
+all the way across the array, too.
+
+113
+00:04:57,050 --> 00:05:01,950
+So each of the n elements has to move
+across all of the other n elements.
+
+114
+00:05:01,950 --> 00:05:04,102
+So that's the worst case scenario.
+
+115
+00:05:04,102 --> 00:05:05,810
+In the best case
+scenario though, this is
+
+116
+00:05:05,810 --> 00:05:07,880
+slightly different from selection sort.
+
+117
+00:05:07,880 --> 00:05:10,040
+The array is already
+sorted when we go in.
+
+118
+00:05:10,040 --> 00:05:12,550
+We don't have to make any
+swaps on the first pass.
+
+119
+00:05:12,550 --> 00:05:14,940
+So we might have to look
+at fewer elements, right?
+
+120
+00:05:14,940 --> 00:05:18,580
+We don't have to repeat this
+process a number of times over.
+
+121
+00:05:18,580 --> 00:05:19,540
+>> So what does that mean?
+
+122
+00:05:19,540 --> 00:05:22,390
+So what's the worst case scenario
+for bubble sort, and what's
+
+123
+00:05:22,390 --> 00:05:25,330
+the best case scenario for bubble sort?
+
+124
+00:05:25,330 --> 00:05:27,770
+Did you guess this?
+
+125
+00:05:27,770 --> 00:05:32,420
+In the worst case you have to iterate
+across all the n elements n times.
+
+126
+00:05:32,420 --> 00:05:34,220
+So the worst case is n squared.
+
+127
+00:05:34,220 --> 00:05:36,550
+>> If the array is perfectly
+sorted though, you only
+
+128
+00:05:36,550 --> 00:05:38,580
+have to look at each
+of the elements once.
+
+129
+00:05:38,580 --> 00:05:42,670
+And if the swap counter is still 0,
+you can say this array is sorted.
+
+130
+00:05:42,670 --> 00:05:45,780
+And so in the best case, this is
+actually better than selection
+
+131
+00:05:45,780 --> 00:05:49,230
+sort-- it's omega of n.
+
+132
+00:05:49,230 --> 00:05:50,270
+>> I'm Doug Lloyd.
+
+133
+00:05:50,270 --> 00:05:52,140
+This is CS50.
+
+134
+00:05:52,140 --> 00:05:54,382

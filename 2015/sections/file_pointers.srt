@@ -1,0 +1,1699 @@
+1
+00:00:00,000 --> 00:00:05,330
+
+2
+00:00:05,330 --> 00:00:07,870
+>> SPEAKER: So far, it's likely
+that most of your programs
+
+3
+00:00:07,870 --> 00:00:10,170
+have been a bit ephemeral.
+
+4
+00:00:10,170 --> 00:00:13,310
+You run a program like Mario or Greedy.
+
+5
+00:00:13,310 --> 00:00:17,350
+It does something, it maybe prompts
+the user for some information,
+
+6
+00:00:17,350 --> 00:00:20,400
+print some output to the screen,
+but then when your program's over,
+
+7
+00:00:20,400 --> 00:00:23,252
+there's really no evidence there
+it was ever run in the first place.
+
+8
+00:00:23,252 --> 00:00:25,960
+I mean, sure, you might have left
+it open in the terminal window,
+
+9
+00:00:25,960 --> 00:00:29,770
+but if you clear your screen, there's
+really no evidence that it existed.
+
+10
+00:00:29,770 --> 00:00:33,720
+We don't have a means of storing
+persistent information, information
+
+11
+00:00:33,720 --> 00:00:36,890
+that exists after our
+program has stopped running,
+
+12
+00:00:36,890 --> 00:00:39,241
+or we haven't up to this point.
+
+13
+00:00:39,241 --> 00:00:41,490
+Fortunately though, c does
+provide us with the ability
+
+14
+00:00:41,490 --> 00:00:44,220
+to do this by implementing
+something called
+
+15
+00:00:44,220 --> 00:00:48,330
+a file, a structure that basically
+represents a file that you would double
+
+16
+00:00:48,330 --> 00:00:53,826
+click on your computer, if you're
+used to a graphical user environment.
+
+17
+00:00:53,826 --> 00:00:55,700
+Generally when working
+with c, we're actually
+
+18
+00:00:55,700 --> 00:00:59,965
+going to be working with
+pointers to files-- file stars--
+
+19
+00:00:59,965 --> 00:01:02,090
+except for a little bit
+when we talk about a couple
+
+20
+00:01:02,090 --> 00:01:04,560
+of the functions that
+work with file pointers.
+
+21
+00:01:04,560 --> 00:01:08,990
+You don't need to have really dug
+too deep into understanding pointers
+
+22
+00:01:08,990 --> 00:01:09,730
+themselves.
+
+23
+00:01:09,730 --> 00:01:12,870
+There's a little teeny bit
+where we will talk about them,
+
+24
+00:01:12,870 --> 00:01:18,090
+but generally file pointers and
+pointers, while interrelated,
+
+25
+00:01:18,090 --> 00:01:20,290
+are not exactly the same thing.
+
+26
+00:01:20,290 --> 00:01:22,440
+>> Now what do I mean when
+I say persistent data?
+
+27
+00:01:22,440 --> 00:01:23,650
+What is persistent data?
+
+28
+00:01:23,650 --> 00:01:25,232
+Why do we care about it?
+
+29
+00:01:25,232 --> 00:01:27,190
+Say, for example, that
+you're running a program
+
+30
+00:01:27,190 --> 00:01:29,850
+or you've rewritten a
+program that's a game,
+
+31
+00:01:29,850 --> 00:01:32,960
+and you want to keep track
+of all of the user's moves
+
+32
+00:01:32,960 --> 00:01:36,620
+so that maybe if something goes wrong,
+you can review the file after the game.
+
+33
+00:01:36,620 --> 00:01:39,970
+That's what we mean when we
+talk about persistent data.
+
+34
+00:01:39,970 --> 00:01:43,930
+>> In the course of running your
+program, a file is created.
+
+35
+00:01:43,930 --> 00:01:45,680
+And when your program
+has stopped running,
+
+36
+00:01:45,680 --> 00:01:48,689
+that file still exists on your system.
+
+37
+00:01:48,689 --> 00:01:50,230
+And we can look at it and examine it.
+
+38
+00:01:50,230 --> 00:01:53,670
+And so that program would be set to
+have created some persistent data,
+
+39
+00:01:53,670 --> 00:01:57,390
+data exist after the program
+has finished running.
+
+40
+00:01:57,390 --> 00:02:02,320
+>> Now all of these functions that work
+with creating files and manipulating
+
+41
+00:02:02,320 --> 00:02:04,940
+them in various ways
+live in standard io.h,
+
+42
+00:02:04,940 --> 00:02:08,210
+which is a header file that
+you've likely been pound
+
+43
+00:02:08,210 --> 00:02:10,910
+including at the top of pretty
+much all of your programs
+
+44
+00:02:10,910 --> 00:02:14,130
+because it contains one of the
+most useful functions for us,
+
+45
+00:02:14,130 --> 00:02:16,130
+printf, that also lets
+lives in standard io.h.
+
+46
+00:02:16,130 --> 00:02:20,400
+So you don't need to pound include
+any additional files probably
+
+47
+00:02:20,400 --> 00:02:23,540
+in order to work with file pointers.
+
+48
+00:02:23,540 --> 00:02:29,980
+>> Now every single file pointer function,
+or every single file I/O, input output
+
+49
+00:02:29,980 --> 00:02:33,310
+function, accepts as one
+of its parameters or inputs
+
+50
+00:02:33,310 --> 00:02:35,822
+a file pointer-- except
+for one, fopen, which
+
+51
+00:02:35,822 --> 00:02:38,280
+is what you use to get the file
+pointer in the first place.
+
+52
+00:02:38,280 --> 00:02:41,010
+But after you've opened the
+file and you get file pointers,
+
+53
+00:02:41,010 --> 00:02:43,510
+you can then pass them as
+arguments to the various functions
+
+54
+00:02:43,510 --> 00:02:46,720
+we're going to talk about
+today, as well as many others
+
+55
+00:02:46,720 --> 00:02:48,520
+so that you can work with files.
+
+56
+00:02:48,520 --> 00:02:50,980
+>> So there are six pretty
+common basic ones
+
+57
+00:02:50,980 --> 00:02:52,870
+that we're going to talk about today.
+
+58
+00:02:52,870 --> 00:02:57,160
+fopen and its companion
+function fclose, fgetc
+
+59
+00:02:57,160 --> 00:03:02,670
+and its companion function fputc,
+and fread and its companion function,
+
+60
+00:03:02,670 --> 00:03:03,820
+fwrite.
+
+61
+00:03:03,820 --> 00:03:05,180
+So let's get right into it.
+
+62
+00:03:05,180 --> 00:03:07,050
+>> fopen-- what does it do?
+
+63
+00:03:07,050 --> 00:03:10,050
+Well, it opens a file and it
+gives you a file pointer to it,
+
+64
+00:03:10,050 --> 00:03:14,000
+so that you can then use that
+file pointer as an argument
+
+65
+00:03:14,000 --> 00:03:16,730
+to any of the other file I/O functions.
+
+66
+00:03:16,730 --> 00:03:19,100
+The most important thing
+to remember with fopen
+
+67
+00:03:19,100 --> 00:03:24,222
+is that after you have opened the
+file or made a call like the one here,
+
+68
+00:03:24,222 --> 00:03:26,930
+you need to check to make sure
+that the pointer that you got back
+
+69
+00:03:26,930 --> 00:03:28,320
+is not equal to null.
+
+70
+00:03:28,320 --> 00:03:31,320
+If you haven't watched the video on
+pointers, this might not make sense.
+
+71
+00:03:31,320 --> 00:03:35,639
+But if you try and dereference
+a null pointer recall,
+
+72
+00:03:35,639 --> 00:03:38,180
+your program will probably suffer
+a segmentation [INAUDIBLE].
+
+73
+00:03:38,180 --> 00:03:40,540
+We want to make sure that we
+got a legitimate pointer back.
+
+74
+00:03:40,540 --> 00:03:43,665
+The vast majority of the time we will
+have gotten a legitimate pointer back
+
+75
+00:03:43,665 --> 00:03:45,280
+and it won't be a problem.
+
+76
+00:03:45,280 --> 00:03:46,760
+>> So how do we make a call to fopen?
+
+77
+00:03:46,760 --> 00:03:48,051
+It looks pretty much like this.
+
+78
+00:03:48,051 --> 00:03:52,690
+File star ptr-- ptr being a generic
+name for file pointer-- fopen
+
+79
+00:03:52,690 --> 00:03:57,300
+and we pass in two things, a file name
+and an operation we want to undertake.
+
+80
+00:03:57,300 --> 00:04:01,690
+So we might have a call that looks like
+this-- file star ptr 1 equals fopen
+
+81
+00:04:01,690 --> 00:04:04,040
+file1.txt.
+
+82
+00:04:04,040 --> 00:04:07,020
+And the operation I've chosen is r.
+
+83
+00:04:07,020 --> 00:04:08,639
+>> So what do you think r is here?
+
+84
+00:04:08,639 --> 00:04:11,180
+What are the kinds of things we
+might be able to do to files?
+
+85
+00:04:11,180 --> 00:04:13,760
+
+86
+00:04:13,760 --> 00:04:17,500
+So r is the operation that we
+choose when we want to read a file.
+
+87
+00:04:17,500 --> 00:04:20,260
+So we would basically when
+we make a call like this
+
+88
+00:04:20,260 --> 00:04:25,440
+be getting ourselves a file pointer
+such that we could then read information
+
+89
+00:04:25,440 --> 00:04:27,770
+from file1.txt.
+
+90
+00:04:27,770 --> 00:04:34,190
+>> Similarly, we could open file 2.txt
+for writing and so we can pass ptr2,
+
+91
+00:04:34,190 --> 00:04:38,210
+the file pointer I've created here,
+as an argument to any function that
+
+92
+00:04:38,210 --> 00:04:40,080
+writes information to a file.
+
+93
+00:04:40,080 --> 00:04:43,767
+And similar to writing, there's
+also the option to append, a.
+
+94
+00:04:43,767 --> 00:04:45,600
+The difference between
+writing and appending
+
+95
+00:04:45,600 --> 00:04:50,920
+being that when you write to a file,
+if you make a call to fopen for writing
+
+96
+00:04:50,920 --> 00:04:54,761
+and that file already exists, it's
+going to overwrite the entire file.
+
+97
+00:04:54,761 --> 00:04:56,510
+It's going to start
+at the very beginning,
+
+98
+00:04:56,510 --> 00:04:58,820
+deleting all the information
+that's already there.
+
+99
+00:04:58,820 --> 00:05:02,210
+>> Whereas if you open it for appending,
+it will go to the end of the file
+
+100
+00:05:02,210 --> 00:05:04,340
+if there's already text in
+it or information in it,
+
+101
+00:05:04,340 --> 00:05:06,040
+and it will then start
+writing from there.
+
+102
+00:05:06,040 --> 00:05:08,570
+So you won't lose any of the
+information you've done before.
+
+103
+00:05:08,570 --> 00:05:12,110
+Whether you want to write or append
+sort of depends on the situation.
+
+104
+00:05:12,110 --> 00:05:16,840
+But you'll probably know what the
+right operation is when the time comes.
+
+105
+00:05:16,840 --> 00:05:18,020
+So that's fopen.
+
+106
+00:05:18,020 --> 00:05:18,930
+>> What about fclose?
+
+107
+00:05:18,930 --> 00:05:21,600
+Well, pretty simply, fclose
+just accepts the file pointer.
+
+108
+00:05:21,600 --> 00:05:24,000
+And as you might expect,
+it closes that file.
+
+109
+00:05:24,000 --> 00:05:29,270
+And once we've closed a file, we can't
+perform any more file I/O functions,
+
+110
+00:05:29,270 --> 00:05:31,420
+reading or writing, on that file.
+
+111
+00:05:31,420 --> 00:05:36,444
+We have to re-open the
+file another time in order
+
+112
+00:05:36,444 --> 00:05:38,610
+to continue working with
+it using the I/O functions.
+
+113
+00:05:38,610 --> 00:05:41,520
+So fclose means we're done
+working with this file.
+
+114
+00:05:41,520 --> 00:05:44,690
+And all we need to pass in is
+the name of a file pointer.
+
+115
+00:05:44,690 --> 00:05:50,010
+So on a couple slides ago, we
+fopened file 1 dot text for reading
+
+116
+00:05:50,010 --> 00:05:52,854
+and we assigned that
+file pointer to ptr1.
+
+117
+00:05:52,854 --> 00:05:55,020
+Now we've decided we're
+done reading from that file.
+
+118
+00:05:55,020 --> 00:05:56,561
+We don't need to do any more with it.
+
+119
+00:05:56,561 --> 00:05:58,890
+We can just fclose ptr1.
+
+120
+00:05:58,890 --> 00:06:01,950
+And similarly, could we
+fclose the other ones.
+
+121
+00:06:01,950 --> 00:06:02,450
+All right.
+
+122
+00:06:02,450 --> 00:06:03,700
+So that's opening and closing.
+
+123
+00:06:03,700 --> 00:06:05,780
+Those are the two basic
+starting operations.
+
+124
+00:06:05,780 --> 00:06:08,050
+>> Now we want to actually
+do some interesting stuff,
+
+125
+00:06:08,050 --> 00:06:11,940
+and the first function that we'll
+see that will do that is fgetc--
+
+126
+00:06:11,940 --> 00:06:14,110
+file get a character.
+
+127
+00:06:14,110 --> 00:06:17,350
+That's what fgetc generally
+would translate to.
+
+128
+00:06:17,350 --> 00:06:20,190
+Its goal in life is to
+read the next character,
+
+129
+00:06:20,190 --> 00:06:22,079
+or if this is your very
+first call to fgetc
+
+130
+00:06:22,079 --> 00:06:23,870
+for a particular file,
+the first character.
+
+131
+00:06:23,870 --> 00:06:26,210
+But then after that,
+you get the next one,
+
+132
+00:06:26,210 --> 00:06:31,500
+the very next character of that file,
+and stores it in a character variable.
+
+133
+00:06:31,500 --> 00:06:34,490
+As we've done here,
+char ch equals fgetc,
+
+134
+00:06:34,490 --> 00:06:36,389
+pass in the name of a file pointer.
+
+135
+00:06:36,389 --> 00:06:38,180
+Again, it's very
+important here to remember
+
+136
+00:06:38,180 --> 00:06:41,430
+that in order to have
+this operation succeed,
+
+137
+00:06:41,430 --> 00:06:45,690
+the file pointer itself must've
+been opened for reading.
+
+138
+00:06:45,690 --> 00:06:50,589
+We can't read a character from a file
+pointer that we opened for writing.
+
+139
+00:06:50,589 --> 00:06:52,630
+So that's one of the
+limitations of fopen, right?
+
+140
+00:06:52,630 --> 00:06:55,470
+We have to restrict
+ourselves to only performing
+
+141
+00:06:55,470 --> 00:06:57,710
+one operation with one file pointer.
+
+142
+00:06:57,710 --> 00:07:00,220
+If we wanted to read and
+write from the same file,
+
+143
+00:07:00,220 --> 00:07:03,840
+we would have open two separate
+file pointers to the same file--
+
+144
+00:07:03,840 --> 00:07:05,670
+one for reading, one for writing.
+
+145
+00:07:05,670 --> 00:07:08,400
+>> So again, the only reason
+I bring that up now is
+
+146
+00:07:08,400 --> 00:07:11,920
+because if we're going to make a call
+to fgetc, that file pointer must've
+
+147
+00:07:11,920 --> 00:07:14,172
+been opened for reading.
+
+148
+00:07:14,172 --> 00:07:15,880
+And then pretty simply,
+all we need to do
+
+149
+00:07:15,880 --> 00:07:17,546
+is pass in the name of the file pointer.
+
+150
+00:07:17,546 --> 00:07:21,060
+So char ch equals fgetc ptr1.
+
+151
+00:07:21,060 --> 00:07:23,200
+>> That's going to get us
+the next character--
+
+152
+00:07:23,200 --> 00:07:25,575
+or again, if this is the first
+time we've made this call,
+
+153
+00:07:25,575 --> 00:07:29,750
+the first character-- of whatever
+file is pointed to by ptr1.
+
+154
+00:07:29,750 --> 00:07:32,210
+Recall that that was file 1 dot text.
+
+155
+00:07:32,210 --> 00:07:36,490
+It'll get the first character of that
+and we'll store it in the variable ch.
+
+156
+00:07:36,490 --> 00:07:37,941
+Pretty straightforward.
+
+157
+00:07:37,941 --> 00:07:40,190
+So we've only looked at three
+functions and already we
+
+158
+00:07:40,190 --> 00:07:43,070
+can do something pretty neat.
+
+159
+00:07:43,070 --> 00:07:46,320
+>> So if we take this ability
+of getting a character
+
+160
+00:07:46,320 --> 00:07:48,943
+and we loop it-- so we
+continue to get characters
+
+161
+00:07:48,943 --> 00:07:51,390
+from a file over and
+over and over-- now we
+
+162
+00:07:51,390 --> 00:07:54,500
+can read every single
+character of a file.
+
+163
+00:07:54,500 --> 00:07:58,670
+And if we print every character
+immediately after we read it,
+
+164
+00:07:58,670 --> 00:08:01,960
+we have now read from a file and
+printed its contents to the screen.
+
+165
+00:08:01,960 --> 00:08:05,610
+We've effectively concatenated
+that file on the screen.
+
+166
+00:08:05,610 --> 00:08:09,670
+And that's what the
+Linux command cat does.
+
+167
+00:08:09,670 --> 00:08:13,250
+>> If you type cat in the file name, it
+will print out the entire contents
+
+168
+00:08:13,250 --> 00:08:15,160
+of the file in your terminal window.
+
+169
+00:08:15,160 --> 00:08:19,010
+And so this little loop here,
+only three lines of code,
+
+170
+00:08:19,010 --> 00:08:23,270
+but it effectively duplicates
+the Linux command cat.
+
+171
+00:08:23,270 --> 00:08:25,210
+So this syntax might
+look a little weird,
+
+172
+00:08:25,210 --> 00:08:26,670
+but here's what's happening here.
+
+173
+00:08:26,670 --> 00:08:31,460
+While ch equals fgetc, ptr is not
+equal to EOF-- it's a whole mouthful,
+
+174
+00:08:31,460 --> 00:08:34,669
+but let's break it down just
+so it's clear on the syntax.
+
+175
+00:08:34,669 --> 00:08:37,169
+I've consolidated it
+for the sake of space,
+
+176
+00:08:37,169 --> 00:08:39,049
+although it's a little
+syntactically tricky.
+
+177
+00:08:39,049 --> 00:08:41,194
+>> So this part in green right
+now, what is it doing?
+
+178
+00:08:41,194 --> 00:08:42,860
+Well, that's just our fgetc call, right?
+
+179
+00:08:42,860 --> 00:08:44,530
+We've seen that before.
+
+180
+00:08:44,530 --> 00:08:49,500
+It's obtaining one
+character from the file.
+
+181
+00:08:49,500 --> 00:08:53,220
+Then we compare that
+character against EOF.
+
+182
+00:08:53,220 --> 00:08:57,470
+EOF is a special value that's
+defined in standard io.h, which
+
+183
+00:08:57,470 --> 00:08:59,390
+is the end of file character.
+
+184
+00:08:59,390 --> 00:09:03,450
+So basically what's going to happen
+is this loop will read a character,
+
+185
+00:09:03,450 --> 00:09:07,445
+compare it to EOF, the
+end of file character.
+
+186
+00:09:07,445 --> 00:09:10,070
+If they don't match, so we haven't
+reached the end of the file,
+
+187
+00:09:10,070 --> 00:09:11,490
+we'll print that character out.
+
+188
+00:09:11,490 --> 00:09:13,740
+Then we'll go back to the
+beginning of the loop again.
+
+189
+00:09:13,740 --> 00:09:18,310
+We'll get a character, check
+against EOF, print it out, and so on
+
+190
+00:09:18,310 --> 00:09:21,094
+and so on and so on,
+looping through in that way
+
+191
+00:09:21,094 --> 00:09:22,760
+until we've reached the end of the file.
+
+192
+00:09:22,760 --> 00:09:24,593
+And then by that point,
+we will have printed
+
+193
+00:09:24,593 --> 00:09:26,210
+out the entire contents of the file.
+
+194
+00:09:26,210 --> 00:09:29,450
+So again, we've only seen
+fopen, fclose, and fgetc
+
+195
+00:09:29,450 --> 00:09:34,950
+and already we can duplicate
+a Linux terminal command.
+
+196
+00:09:34,950 --> 00:09:38,850
+>> As I said at the beginning,
+we had fgetc and fputc,
+
+197
+00:09:38,850 --> 00:09:41,860
+and fputc was the companion
+function of fgetc.
+
+198
+00:09:41,860 --> 00:09:44,880
+And so, as you might imagine,
+it is the writing equivalent.
+
+199
+00:09:44,880 --> 00:09:49,440
+It allows us to write a
+single character to a file.
+
+200
+00:09:49,440 --> 00:09:53,290
+>> Again, the caveat being, just
+like it was with fgetc, the file
+
+201
+00:09:53,290 --> 00:09:56,660
+that we're writing to must've been
+opened for writing or for appending.
+
+202
+00:09:56,660 --> 00:10:00,820
+If we try and use fputc on a file
+that we've opened for reading,
+
+203
+00:10:00,820 --> 00:10:02,760
+we're going to suffer
+a bit of a mistake.
+
+204
+00:10:02,760 --> 00:10:04,440
+But the call is pretty simple.
+
+205
+00:10:04,440 --> 00:10:08,000
+fputc capital A ptr2, all
+that's going to do is it's
+
+206
+00:10:08,000 --> 00:10:12,040
+going to write the letter
+into A into file 2 dot
+
+207
+00:10:12,040 --> 00:10:14,760
+text, which was the name of the
+file that we opened and assigned
+
+208
+00:10:14,760 --> 00:10:17,280
+the pointer to ptr2.
+
+209
+00:10:17,280 --> 00:10:20,430
+So we're going to write a
+capital A to file 2 dot text.
+
+210
+00:10:20,430 --> 00:10:24,592
+And we'll write an exclamation
+point to file 3 dot
+
+211
+00:10:24,592 --> 00:10:27,330
+text, which was pointed to by ptr3.
+
+212
+00:10:27,330 --> 00:10:29,730
+So again, pretty straightforward here.
+
+213
+00:10:29,730 --> 00:10:32,727
+>> But now we can do another thing.
+
+214
+00:10:32,727 --> 00:10:34,560
+We have this example
+we were just going over
+
+215
+00:10:34,560 --> 00:10:38,950
+about being able to replicate the cat
+Linux command, the one that prints out
+
+216
+00:10:38,950 --> 00:10:40,500
+to the screen.
+
+217
+00:10:40,500 --> 00:10:43,510
+Well, now that we have the ability
+to read characters from files
+
+218
+00:10:43,510 --> 00:10:46,590
+and write characters to files,
+why don't we just substitute that
+
+219
+00:10:46,590 --> 00:10:50,720
+call to printf with a call to fputc.
+
+220
+00:10:50,720 --> 00:10:54,090
+>> And now we've duplicated cp,
+a very basic Linux command
+
+221
+00:10:54,090 --> 00:10:59,100
+that we talked about way long
+ago in the Linux commands video.
+
+222
+00:10:59,100 --> 00:11:01,070
+We've effectively
+duplicated that right here.
+
+223
+00:11:01,070 --> 00:11:04,790
+We're reading a character and then we're
+writing that character to another file.
+
+224
+00:11:04,790 --> 00:11:07,660
+Reading from one file, writing
+to another, over and over
+
+225
+00:11:07,660 --> 00:11:11,350
+and over again until we hit EOF.
+
+226
+00:11:11,350 --> 00:11:14,250
+We've got to the end of the
+file we're trying to copy from.
+
+227
+00:11:14,250 --> 00:11:18,500
+And by that we'll have written all
+of the characters we need to the file
+
+228
+00:11:18,500 --> 00:11:19,500
+that we're writing to.
+
+229
+00:11:19,500 --> 00:11:24,270
+So this is cp, the Linux copy command.
+
+230
+00:11:24,270 --> 00:11:26,550
+>> At the very beginning of
+this video, I had the caveat
+
+231
+00:11:26,550 --> 00:11:29,840
+that we would talk a
+little bit about pointers.
+
+232
+00:11:29,840 --> 00:11:32,480
+Here is specifically where we're
+going to talk about pointers
+
+233
+00:11:32,480 --> 00:11:34,800
+in addition to file pointers.
+
+234
+00:11:34,800 --> 00:11:37,870
+So this function looks kind of scary.
+
+235
+00:11:37,870 --> 00:11:39,120
+It's got several parameters.
+
+236
+00:11:39,120 --> 00:11:40,430
+There's a lot going on here.
+
+237
+00:11:40,430 --> 00:11:42,760
+There's a lot of different
+colors and texts.
+
+238
+00:11:42,760 --> 00:11:47,100
+But really, it's just the
+generic version of fgetc
+
+239
+00:11:47,100 --> 00:11:50,110
+that allows us to get any
+amount of information.
+
+240
+00:11:50,110 --> 00:11:53,560
+It can be a bit inefficient if we're
+getting characters one at a time,
+
+241
+00:11:53,560 --> 00:11:55,770
+iterating through the file
+one character at a time.
+
+242
+00:11:55,770 --> 00:12:00,230
+Wouldn't it be nicer to get
+100 at a time or 500 at a time?
+
+243
+00:12:00,230 --> 00:12:03,250
+>> Well, fread and its companion function
+fwrite, which we'll talk about
+
+244
+00:12:03,250 --> 00:12:05,490
+in a second, allow us to do just that.
+
+245
+00:12:05,490 --> 00:12:08,480
+We can read an arbitrary amount
+of information from a file
+
+246
+00:12:08,480 --> 00:12:10,290
+and we store it somewhere temporarily.
+
+247
+00:12:10,290 --> 00:12:12,980
+Instead of being able to just
+fit it in a single variable,
+
+248
+00:12:12,980 --> 00:12:15,790
+we might need to store it in an array.
+
+249
+00:12:15,790 --> 00:12:19,980
+And so, we pass in four
+arguments to fread-- a pointer
+
+250
+00:12:19,980 --> 00:12:23,940
+to the location where we're
+going to store information,
+
+251
+00:12:23,940 --> 00:12:29,180
+how large each unit of information
+will be, how many units of information
+
+252
+00:12:29,180 --> 00:12:35,192
+we want to acquire, and from
+which file we want to get them.
+
+253
+00:12:35,192 --> 00:12:37,150
+Probably best illustrated
+with an example here.
+
+254
+00:12:37,150 --> 00:12:41,640
+So let's say that we declare
+an array of 10 integers.
+
+255
+00:12:41,640 --> 00:12:45,080
+We've just declared on the
+stack arbitrarily int arr 10.
+
+256
+00:12:45,080 --> 00:12:46,970
+So that's pretty straightforward.
+
+257
+00:12:46,970 --> 00:12:51,970
+Now what we're doing though is the
+frecall is we're reading size of int
+
+258
+00:12:51,970 --> 00:12:54,180
+times 10 bytes of information.
+
+259
+00:12:54,180 --> 00:12:59,040
+Size of int being four-- that's
+the size of an integer in c.
+
+260
+00:12:59,040 --> 00:13:02,790
+>> So what we're doing is we're reading
+40 bytes worth of information
+
+261
+00:13:02,790 --> 00:13:05,850
+from the file pointed to by ptr.
+
+262
+00:13:05,850 --> 00:13:08,600
+And we're storing those
+40 bytes somewhere
+
+263
+00:13:08,600 --> 00:13:12,080
+where we have set aside
+40 bytes worth of memory.
+
+264
+00:13:12,080 --> 00:13:15,970
+Fortunately, we've already done that by
+declaring arr, that array right there.
+
+265
+00:13:15,970 --> 00:13:19,770
+That is capable of holding
+10 four-byte units.
+
+266
+00:13:19,770 --> 00:13:22,860
+So in total, it can hold 40
+bytes worth of information.
+
+267
+00:13:22,860 --> 00:13:26,540
+And we are now reading 40 bytes
+of information from the file,
+
+268
+00:13:26,540 --> 00:13:30,330
+and we're storing it in arr.
+
+269
+00:13:30,330 --> 00:13:35,470
+>> Recall from the video on pointers that
+the name of an array, such as arr,
+
+270
+00:13:35,470 --> 00:13:38,370
+is really just a pointer
+to its first element.
+
+271
+00:13:38,370 --> 00:13:43,680
+So when we pass in arr there, we
+are, in fact, passing in a pointer.
+
+272
+00:13:43,680 --> 00:13:46,120
+>> Similarly we can do this--
+we don't necessarily
+
+273
+00:13:46,120 --> 00:13:51,200
+need to save our buffer on the stack.
+
+274
+00:13:51,200 --> 00:13:54,990
+We could also dynamically allocate
+a buffer like this, using malloc.
+
+275
+00:13:54,990 --> 00:13:57,340
+Remember, when we
+dynamically allocate memory,
+
+276
+00:13:57,340 --> 00:14:00,550
+we're saving it on the
+heap, not the stack.
+
+277
+00:14:00,550 --> 00:14:02,110
+But it's still a buffer.
+
+278
+00:14:02,110 --> 00:14:06,810
+>> It still, in this case, is
+holding 640 bytes of information
+
+279
+00:14:06,810 --> 00:14:09,230
+because a double takes up eight bytes.
+
+280
+00:14:09,230 --> 00:14:11,570
+And we're asking for 80 of them.
+
+281
+00:14:11,570 --> 00:14:13,770
+We want to have space
+to hold 80 doubles.
+
+282
+00:14:13,770 --> 00:14:17,210
+So 80 times 8 is 640 bytes information.
+
+283
+00:14:17,210 --> 00:14:21,880
+And that call to fread is
+collecting 640 bytes of information
+
+284
+00:14:21,880 --> 00:14:27,770
+from the file pointed to by
+ptr and storing it now in arr2.
+
+285
+00:14:27,770 --> 00:14:32,770
+>> Now we can also treat fread
+just like a call to fgetc.
+
+286
+00:14:32,770 --> 00:14:37,140
+In this case, we're just trying to
+get one character from the file.
+
+287
+00:14:37,140 --> 00:14:40,070
+And we don't need an
+array to hold a character.
+
+288
+00:14:40,070 --> 00:14:43,170
+We can just store it in
+a character variable.
+
+289
+00:14:43,170 --> 00:14:46,390
+>> The catch, though, is that
+when we just have a variable,
+
+290
+00:14:46,390 --> 00:14:50,290
+we need to pass in the
+address of that variable
+
+291
+00:14:50,290 --> 00:14:52,550
+because recall that the
+first argument to fread
+
+292
+00:14:52,550 --> 00:14:59,210
+is a pointer to the location and memory
+where we want to store the information.
+
+293
+00:14:59,210 --> 00:15:01,550
+Again, the name of an
+array is a pointer.
+
+294
+00:15:01,550 --> 00:15:04,200
+So we don't need to do ampersand array.
+
+295
+00:15:04,200 --> 00:15:07,270
+But c, the character c
+here, is not an array.
+
+296
+00:15:07,270 --> 00:15:08,390
+It's just a variable.
+
+297
+00:15:08,390 --> 00:15:11,840
+And so we need to pass an
+ampersand c to indicate
+
+298
+00:15:11,840 --> 00:15:15,350
+that that's the address where we want
+to store this one byte of information,
+
+299
+00:15:15,350 --> 00:15:20,479
+this one character that
+we're collecting from ptr.
+
+300
+00:15:20,479 --> 00:15:22,270
+Fwrite-- I'll go through
+this a little more
+
+301
+00:15:22,270 --> 00:15:25,440
+quickly-- is pretty much the
+exact equivalent of fread
+
+302
+00:15:25,440 --> 00:15:27,720
+except it's for writing
+instead of reading, just
+
+303
+00:15:27,720 --> 00:15:31,610
+like the other-- we've had open
+and close, get a character,
+
+304
+00:15:31,610 --> 00:15:32,530
+write a character.
+
+305
+00:15:32,530 --> 00:15:35,040
+Now it's get arbitrary
+amount of information,
+
+306
+00:15:35,040 --> 00:15:37,170
+right arbitrary amount of information.
+
+307
+00:15:37,170 --> 00:15:39,790
+So just like before, we can
+have an array of 10 integers
+
+308
+00:15:39,790 --> 00:15:43,210
+where we already have
+information stored, perhaps.
+
+309
+00:15:43,210 --> 00:15:46,580
+>> It was probably some lines of code
+that should go between these two
+
+310
+00:15:46,580 --> 00:15:49,990
+where I fill arr with
+something meaningful.
+
+311
+00:15:49,990 --> 00:15:51,880
+I fill it with 10 different integers.
+
+312
+00:15:51,880 --> 00:15:54,920
+And instead, what I'm
+doing is writing from arr
+
+313
+00:15:54,920 --> 00:15:58,600
+and collecting the information from arr.
+
+314
+00:15:58,600 --> 00:16:02,390
+And I'm taking that information
+and putting it into the file.
+
+315
+00:16:02,390 --> 00:16:05,410
+>> So instead of it being from
+the file to the buffer,
+
+316
+00:16:05,410 --> 00:16:08,790
+we're now going from
+the buffer to the file.
+
+317
+00:16:08,790 --> 00:16:10,580
+So it's just the reverse.
+
+318
+00:16:10,580 --> 00:16:16,680
+So again, just like before, we can
+also have a heap chunk of memory
+
+319
+00:16:16,680 --> 00:16:19,600
+that we've dynamically
+allocated and read from that
+
+320
+00:16:19,600 --> 00:16:21,570
+and write that to the file.
+
+321
+00:16:21,570 --> 00:16:24,900
+>> And we also have a single variable
+capable of holding one byte
+
+322
+00:16:24,900 --> 00:16:27,200
+of information, such as a character.
+
+323
+00:16:27,200 --> 00:16:29,830
+But again, we need to pass in
+the address of that variable
+
+324
+00:16:29,830 --> 00:16:31,840
+when we want to read from it.
+
+325
+00:16:31,840 --> 00:16:35,280
+So we can write the information
+we find at that address
+
+326
+00:16:35,280 --> 00:16:39,050
+to the file pointer, ptr.
+
+327
+00:16:39,050 --> 00:16:41,630
+>> There's lots of other
+great file I/O functions
+
+328
+00:16:41,630 --> 00:16:44,650
+that do various things besides
+the ones we've talked about today.
+
+329
+00:16:44,650 --> 00:16:46,450
+A couple of the ones
+you might find useful
+
+330
+00:16:46,450 --> 00:16:50,840
+are fgets and fputs,
+which are the equivalent
+
+331
+00:16:50,840 --> 00:16:56,190
+of fgetc and fputc but for reading
+a single string from a file.
+
+332
+00:16:56,190 --> 00:16:59,020
+Instead of a single character,
+it will read an entire string.
+
+333
+00:16:59,020 --> 00:17:02,940
+fprintf, which basically allows
+you to use printf to write to file.
+
+334
+00:17:02,940 --> 00:17:05,619
+So just like you can do the
+variable substitution using
+
+335
+00:17:05,619 --> 00:17:09,900
+the placeholders percent i and
+percent d, and so on, with printf
+
+336
+00:17:09,900 --> 00:17:14,690
+you can similarly take the
+printf string and print something
+
+337
+00:17:14,690 --> 00:17:16,800
+like that to a file.
+
+338
+00:17:16,800 --> 00:17:20,720
+>> fseek-- if you have a DVD player
+is the analogy I usually use here--
+
+339
+00:17:20,720 --> 00:17:23,109
+is sort of like using your
+rewind and fast forward
+
+340
+00:17:23,109 --> 00:17:25,819
+buttons to move around the movie.
+
+341
+00:17:25,819 --> 00:17:28,369
+Similarly, you can move around the file.
+
+342
+00:17:28,369 --> 00:17:30,250
+One of the things inside
+that file structure
+
+343
+00:17:30,250 --> 00:17:34,270
+that c creates for you is an indicator
+of where you are in the file.
+
+344
+00:17:34,270 --> 00:17:36,420
+Are you at the very
+beginning, at byte zero?
+
+345
+00:17:36,420 --> 00:17:39,290
+Are you at byte 100,
+byte 1,000, and so on?
+
+346
+00:17:39,290 --> 00:17:44,340
+You can use fseek to arbitrarily move
+that indicator forward or backward.
+
+347
+00:17:44,340 --> 00:17:46,744
+>> And ftell, again
+similar to a DVD player,
+
+348
+00:17:46,744 --> 00:17:49,660
+is like a little clock that tells
+you how many minutes and seconds you
+
+349
+00:17:49,660 --> 00:17:52,480
+are into a particular movie.
+
+350
+00:17:52,480 --> 00:17:56,990
+Similarly, ftell tells you how
+many bytes you are into the file.
+
+351
+00:17:56,990 --> 00:18:00,210
+feof is a different version
+of detecting whether you've
+
+352
+00:18:00,210 --> 00:18:01,700
+reached the end of the file.
+
+353
+00:18:01,700 --> 00:18:03,600
+And ferror is a function
+that you can use
+
+354
+00:18:03,600 --> 00:18:06,959
+to detect whether something has
+gone wrong working with a file.
+
+355
+00:18:06,959 --> 00:18:08,750
+Again, this is just
+scratching the surface.
+
+356
+00:18:08,750 --> 00:18:12,730
+There's still plenty more file I/O
+functions in the standard io.h.
+
+357
+00:18:12,730 --> 00:18:16,620
+But this will probably get you
+started working with file pointers.
+
+358
+00:18:16,620 --> 00:18:17,640
+I'm Doug Lloyd.
+
+359
+00:18:17,640 --> 00:18:19,750
+This is cs50.
+
+360
+00:18:19,750 --> 00:18:21,669

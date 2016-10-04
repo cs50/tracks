@@ -1,0 +1,4391 @@
+1
+00:00:00,000 --> 00:00:11,300
+
+2
+00:00:11,300 --> 00:00:15,490
+>> DAVID J. MALAN: This is CS50,
+and this is the start of week 10.
+
+3
+00:00:15,490 --> 00:00:19,460
+You may recall that we've shown
+on the screen a 3D printer, which
+
+4
+00:00:19,460 --> 00:00:21,610
+is this device that
+takes spools of plastic
+
+5
+00:00:21,610 --> 00:00:24,840
+and then extrudes it by heating it
+up and melting it so that we can then
+
+6
+00:00:24,840 --> 00:00:27,310
+form Chang's army of
+elephants, for instance.
+
+7
+00:00:27,310 --> 00:00:29,184
+>> So at Leverett House,
+though, recently, I
+
+8
+00:00:29,184 --> 00:00:31,850
+was chatting with one of your
+classmates and a friend of Chang's
+
+9
+00:00:31,850 --> 00:00:35,720
+named Michelle, who actually interned at
+this other company this past year that
+
+10
+00:00:35,720 --> 00:00:40,010
+has a different technique for actually
+creating three-dimensional objects,
+
+11
+00:00:40,010 --> 00:00:41,890
+like this tiny little elephant here.
+
+12
+00:00:41,890 --> 00:00:45,550
+In particular, the way this works
+is that it's an example of something
+
+13
+00:00:45,550 --> 00:00:49,740
+called stereolithography, whereby
+there's this basin of resin or liquid,
+
+14
+00:00:49,740 --> 00:00:53,340
+and then a laser strikes that
+liquid, and gradually, the device
+
+15
+00:00:53,340 --> 00:00:56,990
+lifts and lifts and lifts the thing
+that you're printing, like an elephant,
+
+16
+00:00:56,990 --> 00:00:58,676
+as that liquid becomes solid.
+
+17
+00:00:58,676 --> 00:01:00,550
+And the result, actually,
+is something that's
+
+18
+00:01:00,550 --> 00:01:04,194
+much more robust than some of
+the plastic giveaways some of you
+
+19
+00:01:04,194 --> 00:01:04,819
+might have had.
+
+20
+00:01:04,819 --> 00:01:06,860
+>> And what Chang kindly
+did for us here was
+
+21
+00:01:06,860 --> 00:01:12,210
+did a time-lapse using photographs
+over the course of an hour or more,
+
+22
+00:01:12,210 --> 00:01:14,580
+probably, to produce this guy here.
+
+23
+00:01:14,580 --> 00:01:19,060
+Would someone who's never come up before
+like to come hit Start on this video?
+
+24
+00:01:19,060 --> 00:01:21,250
+Let me go with, how about there.
+
+25
+00:01:21,250 --> 00:01:21,790
+Come on up.
+
+26
+00:01:21,790 --> 00:01:24,960
+
+27
+00:01:24,960 --> 00:01:25,460
+All right.
+
+28
+00:01:25,460 --> 00:01:29,250
+
+29
+00:01:29,250 --> 00:01:29,896
+And you are?
+
+30
+00:01:29,896 --> 00:01:31,270
+LUKE: My name's Luke [INAUDIBLE].
+
+31
+00:01:31,270 --> 00:01:31,700
+DAVID J. MALAN: Hi, Luke.
+
+32
+00:01:31,700 --> 00:01:32,695
+Nice to meet you.
+
+33
+00:01:32,695 --> 00:01:33,653
+>> LUKE: Nice to meet you.
+
+34
+00:01:33,653 --> 00:01:35,120
+AUDIENCE: He's running for UC.
+
+35
+00:01:35,120 --> 00:01:38,640
+>> DAVID J. MALAN: I know,
+we're trying not to promote.
+
+36
+00:01:38,640 --> 00:01:41,240
+All right, so Luke, all
+you have to do here in CS50
+
+37
+00:01:41,240 --> 00:01:45,829
+is hit the space bar
+to print this elephant.
+
+38
+00:01:45,829 --> 00:01:46,495
+[VIDEO PLAYBACK]
+
+39
+00:01:46,495 --> 00:01:49,988
+-[MACHINE WHIRRING]
+
+40
+00:01:49,988 --> 00:02:00,467
+
+41
+00:02:00,467 --> 00:02:01,964
+-[CRASH]
+
+42
+00:02:01,964 --> 00:02:04,459
+-[BOOM]
+
+43
+00:02:04,459 --> 00:02:06,147
+-[CRASH]
+
+44
+00:02:06,147 --> 00:02:06,980
+[END VIDEO PLAYBACK]
+
+45
+00:02:06,980 --> 00:02:09,370
+DAVID J. MALAN: So that is exactly
+what it's like to 3D print.
+
+46
+00:02:09,370 --> 00:02:10,453
+And here is your elephant.
+
+47
+00:02:10,453 --> 00:02:12,100
+Thanks for volunteering.
+
+48
+00:02:12,100 --> 00:02:12,830
+All right.
+
+49
+00:02:12,830 --> 00:02:16,580
+So again, per the specification for
+the final project, this hardware that's
+
+50
+00:02:16,580 --> 00:02:18,890
+available to you guys
+is, for some reason,
+
+51
+00:02:18,890 --> 00:02:21,870
+your project has some intersection
+of software and hardware,
+
+52
+00:02:21,870 --> 00:02:24,650
+realize that these are now resources.
+
+53
+00:02:24,650 --> 00:02:27,750
+>> I wanted to take one moment to touch
+upon a Crimson article that came out
+
+54
+00:02:27,750 --> 00:02:30,541
+late last night, which was to
+announce that this fellow here, David
+
+55
+00:02:30,541 --> 00:02:33,920
+Johnson, who's been the senior
+preceptor for Ec 10 for quite some time,
+
+56
+00:02:33,920 --> 00:02:36,210
+is leaving Harvard at the
+end of the academic year.
+
+57
+00:02:36,210 --> 00:02:38,390
+And I just wanted to
+take a moment, honestly,
+
+58
+00:02:38,390 --> 00:02:41,620
+to thank David in front of CS50.
+
+59
+00:02:41,620 --> 00:02:44,360
+He's been a mentor of
+sorts to us over the years.
+
+60
+00:02:44,360 --> 00:02:46,980
+>> And I feel like we, CS50, have
+rather grown up with Ec 10
+
+61
+00:02:46,980 --> 00:02:48,870
+in here, since they are right before us.
+
+62
+00:02:48,870 --> 00:02:52,040
+And he and the whole team in Ec 10 has
+been wonderfully gracious, frankly,
+
+63
+00:02:52,040 --> 00:02:55,410
+as we lug in all of our equipment
+each and every week, and years ago,
+
+64
+00:02:55,410 --> 00:02:57,320
+provided a great deal
+of counsel as we were
+
+65
+00:02:57,320 --> 00:02:59,520
+curious as to how they operate Ec 10.
+
+66
+00:02:59,520 --> 00:03:02,640
+So our thanks and
+admiration to David Johnson.
+
+67
+00:03:02,640 --> 00:03:06,560
+>> [APPLAUSE]
+
+68
+00:03:06,560 --> 00:03:08,030
+
+69
+00:03:08,030 --> 00:03:12,180
+>> Now, unrelatedly, so
+the end is indeed near.
+
+70
+00:03:12,180 --> 00:03:13,630
+We are here in week 10.
+
+71
+00:03:13,630 --> 00:03:15,920
+And we only have just a
+couple of formal weeks
+
+72
+00:03:15,920 --> 00:03:18,320
+here in class left, followed
+by a couple of events.
+
+73
+00:03:18,320 --> 00:03:21,860
+So to give you a sense of what's
+on the horizon, here we are today.
+
+74
+00:03:21,860 --> 00:03:24,480
+>> This Wednesday, recall,
+we'll have a guest lecture
+
+75
+00:03:24,480 --> 00:03:27,040
+by none other than
+Microsoft's own Steve Ballmer.
+
+76
+00:03:27,040 --> 00:03:31,740
+If you've not yet gone to
+cs50.harvard.edu/register,
+
+77
+00:03:31,740 --> 00:03:33,360
+do so, since space will be limited.
+
+78
+00:03:33,360 --> 00:03:36,447
+And they will be checking
+IDs at the door this day.
+
+79
+00:03:36,447 --> 00:03:38,280
+If you weren't here
+last week, I thought I'd
+
+80
+00:03:38,280 --> 00:03:41,850
+tease you with a different look
+at Steve and the excitement that
+
+81
+00:03:41,850 --> 00:03:44,215
+awaits us on Wednesday.
+
+82
+00:03:44,215 --> 00:03:45,205
+>> [VIDEO PLAYBACK]
+
+83
+00:03:45,205 --> 00:03:46,195
+>> -Passion.
+
+84
+00:03:46,195 --> 00:03:50,650
+>> -We're going to be hardcore-- hardcore.
+
+85
+00:03:50,650 --> 00:03:51,640
+>> -Innovator.
+
+86
+00:03:51,640 --> 00:03:53,339
+>> -Bill said, you don't get it.
+
+87
+00:03:53,339 --> 00:03:55,130
+We're going to put a
+computer on every desk
+
+88
+00:03:55,130 --> 00:03:58,690
+and in every home, which became
+the motto for the company.
+
+89
+00:03:58,690 --> 00:04:01,850
+I swear, Bill invented it
+that night to really give me
+
+90
+00:04:01,850 --> 00:04:04,370
+some of the vision of
+why I should say yes.
+
+91
+00:04:04,370 --> 00:04:07,280
+I've never looked back,
+really, after that.
+
+92
+00:04:07,280 --> 00:04:10,010
+>> -Fresh out of college, he
+joined a fledgling startup
+
+93
+00:04:10,010 --> 00:04:14,450
+and helped it grow into one of America's
+most successful businesses ever.
+
+94
+00:04:14,450 --> 00:04:16,920
+The life of and business
+lessons learned along the way
+
+95
+00:04:16,920 --> 00:04:19,925
+let him back to his
+childhood passion and love.
+
+96
+00:04:19,925 --> 00:04:24,650
+And those experiences have prepared
+him for his next challenge in life.
+
+97
+00:04:24,650 --> 00:04:27,150
+>> -Nothing gets in our way-- boom!
+
+98
+00:04:27,150 --> 00:04:29,330
+Keep coming hardcore!
+
+99
+00:04:29,330 --> 00:04:31,150
+Go Clippers!
+
+100
+00:04:31,150 --> 00:04:38,627
+>> -This is Steve Ballmer,
+"In My Own Words."
+
+101
+00:04:38,627 --> 00:04:39,460
+[END VIDEO PLAYBACK]
+
+102
+00:04:39,460 --> 00:04:41,240
+DAVID J. MALAN: --this
+Wednesday to CS50.
+
+103
+00:04:41,240 --> 00:04:43,080
+Head again to this URL here.
+
+104
+00:04:43,080 --> 00:04:46,500
+As for what else is on the horizon,
+next week, no lecture on Monday.
+
+105
+00:04:46,500 --> 00:04:50,020
+But we will be following that
+by quiz one on Wednesday.
+
+106
+00:04:50,020 --> 00:04:54,390
+Go to CS50's homepage for details
+on people, places, and times
+
+107
+00:04:54,390 --> 00:04:57,640
+for all of the various proctoring
+logistics and the like,
+
+108
+00:04:57,640 --> 00:05:00,190
+as well as about review
+sessions that are forthcoming.
+
+109
+00:05:00,190 --> 00:05:06,479
+And then, lastly, on Monday, the day
+before the week of Thanksgiving break,
+
+110
+00:05:06,479 --> 00:05:08,020
+realize it will be our final lecture.
+
+111
+00:05:08,020 --> 00:05:11,490
+We will serve cake and a great
+deal of excitement, we hope.
+
+112
+00:05:11,490 --> 00:05:13,976
+>> Now, a couple of other updates.
+
+113
+00:05:13,976 --> 00:05:16,350
+Keep in mind that the status
+report, which is really just
+
+114
+00:05:16,350 --> 00:05:20,430
+meant to be a casual interaction
+with your TF to proudly state just
+
+115
+00:05:20,430 --> 00:05:23,106
+how far along with your
+final project you are,
+
+116
+00:05:23,106 --> 00:05:24,980
+or at least as a sanity
+check that you should
+
+117
+00:05:24,980 --> 00:05:27,250
+be approaching that
+point shortly thereafter.
+
+118
+00:05:27,250 --> 00:05:28,660
+The Hackathon then follows that.
+
+119
+00:05:28,660 --> 00:05:30,800
+Realize the Hackathon
+is not an opportunity
+
+120
+00:05:30,800 --> 00:05:33,690
+to start your final project, but
+is meant to be an opportunity
+
+121
+00:05:33,690 --> 00:05:37,040
+to be in the middle of or toward
+the end of your final project,
+
+122
+00:05:37,040 --> 00:05:41,030
+with the implementation due a few
+days later, followed by the CS50 fair.
+
+123
+00:05:41,030 --> 00:05:43,330
+>> Now, CS50's production
+team, a couple years ago,
+
+124
+00:05:43,330 --> 00:05:46,127
+put together a teaser
+for the CS50 fair that we
+
+125
+00:05:46,127 --> 00:05:48,710
+thought we'd show you today,
+because they've been hard at work
+
+126
+00:05:48,710 --> 00:05:51,930
+on a prequel for that, a new video
+that we'll conclude today with.
+
+127
+00:05:51,930 --> 00:05:57,694
+But here's what awaits you
+for this year's CS50 fair.
+
+128
+00:05:57,694 --> 00:05:58,360
+[VIDEO PLAYBACK]
+
+129
+00:05:58,360 --> 00:06:00,680
+-[CELL PHONE RINGING]
+
+130
+00:06:00,680 --> 00:06:07,624
+
+131
+00:06:07,624 --> 00:06:11,117
+[MUSIC "THEME FROM MISSION: IMPOSSIBLE"]
+
+132
+00:06:11,117 --> 00:08:47,065
+
+133
+00:08:47,065 --> 00:08:52,820
+[END VIDEO PLAYBACK]
+
+134
+00:08:52,820 --> 00:08:56,840
+DAVID J. MALAN: So that is exactly how
+we close final project submissions.
+
+135
+00:08:56,840 --> 00:08:59,220
+A couple of now teasers-- if
+you'd like to join Nick here
+
+136
+00:08:59,220 --> 00:09:02,740
+for lunch, as usual, this
+Friday, head to this URL here.
+
+137
+00:09:02,740 --> 00:09:05,530
+Moreover, if you would like
+to join Nick or this Nick
+
+138
+00:09:05,530 --> 00:09:08,770
+or this Allison or any
+members of CS50's team,
+
+139
+00:09:08,770 --> 00:09:11,110
+do realize that, shortly
+after term's end,
+
+140
+00:09:11,110 --> 00:09:13,780
+CS50 will already be recruiting
+for next year's team,
+
+141
+00:09:13,780 --> 00:09:18,130
+for CAs, TFs, designers, producers,
+researchers, and other positions
+
+142
+00:09:18,130 --> 00:09:21,790
+that here operate CS50 both in
+front of and behind the scenes.
+
+143
+00:09:21,790 --> 00:09:25,482
+So if this might be of interest
+to you, head to this URL here.
+
+144
+00:09:25,482 --> 00:09:28,190
+And students more comfortable,
+less comfortable, and somewhere in
+
+145
+00:09:28,190 --> 00:09:31,710
+between alike are all welcome
+and encouraged to apply.
+
+146
+00:09:31,710 --> 00:09:34,920
+>> So it was perfect timing that, no
+joke, this morning, when I woke up,
+
+147
+00:09:34,920 --> 00:09:37,220
+I had this here spam in my inbox.
+
+148
+00:09:37,220 --> 00:09:39,420
+It actually slipped
+through Gmail's spam filter
+
+149
+00:09:39,420 --> 00:09:41,659
+somehow and ended up in my actual inbox.
+
+150
+00:09:41,659 --> 00:09:43,700
+And it says, "Dear mailbox
+user, you're currently
+
+151
+00:09:43,700 --> 00:09:45,240
+upgraded to 4 gigabytes of space.
+
+152
+00:09:45,240 --> 00:09:50,750
+Please log into your account
+in order to validate E-space."
+
+153
+00:09:50,750 --> 00:09:54,100
+>> And then there's this nice blue
+enticing link there to click on
+
+154
+00:09:54,100 --> 00:09:59,480
+for faculty and staff, which then led me
+to a wonderfully legitimate page, which
+
+155
+00:09:59,480 --> 00:10:02,300
+asked me to give them my name
+and email address and, of course,
+
+156
+00:10:02,300 --> 00:10:05,090
+password to validate
+who I am and so forth.
+
+157
+00:10:05,090 --> 00:10:09,330
+But of course, as is always the case,
+you arrive at this landing page,
+
+158
+00:10:09,330 --> 00:10:11,370
+and of course, there's
+at least one typo,
+
+159
+00:10:11,370 --> 00:10:14,840
+which seems to be the nail in
+the coffin of any of these scams.
+
+160
+00:10:14,840 --> 00:10:17,890
+And we'll post, perhaps, some other
+links to these kinds of screen shots
+
+161
+00:10:17,890 --> 00:10:18,473
+in the future.
+
+162
+00:10:18,473 --> 00:10:22,535
+But hopefully, most people in
+this room have not clicked--
+
+163
+00:10:22,535 --> 00:10:24,410
+or even if you've clicked
+such links as this,
+
+164
+00:10:24,410 --> 00:10:28,040
+you haven't gone so far as to
+fill out those forms and so forth.
+
+165
+00:10:28,040 --> 00:10:30,210
+In fact, it's OK if you have.
+
+166
+00:10:30,210 --> 00:10:33,410
+We'll try to fix that today, because,
+indeed, today's conversation is
+
+167
+00:10:33,410 --> 00:10:34,450
+about security.
+
+168
+00:10:34,450 --> 00:10:36,500
+>> And indeed, one of the
+goals of CS50 is not
+
+169
+00:10:36,500 --> 00:10:38,980
+so much to teach you CE or
+PHP or JavaScript or SQL
+
+170
+00:10:38,980 --> 00:10:41,610
+or any of these underlying
+implementation details.
+
+171
+00:10:41,610 --> 00:10:45,612
+But it's to empower you as humans
+to just make smarter decisions as it
+
+172
+00:10:45,612 --> 00:10:48,070
+relates to technology down the
+road so that, whether you're
+
+173
+00:10:48,070 --> 00:10:51,370
+an engineer or humanist or
+scientist or any other role,
+
+174
+00:10:51,370 --> 00:10:54,970
+you are making informed decisions
+about your own computing usage,
+
+175
+00:10:54,970 --> 00:10:56,980
+or if you're in a
+decision-making position,
+
+176
+00:10:56,980 --> 00:10:59,250
+in politics, in particular,
+you're making much,
+
+177
+00:10:59,250 --> 00:11:02,770
+much better decisions than a
+lot of humans today have been.
+
+178
+00:11:02,770 --> 00:11:04,830
+And we'll do this by
+way of a few examples.
+
+179
+00:11:04,830 --> 00:11:09,030
+>> First, I was rather surprised
+recently to discover the following.
+
+180
+00:11:09,030 --> 00:11:11,120
+So passwords, of course,
+are what most of us
+
+181
+00:11:11,120 --> 00:11:18,030
+use to protect our data-- email, chat,
+and all kinds of resources like that.
+
+182
+00:11:18,030 --> 00:11:23,020
+And just by an awkward-- not show of
+hands, but embarrassed looks of shame,
+
+183
+00:11:23,020 --> 00:11:26,600
+how many of you use the same password
+in a lot of different websites?
+
+184
+00:11:26,600 --> 00:11:28,020
+>> Oh, OK, so we'll do the hands.
+
+185
+00:11:28,020 --> 00:11:30,950
+OK, so a lot of you do.
+
+186
+00:11:30,950 --> 00:11:33,770
+Anyone who does this, just why?
+
+187
+00:11:33,770 --> 00:11:35,078
+And what?
+
+188
+00:11:35,078 --> 00:11:36,537
+Yeah?
+
+189
+00:11:36,537 --> 00:11:39,870
+AUDIENCE: It's easy to remember, because
+you don't have to remember [INAUDIBLE].
+
+190
+00:11:39,870 --> 00:11:41,703
+DAVID J. MALAN: Yeah,
+it's easy to remember.
+
+191
+00:11:41,703 --> 00:11:44,560
+It's a perfectly reasonable,
+rational behavior,
+
+192
+00:11:44,560 --> 00:11:46,920
+even though the risk
+you're putting yourself
+
+193
+00:11:46,920 --> 00:11:50,540
+at in these cases is just
+one or more of those websites
+
+194
+00:11:50,540 --> 00:11:54,510
+is vulnerable to hacking or to
+insecure or your password's just
+
+195
+00:11:54,510 --> 00:11:57,130
+so darn guessable,
+anyone can figure it out.
+
+196
+00:11:57,130 --> 00:11:59,850
+Not only is one account
+compromised, but in theory, any
+
+197
+00:11:59,850 --> 00:12:01,280
+accounts you have on the internet.
+
+198
+00:12:01,280 --> 00:12:04,550
+So I know I might say today, don't
+use the same password everywhere,
+
+199
+00:12:04,550 --> 00:12:06,450
+but that's a lot easier said than done.
+
+200
+00:12:06,450 --> 00:12:10,850
+But there are techniques for
+mitigating that particular concern.
+
+201
+00:12:10,850 --> 00:12:14,030
+>> Now, I happen, for instance, to
+use a program called 1Password.
+
+202
+00:12:14,030 --> 00:12:16,010
+Another popular one is called LastPass.
+
+203
+00:12:16,010 --> 00:12:19,030
+And a bunch of CS50 staff use one
+or more of these kinds of tools.
+
+204
+00:12:19,030 --> 00:12:20,940
+And long story short,
+one takeaway for today
+
+205
+00:12:20,940 --> 00:12:25,080
+should be, yes, you might have
+the same password everywhere,
+
+206
+00:12:25,080 --> 00:12:27,260
+but it's very easy to no longer do that.
+
+207
+00:12:27,260 --> 00:12:31,260
+For instance, these days, I know
+maybe one of my dozens or hundreds
+
+208
+00:12:31,260 --> 00:12:31,910
+of passwords.
+
+209
+00:12:31,910 --> 00:12:33,990
+All of my other passwords
+are pseudo-randomly
+
+210
+00:12:33,990 --> 00:12:36,046
+generated by one of these programs here.
+
+211
+00:12:36,046 --> 00:12:38,420
+And in a nutshell, and even
+though most of these programs
+
+212
+00:12:38,420 --> 00:12:41,487
+tend to come with a bit of a cost,
+you would install a program like this,
+
+213
+00:12:41,487 --> 00:12:43,820
+you would then store all of
+your usernames and passwords
+
+214
+00:12:43,820 --> 00:12:46,960
+inside of this program on
+your own Mac or PC or whatnot,
+
+215
+00:12:46,960 --> 00:12:49,290
+and then it would be
+encrypted on your computer
+
+216
+00:12:49,290 --> 00:12:51,599
+with what's hopefully a
+particularly long password.
+
+217
+00:12:51,599 --> 00:12:54,140
+So I have a whole bunch of
+passwords for individual websites,
+
+218
+00:12:54,140 --> 00:12:56,390
+and then I have a really
+long password that I
+
+219
+00:12:56,390 --> 00:12:59,059
+use to unlock all of
+those other passwords.
+
+220
+00:12:59,059 --> 00:13:00,850
+And what's nice about
+software like this is
+
+221
+00:13:00,850 --> 00:13:04,016
+that, when you visit a website that's
+asking for your username and password,
+
+222
+00:13:04,016 --> 00:13:06,304
+these days, I don't type in
+my username and password,
+
+223
+00:13:06,304 --> 00:13:08,970
+because, again, I don't even know
+what most of my passwords are.
+
+224
+00:13:08,970 --> 00:13:12,180
+I instead hit a keyboard
+shortcut, the result of which
+
+225
+00:13:12,180 --> 00:13:15,990
+is to trigger this software to
+prompt me for my master password.
+
+226
+00:13:15,990 --> 00:13:18,780
+I then type that one big
+password in, and then the browser
+
+227
+00:13:18,780 --> 00:13:21,090
+automatically fills in
+what my password is.
+
+228
+00:13:21,090 --> 00:13:24,960
+So truly, if you take nothing else
+away from today in terms of passwords,
+
+229
+00:13:24,960 --> 00:13:28,440
+these are software that are worth
+downloading or investing in so
+
+230
+00:13:28,440 --> 00:13:30,750
+that you can at least break
+that particular habit.
+
+231
+00:13:30,750 --> 00:13:33,374
+And if you're the type that's
+using Post-It notes or the like--
+
+232
+00:13:33,374 --> 00:13:37,310
+and odds are at least one of you is--
+that habit, too, suffice it to say,
+
+233
+00:13:37,310 --> 00:13:38,340
+should be broken.
+
+234
+00:13:38,340 --> 00:13:42,360
+>> Now, I happened to discover, as a result
+of using the software, the following.
+
+235
+00:13:42,360 --> 00:13:45,690
+I was ordering an Edible Arrangement,
+this basket of fruit, recently.
+
+236
+00:13:45,690 --> 00:13:49,380
+And I hit my special keyboard
+shortcut to log in to the website.
+
+237
+00:13:49,380 --> 00:13:53,325
+And the software triggered a
+pop-up that said, are you sure
+
+238
+00:13:53,325 --> 00:13:55,950
+you want me to automatically
+submit this username and password?
+
+239
+00:13:55,950 --> 00:13:57,690
+Because the connection is insecure.
+
+240
+00:13:57,690 --> 00:14:01,450
+>> The connection's not
+using HTTPS, for secure,
+
+241
+00:14:01,450 --> 00:14:04,900
+using that protocol known as
+SSL, Secure Sockets Layer.
+
+242
+00:14:04,900 --> 00:14:07,640
+And indeed, if you look at
+the top left of this website,
+
+243
+00:14:07,640 --> 00:14:12,880
+it's just www.ediblearrangements.com,
+no HTTPS, which isn't so good.
+
+244
+00:14:12,880 --> 00:14:15,480
+>> Now, I was curious-- maybe this
+is just a bug in the software.
+
+245
+00:14:15,480 --> 00:14:19,240
+Surely, some website like
+this that a lot of us know of
+
+246
+00:14:19,240 --> 00:14:24,046
+is at least using encryption
+or HTTPS URLs to log you in.
+
+247
+00:14:24,046 --> 00:14:25,670
+So I got a little curious this morning.
+
+248
+00:14:25,670 --> 00:14:29,046
+And I got out my CS50 skills,
+I opened up Chrome Inspector.
+
+249
+00:14:29,046 --> 00:14:30,295
+It's not even much of a skill.
+
+250
+00:14:30,295 --> 00:14:32,890
+It's just hit the right keyboard
+shortcut to open this up.
+
+251
+00:14:32,890 --> 00:14:34,830
+And here's a big window
+of Chrome's Inspector.
+
+252
+00:14:34,830 --> 00:14:38,960
+>> But what was actually a
+little tragic and ridiculous
+
+253
+00:14:38,960 --> 00:14:40,830
+were these two lines here.
+
+254
+00:14:40,830 --> 00:14:44,570
+Up at the top, notice the URL to
+which my username and password
+
+255
+00:14:44,570 --> 00:14:45,530
+were submitted.
+
+256
+00:14:45,530 --> 00:14:46,380
+Let me zoom in.
+
+257
+00:14:46,380 --> 00:14:47,352
+It was this here.
+
+258
+00:14:47,352 --> 00:14:49,060
+And all of that is
+sort of uninteresting,
+
+259
+00:14:49,060 --> 00:14:54,962
+except for the thing all the way at
+the left, which starts with http://.
+
+260
+00:14:54,962 --> 00:14:57,240
+And so then, OK, maybe
+they're just sending
+
+261
+00:14:57,240 --> 00:14:59,084
+my username, which is
+not such a big deal.
+
+262
+00:14:59,084 --> 00:15:00,500
+Maybe my password gets sent later.
+
+263
+00:15:00,500 --> 00:15:02,300
+That would be kind of an
+interesting design decision.
+
+264
+00:15:02,300 --> 00:15:03,100
+>> But nope.
+
+265
+00:15:03,100 --> 00:15:06,130
+If you then look at the request
+payload, the username and password
+
+266
+00:15:06,130 --> 00:15:08,470
+I sent-- and I mocked
+these up for the slide--
+
+267
+00:15:08,470 --> 00:15:10,000
+were actually sent in the clear.
+
+268
+00:15:10,000 --> 00:15:13,792
+So you go to this particular website and
+order an Edible Arrangement like this,
+
+269
+00:15:13,792 --> 00:15:16,750
+and indeed, apparently, for all this
+time I've been ordering from them,
+
+270
+00:15:16,750 --> 00:15:19,800
+your username and password
+is going across in the clear.
+
+271
+00:15:19,800 --> 00:15:22,120
+So honestly, this is
+completely unacceptable.
+
+272
+00:15:22,120 --> 00:15:26,240
+And it's so trivial to avoid things
+like this as the designer of a website
+
+273
+00:15:26,240 --> 00:15:27,950
+and as the programmer of a website.
+
+274
+00:15:27,950 --> 00:15:31,020
+>> But the takeaway here for
+us as users of websites
+
+275
+00:15:31,020 --> 00:15:35,700
+is just to appreciate that all
+it takes is for one stupid design
+
+276
+00:15:35,700 --> 00:15:40,010
+decision, unjustifiable design decision,
+so that now, if you know my password is
+
+277
+00:15:40,010 --> 00:15:41,820
+"crimson" on this
+website, you've probably
+
+278
+00:15:41,820 --> 00:15:44,654
+just got into a whole bunch of
+other websites that I now have.
+
+279
+00:15:44,654 --> 00:15:46,570
+And there's not much of
+a defense against that
+
+280
+00:15:46,570 --> 00:15:48,301
+other than what Chang did this morning.
+
+281
+00:15:48,301 --> 00:15:51,550
+He went to Edible Arrangements, which
+is located down the street in Cambridge,
+
+282
+00:15:51,550 --> 00:15:53,430
+and physically bought this for us.
+
+283
+00:15:53,430 --> 00:15:57,490
+That was much more secure than
+using the website in this case.
+
+284
+00:15:57,490 --> 00:16:02,320
+>> But the detail to keep an eye out for
+is actually what's in the browser up top
+
+285
+00:16:02,320 --> 00:16:02,940
+there.
+
+286
+00:16:02,940 --> 00:16:04,690
+But even that can be a little deceptive.
+
+287
+00:16:04,690 --> 00:16:07,002
+So another interesting
+example and way of defending
+
+288
+00:16:07,002 --> 00:16:09,960
+against this-- and actually, let's
+do that first-- the way of defending
+
+289
+00:16:09,960 --> 00:16:12,540
+against this is a technique
+that security people would
+
+290
+00:16:12,540 --> 00:16:14,810
+call two-factor authentication.
+
+291
+00:16:14,810 --> 00:16:20,130
+>> Does anyone know what the solution
+to problems like this means?
+
+292
+00:16:20,130 --> 00:16:23,110
+What is two-factor authentication?
+
+293
+00:16:23,110 --> 00:16:27,320
+Or put another way, how
+many of you are using it?
+
+294
+00:16:27,320 --> 00:16:28,650
+OK, so a couple of shy people.
+
+295
+00:16:28,650 --> 00:16:29,060
+But yeah.
+
+296
+00:16:29,060 --> 00:16:29,976
+I saw your hand go up.
+
+297
+00:16:29,976 --> 00:16:31,510
+What is two-factor authentication?
+
+298
+00:16:31,510 --> 00:16:34,010
+>> AUDIENCE: Basically, in addition
+to typing in your password,
+
+299
+00:16:34,010 --> 00:16:37,390
+you also have a secondary [INAUDIBLE]
+sent via text message to your phone
+
+300
+00:16:37,390 --> 00:16:39,460
+at the [INAUDIBLE].
+
+301
+00:16:39,460 --> 00:16:40,460
+DAVID J. MALAN: Exactly.
+
+302
+00:16:40,460 --> 00:16:44,150
+In addition to some primary form
+of authentication, like a password,
+
+303
+00:16:44,150 --> 00:16:47,190
+you're asked for a secondary
+factor, which is typically
+
+304
+00:16:47,190 --> 00:16:49,740
+something you have
+physically on you, though it
+
+305
+00:16:49,740 --> 00:16:51,610
+can be something else altogether.
+
+306
+00:16:51,610 --> 00:16:54,630
+And that thing is typically a
+cellphone these days to which you get
+
+307
+00:16:54,630 --> 00:16:59,200
+sent a temporary text message that says
+"your temporary pass code is 12345."
+
+308
+00:16:59,200 --> 00:17:01,280
+>> So in addition to my
+password "crimson," I also
+
+309
+00:17:01,280 --> 00:17:03,916
+have to type in whatever
+the website has texted me.
+
+310
+00:17:03,916 --> 00:17:06,290
+Or if you have this with a
+bank or an investment account,
+
+311
+00:17:06,290 --> 00:17:08,123
+you sometimes have these
+little dongles that
+
+312
+00:17:08,123 --> 00:17:11,760
+actually have a pseudo-random
+number generator built into them,
+
+313
+00:17:11,760 --> 00:17:15,849
+but both the device and the bank
+know what your initial seed is
+
+314
+00:17:15,849 --> 00:17:19,710
+so that they know, even as the
+little code on your little key fob
+
+315
+00:17:19,710 --> 00:17:22,380
+marches ahead every minute
+or two, changing values,
+
+316
+00:17:22,380 --> 00:17:25,260
+so does that value change
+on the bank's server
+
+317
+00:17:25,260 --> 00:17:28,620
+so that they can similarly authenticate
+you, not only with your password,
+
+318
+00:17:28,620 --> 00:17:30,024
+but with that temporary code.
+
+319
+00:17:30,024 --> 00:17:31,690
+Now, you can actually do this in Google.
+
+320
+00:17:31,690 --> 00:17:33,606
+And frankly, this is a
+good habit to get into,
+
+321
+00:17:33,606 --> 00:17:36,180
+especially if you're using
+Gmail all the time on a browser.
+
+322
+00:17:36,180 --> 00:17:39,880
+If you go to this URL here, which is in
+the slides online for today, and then
+
+323
+00:17:39,880 --> 00:17:43,579
+click on 2-Step Verification,
+same actual thing there.
+
+324
+00:17:43,579 --> 00:17:45,870
+You'll be prompted to give
+them your cell phone number.
+
+325
+00:17:45,870 --> 00:17:49,660
+And then, any time you log into
+Gmail, you'll be not only asked
+
+326
+00:17:49,660 --> 00:17:53,480
+for your password, but also for a
+little code that gets sent to your phone
+
+327
+00:17:53,480 --> 00:17:54,190
+temporarily.
+
+328
+00:17:54,190 --> 00:17:57,894
+And so long as you have cookies enabled,
+and so long as you don't explicitly
+
+329
+00:17:57,894 --> 00:18:00,060
+log out, you'll only have
+to do that once in awhile,
+
+330
+00:18:00,060 --> 00:18:01,870
+like when you sit down
+at a new computer.
+
+331
+00:18:01,870 --> 00:18:05,320
+>> And the upside here, too, is, if you
+sit down at some internet cafe style
+
+332
+00:18:05,320 --> 00:18:07,380
+computer or just a
+friend's computer, even
+
+333
+00:18:07,380 --> 00:18:09,710
+if that friend
+maliciously or unknowingly
+
+334
+00:18:09,710 --> 00:18:13,580
+has some keyboard logger
+installed on his or her computer,
+
+335
+00:18:13,580 --> 00:18:15,640
+such that everything you
+type is being logged,
+
+336
+00:18:15,640 --> 00:18:19,170
+at least that second factor, that
+temporary code, is ephemeral.
+
+337
+00:18:19,170 --> 00:18:21,630
+So he or she or whoever's
+compromised the computer
+
+338
+00:18:21,630 --> 00:18:24,890
+can't log into you subsequently,
+even if everything else
+
+339
+00:18:24,890 --> 00:18:27,890
+was vulnerable or even
+unencrypted altogether.
+
+340
+00:18:27,890 --> 00:18:29,760
+Facebook has this, too,
+with that URL here,
+
+341
+00:18:29,760 --> 00:18:32,070
+where you can click on Login Approvals.
+
+342
+00:18:32,070 --> 00:18:35,500
+So here, too, if you don't
+want friends to poke people,
+
+343
+00:18:35,500 --> 00:18:40,140
+you don't want to be poking on Facebook
+or posting status updates for you,
+
+344
+00:18:40,140 --> 00:18:42,479
+two-factor authentication
+here is probably a good thing.
+
+345
+00:18:42,479 --> 00:18:44,520
+And then there's this
+other technique altogether,
+
+346
+00:18:44,520 --> 00:18:46,853
+just auditing, which is even
+a good thing for us humans,
+
+347
+00:18:46,853 --> 00:18:49,950
+if two-factor proves annoying, which,
+admittedly, it can, or it's just not
+
+348
+00:18:49,950 --> 00:18:53,930
+available on some website, minimally
+keeping an eye on if and when
+
+349
+00:18:53,930 --> 00:18:57,650
+you're logging into sites, if they
+allow you, is a good technique, too.
+
+350
+00:18:57,650 --> 00:19:01,300
+So Facebook also gives you this
+login notifications feature, whereby
+
+351
+00:19:01,300 --> 00:19:06,240
+anytime Facebook realizes, hm, David has
+logged in from some computer or phone
+
+352
+00:19:06,240 --> 00:19:09,710
+that we've never seen before from
+an IP address that looks unfamiliar,
+
+353
+00:19:09,710 --> 00:19:12,320
+they'll at least send you an
+email to whatever email address
+
+354
+00:19:12,320 --> 00:19:14,750
+you have on file, saying,
+does this look suspicious?
+
+355
+00:19:14,750 --> 00:19:17,590
+If so, change your password immediately.
+
+356
+00:19:17,590 --> 00:19:19,610
+And so there, too,
+just auditing behavior
+
+357
+00:19:19,610 --> 00:19:21,940
+even after you've been
+compromised, can at least
+
+358
+00:19:21,940 --> 00:19:25,980
+narrow the window during
+which you are vulnerable.
+
+359
+00:19:25,980 --> 00:19:29,910
+>> All right, any questions
+on that stuff thus far?
+
+360
+00:19:29,910 --> 00:19:35,510
+Today is the day to get all of
+your paranoia confirmed or denied.
+
+361
+00:19:35,510 --> 00:19:36,820
+That's mostly confirmed, sadly.
+
+362
+00:19:36,820 --> 00:19:37,210
+Yeah?
+
+363
+00:19:37,210 --> 00:19:39,223
+>> AUDIENCE: [INAUDIBLE] phone,
+what if your phone breaks,
+
+364
+00:19:39,223 --> 00:19:41,010
+and then it's always
+difficult to verify--
+
+365
+00:19:41,010 --> 00:19:41,295
+>> DAVID J. MALAN: True.
+
+366
+00:19:41,295 --> 00:19:43,330
+>> AUDIENCE: Or if you're in a different
+country, and they don't let you
+
+367
+00:19:43,330 --> 00:19:44,505
+log in because [INAUDIBLE].
+
+368
+00:19:44,505 --> 00:19:45,630
+DAVID J. MALAN: Absolutely.
+
+369
+00:19:45,630 --> 00:19:48,780
+And so these are the additional
+costs that you incur.
+
+370
+00:19:48,780 --> 00:19:51,040
+There's always this theme
+of a trade-off, after all.
+
+371
+00:19:51,040 --> 00:19:53,748
+And then, if you lose your phone,
+if it breaks, if you're abroad,
+
+372
+00:19:53,748 --> 00:19:56,382
+or you just don't have a
+signal, like a 3G or LTE signal,
+
+373
+00:19:56,382 --> 00:19:58,340
+you might not actually
+be able to authenticate.
+
+374
+00:19:58,340 --> 00:20:00,520
+>> So again, these two are trade-offs.
+
+375
+00:20:00,520 --> 00:20:03,670
+And sometimes, it can create a
+lot of work for you as a result.
+
+376
+00:20:03,670 --> 00:20:08,130
+But it really depends, then, on
+what the expected price to you
+
+377
+00:20:08,130 --> 00:20:10,980
+is of something being
+compromised altogether.
+
+378
+00:20:10,980 --> 00:20:15,300
+>> So SSL, then, is this technique that
+we all generally take for granted
+
+379
+00:20:15,300 --> 00:20:18,970
+or assume is there, even though
+that's clearly not the case.
+
+380
+00:20:18,970 --> 00:20:23,339
+And you can still mislead
+people, though, even with this.
+
+381
+00:20:23,339 --> 00:20:24,630
+So here's an example of a bank.
+
+382
+00:20:24,630 --> 00:20:25,860
+>> This is Bank of America.
+
+383
+00:20:25,860 --> 00:20:28,730
+There's a whole bunch of these
+in Harvard Square and beyond.
+
+384
+00:20:28,730 --> 00:20:32,530
+And notice that, at the very top of
+the screen, there's an, indeed, HTTPS.
+
+385
+00:20:32,530 --> 00:20:35,370
+And it's even green
+and highlighted for us
+
+386
+00:20:35,370 --> 00:20:39,550
+to indicate that this is indeed
+a legitimately secure website,
+
+387
+00:20:39,550 --> 00:20:41,420
+or so we've been trained to believe.
+
+388
+00:20:41,420 --> 00:20:46,416
+>> Now, besides that, though,
+notice that, if we zoom in,
+
+389
+00:20:46,416 --> 00:20:48,790
+there's this thing here, where
+you're prompted to log in.
+
+390
+00:20:48,790 --> 00:20:54,920
+What does this padlock mean right
+there, next to my username prompt?
+
+391
+00:20:54,920 --> 00:20:57,890
+This is pretty common on websites, too.
+
+392
+00:20:57,890 --> 00:21:01,120
+What does this padlock mean?
+
+393
+00:21:01,120 --> 00:21:02,453
+You seem like you know.
+
+394
+00:21:02,453 --> 00:21:03,420
+>> AUDIENCE: It doesn't mean anything.
+
+395
+00:21:03,420 --> 00:21:04,230
+>> DAVID J. MALAN: It
+doesn't mean anything.
+
+396
+00:21:04,230 --> 00:21:07,790
+It means that Bank of America knows how
+to write HTML with image tags, right?
+
+397
+00:21:07,790 --> 00:21:12,080
+It truly means nothing, because even
+we, using the first day of our look
+
+398
+00:21:12,080 --> 00:21:15,760
+at HTML, can code up a page with
+a red background and an image,
+
+399
+00:21:15,760 --> 00:21:18,910
+like a GIF or whatnot, that
+happens to look like a padlock.
+
+400
+00:21:18,910 --> 00:21:20,890
+And yet, this is super
+common in websites,
+
+401
+00:21:20,890 --> 00:21:24,000
+because we've been trained to assume
+that, oh, padlock means secure,
+
+402
+00:21:24,000 --> 00:21:25,760
+when it really just means you know HTML.
+
+403
+00:21:25,760 --> 00:21:28,840
+>> For instance, back in the day, I could
+have just put this on my website,
+
+404
+00:21:28,840 --> 00:21:31,660
+claiming it's secure,
+and asking, effectively,
+
+405
+00:21:31,660 --> 00:21:33,590
+for people's usernames and passwords.
+
+406
+00:21:33,590 --> 00:21:36,310
+So looking in the URL is
+at least a better clue,
+
+407
+00:21:36,310 --> 00:21:39,580
+because that's built into Chrome
+or whatever browser you're using.
+
+408
+00:21:39,580 --> 00:21:41,470
+But even then, sometimes
+things can go wrong.
+
+409
+00:21:41,470 --> 00:21:45,940
+And in fact, you might not always
+see HTTPS, let alone in green.
+
+410
+00:21:45,940 --> 00:21:48,126
+>> Have any of you ever
+seen a screen like this?
+
+411
+00:21:48,126 --> 00:21:50,000
+You might have, actually,
+earlier in October,
+
+412
+00:21:50,000 --> 00:21:54,740
+when I forgot to pay for our
+SSL certificate, as it's called,
+
+413
+00:21:54,740 --> 00:21:58,400
+and we were looking like
+this for an hour or two.
+
+414
+00:21:58,400 --> 00:22:01,830
+So you've probably seen things
+like this, with a strike-through,
+
+415
+00:22:01,830 --> 00:22:05,240
+like a red line, through
+the protocol in the URL
+
+416
+00:22:05,240 --> 00:22:08,010
+or some kind of screen that's
+at least admonishing you
+
+417
+00:22:08,010 --> 00:22:09,760
+for trying to proceed further.
+
+418
+00:22:09,760 --> 00:22:12,540
+And Google here is inviting
+you to go back to safety.
+
+419
+00:22:12,540 --> 00:22:17,120
+>> Now, in this case, this just meant that
+the SSL certificate that we were using,
+
+420
+00:22:17,120 --> 00:22:22,220
+the big, mathematically useful numbers
+that are associated with CS50's server,
+
+421
+00:22:22,220 --> 00:22:23,949
+were no longer valid.
+
+422
+00:22:23,949 --> 00:22:26,490
+And in fact, we can simulate
+this, as you can on your laptop.
+
+423
+00:22:26,490 --> 00:22:30,270
+If I go into Chrome here,
+and let's go to facebook.com,
+
+424
+00:22:30,270 --> 00:22:32,230
+and it looks like this is secure.
+
+425
+00:22:32,230 --> 00:22:36,910
+But let me go ahead now and
+click on the padlock here.
+
+426
+00:22:36,910 --> 00:22:40,030
+>> And let me go to Connection,
+Certificate Information.
+
+427
+00:22:40,030 --> 00:22:42,020
+And indeed, what you'll
+see here is a bunch
+
+428
+00:22:42,020 --> 00:22:46,160
+of lower-level details about
+who facebook.com really is.
+
+429
+00:22:46,160 --> 00:22:49,380
+It seems that they have paid money to
+a company called maybe DigiCert High
+
+430
+00:22:49,380 --> 00:22:54,420
+Assurance that has promised
+to tell the rest of the world
+
+431
+00:22:54,420 --> 00:22:57,250
+that, if a browser ever sees
+a certificate-- you can think
+
+432
+00:22:57,250 --> 00:23:00,291
+of it literally as a certificate that
+looks like that cheesy thing at top
+
+433
+00:23:00,291 --> 00:23:04,360
+left-- then facebook.com is who they say
+they are, because all this time, when
+
+434
+00:23:04,360 --> 00:23:07,160
+you visit a website, like
+cs50.harvard.edu or facebook.com
+
+435
+00:23:07,160 --> 00:23:11,880
+or gmail.com that use HTTPS
+URLs, behind the scenes,
+
+436
+00:23:11,880 --> 00:23:15,190
+there's this sort of transaction
+happening automatically
+
+437
+00:23:15,190 --> 00:23:18,060
+for you, whereby
+facebook.com, in this case,
+
+438
+00:23:18,060 --> 00:23:22,150
+is sending to your browser its
+so-called SSL certificate, or rather,
+
+439
+00:23:22,150 --> 00:23:23,380
+its public key,
+
+440
+00:23:23,380 --> 00:23:25,600
+and then your browser
+is using that public key
+
+441
+00:23:25,600 --> 00:23:29,600
+to subsequently send encrypted
+traffic to and from it.
+
+442
+00:23:29,600 --> 00:23:32,360
+>> But there's this whole hierarchy
+in the world of companies
+
+443
+00:23:32,360 --> 00:23:36,430
+that you pay money to who will
+then testify, in a digital sense,
+
+444
+00:23:36,430 --> 00:23:41,330
+that you are indeed facebook.com or
+your server is indeed cs50.harvard.edu.
+
+445
+00:23:41,330 --> 00:23:44,580
+And built into browsers, like
+Chrome and IE and Firefox,
+
+446
+00:23:44,580 --> 00:23:48,260
+is a list of all of those
+so-called certificate authorities
+
+447
+00:23:48,260 --> 00:23:51,360
+that are authorized by
+Microsoft and Google and Mozilla
+
+448
+00:23:51,360 --> 00:23:55,410
+to confirm or deny that
+facebook.com is who it says it is.
+
+449
+00:23:55,410 --> 00:23:57,430
+But the catch is that
+these things do expire.
+
+450
+00:23:57,430 --> 00:24:02,670
+In fact, Facebook's looks like
+it expires next October, in 2015.
+
+451
+00:24:02,670 --> 00:24:06,490
+>> So we can actually simulate this if I
+go in my Mac to my System Preferences,
+
+452
+00:24:06,490 --> 00:24:11,070
+and I go into Date and Time, and
+I go into Date and Time here,
+
+453
+00:24:11,070 --> 00:24:17,190
+and I unlock this here-- thankfully,
+we didn't reveal a password this time--
+
+454
+00:24:17,190 --> 00:24:20,660
+and now I go down to uncheck this.
+
+455
+00:24:20,660 --> 00:24:25,660
+And let's actually-- oops, that's
+not as interesting as doing this.
+
+456
+00:24:25,660 --> 00:24:30,140
+We are literally in the future now,
+which means this is what 2020 is like.
+
+457
+00:24:30,140 --> 00:24:36,360
+If I now reload the page--
+let's do it in Ingognito mode--
+
+458
+00:24:36,360 --> 00:24:40,910
+if I reload the page, there we go.
+
+459
+00:24:40,910 --> 00:24:45,820
+>> So now, my computer thinks
+it's 2020, but my browser
+
+460
+00:24:45,820 --> 00:24:49,810
+knows that this certificate from
+Facebook expires, of course, in 2015.
+
+461
+00:24:49,810 --> 00:24:51,360
+So it's giving me this red message.
+
+462
+00:24:51,360 --> 00:24:53,550
+Now, thankfully, browsers
+like Chrome have actually
+
+463
+00:24:53,550 --> 00:24:55,480
+made it pretty hard to
+proceed nonetheless.
+
+464
+00:24:55,480 --> 00:24:57,300
+They indeed want me
+to go back to safety.
+
+465
+00:24:57,300 --> 00:25:00,550
+>> If I click here on Advance, it's
+going to tell me some more details.
+
+466
+00:25:00,550 --> 00:25:02,580
+And if I really want
+to proceed, they'll let
+
+467
+00:25:02,580 --> 00:25:06,250
+me go to facebook.com, which is,
+again, unsafe, at which point
+
+468
+00:25:06,250 --> 00:25:08,310
+I'll see Facebook's homepage, like this.
+
+469
+00:25:08,310 --> 00:25:10,080
+But then other things
+seem to be breaking.
+
+470
+00:25:10,080 --> 00:25:12,825
+What's probably breaking at this point?
+
+471
+00:25:12,825 --> 00:25:13,700
+AUDIENCE: JavaScript.
+
+472
+00:25:13,700 --> 00:25:15,540
+DAVID J. MALAN: Like the
+JavaScripts and/or CSS
+
+473
+00:25:15,540 --> 00:25:17,460
+files are similarly
+encountering that error.
+
+474
+00:25:17,460 --> 00:25:19,830
+So this is just a bad situation overall.
+
+475
+00:25:19,830 --> 00:25:24,790
+But the point here is that at least
+Facebook does indeed have SSL enabled
+
+476
+00:25:24,790 --> 00:25:30,040
+for their servers, as many websites,
+do, but not necessarily all.
+
+477
+00:25:30,040 --> 00:25:33,360
+>> But that's not alone the takeaway here.
+
+478
+00:25:33,360 --> 00:25:36,040
+Turns out that even SSL
+has been demonstrated
+
+479
+00:25:36,040 --> 00:25:37,810
+to be insecure in some way.
+
+480
+00:25:37,810 --> 00:25:40,400
+So I'm sort of hinting that SSL, good.
+
+481
+00:25:40,400 --> 00:25:44,250
+Look for HTTPS URLs, and life is
+good, because all of your HTTP traffic
+
+482
+00:25:44,250 --> 00:25:46,180
+and headers and content is encrypted.
+
+483
+00:25:46,180 --> 00:25:49,560
+>> No one can intercept it in the
+middle, except for a so-called man
+
+484
+00:25:49,560 --> 00:25:50,454
+in the middle.
+
+485
+00:25:50,454 --> 00:25:52,870
+This is a general technique
+in the world of security known
+
+486
+00:25:52,870 --> 00:25:54,420
+as a man-in-the-middle attack.
+
+487
+00:25:54,420 --> 00:25:57,067
+Suppose that you're this little
+laptop over here on the left,
+
+488
+00:25:57,067 --> 00:25:59,900
+and suppose you're trying to visit
+a server over there on the right,
+
+489
+00:25:59,900 --> 00:26:00,990
+like facebook.com.
+
+490
+00:26:00,990 --> 00:26:03,940
+>> But suppose that, in
+between you and Facebook,
+
+491
+00:26:03,940 --> 00:26:07,750
+is a whole bunch of other servers and
+equipment, like switches and routers,
+
+492
+00:26:07,750 --> 00:26:11,530
+DNS servers, DHCP servers,
+none of which we control.
+
+493
+00:26:11,530 --> 00:26:15,280
+It might be controlled by Starbucks
+or Harvard or Comcast or the like.
+
+494
+00:26:15,280 --> 00:26:18,090
+Well, suppose that someone
+maliciously, on your network,
+
+495
+00:26:18,090 --> 00:26:20,800
+in between you and Facebook,
+is able to tell you
+
+496
+00:26:20,800 --> 00:26:24,740
+that, you know what, the IP address of
+Facebook is not what you think it is.
+
+497
+00:26:24,740 --> 00:26:26,250
+It's this IP instead.
+
+498
+00:26:26,250 --> 00:26:28,740
+>> And so your browser's
+tricked into requesting
+
+499
+00:26:28,740 --> 00:26:30,750
+traffic from another
+computer altogether.
+
+500
+00:26:30,750 --> 00:26:35,350
+Well, suppose that computer
+simply looks at all
+
+501
+00:26:35,350 --> 00:26:38,859
+of the traffic you're requesting from
+Facebook and all of the web pages
+
+502
+00:26:38,859 --> 00:26:40,400
+that you're requesting from Facebook.
+
+503
+00:26:40,400 --> 00:26:45,700
+And any time it sees in your traffic
+a URL that starts with HTTPS,
+
+504
+00:26:45,700 --> 00:26:49,250
+it dynamically, on the
+fly, rewrites it as HTTP.
+
+505
+00:26:49,250 --> 00:26:53,490
+And any time it sees a location
+header, location colon,
+
+506
+00:26:53,490 --> 00:26:55,930
+like we use to redirect
+the user, those, too,
+
+507
+00:26:55,930 --> 00:27:00,690
+can be changed by this man in
+the middle from HTTPS to HTTP.
+
+508
+00:27:00,690 --> 00:27:04,170
+>> So even though you yourself might
+think you're at the real Facebook,
+
+509
+00:27:04,170 --> 00:27:07,860
+it is not that hard for an
+adversary with physical access
+
+510
+00:27:07,860 --> 00:27:10,630
+to your network to simply
+return pages to you that
+
+511
+00:27:10,630 --> 00:27:12,650
+look like Gmail, that
+look like Facebook,
+
+512
+00:27:12,650 --> 00:27:14,880
+and indeed the URL is
+identical, because they're
+
+513
+00:27:14,880 --> 00:27:19,410
+pretending to have that same host name
+because of some exploitation of DNS
+
+514
+00:27:19,410 --> 00:27:21,340
+or some other system like that.
+
+515
+00:27:21,340 --> 00:27:23,894
+And the result, then, is
+that we humans might only
+
+516
+00:27:23,894 --> 00:27:26,810
+realize that, OK, this looks like
+Gmail or at least the older version,
+
+517
+00:27:26,810 --> 00:27:29,480
+as is this slide from
+an older presentation.
+
+518
+00:27:29,480 --> 00:27:34,250
+But it looks like this--
+http://www.google.com.
+
+519
+00:27:34,250 --> 00:27:37,370
+>> So here, too, the reality
+is that how many of you,
+
+520
+00:27:37,370 --> 00:27:41,290
+when you go to Facebook or Gmail or any
+website and you know a little something
+
+521
+00:27:41,290 --> 00:27:47,060
+about SSL, how many of you physically
+type https:// and then the website
+
+522
+00:27:47,060 --> 00:27:48,990
+name, Enter.
+
+523
+00:27:48,990 --> 00:27:52,940
+Most of us just type, like, CS50,
+hit Enter, or F-A for Facebook
+
+524
+00:27:52,940 --> 00:27:54,770
+and hit Enter, and let it auto-complete.
+
+525
+00:27:54,770 --> 00:27:57,620
+But behind the scenes, if
+you watch your HTTP traffic,
+
+526
+00:27:57,620 --> 00:28:00,090
+there's probably a whole bunch
+of those location headers
+
+527
+00:28:00,090 --> 00:28:03,580
+that are sending you from
+Facebook to www.facebook.com
+
+528
+00:28:03,580 --> 00:28:07,250
+to https://www.facebook.com.
+
+529
+00:28:07,250 --> 00:28:12,300
+>> So that's one or more HTTP transactions
+where your information is completely
+
+530
+00:28:12,300 --> 00:28:15,102
+sent in the clear, no
+encryption whatsoever.
+
+531
+00:28:15,102 --> 00:28:17,810
+Now, that might not be such a big
+deal if all you're trying to do
+
+532
+00:28:17,810 --> 00:28:20,980
+is access the homepage, you're not
+sending your username and password.
+
+533
+00:28:20,980 --> 00:28:23,130
+But what is it underneath
+the hood, especially
+
+534
+00:28:23,130 --> 00:28:28,130
+for PHP-based websites that's also
+being sent back and forth when
+
+535
+00:28:28,130 --> 00:28:33,820
+you visit some webpage if
+that website uses, say, PHP
+
+536
+00:28:33,820 --> 00:28:37,370
+and implements functionality like pset7?
+
+537
+00:28:37,370 --> 00:28:40,840
+What was being sent back and forth
+in your HTTP headers that gave you
+
+538
+00:28:40,840 --> 00:28:44,903
+access to this pretty
+useful super global in PHP?
+
+539
+00:28:44,903 --> 00:28:45,710
+>> AUDIENCE: Cookies.
+
+540
+00:28:45,710 --> 00:28:49,020
+>> DAVID J. MALAN: Cookies,
+specifically the PHP sess ID cookie.
+
+541
+00:28:49,020 --> 00:28:53,100
+So recall, if we go to,
+say, cs50.harvard.edu again,
+
+542
+00:28:53,100 --> 00:28:56,440
+but this time, let's open up the
+Network tab, and now, up here,
+
+543
+00:28:56,440 --> 00:29:01,570
+let's literally just go
+to http://cs50.harvard.edu
+
+544
+00:29:01,570 --> 00:29:03,030
+and then hit Enter.
+
+545
+00:29:03,030 --> 00:29:05,520
+And then look at the screen down here.
+
+546
+00:29:05,520 --> 00:29:09,600
+Notice that we indeed got
+back a 301 moved permanently
+
+547
+00:29:09,600 --> 00:29:12,820
+message, which means that
+there's a location header here,
+
+548
+00:29:12,820 --> 00:29:15,610
+which is now redirecting me to HTTPS.
+
+549
+00:29:15,610 --> 00:29:21,330
+>> But the catch is that, if I already had
+a cookie stamped on my hand virtually,
+
+550
+00:29:21,330 --> 00:29:25,890
+as we've discussed before, and
+I the human sort of unknowingly
+
+551
+00:29:25,890 --> 00:29:29,090
+just visit the insecure
+version, and my browser takes it
+
+552
+00:29:29,090 --> 00:29:34,020
+upon itself to show that hand stamp for
+the first request, which is via HTTP,
+
+553
+00:29:34,020 --> 00:29:36,610
+any man in the middle, any
+adversary in the middle,
+
+554
+00:29:36,610 --> 00:29:39,380
+can theoretically just see
+those HTTP headers, just
+
+555
+00:29:39,380 --> 00:29:40,980
+like we're looking at them here.
+
+556
+00:29:40,980 --> 00:29:43,310
+It's only once you're
+talking to an HTTPS
+
+557
+00:29:43,310 --> 00:29:47,780
+URL does that hand stamp itself get
+encrypted, a la Caesar or Vigenere,
+
+558
+00:29:47,780 --> 00:29:50,500
+but with a fancier algorithm altogether.
+
+559
+00:29:50,500 --> 00:29:53,611
+So here, too, even if
+websites use HTTPS,
+
+560
+00:29:53,611 --> 00:29:56,860
+we humans have been conditioned, thanks
+to auto-complete and other techniques,
+
+561
+00:29:56,860 --> 00:29:59,827
+to not even think about
+the potential implications.
+
+562
+00:29:59,827 --> 00:30:01,160
+Now, there are ways around this.
+
+563
+00:30:01,160 --> 00:30:03,140
+For instance, many
+websites can be configured
+
+564
+00:30:03,140 --> 00:30:05,848
+so that, once you have this hand
+stamp, you can tell the browser,
+
+565
+00:30:05,848 --> 00:30:07,750
+this hand stamp is only
+for SSL connections.
+
+566
+00:30:07,750 --> 00:30:11,702
+The browser should not present
+it to me unless it's over SSL.
+
+567
+00:30:11,702 --> 00:30:13,410
+But many websites
+don't bother with that.
+
+568
+00:30:13,410 --> 00:30:17,260
+And many websites apparently
+don't even bother with SSL at all.
+
+569
+00:30:17,260 --> 00:30:20,540
+>> So for more on that, there's actually
+even more dirt in this presentation
+
+570
+00:30:20,540 --> 00:30:24,010
+that a fellow gave at a so-called black
+hat conference a couple of years ago,
+
+571
+00:30:24,010 --> 00:30:26,468
+where there's even other
+malicious tricks people have used.
+
+572
+00:30:26,468 --> 00:30:28,630
+You might recall this
+notion of a favicon, which
+
+573
+00:30:28,630 --> 00:30:32,270
+is like a little logo that's
+often in the browser's window.
+
+574
+00:30:32,270 --> 00:30:34,610
+Well, what's been
+common among bad guys is
+
+575
+00:30:34,610 --> 00:30:36,340
+to make fab icons that look like what?
+
+576
+00:30:36,340 --> 00:30:39,054
+
+577
+00:30:39,054 --> 00:30:39,970
+AUDIENCE: [INAUDIBLE].
+
+578
+00:30:39,970 --> 00:30:40,280
+DAVID J. MALAN: Say again?
+
+579
+00:30:40,280 --> 00:30:41,490
+AUDIENCE: The websites.
+
+580
+00:30:41,490 --> 00:30:42,130
+DAVID J. MALAN: Not a website.
+
+581
+00:30:42,130 --> 00:30:43,394
+So favicon, tiny little icon.
+
+582
+00:30:43,394 --> 00:30:45,560
+What would be the most
+malicious, manipulative thing
+
+583
+00:30:45,560 --> 00:30:47,832
+you could make your website's
+default icon look like?
+
+584
+00:30:47,832 --> 00:30:48,790
+AUDIENCE: A green lock.
+
+585
+00:30:48,790 --> 00:30:49,080
+DAVID J. MALAN: What's that?
+
+586
+00:30:49,080 --> 00:30:50,160
+AUDIENCE: A little green lock.
+
+587
+00:30:50,160 --> 00:30:51,960
+DAVID J. MALAN: Like
+a green lock, exactly.
+
+588
+00:30:51,960 --> 00:30:55,242
+So you can have this aesthetic
+of a little green padlock,
+
+589
+00:30:55,242 --> 00:30:57,950
+hinting to the world, oh, we're
+secure, when, again, all it means
+
+590
+00:30:57,950 --> 00:31:00,210
+is that you know some HTML.
+
+591
+00:31:00,210 --> 00:31:02,895
+So session hijacking
+refers to exactly that.
+
+592
+00:31:02,895 --> 00:31:05,936
+If you have someone who's kind of
+sniffing the airwaves in this room here
+
+593
+00:31:05,936 --> 00:31:09,150
+or has physical access to a
+network and can see your cookies,
+
+594
+00:31:09,150 --> 00:31:12,152
+he or she can grab that
+PHP sess ID cookie.
+
+595
+00:31:12,152 --> 00:31:13,860
+And then, if they're
+savvy enough to know
+
+596
+00:31:13,860 --> 00:31:18,200
+how to send that cookie as their own
+hand stamp just by copying that value
+
+597
+00:31:18,200 --> 00:31:20,860
+and sending the HTTP headers,
+someone could very easily
+
+598
+00:31:20,860 --> 00:31:23,510
+log into any of the Facebook
+accounts or Gmail accounts
+
+599
+00:31:23,510 --> 00:31:27,355
+or Twitter accounts that are here, open
+in the room, if you're not using SSL
+
+600
+00:31:27,355 --> 00:31:31,500
+and if the website is
+not using SSL correctly.
+
+601
+00:31:31,500 --> 00:31:33,690
+>> So let's transition to another one.
+
+602
+00:31:33,690 --> 00:31:34,700
+So another true story.
+
+603
+00:31:34,700 --> 00:31:38,680
+And this just broke in the
+news a week or two ago.
+
+604
+00:31:38,680 --> 00:31:41,520
+Verizon has been doing
+a very evil thing,
+
+605
+00:31:41,520 --> 00:31:45,110
+and as best people can tell,
+since at least 2012, whereby,
+
+606
+00:31:45,110 --> 00:31:51,550
+when you access websites via a Verizon
+cellphone, whatever manufacturer it is,
+
+607
+00:31:51,550 --> 00:31:54,150
+they have been presumptuously,
+as the story goes,
+
+608
+00:31:54,150 --> 00:31:59,890
+injecting into all of your HTTP
+traffic their own HTTP header.
+
+609
+00:31:59,890 --> 00:32:04,040
+And that header looks
+like this-- X-UIDH.
+
+610
+00:32:04,040 --> 00:32:06,465
+UID is like a unique
+identifier or user ID.
+
+611
+00:32:06,465 --> 00:32:09,660
+And X just means this is a custom
+header that's not standard.
+
+612
+00:32:09,660 --> 00:32:11,720
+>> But what this means
+is that, if I pull up,
+
+613
+00:32:11,720 --> 00:32:14,640
+for instance, any website
+on my phone here--
+
+614
+00:32:14,640 --> 00:32:18,310
+and I'm using Verizon as my carrier--
+even though my browser might not
+
+615
+00:32:18,310 --> 00:32:21,110
+be sending this HTTP
+header, Verizon, as soon
+
+616
+00:32:21,110 --> 00:32:23,650
+as the signal reaches their
+cellphone tower somewhere,
+
+617
+00:32:23,650 --> 00:32:28,187
+has been for some time injecting this
+header into all of our HTTP traffic.
+
+618
+00:32:28,187 --> 00:32:29,020
+Why do they do this?
+
+619
+00:32:29,020 --> 00:32:31,920
+Presumably for tracking reasons,
+for advertising reasons.
+
+620
+00:32:31,920 --> 00:32:36,280
+>> But the moronic design decision
+here is that an HTTP header,
+
+621
+00:32:36,280 --> 00:32:41,090
+as you guys know from pset6,
+is received by any web server
+
+622
+00:32:41,090 --> 00:32:42,540
+that you're requesting traffic of.
+
+623
+00:32:42,540 --> 00:32:44,248
+So all this time, if
+you've been visiting
+
+624
+00:32:44,248 --> 00:32:48,019
+Facebook or Gmail or any website
+that doesn't use SSL all the time--
+
+625
+00:32:48,019 --> 00:32:49,810
+and actually, those
+two thankfully now do--
+
+626
+00:32:49,810 --> 00:32:52,670
+but other websites that
+don't use SSL all the time,
+
+627
+00:32:52,670 --> 00:32:54,930
+Verizon has essentially
+been planting, forcibly,
+
+628
+00:32:54,930 --> 00:32:58,180
+a hand stamp on all of our
+hands that even we don't see,
+
+629
+00:32:58,180 --> 00:33:00,330
+but rather, the end websites do.
+
+630
+00:33:00,330 --> 00:33:02,890
+And so it hasn't been that
+hard for anyone on the internet
+
+631
+00:33:02,890 --> 00:33:05,245
+running a web server to
+realize, ooh, this is David,
+
+632
+00:33:05,245 --> 00:33:09,340
+or, ooh, this is Davin, even if we're
+rigorous about clearing our cookies,
+
+633
+00:33:09,340 --> 00:33:10,772
+because it's not coming from us.
+
+634
+00:33:10,772 --> 00:33:11,980
+It's coming from the carrier.
+
+635
+00:33:11,980 --> 00:33:14,896
+>> They do a lookup on your phone number
+and then say, oh, this is David.
+
+636
+00:33:14,896 --> 00:33:18,890
+Let me inject a unique identifier so
+that our advertisers or whoever can
+
+637
+00:33:18,890 --> 00:33:19,850
+keep track of this.
+
+638
+00:33:19,850 --> 00:33:23,769
+So this is actually very,
+very, very bad and horrifying.
+
+639
+00:33:23,769 --> 00:33:26,060
+And I would encourage you to
+take a look, for instance,
+
+640
+00:33:26,060 --> 00:33:29,950
+at this URL, which I should disclaim
+I actually tried this this morning.
+
+641
+00:33:29,950 --> 00:33:31,970
+I wrote a little script,
+put it at this URL,
+
+642
+00:33:31,970 --> 00:33:34,770
+visited it with my own Verizon
+cellphone after turning Wi-Fi off.
+
+643
+00:33:34,770 --> 00:33:38,010
+So you have to turn Wi-Fi off so that
+you're using 3G or LTE or the like.
+
+644
+00:33:38,010 --> 00:33:40,010
+And then, if you visit
+this URL, all this script
+
+645
+00:33:40,010 --> 00:33:41,770
+does for you guys, if
+you'd like to play,
+
+646
+00:33:41,770 --> 00:33:45,380
+is it spits out what HTTP headers
+your phone is sending to our server.
+
+647
+00:33:45,380 --> 00:33:48,510
+And I actually, in fairness, did
+not see this this morning, which
+
+648
+00:33:48,510 --> 00:33:51,430
+makes me think either the local
+cellphone tower I was connected to
+
+649
+00:33:51,430 --> 00:33:55,160
+or whatnot is not doing it, or they've
+backed off of doing this temporarily.
+
+650
+00:33:55,160 --> 00:33:58,160
+But for more information,
+to head to this URL here.
+
+651
+00:33:58,160 --> 00:34:00,680
+>> And now to this-- this
+comic might make sense.
+
+652
+00:34:00,680 --> 00:34:03,530
+
+653
+00:34:03,530 --> 00:34:04,030
+No?
+
+654
+00:34:04,030 --> 00:34:04,530
+OK.
+
+655
+00:34:04,530 --> 00:34:05,390
+All right.
+
+656
+00:34:05,390 --> 00:34:06,310
+That died.
+
+657
+00:34:06,310 --> 00:34:07,240
+All right.
+
+658
+00:34:07,240 --> 00:34:11,330
+>> So let's take a look at a couple of more
+attacks, if only to raise awareness of
+
+659
+00:34:11,330 --> 00:34:13,179
+and then offer a couple
+potential solutions
+
+660
+00:34:13,179 --> 00:34:14,430
+so that you're all the more mindful.
+
+661
+00:34:14,430 --> 00:34:17,305
+This one we talked about the other
+day, but didn't give a name to it.
+
+662
+00:34:17,305 --> 00:34:22,360
+It's a cross-site request forgery, which
+is an excessively fancy way of saying
+
+663
+00:34:22,360 --> 00:34:26,489
+you trick a user into clicking on
+a URL like this, which tricks them
+
+664
+00:34:26,489 --> 00:34:28,280
+into some behavior that
+they didn't intend.
+
+665
+00:34:28,280 --> 00:34:30,710
+>> In this case, this seems
+to be trying to trick me
+
+666
+00:34:30,710 --> 00:34:32,920
+into selling my shares of Google.
+
+667
+00:34:32,920 --> 00:34:36,810
+And this will succeed if
+I, the programmer of pset7,
+
+668
+00:34:36,810 --> 00:34:40,409
+have not done what?
+
+669
+00:34:40,409 --> 00:34:44,739
+Or rather, more generally, in what
+cases am I vulnerable to an attack
+
+670
+00:34:44,739 --> 00:34:49,460
+if someone tricks another user
+into clicking a URL like this?
+
+671
+00:34:49,460 --> 00:34:49,960
+Yeah?
+
+672
+00:34:49,960 --> 00:34:52,500
+>> AUDIENCE: You don't distinguish
+between GET and POST.
+
+673
+00:34:52,500 --> 00:34:52,760
+>> DAVID J. MALAN: Good.
+
+674
+00:34:52,760 --> 00:34:54,850
+If we don't distinguish
+between GET and POST,
+
+675
+00:34:54,850 --> 00:34:57,950
+and indeed, if we allow
+GET for selling things,
+
+676
+00:34:57,950 --> 00:35:00,284
+we're inviting this kind of attack.
+
+677
+00:35:00,284 --> 00:35:01,950
+But we could still mitigate it somewhat.
+
+678
+00:35:01,950 --> 00:35:04,283
+And I commented, I think,
+last week that Amazon at least
+
+679
+00:35:04,283 --> 00:35:08,180
+tries to mitigate this with a technique
+that's pretty straightforward.
+
+680
+00:35:08,180 --> 00:35:11,860
+What would a smart thing
+to do be on your server,
+
+681
+00:35:11,860 --> 00:35:14,652
+rather than just blindly selling
+whatever symbol the user types in?
+
+682
+00:35:14,652 --> 00:35:15,984
+AUDIENCE: Confirmation of sorts?
+
+683
+00:35:15,984 --> 00:35:19,320
+DAVID J. MALAN: A confirmation screen,
+something involving human interaction
+
+684
+00:35:19,320 --> 00:35:21,300
+so that I am forced to
+make the judgment call,
+
+685
+00:35:21,300 --> 00:35:23,930
+even if I've naively clicked
+a link that looks like this
+
+686
+00:35:23,930 --> 00:35:27,760
+and led me to the cell screen, at
+least asked me to confirm or deny.
+
+687
+00:35:27,760 --> 00:35:32,460
+But not an uncommon attack, especially
+in so-called phishing or spam-like
+
+688
+00:35:32,460 --> 00:35:33,280
+attacks.
+
+689
+00:35:33,280 --> 00:35:34,890
+>> Now, this one's a little more subtle.
+
+690
+00:35:34,890 --> 00:35:37,060
+This is a cross-site scripting attack.
+
+691
+00:35:37,060 --> 00:35:39,250
+And this happens if your
+website is not using
+
+692
+00:35:39,250 --> 00:35:41,260
+the equivalent of htmlspecialchars.
+
+693
+00:35:41,260 --> 00:35:45,160
+And it's taking user input and just
+blindly injecting it into a web page,
+
+694
+00:35:45,160 --> 00:35:48,170
+as with print or echo, with--
+again-- out calling something
+
+695
+00:35:48,170 --> 00:35:49,710
+like htmlspecialchars.
+
+696
+00:35:49,710 --> 00:35:52,602
+>> So suppose the website in
+question is vulnerable.com.
+
+697
+00:35:52,602 --> 00:35:55,620
+And suppose it accepts
+a parameter called q.
+
+698
+00:35:55,620 --> 00:35:59,040
+Look at what might happen
+if I actually, a bad guy,
+
+699
+00:35:59,040 --> 00:36:02,360
+type in or trick a user into
+visiting a URL that looks like this--
+
+700
+00:36:02,360 --> 00:36:05,900
+q= open script tag, closed script tag.
+
+701
+00:36:05,900 --> 00:36:08,480
+And again, I'm assuming
+that vulnerable.com is not
+
+702
+00:36:08,480 --> 00:36:11,740
+going to turn dangerous
+characters like open brackets
+
+703
+00:36:11,740 --> 00:36:15,570
+into HTML entities, the
+ampersand, L-T, semicolon thing
+
+704
+00:36:15,570 --> 00:36:17,090
+that you might have seen before.
+
+705
+00:36:17,090 --> 00:36:18,900
+>> But what is the script
+or JavaScript code
+
+706
+00:36:18,900 --> 00:36:21,160
+I'm trying to trick a
+user into executing?
+
+707
+00:36:21,160 --> 00:36:25,420
+Well, document.location refers
+to my browser's current address.
+
+708
+00:36:25,420 --> 00:36:29,400
+So if I do document.location=,
+this allows me to redirect the user
+
+709
+00:36:29,400 --> 00:36:30,830
+in JavaScript to another website.
+
+710
+00:36:30,830 --> 00:36:34,290
+It's like our PHP function
+redirect, but done in JavaScript.
+
+711
+00:36:34,290 --> 00:36:35,900
+>> Where am I trying to send the user?
+
+712
+00:36:35,900 --> 00:36:40,110
+Well, apparently, badguy.com/log.php,
+which is some script, apparently,
+
+713
+00:36:40,110 --> 00:36:43,530
+the bad guy wrote, that takes
+a parameter called cookie.
+
+714
+00:36:43,530 --> 00:36:46,790
+>> And notice, what do I
+appear to be concatenating
+
+715
+00:36:46,790 --> 00:36:49,190
+onto the end of that equal sign?
+
+716
+00:36:49,190 --> 00:36:52,030
+Well, something that
+says document.cookie.
+
+717
+00:36:52,030 --> 00:36:53,320
+We haven't talked about this.
+
+718
+00:36:53,320 --> 00:36:55,730
+But it turns out, in
+JavaScript, just like in PHP,
+
+719
+00:36:55,730 --> 00:36:59,770
+you can access all of the cookies
+that your browser is actually using.
+
+720
+00:36:59,770 --> 00:37:02,180
+>> So the effect of this one
+line of code, if a user
+
+721
+00:37:02,180 --> 00:37:06,440
+is tricked into clicking on this link
+and the website vulnerable.com does not
+
+722
+00:37:06,440 --> 00:37:10,000
+escape it with htmlspecialchars,
+is that you have just effectively
+
+723
+00:37:10,000 --> 00:37:13,660
+uploaded to log.php all of your cookies.
+
+724
+00:37:13,660 --> 00:37:17,300
+And that's not always that problematic,
+except if one of those cookies
+
+725
+00:37:17,300 --> 00:37:20,040
+is your session ID, your
+so-called hand stamp, which
+
+726
+00:37:20,040 --> 00:37:26,470
+means badguy.com can make his or her own
+HTTP requests, sending that same hand
+
+727
+00:37:26,470 --> 00:37:30,210
+stamp, that same cookie header,
+and log into whatever website
+
+728
+00:37:30,210 --> 00:37:33,680
+you were visiting, which in
+this case is vulnerable.com.
+
+729
+00:37:33,680 --> 00:37:35,940
+It's a cross-site scripting
+attack in the sense
+
+730
+00:37:35,940 --> 00:37:38,130
+that you're sort of tricking
+one site into telling
+
+731
+00:37:38,130 --> 00:37:43,560
+another website about some information
+it should not, in fact, have access to.
+
+732
+00:37:43,560 --> 00:37:46,510
+>> All right, ready for one
+other worrisome detail?
+
+733
+00:37:46,510 --> 00:37:49,970
+All right, the world is a
+scary place, legitimately so.
+
+734
+00:37:49,970 --> 00:37:52,480
+Here's a simple
+JavaScript example that's
+
+735
+00:37:52,480 --> 00:37:54,847
+in today's source code
+called geolocation 0 and 1.
+
+736
+00:37:54,847 --> 00:37:56,930
+And there's a couple
+walkthroughs online for this.
+
+737
+00:37:56,930 --> 00:37:59,920
+>> And it does the following if I
+open this web page in Chrome.
+
+738
+00:37:59,920 --> 00:38:04,590
+It first does nothing.
+
+739
+00:38:04,590 --> 00:38:07,300
+OK, we'll try this again.
+
+740
+00:38:07,300 --> 00:38:07,800
+Oh.
+
+741
+00:38:07,800 --> 00:38:10,990
+
+742
+00:38:10,990 --> 00:38:13,370
+No, it should do something.
+
+743
+00:38:13,370 --> 00:38:16,500
+OK, stand by.
+
+744
+00:38:16,500 --> 00:38:18,200
+>> Let's try this once more.
+
+745
+00:38:18,200 --> 00:38:21,285
+
+746
+00:38:21,285 --> 00:38:21,785
+[INAUDIBLE]
+
+747
+00:38:21,785 --> 00:38:26,941
+
+748
+00:38:26,941 --> 00:38:29,444
+Ah, OK, not sure why
+the-- oh, the appliance
+
+749
+00:38:29,444 --> 00:38:31,360
+probably lost internet
+access for some reason.
+
+750
+00:38:31,360 --> 00:38:32,840
+All right, so happens to me, too.
+
+751
+00:38:32,840 --> 00:38:34,650
+>> All right, so notice
+what's going on here.
+
+752
+00:38:34,650 --> 00:38:37,300
+This cryptic-looking URL, which
+is just one of CS50 server,
+
+753
+00:38:37,300 --> 00:38:41,130
+wants to use my computer's
+location, like physically it means.
+
+754
+00:38:41,130 --> 00:38:45,160
+And if, indeed, I click on
+Allow, let's see what happens.
+
+755
+00:38:45,160 --> 00:38:49,030
+Apparently, this is my current latitude
+and longitudinal coordinates down
+
+756
+00:38:49,030 --> 00:38:51,660
+to a pretty darn good resolution.
+
+757
+00:38:51,660 --> 00:38:53,310
+>> So how did I get at this?
+
+758
+00:38:53,310 --> 00:38:57,620
+How does this website, like CS50 server,
+know physically where in the world
+
+759
+00:38:57,620 --> 00:38:59,600
+I am, let alone with that precision.
+
+760
+00:38:59,600 --> 00:39:01,990
+Well, turns out-- let's just
+look at the page's source--
+
+761
+00:39:01,990 --> 00:39:05,280
+that in here is a bunch of HTML at
+the bottom that first has this--
+
+762
+00:39:05,280 --> 00:39:09,080
+body onload="geolocate"--
+just a function I wrote.
+
+763
+00:39:09,080 --> 00:39:11,840
+>> And I'm saying, on loading
+the page, call geolocate.
+
+764
+00:39:11,840 --> 00:39:13,750
+And then there's nothing
+in the body, because
+
+765
+00:39:13,750 --> 00:39:16,270
+in the head of the page,
+notice what I have here.
+
+766
+00:39:16,270 --> 00:39:18,090
+Here's my geolocate function.
+
+767
+00:39:18,090 --> 00:39:23,560
+And this is just some error checking--
+if the type of navigator.geolocation
+
+768
+00:39:23,560 --> 00:39:24,490
+is not undefined.
+
+769
+00:39:24,490 --> 00:39:26,240
+So JavaScript has this
+mechanism where you
+
+770
+00:39:26,240 --> 00:39:28,270
+can say, what is the
+type of this variable?
+
+771
+00:39:28,270 --> 00:39:30,790
+And if it's not undefined--
+that means it is some value--
+
+772
+00:39:30,790 --> 00:39:35,940
+I'm going to call
+navigator.geolocation.getCurrentPosition
+
+773
+00:39:35,940 --> 00:39:37,230
+and then callback.
+
+774
+00:39:37,230 --> 00:39:37,750
+>> What's this?
+
+775
+00:39:37,750 --> 00:39:39,916
+So in general, what is a
+callback, just to be clear?
+
+776
+00:39:39,916 --> 00:39:42,890
+You might have encountered
+this already in pset8.
+
+777
+00:39:42,890 --> 00:39:44,790
+Callback's a generic
+term for doing what?
+
+778
+00:39:44,790 --> 00:39:48,430
+
+779
+00:39:48,430 --> 00:39:49,554
+Feels like just me today.
+
+780
+00:39:49,554 --> 00:39:50,470
+AUDIENCE: [INAUDIBLE].
+
+781
+00:39:50,470 --> 00:39:53,322
+
+782
+00:39:53,322 --> 00:39:55,280
+DAVID J. MALAN: Exactly,
+a function that should
+
+783
+00:39:55,280 --> 00:39:57,330
+be called only when we have data.
+
+784
+00:39:57,330 --> 00:40:01,510
+This call to the browser, get my current
+position, might take one millisecond,
+
+785
+00:40:01,510 --> 00:40:02,720
+it might take a minute.
+
+786
+00:40:02,720 --> 00:40:06,960
+What this means is we are telling
+the get getCurrentPosition method,
+
+787
+00:40:06,960 --> 00:40:09,910
+call this callback function,
+which I literally named callback
+
+788
+00:40:09,910 --> 00:40:13,150
+for simplicity, which
+apparently is this one here.
+
+789
+00:40:13,150 --> 00:40:16,290
+>> And the way getCurrentPosition works,
+simply by reading the documentation
+
+790
+00:40:16,290 --> 00:40:19,540
+for some JavaScript code online, is
+that it calls that so-called callback
+
+791
+00:40:19,540 --> 00:40:23,220
+function, passes it into
+it a JavaScript object,
+
+792
+00:40:23,220 --> 00:40:28,970
+inside of which is .coords.latitude
+and .coords.longitude,
+
+793
+00:40:28,970 --> 00:40:32,140
+which is exactly how, then,
+when I reloaded this page,
+
+794
+00:40:32,140 --> 00:40:33,985
+I was able to see my location here.
+
+795
+00:40:33,985 --> 00:40:35,610
+Now, at least there was a defense here.
+
+796
+00:40:35,610 --> 00:40:37,820
+Before I visited this page,
+when it actually worked,
+
+797
+00:40:37,820 --> 00:40:40,935
+what was I at least prompted for?
+
+798
+00:40:40,935 --> 00:40:42,180
+>> AUDIENCE: [INAUDIBLE].
+
+799
+00:40:42,180 --> 00:40:44,200
+>> DAVID J. MALAN: Yes or no-- do
+you want to allow or deny this?
+
+800
+00:40:44,200 --> 00:40:46,630
+But think, too, about the habits
+you guys have probably adopted,
+
+801
+00:40:46,630 --> 00:40:48,330
+both on your phones and your browsers.
+
+802
+00:40:48,330 --> 00:40:50,390
+Many of us, myself
+included, are probably
+
+803
+00:40:50,390 --> 00:40:54,960
+pretty predisposed these days-- you
+see a pop-up, just Enter, OK, Approve,
+
+804
+00:40:54,960 --> 00:40:55,730
+Allow.
+
+805
+00:40:55,730 --> 00:40:59,070
+And increasingly, you can put
+yourself at risk for those reasons.
+
+806
+00:40:59,070 --> 00:41:03,280
+>> So in fact, there was this wonderful bug
+a few years ago-- or lack of feature--
+
+807
+00:41:03,280 --> 00:41:08,250
+that iTunes had a few years ago,
+whereby, if you had a cell phone,
+
+808
+00:41:08,250 --> 00:41:12,000
+and it was an iPhone,
+and you left your home
+
+809
+00:41:12,000 --> 00:41:15,600
+and therefore traveled around the world
+or the neighborhood, all this time,
+
+810
+00:41:15,600 --> 00:41:17,819
+your phone was logging
+where you are via GPS.
+
+811
+00:41:17,819 --> 00:41:20,610
+And this is actually disclosed,
+and people kind of expect this now.
+
+812
+00:41:20,610 --> 00:41:21,930
+Your phone knows where you are.
+
+813
+00:41:21,930 --> 00:41:24,990
+But the problem was that,
+when you were backing up
+
+814
+00:41:24,990 --> 00:41:29,260
+your phone to iTunes-- this was before
+the days of iCloud, which is for better
+
+815
+00:41:29,260 --> 00:41:33,960
+or for worse-- the data was being stored
+in iTunes, completely unencrypted.
+
+816
+00:41:33,960 --> 00:41:37,370
+So if you have a family or roommates
+or a malicious neighbor who's
+
+817
+00:41:37,370 --> 00:41:41,430
+curious about literally every GPS
+coordinate you have ever been to,
+
+818
+00:41:41,430 --> 00:41:43,300
+he or she could just
+sit down at iTunes, run
+
+819
+00:41:43,300 --> 00:41:46,540
+some software that was freely
+available, and produce maps like this.
+
+820
+00:41:46,540 --> 00:41:48,680
+>> In fact, this is what I
+produced of my own phone.
+
+821
+00:41:48,680 --> 00:41:49,380
+I plugged it in.
+
+822
+00:41:49,380 --> 00:41:51,670
+And it looks like, based
+on the blue dots there,
+
+823
+00:41:51,670 --> 00:41:53,900
+that's where most of
+the GPS coordinates were
+
+824
+00:41:53,900 --> 00:41:56,680
+logged by iTunes that I
+was in the Northeast there.
+
+825
+00:41:56,680 --> 00:42:00,030
+But I apparently traveled around
+a bit, even within Massachusetts.
+
+826
+00:42:00,030 --> 00:42:01,950
+>> So that's Boston Harbor
+there on the right.
+
+827
+00:42:01,950 --> 00:42:04,430
+That's kind of Cambridge and
+Boston, where it's darkest.
+
+828
+00:42:04,430 --> 00:42:07,660
+And occasionally, I would run
+errands to a larger geography.
+
+829
+00:42:07,660 --> 00:42:11,464
+>> But iTunes, for years, had, as best
+I could tell, all of this data on me.
+
+830
+00:42:11,464 --> 00:42:13,380
+You could tell that,
+that year, I was actually
+
+831
+00:42:13,380 --> 00:42:17,990
+traveling a lot between Boston
+and New York, going back and forth
+
+832
+00:42:17,990 --> 00:42:18,830
+and back and forth.
+
+833
+00:42:18,830 --> 00:42:22,660
+And indeed, this is me on Amtrak, back
+and forth, back and forth, quite a bit.
+
+834
+00:42:22,660 --> 00:42:25,970
+All of that was being logged and
+stored encrypted on my computer
+
+835
+00:42:25,970 --> 00:42:28,520
+for anyone who might have
+access to my computer.
+
+836
+00:42:28,520 --> 00:42:29,480
+>> This was worrisome.
+
+837
+00:42:29,480 --> 00:42:32,180
+I did not know why I was
+in Pennsylvania or why
+
+838
+00:42:32,180 --> 00:42:35,277
+my phone was in Pennsylvania,
+apparently fairly densely.
+
+839
+00:42:35,277 --> 00:42:37,360
+And then, finally, I looked
+at my Gcal, and, oh, I
+
+840
+00:42:37,360 --> 00:42:39,880
+visited CMU, Carnegie
+Mellon, at the time.
+
+841
+00:42:39,880 --> 00:42:42,031
+And phew, that kind of
+explained that blip.
+
+842
+00:42:42,031 --> 00:42:43,780
+And then, if you zoom
+out further, you can
+
+843
+00:42:43,780 --> 00:42:46,850
+see I visited San Francisco
+one or more times then,
+
+844
+00:42:46,850 --> 00:42:51,140
+and I even had a layover in what
+I think is Vegas, down there.
+
+845
+00:42:51,140 --> 00:42:54,120
+So all of this-- just a
+layover, at the airport.
+
+846
+00:42:54,120 --> 00:42:56,420
+>> AUDIENCE: [LAUGHTER]
+
+847
+00:42:56,420 --> 00:43:00,760
+>> So this is only to say that these
+problems, honestly, are omnipresent.
+
+848
+00:43:00,760 --> 00:43:02,780
+And it only feels
+increasingly like there's
+
+849
+00:43:02,780 --> 00:43:05,810
+more and more of this being disclosed,
+which is probably a good thing.
+
+850
+00:43:05,810 --> 00:43:08,390
+I daresay, the world isn't
+getting worse at writing software.
+
+851
+00:43:08,390 --> 00:43:10,520
+We're getting better,
+hopefully, at noticing
+
+852
+00:43:10,520 --> 00:43:13,037
+how bad certain software
+is that we're using.
+
+853
+00:43:13,037 --> 00:43:14,870
+And thankfully, some
+companies are beginning
+
+854
+00:43:14,870 --> 00:43:17,080
+to be held accountable for this.
+
+855
+00:43:17,080 --> 00:43:19,080
+>> But what kinds of defenses
+can you have in mind?
+
+856
+00:43:19,080 --> 00:43:23,610
+So besides password managers, like
+1Password and LastPass and others,
+
+857
+00:43:23,610 --> 00:43:27,340
+besides just changing your passwords
+and coming up with random ones
+
+858
+00:43:27,340 --> 00:43:29,700
+using software like
+that, you can also try
+
+859
+00:43:29,700 --> 00:43:31,700
+as best you can to encrypt
+all of your traffic
+
+860
+00:43:31,700 --> 00:43:34,680
+to at least narrow the zone of a threat.
+
+861
+00:43:34,680 --> 00:43:38,100
+So for instance, as Harvard affiliates,
+you can all go to vpn.harvard.edu
+
+862
+00:43:38,100 --> 00:43:41,010
+and log in with your Harvard ID and PIN.
+
+863
+00:43:41,010 --> 00:43:49,350
+And this will establish a secure
+connection between you and Harvard.
+
+864
+00:43:49,350 --> 00:43:51,150
+>> Now, that doesn't
+necessarily protect you
+
+865
+00:43:51,150 --> 00:43:54,360
+against any threats that are between
+Harvard and Facebook or Harvard
+
+866
+00:43:54,360 --> 00:43:54,861
+and Gmail.
+
+867
+00:43:54,861 --> 00:43:56,735
+But if you're sitting
+in an airport or you're
+
+868
+00:43:56,735 --> 00:43:59,260
+sitting in Starbucks or you're
+sitting at a friend's place,
+
+869
+00:43:59,260 --> 00:44:02,730
+and you don't really trust them or their
+configuration of their home router,
+
+870
+00:44:02,730 --> 00:44:04,970
+at least you can establish
+a secure connection
+
+871
+00:44:04,970 --> 00:44:10,260
+to an entity like this place that's
+probably a little better secured
+
+872
+00:44:10,260 --> 00:44:12,437
+than something like a
+Starbucks or the like.
+
+873
+00:44:12,437 --> 00:44:14,270
+And what this does is
+it establishes, again,
+
+874
+00:44:14,270 --> 00:44:16,300
+encryption between you and the endpoint.
+
+875
+00:44:16,300 --> 00:44:17,880
+>> Even fancier are things like this.
+
+876
+00:44:17,880 --> 00:44:20,000
+So some of you might already
+be familiar with Tor,
+
+877
+00:44:20,000 --> 00:44:22,930
+which is this sort of anonymization
+network, whereby lots of people,
+
+878
+00:44:22,930 --> 00:44:26,640
+if they run this software, route
+subsequently their internet
+
+879
+00:44:26,640 --> 00:44:27,990
+traffic through each other.
+
+880
+00:44:27,990 --> 00:44:31,460
+So the shortest point is
+no longer between A and B.
+
+881
+00:44:31,460 --> 00:44:35,850
+But it might be all over the
+place so that you're essentially
+
+882
+00:44:35,850 --> 00:44:40,742
+covering one's tracks and leaving
+less of a record as to where your HTTP
+
+883
+00:44:40,742 --> 00:44:43,950
+traffic came from, because it's going
+through a whole bunch of other people's
+
+884
+00:44:43,950 --> 00:44:45,990
+laptops or desktops,
+for better or for worse.
+
+885
+00:44:45,990 --> 00:44:48,180
+>> But even this is not a surefire thing.
+
+886
+00:44:48,180 --> 00:44:51,560
+Some of you might recall last year
+the bomb scare that was called in.
+
+887
+00:44:51,560 --> 00:44:54,662
+And it was traced ultimately to a
+user who had used this network here.
+
+888
+00:44:54,662 --> 00:44:57,870
+And the catch there , as I recall, is,
+if there aren't that many other people
+
+889
+00:44:57,870 --> 00:45:02,190
+using a software like this or
+using this port and protocol,
+
+890
+00:45:02,190 --> 00:45:06,250
+it's not that hard for a network to even
+figure out who, with some probability,
+
+891
+00:45:06,250 --> 00:45:08,950
+was in fact anonymizing
+his or her traffic.
+
+892
+00:45:08,950 --> 00:45:12,030
+>> And I don't know if those were the
+actual particulars in question.
+
+893
+00:45:12,030 --> 00:45:15,400
+But surely, realize that none of
+these are surefire solutions, as well.
+
+894
+00:45:15,400 --> 00:45:18,820
+And the goal here today is to least
+get you thinking about these things
+
+895
+00:45:18,820 --> 00:45:23,140
+and coming up with techniques for
+defending yourself against them.
+
+896
+00:45:23,140 --> 00:45:28,858
+Any questions on all of the threats
+that await you out there, and in here?
+
+897
+00:45:28,858 --> 00:45:29,358
+Yeah?
+
+898
+00:45:29,358 --> 00:45:29,858
+
+899
+00:45:29,858 --> 00:45:31,793
+AUDIENCE: How secure do
+we expect the average
+
+900
+00:45:31,793 --> 00:45:35,210
+[? website to be, ?] like
+the average CS50 project?
+
+901
+00:45:35,210 --> 00:45:38,530
+>> DAVID J. MALAN: The
+average CS50 project?
+
+902
+00:45:38,530 --> 00:45:43,190
+It is always proved every year that
+some CS50 final projects are not
+
+903
+00:45:43,190 --> 00:45:44,530
+particularly secure.
+
+904
+00:45:44,530 --> 00:45:47,940
+Usually, it's some roommate or
+hallmate that figures this out
+
+905
+00:45:47,940 --> 00:45:51,200
+by sending requests to your project.
+
+906
+00:45:51,200 --> 00:45:55,230
+>> Short answer-- how many
+websites are secure?
+
+907
+00:45:55,230 --> 00:45:57,450
+I'm picking on today anomalies.
+
+908
+00:45:57,450 --> 00:46:00,640
+Like it was just happenstance
+that I realized that this website
+
+909
+00:46:00,640 --> 00:46:03,390
+I've been ordering these frankly
+delicious arrangements from--
+
+910
+00:46:03,390 --> 00:46:05,348
+and I'm not sure I'll
+stop using their website;
+
+911
+00:46:05,348 --> 00:46:08,030
+I might just change my
+password more regularly--
+
+912
+00:46:08,030 --> 00:46:11,320
+it's not clear just how
+vulnerable all these various--
+
+913
+00:46:11,320 --> 00:46:12,970
+this is chocolate-covered actually.
+
+914
+00:46:12,970 --> 00:46:16,172
+
+915
+00:46:16,172 --> 00:46:19,130
+The short answer, I can't answer that
+effectively, other than to say it
+
+916
+00:46:19,130 --> 00:46:22,150
+was not that hard for me to
+find some of these examples just
+
+917
+00:46:22,150 --> 00:46:24,040
+for the sake of discussion in lecture.
+
+918
+00:46:24,040 --> 00:46:26,456
+And just keeping an eye on
+Google News and other resources
+
+919
+00:46:26,456 --> 00:46:29,590
+will bring all the more of
+these kinds of things to light.
+
+920
+00:46:29,590 --> 00:46:32,460
+>> All right, let's conclude
+with this prequel
+
+921
+00:46:32,460 --> 00:46:36,870
+that CS50's team has prepared for you
+in anticipation of the CS50 Hackathon.
+
+922
+00:46:36,870 --> 00:46:39,763
+And on your way out in a
+moment, fruit will be served.
+
+923
+00:46:39,763 --> 00:46:40,429
+[VIDEO PLAYBACK]
+
+924
+00:46:40,429 --> 00:46:43,595
+[MUSIC FERGIE, Q TIP, AND GOONROCK, "A
+LITTLE PARTY NEVER KILLED NOBODY (ALL
+
+925
+00:46:43,595 --> 00:46:44,373
+WE GOT)"]
+
+926
+00:46:44,373 --> 00:48:08,880
+
+927
+00:48:08,880 --> 00:48:13,467
+>> -[SNORING]
+
+928
+00:48:13,467 --> 00:48:14,300
+[END VIDEO PLAYBACK]
+
+929
+00:48:14,300 --> 00:48:15,420
+DAVID J. MALAN: That's it for CS50.
+
+930
+00:48:15,420 --> 00:48:16,544
+We'll see you on Wednesday.
+
+931
+00:48:16,544 --> 00:48:20,670
+
+932
+00:48:20,670 --> 00:48:25,840
+[MUSIC - SKRILLEX, "IMMA' TRY IT OUT"]
+
+933
+00:48:25,840 --> 00:51:47,776

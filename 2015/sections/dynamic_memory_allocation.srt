@@ -1,0 +1,1392 @@
+1
+00:00:00,000 --> 00:00:00,499
+
+2
+00:00:00,499 --> 00:00:01,395
+[MUSIC PLAYING]
+
+3
+00:00:01,395 --> 00:00:05,590
+
+4
+00:00:05,590 --> 00:00:07,940
+>> DOUG LLOYD: OK so a suggestion
+before starting here.
+
+5
+00:00:07,940 --> 00:00:11,660
+If you haven't watched the video on
+pointers you might want to do so first.
+
+6
+00:00:11,660 --> 00:00:15,860
+Because this video is another
+way of working with pointers.
+
+7
+00:00:15,860 --> 00:00:17,574
+>> So it's going to talk
+about some concepts
+
+8
+00:00:17,574 --> 00:00:19,490
+that we cover in the
+pointers video, and we're
+
+9
+00:00:19,490 --> 00:00:21,948
+going to gloss over them now,
+assuming that they're already
+
+10
+00:00:21,948 --> 00:00:23,090
+sort of understood.
+
+11
+00:00:23,090 --> 00:00:25,440
+So that's just your fair warning
+that if you're seeing this video
+
+12
+00:00:25,440 --> 00:00:27,814
+and you haven't seen the
+pointers video, it might sort of
+
+13
+00:00:27,814 --> 00:00:29,610
+fly over your head a little bit.
+
+14
+00:00:29,610 --> 00:00:32,080
+And so it might be better
+to watch it in that order.
+
+15
+00:00:32,080 --> 00:00:34,710
+>> So we have already seen one
+way to work with pointers,
+
+16
+00:00:34,710 --> 00:00:37,810
+which is we declare a
+variable, and then we
+
+17
+00:00:37,810 --> 00:00:42,160
+declare another variable, a pointer
+variable, that points to it.
+
+18
+00:00:42,160 --> 00:00:44,870
+So we've created a
+variable with a name, we've
+
+19
+00:00:44,870 --> 00:00:48,480
+created a second variable with a name,
+and we point that second variable
+
+20
+00:00:48,480 --> 00:00:50,220
+at that first.
+
+21
+00:00:50,220 --> 00:00:52,370
+This sort of has a
+problem though, because it
+
+22
+00:00:52,370 --> 00:00:54,650
+requires us to know exactly
+how much memory we're
+
+23
+00:00:54,650 --> 00:00:57,600
+going to need the moment
+our program is compiled.
+
+24
+00:00:57,600 --> 00:00:58,220
+>> Why is that?
+
+25
+00:00:58,220 --> 00:01:03,338
+Because we need to be able to name or
+identify all of the possible variables
+
+26
+00:01:03,338 --> 00:01:04,129
+we might encounter.
+
+27
+00:01:04,129 --> 00:01:07,910
+We might have an array that might be
+able to hold a lot of information,
+
+28
+00:01:07,910 --> 00:01:10,110
+but it's still not
+exactly precise enough.
+
+29
+00:01:10,110 --> 00:01:12,640
+What if we don't know,
+what if we have no idea
+
+30
+00:01:12,640 --> 00:01:14,370
+how much we'll need at compile time?
+
+31
+00:01:14,370 --> 00:01:17,020
+Or what if our program will
+run for a really long time,
+
+32
+00:01:17,020 --> 00:01:19,810
+accepting various user
+data, and we can't really
+
+33
+00:01:19,810 --> 00:01:23,170
+estimate whether we're
+going to need 1,000 units?
+
+34
+00:01:23,170 --> 00:01:26,060
+>> It's not like we can
+say at the command line
+
+35
+00:01:26,060 --> 00:01:28,040
+enter how many items
+you think you'll need.
+
+36
+00:01:28,040 --> 00:01:31,100
+Well what if that guess is wrong?
+
+37
+00:01:31,100 --> 00:01:34,300
+Dynamic memory allocation
+sort of allows us the way
+
+38
+00:01:34,300 --> 00:01:36,867
+to get around this particular problem.
+
+39
+00:01:36,867 --> 00:01:38,700
+And the way it does it
+is by using pointers.
+
+40
+00:01:38,700 --> 00:01:42,140
+>> We can use pointers to
+get access to dynamically
+
+41
+00:01:42,140 --> 00:01:45,710
+allocated memory, memory that is
+allocated as your program is running.
+
+42
+00:01:45,710 --> 00:01:48,290
+It's not allocated at compile time.
+
+43
+00:01:48,290 --> 00:01:51,570
+When you dynamically allocate
+memory it comes from a pool
+
+44
+00:01:51,570 --> 00:01:53,795
+of memory known as the heap.
+
+45
+00:01:53,795 --> 00:01:56,420
+Previously all the memory we've
+been working with in the course
+
+46
+00:01:56,420 --> 00:01:59,920
+has been coming from a pool
+of memory known as the stack.
+
+47
+00:01:59,920 --> 00:02:02,470
+A good way to generally
+keep in mind-- and this rule
+
+48
+00:02:02,470 --> 00:02:04,720
+doesn't always hold true,
+but pretty much almost
+
+49
+00:02:04,720 --> 00:02:09,940
+always holds true-- is that any
+time you give a variable name it
+
+50
+00:02:09,940 --> 00:02:12,090
+probably lives on the stack.
+
+51
+00:02:12,090 --> 00:02:14,650
+And any time you don't
+give a variable a name,
+
+52
+00:02:14,650 --> 00:02:19,160
+which you can do with dynamic memory
+allocation, it lives on the heap.
+
+53
+00:02:19,160 --> 00:02:22,190
+>> Now I'm kind of presenting this as
+if there's these two pools of memory.
+
+54
+00:02:22,190 --> 00:02:24,740
+But you may have seen this
+diagram, which is generally
+
+55
+00:02:24,740 --> 00:02:27,290
+a representation of
+what memory looks like,
+
+56
+00:02:27,290 --> 00:02:30,373
+and we're not going to care about all
+the stuff at the top and the bottom.
+
+57
+00:02:30,373 --> 00:02:33,580
+What we care about is this part in
+the middle here, heap and stack.
+
+58
+00:02:33,580 --> 00:02:35,570
+As you can see by
+looking at this diagram,
+
+59
+00:02:35,570 --> 00:02:38,390
+these actually aren't two
+separate pools of memory.
+
+60
+00:02:38,390 --> 00:02:42,757
+It's one shared pool of memory
+where you start, in this visual
+
+61
+00:02:42,757 --> 00:02:44,590
+you start at the bottom
+and start filling up
+
+62
+00:02:44,590 --> 00:02:48,040
+from the bottom with the stack, and you
+start at the top and start filling up
+
+63
+00:02:48,040 --> 00:02:50,072
+from the top down with the heap.
+
+64
+00:02:50,072 --> 00:02:51,780
+But it really is the
+same pool, it's just
+
+65
+00:02:51,780 --> 00:02:56,050
+different spots, different locations
+in memory that are being allocated.
+
+66
+00:02:56,050 --> 00:02:59,060
+And you can run out of
+memory by either having
+
+67
+00:02:59,060 --> 00:03:01,240
+the heap go all the way
+to the bottom, or have
+
+68
+00:03:01,240 --> 00:03:05,440
+the stack go all the way to the top,
+or having the heap and the stack
+
+69
+00:03:05,440 --> 00:03:06,740
+meet up against each other.
+
+70
+00:03:06,740 --> 00:03:09,500
+All of those can be conditions
+that cause your program
+
+71
+00:03:09,500 --> 00:03:11,030
+to run out of memory.
+
+72
+00:03:11,030 --> 00:03:11,952
+So keep that in mind.
+
+73
+00:03:11,952 --> 00:03:13,660
+When we talk about
+the heap and the stack
+
+74
+00:03:13,660 --> 00:03:17,880
+we are really talking about the
+same general chunk of memory, just
+
+75
+00:03:17,880 --> 00:03:21,930
+different portions of that memory.
+
+76
+00:03:21,930 --> 00:03:24,910
+>> So how do we get dynamically
+allocated memory in the first place?
+
+77
+00:03:24,910 --> 00:03:27,740
+How does our program get
+memory as it's running?
+
+78
+00:03:27,740 --> 00:03:32,660
+Well C provides a function called
+malloc, memory allocator, which
+
+79
+00:03:32,660 --> 00:03:36,810
+you make a call to, and you pass in
+how many bytes of memory that you want.
+
+80
+00:03:36,810 --> 00:03:39,940
+So if your program is running
+and you want an integer runtime,
+
+81
+00:03:39,940 --> 00:03:46,040
+you might mallock four bytes of
+memory, malloc parentheses four.
+
+82
+00:03:46,040 --> 00:03:48,540
+>> mallock will go through
+looking through the heap,
+
+83
+00:03:48,540 --> 00:03:50,750
+because we're dynamically
+allocating memory,
+
+84
+00:03:50,750 --> 00:03:53,500
+and it will return to you
+a pointer to that memory.
+
+85
+00:03:53,500 --> 00:03:56,180
+It doesn't give you that memory--
+it doesn't give it a name,
+
+86
+00:03:56,180 --> 00:03:57,950
+it gives you a pointer to it.
+
+87
+00:03:57,950 --> 00:04:00,780
+And so that's why again I said
+that it's important to maybe
+
+88
+00:04:00,780 --> 00:04:03,770
+have watched the pointers video
+before we get too far into this.
+
+89
+00:04:03,770 --> 00:04:05,940
+So malloc's going to
+give you back a pointer.
+
+90
+00:04:05,940 --> 00:04:08,950
+>> If mallock can't give you any
+memory because you've run out,
+
+91
+00:04:08,950 --> 00:04:10,645
+it'll give you back a null pointer.
+
+92
+00:04:10,645 --> 00:04:15,282
+Do you remember what happens if we
+try and dereference a null pointer?
+
+93
+00:04:15,282 --> 00:04:17,019
+We suffer a seg fault, right?
+
+94
+00:04:17,019 --> 00:04:18,060
+That's probably not good.
+
+95
+00:04:18,060 --> 00:04:21,579
+>> So every time you make a call
+to malloc you always, always
+
+96
+00:04:21,579 --> 00:04:25,270
+need to check whether or not the
+pointer it gave you back is null.
+
+97
+00:04:25,270 --> 00:04:28,800
+If it is, you need to end your program
+because if you try and dereference
+
+98
+00:04:28,800 --> 00:04:31,360
+the null pointer you're going
+to suffer a segmentation fault
+
+99
+00:04:31,360 --> 00:04:34,380
+and your program is
+going to crash anyway.
+
+100
+00:04:34,380 --> 00:04:37,190
+So how do we statically
+obtain an integer?
+
+101
+00:04:37,190 --> 00:04:37,730
+>> int x.
+
+102
+00:04:37,730 --> 00:04:40,010
+We've probably done that
+a bunch of times, right?
+
+103
+00:04:40,010 --> 00:04:43,480
+This creates a variable called
+x that lives on the stack.
+
+104
+00:04:43,480 --> 00:04:46,190
+How do we dynamically obtain an integer?
+
+105
+00:04:46,190 --> 00:04:50,010
+Int star px equals malloc 4.
+
+106
+00:04:50,010 --> 00:04:53,050
+>> Or more appropriately
+we'd say int star px
+
+107
+00:04:53,050 --> 00:04:57,680
+equals malloc size of int,
+just to throw some fewer
+
+108
+00:04:57,680 --> 00:04:59,740
+magic numbers around our program.
+
+109
+00:04:59,740 --> 00:05:04,140
+This is going to obtain for us
+four bytes of memory from the heap,
+
+110
+00:05:04,140 --> 00:05:06,720
+and the pointer we get
+back to it is called px.
+
+111
+00:05:06,720 --> 00:05:08,430
+And then just as we've
+done previously we
+
+112
+00:05:08,430 --> 00:05:13,966
+can dereference px to
+access that memory.
+
+113
+00:05:13,966 --> 00:05:15,590
+How do we get an integer from the user?
+
+114
+00:05:15,590 --> 00:05:17,970
+We can say int x equals get int.
+
+115
+00:05:17,970 --> 00:05:19,930
+That's pretty straightforward.
+
+116
+00:05:19,930 --> 00:05:24,030
+What if we want to create an array
+of x floats that live on the stack?
+
+117
+00:05:24,030 --> 00:05:28,210
+float stack_array-- that's the name
+of our array-- square brackets x.
+
+118
+00:05:28,210 --> 00:05:32,419
+That will create for us an array
+of x floats that live on the stack.
+
+119
+00:05:32,419 --> 00:05:34,960
+We can create an array of floats
+that lives on the heap, too.
+
+120
+00:05:34,960 --> 00:05:37,330
+The syntax might look a
+little more cumbersome,
+
+121
+00:05:37,330 --> 00:05:41,740
+but we can say float
+star heap_array equals
+
+122
+00:05:41,740 --> 00:05:44,360
+malloc x times the size of the float.
+
+123
+00:05:44,360 --> 00:05:48,160
+I need enough room to hold
+x floating point values.
+
+124
+00:05:48,160 --> 00:05:51,560
+So say I need 100
+floats, or 1,000 floats.
+
+125
+00:05:51,560 --> 00:05:54,810
+So in that case it would be
+400 bytes for 100 floats,
+
+126
+00:05:54,810 --> 00:05:59,080
+or 4,000 bytes for 1,000 floats,
+because each float takes up
+
+127
+00:05:59,080 --> 00:06:01,230
+four bytes of space.
+
+128
+00:06:01,230 --> 00:06:05,110
+>> After doing this I can use the
+square bracket syntax on heap_array.
+
+129
+00:06:05,110 --> 00:06:08,970
+Just as I would on stack_array, I
+can access its elements individually
+
+130
+00:06:08,970 --> 00:06:11,590
+using heap_array zero, heap_array one.
+
+131
+00:06:11,590 --> 00:06:15,800
+But recall the reason we can do that
+is because the name of an array in C
+
+132
+00:06:15,800 --> 00:06:19,990
+is really a pointer to
+that array's first element.
+
+133
+00:06:19,990 --> 00:06:23,480
+So the fact that we're declaring an
+array of floats on the stack here
+
+134
+00:06:23,480 --> 00:06:24,810
+is actually a bit misleading.
+
+135
+00:06:24,810 --> 00:06:27,600
+We really are in the
+second line of code there
+
+136
+00:06:27,600 --> 00:06:32,360
+also creating a pointer to a chunk of
+memory that we then do some work with.
+
+137
+00:06:32,360 --> 00:06:35,620
+>> Here's the big problem with
+dynamically allocated memory though,
+
+138
+00:06:35,620 --> 00:06:38,360
+and this is why it's really
+important to develop some good habits
+
+139
+00:06:38,360 --> 00:06:39,800
+when you're working with it.
+
+140
+00:06:39,800 --> 00:06:43,060
+Unlike statically declared
+memory, your memory
+
+141
+00:06:43,060 --> 00:06:46,790
+is not automatically returned to the
+system when your function is done.
+
+142
+00:06:46,790 --> 00:06:49,280
+So if we have main, and
+main calls a function
+
+143
+00:06:49,280 --> 00:06:53,860
+f, when f finishes whatever it's doing
+and returns control of the program
+
+144
+00:06:53,860 --> 00:06:58,810
+back to main, all of the memory
+that f used is given back.
+
+145
+00:06:58,810 --> 00:07:01,250
+It can be used again
+by some other program,
+
+146
+00:07:01,250 --> 00:07:04,250
+or some other function that
+gets called later on in main.
+
+147
+00:07:04,250 --> 00:07:06,970
+It can use that same memory over again.
+
+148
+00:07:06,970 --> 00:07:09,620
+>> If you dynamically
+allocate memory though
+
+149
+00:07:09,620 --> 00:07:14,380
+you have to explicitly tell the
+system that you're done with it.
+
+150
+00:07:14,380 --> 00:07:18,370
+It'll hold onto it for you, which could
+lead to a problem of you running out
+
+151
+00:07:18,370 --> 00:07:19,290
+of memory.
+
+152
+00:07:19,290 --> 00:07:22,179
+And in fact we sometimes refer
+to this as a memory leak.
+
+153
+00:07:22,179 --> 00:07:24,970
+And sometimes these memory leaks
+can actually be really devastating
+
+154
+00:07:24,970 --> 00:07:27,020
+for system performance.
+
+155
+00:07:27,020 --> 00:07:31,120
+>> If you are a frequent internet user
+you might use certain web browsers,
+
+156
+00:07:31,120 --> 00:07:35,630
+and I won't name names here, but
+there are some web browsers out there
+
+157
+00:07:35,630 --> 00:07:39,150
+that are notorious for actually having
+memory leaks that don't get fixed.
+
+158
+00:07:39,150 --> 00:07:44,570
+And if you leave your browser open
+for a very long period of time, days
+
+159
+00:07:44,570 --> 00:07:48,060
+and days, or weeks, you sometimes
+might notice that your system
+
+160
+00:07:48,060 --> 00:07:49,790
+is running really, really slowly.
+
+161
+00:07:49,790 --> 00:07:54,640
+And the reason for that is that
+the browser has allocated memory,
+
+162
+00:07:54,640 --> 00:07:57,320
+but then not told the system
+that it's done with it.
+
+163
+00:07:57,320 --> 00:08:01,000
+And so that leaves less memory
+available for all of your other programs
+
+164
+00:08:01,000 --> 00:08:04,480
+to have to share, because you're
+leaking-- that web browser
+
+165
+00:08:04,480 --> 00:08:06,755
+program is leaking memory.
+
+166
+00:08:06,755 --> 00:08:08,880
+How do we give memory back
+when we're done with it?
+
+167
+00:08:08,880 --> 00:08:10,838
+Well fortunately it's a
+very easy way to do it.
+
+168
+00:08:10,838 --> 00:08:11,710
+We just free it.
+
+169
+00:08:11,710 --> 00:08:15,020
+There's a function called free,
+it accepts a pointer to memory,
+
+170
+00:08:15,020 --> 00:08:16,010
+and we're good to go.
+
+171
+00:08:16,010 --> 00:08:18,310
+>> So let's say we're in the
+middle of our program,
+
+172
+00:08:18,310 --> 00:08:21,970
+we want to malloc 50 characters.
+
+173
+00:08:21,970 --> 00:08:25,710
+We want to malloc an array that can
+capable of holding 50 characters.
+
+174
+00:08:25,710 --> 00:08:29,109
+And when we get a pointer back to
+that, that pointer's name is word.
+
+175
+00:08:29,109 --> 00:08:30,900
+We do whatever we're
+going to do with word,
+
+176
+00:08:30,900 --> 00:08:33,440
+and then when we're
+done we just free it.
+
+177
+00:08:33,440 --> 00:08:37,460
+And now we have returned those 50
+bytes of memory back to the system.
+
+178
+00:08:37,460 --> 00:08:40,147
+Some other function can use them.
+
+179
+00:08:40,147 --> 00:08:43,480
+We don't have to worry about suffering a
+memory leak because we have freed word.
+
+180
+00:08:43,480 --> 00:08:46,639
+We've given the memory back,
+so we're done working with it.
+
+181
+00:08:46,639 --> 00:08:48,430
+So there are three
+golden rules that should
+
+182
+00:08:48,430 --> 00:08:51,700
+be kept in mind whenever you're
+dynamically allocating memory
+
+183
+00:08:51,700 --> 00:08:52,990
+with malloc.
+
+184
+00:08:52,990 --> 00:08:56,480
+Every block of memory that
+you malloc must be freed
+
+185
+00:08:56,480 --> 00:08:58,430
+before your program finishes running.
+
+186
+00:08:58,430 --> 00:09:02,029
+Now again, in the appliance or in the
+IDE this sort of happens for you anyway
+
+187
+00:09:02,029 --> 00:09:04,820
+when you-- this will happen anyway
+when your program is terminated,
+
+188
+00:09:04,820 --> 00:09:06,880
+all the memory will be released.
+
+189
+00:09:06,880 --> 00:09:10,750
+But it's generally good coding
+practice to always, when you're done,
+
+190
+00:09:10,750 --> 00:09:13,810
+free what you have mallocd.
+
+191
+00:09:13,810 --> 00:09:16,690
+>> That said, only things that
+you've mallocd should be freed.
+
+192
+00:09:16,690 --> 00:09:19,880
+If you statically declare an
+integer, int x semi-colon,
+
+193
+00:09:19,880 --> 00:09:23,500
+that lives on the stack, you
+don't then want to free x.
+
+194
+00:09:23,500 --> 00:09:25,970
+So only things that you've
+mallocd should be freed.
+
+195
+00:09:25,970 --> 00:09:28,960
+>> And lastly, don't free something twice.
+
+196
+00:09:28,960 --> 00:09:31,170
+That can lead to
+another weird situation.
+
+197
+00:09:31,170 --> 00:09:33,530
+So everything that you've
+mallocd has to be freed.
+
+198
+00:09:33,530 --> 00:09:36,000
+Only things that you've
+malloc should be freed.
+
+199
+00:09:36,000 --> 00:09:38,730
+And don't free something twice.
+
+200
+00:09:38,730 --> 00:09:43,660
+>> So let's go through an example here
+of what some dynamically allocated
+
+201
+00:09:43,660 --> 00:09:46,122
+memory might look like mixed
+in with some static memory.
+
+202
+00:09:46,122 --> 00:09:47,080
+What might happen here?
+
+203
+00:09:47,080 --> 00:09:48,913
+See if you can follow
+along and guess what's
+
+204
+00:09:48,913 --> 00:09:51,720
+going to happen as we go
+through all these lines of code.
+
+205
+00:09:51,720 --> 00:09:53,980
+>> So we say int m.
+
+206
+00:09:53,980 --> 00:09:54,840
+What happens here?
+
+207
+00:09:54,840 --> 00:09:56,339
+Well this is pretty straightforward.
+
+208
+00:09:56,339 --> 00:09:59,650
+I create an integer variable called m.
+
+209
+00:09:59,650 --> 00:10:01,400
+I color it green,
+because that's the color
+
+210
+00:10:01,400 --> 00:10:03,730
+that I use when I'm talking
+about integer variables.
+
+211
+00:10:03,730 --> 00:10:05,160
+It's a box.
+
+212
+00:10:05,160 --> 00:10:08,400
+It's called m, and you can
+store integers inside of it.
+
+213
+00:10:08,400 --> 00:10:12,400
+>> What if I then say int star a?
+
+214
+00:10:12,400 --> 00:10:13,530
+Well that's pretty similar.
+
+215
+00:10:13,530 --> 00:10:15,780
+I'm creating a box called a.
+
+216
+00:10:15,780 --> 00:10:19,100
+It's capable of holding int
+stars, pointers to integers.
+
+217
+00:10:19,100 --> 00:10:21,570
+So I'm coloring it green-ish as well.
+
+218
+00:10:21,570 --> 00:10:24,140
+>> I know it has something
+to do with an integer,
+
+219
+00:10:24,140 --> 00:10:25,852
+but it's not itself an integer.
+
+220
+00:10:25,852 --> 00:10:27,310
+But it's pretty much the same idea.
+
+221
+00:10:27,310 --> 00:10:28,101
+I've created a box.
+
+222
+00:10:28,101 --> 00:10:30,070
+Both of these right
+now live on the stack.
+
+223
+00:10:30,070 --> 00:10:32,520
+I've given them both names.
+
+224
+00:10:32,520 --> 00:10:36,750
+>> int star b equals malloc size of int.
+
+225
+00:10:36,750 --> 00:10:38,560
+This one might be a little tricky.
+
+226
+00:10:38,560 --> 00:10:44,110
+Take a second and think about what you
+would expect to happen on this diagram.
+
+227
+00:10:44,110 --> 00:10:50,210
+int star b equals malloc size of int.
+
+228
+00:10:50,210 --> 00:10:51,940
+>> Well this doesn't just create one box.
+
+229
+00:10:51,940 --> 00:10:53,800
+This actually creates two boxes.
+
+230
+00:10:53,800 --> 00:10:58,670
+And it ties, it also establishes
+a point in a relationship.
+
+231
+00:10:58,670 --> 00:11:02,240
+We've allocated one block
+of memory on the heap.
+
+232
+00:11:02,240 --> 00:11:05,940
+Notice that the top right box
+there does not have a name.
+
+233
+00:11:05,940 --> 00:11:06,760
+>> We mallocd it.
+
+234
+00:11:06,760 --> 00:11:08,050
+It exists on the heap.
+
+235
+00:11:08,050 --> 00:11:10,090
+But b has a name.
+
+236
+00:11:10,090 --> 00:11:11,950
+It's a pointer variable called b.
+
+237
+00:11:11,950 --> 00:11:13,910
+That lives on the stack.
+
+238
+00:11:13,910 --> 00:11:18,250
+>> So it's a piece of memory
+that points to another one.
+
+239
+00:11:18,250 --> 00:11:21,840
+b contains the address
+of that block of memory.
+
+240
+00:11:21,840 --> 00:11:23,757
+It doesn't have a name otherwise.
+
+241
+00:11:23,757 --> 00:11:24,590
+But it points to it.
+
+242
+00:11:24,590 --> 00:11:29,760
+So when we say int star b equals
+malloc size of int, that right there,
+
+243
+00:11:29,760 --> 00:11:33,490
+that arrow that popped up on the
+right side there, that whole thing,
+
+244
+00:11:33,490 --> 00:11:36,740
+I'll have it appear
+again, is what happens.
+
+245
+00:11:36,740 --> 00:11:39,341
+All of that happens in
+that single line of code.
+
+246
+00:11:39,341 --> 00:11:41,340
+Now we'll get little more
+straightforward again.
+
+247
+00:11:41,340 --> 00:11:43,330
+a equals ampersand m.
+
+248
+00:11:43,330 --> 00:11:46,280
+Do you recall what a
+equals ampersand m is?
+
+249
+00:11:46,280 --> 00:11:48,920
+Well that's a gets m's address.
+
+250
+00:11:48,920 --> 00:11:54,150
+Or put more diagrammatically,
+a points to m.
+
+251
+00:11:54,150 --> 00:11:56,360
+>> a equals b.
+
+252
+00:11:56,360 --> 00:11:57,560
+OK so here's another one.
+
+253
+00:11:57,560 --> 00:11:59,230
+A equals b.
+
+254
+00:11:59,230 --> 00:12:02,260
+What's going to happen
+to the diagram this time?
+
+255
+00:12:02,260 --> 00:12:04,330
+>> Well recall that the
+assignment operator works
+
+256
+00:12:04,330 --> 00:12:08,960
+by assigning the value on the
+right to the value on the left.
+
+257
+00:12:08,960 --> 00:12:14,820
+So instead of a pointing to m, a now
+points to the same place that b points.
+
+258
+00:12:14,820 --> 00:12:18,900
+a doesn't point to b, a
+points where b points.
+
+259
+00:12:18,900 --> 00:12:25,280
+>> If a pointed to b that would
+have been a equals ampersand b.
+
+260
+00:12:25,280 --> 00:12:28,150
+But instead a equals b just
+means that and b are now
+
+261
+00:12:28,150 --> 00:12:31,770
+pointing to the same address, because
+inside of b is just an address.
+
+262
+00:12:31,770 --> 00:12:35,004
+And now inside of a is the same address.
+
+263
+00:12:35,004 --> 00:12:37,170
+m equals 10, probably the
+most straightforward thing
+
+264
+00:12:37,170 --> 00:12:38,690
+we've done in a little bit.
+
+265
+00:12:38,690 --> 00:12:40,460
+Put the 10 in the box.
+
+266
+00:12:40,460 --> 00:12:45,640
+Star b equals m plus 2, recall from
+our pointers video what star b means.
+
+267
+00:12:45,640 --> 00:12:50,230
+We're going to dereference b and put
+some value in that memory location.
+
+268
+00:12:50,230 --> 00:12:51,860
+In this case 12.
+
+269
+00:12:51,860 --> 00:12:55,300
+>> So when we dereference a point of
+recall we just travel down the arrow.
+
+270
+00:12:55,300 --> 00:12:58,205
+Or put another way, we
+go to that memory address
+
+271
+00:12:58,205 --> 00:12:59,580
+and we manipulate it in some way.
+
+272
+00:12:59,580 --> 00:13:00,830
+We put some value in there.
+
+273
+00:13:00,830 --> 00:13:03,960
+In this case star b
+equals m plus 2 is just
+
+274
+00:13:03,960 --> 00:13:08,230
+go to the variable pointed to by b,
+go to the memory pointed to by b,
+
+275
+00:13:08,230 --> 00:13:11,750
+and put m plus 2 in there, 12.
+
+276
+00:13:11,750 --> 00:13:14,970
+>> Now I free b.
+
+277
+00:13:14,970 --> 00:13:16,490
+What happens when I free b?
+
+278
+00:13:16,490 --> 00:13:18,800
+Remember what I said free means.
+
+279
+00:13:18,800 --> 00:13:21,920
+What am I saying when I free b?
+
+280
+00:13:21,920 --> 00:13:23,410
+>> I'm done working with it, right?
+
+281
+00:13:23,410 --> 00:13:25,702
+I essentially give up the memory.
+
+282
+00:13:25,702 --> 00:13:26,910
+I give it back to the system.
+
+283
+00:13:26,910 --> 00:13:33,010
+I don't need this anymore is
+what I'm telling them, OK?
+
+284
+00:13:33,010 --> 00:13:37,390
+>> Now if I say star a
+equals 11 you can probably
+
+285
+00:13:37,390 --> 00:13:40,460
+already tell that something bad
+is going to happen here, right?
+
+286
+00:13:40,460 --> 00:13:44,160
+And indeed if I tried that I probably
+would suffer a segmentation fault.
+
+287
+00:13:44,160 --> 00:13:47,140
+Because now, although
+previously that chunk of memory
+
+288
+00:13:47,140 --> 00:13:50,220
+was something that I had
+access to, at this point
+
+289
+00:13:50,220 --> 00:13:54,590
+now I'm accessing memory that
+is not legal for me to access.
+
+290
+00:13:54,590 --> 00:13:57,330
+>> And as we will probably
+recall, when we access memory
+
+291
+00:13:57,330 --> 00:14:00,000
+that we're not supposed to touch,
+that's the most common cause
+
+292
+00:14:00,000 --> 00:14:01,860
+of a segmentation
+fault. And so my program
+
+293
+00:14:01,860 --> 00:14:05,170
+would crash if I tried to do this.
+
+294
+00:14:05,170 --> 00:14:09,910
+So again it's a good idea to get good
+practice and good habits ingrained
+
+295
+00:14:09,910 --> 00:14:12,920
+when working with malloc and free,
+so that you don't suffer segmentation
+
+296
+00:14:12,920 --> 00:14:15,310
+faults, and that you use
+your dynamically allocated
+
+297
+00:14:15,310 --> 00:14:17,370
+memory responsibly.
+
+298
+00:14:17,370 --> 00:14:20,300
+>> I'm Doug Lloyd this is CS50.
+
+299
+00:14:20,300 --> 00:14:21,947

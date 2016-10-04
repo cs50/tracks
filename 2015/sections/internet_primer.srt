@@ -1,0 +1,1945 @@
+1
+00:00:00,000 --> 00:00:04,580
+
+2
+00:00:04,580 --> 00:00:06,580
+DOUG LLOYD: If you've
+been watching these videos
+
+3
+00:00:06,580 --> 00:00:09,030
+in the order which we recommend,
+we're about to undergo
+
+4
+00:00:09,030 --> 00:00:10,260
+bit of a culture shift.
+
+5
+00:00:10,260 --> 00:00:13,093
+Because now, we're going to start
+talking about the internet and web
+
+6
+00:00:13,093 --> 00:00:13,669
+technologies.
+
+7
+00:00:13,669 --> 00:00:15,835
+So up until now, we've
+really been doing a lot of C.
+
+8
+00:00:15,835 --> 00:00:17,370
+>> And when we've been
+running our programs,
+
+9
+00:00:17,370 --> 00:00:19,500
+we have been running them
+from the command line.
+
+10
+00:00:19,500 --> 00:00:23,080
+That's pretty much how the users have
+been interacting with the programs
+
+11
+00:00:23,080 --> 00:00:23,760
+that we write.
+
+12
+00:00:23,760 --> 00:00:26,859
+They pick something to prompt, something
+happens in the terminal window,
+
+13
+00:00:26,859 --> 00:00:27,650
+and then it's done.
+
+14
+00:00:27,650 --> 00:00:30,957
+>> Sometimes you might have persistent
+data that remains afterwards.
+
+15
+00:00:30,957 --> 00:00:32,040
+But that's pretty much it.
+
+16
+00:00:32,040 --> 00:00:33,081
+It's at the command line.
+
+17
+00:00:33,081 --> 00:00:34,775
+It's the only way the user can interact.
+
+18
+00:00:34,775 --> 00:00:36,650
+From this point forward,
+we're going to start
+
+19
+00:00:36,650 --> 00:00:39,980
+transitioning so that the users
+can interact with our websites.
+
+20
+00:00:39,980 --> 00:00:42,688
+So we're going to be writing
+websites, which aren't written in C,
+
+21
+00:00:42,688 --> 00:00:46,600
+but are written in a variety of other
+programming languages, including PHP,
+
+22
+00:00:46,600 --> 00:00:50,810
+and it's sort of helper languages,
+HTML, CSS, and the like.
+
+23
+00:00:50,810 --> 00:00:53,130
+So we're going to start
+talking about those things.
+
+24
+00:00:53,130 --> 00:00:55,740
+>> Before we get into web
+programming itself,
+
+25
+00:00:55,740 --> 00:00:58,720
+I think it's probably a good
+idea to take a step back and talk
+
+26
+00:00:58,720 --> 00:01:02,720
+about how computers and
+humans interact over the web.
+
+27
+00:01:02,720 --> 00:01:07,520
+So this video is really a primer,
+a basic guide, to the internet.
+
+28
+00:01:07,520 --> 00:01:10,951
+Now, the caveat here is the
+CS50 is not a networking class.
+
+29
+00:01:10,951 --> 00:01:13,700
+So what we're going to be talking
+about here is pretty high level.
+
+30
+00:01:13,700 --> 00:01:17,240
+We're not going to
+get into any low level
+
+31
+00:01:17,240 --> 00:01:19,540
+details of how all this stuff works.
+
+32
+00:01:19,540 --> 00:01:21,290
+If you're interested
+in that, I'd strongly
+
+33
+00:01:21,290 --> 00:01:24,580
+recommend taking a class
+on computer networking.
+
+34
+00:01:24,580 --> 00:01:26,540
+And we might even tell
+white lie or two just
+
+35
+00:01:26,540 --> 00:01:31,590
+for the purposes of making the
+general understanding clear.
+
+36
+00:01:31,590 --> 00:01:35,780
+>> So with that said, let's talk about
+how we interact with the internet.
+
+37
+00:01:35,780 --> 00:01:37,570
+So here we are.
+
+38
+00:01:37,570 --> 00:01:38,430
+Here's us.
+
+39
+00:01:38,430 --> 00:01:41,096
+We're pretty looking forward to
+getting onto the internet, which
+
+40
+00:01:41,096 --> 00:01:42,810
+as we all know, is chock full of cats.
+
+41
+00:01:42,810 --> 00:01:45,210
+>> Now do we just connect to
+the internet like this?
+
+42
+00:01:45,210 --> 00:01:46,360
+Well, probably not.
+
+43
+00:01:46,360 --> 00:01:48,620
+Intuitively, you know
+that, say for example,
+
+44
+00:01:48,620 --> 00:01:51,190
+when you change your Wi-Fi
+network on your computer,
+
+45
+00:01:51,190 --> 00:01:54,010
+you don't see one called internet
+unless that just so happens
+
+46
+00:01:54,010 --> 00:01:58,870
+to be the name of your local Wi-Fi.
+
+47
+00:01:58,870 --> 00:01:59,370
+Right?
+
+48
+00:01:59,370 --> 00:02:00,880
+>> It's usually something like home.
+
+49
+00:02:00,880 --> 00:02:03,338
+Or if you're at work, it might
+be the name of your company.
+
+50
+00:02:03,338 --> 00:02:05,340
+There's not just one
+option called internet.
+
+51
+00:02:05,340 --> 00:02:09,710
+And so something or some
+things exist in between when
+
+52
+00:02:09,710 --> 00:02:11,490
+we want to connect to the internet.
+
+53
+00:02:11,490 --> 00:02:12,740
+What are some of those things?
+
+54
+00:02:12,740 --> 00:02:14,110
+Well, we're going to talk about that.
+
+55
+00:02:14,110 --> 00:02:16,180
+We're also going to talk about
+some of the important things
+
+56
+00:02:16,180 --> 00:02:18,710
+we need in order to be able
+to connect to the internet.
+
+57
+00:02:18,710 --> 00:02:21,214
+And the first of these
+things is an IP address.
+
+58
+00:02:21,214 --> 00:02:23,380
+So you've probably heard
+the term IP address before.
+
+59
+00:02:23,380 --> 00:02:24,630
+What does it mean?
+
+60
+00:02:24,630 --> 00:02:28,270
+Well, an IP address is
+basically a unique identifier
+
+61
+00:02:28,270 --> 00:02:30,820
+of your computer on a network.
+
+62
+00:02:30,820 --> 00:02:33,640
+Just like every home or
+office has a unique address
+
+63
+00:02:33,640 --> 00:02:36,660
+to which one could send a mail.
+
+64
+00:02:36,660 --> 00:02:40,750
+>> Similarly, every computer if it
+wants to receive data or send data,
+
+65
+00:02:40,750 --> 00:02:43,040
+needs to have a unique address.
+
+66
+00:02:43,040 --> 00:02:45,720
+So that when information
+is sent or received,
+
+67
+00:02:45,720 --> 00:02:49,720
+it's being sent from or received
+to the correct location.
+
+68
+00:02:49,720 --> 00:02:52,660
+This addressing scheme, as I
+said, is called IP addressing.
+
+69
+00:02:52,660 --> 00:02:57,690
+IP is stands for Internet Protocol,
+which we'll talk about again shortly.
+
+70
+00:02:57,690 --> 00:03:00,230
+>> Now, what does IP addressing look like?
+
+71
+00:03:00,230 --> 00:03:04,330
+Well, the scheme basically was,
+when it was first implemented,
+
+72
+00:03:04,330 --> 00:03:07,846
+to give every computer
+a unique 32-bit address.
+
+73
+00:03:07,846 --> 00:03:08,720
+That's a lot of bits.
+
+74
+00:03:08,720 --> 00:03:10,900
+That's 4 billion addresses.
+
+75
+00:03:10,900 --> 00:03:14,190
+>> And generally, instead of using
+hexadecimal notation, which
+
+76
+00:03:14,190 --> 00:03:18,450
+we've used previously in the context of
+pointers in C to talk about addresses,
+
+77
+00:03:18,450 --> 00:03:21,580
+we usually represent IP
+addresses in a little bit more
+
+78
+00:03:21,580 --> 00:03:24,370
+of a human friendly
+way, representing them
+
+79
+00:03:24,370 --> 00:03:28,680
+as four clusters of 8 bits
+represented as decimal numbers.
+
+80
+00:03:28,680 --> 00:03:34,920
+Because humans don't frequently speak
+hexadecimal, unless you're programming.
+
+81
+00:03:34,920 --> 00:03:38,400
+But people who use the internet
+aren't necessarily programmers.
+
+82
+00:03:38,400 --> 00:03:41,660
+>> And so making it easy
+and accessible for them
+
+83
+00:03:41,660 --> 00:03:45,430
+to be able to talk about what their
+IP address is in case they maybe
+
+84
+00:03:45,430 --> 00:03:47,690
+need to call up somebody
+to troubleshoot something,
+
+85
+00:03:47,690 --> 00:03:51,610
+it's better to make it in the more
+common conventional decimal number
+
+86
+00:03:51,610 --> 00:03:52,880
+format.
+
+87
+00:03:52,880 --> 00:03:57,570
+And so an IP address just looks
+pretty much like this, w.x.y.z,
+
+88
+00:03:57,570 --> 00:04:00,650
+where each one of those letters
+represents a non-negative value
+
+89
+00:04:00,650 --> 00:04:02,960
+in the range of 0 to 255.
+
+90
+00:04:02,960 --> 00:04:07,950
+Recall that an 8-bit number
+can hold 256 distinct values.
+
+91
+00:04:07,950 --> 00:04:10,520
+>> And so that's why our range is 0 to 255.
+
+92
+00:04:10,520 --> 00:04:15,030
+And we have four clusters of 8
+bits for a grand total of 32 bits.
+
+93
+00:04:15,030 --> 00:04:17,920
+And so an IP address might
+look something like this.
+
+94
+00:04:17,920 --> 00:04:24,120
+This is sort of a generic
+default IP address, 123.45.67.89.
+
+95
+00:04:24,120 --> 00:04:28,850
+All of them are in the range of 0 to
+255, so that's a valid IP address.
+
+96
+00:04:28,850 --> 00:04:34,040
+>> Here at Harvard University, all of
+our IP addresses start with 140.247.
+
+97
+00:04:34,040 --> 00:04:37,130
+That's just the way that the IP
+addresses in this geographic area
+
+98
+00:04:37,130 --> 00:04:38,130
+have been assigned.
+
+99
+00:04:38,130 --> 00:04:42,750
+And so this might be an IP address
+that might exist here at Harvard.
+
+100
+00:04:42,750 --> 00:04:46,810
+>> So as I said, if every IP address
+is 32 bits, we have about 4 billion
+
+101
+00:04:46,810 --> 00:04:49,290
+to give out, a little
+more than 4 billion.
+
+102
+00:04:49,290 --> 00:04:51,470
+But we can kind of see a problem, right?
+
+103
+00:04:51,470 --> 00:04:53,190
+What's the world population right now?
+
+104
+00:04:53,190 --> 00:04:56,560
+>> Well, it's somewhere
+north of 7 billion people.
+
+105
+00:04:56,560 --> 00:04:58,800
+And in the Western world
+at least, most people
+
+106
+00:04:58,800 --> 00:05:02,644
+have more than one device
+capable of internet connectivity.
+
+107
+00:05:02,644 --> 00:05:03,560
+I have one right here.
+
+108
+00:05:03,560 --> 00:05:04,880
+And I have another one in my pocket.
+
+109
+00:05:04,880 --> 00:05:06,340
+And I have one back in my office.
+
+110
+00:05:06,340 --> 00:05:07,387
+>> And so that's three.
+
+111
+00:05:07,387 --> 00:05:09,970
+And that doesn't even count the
+ones that I have at home, too.
+
+112
+00:05:09,970 --> 00:05:12,160
+And so that's kind of a problem, right?
+
+113
+00:05:12,160 --> 00:05:15,380
+We have at least 7 billion people
+and only 4 billion addresses.
+
+114
+00:05:15,380 --> 00:05:18,719
+>> And every device is supposed
+to be uniquely identified.
+
+115
+00:05:18,719 --> 00:05:21,260
+We have developed some workarounds
+to deal with this problem,
+
+116
+00:05:21,260 --> 00:05:23,240
+something called a private
+IP address, which we're not
+
+117
+00:05:23,240 --> 00:05:24,573
+going to get into in this video.
+
+118
+00:05:24,573 --> 00:05:31,920
+But basically, it allows further the
+web, the internet, to kind of fake
+
+119
+00:05:31,920 --> 00:05:35,610
+out a little bit that you have a unique
+address by having private addresses
+
+120
+00:05:35,610 --> 00:05:38,730
+and then funneling them through
+one single address, which
+
+121
+00:05:38,730 --> 00:05:41,220
+is shared by many different computers.
+
+122
+00:05:41,220 --> 00:05:43,200
+>> But that's really not a long term fix.
+
+123
+00:05:43,200 --> 00:05:45,250
+Even that fixed isn't
+going to last forever.
+
+124
+00:05:45,250 --> 00:05:50,030
+And so we need to have a different
+way of dealing with this.
+
+125
+00:05:50,030 --> 00:05:51,904
+>> So as I said, we had about 4 billion.
+
+126
+00:05:51,904 --> 00:05:53,820
+But that's not going to
+be good enough, right?
+
+127
+00:05:53,820 --> 00:05:56,540
+And so the way that it has
+been decided there we're
+
+128
+00:05:56,540 --> 00:05:59,240
+going to deal with this is
+to make longer IP addresses.
+
+129
+00:05:59,240 --> 00:06:03,344
+Instead of 32-bit addresses, we're
+going to have 128-bit addresses.
+
+130
+00:06:03,344 --> 00:06:05,260
+So instead of 4 billion
+addresses, we're going
+
+131
+00:06:05,260 --> 00:06:11,130
+to have that huge number of addresses,
+which is 340 billion billion billion
+
+132
+00:06:11,130 --> 00:06:14,150
+billion, so a lot of IP addresses.
+
+133
+00:06:14,150 --> 00:06:18,240
+>> And this new scheme is called IPv6
+is commonly how it's referred.
+
+134
+00:06:18,240 --> 00:06:21,242
+The old scheme being IPv4.
+
+135
+00:06:21,242 --> 00:06:23,450
+It's a bit of a problem in
+that this problem has been
+
+136
+00:06:23,450 --> 00:06:25,470
+known about for a really long time.
+
+137
+00:06:25,470 --> 00:06:28,025
+
+138
+00:06:28,025 --> 00:06:32,201
+>> And you'll see this a lot in the
+context of computers and computing.
+
+139
+00:06:32,201 --> 00:06:33,700
+We're good at anticipating problems.
+
+140
+00:06:33,700 --> 00:06:36,449
+But we're bad at dealing with them
+even though we know about them.
+
+141
+00:06:36,449 --> 00:06:38,340
+So IPv6 has been around for a while.
+
+142
+00:06:38,340 --> 00:06:40,510
+And only in the last couple
+years have we actually
+
+143
+00:06:40,510 --> 00:06:47,190
+started phasing in these IPv6 addresses
+to phase out the IPv4 addresses.
+
+144
+00:06:47,190 --> 00:06:49,520
+But some places do have them.
+
+145
+00:06:49,520 --> 00:06:52,200
+And they look similar
+to a regular IP address.
+
+146
+00:06:52,200 --> 00:06:53,520
+But they are a lot longer.
+
+147
+00:06:53,520 --> 00:06:59,900
+>> So instead of now having four
+clusters of 8 bytes for your address,
+
+148
+00:06:59,900 --> 00:07:03,580
+we now have eight clusters of 16 bytes.
+
+149
+00:07:03,580 --> 00:07:06,680
+And 8 times 16 is 128.
+
+150
+00:07:06,680 --> 00:07:11,210
+And we represent these in the less
+conventional hexadecimal form.
+
+151
+00:07:11,210 --> 00:07:16,930
+Because having 16-bit numbers means that
+instead of being a range of 0 to 255,
+
+152
+00:07:16,930 --> 00:07:20,350
+We'd have a range of 0 to 65,535.
+
+153
+00:07:20,350 --> 00:07:22,470
+>> And so having a bunch
+of those stuck together
+
+154
+00:07:22,470 --> 00:07:24,680
+would be very difficult to read.
+
+155
+00:07:24,680 --> 00:07:27,480
+And so we usually use hex
+just out of convenience.
+
+156
+00:07:27,480 --> 00:07:31,180
+And so a typical IPv6 address
+might look something like this.
+
+157
+00:07:31,180 --> 00:07:35,860
+>> It's certainly a lot longer than
+the IPv4 address we've seen before.
+
+158
+00:07:35,860 --> 00:07:39,280
+But this would be a valid IPv6 address.
+
+159
+00:07:39,280 --> 00:07:41,570
+This one is also about IPv6 address.
+
+160
+00:07:41,570 --> 00:07:44,331
+>> This one happens to belong to Google.
+
+161
+00:07:44,331 --> 00:07:46,080
+And notice there's a
+bunch of zeros there.
+
+162
+00:07:46,080 --> 00:07:47,930
+Sometimes these addresses
+can get so long.
+
+163
+00:07:47,930 --> 00:07:50,530
+And since we're still
+pretty early in IPv6,
+
+164
+00:07:50,530 --> 00:07:54,250
+sometimes there can be big chunks of
+zeros in there that we don't need.
+
+165
+00:07:54,250 --> 00:08:01,920
+>> If you're reading this out loud,
+it's 2001.4860.4860.0.0.0.0.8844.
+
+166
+00:08:01,920 --> 00:08:03,325
+It's kind of a lot, right?
+
+167
+00:08:03,325 --> 00:08:05,450
+So if you see a bunch of
+zeros, you might sometimes
+
+168
+00:08:05,450 --> 00:08:08,990
+see an IPv6 address like this,
+where they omit the zeros
+
+169
+00:08:08,990 --> 00:08:10,959
+and use a double colon instead.
+
+170
+00:08:10,959 --> 00:08:11,750
+This is OK, though.
+
+171
+00:08:11,750 --> 00:08:14,610
+Because we know that there are
+supposed to be eight distinct chunks.
+
+172
+00:08:14,610 --> 00:08:17,190
+And so by implication, we see four.
+
+173
+00:08:17,190 --> 00:08:20,620
+So we know that there must be four sets
+of zeros like this, that fill it in.
+
+174
+00:08:20,620 --> 00:08:23,760
+>> So sometimes, you might see
+an IPv6 address not having
+
+175
+00:08:23,760 --> 00:08:26,650
+eight separated chunks like we do here.
+
+176
+00:08:26,650 --> 00:08:28,760
+You might see it looking like this.
+
+177
+00:08:28,760 --> 00:08:31,310
+And that just means that
+everything you don't see in
+
+178
+00:08:31,310 --> 00:08:37,450
+between where that double colon
+is is just zero separated.
+
+179
+00:08:37,450 --> 00:08:37,998
+>> So, OK.
+
+180
+00:08:37,998 --> 00:08:40,039
+We know a little bit more
+about IP addresses now.
+
+181
+00:08:40,039 --> 00:08:41,250
+But how do we get them?
+
+182
+00:08:41,250 --> 00:08:44,727
+We can't just pick the one we want.
+
+183
+00:08:44,727 --> 00:08:47,810
+If we did that, we might end up fighting
+somebody for the same IP address.
+
+184
+00:08:47,810 --> 00:08:50,050
+Or somebody might have
+chosen it previously.
+
+185
+00:08:50,050 --> 00:08:52,799
+If we try and take it, we're going
+to run into a bit of a problem.
+
+186
+00:08:52,799 --> 00:08:56,300
+And so we can't just pick
+the IP address that we want.
+
+187
+00:08:56,300 --> 00:08:58,410
+>> So the way that we get an
+IP address is somewhere
+
+188
+00:08:58,410 --> 00:09:02,960
+between our computer and the
+internet, that big internet out there,
+
+189
+00:09:02,960 --> 00:09:07,500
+there's something called a DHCP server,
+a Dynamic Host Configuration Protocol
+
+190
+00:09:07,500 --> 00:09:08,630
+server.
+
+191
+00:09:08,630 --> 00:09:09,960
+It's a big mouthful of text.
+
+192
+00:09:09,960 --> 00:09:12,670
+But really all it does is it
+assigns you an IP address.
+
+193
+00:09:12,670 --> 00:09:16,960
+>> Your DHCP server has a list of
+addresses that it can validly assign.
+
+194
+00:09:16,960 --> 00:09:18,160
+And it gives you one.
+
+195
+00:09:18,160 --> 00:09:19,743
+That's pretty much all there is to it.
+
+196
+00:09:19,743 --> 00:09:23,810
+Now before DHCP, this task
+of assigning addresses
+
+197
+00:09:23,810 --> 00:09:25,106
+fell to a system administrator.
+
+198
+00:09:25,106 --> 00:09:27,730
+So an actual person would have
+to manually assign your computer
+
+199
+00:09:27,730 --> 00:09:30,670
+and address when you
+connected to a network.
+
+200
+00:09:30,670 --> 00:09:34,307
+So DHCP just sort of automates this
+process of giving you an IP address.
+
+201
+00:09:34,307 --> 00:09:35,390
+But that's how you get it.
+
+202
+00:09:35,390 --> 00:09:37,431
+It's just a program running
+somewhere between you
+
+203
+00:09:37,431 --> 00:09:40,920
+and the internet that has a bank of
+IP addresses that it can give out.
+
+204
+00:09:40,920 --> 00:09:43,170
+And when you connect to the
+network, it gives you one.
+
+205
+00:09:43,170 --> 00:09:44,660
+So let's revisit this diagram.
+
+206
+00:09:44,660 --> 00:09:49,660
+Somewhere between you and the
+internet, there's a DHCP server.
+
+207
+00:09:49,660 --> 00:09:50,160
+OK.
+
+208
+00:09:50,160 --> 00:09:51,500
+So that's good.
+
+209
+00:09:51,500 --> 00:09:53,537
+Now, let's talk about DNS.
+
+210
+00:09:53,537 --> 00:09:55,370
+So we've talked although
+these IP addresses.
+
+211
+00:09:55,370 --> 00:09:57,840
+And we know that if we're
+going to uniquely identify
+
+212
+00:09:57,840 --> 00:10:01,740
+a device on the internet, it
+has to have a unique address.
+
+213
+00:10:01,740 --> 00:10:04,150
+>> And we could visit that
+address if we wanted to.
+
+214
+00:10:04,150 --> 00:10:09,600
+But you've probably never typed
+in something like 192.168.1.0
+
+215
+00:10:09,600 --> 00:10:11,490
+into your browser, right?
+
+216
+00:10:11,490 --> 00:10:13,980
+You don't type in numbers
+into your browser.
+
+217
+00:10:13,980 --> 00:10:19,410
+You usually type in human readable names
+like google.com or cs50.harvard.edu,
+
+218
+00:10:19,410 --> 00:10:20,640
+right?
+
+219
+00:10:20,640 --> 00:10:22,880
+>> Those aren't IP addresses, though.
+
+220
+00:10:22,880 --> 00:10:27,320
+So exists this service
+called the Domain Name
+
+221
+00:10:27,320 --> 00:10:33,990
+System, DNS, that translates IP
+addresses to human comprehensible words
+
+222
+00:10:33,990 --> 00:10:37,690
+or phrases that are much more memorable
+than remembering a set of four numbers
+
+223
+00:10:37,690 --> 00:10:40,430
+or, soon, a set of eight
+hexadecimal numbers.
+
+224
+00:10:40,430 --> 00:10:42,400
+That would be really challenging, right?
+
+225
+00:10:42,400 --> 00:10:45,560
+>> Think about before the
+days of cell phones.
+
+226
+00:10:45,560 --> 00:10:47,730
+You had your memorize your
+friend's phone numbers.
+
+227
+00:10:47,730 --> 00:10:49,230
+It might have gotten tough
+after a little while.
+
+228
+00:10:49,230 --> 00:10:51,190
+And similarly, if you want
+to visit a bunch of websites,
+
+229
+00:10:51,190 --> 00:10:53,570
+you probably don't want to
+remember a bunch of numbers.
+
+230
+00:10:53,570 --> 00:10:56,640
+You'd rather remember a bunch of words.
+
+231
+00:10:56,640 --> 00:11:01,930
+>> So this mapping, this translating, of
+sets of numbers to human readable names
+
+232
+00:11:01,930 --> 00:11:04,520
+kind of makes DNS the
+yellow pages of the web.
+
+233
+00:11:04,520 --> 00:11:06,270
+And you can think about
+it as if it's just
+
+234
+00:11:06,270 --> 00:11:14,305
+a huge list running from 0.0.0.0 all
+the way down to 255.255.255.255, which
+
+235
+00:11:14,305 --> 00:11:21,490
+would be the highest possible-- that's
+the full range from 0s to 255s of all 4
+
+236
+00:11:21,490 --> 00:11:25,525
+billion-ish IPv4 addresses.
+
+237
+00:11:25,525 --> 00:11:27,400
+I made up the ones on
+the top and the bottom.
+
+238
+00:11:27,400 --> 00:11:30,500
+But the one in the middle there
+is actually an IP address.
+
+239
+00:11:30,500 --> 00:11:38,440
+So if we visited 74.125.202.138,
+apparently that translates to that site
+
+240
+00:11:38,440 --> 00:11:40,490
+there, io-- what the heck is that?
+
+241
+00:11:40,490 --> 00:11:46,290
+Well, not every name that maps is
+actually clear what it is, right?
+
+242
+00:11:46,290 --> 00:11:48,920
+>> So sometimes somebody
+who owns an IP address
+
+243
+00:11:48,920 --> 00:11:52,090
+might name their host something
+that they're actually not.
+
+244
+00:11:52,090 --> 00:11:55,442
+For example, that IP address if you
+went there, is actually just google.com.
+
+245
+00:11:55,442 --> 00:11:57,540
+But Google has a lot
+of different servers.
+
+246
+00:11:57,540 --> 00:11:59,322
+>> And they can't call them all google.com.
+
+247
+00:11:59,322 --> 00:12:03,530
+So they have their own
+internal system for translating
+
+248
+00:12:03,530 --> 00:12:09,125
+google.com to whatever server actually
+is connected to that IP address.
+
+249
+00:12:09,125 --> 00:12:11,250
+And then there's another
+system that exists between
+
+250
+00:12:11,250 --> 00:12:15,120
+to translate that gobbledygook
+here to google.com.
+
+251
+00:12:15,120 --> 00:12:16,830
+But we won't get into that.
+
+252
+00:12:16,830 --> 00:12:18,920
+>> And similarly for
+IPv6s, we're also going
+
+253
+00:12:18,920 --> 00:12:22,089
+to have a yellow pages
+that'll be a lot bigger.
+
+254
+00:12:22,089 --> 00:12:23,880
+And similarly, in the
+middle there-- it was
+
+255
+00:12:23,880 --> 00:12:26,496
+tough to find an IPv6
+address that was legitimate.
+
+256
+00:12:26,496 --> 00:12:27,620
+But I found one for Google.
+
+257
+00:12:27,620 --> 00:12:30,460
+>> But it's Google's Irish website.
+
+258
+00:12:30,460 --> 00:12:34,170
+But if you went to that IPv6 address,
+if your browser was IPv6 capable,
+
+259
+00:12:34,170 --> 00:12:36,940
+that would bring you to
+Google's Irish homepage.
+
+260
+00:12:36,940 --> 00:12:39,460
+So there you go.
+
+261
+00:12:39,460 --> 00:12:41,830
+>> But this isn't entirely true, right?
+
+262
+00:12:41,830 --> 00:12:43,710
+This the system seems cumbersome, right?
+
+263
+00:12:43,710 --> 00:12:47,220
+If there's a huge list of 4
+billion things to have to look up,
+
+264
+00:12:47,220 --> 00:12:48,270
+that's pretty big.
+
+265
+00:12:48,270 --> 00:12:52,634
+There's no yellow pages
+of the world, right?
+
+266
+00:12:52,634 --> 00:12:54,800
+If you still get the yellow
+pages delivered to you--
+
+267
+00:12:54,800 --> 00:12:56,841
+I got mine the other day,
+and I just recycled it.
+
+268
+00:12:56,841 --> 00:12:59,070
+But if you do get the yellow
+pages delivered to you,
+
+269
+00:12:59,070 --> 00:13:02,120
+you don't get a book that's every
+phone number that exists on the planet,
+
+270
+00:13:02,120 --> 00:13:02,620
+right?
+
+271
+00:13:02,620 --> 00:13:05,500
+You get a list of the
+local phone numbers,
+
+272
+00:13:05,500 --> 00:13:07,670
+the ones you're most likely to call.
+
+273
+00:13:07,670 --> 00:13:09,400
+>> And that's actually what DNS is.
+
+274
+00:13:09,400 --> 00:13:12,860
+If you think about it, DNS is
+really the local yellow pages.
+
+275
+00:13:12,860 --> 00:13:17,350
+And large DNS servers
+like google.coms, they
+
+276
+00:13:17,350 --> 00:13:19,180
+are actually just more
+like libraries that
+
+277
+00:13:19,180 --> 00:13:25,470
+have a copy of all of the local yellow
+pages or all of the local DNS records.
+
+278
+00:13:25,470 --> 00:13:29,520
+So there's really no one repository
+of the full DNS of the internet,
+
+279
+00:13:29,520 --> 00:13:32,410
+just like there's no one
+yellow pages of the world.
+
+280
+00:13:32,410 --> 00:13:36,450
+>> There are all these local small
+scale DNSs that exist out there.
+
+281
+00:13:36,450 --> 00:13:39,010
+And there are services that
+aggregate them together.
+
+282
+00:13:39,010 --> 00:13:42,174
+But they depend on those
+smaller DNS systems
+
+283
+00:13:42,174 --> 00:13:45,340
+updating their information, so that
+they have the most accurate information.
+
+284
+00:13:45,340 --> 00:13:48,500
+>> So again, this analogy
+is large aggregating
+
+285
+00:13:48,500 --> 00:13:51,910
+DNS systems are like
+libraries that have a copy
+
+286
+00:13:51,910 --> 00:13:56,410
+of every yellow pages of the world.
+
+287
+00:13:56,410 --> 00:13:58,350
+They don't themselves
+update those books.
+
+288
+00:13:58,350 --> 00:14:01,620
+They depend on the books coming in,
+so they can update the information
+
+289
+00:14:01,620 --> 00:14:04,560
+if they need it.
+
+290
+00:14:04,560 --> 00:14:07,700
+>> So the DNS system is not a giant block.
+
+291
+00:14:07,700 --> 00:14:11,026
+It's decentralized across
+many, many servers.
+
+292
+00:14:11,026 --> 00:14:13,400
+So now we know that somewhere
+between us and the internet
+
+293
+00:14:13,400 --> 00:14:18,350
+there exists a DNS server
+as well as a DHCP server.
+
+294
+00:14:18,350 --> 00:14:20,910
+>> Now, access points,
+what our access points?
+
+295
+00:14:20,910 --> 00:14:23,840
+Well, access points you're probably
+pretty familiar with from actually
+
+296
+00:14:23,840 --> 00:14:24,964
+connecting to the internet.
+
+297
+00:14:24,964 --> 00:14:28,820
+That's the network that you choose,
+the home or your work network
+
+298
+00:14:28,820 --> 00:14:30,310
+or what have you.
+
+299
+00:14:30,310 --> 00:14:32,597
+>> And I'm generalizing the
+concept of an access point
+
+300
+00:14:32,597 --> 00:14:33,930
+here for purposes of this video.
+
+301
+00:14:33,930 --> 00:14:35,721
+But there are actually
+a lot of things that
+
+302
+00:14:35,721 --> 00:14:38,766
+can be rolled up into access points.
+
+303
+00:14:38,766 --> 00:14:41,890
+There are concepts of routers, which
+is sort of a general term that we use.
+
+304
+00:14:41,890 --> 00:14:45,940
+>> But there are also switches
+and things actually called
+
+305
+00:14:45,940 --> 00:14:49,070
+access points that are separate from
+this general concept of an access
+
+306
+00:14:49,070 --> 00:14:49,780
+point.
+
+307
+00:14:49,780 --> 00:14:54,510
+But basically what
+happens is with IPv4, I
+
+308
+00:14:54,510 --> 00:14:57,030
+said we have this concept
+of private addresses, right?
+
+309
+00:14:57,030 --> 00:15:03,680
+And instead of every machine
+having a unique IP address, which
+
+310
+00:15:03,680 --> 00:15:07,720
+we have run out of, because
+we're over 4 billion devices
+
+311
+00:15:07,720 --> 00:15:09,860
+trying to connect to
+the internet, what we do
+
+312
+00:15:09,860 --> 00:15:12,810
+is instead assign an
+IP address to a router.
+
+313
+00:15:12,810 --> 00:15:15,960
+That router or access point
+just in your home, for example.
+
+314
+00:15:15,960 --> 00:15:19,280
+>> And the router's job as to
+sort of act as a traffic cop,
+
+315
+00:15:19,280 --> 00:15:23,540
+allowing everybody who's connected
+to that router to use the same IP
+
+316
+00:15:23,540 --> 00:15:25,115
+address to get out.
+
+317
+00:15:25,115 --> 00:15:25,990
+Does that make sense?
+
+318
+00:15:25,990 --> 00:15:29,414
+So everybody at your home
+has a private IP address.
+
+319
+00:15:29,414 --> 00:15:31,830
+They can't connect to the
+internet, or the internet rather
+
+320
+00:15:31,830 --> 00:15:34,870
+can't speak to them, through
+that private address.
+
+321
+00:15:34,870 --> 00:15:37,656
+They can only speak to them
+through the address in the router.
+
+322
+00:15:37,656 --> 00:15:39,530
+And it's the router's
+job to take information
+
+323
+00:15:39,530 --> 00:15:42,900
+that you're sending the router
+and direct it to the correct place
+
+324
+00:15:42,900 --> 00:15:46,890
+and for information that's coming
+into the router for the router
+
+325
+00:15:46,890 --> 00:15:48,860
+to send it to you.
+
+326
+00:15:48,860 --> 00:15:52,470
+>> So the routers are really the
+devices here-- particularly a router
+
+327
+00:15:52,470 --> 00:15:59,010
+in your home, the most common sort
+of usage case for most people--
+
+328
+00:15:59,010 --> 00:16:00,870
+that has the public IP address.
+
+329
+00:16:00,870 --> 00:16:03,910
+That's the device that's
+connected to the internet.
+
+330
+00:16:03,910 --> 00:16:07,190
+And you connect to the router
+to have information flow
+
+331
+00:16:07,190 --> 00:16:09,910
+through it on your behalf.
+
+332
+00:16:09,910 --> 00:16:14,420
+>> As I said, a modern home network, the
+router and switch and access point
+
+333
+00:16:14,420 --> 00:16:16,420
+are all kind of bundled
+up into a single device.
+
+334
+00:16:16,420 --> 00:16:19,240
+Sometimes a modem is
+bundled in there as well.
+
+335
+00:16:19,240 --> 00:16:20,800
+That's usually just called a router.
+
+336
+00:16:20,800 --> 00:16:23,210
+But it's really all of
+those things together.
+
+337
+00:16:23,210 --> 00:16:27,870
+>> Large scale business networks or
+so-called Wide Area Networks, WANS,
+
+338
+00:16:27,870 --> 00:16:29,570
+actually keep these devices separate.
+
+339
+00:16:29,570 --> 00:16:30,470
+They have a switch.
+
+340
+00:16:30,470 --> 00:16:31,550
+They have routers.
+
+341
+00:16:31,550 --> 00:16:33,510
+They have multiple access points.
+
+342
+00:16:33,510 --> 00:16:36,250
+>> For example, at a
+university you'll see things
+
+343
+00:16:36,250 --> 00:16:40,300
+that look like so-called routers
+mounted are all around campus.
+
+344
+00:16:40,300 --> 00:16:44,120
+Those are all access points that flow
+into routers, switches, et cetera,
+
+345
+00:16:44,120 --> 00:16:45,250
+to pass information along.
+
+346
+00:16:45,250 --> 00:16:49,120
+Because these networks are so
+big that one single access point
+
+347
+00:16:49,120 --> 00:16:51,870
+can't cover its large area.
+
+348
+00:16:51,870 --> 00:16:54,990
+>> And so these large networks,
+business networks, et cetera,
+
+349
+00:16:54,990 --> 00:16:57,710
+split these into separate
+devices, so the network and scale
+
+350
+00:16:57,710 --> 00:16:59,780
+and grow if needed.
+
+351
+00:16:59,780 --> 00:17:04,180
+So again, somewhere between us and
+the internet, we have an access point.
+
+352
+00:17:04,180 --> 00:17:05,430
+And that's what we connect to.
+
+353
+00:17:05,430 --> 00:17:08,992
+And through there, we
+can get to the internet.
+
+354
+00:17:08,992 --> 00:17:10,700
+As I said at the
+beginning of this video,
+
+355
+00:17:10,700 --> 00:17:12,540
+this is not a course on networking.
+
+356
+00:17:12,540 --> 00:17:13,990
+So this is not the entire story.
+
+357
+00:17:13,990 --> 00:17:15,109
+And I've kind of glossed over it.
+
+358
+00:17:15,109 --> 00:17:17,150
+And maybe I've left you
+even a little bit confused
+
+359
+00:17:17,150 --> 00:17:18,670
+as to what some of these things are.
+
+360
+00:17:18,670 --> 00:17:19,329
+But that's OK.
+
+361
+00:17:19,329 --> 00:17:20,599
+>> We don't need the whole story.
+
+362
+00:17:20,599 --> 00:17:25,250
+It's enough for us to know moving
+forward just basically a little bit
+
+363
+00:17:25,250 --> 00:17:27,450
+about how the internet works.
+
+364
+00:17:27,450 --> 00:17:30,670
+So what we know is we have these
+private networks at our house.
+
+365
+00:17:30,670 --> 00:17:32,880
+>> And we connect to a router.
+
+366
+00:17:32,880 --> 00:17:36,674
+And that router is connected
+to the internet at large.
+
+367
+00:17:36,674 --> 00:17:38,090
+But what is the internet at large?
+
+368
+00:17:38,090 --> 00:17:39,930
+I keep saying this, but what is it?
+
+369
+00:17:39,930 --> 00:17:43,610
+>> Well, it's really just all these
+individual networks at my house,
+
+370
+00:17:43,610 --> 00:17:47,460
+and at your house, and at every other
+house, that are connected together.
+
+371
+00:17:47,460 --> 00:17:52,030
+It's an interconnected
+network, an inter-net.
+
+372
+00:17:52,030 --> 00:17:53,840
+So instead of thinking
+about the internet
+
+373
+00:17:53,840 --> 00:17:59,080
+as this giant cloud, this ethereal
+thing that exists out there,
+
+374
+00:17:59,080 --> 00:18:02,470
+it's really just a connection
+among all of these networks.
+
+375
+00:18:02,470 --> 00:18:03,500
+>> So here we go.
+
+376
+00:18:03,500 --> 00:18:04,752
+We have our local network.
+
+377
+00:18:04,752 --> 00:18:07,210
+And we're not the only person
+probably on our local network
+
+378
+00:18:07,210 --> 00:18:08,335
+trying to use the internet.
+
+379
+00:18:08,335 --> 00:18:10,940
+There's probably several
+of us trying to get in.
+
+380
+00:18:10,940 --> 00:18:13,870
+>> And we're not the only network
+that exists in the world, right?
+
+381
+00:18:13,870 --> 00:18:18,300
+There are other networks, too, that
+are trying to connect to the internet.
+
+382
+00:18:18,300 --> 00:18:21,400
+But the internet is not,
+again, a separate entity.
+
+383
+00:18:21,400 --> 00:18:25,592
+>> It's just a set of rules that allow
+these networks, these small networks,
+
+384
+00:18:25,592 --> 00:18:27,300
+the blue, the purple,
+and the red network
+
+385
+00:18:27,300 --> 00:18:28,980
+here, to communicate with each other.
+
+386
+00:18:28,980 --> 00:18:31,230
+So there's no thing
+they're all connecting to.
+
+387
+00:18:31,230 --> 00:18:35,010
+They're all just connected
+to each other, right?
+
+388
+00:18:35,010 --> 00:18:37,710
+>> And so somewhere on these
+networks exists the services
+
+389
+00:18:37,710 --> 00:18:39,095
+that we actually want.
+
+390
+00:18:39,095 --> 00:18:41,220
+So maybe in the blue network
+is where Google lives.
+
+391
+00:18:41,220 --> 00:18:43,303
+And in the purple network
+is where Facebook lives.
+
+392
+00:18:43,303 --> 00:18:46,310
+And in the red network, well, maybe
+that's where all those cats are.
+
+393
+00:18:46,310 --> 00:18:49,440
+>> And so if we want to get
+information about cats,
+
+394
+00:18:49,440 --> 00:18:55,166
+we just traverse this chain of networks
+to get the information we want.
+
+395
+00:18:55,166 --> 00:18:57,040
+And here, I've represented
+the network as all
+
+396
+00:18:57,040 --> 00:18:58,414
+being able to talk to each other.
+
+397
+00:18:58,414 --> 00:19:00,300
+And we can only talk to the network.
+
+398
+00:19:00,300 --> 00:19:01,910
+But the network can't talk back to us.
+
+399
+00:19:01,910 --> 00:19:03,326
+>> But that's not true either, right?
+
+400
+00:19:03,326 --> 00:19:04,610
+This is all a two-way street.
+
+401
+00:19:04,610 --> 00:19:07,860
+Information can flow through
+networks back and forth.
+
+402
+00:19:07,860 --> 00:19:09,007
+>> How does it do that?
+
+403
+00:19:09,007 --> 00:19:11,090
+Well, the internet's really
+a system of protocols.
+
+404
+00:19:11,090 --> 00:19:11,970
+And we're going to
+start talking about what
+
+405
+00:19:11,970 --> 00:19:14,130
+those protocols are in future videos.
+
+406
+00:19:14,130 --> 00:19:16,940
+>> But again, the internet
+is not a separate thing.
+
+407
+00:19:16,940 --> 00:19:20,760
+It's a set of rules that defines
+how networks communicate,
+
+408
+00:19:20,760 --> 00:19:23,410
+these small networks, these
+local network that we're used to,
+
+409
+00:19:23,410 --> 00:19:26,600
+the people in our house, the people
+at our school, the people at our job,
+
+410
+00:19:26,600 --> 00:19:29,160
+all sharing a network.
+
+411
+00:19:29,160 --> 00:19:31,900
+And how these networks interconnect
+and talk to each other,
+
+412
+00:19:31,900 --> 00:19:34,160
+that's actually what the
+internet's all about.
+
+413
+00:19:34,160 --> 00:19:36,090
+So let's, in a future
+video, talk about some
+
+414
+00:19:36,090 --> 00:19:38,940
+of the protocols that comprise
+the internet to hopefully
+
+415
+00:19:38,940 --> 00:19:42,320
+give you a bit more of a
+well-rounded understanding.
+
+416
+00:19:42,320 --> 00:19:43,320
+I'm Doug Lloyd.
+
+417
+00:19:43,320 --> 00:19:45,260
+This is CS50.
+
+418
+00:19:45,260 --> 00:19:47,351

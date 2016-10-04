@@ -1,0 +1,1550 @@
+1
+00:00:00,000 --> 00:00:02,420
+>> [MUSIC PLAYING]
+
+2
+00:00:02,420 --> 00:00:05,189
+
+3
+00:00:05,189 --> 00:00:05,980
+SPEAKER: All right.
+
+4
+00:00:05,980 --> 00:00:08,540
+So let's talk about another
+thing that's kind of unique to C,
+
+5
+00:00:08,540 --> 00:00:10,010
+which is data types and variables.
+
+6
+00:00:10,010 --> 00:00:12,340
+When I say unique to C, I really
+only mean in the context of,
+
+7
+00:00:12,340 --> 00:00:14,470
+if you've been a programmer
+for a really long time,
+
+8
+00:00:14,470 --> 00:00:16,270
+you've probably not
+worked with data types
+
+9
+00:00:16,270 --> 00:00:18,470
+if you've used modern
+programming languages.
+
+10
+00:00:18,470 --> 00:00:20,432
+Modern languages like
+PHP and JavaScript,
+
+11
+00:00:20,432 --> 00:00:22,640
+which we'll also see a little
+later on in the course,
+
+12
+00:00:22,640 --> 00:00:25,550
+you don't actually have to specify
+the data type of a variable
+
+13
+00:00:25,550 --> 00:00:26,270
+when you use it.
+
+14
+00:00:26,270 --> 00:00:28,067
+>> You just declare it and start using it.
+
+15
+00:00:28,067 --> 00:00:29,900
+If it's an integer, it
+know it's an integer.
+
+16
+00:00:29,900 --> 00:00:31,960
+If it's a character, it's
+knows it's a character.
+
+17
+00:00:31,960 --> 00:00:35,320
+If it's a word, it knows
+it's a string, so-called.
+
+18
+00:00:35,320 --> 00:00:37,300
+>> But in C, which is an
+older language, we need
+
+19
+00:00:37,300 --> 00:00:39,420
+to specify the data
+type of every variable
+
+20
+00:00:39,420 --> 00:00:42,990
+that we create the first time
+that we use that variable.
+
+21
+00:00:42,990 --> 00:00:45,030
+So C comes with some
+built-in data types.
+
+22
+00:00:45,030 --> 00:00:46,972
+And let's get familiar
+with some of those.
+
+23
+00:00:46,972 --> 00:00:50,180
+And then afterwards we'll also talk a
+little bit about some of the data types
+
+24
+00:00:50,180 --> 00:00:54,450
+that we've written for you,
+so you can use them in CS50.
+
+25
+00:00:54,450 --> 00:00:56,130
+>> The first is int.
+
+26
+00:00:56,130 --> 00:00:59,110
+The int data type is used for variables
+that will store integer values.
+
+27
+00:00:59,110 --> 00:01:03,210
+So 1, 2, 3, negative 1, 2, 3, and so on.
+
+28
+00:01:03,210 --> 00:01:05,960
+Integers, which is something you
+should keep in mind for the quiz,
+
+29
+00:01:05,960 --> 00:01:09,590
+always take up four bytes
+of memory, which is 32 bits.
+
+30
+00:01:09,590 --> 00:01:11,620
+There are eight bits in a byte.
+
+31
+00:01:11,620 --> 00:01:14,470
+>> So this means that the range of
+values that an integer can store
+
+32
+00:01:14,470 --> 00:01:19,130
+is limited by what can fit within
+32 bits worth of information.
+
+33
+00:01:19,130 --> 00:01:21,850
+Now as it turns out,
+it was long ago decided
+
+34
+00:01:21,850 --> 00:01:24,310
+that we would split up
+that range of 32 bits
+
+35
+00:01:24,310 --> 00:01:26,650
+into negative integers
+and positive integers,
+
+36
+00:01:26,650 --> 00:01:28,390
+each getting half of the range.
+
+37
+00:01:28,390 --> 00:01:32,230
+So the range of values that we represent
+with an integer range from negative 2
+
+38
+00:01:32,230 --> 00:01:36,520
+to the 31st power to 2 to
+the 31st power minus 1,
+
+39
+00:01:36,520 --> 00:01:38,190
+cause you also need a spot for 0.
+
+40
+00:01:38,190 --> 00:01:41,650
+>> So basically half of the possible values
+you can fit in an int are negative,
+
+41
+00:01:41,650 --> 00:01:42,610
+and half are positive.
+
+42
+00:01:42,610 --> 00:01:47,270
+And roughly here, this is about negative
+2 billion to about positive 2 billion.
+
+43
+00:01:47,270 --> 00:01:50,207
+Give or take a couple hundred million.
+
+44
+00:01:50,207 --> 00:01:52,290
+So that's what you can fit
+in an integer variable.
+
+45
+00:01:52,290 --> 00:01:55,490
+Now we also have something
+called an unsigned integer.
+
+46
+00:01:55,490 --> 00:01:59,220
+Now unsigned ints are not a
+separate type of variable.
+
+47
+00:01:59,220 --> 00:02:01,590
+Rather, unsigned is
+what's called a qualifier.
+
+48
+00:02:01,590 --> 00:02:04,990
+It modifies the data
+type of integer slightly.
+
+49
+00:02:04,990 --> 00:02:07,850
+>> And in this case, what unsigned
+means-- and you can also
+
+50
+00:02:07,850 --> 00:02:11,530
+use unsigned other data types,
+integer's not the only one.
+
+51
+00:02:11,530 --> 00:02:15,310
+What it effectively does is doubles
+the positive range of values
+
+52
+00:02:15,310 --> 00:02:19,350
+that an integer can take on at
+the expense of no longer allowing
+
+53
+00:02:19,350 --> 00:02:21,140
+you to take on negative values.
+
+54
+00:02:21,140 --> 00:02:25,400
+So if you have numbers that you know
+will get higher than 2 billion but less
+
+55
+00:02:25,400 --> 00:02:31,280
+than 4 billion, for example--
+which is 2 to the 32nd power--
+
+56
+00:02:31,280 --> 00:02:33,330
+you might want to use
+an unsigned int if you
+
+57
+00:02:33,330 --> 00:02:35,050
+know your value will never be negative.
+
+58
+00:02:35,050 --> 00:02:37,216
+>> You'll occasionally have
+used for unsigned variables
+
+59
+00:02:37,216 --> 00:02:39,460
+in CS50, which is why I mention it here.
+
+60
+00:02:39,460 --> 00:02:43,830
+But again, the range of values that you
+can represent with an unsigned integer
+
+61
+00:02:43,830 --> 00:02:48,240
+as to t regular integer, are 0
+to 2 to the 32nd power minus 1,
+
+62
+00:02:48,240 --> 00:02:50,840
+or approximately 0 to 4 billion.
+
+63
+00:02:50,840 --> 00:02:53,730
+So you've effectively doubled the
+positive range that you can fit,
+
+64
+00:02:53,730 --> 00:02:56,270
+but you've given up all
+the negative values.
+
+65
+00:02:56,270 --> 00:03:00,040
+>> Now as an aside, unsigned
+is not the only qualifier
+
+66
+00:03:00,040 --> 00:03:01,790
+that we might see for
+variable data types.
+
+67
+00:03:01,790 --> 00:03:05,779
+There are also things called
+short and long and const.
+
+68
+00:03:05,779 --> 00:03:07,820
+Const we'll see a little
+bit later in the course.
+
+69
+00:03:07,820 --> 00:03:10,830
+Short and long, we probably won't.
+
+70
+00:03:10,830 --> 00:03:12,830
+>> But just know that there
+are other qualifiers.
+
+71
+00:03:12,830 --> 00:03:14,080
+Unsigned isn't the only one.
+
+72
+00:03:14,080 --> 00:03:16,596
+But it's the only one we're
+going to talk about right now.
+
+73
+00:03:16,596 --> 00:03:17,310
+So all right.
+
+74
+00:03:17,310 --> 00:03:18,393
+So we've covered integers.
+
+75
+00:03:18,393 --> 00:03:19,200
+What's next?
+
+76
+00:03:19,200 --> 00:03:20,130
+>> Chars.
+
+77
+00:03:20,130 --> 00:03:23,620
+So chars are used for variables
+that will store single characters.
+
+78
+00:03:23,620 --> 00:03:24,850
+Char is short for character.
+
+79
+00:03:24,850 --> 00:03:27,870
+And sometimes you might hear
+people pronounce it as car.
+
+80
+00:03:27,870 --> 00:03:32,020
+>> So characters always take up one
+byte of memory, which is just 8 bits.
+
+81
+00:03:32,020 --> 00:03:35,700
+So this means that they can only fit
+values in the range of negative 2
+
+82
+00:03:35,700 --> 00:03:42,430
+to the seventh power, or negative 128,
+to 2 to the 7th power minus 1, or 127.
+
+83
+00:03:42,430 --> 00:03:45,710
+>> Thanks to ASCII, it was
+long ago decided a way
+
+84
+00:03:45,710 --> 00:03:50,805
+to map those positive numbers from
+0 to 127 to various characters
+
+85
+00:03:50,805 --> 00:03:52,182
+that all exist on our keyboard.
+
+86
+00:03:52,182 --> 00:03:54,640
+So as we'll see later on in
+the course, and you'll probably
+
+87
+00:03:54,640 --> 00:03:57,700
+come to memorize at some
+point, capital A, for example--
+
+88
+00:03:57,700 --> 00:04:00,732
+the character capital A--
+maps to the number 65.
+
+89
+00:04:00,732 --> 00:04:02,940
+And the reason for that is
+because that's what's it's
+
+90
+00:04:02,940 --> 00:04:05,490
+been assigned by the ASCII standard.
+
+91
+00:04:05,490 --> 00:04:07,850
+>> Lowercase A is 97.
+
+92
+00:04:07,850 --> 00:04:11,900
+The character 0 for when you
+actually type the character, not
+
+93
+00:04:11,900 --> 00:04:13,532
+representing the number zero, is 48.
+
+94
+00:04:13,532 --> 00:04:15,240
+You'll learn a couple
+of these as you go.
+
+95
+00:04:15,240 --> 00:04:17,990
+And you'll certainly come to need
+them a little bit later in CS50.
+
+96
+00:04:17,990 --> 00:04:20,450
+
+97
+00:04:20,450 --> 00:04:23,390
+>> The next major data type
+is floating point numbers.
+
+98
+00:04:23,390 --> 00:04:26,100
+So floating point numbers are
+also known as real numbers.
+
+99
+00:04:26,100 --> 00:04:28,850
+They're basically numbers that
+have a decimal point in them.
+
+100
+00:04:28,850 --> 00:04:33,360
+Floating point values
+like integers are also
+
+101
+00:04:33,360 --> 00:04:36,090
+contained within 4 bytes of memory.
+
+102
+00:04:36,090 --> 00:04:37,580
+Now there's no chart here.
+
+103
+00:04:37,580 --> 00:04:40,890
+There's no number line, because
+describing the range of a float
+
+104
+00:04:40,890 --> 00:04:44,550
+isn't exactly clear or intuitive.
+
+105
+00:04:44,550 --> 00:04:47,350
+>> Suffice it to say you
+have 32 bits to work with.
+
+106
+00:04:47,350 --> 00:04:49,730
+And if you have a number
+like pi, which has
+
+107
+00:04:49,730 --> 00:04:55,510
+an integer part 3, and a floating
+point part, or decimal part 0.14159,
+
+108
+00:04:55,510 --> 00:04:58,735
+and so on, you need to be
+able to represent all of it--
+
+109
+00:04:58,735 --> 00:05:02,420
+the integer part and the decimal part.
+
+110
+00:05:02,420 --> 00:05:04,550
+>> So what do you think that might mean?
+
+111
+00:05:04,550 --> 00:05:08,180
+One thing is that if the decimal
+part gets longer and longer,
+
+112
+00:05:08,180 --> 00:05:10,660
+if I have a very large
+integer part, I might not
+
+113
+00:05:10,660 --> 00:05:13,090
+be able to be as precise
+with the decimal part.
+
+114
+00:05:13,090 --> 00:05:15,280
+And that's really the
+limitation of a float.
+
+115
+00:05:15,280 --> 00:05:17,229
+>> Floats have a precision problem.
+
+116
+00:05:17,229 --> 00:05:19,270
+We only have 32 bits to
+work with, so we can only
+
+117
+00:05:19,270 --> 00:05:22,510
+be so precise with our decimal part.
+
+118
+00:05:22,510 --> 00:05:27,300
+We can't necessarily have a decimal
+part precise to 100 or 200 digits,
+
+119
+00:05:27,300 --> 00:05:29,710
+because we only have
+32 bits to work with.
+
+120
+00:05:29,710 --> 00:05:31,590
+So that's a limitation of a float.
+
+121
+00:05:31,590 --> 00:05:33,590
+>> Now fortunately there's
+another data type called
+
+122
+00:05:33,590 --> 00:05:36,530
+double, which somewhat
+deals with this problem.
+
+123
+00:05:36,530 --> 00:05:39,980
+Doubles, like floats, are also used to
+store real numbers, or floating point
+
+124
+00:05:39,980 --> 00:05:40,840
+values.
+
+125
+00:05:40,840 --> 00:05:44,340
+The difference is that
+doubles are double precision.
+
+126
+00:05:44,340 --> 00:05:48,177
+They can fit 64 bits of
+data, or eight bytes.
+
+127
+00:05:48,177 --> 00:05:49,010
+What does that mean?
+
+128
+00:05:49,010 --> 00:05:51,801
+Well, it means we can be a lot more
+precise with the decimal point.
+
+129
+00:05:51,801 --> 00:05:54,830
+Instead of having pi to seven
+places maybe, with a float,
+
+130
+00:05:54,830 --> 00:05:56,710
+we can maybe have it to 30 places.
+
+131
+00:05:56,710 --> 00:05:59,824
+If that's important, you might want
+to use a double instead of a float.
+
+132
+00:05:59,824 --> 00:06:01,740
+Basically, if you're
+working on anything where
+
+133
+00:06:01,740 --> 00:06:06,540
+having a really long decimal place
+and a lot of precision is important,
+
+134
+00:06:06,540 --> 00:06:08,630
+you probably want to
+use a double overfloat.
+
+135
+00:06:08,630 --> 00:06:11,250
+Now for most of your work in
+CS50, a float should suffice.
+
+136
+00:06:11,250 --> 00:06:15,340
+But do know that doubles exist as a
+way to somewhat deal with the precision
+
+137
+00:06:15,340 --> 00:06:20,980
+problem by giving you an extra 32
+bits to work with for your numbers.
+
+138
+00:06:20,980 --> 00:06:23,650
+>> Now this is not a data type.
+
+139
+00:06:23,650 --> 00:06:24,390
+This is a type.
+
+140
+00:06:24,390 --> 00:06:25,340
+And it's called void.
+
+141
+00:06:25,340 --> 00:06:27,506
+And I'm talking about it
+here because we've probably
+
+142
+00:06:27,506 --> 00:06:29,520
+seen it a few times already in CS50.
+
+143
+00:06:29,520 --> 00:06:32,020
+And you might be wondering
+what it's all about.
+
+144
+00:06:32,020 --> 00:06:33,390
+>> So void is a type.
+
+145
+00:06:33,390 --> 00:06:34,097
+It does exist.
+
+146
+00:06:34,097 --> 00:06:35,180
+But it is not a data type.
+
+147
+00:06:35,180 --> 00:06:39,350
+>> We can't create a variable of type
+void and assign a value to it.
+
+148
+00:06:39,350 --> 00:06:42,519
+But functions, for example,
+can have a void return type.
+
+149
+00:06:42,519 --> 00:06:45,060
+Basically, if you see a function
+that has a void return type,
+
+150
+00:06:45,060 --> 00:06:46,970
+it means it doesn't return a value.
+
+151
+00:06:46,970 --> 00:06:49,440
+Can you think of a common
+function that we've used so far
+
+152
+00:06:49,440 --> 00:06:52,780
+in CS50 that doesn't return a value?
+
+153
+00:06:52,780 --> 00:06:54,700
+>> Printf is one.
+
+154
+00:06:54,700 --> 00:06:56,820
+Printf does not actually
+return anything to you.
+
+155
+00:06:56,820 --> 00:06:59,850
+It prints something to the
+screen, and it's basically
+
+156
+00:06:59,850 --> 00:07:01,650
+a side effect of what printf does.
+
+157
+00:07:01,650 --> 00:07:03,620
+But it doesn't give you a value back.
+
+158
+00:07:03,620 --> 00:07:08,419
+You don't capture the result and store
+it in some variable to use it later on.
+
+159
+00:07:08,419 --> 00:07:10,710
+It just prints something to
+the screen and you're done.
+
+160
+00:07:10,710 --> 00:07:14,360
+>> So we say that printf
+is a void function.
+
+161
+00:07:14,360 --> 00:07:16,450
+It returns nothing.
+
+162
+00:07:16,450 --> 00:07:18,580
+>> The perimeter list of a
+function can also be void.
+
+163
+00:07:18,580 --> 00:07:21,410
+And you've also seen that
+quite a bit in CS50 too.
+
+164
+00:07:21,410 --> 00:07:22,300
+Int main void.
+
+165
+00:07:22,300 --> 00:07:23,260
+Does that ring a bell?
+
+166
+00:07:23,260 --> 00:07:24,080
+
+167
+00:07:24,080 --> 00:07:27,220
+Basically what that means is that
+main doesn't take any parameters.
+
+168
+00:07:27,220 --> 00:07:29,520
+There's no argument that
+get passed into main.
+
+169
+00:07:29,520 --> 00:07:32,780
+Now later on we'll see that there is
+a way to pass arguments into main,
+
+170
+00:07:32,780 --> 00:07:36,189
+but so far what we've
+seen is int main void.
+
+171
+00:07:36,189 --> 00:07:37,730
+Main just doesn't take any arguments.
+
+172
+00:07:37,730 --> 00:07:40,236
+And so we specify that by saying void.
+
+173
+00:07:40,236 --> 00:07:42,110
+We're just being very
+explicit about the fact
+
+174
+00:07:42,110 --> 00:07:44,430
+that it doesn't take any arguments.
+
+175
+00:07:44,430 --> 00:07:47,160
+>> So for now, suffice it to
+say that void basically
+
+176
+00:07:47,160 --> 00:07:50,789
+should just serve as a placeholder
+for you as thinking about as nothing.
+
+177
+00:07:50,789 --> 00:07:52,080
+It's not really doing anything.
+
+178
+00:07:52,080 --> 00:07:53,550
+There's no return value here.
+
+179
+00:07:53,550 --> 00:07:54,770
+There's no parameters here.
+
+180
+00:07:54,770 --> 00:07:55,709
+It's void.
+
+181
+00:07:55,709 --> 00:07:57,250
+It's a little more complex than that.
+
+182
+00:07:57,250 --> 00:08:00,640
+But this should suffice for
+the better part of the course.
+
+183
+00:08:00,640 --> 00:08:05,010
+And hopefully now you have a little
+bit more of a concept of what void is.
+
+184
+00:08:05,010 --> 00:08:08,460
+>> So those are the five types you'll
+encounter that are built-in to C.
+
+185
+00:08:08,460 --> 00:08:10,670
+But in CS50 we also have a library.
+
+186
+00:08:10,670 --> 00:08:13,550
+CS50.h, which you can include.
+
+187
+00:08:13,550 --> 00:08:15,930
+And which will provide you
+with two additional types
+
+188
+00:08:15,930 --> 00:08:18,280
+that you'll probably be able
+to use on your assignments,
+
+189
+00:08:18,280 --> 00:08:21,210
+or just working generally programming.
+
+190
+00:08:21,210 --> 00:08:23,030
+>> The first of these is bool.
+
+191
+00:08:23,030 --> 00:08:26,780
+So the Boolean data type,
+bool, is used for variables
+
+192
+00:08:26,780 --> 00:08:28,114
+that will store a Boolean value.
+
+193
+00:08:28,114 --> 00:08:29,863
+If you've ever heard
+this term before, you
+
+194
+00:08:29,863 --> 00:08:31,960
+might know that a Boolean
+value is capable of only
+
+195
+00:08:31,960 --> 00:08:34,440
+holding two different distinct values.
+
+196
+00:08:34,440 --> 00:08:35,872
+True and false.
+
+197
+00:08:35,872 --> 00:08:37,580
+Now this seems pretty
+fundamental, right?
+
+198
+00:08:37,580 --> 00:08:40,496
+It's kind of a surprise that this
+doesn't exist in C as it's built-in.
+
+199
+00:08:40,496 --> 00:08:42,640
+And in many modern languages,
+of course, Booleans
+
+200
+00:08:42,640 --> 00:08:45,390
+are a standard default data type.
+
+201
+00:08:45,390 --> 00:08:47,192
+But in C, they're actually not.
+
+202
+00:08:47,192 --> 00:08:48,400
+But we've created it for you.
+
+203
+00:08:48,400 --> 00:08:51,910
+So if you ever need to create
+a variable whose type is bool,
+
+204
+00:08:51,910 --> 00:08:55,230
+just be sure to #include CS50.h
+at the beginning of your program,
+
+205
+00:08:55,230 --> 00:08:57,800
+and you'll be able to create
+variables of the bool type.
+
+206
+00:08:57,800 --> 00:09:02,095
+>> If you forget to #include CS50.h, and
+you start using Boolean-type variables,
+
+207
+00:09:02,095 --> 00:09:04,970
+you might encounter some problems
+when you're compiling your program.
+
+208
+00:09:04,970 --> 00:09:06,490
+So just be on the lookout for that.
+
+209
+00:09:06,490 --> 00:09:11,180
+And maybe you can just fix the
+problems by pound including CS50.h.
+
+210
+00:09:11,180 --> 00:09:14,590
+>> The other major data type that we
+provide for you in the CS50 library
+
+211
+00:09:14,590 --> 00:09:15,670
+is string.
+
+212
+00:09:15,670 --> 00:09:17,130
+So what is a string?
+
+213
+00:09:17,130 --> 00:09:18,520
+Strings are really just words.
+
+214
+00:09:18,520 --> 00:09:20,000
+They're collections of characters.
+
+215
+00:09:20,000 --> 00:09:20,640
+They're words.
+
+216
+00:09:20,640 --> 00:09:21,390
+They're sentences.
+
+217
+00:09:21,390 --> 00:09:22,480
+They're paragraphs.
+
+218
+00:09:22,480 --> 00:09:25,850
+Might be whole books, even.
+
+219
+00:09:25,850 --> 00:09:29,690
+>> Very short to very long
+series of characters.
+
+220
+00:09:29,690 --> 00:09:34,310
+If you need to use strings,
+for example, to store a word,
+
+221
+00:09:34,310 --> 00:09:37,609
+just be sure to include CS50.h
+at the beginning of your program
+
+222
+00:09:37,609 --> 00:09:38,900
+so you can use the string type.
+
+223
+00:09:38,900 --> 00:09:43,910
+And then you can create variables
+whose data type is string.
+
+224
+00:09:43,910 --> 00:09:46,160
+Now later on in the course,
+we'll also see that that's
+
+225
+00:09:46,160 --> 00:09:47,752
+not the entire story, either.
+
+226
+00:09:47,752 --> 00:09:49,460
+We'll encounter things
+called structures,
+
+227
+00:09:49,460 --> 00:09:54,249
+which allow you to group what may be
+an integer and a string into one unit.
+
+228
+00:09:54,249 --> 00:09:56,290
+And we can use that for
+some purpose, which might
+
+229
+00:09:56,290 --> 00:09:57,750
+come in handy later on in the course.
+
+230
+00:09:57,750 --> 00:09:59,500
+>> And we'll also learn
+about defined types,
+
+231
+00:09:59,500 --> 00:10:01,720
+which allow you to create
+your own data types.
+
+232
+00:10:01,720 --> 00:10:03,060
+We don't need to worry
+about that for now.
+
+233
+00:10:03,060 --> 00:10:04,550
+But just know that that's
+something on the horizon,
+
+234
+00:10:04,550 --> 00:10:07,633
+that there's a lot more to this whole
+type thing than I'm telling you just
+
+235
+00:10:07,633 --> 00:10:08,133
+now.
+
+236
+00:10:08,133 --> 00:10:10,591
+So now that we've learned a
+little bit about the basic data
+
+237
+00:10:10,591 --> 00:10:14,230
+types and the CS50 data types, let's
+talk about how to work with variables
+
+238
+00:10:14,230 --> 00:10:18,530
+and create them using these
+data types in our programs.
+
+239
+00:10:18,530 --> 00:10:22,670
+If you want to create a variable,
+all you need to do is two things.
+
+240
+00:10:22,670 --> 00:10:24,147
+>> First, you need to give it a type.
+
+241
+00:10:24,147 --> 00:10:26,230
+The second thing you need
+to do is give it a name.
+
+242
+00:10:26,230 --> 00:10:28,740
+Once you've done that and slapped a
+semicolon at the end of that line,
+
+243
+00:10:28,740 --> 00:10:29,830
+you've created a variable.
+
+244
+00:10:29,830 --> 00:10:32,370
+>> So here's two examples.
+
+245
+00:10:32,370 --> 00:10:35,744
+Int number; char letter;.
+
+246
+00:10:35,744 --> 00:10:36,660
+What have I done here?
+
+247
+00:10:36,660 --> 00:10:38,110
+I've created two variables.
+
+248
+00:10:38,110 --> 00:10:40,190
+>> The first, the variable's
+name is number.
+
+249
+00:10:40,190 --> 00:10:44,830
+And number is capable of holding integer
+type values, because its type is int.
+
+250
+00:10:44,830 --> 00:10:48,040
+Letter is another variable
+that can hold characters
+
+251
+00:10:48,040 --> 00:10:50,240
+because its data type is char.
+
+252
+00:10:50,240 --> 00:10:51,772
+>> Pretty straightforward, right?
+
+253
+00:10:51,772 --> 00:10:53,480
+If you find yourself
+in a situation where
+
+254
+00:10:53,480 --> 00:10:56,250
+you need to create multiple
+variables of the same type,
+
+255
+00:10:56,250 --> 00:10:58,740
+you only need to specify
+the type name once.
+
+256
+00:10:58,740 --> 00:11:01,600
+Then just list as many variables
+of that type as you need.
+
+257
+00:11:01,600 --> 00:11:04,230
+>> So I could for example, here
+in this third line of code,
+
+258
+00:11:04,230 --> 00:11:07,420
+say int height;, new line.
+
+259
+00:11:07,420 --> 00:11:08,291
+Int width;.
+
+260
+00:11:08,291 --> 00:11:09,290
+And that would work too.
+
+261
+00:11:09,290 --> 00:11:12,039
+I'd still get two variables called
+height and width, each of which
+
+262
+00:11:12,039 --> 00:11:12,730
+is an integer.
+
+263
+00:11:12,730 --> 00:11:16,970
+But I'm allowed to, things to C syntax,
+consolidate it into a single line.
+
+264
+00:11:16,970 --> 00:11:20,230
+Int height, width; It's the same thing.
+
+265
+00:11:20,230 --> 00:11:23,900
+I've created two variables, one called
+height one called width, both of which
+
+266
+00:11:23,900 --> 00:11:26,730
+are capable of holding
+integer type values.
+
+267
+00:11:26,730 --> 00:11:30,920
+>> Similarly here, I can create three
+floating point values at once.
+
+268
+00:11:30,920 --> 00:11:33,350
+I can maybe create a variable
+called square root of 2--
+
+269
+00:11:33,350 --> 00:11:35,766
+which presumably will eventually
+hold the floating point--
+
+270
+00:11:35,766 --> 00:11:39,222
+that representation of the square
+root of 2-- square root of 3, and pi.
+
+271
+00:11:39,222 --> 00:11:41,180
+I could have done this
+on three separate lines.
+
+272
+00:11:41,180 --> 00:11:47,690
+Float, square root 2; Float square root
+3; float pi; and that would work too.
+
+273
+00:11:47,690 --> 00:11:50,590
+>> But again, I can just consolidate
+this into a single line of code.
+
+274
+00:11:50,590 --> 00:11:54,050
+Makes things a little bit
+shorter, not as clunky.
+
+275
+00:11:54,050 --> 00:11:57,259
+>> Now in general, it's good design to only
+declare a variable when you need it.
+
+276
+00:11:57,259 --> 00:11:59,050
+And we'll talk a little
+bit more about that
+
+277
+00:11:59,050 --> 00:12:00,945
+later on in the course
+when we discuss scope.
+
+278
+00:12:00,945 --> 00:12:03,320
+So don't necessarily need to
+create all of your variables
+
+279
+00:12:03,320 --> 00:12:05,990
+at the beginning of the program, which
+some people might have done the past,
+
+280
+00:12:05,990 --> 00:12:08,700
+or was certainly a very common
+coding practice many years ago
+
+281
+00:12:08,700 --> 00:12:11,700
+when working with C. You might just
+want to create a variable right when
+
+282
+00:12:11,700 --> 00:12:13,140
+you need it.
+
+283
+00:12:13,140 --> 00:12:13,640
+All right.
+
+284
+00:12:13,640 --> 00:12:15,150
+So we've created variables.
+
+285
+00:12:15,150 --> 00:12:16,790
+How do we use them?
+
+286
+00:12:16,790 --> 00:12:18,650
+After we declare a
+variable, we don't need
+
+287
+00:12:18,650 --> 00:12:21,237
+to specify the data type
+of that variable anymore.
+
+288
+00:12:21,237 --> 00:12:24,070
+In fact, if you do so, you might
+end up with some weird consequences
+
+289
+00:12:24,070 --> 00:12:25,490
+that we'll kind of gloss over for now.
+
+290
+00:12:25,490 --> 00:12:27,365
+But suffice it to say,
+weird things are going
+
+291
+00:12:27,365 --> 00:12:30,740
+to start happening if you inadvertently
+re-declare variables with the same name
+
+292
+00:12:30,740 --> 00:12:32,210
+over and over.
+
+293
+00:12:32,210 --> 00:12:33,882
+>> So here I have four lines of code.
+
+294
+00:12:33,882 --> 00:12:36,090
+And I have a couple of
+comments there just indicating
+
+295
+00:12:36,090 --> 00:12:37,840
+what's happening on
+each line just to help
+
+296
+00:12:37,840 --> 00:12:40,520
+you get situated in what's going on.
+
+297
+00:12:40,520 --> 00:12:41,520
+So int number;.
+
+298
+00:12:41,520 --> 00:12:42,520
+You saw that previously.
+
+299
+00:12:42,520 --> 00:12:44,000
+That's a variable declaration.
+
+300
+00:12:44,000 --> 00:12:46,670
+>> I've now created a variable
+called number that's
+
+301
+00:12:46,670 --> 00:12:48,970
+capable of holding integer-type values.
+
+302
+00:12:48,970 --> 00:12:50,210
+I've declared it.
+
+303
+00:12:50,210 --> 00:12:53,770
+>> The next line I'm assigning
+a value to number.
+
+304
+00:12:53,770 --> 00:12:54,992
+Number equals 17.
+
+305
+00:12:54,992 --> 00:12:55,950
+What's happening there?
+
+306
+00:12:55,950 --> 00:12:58,880
+I'm putting the number 17
+inside of that variable.
+
+307
+00:12:58,880 --> 00:13:02,760
+>> So if I ever then print out what
+the contents of number are later on,
+
+308
+00:13:02,760 --> 00:13:04,030
+they'll tell me it's 17.
+
+309
+00:13:04,030 --> 00:13:07,030
+So I've declared a variable,
+and then I've assigned it.
+
+310
+00:13:07,030 --> 00:13:10,570
+>> We can repeat the process
+again with char letter;.
+
+311
+00:13:10,570 --> 00:13:11,640
+That's a declaration.
+
+312
+00:13:11,640 --> 00:13:14,010
+Letter equals capital
+H. That's an assignment.
+
+313
+00:13:14,010 --> 00:13:16,030
+Pretty straightforward, too.
+
+314
+00:13:16,030 --> 00:13:18,319
+>> Now this process might
+seem kind of silly.
+
+315
+00:13:18,319 --> 00:13:20,110
+Why are we doing this
+in two lines of code?
+
+316
+00:13:20,110 --> 00:13:21,401
+Is there a better way to do it?
+
+317
+00:13:21,401 --> 00:13:22,250
+In fact, there is.
+
+318
+00:13:22,250 --> 00:13:24,375
+Sometimes you might see
+this called initialization.
+
+319
+00:13:24,375 --> 00:13:28,446
+It's when you declare a variable
+and assign a value at the same time.
+
+320
+00:13:28,446 --> 00:13:30,320
+This is actually a pretty
+common thing to do.
+
+321
+00:13:30,320 --> 00:13:32,870
+When you create a variable, you usually
+want it to have some basic value.
+
+322
+00:13:32,870 --> 00:13:34,330
+Even if it's 0 or something.
+
+323
+00:13:34,330 --> 00:13:36,180
+You just you give it a value.
+
+324
+00:13:36,180 --> 00:13:38,360
+>> You can initialize a variable.
+
+325
+00:13:38,360 --> 00:13:42,320
+Int number equals 17 is the same as
+the first two lines of code up above.
+
+326
+00:13:42,320 --> 00:13:46,829
+Char letter equals h is the same as the
+third and fourth lines of code above.
+
+327
+00:13:46,829 --> 00:13:49,620
+The most important takeaway here
+when we're declaring and assigning
+
+328
+00:13:49,620 --> 00:13:51,740
+variables is after we've
+declared it, notice
+
+329
+00:13:51,740 --> 00:13:53,700
+I'm not using the data type again.
+
+330
+00:13:53,700 --> 00:13:57,916
+I'm not saying int number equals 17 on
+the second line of code, for example.
+
+331
+00:13:57,916 --> 00:13:59,290
+I'm just saying number equals 17.
+
+332
+00:13:59,290 --> 00:14:02,537
+>> Again , re-declaring a variable after
+you've already declared it can lead
+
+333
+00:14:02,537 --> 00:14:03,620
+to some weird consequence.
+
+334
+00:14:03,620 --> 00:14:05,950
+So just be careful of that.
+
+335
+00:14:05,950 --> 00:14:06,660
+>> I'm Doug Lloyd.
+
+336
+00:14:06,660 --> 00:14:08,870
+And this is CS50.
+
+337
+00:14:08,870 --> 00:14:10,499

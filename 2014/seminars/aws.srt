@@ -1,0 +1,4481 @@
+1
+00:00:00,000 --> 00:00:10,811
+
+2
+00:00:10,811 --> 00:00:12,060
+LEO ZHADANOVSKY: Hi, everyone.
+
+3
+00:00:12,060 --> 00:00:13,675
+I'm Leo Zhadanovsky.
+
+4
+00:00:13,675 --> 00:00:17,000
+I'm a solutions architect
+at Amazon Web Services.
+
+5
+00:00:17,000 --> 00:00:21,030
+And I'm going to talk to you today
+about what Amazon Web Services is,
+
+6
+00:00:21,030 --> 00:00:25,170
+its history, a brief overview
+of the services that we offer.
+
+7
+00:00:25,170 --> 00:00:29,530
+And also I'll do a live demo of
+how to launch a LAMP stack in AWS
+
+8
+00:00:29,530 --> 00:00:33,769
+both on a single instance and
+through using some of our other
+
+9
+00:00:33,769 --> 00:00:36,060
+[? managed ?] services, such
+as our relational database
+
+10
+00:00:36,060 --> 00:00:39,330
+service, and our load
+balancers, and our instances.
+
+11
+00:00:39,330 --> 00:00:41,610
+>> So first of all, let's
+talk about AWS history.
+
+12
+00:00:41,610 --> 00:00:47,780
+So how did Amazon.com get into
+this cloud computing business?
+
+13
+00:00:47,780 --> 00:00:51,630
+Well, Amazon's really good at
+providing a big selection of products
+
+14
+00:00:51,630 --> 00:00:54,440
+and shipping those to
+customers efficiently.
+
+15
+00:00:54,440 --> 00:00:57,870
+And behind that capability
+lies years of experience
+
+16
+00:00:57,870 --> 00:01:01,330
+with operating data centers, with
+logistics, with all kinds of things.
+
+17
+00:01:01,330 --> 00:01:05,420
+And so we discovered
+over 10 years that we
+
+18
+00:01:05,420 --> 00:01:10,840
+wanted to enable our customers to
+do a lot of different things, right?
+
+19
+00:01:10,840 --> 00:01:16,870
+>> So we ended offering some internal
+services up to third-party sellers.
+
+20
+00:01:16,870 --> 00:01:20,640
+As we published simple web services
+such as our catalog search.
+
+21
+00:01:20,640 --> 00:01:22,910
+And it became really
+apparent really fast
+
+22
+00:01:22,910 --> 00:01:26,530
+that developers were hungry
+for more of our services.
+
+23
+00:01:26,530 --> 00:01:29,830
+And so this led us to develop AWS.
+
+24
+00:01:29,830 --> 00:01:31,910
+So we asked what if we
+could package everything
+
+25
+00:01:31,910 --> 00:01:36,620
+we do and offer it to
+others over the web?
+
+26
+00:01:36,620 --> 00:01:41,940
+>> So the AWS mission is to enable
+businesses and developers
+
+27
+00:01:41,940 --> 00:01:46,080
+to use web services to build
+scalable sophisticated applications.
+
+28
+00:01:46,080 --> 00:01:49,650
+And web services is what
+people now call the Cloud.
+
+29
+00:01:49,650 --> 00:01:53,180
+So in 2006, AWS was born.
+
+30
+00:01:53,180 --> 00:01:56,590
+And let's talk about
+what AWS actually is.
+
+31
+00:01:56,590 --> 00:02:01,310
+>> So we provide different
+services at different tiers.
+
+32
+00:02:01,310 --> 00:02:06,060
+So we have kind of our core services,
+our compute storage and database.
+
+33
+00:02:06,060 --> 00:02:08,250
+And then we also have
+a networking layer,
+
+34
+00:02:08,250 --> 00:02:10,289
+and we've got a global
+infrastructure, so we've
+
+35
+00:02:10,289 --> 00:02:13,812
+got regions around the world and
+availability zones around the world.
+
+36
+00:02:13,812 --> 00:02:15,520
+And then we've got
+higher level services,
+
+37
+00:02:15,520 --> 00:02:18,670
+like application services that
+you use to build horizontally
+
+38
+00:02:18,670 --> 00:02:20,434
+scalable applications.
+
+39
+00:02:20,434 --> 00:02:22,850
+And then we've got deployment
+and administration services.
+
+40
+00:02:22,850 --> 00:02:26,010
+So these are services that you
+use to deploy your code in the AWS
+
+41
+00:02:26,010 --> 00:02:29,100
+and to administrate your
+AWS account as it scales.
+
+42
+00:02:29,100 --> 00:02:32,120
+>> So let's talk about our
+global infrastructure first.
+
+43
+00:02:32,120 --> 00:02:35,960
+We have 11 regions around the world.
+
+44
+00:02:35,960 --> 00:02:39,680
+So we just added a new region
+a few weeks ago in Frankfurt,
+
+45
+00:02:39,680 --> 00:02:41,500
+but each region is
+like a separate cloud.
+
+46
+00:02:41,500 --> 00:02:43,580
+So these services I'm
+going to talk about, they
+
+47
+00:02:43,580 --> 00:02:46,350
+exist in the different regions.
+
+48
+00:02:46,350 --> 00:02:50,370
+So in the US, there's a
+region in northern Virginia.
+
+49
+00:02:50,370 --> 00:02:54,390
+There's a region in North
+California and in Oregon.
+
+50
+00:02:54,390 --> 00:02:57,690
+>> The region in Oregon
+is also carbon neutral.
+
+51
+00:02:57,690 --> 00:03:00,200
+We also have a region in
+Oregon called GovCloud.
+
+52
+00:03:00,200 --> 00:03:05,370
+So if you have a workload that needs
+to be ITAR compliant, so that's
+
+53
+00:03:05,370 --> 00:03:09,580
+International Traffic and Arms Reduction
+Treaty, you should use GovCloud.
+
+54
+00:03:09,580 --> 00:03:12,510
+>> So the important thing
+about this is that you
+
+55
+00:03:12,510 --> 00:03:15,100
+pick and choose where your data
+goes and where your apps go.
+
+56
+00:03:15,100 --> 00:03:19,370
+So we don't move your data across
+regions, or across availability zones
+
+57
+00:03:19,370 --> 00:03:22,277
+if it's a service where you can
+choose the availability zone.
+
+58
+00:03:22,277 --> 00:03:23,860
+You can pick and choose where it goes.
+
+59
+00:03:23,860 --> 00:03:24,526
+You can move it.
+
+60
+00:03:24,526 --> 00:03:27,920
+We give you tools to move your
+data, but we won't move it for you.
+
+61
+00:03:27,920 --> 00:03:30,710
+>> And so within each region there's
+at least two availability zones,
+
+62
+00:03:30,710 --> 00:03:33,020
+and we'll talk about what
+those are in a second.
+
+63
+00:03:33,020 --> 00:03:35,530
+And there's also 52 edge
+locations around the world.
+
+64
+00:03:35,530 --> 00:03:40,850
+So edge locations are basically for our
+CloudFront, [? cloud ?] distribution
+
+65
+00:03:40,850 --> 00:03:43,410
+network, and our Route 53 DNS service.
+
+66
+00:03:43,410 --> 00:03:47,100
+And so there's a lot of them
+because they're closer to the users,
+
+67
+00:03:47,100 --> 00:03:49,360
+because those are
+latency-based services.
+
+68
+00:03:49,360 --> 00:03:51,410
+So latency matters for them.
+
+69
+00:03:51,410 --> 00:03:54,630
+>> So this is what a typical
+region looks like.
+
+70
+00:03:54,630 --> 00:03:56,630
+And then [? within ?]
+each region there's,
+
+71
+00:03:56,630 --> 00:03:58,530
+like I said, at least
+two availability zones.
+
+72
+00:03:58,530 --> 00:04:01,390
+An availability zone is
+at least one data center,
+
+73
+00:04:01,390 --> 00:04:04,340
+sometimes it can be more within
+the same geographic area.
+
+74
+00:04:04,340 --> 00:04:09,010
+And our availability zones are designed
+to be on different floodplains, fault
+
+75
+00:04:09,010 --> 00:04:15,501
+plains to have distinct power
+utilities and different tier 1 ISPs.
+
+76
+00:04:15,501 --> 00:04:17,500
+So you should design your
+application [? mind ?]
+
+77
+00:04:17,500 --> 00:04:20,240
+where something can happen
+in one availability zone,
+
+78
+00:04:20,240 --> 00:04:23,245
+but so you should spread out your
+application in multiple availability
+
+79
+00:04:23,245 --> 00:04:27,100
+zones because they're built
+with these redundancies in mind.
+
+80
+00:04:27,100 --> 00:04:30,490
+>> And so we power a lot of
+businesses that you recognize.
+
+81
+00:04:30,490 --> 00:04:36,590
+So from Airbnb, to Netflix,
+to Dropbox, to Yelp,
+
+82
+00:04:36,590 --> 00:04:41,270
+we have all kinds of startups and
+enterprises that run workloads on us.
+
+83
+00:04:41,270 --> 00:04:44,610
+In the public sector, we've got
+all kinds of government agencies
+
+84
+00:04:44,610 --> 00:04:47,740
+that run on us, edtech
+startups, universities.
+
+85
+00:04:47,740 --> 00:04:52,910
+The Obama campaign ran basically all
+of their stuff on Amazon Web Services.
+
+86
+00:04:52,910 --> 00:04:56,690
+>> And just to give you a perspective
+on our scaling, on an average day
+
+87
+00:04:56,690 --> 00:05:00,840
+we had enough new server
+capacity to support
+
+88
+00:05:00,840 --> 00:05:04,400
+Amazon.com's global infrastructure
+when it was a $7 billion
+
+89
+00:05:04,400 --> 00:05:05,740
+business back in 2004.
+
+90
+00:05:05,740 --> 00:05:08,500
+So that's how much we
+had on an average day.
+
+91
+00:05:08,500 --> 00:05:11,910
+>> So the general concept is if you
+think about how do you get power.
+
+92
+00:05:11,910 --> 00:05:14,940
+So you get power, it's on demand, right?
+
+93
+00:05:14,940 --> 00:05:19,580
+So you know when you're getting
+it, you know you can get it.
+
+94
+00:05:19,580 --> 00:05:22,950
+It's uniform, so you know
+what voltage you're getting.
+
+95
+00:05:22,950 --> 00:05:26,940
+It's pay as you go, so you pay
+for exactly how much you use.
+
+96
+00:05:26,940 --> 00:05:29,020
+And it's available.
+
+97
+00:05:29,020 --> 00:05:31,060
+So you plug in, you know
+you're gonna get power.
+
+98
+00:05:31,060 --> 00:05:34,350
+So we've taken that and
+extended it to computing.
+
+99
+00:05:34,350 --> 00:05:36,710
+>> So this solves a lot of problems.
+
+100
+00:05:36,710 --> 00:05:41,230
+We typically see a lot
+of IT organizations.
+
+101
+00:05:41,230 --> 00:05:43,130
+They have this capacity problem.
+
+102
+00:05:43,130 --> 00:05:46,370
+So they have certain amounts
+of IT needs, and then they
+
+103
+00:05:46,370 --> 00:05:49,290
+have to over-provision their capacity.
+
+104
+00:05:49,290 --> 00:05:53,110
+So either they're way over-provisioning,
+or they don't have enough capacity,
+
+105
+00:05:53,110 --> 00:05:54,930
+and they have unsatisfied customers.
+
+106
+00:05:54,930 --> 00:05:59,820
+>> So for example, these are
+different patterns of traffic.
+
+107
+00:05:59,820 --> 00:06:01,980
+So whether you have things
+that turn on and off,
+
+108
+00:06:01,980 --> 00:06:05,920
+or grow fast, or have variable peaks
+or predictable peaks, for all these,
+
+109
+00:06:05,920 --> 00:06:08,122
+you're either going to
+over-provision typically,
+
+110
+00:06:08,122 --> 00:06:09,580
+or you're going to under-provision.
+
+111
+00:06:09,580 --> 00:06:12,990
+So you either have waste, or
+you have unhappy customers.
+
+112
+00:06:12,990 --> 00:06:17,400
+>> So what AWS allows you to do is you
+can scale up and down dynamically
+
+113
+00:06:17,400 --> 00:06:19,510
+based on what your
+actual usage pattern is.
+
+114
+00:06:19,510 --> 00:06:23,270
+So you can pay just for what you use.
+
+115
+00:06:23,270 --> 00:06:25,115
+And you can launch
+instances, so instance
+
+116
+00:06:25,115 --> 00:06:27,030
+is our word for virtual server.
+
+117
+00:06:27,030 --> 00:06:29,280
+You can launch one
+instance, you can launch
+
+118
+00:06:29,280 --> 00:06:33,160
+thousands of instances in minutes or
+seconds, just as much as you need.
+
+119
+00:06:33,160 --> 00:06:35,897
+And you can dial it up
+and down as required.
+
+120
+00:06:35,897 --> 00:06:38,730
+So let me talk to you about an
+example that's kind of close to home.
+
+121
+00:06:38,730 --> 00:06:44,930
+So this is a typical traffic
+chart for November for Amazon.com.
+
+122
+00:06:44,930 --> 00:06:49,491
+And the last two peaks here,
+does anyone know what they are?
+
+123
+00:06:49,491 --> 00:06:49,990
+So they're--
+
+124
+00:06:49,990 --> 00:06:51,180
+>> AUDIENCE: Cyber Monday?
+
+125
+00:06:51,180 --> 00:06:53,430
+>> LEO ZHADANOVSKY: Cyber Monday
+and Black Friday, right?
+
+126
+00:06:53,430 --> 00:06:57,020
+So traditionally, what Amazon.com had
+to do was they had to provision capacity
+
+127
+00:06:57,020 --> 00:06:58,330
+to cover those two peaks.
+
+128
+00:06:58,330 --> 00:07:04,490
+So as a result, 76% of the time,
+they had too much capacity.
+
+129
+00:07:04,490 --> 00:07:07,640
+And only 24% of the time
+were they fully utilizing it.
+
+130
+00:07:07,640 --> 00:07:12,730
+And so in 2010 Amazon.com turned
+off its last physical web server
+
+131
+00:07:12,730 --> 00:07:14,430
+and moved it to AWS.
+
+132
+00:07:14,430 --> 00:07:16,660
+So this is what the traffic
+pattern looks like now.
+
+133
+00:07:16,660 --> 00:07:19,240
+The capacity is just above
+what's actually needed.
+
+134
+00:07:19,240 --> 00:07:23,100
+>> So why do we see customers adopting
+cloud computing in AWS so quickly?
+
+135
+00:07:23,100 --> 00:07:24,480
+Well, agility.
+
+136
+00:07:24,480 --> 00:07:27,090
+So that's the primary
+reason that we see.
+
+137
+00:07:27,090 --> 00:07:28,590
+Why is agility important?
+
+138
+00:07:28,590 --> 00:07:31,790
+Well, it allows customers to
+do things that in the old world
+
+139
+00:07:31,790 --> 00:07:36,090
+took weeks or months to do
+them in minutes or seconds.
+
+140
+00:07:36,090 --> 00:07:39,510
+So you can do things like spin up a
+whole new Dev or Test environment,
+
+141
+00:07:39,510 --> 00:07:42,010
+spin up a whole new DR
+environment, spin up
+
+142
+00:07:42,010 --> 00:07:45,180
+50 instances, or 1,000
+instances for peak traffic,
+
+143
+00:07:45,180 --> 00:07:49,140
+remove those 1,000 instances, set
+up an HPC cluster, or a GS cluster,
+
+144
+00:07:49,140 --> 00:07:51,430
+and you can do that
+all in minutes on AWS.
+
+145
+00:07:51,430 --> 00:07:54,960
+>> So what this leads to is
+a culture of innovation.
+
+146
+00:07:54,960 --> 00:07:57,290
+So you can experiment often.
+
+147
+00:07:57,290 --> 00:08:00,190
+You can pay only for what you use
+and you can fail without risk.
+
+148
+00:08:00,190 --> 00:08:04,477
+So if you try something out, you've
+paid for a few hours of usage.
+
+149
+00:08:04,477 --> 00:08:05,310
+It's not a big deal.
+
+150
+00:08:05,310 --> 00:08:08,150
+You haven't put a big capital
+investment up front for that.
+
+151
+00:08:08,150 --> 00:08:10,930
+>> So what are customers
+actually using AWS for?
+
+152
+00:08:10,930 --> 00:08:16,170
+Well, so the University of Notre Dame,
+they moved their website over to AWS.
+
+153
+00:08:16,170 --> 00:08:21,150
+They have an average of about 38,000
+visitors per day to their site,
+
+154
+00:08:21,150 --> 00:08:26,150
+but it can swell to 150,000 during
+sporting events and football games.
+
+155
+00:08:26,150 --> 00:08:29,840
+So they moved their website over to us.
+
+156
+00:08:29,840 --> 00:08:33,650
+And now their website can support
+a 500% increase in traffic, all the
+
+157
+00:08:33,650 --> 00:08:36,600
+while they've saved
+40% over their existing
+
+158
+00:08:36,600 --> 00:08:39,120
+on-premise setup for their website.
+
+159
+00:08:39,120 --> 00:08:47,530
+>> NASA JPL, they use AWS to live stream
+the Curiosity Mars rover landing.
+
+160
+00:08:47,530 --> 00:08:51,320
+And so they found out
+only six days in advance
+
+161
+00:08:51,320 --> 00:08:53,650
+that they needed to
+find another provider
+
+162
+00:08:53,650 --> 00:08:56,030
+from their regular provider
+for their live stream.
+
+163
+00:08:56,030 --> 00:08:58,140
+This was also the same
+time as the Olympics.
+
+164
+00:08:58,140 --> 00:09:01,686
+So they couldn't buy CDM
+capacity anywhere at the time.
+
+165
+00:09:01,686 --> 00:09:04,310
+And so they basically set up
+their own content delivery network
+
+166
+00:09:04,310 --> 00:09:07,240
+on our EC2 service in six days.
+
+167
+00:09:07,240 --> 00:09:10,090
+And they were able to have
+it scale up to their needs.
+
+168
+00:09:10,090 --> 00:09:13,480
+They were, I think, envisioning
+about a million viewers.
+
+169
+00:09:13,480 --> 00:09:16,200
+So it was a really interesting
+technical feed they used,
+
+170
+00:09:16,200 --> 00:09:18,990
+Adobe Flash Media servers
+and [? internet ?] caches.
+
+171
+00:09:18,990 --> 00:09:23,350
+And they were able to deploy whole
+clusters of these programmatically as
+
+172
+00:09:23,350 --> 00:09:23,850
+needed.
+
+173
+00:09:23,850 --> 00:09:26,590
+And then they spun them down when
+they didn't use them anymore.
+
+174
+00:09:26,590 --> 00:09:32,680
+>> The Obama campaign in 2012 used
+AWS for over 200 applications
+
+175
+00:09:32,680 --> 00:09:34,950
+that they hosted on the platform.
+
+176
+00:09:34,950 --> 00:09:39,010
+They had everything ranging from
+call tools, to payment processors,
+
+177
+00:09:39,010 --> 00:09:43,920
+to mobile applications, to
+volunteer organization websites,
+
+178
+00:09:43,920 --> 00:09:47,269
+to big data analytics tools.
+
+179
+00:09:47,269 --> 00:09:49,060
+And everything had to
+work on Election Day.
+
+180
+00:09:49,060 --> 00:09:52,459
+So to move Election Day would
+require a constitutional amendment,
+
+181
+00:09:52,459 --> 00:09:53,750
+so that wasn't going to happen.
+
+182
+00:09:53,750 --> 00:09:56,208
+So all their systems were going
+to have to work on day one.
+
+183
+00:09:56,208 --> 00:09:57,670
+And they did.
+
+184
+00:09:57,670 --> 00:10:00,660
+>> So let's talk about the actual services.
+
+185
+00:10:00,660 --> 00:10:03,130
+So first the networking services.
+
+186
+00:10:03,130 --> 00:10:06,750
+So Amazon VPC is the
+Virtual Private Cloud.
+
+187
+00:10:06,750 --> 00:10:09,500
+It is basically a
+software-defined network
+
+188
+00:10:09,500 --> 00:10:13,910
+that lives on top of your EC2 instances,
+and your RDS, which we'll talk about,
+
+189
+00:10:13,910 --> 00:10:15,120
+and ElastiCache.
+
+190
+00:10:15,120 --> 00:10:20,080
+>> And so you can define a private
+address space for your instances.
+
+191
+00:10:20,080 --> 00:10:22,820
+You can break that up into
+public subnets, private subnets.
+
+192
+00:10:22,820 --> 00:10:27,790
+You can do VPN connections to
+your on-premise data center.
+
+193
+00:10:27,790 --> 00:10:33,635
+You can then also extend your
+on-premise address space to the VPC.
+
+194
+00:10:33,635 --> 00:10:37,400
+You have power to manipulate the route
+table so you can customize things.
+
+195
+00:10:37,400 --> 00:10:40,450
+You have network access
+control lists in the VPC.
+
+196
+00:10:40,450 --> 00:10:42,370
+[? So it ?] gives you
+a lot of flexibility
+
+197
+00:10:42,370 --> 00:10:45,640
+over what you have running in AWS.
+
+198
+00:10:45,640 --> 00:10:47,140
+>> Then there's AWS DirectConnect.
+
+199
+00:10:47,140 --> 00:10:50,820
+So DirectConnect is a private
+connection to our regions.
+
+200
+00:10:50,820 --> 00:10:54,380
+So you can get a one or a 10 gig
+link or multiple one or 10 gig links
+
+201
+00:10:54,380 --> 00:10:55,720
+up to a region.
+
+202
+00:10:55,720 --> 00:10:58,470
+So if you are uploading a lot of
+data or downloading a lot of data
+
+203
+00:10:58,470 --> 00:11:01,440
+and need private connectivity,
+that's an option there.
+
+204
+00:11:01,440 --> 00:11:02,710
+>> There's also Route 53.
+
+205
+00:11:02,710 --> 00:11:05,410
+So Route 53 is our DNS service.
+
+206
+00:11:05,410 --> 00:11:07,860
+It does all kinds of interesting things.
+
+207
+00:11:07,860 --> 00:11:09,250
+So it supports health checks.
+
+208
+00:11:09,250 --> 00:11:12,590
+So you can, say, run two copies
+of your website at the same time.
+
+209
+00:11:12,590 --> 00:11:15,860
+And if one of them fails, you
+redirect traffic to the other copy.
+
+210
+00:11:15,860 --> 00:11:20,400
+>> Or you can do geography-based records
+so you can route traffic for one country
+
+211
+00:11:20,400 --> 00:11:22,870
+to one cluster from another
+country to another cluster.
+
+212
+00:11:22,870 --> 00:11:27,140
+You can do A/B testing, so you
+can have 80% of your traffic
+
+213
+00:11:27,140 --> 00:11:30,510
+to one copy of your website and
+20% to the new copy of your website
+
+214
+00:11:30,510 --> 00:11:33,120
+and see which one performs better.
+
+215
+00:11:33,120 --> 00:11:35,385
+So you can do all kinds of
+interesting things there.
+
+216
+00:11:35,385 --> 00:11:36,760
+You can do latency based records.
+
+217
+00:11:36,760 --> 00:11:39,160
+So you can have copies of your
+website all over the world
+
+218
+00:11:39,160 --> 00:11:43,500
+and have the user sent to whichever
+one's closest to them based on latency.
+
+219
+00:11:43,500 --> 00:11:46,030
+It also has deep integration
+with AWS services,
+
+220
+00:11:46,030 --> 00:11:50,980
+so such as our load balancers,
+and S3, and CloudFront,
+
+221
+00:11:50,980 --> 00:11:53,680
+so it's really easy to
+point things to CloudFront
+
+222
+00:11:53,680 --> 00:11:57,190
+distributions for your
+LBs or S3 buckets.
+
+223
+00:11:57,190 --> 00:11:57,930
+>> Then there's EC2.
+
+224
+00:11:57,930 --> 00:12:00,432
+So EC2 is our virtual server service.
+
+225
+00:12:00,432 --> 00:12:01,390
+You can run on Windows.
+
+226
+00:12:01,390 --> 00:12:02,560
+You can run Linux on it.
+
+227
+00:12:02,560 --> 00:12:05,230
+You have full control
+of the operating system.
+
+228
+00:12:05,230 --> 00:12:09,519
+There's different flavors of Windows
+and Linux, so Red Hat, Debian, Ubuntu.
+
+229
+00:12:09,519 --> 00:12:11,560
+We have our own distribution
+called Amazon Linux.
+
+230
+00:12:11,560 --> 00:12:14,000
+You can pick which one you want.
+
+231
+00:12:14,000 --> 00:12:15,680
+>> There's different types of instances.
+
+232
+00:12:15,680 --> 00:12:18,330
+So there's over 27 instance
+types at this point.
+
+233
+00:12:18,330 --> 00:12:21,590
+So there's different instance
+families based on different workloads.
+
+234
+00:12:21,590 --> 00:12:23,550
+So there's general
+purpose instances, which
+
+235
+00:12:23,550 --> 00:12:26,910
+are just, if you don't know what
+you need, you can start with those.
+
+236
+00:12:26,910 --> 00:12:30,620
+>> There's compute optimized, which are
+great for things like web servers,
+
+237
+00:12:30,620 --> 00:12:31,160
+right?
+
+238
+00:12:31,160 --> 00:12:33,450
+There's memory optimized
+instances, which
+
+239
+00:12:33,450 --> 00:12:36,190
+are great for things like
+date relational databases.
+
+240
+00:12:36,190 --> 00:12:41,230
+There's storage-optimized instances,
+so these have big SSDs on them.
+
+241
+00:12:41,230 --> 00:12:46,440
+So they're great for things
+like Mongo or NoSQL, right?
+
+242
+00:12:46,440 --> 00:12:49,750
+>> And there's graphics
+optimized instances,
+
+243
+00:12:49,750 --> 00:12:52,970
+which are great for GPU
+compute and cluster instances.
+
+244
+00:12:52,970 --> 00:12:54,940
+And lastly there's cost
+optimized instances.
+
+245
+00:12:54,940 --> 00:12:56,850
+So if you're just trying
+to experiment, you
+
+246
+00:12:56,850 --> 00:13:01,820
+can get a bunch of low cost instance
+types that are great for that use case.
+
+247
+00:13:01,820 --> 00:13:03,330
+Then there's Auto Scaling.
+
+248
+00:13:03,330 --> 00:13:07,840
+So Auto Scaling is an API for EC2.
+
+249
+00:13:07,840 --> 00:13:12,360
+And it allows you to horizontally scale
+up and down tiers of EC2 instances.
+
+250
+00:13:12,360 --> 00:13:14,460
+So let's say you have
+a bunch of web servers.
+
+251
+00:13:14,460 --> 00:13:17,970
+>> And, like in the Notre Dame case, you
+normally you need to have two of them,
+
+252
+00:13:17,970 --> 00:13:19,519
+but you might have to scale for 10.
+
+253
+00:13:19,519 --> 00:13:21,810
+Well, you can use Auto Scaling
+to automatically trigger
+
+254
+00:13:21,810 --> 00:13:24,360
+scale up or down events
+based on a metric.
+
+255
+00:13:24,360 --> 00:13:28,020
+So [? CPU ?] usage, latency.
+
+256
+00:13:28,020 --> 00:13:30,570
+You can do custom metrics, so
+it's pretty open ended there.
+
+257
+00:13:30,570 --> 00:13:32,490
+>> You can also scale based on a schedule.
+
+258
+00:13:32,490 --> 00:13:36,180
+So if you know that you're going to have
+a lot of traffic on Monday at 6:00 AM,
+
+259
+00:13:36,180 --> 00:13:40,150
+you can scale up on Monday at 6:00 AM
+and scale down on Monday at 5:00 PM.
+
+260
+00:13:40,150 --> 00:13:43,610
+You can also do it based on
+just command line commands.
+
+261
+00:13:43,610 --> 00:13:45,150
+>> Then there's elastic load balancing.
+
+262
+00:13:45,150 --> 00:13:48,070
+So elastic load balancing
+is a managed load balancer.
+
+263
+00:13:48,070 --> 00:13:51,590
+So you click a button, it
+provisions a load balancer for you.
+
+264
+00:13:51,590 --> 00:13:54,610
+The load balancer lives in
+multiple availability zones.
+
+265
+00:13:54,610 --> 00:14:00,570
+It does SSL offloading
+for ports 25, 80, 443,
+
+266
+00:14:00,570 --> 00:14:05,750
+and anything over 1024 for TCP traffic.
+
+267
+00:14:05,750 --> 00:14:09,469
+>> It does connection draining,
+proxy protocol support.
+
+268
+00:14:09,469 --> 00:14:11,135
+So it's a very featureful load balancer.
+
+269
+00:14:11,135 --> 00:14:13,440
+And it's got integration
+with Auto Scaling.
+
+270
+00:14:13,440 --> 00:14:16,690
+So when you're using Auto Scaling
+and you're scaling up and down,
+
+271
+00:14:16,690 --> 00:14:19,700
+you can have your instances
+automatically join or leave
+
+272
+00:14:19,700 --> 00:14:21,810
+an elastic load balancer.
+
+273
+00:14:21,810 --> 00:14:23,980
+>> So then there's our storage services.
+
+274
+00:14:23,980 --> 00:14:27,170
+So the first one is Amazon
+EBS, or Elastic Block Store.
+
+275
+00:14:27,170 --> 00:14:32,720
+These are persistent volumes that
+you can mount to your EC2 instances.
+
+276
+00:14:32,720 --> 00:14:34,800
+So you can snapshot them.
+
+277
+00:14:34,800 --> 00:14:39,550
+So when snapshot an EBS
+volume, it goes to S3,
+
+278
+00:14:39,550 --> 00:14:41,730
+which we'll talk about in a second.
+
+279
+00:14:41,730 --> 00:14:44,080
+There's three different
+types of EBS volumes.
+
+280
+00:14:44,080 --> 00:14:48,350
+>> There's magnetic EBS, which is just the
+sort of standard sort of magnetic disk.
+
+281
+00:14:48,350 --> 00:14:51,030
+It's the most economical option.
+
+282
+00:14:51,030 --> 00:14:53,210
+Then there's general
+purpose SSD, where we
+
+283
+00:14:53,210 --> 00:14:55,830
+get three IOPS per gigabyte provision.
+
+284
+00:14:55,830 --> 00:14:59,080
+So if you have one terabyte
+volume, you have 3,000 IOPS.
+
+285
+00:14:59,080 --> 00:15:02,730
+And then there's provisioned IOPS.
+
+286
+00:15:02,730 --> 00:15:06,660
+So provisioned IOPS is when you
+pay for how much disk space you use
+
+287
+00:15:06,660 --> 00:15:08,270
+and how much IOPS capacity you need.
+
+288
+00:15:08,270 --> 00:15:12,150
+So you can provision up
+to 4,000 IOPS per volume.
+
+289
+00:15:12,150 --> 00:15:16,360
+>> So then there's the Amazon S3.
+
+290
+00:15:16,360 --> 00:15:19,340
+The Amazon S3 is our object store.
+
+291
+00:15:19,340 --> 00:15:23,230
+So Amazon S3, you can use it
+to store just any kind of data.
+
+292
+00:15:23,230 --> 00:15:27,850
+You can use it to store static
+websites and hose static websites.
+
+293
+00:15:27,850 --> 00:15:32,870
+You can use S3 for backups
+and archives in some use cases
+
+294
+00:15:32,870 --> 00:15:40,500
+as your source and output bucket for
+big data analytics, or transcoding.
+
+295
+00:15:40,500 --> 00:15:47,700
+It also can be used as an origin
+for a CloudFront distribution.
+
+296
+00:15:47,700 --> 00:15:49,180
+>> So S3's super powerful.
+
+297
+00:15:49,180 --> 00:15:52,660
+S3's designed for 11
+lines of durability.
+
+298
+00:15:52,660 --> 00:15:55,480
+So what that means is it can sustain
+the loss of at least two data
+
+299
+00:15:55,480 --> 00:16:00,790
+centers at the same time
+without losing your data.
+
+300
+00:16:00,790 --> 00:16:02,050
+You can do encryption on S3.
+
+301
+00:16:02,050 --> 00:16:05,150
+So server set encryption, or server
+set encryption with your key.
+
+302
+00:16:05,150 --> 00:16:08,870
+So if you want to manage the
+keys, you can do that as well.
+
+303
+00:16:08,870 --> 00:16:09,940
+>> And there's Glacier.
+
+304
+00:16:09,940 --> 00:16:12,670
+So Glacier is our
+long-term archival service.
+
+305
+00:16:12,670 --> 00:16:15,050
+It is also designed for
+11 lines of durability,
+
+306
+00:16:15,050 --> 00:16:18,510
+but it's for when you want to save
+something and forget about it, right?
+
+307
+00:16:18,510 --> 00:16:21,690
+So whether for compliance or other
+reasons you need to archive something,
+
+308
+00:16:21,690 --> 00:16:22,890
+you should use Glacier.
+
+309
+00:16:22,890 --> 00:16:26,210
+So Glacier costs $0.01
+per gigabyte per month.
+
+310
+00:16:26,210 --> 00:16:29,550
+And Amazon S3 starts at
+$0.03 per gigabyte per month.
+
+311
+00:16:29,550 --> 00:16:35,274
+So Glacier is less expensive and
+Glacier takes three to five hours
+
+312
+00:16:35,274 --> 00:16:36,190
+to get your data back.
+
+313
+00:16:36,190 --> 00:16:37,939
+So if that's OK, if
+it's an archival case,
+
+314
+00:16:37,939 --> 00:16:40,970
+then Glacier's probably the
+right use case for that.
+
+315
+00:16:40,970 --> 00:16:42,300
+>> Then there's Storage Gateway.
+
+316
+00:16:42,300 --> 00:16:44,720
+So the Storage Gateway
+is a virtual machine
+
+317
+00:16:44,720 --> 00:16:50,070
+that you can run locally
+in VMware, or Hyper-V.
+
+318
+00:16:50,070 --> 00:16:52,300
+It gives you an iSCSI endpoint.
+
+319
+00:16:52,300 --> 00:16:54,575
+You can then set up
+another VM on top of that
+
+320
+00:16:54,575 --> 00:16:58,440
+that exposes that iSCSI
+endpoint with CIFS or NFS.
+
+321
+00:16:58,440 --> 00:17:01,690
+Anything that goes into that
+network share and then gets
+
+322
+00:17:01,690 --> 00:17:05,970
+backed up to Amazon S3, or Glacier,
+or EBS depending on how you set it up.
+
+323
+00:17:05,970 --> 00:17:10,430
+So it's a easy way to
+get your data up to AWS.
+
+324
+00:17:10,430 --> 00:17:12,510
+>> So then there's our database services.
+
+325
+00:17:12,510 --> 00:17:14,589
+So the first one is Amazon RDS.
+
+326
+00:17:14,589 --> 00:17:17,589
+So this is our relational
+database service.
+
+327
+00:17:17,589 --> 00:17:21,420
+So this is a managed relational
+database [? for you. ?]
+
+328
+00:17:21,420 --> 00:17:27,030
+It will support SQL Server, Oracle,
+MySQL, and Postgres engines.
+
+329
+00:17:27,030 --> 00:17:28,820
+>> It does automatic failover.
+
+330
+00:17:28,820 --> 00:17:31,580
+So if you have the
+Multi-AZ option enabled,
+
+331
+00:17:31,580 --> 00:17:37,070
+it does synchronous block level
+replication across availability zones.
+
+332
+00:17:37,070 --> 00:17:41,550
+And then if your primary
+fails, it'll just automatically
+
+333
+00:17:41,550 --> 00:17:43,590
+failover between them.
+
+334
+00:17:43,590 --> 00:17:47,410
+It also, for the MySQL engine, supports
+read replicas within the same region
+
+335
+00:17:47,410 --> 00:17:49,210
+or across regions.
+
+336
+00:17:49,210 --> 00:17:51,720
+And there's all kinds of
+interesting options there.
+
+337
+00:17:51,720 --> 00:17:53,200
+So it'll do your backups for you.
+
+338
+00:17:53,200 --> 00:17:54,480
+So it'll backup to S3.
+
+339
+00:17:54,480 --> 00:17:57,470
+It'll do your patching for you as well.
+
+340
+00:17:57,470 --> 00:17:58,900
+>> Then there's DynamoDB.
+
+341
+00:17:58,900 --> 00:18:01,740
+DynamoDB is our managed NoSQL service.
+
+342
+00:18:01,740 --> 00:18:04,840
+For Dynamo DB it takes away
+all the administrative burden
+
+343
+00:18:04,840 --> 00:18:09,190
+of managing a NoSQL service for you.
+
+344
+00:18:09,190 --> 00:18:11,630
+So you just provision
+the table and you say
+
+345
+00:18:11,630 --> 00:18:13,380
+how much read and write
+capacity you want.
+
+346
+00:18:13,380 --> 00:18:15,090
+And it will deliver that for you.
+
+347
+00:18:15,090 --> 00:18:16,929
+So it's an extremely
+simple service to use.
+
+348
+00:18:16,929 --> 00:18:17,970
+Then there's ElastiCache.
+
+349
+00:18:17,970 --> 00:18:21,860
+So ElastiCache is our
+managed caching service.
+
+350
+00:18:21,860 --> 00:18:25,010
+It is basically a managed
+Redis or ElastiCache.
+
+351
+00:18:25,010 --> 00:18:28,830
+So again, you can provision a cluster
+of ElastiCache or Redis instances
+
+352
+00:18:28,830 --> 00:18:34,240
+and not have to worry about backups,
+or failover, or any of that stuff.
+
+353
+00:18:34,240 --> 00:18:36,530
+>> Then we have our application services.
+
+354
+00:18:36,530 --> 00:18:38,770
+So CloudFront is our
+content delivery network
+
+355
+00:18:38,770 --> 00:18:42,240
+and it lives on those Edge locations
+that I talked about before.
+
+356
+00:18:42,240 --> 00:18:44,680
+So CloudFront can be used
+for live video streaming,
+
+357
+00:18:44,680 --> 00:18:49,150
+for on demand video streaming,
+and for just having a website,
+
+358
+00:18:49,150 --> 00:18:50,940
+so hosting a website.
+
+359
+00:18:50,940 --> 00:18:54,270
+So you can have website hosted
+on elastic load balancers,
+
+360
+00:18:54,270 --> 00:18:59,236
+or instances, or S3 buckets,
+or just on-premise hardware.
+
+361
+00:18:59,236 --> 00:19:01,610
+And you can put a CloudFront
+distribution in front of it.
+
+362
+00:19:01,610 --> 00:19:02,660
+It'll cache your content.
+
+363
+00:19:02,660 --> 00:19:04,160
+It'll put it on the edge locations.
+
+364
+00:19:04,160 --> 00:19:06,430
+And so when somebody
+goes to your website
+
+365
+00:19:06,430 --> 00:19:10,100
+they'll be hitting CloudFront, which
+is going to probably closer to them
+
+366
+00:19:10,100 --> 00:19:11,980
+than whatever the origin is.
+
+367
+00:19:11,980 --> 00:19:15,600
+And it'll offload a lot of
+the load off the origin,
+
+368
+00:19:15,600 --> 00:19:22,600
+thus both saving you money and
+getting a better user experience.
+
+369
+00:19:22,600 --> 00:19:24,780
+>> Then there's Amazon CloudSearch.
+
+370
+00:19:24,780 --> 00:19:26,810
+So CloudSearch is a
+managed search service.
+
+371
+00:19:26,810 --> 00:19:30,510
+So you send it your searchable
+data and talk to it through an API,
+
+372
+00:19:30,510 --> 00:19:32,710
+and it'll do search results for you.
+
+373
+00:19:32,710 --> 00:19:34,530
+Then there's the Elastic Transcoder.
+
+374
+00:19:34,530 --> 00:19:36,530
+So it's a managed transcoding solution.
+
+375
+00:19:36,530 --> 00:19:41,050
+You put your videos into an S3 bucket,
+tell it what to transcode into,
+
+376
+00:19:41,050 --> 00:19:45,460
+what format and what
+size and everything.
+
+377
+00:19:45,460 --> 00:19:49,470
+And it'll transcode it and put
+it into an S3 bucket for you.
+
+378
+00:19:49,470 --> 00:19:52,600
+>> Then there's our big data services.
+
+379
+00:19:52,600 --> 00:19:55,780
+So we've got Amazon EMR,
+which is Elastic Map Reduce.
+
+380
+00:19:55,780 --> 00:19:58,200
+So this is a hosted Hadoop framework.
+
+381
+00:19:58,200 --> 00:20:02,920
+So you can spin up a Hadoop cluster from
+one instance to hundreds of instances
+
+382
+00:20:02,920 --> 00:20:04,030
+if you need.
+
+383
+00:20:04,030 --> 00:20:06,975
+It's got deep integration of
+S3, so as a file system for it
+
+384
+00:20:06,975 --> 00:20:09,830
+you can use HDSF, which you
+traditionally do with Hadoop.
+
+385
+00:20:09,830 --> 00:20:12,870
+Or you can do S3 as the file system.
+
+386
+00:20:12,870 --> 00:20:15,240
+>> It's got support for
+spot pricing, which is,
+
+387
+00:20:15,240 --> 00:20:19,110
+on Amazon, how you bid
+for excess capacity.
+
+388
+00:20:19,110 --> 00:20:20,840
+So it supports all that.
+
+389
+00:20:20,840 --> 00:20:26,670
+It supports common Hadoop frameworks
+such as Spark and Shark and Hive
+
+390
+00:20:26,670 --> 00:20:28,460
+and Pig.
+
+391
+00:20:28,460 --> 00:20:32,950
+And we've seen over 5.5
+million EMR clusters
+
+392
+00:20:32,950 --> 00:20:35,340
+launched at this point on Amazon.
+
+393
+00:20:35,340 --> 00:20:38,338
+>> Then we've got AWS Data Pipeline.
+
+394
+00:20:38,338 --> 00:20:40,213
+So Data Pipeline is a
+service that will allow
+
+395
+00:20:40,213 --> 00:20:42,296
+you to move data across
+our different data stores.
+
+396
+00:20:42,296 --> 00:20:48,030
+So you can take something from S3, put
+it into RDS, then do some EMR on it,
+
+397
+00:20:48,030 --> 00:20:50,760
+put it into Redshift, which is
+our data warehousing appliance,
+
+398
+00:20:50,760 --> 00:20:54,564
+and then you can pull something out
+of an on premise, MySQL instance.
+
+399
+00:20:54,564 --> 00:20:56,730
+So there's all kinds of
+things you can do with that.
+
+400
+00:20:56,730 --> 00:20:57,646
+>> Then there's Redshift.
+
+401
+00:20:57,646 --> 00:21:00,470
+Redshift is our managed
+data warehouse appliance.
+
+402
+00:21:00,470 --> 00:21:04,880
+It's meant to be petabyte scale, so
+you can store lots of data on it.
+
+403
+00:21:04,880 --> 00:21:07,280
+It's a massively parallel architecture.
+
+404
+00:21:07,280 --> 00:21:10,040
+So you can have many
+nodes if you wanted to.
+
+405
+00:21:10,040 --> 00:21:13,509
+And it does all the backups and all
+the administrative stuff for you.
+
+406
+00:21:13,509 --> 00:21:14,550
+And then there's Kinesis.
+
+407
+00:21:14,550 --> 00:21:17,340
+Kinesis is our real-time
+processing service.
+
+408
+00:21:17,340 --> 00:21:20,970
+So you can take some source
+of real-time streaming data,
+
+409
+00:21:20,970 --> 00:21:27,360
+so say like the Twitter Firehose, or a
+bunch of log data, send it to Kinesis.
+
+410
+00:21:27,360 --> 00:21:29,140
+Kinesis handles all that for you.
+
+411
+00:21:29,140 --> 00:21:32,250
+And then you can connect
+workers to it to pull things out
+
+412
+00:21:32,250 --> 00:21:36,340
+and, say, do a live dashboard
+or do live analytics on it.
+
+413
+00:21:36,340 --> 00:21:38,330
+>> So then we have our deployment services.
+
+414
+00:21:38,330 --> 00:21:42,530
+So AWS OpsWorks is a DevOps framework.
+
+415
+00:21:42,530 --> 00:21:45,237
+So you take your application,
+you break it up into layers.
+
+416
+00:21:45,237 --> 00:21:48,195
+So you've got your load balancer
+layer, your web layer, your app layer,
+
+417
+00:21:48,195 --> 00:21:51,590
+your database layer, and you
+provision things on those layers
+
+418
+00:21:51,590 --> 00:21:53,720
+based on Chef recipes.
+
+419
+00:21:53,720 --> 00:21:56,280
+Chef is a configuration
+management system.
+
+420
+00:21:56,280 --> 00:21:59,530
+So it also supports
+life cycle events and so
+
+421
+00:21:59,530 --> 00:22:01,820
+if you don't want to manage
+your own Chef, right,
+
+422
+00:22:01,820 --> 00:22:04,570
+if you want to have some kind of
+programmatic way to deploy things
+
+423
+00:22:04,570 --> 00:22:07,420
+onto your instances this
+is one option for you.
+
+424
+00:22:07,420 --> 00:22:09,030
+>> Then we have Elastic Beanstalk.
+
+425
+00:22:09,030 --> 00:22:16,030
+So Elastic Beanstalk is a service that
+allows you to-- say you're a developer.
+
+426
+00:22:16,030 --> 00:22:18,630
+You have your code in a Git repo.
+
+427
+00:22:18,630 --> 00:22:22,030
+You don't want to have to worry
+about deploying your own ELBs or RDS
+
+428
+00:22:22,030 --> 00:22:24,500
+instances or regular EC2 instances.
+
+429
+00:22:24,500 --> 00:22:29,050
+So what you do is you, from your code,
+just send it to Elastic Beanstalk.
+
+430
+00:22:29,050 --> 00:22:33,310
+Elastic Beanstalk will provision RDS
+instances and ELBs and all that stuff
+
+431
+00:22:33,310 --> 00:22:35,556
+for you and deploy your code onto them.
+
+432
+00:22:35,556 --> 00:22:37,305
+So it makes it a lot
+easier for developers
+
+433
+00:22:37,305 --> 00:22:40,600
+to deploy their code onto AWS.
+
+434
+00:22:40,600 --> 00:22:41,910
+>> Then there's CloudFormation.
+
+435
+00:22:41,910 --> 00:22:47,310
+So CloudFormation is a service for
+treating your infrastructure as code.
+
+436
+00:22:47,310 --> 00:22:50,280
+So now that you have all this
+stuff in your application,
+
+437
+00:22:50,280 --> 00:22:52,680
+you've got your VPC, and
+your security group rules,
+
+438
+00:22:52,680 --> 00:22:56,000
+and your EC2 instances,
+and your RDS instances.
+
+439
+00:22:56,000 --> 00:22:58,130
+So you've got this whole
+architecture on AWS.
+
+440
+00:22:58,130 --> 00:23:01,340
+Well, how do you programmatically
+spin that up or recreate it?
+
+441
+00:23:01,340 --> 00:23:04,170
+You can write a JSON file
+that represents all of that.
+
+442
+00:23:04,170 --> 00:23:05,920
+And then you can
+[? take ?] that JSON file
+
+443
+00:23:05,920 --> 00:23:08,180
+and deploy your
+infrastructure off of it.
+
+444
+00:23:08,180 --> 00:23:10,930
+So you can have an architecture
+where, every time you deploy code,
+
+445
+00:23:10,930 --> 00:23:14,560
+it spins up a fresh copy of your whole
+architecture and then fails over to it.
+
+446
+00:23:14,560 --> 00:23:19,130
+So you can also do this to
+have a mutable infrastructure.
+
+447
+00:23:19,130 --> 00:23:21,970
+>> Then finally there's our
+administration services.
+
+448
+00:23:21,970 --> 00:23:25,270
+So our administration services
+start with Amazon IAM,
+
+449
+00:23:25,270 --> 00:23:27,410
+so it's Identity and Access Management.
+
+450
+00:23:27,410 --> 00:23:30,150
+So that allows you to
+manage your AWS account
+
+451
+00:23:30,150 --> 00:23:32,290
+so you can have sub
+users and groups and do
+
+452
+00:23:32,290 --> 00:23:34,330
+identity federation
+and all kinds of stuff.
+
+453
+00:23:34,330 --> 00:23:36,690
+It's really important for security.
+
+454
+00:23:36,690 --> 00:23:39,440
+>> Then we have Amazon CloudWatch,
+which is our metrics service.
+
+455
+00:23:39,440 --> 00:23:41,956
+So it gives you CPU usage
+and all kinds of metrics.
+
+456
+00:23:41,956 --> 00:23:44,080
+And you can do custom
+metrics, and [? you can do ?]
+
+457
+00:23:44,080 --> 00:23:47,050
+auto scaling based on those metrics.
+
+458
+00:23:47,050 --> 00:23:48,450
+>> And then we have CloudTrail.
+
+459
+00:23:48,450 --> 00:23:50,680
+So CloudTrail is our
+service for auditing.
+
+460
+00:23:50,680 --> 00:23:54,380
+So it will log API calls
+against Amazon Web Services.
+
+461
+00:23:54,380 --> 00:23:56,560
+So who rebooted this instance?
+
+462
+00:23:56,560 --> 00:23:58,060
+Who changed this security group?
+
+463
+00:23:58,060 --> 00:23:59,810
+And log them into
+necessary buckets so you
+
+464
+00:23:59,810 --> 00:24:03,650
+can see what happened in
+your account and who did it.
+
+465
+00:24:03,650 --> 00:24:05,600
+>> A new service that we
+have is WorkSpaces.
+
+466
+00:24:05,600 --> 00:24:08,530
+So it's a desktop virtualization on AWS.
+
+467
+00:24:08,530 --> 00:24:13,290
+So you can provision a
+workstation, a Windows workstation,
+
+468
+00:24:13,290 --> 00:24:17,810
+and it will then come
+up in a few minutes.
+
+469
+00:24:17,810 --> 00:24:21,470
+It'll be connected to your active
+directory, so with your users.
+
+470
+00:24:21,470 --> 00:24:23,580
+And you can easily rebuild it.
+
+471
+00:24:23,580 --> 00:24:25,090
+You can easily provision a new one.
+
+472
+00:24:25,090 --> 00:24:28,250
+There's different types with
+different software on there.
+
+473
+00:24:28,250 --> 00:24:30,740
+>> So now that we've gone through
+a lot of our services, let's
+
+474
+00:24:30,740 --> 00:24:31,850
+do an actual live demo.
+
+475
+00:24:31,850 --> 00:24:35,700
+So I'm going to switch over
+to my web browser here.
+
+476
+00:24:35,700 --> 00:24:41,270
+So what I want to show you
+is how to quickly set up
+
+477
+00:24:41,270 --> 00:24:43,690
+an EC2 instance with Wordpress on it.
+
+478
+00:24:43,690 --> 00:24:45,440
+And then we're going
+to do the same thing,
+
+479
+00:24:45,440 --> 00:24:48,890
+but we're going to spin up
+an RDS instance and an ELB.
+
+480
+00:24:48,890 --> 00:24:52,690
+So we'll do it just on the instance and
+we'll break all the tiers out as well.
+
+481
+00:24:52,690 --> 00:24:54,510
+>> So let's launch an EC2 instance.
+
+482
+00:24:54,510 --> 00:24:57,190
+So the first thing which
+I've already done here
+
+483
+00:24:57,190 --> 00:24:59,230
+is you're going to want
+to have a key pair.
+
+484
+00:24:59,230 --> 00:25:03,576
+So a key pair allows you to
+log into the actual instance.
+
+485
+00:25:03,576 --> 00:25:05,450
+So you keep the private
+part of the key pair,
+
+486
+00:25:05,450 --> 00:25:08,570
+and we put the public
+part onto the instance.
+
+487
+00:25:08,570 --> 00:25:11,700
+And that's what allows you to log in.
+
+488
+00:25:11,700 --> 00:25:16,330
+So I've already imported my key pair,
+just my regular SSH key pair here.
+
+489
+00:25:16,330 --> 00:25:19,290
+>> And so the other thing
+I'm going to do here is,
+
+490
+00:25:19,290 --> 00:25:22,214
+I already have some instances
+running, but I'll launch a new one.
+
+491
+00:25:22,214 --> 00:25:24,130
+So I'm going to pick my
+operating system here.
+
+492
+00:25:24,130 --> 00:25:27,970
+So you can see I have a pretty
+big choice of operating system.
+
+493
+00:25:27,970 --> 00:25:31,015
+So I'm just going to pick
+your standard Amazon Linux.
+
+494
+00:25:31,015 --> 00:25:32,930
+>> And I'm going to pick an instance type.
+
+495
+00:25:32,930 --> 00:25:35,890
+And since this is a
+web server, I'm going
+
+496
+00:25:35,890 --> 00:25:39,540
+to do a c3.large because it's
+probably compute intensive.
+
+497
+00:25:39,540 --> 00:25:45,210
+So I'm going to pick a c3.large,
+and I'm going to launch one of them.
+
+498
+00:25:45,210 --> 00:25:48,630
+I'm going to leave it in
+the default VPC for now.
+
+499
+00:25:48,630 --> 00:25:50,810
+I'm going to leave all this stuff alone.
+
+500
+00:25:50,810 --> 00:25:53,270
+>> And I'm going to enable
+CloudWatch monitoring
+
+501
+00:25:53,270 --> 00:25:56,204
+because CloudWatch detailed
+monitoring changes CloudWatch
+
+502
+00:25:56,204 --> 00:25:58,870
+monitoring from five-minute
+resolution to one-minute resolution.
+
+503
+00:25:58,870 --> 00:26:02,510
+So I want that with my web server here.
+
+504
+00:26:02,510 --> 00:26:05,220
+And then I'm going to go to storage.
+
+505
+00:26:05,220 --> 00:26:08,710
+So I want General Purpose SSD on here.
+
+506
+00:26:08,710 --> 00:26:11,940
+8 gigs is probably enough for me,
+so I'm just going to keep that.
+
+507
+00:26:11,940 --> 00:26:16,360
+
+508
+00:26:16,360 --> 00:26:19,230
+I'm just going to label
+it Wordpress Demo.
+
+509
+00:26:19,230 --> 00:26:22,149
+So this is the tag so I
+know what it actually is.
+
+510
+00:26:22,149 --> 00:26:24,190
+And then I'm going to
+configure a security group.
+
+511
+00:26:24,190 --> 00:26:27,510
+So a security group is like
+a firewall for the instance.
+
+512
+00:26:27,510 --> 00:26:30,780
+So I'm going to use one
+of my existing ones.
+
+513
+00:26:30,780 --> 00:26:35,890
+So this security group, it
+enables SSH, so I can SSH into it.
+
+514
+00:26:35,890 --> 00:26:37,580
+And it enables HTTP.
+
+515
+00:26:37,580 --> 00:26:40,390
+>> Now, I'm going to want to lock
+down that SSH a little bit more.
+
+516
+00:26:40,390 --> 00:26:43,220
+You don't want just anybody
+from any IP address SSHing in.
+
+517
+00:26:43,220 --> 00:26:45,240
+So we'll do that after it launches.
+
+518
+00:26:45,240 --> 00:26:49,100
+>> So I'm happy with all
+of this stuff here.
+
+519
+00:26:49,100 --> 00:26:50,167
+And I'm going to launch.
+
+520
+00:26:50,167 --> 00:26:52,250
+And then I'm going to
+choose what key pair I want.
+
+521
+00:26:52,250 --> 00:26:54,750
+So I'm going to choose that
+key pair that I updated before.
+
+522
+00:26:54,750 --> 00:26:57,570
+
+523
+00:26:57,570 --> 00:27:01,960
+>> So now that I'm waiting
+for it to launch, let's
+
+524
+00:27:01,960 --> 00:27:03,320
+go look at our security group.
+
+525
+00:27:03,320 --> 00:27:06,720
+So we've got security groups here.
+
+526
+00:27:06,720 --> 00:27:09,550
+Here's my security
+group that I put it in.
+
+527
+00:27:09,550 --> 00:27:11,200
+>> I'm going to just change this here.
+
+528
+00:27:11,200 --> 00:27:15,710
+So let me make this a
+little bit bigger here.
+
+529
+00:27:15,710 --> 00:27:21,275
+So I want to change this
+from Anywhere to My IP.
+
+530
+00:27:21,275 --> 00:27:23,150
+Because that will
+automatically pick up my IP
+
+531
+00:27:23,150 --> 00:27:26,650
+address here and lock
+it down a little bit.
+
+532
+00:27:26,650 --> 00:27:29,030
+>> And so while that
+instance is spinning up,
+
+533
+00:27:29,030 --> 00:27:32,040
+let's spin up some stuff
+for our other instance
+
+534
+00:27:32,040 --> 00:27:35,060
+where we're going to break out
+the database and the load balancer
+
+535
+00:27:35,060 --> 00:27:37,160
+so that it can be ready for us.
+
+536
+00:27:37,160 --> 00:27:41,580
+So the first thing I'm going to want
+to do is spin up a load balancer.
+
+537
+00:27:41,580 --> 00:27:44,690
+So I'm going to choose
+a load balancer here.
+
+538
+00:27:44,690 --> 00:27:48,410
+And I'm going to call it WordpressELB.
+
+539
+00:27:48,410 --> 00:27:52,106
+
+540
+00:27:52,106 --> 00:27:55,450
+And I'm going to just-- all
+I want is port 80 in here.
+
+541
+00:27:55,450 --> 00:27:57,960
+>> And for now for the health
+check, I'm just going to do TCP.
+
+542
+00:27:57,960 --> 00:28:00,190
+So if Apache's running, it'll be good.
+
+543
+00:28:00,190 --> 00:28:03,760
+And I'm going to lower the healthy
+threshold just so it becomes healthy
+
+544
+00:28:03,760 --> 00:28:06,360
+pretty quickly.
+
+545
+00:28:06,360 --> 00:28:08,710
+Then, again, this has a security group.
+
+546
+00:28:08,710 --> 00:28:12,480
+So I've already made a security
+group for this called Wordpress ELB.
+
+547
+00:28:12,480 --> 00:28:17,120
+And it's basically just going
+to accept traffic from Port 80.
+
+548
+00:28:17,120 --> 00:28:19,580
+And then I'm not going to add
+any instances to it for now.
+
+549
+00:28:19,580 --> 00:28:22,290
+
+550
+00:28:22,290 --> 00:28:26,720
+And I'm going to skip the tagging.
+
+551
+00:28:26,720 --> 00:28:30,010
+And so we're going to
+create this ELB right now.
+
+552
+00:28:30,010 --> 00:28:33,800
+>> So created the load balancer.
+
+553
+00:28:33,800 --> 00:28:36,680
+I'm also going to launch
+one more instance here,
+
+554
+00:28:36,680 --> 00:28:40,280
+just for the web part of my Wordpress.
+
+555
+00:28:40,280 --> 00:28:42,580
+So here we go.
+
+556
+00:28:42,580 --> 00:28:45,920
+I'll just do the same
+thing I did before.
+
+557
+00:28:45,920 --> 00:28:53,620
+So c3.large, CloudWatch
+detailed monitoring enabled.
+
+558
+00:28:53,620 --> 00:28:56,290
+
+559
+00:28:56,290 --> 00:28:57,310
+General purpose SSDs.
+
+560
+00:28:57,310 --> 00:29:02,470
+
+561
+00:29:02,470 --> 00:29:05,590
+Call this Wordpress Web.
+
+562
+00:29:05,590 --> 00:29:11,440
+
+563
+00:29:11,440 --> 00:29:14,480
+>> And I want to choose a-- I already
+have a security group for this.
+
+564
+00:29:14,480 --> 00:29:18,320
+
+565
+00:29:18,320 --> 00:29:23,520
+So this security group accepts traffic
+on port 80 from my Wordpress ELB
+
+566
+00:29:23,520 --> 00:29:26,430
+security group, from the security
+group from my load balancer,
+
+567
+00:29:26,430 --> 00:29:30,654
+but also SSH, which again,
+we're going to lock down.
+
+568
+00:29:30,654 --> 00:29:31,820
+So I'm going to launch this.
+
+569
+00:29:31,820 --> 00:29:39,360
+
+570
+00:29:39,360 --> 00:29:39,990
+Right.
+
+571
+00:29:39,990 --> 00:29:43,530
+>> And then what I'm going to do next is
+I'm going to launch an RDS instance.
+
+572
+00:29:43,530 --> 00:29:44,870
+RDS is going to be my database.
+
+573
+00:29:44,870 --> 00:29:47,100
+So I'm going to go here.
+
+574
+00:29:47,100 --> 00:29:48,560
+I'm going to go to RDS.
+
+575
+00:29:48,560 --> 00:29:52,800
+
+576
+00:29:52,800 --> 00:29:56,239
+I'm going to launch a new instance.
+
+577
+00:29:56,239 --> 00:29:57,530
+So I'm going to pick my engine.
+
+578
+00:29:57,530 --> 00:30:00,850
+So here I have a choice of MySQL,
+Postgres, Oracle, or SQL Server.
+
+579
+00:30:00,850 --> 00:30:02,640
+I want MySQL.
+
+580
+00:30:02,640 --> 00:30:06,160
+And so I'm going to say yes.
+
+581
+00:30:06,160 --> 00:30:09,680
+>> So this is an option for Multi-AZ.
+
+582
+00:30:09,680 --> 00:30:14,267
+So Multi-AZ, again, those replications
+is going to spin up two RDS instances
+
+583
+00:30:14,267 --> 00:30:15,600
+and do replication between them.
+
+584
+00:30:15,600 --> 00:30:20,510
+And if I don't want that I can just have
+a single instance, but I do want that.
+
+585
+00:30:20,510 --> 00:30:22,490
+And then I'm going to
+pick my database engine.
+
+586
+00:30:22,490 --> 00:30:24,907
+So I'm going to pick
+the latest one here.
+
+587
+00:30:24,907 --> 00:30:27,240
+And then I'm going to pick
+what type of instance I want.
+
+588
+00:30:27,240 --> 00:30:30,950
+>> So I want an R3, so that's
+the memory optimized instance.
+
+589
+00:30:30,950 --> 00:30:32,740
+So I'm going to pick the R3.
+
+590
+00:30:32,740 --> 00:30:35,430
+And I'm going to pick
+Yes, I want Multi-AZ.
+
+591
+00:30:35,430 --> 00:30:37,110
+And I want general purpose SSD.
+
+592
+00:30:37,110 --> 00:30:39,380
+>> And I probably want a
+little bit more storage.
+
+593
+00:30:39,380 --> 00:30:40,897
+I'm going to have 10 gigs here.
+
+594
+00:30:40,897 --> 00:30:42,730
+And then I'm going to
+pick some credentials.
+
+595
+00:30:42,730 --> 00:30:44,641
+So what's identifier for my database?
+
+596
+00:30:44,641 --> 00:30:46,015
+So it's going to be wordpressdb1.
+
+597
+00:30:46,015 --> 00:30:50,725
+
+598
+00:30:50,725 --> 00:30:53,127
+I'm going to call this root.
+
+599
+00:30:53,127 --> 00:30:54,460
+I'm going to give it a password.
+
+600
+00:30:54,460 --> 00:30:58,380
+
+601
+00:30:58,380 --> 00:31:03,780
+>> And we're going to pick a
+security group for this as well.
+
+602
+00:31:03,780 --> 00:31:05,740
+So I've already made a
+security group for this.
+
+603
+00:31:05,740 --> 00:31:08,400
+
+604
+00:31:08,400 --> 00:31:11,307
+And then I'm going to
+give it a database name.
+
+605
+00:31:11,307 --> 00:31:13,015
+So we're going to just
+call it wordpress.
+
+606
+00:31:13,015 --> 00:31:16,727
+
+607
+00:31:16,727 --> 00:31:18,560
+And we're going to
+choose a retention window
+
+608
+00:31:18,560 --> 00:31:21,170
+so that this does backups for you.
+
+609
+00:31:21,170 --> 00:31:23,330
+So I want a week of backups.
+
+610
+00:31:23,330 --> 00:31:25,610
+And I don't have a preference
+for the backup window.
+
+611
+00:31:25,610 --> 00:31:28,665
+And I want it to automatically
+upgrade my minor version here.
+
+612
+00:31:28,665 --> 00:31:31,180
+So I'm going to leave that as default.
+
+613
+00:31:31,180 --> 00:31:33,490
+And so now I'm launching
+my RDS instance.
+
+614
+00:31:33,490 --> 00:31:37,370
+
+615
+00:31:37,370 --> 00:31:37,870
+Right?
+
+616
+00:31:37,870 --> 00:31:40,597
+So now it's being created.
+
+617
+00:31:40,597 --> 00:31:42,430
+So now we're just waiting
+for it to install.
+
+618
+00:31:42,430 --> 00:31:48,055
+So while that's going on, let's log
+in to the first EC2 instance we made.
+
+619
+00:31:48,055 --> 00:31:55,090
+
+620
+00:31:55,090 --> 00:31:57,520
+So it's this Wordpress Demo.
+
+621
+00:31:57,520 --> 00:31:58,760
+And we'll just verify that.
+
+622
+00:31:58,760 --> 00:31:59,450
+Yep.
+
+623
+00:31:59,450 --> 00:32:02,620
+>> So let's see if we can log in to it.
+
+624
+00:32:02,620 --> 00:32:06,220
+So I'm going to copy the
+public host name of it.
+
+625
+00:32:06,220 --> 00:32:09,090
+I'm going to open up
+a shell window here.
+
+626
+00:32:09,090 --> 00:32:14,480
+
+627
+00:32:14,480 --> 00:32:17,610
+[INAUDIBLE] SSH.
+
+628
+00:32:17,610 --> 00:32:21,423
+The default user is ec2-user.
+
+629
+00:32:21,423 --> 00:32:25,271
+>> AUDIENCE: Leo, would you
+mind Command [INAUDIBLE]?
+
+630
+00:32:25,271 --> 00:32:27,200
+>> LEO ZHADANOVSKY: Good?
+
+631
+00:32:27,200 --> 00:32:30,190
+And so let's try to SSH in.
+
+632
+00:32:30,190 --> 00:32:30,960
+Yep.
+
+633
+00:32:30,960 --> 00:32:34,420
+So I'm in my instance right now.
+
+634
+00:32:34,420 --> 00:32:36,550
+So I'm SSHed in.
+
+635
+00:32:36,550 --> 00:32:38,970
+It's up for five minutes so
+it's definitely my instance.
+
+636
+00:32:38,970 --> 00:32:41,020
+>> So first thing we're
+going to want to do here
+
+637
+00:32:41,020 --> 00:32:45,190
+is it's telling me that, oh,
+I have some security updates.
+
+638
+00:32:45,190 --> 00:32:47,855
+So I'm just going to run
+every security update on here.
+
+639
+00:32:47,855 --> 00:32:51,746
+[? sudo yum ?] minus y update.
+
+640
+00:32:51,746 --> 00:32:54,539
+So it's going to quickly install those.
+
+641
+00:32:54,539 --> 00:32:57,080
+Next thing I want to do is I
+want to install some more stuff.
+
+642
+00:32:57,080 --> 00:33:00,910
+So I'm going to have to install MySQL.
+
+643
+00:33:00,910 --> 00:33:02,660
+I'm going to have to install Apache.
+
+644
+00:33:02,660 --> 00:33:04,190
+I'm going to have to install PHP.
+
+645
+00:33:04,190 --> 00:33:07,680
+I'm going to have to install
+the PHP plugin for MySQL.
+
+646
+00:33:07,680 --> 00:33:11,100
+And I have to install the MySQL server.
+
+647
+00:33:11,100 --> 00:33:12,440
+So let's install this stuff.
+
+648
+00:33:12,440 --> 00:33:14,980
+
+649
+00:33:14,980 --> 00:33:15,500
+>> Installing.
+
+650
+00:33:15,500 --> 00:33:16,770
+So that's done.
+
+651
+00:33:16,770 --> 00:33:20,220
+So now I want [? HTTPD. ?] I
+want Apache to start on boot.
+
+652
+00:33:20,220 --> 00:33:21,380
+So I'm going to do this.
+
+653
+00:33:21,380 --> 00:33:29,250
+
+654
+00:33:29,250 --> 00:33:29,750
+OK.
+
+655
+00:33:29,750 --> 00:33:31,800
+So now if I reboot this it'll start.
+
+656
+00:33:31,800 --> 00:33:36,210
+>> I also want MySQL to start on boot.
+
+657
+00:33:36,210 --> 00:33:37,615
+So same thing.
+
+658
+00:33:37,615 --> 00:33:41,784
+
+659
+00:33:41,784 --> 00:33:45,080
+Oops, typo here.
+
+660
+00:33:45,080 --> 00:33:45,580
+All right.
+
+661
+00:33:45,580 --> 00:33:53,220
+And then actually I'll
+start my web server later.
+
+662
+00:33:53,220 --> 00:33:56,514
+Now I want to start my
+database server, though.
+
+663
+00:33:56,514 --> 00:33:57,906
+So do this.
+
+664
+00:33:57,906 --> 00:34:01,618
+
+665
+00:34:01,618 --> 00:34:04,120
+And so it's starting for
+the first time, so I'm
+
+666
+00:34:04,120 --> 00:34:06,070
+going to have to do
+some basic steps here.
+
+667
+00:34:06,070 --> 00:34:09,070
+So the first thing I'm going to do
+is set a root password for my MySQL.
+
+668
+00:34:09,070 --> 00:34:15,980
+>> So I'm just going run this MySQL
+secure installation command.
+
+669
+00:34:15,980 --> 00:34:19,239
+So it's got no current root
+password, so let's set one.
+
+670
+00:34:19,239 --> 00:34:24,830
+
+671
+00:34:24,830 --> 00:34:27,429
+And I'm going to remove these
+anonymous users that it creates
+
+672
+00:34:27,429 --> 00:34:29,750
+and disable root login.
+
+673
+00:34:29,750 --> 00:34:31,270
+And remove test databases.
+
+674
+00:34:31,270 --> 00:34:36,514
+So this all kind of
+productionizes your MySQL install.
+
+675
+00:34:36,514 --> 00:34:38,260
+>> So that's done.
+
+676
+00:34:38,260 --> 00:34:40,630
+So now I should be able to
+connect to my MySQL server.
+
+677
+00:34:40,630 --> 00:34:42,805
+So I'm going to see if that works here.
+
+678
+00:34:42,805 --> 00:34:46,030
+
+679
+00:34:46,030 --> 00:34:46,530
+Yep.
+
+680
+00:34:46,530 --> 00:34:50,699
+So I'm in my MySQL server.
+
+681
+00:34:50,699 --> 00:34:55,010
+>> So now the next thing I want to do is
+I want to create my Wordpress database.
+
+682
+00:34:55,010 --> 00:34:56,429
+So I'm going to do MySQL admin.
+
+683
+00:34:56,429 --> 00:35:09,845
+
+684
+00:35:09,845 --> 00:35:10,345
+[INAUDIBLE]
+
+685
+00:35:10,345 --> 00:35:13,327
+
+686
+00:35:13,327 --> 00:35:13,840
+All right.
+
+687
+00:35:13,840 --> 00:35:15,520
+So I created my database.
+
+688
+00:35:15,520 --> 00:35:18,160
+>> And now what I want to do is I
+want to create a Wordpress user.
+
+689
+00:35:18,160 --> 00:35:20,240
+So I don't want to log in to
+my Wordpress with the root user
+
+690
+00:35:20,240 --> 00:35:21,420
+because that would be bad.
+
+691
+00:35:21,420 --> 00:35:24,810
+So I want a user that can only
+access the Wordpress database.
+
+692
+00:35:24,810 --> 00:35:27,970
+So let's go in here again.
+
+693
+00:35:27,970 --> 00:35:33,720
+And we're going to [? move ?] this here.
+
+694
+00:35:33,720 --> 00:35:36,870
+>> So what I'm doing here is
+I'm creating a user that
+
+695
+00:35:36,870 --> 00:35:40,220
+can connect from localhost that's
+identified by my super secure password
+
+696
+00:35:40,220 --> 00:35:42,510
+here.
+
+697
+00:35:42,510 --> 00:35:46,595
+And then I'm going to grant this
+user access to the whole database.
+
+698
+00:35:46,595 --> 00:35:51,091
+
+699
+00:35:51,091 --> 00:35:51,590
+All right.
+
+700
+00:35:51,590 --> 00:35:56,200
+And then now I should be
+able to log in as that user
+
+701
+00:35:56,200 --> 00:35:58,670
+and only see that database
+[? and ?] test database.
+
+702
+00:35:58,670 --> 00:36:04,970
+>> So I'm going to do mysql minus
+u wordpress, instead of root.
+
+703
+00:36:04,970 --> 00:36:10,360
+
+704
+00:36:10,360 --> 00:36:10,860
+All right?
+
+705
+00:36:10,860 --> 00:36:16,920
+And then we should be
+able to do-- right?
+
+706
+00:36:16,920 --> 00:36:18,740
+So I can see my Wordpress database here.
+
+707
+00:36:18,740 --> 00:36:19,920
+So that's great.
+
+708
+00:36:19,920 --> 00:36:22,420
+>> So now we need to actually
+download and install Wordpress.
+
+709
+00:36:22,420 --> 00:36:26,220
+So let's go to our web directory.
+
+710
+00:36:26,220 --> 00:36:31,760
+So I'm going to Wget Wordpress, the
+latest version of Wordpress here.
+
+711
+00:36:31,760 --> 00:36:36,100
+
+712
+00:36:36,100 --> 00:36:37,320
+I'm going to extract that.
+
+713
+00:36:37,320 --> 00:36:42,195
+
+714
+00:36:42,195 --> 00:36:44,690
+And now I'm going to swap
+the HTML directory, which
+
+715
+00:36:44,690 --> 00:36:48,150
+is the default [? web ?] root,
+with the Wordpress directory, so.
+
+716
+00:36:48,150 --> 00:37:01,650
+
+717
+00:37:01,650 --> 00:37:02,410
+>> All right.
+
+718
+00:37:02,410 --> 00:37:06,580
+And now I'm going to just change
+the permissions so that the Apache
+
+719
+00:37:06,580 --> 00:37:09,450
+user owns the Wordpress directory.
+
+720
+00:37:09,450 --> 00:37:12,611
+
+721
+00:37:12,611 --> 00:37:13,110
+All right.
+
+722
+00:37:13,110 --> 00:37:17,070
+And lastly, I'm going to start up my
+web server and hope everything works.
+
+723
+00:37:17,070 --> 00:37:21,650
+
+724
+00:37:21,650 --> 00:37:22,150
+All right.
+
+725
+00:37:22,150 --> 00:37:23,940
+So now let's see what happens here.
+
+726
+00:37:23,940 --> 00:37:28,520
+So I'm going to go here.
+
+727
+00:37:28,520 --> 00:37:30,700
+And see if I can get
+into this instance here.
+
+728
+00:37:30,700 --> 00:37:35,200
+
+729
+00:37:35,200 --> 00:37:35,740
+All right.
+
+730
+00:37:35,740 --> 00:37:39,860
+So here's our Wordpress setup screen.
+
+731
+00:37:39,860 --> 00:37:42,020
+So we know all this information.
+
+732
+00:37:42,020 --> 00:37:44,170
+So our database name is wordpress.
+
+733
+00:37:44,170 --> 00:37:47,550
+>> Our username is going to be wordpress.
+
+734
+00:37:47,550 --> 00:37:50,462
+I've got my super secure password here.
+
+735
+00:37:50,462 --> 00:37:53,869
+We're going to be
+connecting to localhost.
+
+736
+00:37:53,869 --> 00:37:58,040
+And we're going to run the install.
+
+737
+00:37:58,040 --> 00:38:00,430
+>> Now we're just going to
+give my website a name.
+
+738
+00:38:00,430 --> 00:38:04,600
+So Leo's Amazing Blog.
+
+739
+00:38:04,600 --> 00:38:08,265
+
+740
+00:38:08,265 --> 00:38:12,580
+[INAUDIBLE] username.
+
+741
+00:38:12,580 --> 00:38:15,972
+I'm going to get a
+password for my username.
+
+742
+00:38:15,972 --> 00:38:18,979
+
+743
+00:38:18,979 --> 00:38:20,520
+I'm going to put in my email address.
+
+744
+00:38:20,520 --> 00:38:23,790
+
+745
+00:38:23,790 --> 00:38:29,326
+And since it's a test one, I don't
+want search engines to index this.
+
+746
+00:38:29,326 --> 00:38:30,820
+So now we're installing Wordpress.
+
+747
+00:38:30,820 --> 00:38:32,070
+So now we're all set.
+
+748
+00:38:32,070 --> 00:38:33,850
+>> So here's my Wordpress.
+
+749
+00:38:33,850 --> 00:38:37,660
+
+750
+00:38:37,660 --> 00:38:40,345
+And here's my dashboard.
+
+751
+00:38:40,345 --> 00:38:42,300
+It's a fully functioning Wordpress.
+
+752
+00:38:42,300 --> 00:38:47,026
+I can update the plugins
+here if I wanted to.
+
+753
+00:38:47,026 --> 00:38:49,290
+Do whatever I want here.
+
+754
+00:38:49,290 --> 00:38:52,610
+And so here's my actual fully
+running Wordpress on my one instance.
+
+755
+00:38:52,610 --> 00:38:55,760
+>> Now, this is great if you have a
+test site, but this doesn't scale.
+
+756
+00:38:55,760 --> 00:38:56,737
+We have one instance.
+
+757
+00:38:56,737 --> 00:38:59,070
+We can make that instance
+really huge, but at some point
+
+758
+00:38:59,070 --> 00:39:01,165
+you're going to run out
+of vertical scaling room.
+
+759
+00:39:01,165 --> 00:39:03,290
+So you're going to want to
+scale it more than that.
+
+760
+00:39:03,290 --> 00:39:05,290
+>> That's why we spun up
+with all this other stuff.
+
+761
+00:39:05,290 --> 00:39:07,620
+So let's see if our
+RDS instance is done.
+
+762
+00:39:07,620 --> 00:39:13,500
+
+763
+00:39:13,500 --> 00:39:16,170
+[? Yes, ?] our RDS
+instance is almost done.
+
+764
+00:39:16,170 --> 00:39:19,520
+So that's OK because in the meantime
+we can set up our EC2 instance.
+
+765
+00:39:19,520 --> 00:39:22,670
+It's going to be just a
+slightly different procedure.
+
+766
+00:39:22,670 --> 00:39:24,940
+>> So we've got our Wordpress web.
+
+767
+00:39:24,940 --> 00:39:28,540
+Now I already had one running yesterday.
+
+768
+00:39:28,540 --> 00:39:33,670
+So I've just got to figure out which
+one was it that I launched today.
+
+769
+00:39:33,670 --> 00:39:36,710
+So this one was launched November 4.
+
+770
+00:39:36,710 --> 00:39:39,370
+
+771
+00:39:39,370 --> 00:39:40,770
+So that's the one from today.
+
+772
+00:39:40,770 --> 00:39:43,720
+[? I know ?] this one was
+launched, oh, 4:00 PM.
+
+773
+00:39:43,720 --> 00:39:45,905
+So actually this is the new one.
+
+774
+00:39:45,905 --> 00:39:51,474
+
+775
+00:39:51,474 --> 00:39:51,974
+Yep.
+
+776
+00:39:51,974 --> 00:39:52,930
+OK.
+
+777
+00:39:52,930 --> 00:39:54,590
+>> So this is my new instance.
+
+778
+00:39:54,590 --> 00:39:56,110
+So again, I'm going to SSH into it.
+
+779
+00:39:56,110 --> 00:40:01,550
+
+780
+00:40:01,550 --> 00:40:05,630
+So let's go back to my terminal here.
+
+781
+00:40:05,630 --> 00:40:08,350
+So I'm going to get out of this one.
+
+782
+00:40:08,350 --> 00:40:11,232
+I'm going to SSH into the new instance.
+
+783
+00:40:11,232 --> 00:40:15,160
+
+784
+00:40:15,160 --> 00:40:15,660
+All right.
+
+785
+00:40:15,660 --> 00:40:17,951
+So I'm going to have to do
+some of the same stuff here.
+
+786
+00:40:17,951 --> 00:40:19,540
+So I'm going to run security updates.
+
+787
+00:40:19,540 --> 00:40:23,790
+
+788
+00:40:23,790 --> 00:40:25,654
+I'm going to install some packages.
+
+789
+00:40:25,654 --> 00:40:27,820
+The packages are going to
+be slightly different now.
+
+790
+00:40:27,820 --> 00:40:31,660
+>> So I don't need the MySQL server
+because we're breaking that out.
+
+791
+00:40:31,660 --> 00:40:35,580
+So I'm still going to
+install the MySQL client.
+
+792
+00:40:35,580 --> 00:40:37,400
+I'm still going to install Apache.
+
+793
+00:40:37,400 --> 00:40:40,142
+I'm still going to
+install PHP and PHP MySQL.
+
+794
+00:40:40,142 --> 00:40:42,100
+I'm just not going to
+install the MySQL server.
+
+795
+00:40:42,100 --> 00:40:44,640
+
+796
+00:40:44,640 --> 00:40:50,203
+>> Then I'm still going to make
+sure Apache starts on boot.
+
+797
+00:40:50,203 --> 00:40:55,890
+
+798
+00:40:55,890 --> 00:40:57,790
+Now we need the database to be up.
+
+799
+00:40:57,790 --> 00:41:02,140
+So while we do that let's add this
+instance to the load balancer.
+
+800
+00:41:02,140 --> 00:41:04,610
+So we're going to go to
+our load balancer here.
+
+801
+00:41:04,610 --> 00:41:08,430
+And we're just going to
+copy down the instance ID.
+
+802
+00:41:08,430 --> 00:41:10,410
+Got my instance ID here.
+
+803
+00:41:10,410 --> 00:41:19,330
+>> When I go to my load balancer,
+see, here's my load balancer,
+
+804
+00:41:19,330 --> 00:41:20,945
+here's its DNS name.
+
+805
+00:41:20,945 --> 00:41:23,410
+So it's got zero instances
+in service right now
+
+806
+00:41:23,410 --> 00:41:26,040
+because I haven't added
+any instances to it.
+
+807
+00:41:26,040 --> 00:41:27,950
+So I'm going to add my instance.
+
+808
+00:41:27,950 --> 00:41:29,635
+So here's my list of instances.
+
+809
+00:41:29,635 --> 00:41:32,240
+
+810
+00:41:32,240 --> 00:41:39,170
+So if I want this one, so I'm
+going to add this one to it.
+
+811
+00:41:39,170 --> 00:41:41,150
+>> Now it's going to wait
+and it's not going
+
+812
+00:41:41,150 --> 00:41:43,600
+to enable this instance
+until it becomes healthy.
+
+813
+00:41:43,600 --> 00:41:47,779
+
+814
+00:41:47,779 --> 00:41:50,570
+And it's not going to become healthy
+until I turn on my web server.
+
+815
+00:41:50,570 --> 00:41:53,800
+
+816
+00:41:53,800 --> 00:41:56,202
+So let's see if our RDS
+instance is back up.
+
+817
+00:41:56,202 --> 00:42:03,630
+
+818
+00:42:03,630 --> 00:42:04,130
+All right.
+
+819
+00:42:04,130 --> 00:42:04,630
+Great.
+
+820
+00:42:04,630 --> 00:42:06,360
+So our new RDS instance is ready.
+
+821
+00:42:06,360 --> 00:42:08,940
+So this is the end point
+for my RDS instance.
+
+822
+00:42:08,940 --> 00:42:13,530
+So what I'm going to do is I'm
+going to connect to my RDS instance.
+
+823
+00:42:13,530 --> 00:42:17,070
+So this is now a fully
+managed MySQL database.
+
+824
+00:42:17,070 --> 00:42:18,860
+It's got backup set up on it.
+
+825
+00:42:18,860 --> 00:42:20,160
+It's redundant.
+
+826
+00:42:20,160 --> 00:42:22,030
+It spun up in only a few minutes.
+
+827
+00:42:22,030 --> 00:42:24,870
+So now I should be able to
+SSH into it from-- or not SSH,
+
+828
+00:42:24,870 --> 00:42:26,690
+but log into it with the MySQL client.
+
+829
+00:42:26,690 --> 00:42:37,602
+
+830
+00:42:37,602 --> 00:42:38,120
+>> Yep.
+
+831
+00:42:38,120 --> 00:42:38,850
+So here I am.
+
+832
+00:42:38,850 --> 00:42:39,750
+I'm in.
+
+833
+00:42:39,750 --> 00:42:42,680
+So now this is going to be similar
+except we're just breaking it out.
+
+834
+00:42:42,680 --> 00:42:45,922
+So, again, I'm going to actually
+get out of this for a second.
+
+835
+00:42:45,922 --> 00:42:47,880
+Well, we already created
+the Wordpress database
+
+836
+00:42:47,880 --> 00:42:50,670
+because we put Wordpress in there, so
+I'm going to create the Wordpress user.
+
+837
+00:42:50,670 --> 00:42:52,961
+And there's going to be some
+slight differences in here
+
+838
+00:42:52,961 --> 00:42:54,237
+from what we did last time.
+
+839
+00:42:54,237 --> 00:42:56,070
+So we're going to create
+the Wordpress user,
+
+840
+00:42:56,070 --> 00:42:58,200
+but now we're not going to be
+logging in from localhost anymore.
+
+841
+00:42:58,200 --> 00:43:00,479
+We're going to be logging
+in from the EC2 instance.
+
+842
+00:43:00,479 --> 00:43:03,770
+And we're not going to necessarily know
+about what IP address it's coming from,
+
+843
+00:43:03,770 --> 00:43:06,820
+or we don't want to specify
+it to that granularity.
+
+844
+00:43:06,820 --> 00:43:09,470
+>> We're going to have security
+groups that make sure that only
+
+845
+00:43:09,470 --> 00:43:11,200
+our web servers can connect to this.
+
+846
+00:43:11,200 --> 00:43:14,520
+So I'm just going to allow
+it from, at this level,
+
+847
+00:43:14,520 --> 00:43:16,930
+from any IP address connection.
+
+848
+00:43:16,930 --> 00:43:17,869
+So we just did that.
+
+849
+00:43:17,869 --> 00:43:19,660
+And now we're just
+going to have to, again,
+
+850
+00:43:19,660 --> 00:43:21,701
+grant this user access to
+the Wordpress database.
+
+851
+00:43:21,701 --> 00:43:24,780
+
+852
+00:43:24,780 --> 00:43:30,811
+So now I'm just going to
+change this to a wild card.
+
+853
+00:43:30,811 --> 00:43:31,310
+All right.
+
+854
+00:43:31,310 --> 00:43:32,480
+So we've got that.
+
+855
+00:43:32,480 --> 00:43:34,090
+Let's get out of here.
+
+856
+00:43:34,090 --> 00:43:36,650
+So we'll just make sure
+that we can log in now.
+
+857
+00:43:36,650 --> 00:43:39,100
+I'm just going to change
+my username to wordpress.
+
+858
+00:43:39,100 --> 00:43:45,371
+
+859
+00:43:45,371 --> 00:43:45,870
+All right.
+
+860
+00:43:45,870 --> 00:43:46,370
+So we're in.
+
+861
+00:43:46,370 --> 00:43:47,607
+So that works.
+
+862
+00:43:47,607 --> 00:43:50,440
+Now we're going, again, I have to
+set up Wordpress on this instance.
+
+863
+00:43:50,440 --> 00:43:54,770
+So what we're going to have
+to do is go to Var, www.
+
+864
+00:43:54,770 --> 00:43:57,260
+I have to move the HTML
+directory to html.old.
+
+865
+00:43:57,260 --> 00:44:02,410
+
+866
+00:44:02,410 --> 00:44:02,910
+All right.
+
+867
+00:44:02,910 --> 00:44:06,770
+And we're going to have
+to download Wordpress.
+
+868
+00:44:06,770 --> 00:44:12,000
+
+869
+00:44:12,000 --> 00:44:14,790
+>> All right.
+
+870
+00:44:14,790 --> 00:44:15,540
+Extract Wordpress.
+
+871
+00:44:15,540 --> 00:44:18,760
+
+872
+00:44:18,760 --> 00:44:21,410
+We're going to move it
+to the HTML directory.
+
+873
+00:44:21,410 --> 00:44:28,650
+
+874
+00:44:28,650 --> 00:44:29,150
+All right.
+
+875
+00:44:29,150 --> 00:44:30,900
+And we're going to
+change the permissions.
+
+876
+00:44:30,900 --> 00:44:36,021
+
+877
+00:44:36,021 --> 00:44:37,562
+And then we're going to start Apache.
+
+878
+00:44:37,562 --> 00:44:42,490
+
+879
+00:44:42,490 --> 00:44:45,820
+>> So what should happen
+now is there's going
+
+880
+00:44:45,820 --> 00:44:49,200
+to be basically five
+retries on this ELB.
+
+881
+00:44:49,200 --> 00:44:53,790
+And it's eventually, this instance is
+going to become healthy on the ELB.
+
+882
+00:44:53,790 --> 00:44:57,871
+So [INAUDIBLE] here.
+
+883
+00:44:57,871 --> 00:44:58,370
+Let's see.
+
+884
+00:44:58,370 --> 00:45:00,525
+This instance is not yet healthy.
+
+885
+00:45:00,525 --> 00:45:02,400
+So what I'm actually
+going to do is I'm going
+
+886
+00:45:02,400 --> 00:45:05,275
+to change the health check a little
+bit more just to make it quicker.
+
+887
+00:45:05,275 --> 00:45:07,320
+We can change it back later.
+
+888
+00:45:07,320 --> 00:45:12,561
+So let's say I want healthy
+threshold of three instead of five.
+
+889
+00:45:12,561 --> 00:45:13,060
+OK.
+
+890
+00:45:13,060 --> 00:45:15,340
+So now we're in service.
+
+891
+00:45:15,340 --> 00:45:17,400
+>> So now I'm going to go
+to this load balancer.
+
+892
+00:45:17,400 --> 00:45:19,895
+And it should proxy me back
+through to this instance,
+
+893
+00:45:19,895 --> 00:45:23,195
+and we'll set up Wordpress on here.
+
+894
+00:45:23,195 --> 00:45:25,320
+Now, if you have your own
+domain name or something,
+
+895
+00:45:25,320 --> 00:45:28,740
+you can just do a CNAME
+record to this DNS name.
+
+896
+00:45:28,740 --> 00:45:31,850
+And the elastic load balancing
+service is scalable on the back end,
+
+897
+00:45:31,850 --> 00:45:34,065
+so it scales up and down on its own.
+
+898
+00:45:34,065 --> 00:45:35,710
+So it could be multiple IP addresses.
+
+899
+00:45:35,710 --> 00:45:36,584
+The IPs could change.
+
+900
+00:45:36,584 --> 00:45:39,063
+So you should always reference
+it from that DNS name.
+
+901
+00:45:39,063 --> 00:45:41,841
+
+902
+00:45:41,841 --> 00:45:42,770
+>> All right.
+
+903
+00:45:42,770 --> 00:45:43,560
+So here we go.
+
+904
+00:45:43,560 --> 00:45:45,215
+We're back at our setup screen.
+
+905
+00:45:45,215 --> 00:45:47,870
+Now we're going to do
+the same process almost.
+
+906
+00:45:47,870 --> 00:45:49,835
+So our database name is wordpress.
+
+907
+00:45:49,835 --> 00:45:52,940
+Our username name is wordpress.
+
+908
+00:45:52,940 --> 00:45:55,560
+We've got the same super
+secure password as before,
+
+909
+00:45:55,560 --> 00:45:59,020
+except the database host is now
+going to be the RDS instance.
+
+910
+00:45:59,020 --> 00:46:01,222
+>> So we're going to go here.
+
+911
+00:46:01,222 --> 00:46:04,760
+We're going to go to RDS.
+
+912
+00:46:04,760 --> 00:46:06,320
+We're going to go to my instances.
+
+913
+00:46:06,320 --> 00:46:07,730
+I need my end point name here.
+
+914
+00:46:07,730 --> 00:46:09,160
+It's this one.
+
+915
+00:46:09,160 --> 00:46:10,984
+So I'm just going to
+copy and paste this.
+
+916
+00:46:10,984 --> 00:46:17,500
+
+917
+00:46:17,500 --> 00:46:18,000
+All right?
+
+918
+00:46:18,000 --> 00:46:20,100
+So let's see if that worked.
+
+919
+00:46:20,100 --> 00:46:20,600
+All right.
+
+920
+00:46:20,600 --> 00:46:21,380
+So that works.
+
+921
+00:46:21,380 --> 00:46:23,530
+So you can connect to the RDS instance.
+
+922
+00:46:23,530 --> 00:46:27,200
+Again, it's going to
+be Leo's Awesome Blog.
+
+923
+00:46:27,200 --> 00:46:39,590
+
+924
+00:46:39,590 --> 00:46:40,090
+All right.
+
+925
+00:46:40,090 --> 00:46:42,750
+>> So now we're going to
+install our Wordpress.
+
+926
+00:46:42,750 --> 00:46:44,550
+So we're done.
+
+927
+00:46:44,550 --> 00:46:46,736
+So let me just log in
+to make sure it worked.
+
+928
+00:46:46,736 --> 00:46:51,696
+
+929
+00:46:51,696 --> 00:46:54,020
+OK.
+
+930
+00:46:54,020 --> 00:46:56,400
+>> So now we've got a
+fully running Wordpress.
+
+931
+00:46:56,400 --> 00:46:58,890
+We can do all kinds of operations on it.
+
+932
+00:46:58,890 --> 00:47:02,210
+So the difference now is that
+we have a separate database.
+
+933
+00:47:02,210 --> 00:47:03,470
+That databases is redundant.
+
+934
+00:47:03,470 --> 00:47:05,690
+We still only have one web
+server, but we could now
+
+935
+00:47:05,690 --> 00:47:08,680
+take an image of this web
+server, launch it again,
+
+936
+00:47:08,680 --> 00:47:11,720
+and then we have two web servers
+behind this load balancer.
+
+937
+00:47:11,720 --> 00:47:15,894
+>> The endpoint doesn't change whether
+it's one, or two, or 50 web servers.
+
+938
+00:47:15,894 --> 00:47:17,060
+We can scale it beyond this.
+
+939
+00:47:17,060 --> 00:47:21,190
+So there's plugins for Wordpress where
+you can use S3 for your static assets.
+
+940
+00:47:21,190 --> 00:47:23,900
+You can use CloudFront
+to cache those assets.
+
+941
+00:47:23,900 --> 00:47:26,970
+You can use ElastiCache so you
+can use Memcached basically
+
+942
+00:47:26,970 --> 00:47:30,110
+to store session state there.
+
+943
+00:47:30,110 --> 00:47:32,654
+>> So as you scale from
+one to more instances,
+
+944
+00:47:32,654 --> 00:47:35,070
+you're going to assume that
+those instances are ephemeral,
+
+945
+00:47:35,070 --> 00:47:36,360
+so they can go away.
+
+946
+00:47:36,360 --> 00:47:38,880
+So you've got to think
+about where do I store logs,
+
+947
+00:47:38,880 --> 00:47:40,290
+where do I store session state.
+
+948
+00:47:40,290 --> 00:47:43,580
+How do I make it so it's OK that
+these instances can disappear, or more
+
+949
+00:47:43,580 --> 00:47:45,010
+of them can appear?
+
+950
+00:47:45,010 --> 00:47:47,260
+So you're going to have to
+answer questions like that.
+
+951
+00:47:47,260 --> 00:47:48,551
+But it's fairly common pattern.
+
+952
+00:47:48,551 --> 00:47:52,720
+So you just start offloading any
+persistent things to other tiers.
+
+953
+00:47:52,720 --> 00:47:55,380
+>> So now we've got this, we're
+done [? three tier ?] thing.
+
+954
+00:47:55,380 --> 00:47:57,140
+The last thing I'm
+going to do here is I'm
+
+955
+00:47:57,140 --> 00:47:59,390
+going to make my load balancer
+a little bit more solid
+
+956
+00:47:59,390 --> 00:48:02,210
+now that it's marked as healthy.
+
+957
+00:48:02,210 --> 00:48:06,010
+So it's usually not a
+good idea for websites
+
+958
+00:48:06,010 --> 00:48:10,139
+to do TCP health checks because
+your Apache could be up,
+
+959
+00:48:10,139 --> 00:48:11,680
+but it could be returning PHP errors.
+
+960
+00:48:11,680 --> 00:48:12,940
+So you don't want that.
+
+961
+00:48:12,940 --> 00:48:14,648
+>> So what I'm going to
+do here is I'm going
+
+962
+00:48:14,648 --> 00:48:18,230
+to change this to an HTTP health check.
+
+963
+00:48:18,230 --> 00:48:22,880
+And it's going to be
+index.php, not index.html.
+
+964
+00:48:22,880 --> 00:48:26,470
+And we're going to change this
+healthy threshold back to five.
+
+965
+00:48:26,470 --> 00:48:27,880
+So that's done.
+
+966
+00:48:27,880 --> 00:48:29,500
+So that should still be healthy.
+
+967
+00:48:29,500 --> 00:48:30,000
+Yep.
+
+968
+00:48:30,000 --> 00:48:31,990
+So we're still in service.
+
+969
+00:48:31,990 --> 00:48:36,370
+>> So that's how you set
+up Wordpress on AWS.
+
+970
+00:48:36,370 --> 00:48:41,660
+So I think in less than 20 minutes we've
+both set up on an instance, on its own,
+
+971
+00:48:41,660 --> 00:48:47,302
+and a full three tier architecture where
+each tier is independently scalable.
+
+972
+00:48:47,302 --> 00:48:49,010
+You can do all kinds
+of interesting stuff
+
+973
+00:48:49,010 --> 00:48:51,120
+with the database to scale as well.
+
+974
+00:48:51,120 --> 00:48:54,200
+>> Let me show you one more
+interesting thing here.
+
+975
+00:48:54,200 --> 00:48:59,590
+So let's say for this I want to
+break out the reads from the writes.
+
+976
+00:48:59,590 --> 00:49:02,020
+I can create a read replica.
+
+977
+00:49:02,020 --> 00:49:05,040
+So I'm going to just
+create a read replica.
+
+978
+00:49:05,040 --> 00:49:11,407
+So this is going to
+be wordpressdb1 read1.
+
+979
+00:49:11,407 --> 00:49:13,240
+I'm going to do it on
+the same region, but I
+
+980
+00:49:13,240 --> 00:49:15,820
+could do it in a different region.
+
+981
+00:49:15,820 --> 00:49:18,740
+So we're going to start
+provisioning a read replica here.
+
+982
+00:49:18,740 --> 00:49:20,390
+So now we're creating read replica.
+
+983
+00:49:20,390 --> 00:49:22,349
+That's being created
+there at the bottom.
+
+984
+00:49:22,349 --> 00:49:24,140
+So you can do all kinds
+of cool stuff here.
+
+985
+00:49:24,140 --> 00:49:25,550
+>> So I'm done with the demo.
+
+986
+00:49:25,550 --> 00:49:27,780
+So I think we have about 10 minutes.
+
+987
+00:49:27,780 --> 00:49:33,860
+So I'll take any questions anybody
+has, about any AWS related topic.
+
+988
+00:49:33,860 --> 00:49:36,980
+
+989
+00:49:36,980 --> 00:49:39,395
+Anyone?
+
+990
+00:49:39,395 --> 00:49:39,895
+Cool.
+
+991
+00:49:39,895 --> 00:49:40,850
+All right.
+
+992
+00:49:40,850 --> 00:49:42,720
+Thanks everyone.
+
+993
+00:49:42,720 --> 00:49:44,192

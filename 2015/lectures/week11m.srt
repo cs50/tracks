@@ -1,0 +1,5194 @@
+1
+00:00:00,000 --> 00:00:01,924
+>> [MUSIC PLAYING]
+
+2
+00:00:01,924 --> 00:00:10,600
+
+3
+00:00:10,600 --> 00:00:13,280
+>> SPEAKER: Welcome back, everyone.
+
+4
+00:00:13,280 --> 00:00:15,440
+This is CS50.
+
+5
+00:00:15,440 --> 00:00:21,040
+And today, we have a lot of
+interesting things to talk about.
+
+6
+00:00:21,040 --> 00:00:25,500
+First, though, I have to remind
+you of a few administrative things.
+
+7
+00:00:25,500 --> 00:00:30,160
+This week is quiz one, Wednesday
+or for the Yale section
+
+8
+00:00:30,160 --> 00:00:32,940
+on Tuesdays and Thursdays, on Thursday.
+
+9
+00:00:32,940 --> 00:00:38,170
+There are quiz reviews
+tonight at Yale, 5:30 to 7:00.
+
+10
+00:00:38,170 --> 00:00:40,030
+At Harvard, they recorded one yesterday.
+
+11
+00:00:40,030 --> 00:00:43,000
+And everyone can watch that online.
+
+12
+00:00:43,000 --> 00:00:49,406
+>> Also, this week or early next week,
+we have our last CS50 lecture.
+
+13
+00:00:49,406 --> 00:00:51,450
+[GROANS] I know.
+
+14
+00:00:51,450 --> 00:00:54,140
+It came so soon.
+
+15
+00:00:54,140 --> 00:00:57,820
+Yale students will have a live
+lecture here in the law school
+
+16
+00:00:57,820 --> 00:00:59,920
+auditorium on Friday.
+
+17
+00:00:59,920 --> 00:01:01,140
+There will be cake.
+
+18
+00:01:01,140 --> 00:01:05,570
+Harvard students will have the
+last lecture in Sanders on Monday.
+
+19
+00:01:05,570 --> 00:01:08,050
+There will also be cake.
+
+20
+00:01:08,050 --> 00:01:14,000
+>> Also, this week on Friday, for those
+of you who are coming to New Haven,
+
+21
+00:01:14,000 --> 00:01:15,740
+we have the CS50 Expo.
+
+22
+00:01:15,740 --> 00:01:18,850
+We have more than 30
+different groups registered
+
+23
+00:01:18,850 --> 00:01:22,530
+to show you everything
+from autonomous sailboats,
+
+24
+00:01:22,530 --> 00:01:27,170
+to systems that recognize
+digital portraits, to computer
+
+25
+00:01:27,170 --> 00:01:32,100
+music and computer-produced music.
+
+26
+00:01:32,100 --> 00:01:33,610
+So please join us.
+
+27
+00:01:33,610 --> 00:01:36,460
+I think it's going to be a great time.
+
+28
+00:01:36,460 --> 00:01:40,320
+>> Today, though, we get to
+continue talking about AI,
+
+29
+00:01:40,320 --> 00:01:43,150
+about artificial intelligence.
+
+30
+00:01:43,150 --> 00:01:46,070
+And one of the things that
+we're going to get to today
+
+31
+00:01:46,070 --> 00:01:51,750
+is the idea of how to
+use AI to solve problems.
+
+32
+00:01:51,750 --> 00:01:54,690
+Now, as always, let's start
+with something simple.
+
+33
+00:01:54,690 --> 00:01:57,120
+And we're going to start
+with a simple idea.
+
+34
+00:01:57,120 --> 00:01:59,920
+And that's using search.
+
+35
+00:01:59,920 --> 00:02:06,990
+>> So imagine for a minute that I
+have a task that I need to perform.
+
+36
+00:02:06,990 --> 00:02:11,970
+And I'd like to have that task
+automated by some software agent.
+
+37
+00:02:11,970 --> 00:02:17,100
+Imagine that I'm trying to book a set
+of flights from, let's say, Boston
+
+38
+00:02:17,100 --> 00:02:20,040
+to San Francisco.
+
+39
+00:02:20,040 --> 00:02:24,230
+I could go through and I could use
+one of the wonderful online search
+
+40
+00:02:24,230 --> 00:02:28,790
+tools, which is going to do
+basically the same process that we're
+
+41
+00:02:28,790 --> 00:02:30,030
+going to walk through today.
+
+42
+00:02:30,030 --> 00:02:34,100
+But if you didn't have that
+tool, what would you do?
+
+43
+00:02:34,100 --> 00:02:37,570
+>> Well, you could look and
+see and say, I'm in Boston.
+
+44
+00:02:37,570 --> 00:02:41,520
+What flights are available to me?
+
+45
+00:02:41,520 --> 00:02:44,390
+Now, maybe I have three
+possible flights out of Boston
+
+46
+00:02:44,390 --> 00:02:47,180
+that will fit the time
+when I need to leave.
+
+47
+00:02:47,180 --> 00:02:48,830
+I could fly to Chicago.
+
+48
+00:02:48,830 --> 00:02:50,130
+Or I could fly to Miami.
+
+49
+00:02:50,130 --> 00:02:53,340
+Or I could fly to New York.
+
+50
+00:02:53,340 --> 00:02:56,980
+I could then look from each
+one of those destination cities
+
+51
+00:02:56,980 --> 00:03:00,650
+and think about what locations
+I could possibly reach
+
+52
+00:03:00,650 --> 00:03:03,020
+from each of those individual cities.
+
+53
+00:03:03,020 --> 00:03:07,390
+>> So maybe from Chicago, I can get
+a direct flight to San Francisco.
+
+54
+00:03:07,390 --> 00:03:09,550
+That's excellent.
+
+55
+00:03:09,550 --> 00:03:12,360
+Or I could get a flight to Denver.
+
+56
+00:03:12,360 --> 00:03:16,970
+Now, maybe that flight to San Francisco
+is the perfect solution for me,
+
+57
+00:03:16,970 --> 00:03:19,530
+but maybe not.
+
+58
+00:03:19,530 --> 00:03:22,180
+Maybe I'm looking for something
+that's a little bit cheaper
+
+59
+00:03:22,180 --> 00:03:24,920
+or a little bit better for my schedule.
+
+60
+00:03:24,920 --> 00:03:29,197
+And so I could look for what other
+possibilities might be out there.
+
+61
+00:03:29,197 --> 00:03:30,280
+So I could look at Denver.
+
+62
+00:03:30,280 --> 00:03:33,870
+And from Denver, well, maybe
+I can get a flight to Austin.
+
+63
+00:03:33,870 --> 00:03:37,080
+And from Austin, maybe I can get a
+flight to Phoenix, and from Phoenix
+
+64
+00:03:37,080 --> 00:03:40,190
+to San Francisco.
+
+65
+00:03:40,190 --> 00:03:42,730
+Now, I'm not done yet.
+
+66
+00:03:42,730 --> 00:03:45,640
+Because maybe there's a
+direct flight from New York
+
+67
+00:03:45,640 --> 00:03:47,850
+to San Francisco that's perfect for me.
+
+68
+00:03:47,850 --> 00:03:53,354
+Or maybe there's a flight from Miami
+through Denver that's a lot cheaper.
+
+69
+00:03:53,354 --> 00:03:54,270
+So I still have to go.
+
+70
+00:03:54,270 --> 00:03:58,200
+And I still have to look at all of those
+cities that I haven't investigated yet.
+
+71
+00:03:58,200 --> 00:04:04,220
+I have to exhaustively check all of
+the possibilities that I might have.
+
+72
+00:04:04,220 --> 00:04:09,610
+>> So from New York, maybe I can get a
+flight to Nashville, and from Nashville
+
+73
+00:04:09,610 --> 00:04:10,336
+to Austin.
+
+74
+00:04:10,336 --> 00:04:11,460
+And then I know where I am.
+
+75
+00:04:11,460 --> 00:04:14,252
+And then I know from Austin, I can
+fly to Phoenix, and from Phoenix
+
+76
+00:04:14,252 --> 00:04:14,960
+to San Francisco.
+
+77
+00:04:14,960 --> 00:04:18,240
+
+78
+00:04:18,240 --> 00:04:22,830
+If I fly first to Miami, though,
+maybe I can get a flight from Miami
+
+79
+00:04:22,830 --> 00:04:25,080
+to Nashville, or from Miami to Austin.
+
+80
+00:04:25,080 --> 00:04:27,950
+
+81
+00:04:27,950 --> 00:04:30,860
+>> And now I've tried all
+of the possibilities.
+
+82
+00:04:30,860 --> 00:04:36,310
+I've built up this graph that
+shows me all of the possible routes
+
+83
+00:04:36,310 --> 00:04:37,790
+that I might be able to take.
+
+84
+00:04:37,790 --> 00:04:40,510
+
+85
+00:04:40,510 --> 00:04:43,640
+When we represent these
+kinds of problems,
+
+86
+00:04:43,640 --> 00:04:47,870
+we're not going to represent
+them explicitly as this graph,
+
+87
+00:04:47,870 --> 00:04:51,590
+because that graph doesn't represent
+the history of where we've gone.
+
+88
+00:04:51,590 --> 00:04:55,260
+Knowing that I flew from
+Phoenix to San Francisco
+
+89
+00:04:55,260 --> 00:05:01,690
+doesn't tell me whether I came via
+Nashville, or via Denver, or via Miami.
+
+90
+00:05:01,690 --> 00:05:06,430
+>> So what I'll do instead is
+I'll take this same problem,
+
+91
+00:05:06,430 --> 00:05:09,140
+and I'll represent it as a tree.
+
+92
+00:05:09,140 --> 00:05:14,300
+And at the root of the tree, at the
+top, I'll put the place that I started,
+
+93
+00:05:14,300 --> 00:05:16,590
+Boston.
+
+94
+00:05:16,590 --> 00:05:19,310
+And from Boston, I'll look at
+all of the possible locations
+
+95
+00:05:19,310 --> 00:05:20,380
+that I can travel to.
+
+96
+00:05:20,380 --> 00:05:25,480
+Well, in this case, I had three,
+Chicago, New York, and Miami.
+
+97
+00:05:25,480 --> 00:05:29,850
+And then I'll explore each of
+these children in the tree.
+
+98
+00:05:29,850 --> 00:05:32,690
+>> From Chicago, I saw
+that I had two flights.
+
+99
+00:05:32,690 --> 00:05:35,940
+I could fly directly to
+San Francisco or to Denver.
+
+100
+00:05:35,940 --> 00:05:37,740
+Now San Francisco, that's my goal.
+
+101
+00:05:37,740 --> 00:05:39,790
+That's my destination.
+
+102
+00:05:39,790 --> 00:05:42,220
+That's going to be a leaf of this tree.
+
+103
+00:05:42,220 --> 00:05:45,340
+That is, I'm never going to go
+somewhere after San Francisco.
+
+104
+00:05:45,340 --> 00:05:47,850
+
+105
+00:05:47,850 --> 00:05:50,340
+From Denver, though,
+I can fly from Denver
+
+106
+00:05:50,340 --> 00:05:54,220
+to Austin, from Austin to Phoenix,
+and from Phoenix to San Francisco.
+
+107
+00:05:54,220 --> 00:05:56,050
+And now again, I've reached a leaf.
+
+108
+00:05:56,050 --> 00:05:59,470
+
+109
+00:05:59,470 --> 00:06:03,980
+>> I could then go back to the next
+city that I haven't fully explored.
+
+110
+00:06:03,980 --> 00:06:07,440
+That would be New York, go
+back up to the top of my tree,
+
+111
+00:06:07,440 --> 00:06:09,160
+come down to New York.
+
+112
+00:06:09,160 --> 00:06:12,700
+From New York, I can fly to
+Nashville, from Nashville to Austin,
+
+113
+00:06:12,700 --> 00:06:17,290
+from Austin to Phoenix, and
+from Phoenix to San Francisco.
+
+114
+00:06:17,290 --> 00:06:20,170
+And finally, one city I
+haven't looked at yet, Miami.
+
+115
+00:06:20,170 --> 00:06:24,600
+>> Well, from Miami I said I had two
+possibilities, Nashville or Austin.
+
+116
+00:06:24,600 --> 00:06:28,810
+If I fly to Nashville, well then I fly
+from Nashville, to Austin, to Phoenix,
+
+117
+00:06:28,810 --> 00:06:29,640
+to San Francisco.
+
+118
+00:06:29,640 --> 00:06:33,600
+If I fly to Austin, I fly Austin,
+to Phoenix, to San Francisco.
+
+119
+00:06:33,600 --> 00:06:36,340
+And now I have a tree.
+
+120
+00:06:36,340 --> 00:06:37,230
+It's a complete tree.
+
+121
+00:06:37,230 --> 00:06:41,890
+It's all of the possibilities and
+all of the paths that I could take.
+
+122
+00:06:41,890 --> 00:06:44,310
+That is, if I start at the
+root of the tree at the top
+
+123
+00:06:44,310 --> 00:06:47,860
+and I go down to one of the
+leaves, it tells me not only
+
+124
+00:06:47,860 --> 00:06:50,480
+where I'm going to
+end up, San Francisco,
+
+125
+00:06:50,480 --> 00:06:53,670
+but it tells me the route that
+I need to take to get there.
+
+126
+00:06:53,670 --> 00:06:56,400
+
+127
+00:06:56,400 --> 00:06:59,690
+>> Now, which one of these is the best?
+
+128
+00:06:59,690 --> 00:07:02,430
+Well, nothing about this
+problem yet tells me
+
+129
+00:07:02,430 --> 00:07:04,710
+which of those is the best solution.
+
+130
+00:07:04,710 --> 00:07:09,270
+Maybe I care the most about
+how much time I'm in the air,
+
+131
+00:07:09,270 --> 00:07:12,350
+or the distance that I'm flying.
+
+132
+00:07:12,350 --> 00:07:16,410
+In that case, Chicago to San
+Francisco might be the shortest number
+
+133
+00:07:16,410 --> 00:07:18,910
+of miles in the air.
+
+134
+00:07:18,910 --> 00:07:20,860
+>> Maybe I care about cost.
+
+135
+00:07:20,860 --> 00:07:23,680
+And we all know direct flights
+are usually more expensive.
+
+136
+00:07:23,680 --> 00:07:26,610
+So maybe if I take this
+kind of backwards route
+
+137
+00:07:26,610 --> 00:07:30,650
+through Miami, Nashville,
+Austin, Phoenix, maybe then
+
+138
+00:07:30,650 --> 00:07:34,070
+I get a lower price.
+
+139
+00:07:34,070 --> 00:07:36,440
+But I could optimize on any
+criteria that I care about.
+
+140
+00:07:36,440 --> 00:07:39,790
+Who's got the best in
+flight Wi-Fi, or which
+
+141
+00:07:39,790 --> 00:07:43,110
+airports have the best food available.
+
+142
+00:07:43,110 --> 00:07:47,280
+And each of those might
+give me a different solution
+
+143
+00:07:47,280 --> 00:07:49,215
+that I see as being the best.
+
+144
+00:07:49,215 --> 00:07:51,990
+
+145
+00:07:51,990 --> 00:07:54,400
+>> These kinds of problems,
+where we're going
+
+146
+00:07:54,400 --> 00:07:58,480
+to build out this tree of
+possibilities, and then
+
+147
+00:07:58,480 --> 00:08:02,100
+look at each of those
+individual paths, and examine
+
+148
+00:08:02,100 --> 00:08:05,270
+which of those fulfills
+a criteria for us,
+
+149
+00:08:05,270 --> 00:08:08,790
+we're going to call
+those search problems.
+
+150
+00:08:08,790 --> 00:08:11,280
+And we have lots of
+algorithms, some of which
+
+151
+00:08:11,280 --> 00:08:15,270
+we've seen already, to go
+and explore those trees.
+
+152
+00:08:15,270 --> 00:08:19,270
+We could do it in the way that I
+just did, a depth-first search,
+
+153
+00:08:19,270 --> 00:08:22,900
+going down as far as we can until we
+hit a leaf, and then coming back up,
+
+154
+00:08:22,900 --> 00:08:24,787
+and going right back down.
+
+155
+00:08:24,787 --> 00:08:26,870
+Or we could do what's
+called breadth-first search.
+
+156
+00:08:26,870 --> 00:08:29,675
+We could expand everything
+at the top, and then
+
+157
+00:08:29,675 --> 00:08:31,550
+everything one line
+underneath that, and then
+
+158
+00:08:31,550 --> 00:08:35,240
+everything one line underneath that.
+
+159
+00:08:35,240 --> 00:08:41,250
+Those search trees
+are fundamental to AI.
+
+160
+00:08:41,250 --> 00:08:46,570
+But they don't quite get
+it right all the time.
+
+161
+00:08:46,570 --> 00:08:51,600
+In fact, in a lot of the cases
+that we really care about,
+
+162
+00:08:51,600 --> 00:08:54,430
+we want to build a tree,
+but we don't actually
+
+163
+00:08:54,430 --> 00:08:57,140
+get to make all of the decisions.
+
+164
+00:08:57,140 --> 00:09:00,940
+>> These are situations called
+adversarial search, also known
+
+165
+00:09:00,940 --> 00:09:05,390
+as how to write game playing
+systems and get paid for it.
+
+166
+00:09:05,390 --> 00:09:07,940
+But these are the kinds
+of systems where I
+
+167
+00:09:07,940 --> 00:09:12,920
+might get to choose when I go from
+Boston, which city I go to next.
+
+168
+00:09:12,920 --> 00:09:19,990
+But after that, someone else might get
+to make the decision about where I fly.
+
+169
+00:09:19,990 --> 00:09:24,040
+So to build these
+kinds structures, we're
+
+170
+00:09:24,040 --> 00:09:28,510
+going to have to take a slightly
+different approach to it.
+
+171
+00:09:28,510 --> 00:09:31,060
+We're not going to be able to
+just search through the tree
+
+172
+00:09:31,060 --> 00:09:35,000
+anymore, because we're not
+the one that's in control
+
+173
+00:09:35,000 --> 00:09:38,180
+of each of those decision points.
+
+174
+00:09:38,180 --> 00:09:42,590
+>> So let's imagine a simple
+game like tic-tac-toe.
+
+175
+00:09:42,590 --> 00:09:46,730
+I could start with a
+completely blank board.
+
+176
+00:09:46,730 --> 00:09:49,580
+And in tic-tac-toe,
+X gets to play first.
+
+177
+00:09:49,580 --> 00:09:53,890
+And so I could think about all the
+possible moves that X could make.
+
+178
+00:09:53,890 --> 00:09:57,420
+And if I'm the one playing
+the X, that's great.
+
+179
+00:09:57,420 --> 00:10:01,020
+I have nine possible
+moves that I can make.
+
+180
+00:10:01,020 --> 00:10:05,000
+I could put an X in any one
+of those nine positions.
+
+181
+00:10:05,000 --> 00:10:10,710
+>> And then from each of those, I
+could imagine what happens next.
+
+182
+00:10:10,710 --> 00:10:14,130
+Well, in this case, the other
+player would get to take a turn.
+
+183
+00:10:14,130 --> 00:10:15,660
+O would get to take a turn.
+
+184
+00:10:15,660 --> 00:10:19,510
+And from each of those, there
+would be eight different places
+
+185
+00:10:19,510 --> 00:10:22,980
+that O could place their marker.
+
+186
+00:10:22,980 --> 00:10:25,790
+>> Let's say I decided that I was
+going to put an X in the center.
+
+187
+00:10:25,790 --> 00:10:28,810
+That always seems like
+a good opening move.
+
+188
+00:10:28,810 --> 00:10:34,870
+I could look at underneath that, the
+eight possible moves that O makes.
+
+189
+00:10:34,870 --> 00:10:37,320
+Now, if I'm playing X, that's wonderful.
+
+190
+00:10:37,320 --> 00:10:41,740
+I get to choose which one I
+go to, the one in the middle.
+
+191
+00:10:41,740 --> 00:10:45,000
+But now O gets to choose.
+
+192
+00:10:45,000 --> 00:10:48,750
+And I don't have control
+over that decision.
+
+193
+00:10:48,750 --> 00:10:51,670
+>> But from each of those
+possible board positions,
+
+194
+00:10:51,670 --> 00:10:54,020
+there's then another
+set of possibilities.
+
+195
+00:10:54,020 --> 00:10:56,700
+When it comes to be
+my turn again, I would
+
+196
+00:10:56,700 --> 00:11:01,500
+get to pick and say, well,
+if O moves into the, well,
+
+197
+00:11:01,500 --> 00:11:06,110
+the middle spot on the left, then
+I have a set of possibilities
+
+198
+00:11:06,110 --> 00:11:09,740
+where I can take my next move.
+
+199
+00:11:09,740 --> 00:11:14,140
+From those, I could consider all of
+the possibilities underneath them.
+
+200
+00:11:14,140 --> 00:11:18,030
+And then O would get
+to choose among those.
+
+201
+00:11:18,030 --> 00:11:22,290
+>> And I could keep building this
+tree out until I got to the point
+
+202
+00:11:22,290 --> 00:11:26,960
+where either someone
+wins the game-- that's
+
+203
+00:11:26,960 --> 00:11:31,070
+got to be considered a leaf node--
+or the board is completely full
+
+204
+00:11:31,070 --> 00:11:32,704
+and no one has won.
+
+205
+00:11:32,704 --> 00:11:34,370
+And that's also going to be a leaf node.
+
+206
+00:11:34,370 --> 00:11:35,411
+That's going to be a tie.
+
+207
+00:11:35,411 --> 00:11:37,820
+
+208
+00:11:37,820 --> 00:11:41,680
+>> But the tricky thing with this is
+if this were just a regular search
+
+209
+00:11:41,680 --> 00:11:44,269
+problem, I'd be able to
+say, well, X should go here.
+
+210
+00:11:44,269 --> 00:11:45,560
+And O should go way over there.
+
+211
+00:11:45,560 --> 00:11:46,770
+And then X should go over here.
+
+212
+00:11:46,770 --> 00:11:48,269
+And then O should go way over there.
+
+213
+00:11:48,269 --> 00:11:51,860
+And then X can get three
+in a row, and I win.
+
+214
+00:11:51,860 --> 00:11:54,870
+And the game would be over
+in five moves, three for me,
+
+215
+00:11:54,870 --> 00:11:57,710
+two for my opponent.
+
+216
+00:11:57,710 --> 00:12:01,300
+But I don't always get to choose that.
+
+217
+00:12:01,300 --> 00:12:03,720
+>> So instead, what we're
+going to have to do
+
+218
+00:12:03,720 --> 00:12:06,270
+is we're going to have
+to have a new strategy.
+
+219
+00:12:06,270 --> 00:12:09,350
+And the strategy that
+game-playing algorithms often use
+
+220
+00:12:09,350 --> 00:12:12,000
+is what's called minimax.
+
+221
+00:12:12,000 --> 00:12:15,500
+The central idea of
+minimax is that we're
+
+222
+00:12:15,500 --> 00:12:21,365
+going to pick the move that gives
+our opponent the worst possible set
+
+223
+00:12:21,365 --> 00:12:22,790
+of moves that they can make.
+
+224
+00:12:22,790 --> 00:12:25,570
+
+225
+00:12:25,570 --> 00:12:28,870
+It doesn't do me any good
+to choose a move where
+
+226
+00:12:28,870 --> 00:12:31,952
+I might be able to win after
+that, because my opponent isn't
+
+227
+00:12:31,952 --> 00:12:33,160
+going to give me that chance.
+
+228
+00:12:33,160 --> 00:12:37,770
+They're going to choose some
+terrible outcome for me.
+
+229
+00:12:37,770 --> 00:12:42,010
+So I'm going to make the
+move that forces my opponent
+
+230
+00:12:42,010 --> 00:12:45,760
+to do something better for me.
+
+231
+00:12:45,760 --> 00:12:46,260
+All right.
+
+232
+00:12:46,260 --> 00:12:48,410
+Let's see how that plays out.
+
+233
+00:12:48,410 --> 00:12:51,640
+So here's our algorithm in pseudocode.
+
+234
+00:12:51,640 --> 00:12:54,450
+We're going to generate
+the entire game tree.
+
+235
+00:12:54,450 --> 00:12:56,757
+We're going to build
+the entire structure.
+
+236
+00:12:56,757 --> 00:12:57,840
+And then we'll go through.
+
+237
+00:12:57,840 --> 00:13:02,100
+And at the very bottom at each of the
+terminal nodes, at each of the leaves,
+
+238
+00:13:02,100 --> 00:13:07,850
+we'll evaluate how
+valuable is that to me?
+
+239
+00:13:07,850 --> 00:13:11,690
+And we're going to value things that
+are good for me as being positive.
+
+240
+00:13:11,690 --> 00:13:14,460
+Things that are not good for me
+will be less positive, or zero,
+
+241
+00:13:14,460 --> 00:13:16,480
+or even negative.
+
+242
+00:13:16,480 --> 00:13:19,240
+>> So in tic-tac-toe, maybe
+a win for me is good.
+
+243
+00:13:19,240 --> 00:13:20,290
+That's a one.
+
+244
+00:13:20,290 --> 00:13:22,400
+And a tie is zero.
+
+245
+00:13:22,400 --> 00:13:26,230
+And something that's a loss for
+me, maybe that's a negative one.
+
+246
+00:13:26,230 --> 00:13:29,620
+All that matters is that the better
+it is for me, the higher the score
+
+247
+00:13:29,620 --> 00:13:32,160
+it receives.
+
+248
+00:13:32,160 --> 00:13:36,690
+From those possibilities at the
+bottom, then we'll filter upward.
+
+249
+00:13:36,690 --> 00:13:40,650
+And when it's my chance to choose
+among a set of alternatives,
+
+250
+00:13:40,650 --> 00:13:44,460
+I'll choose the one that's
+got the highest score.
+
+251
+00:13:44,460 --> 00:13:47,200
+>> And whenever it's my
+opponents turn to choose,
+
+252
+00:13:47,200 --> 00:13:52,350
+I'll assume that they're going to
+choose the one with the lowest score.
+
+253
+00:13:52,350 --> 00:13:56,090
+And if I do this all the way
+up to the top of the tree,
+
+254
+00:13:56,090 --> 00:14:03,150
+I'll have chosen a path that gives
+me the best outcome that I can get,
+
+255
+00:14:03,150 --> 00:14:09,110
+assuming that my opponent
+makes all the right moves.
+
+256
+00:14:09,110 --> 00:14:11,940
+>> All right, so let's see
+this in action first.
+
+257
+00:14:11,940 --> 00:14:14,980
+And then we'll actually
+look at the code for it.
+
+258
+00:14:14,980 --> 00:14:16,780
+So imagine I have this big tree.
+
+259
+00:14:16,780 --> 00:14:18,280
+And now I'm not playing tic-tac-toe.
+
+260
+00:14:18,280 --> 00:14:20,405
+I wanted to give you
+something a little bit richer.
+
+261
+00:14:20,405 --> 00:14:23,560
+So I've got some game where
+there's many different scores
+
+262
+00:14:23,560 --> 00:14:26,390
+that I could have at the end.
+
+263
+00:14:26,390 --> 00:14:27,980
+And so I build this complete tree.
+
+264
+00:14:27,980 --> 00:14:29,070
+And I get to move first.
+
+265
+00:14:29,070 --> 00:14:31,290
+I'm at the root of the tree.
+
+266
+00:14:31,290 --> 00:14:36,150
+>> And I get to choose that-- so I get
+to maximize across that first node.
+
+267
+00:14:36,150 --> 00:14:38,410
+And then my opponent gets to go.
+
+268
+00:14:38,410 --> 00:14:41,910
+And then I get to go once more.
+
+269
+00:14:41,910 --> 00:14:46,830
+So down at the bottom, I have a set of
+possibilities that I can choose from,
+
+270
+00:14:46,830 --> 00:14:50,570
+different terminal states of the game.
+
+271
+00:14:50,570 --> 00:14:54,980
+If I'm down in that
+far left hand corner,
+
+272
+00:14:54,980 --> 00:14:58,867
+and I see that I've got a choice
+between an eight, a seven, and a two,
+
+273
+00:14:58,867 --> 00:15:00,450
+well, I'm the one that gets to choose.
+
+274
+00:15:00,450 --> 00:15:02,910
+So I'm going to choose
+the best one of those.
+
+275
+00:15:02,910 --> 00:15:05,650
+I'm going to choose the eight.
+
+276
+00:15:05,650 --> 00:15:10,090
+>> So I know that if I ever
+get down to that point,
+
+277
+00:15:10,090 --> 00:15:13,890
+I'll be able to get that eight points.
+
+278
+00:15:13,890 --> 00:15:17,410
+If I end up at the next point
+over, the next node over,
+
+279
+00:15:17,410 --> 00:15:20,760
+a nine, a one, or a six, well, I'm
+going to choose the best of those.
+
+280
+00:15:20,760 --> 00:15:21,950
+I'll choose the nine.
+
+281
+00:15:21,950 --> 00:15:24,880
+If I have a choice between
+two, and four, and one,
+
+282
+00:15:24,880 --> 00:15:28,240
+I'll choose the four, the highest.
+
+283
+00:15:28,240 --> 00:15:31,990
+>> Now, if I look at the level
+above that, my opponent
+
+284
+00:15:31,990 --> 00:15:34,440
+is the one gets to make that choice.
+
+285
+00:15:34,440 --> 00:15:37,040
+So my opponent gets to
+choose, do I want to give him
+
+286
+00:15:37,040 --> 00:15:39,250
+the thing that's going
+to get him eight points,
+
+287
+00:15:39,250 --> 00:15:41,916
+or do I give him the thing that's
+going to give him nine points,
+
+288
+00:15:41,916 --> 00:15:45,240
+or the thing that's going
+to give him four points?
+
+289
+00:15:45,240 --> 00:15:49,130
+And my opponent, being
+rational, is going
+
+290
+00:15:49,130 --> 00:15:53,470
+to choose the minimum of those,
+is going to choose the four.
+
+291
+00:15:53,470 --> 00:15:56,020
+>> And I can do this
+through the entire tree.
+
+292
+00:15:56,020 --> 00:15:59,110
+I can go down to that
+middle set of three.
+
+293
+00:15:59,110 --> 00:16:01,517
+And I can choose between
+one, three, and five.
+
+294
+00:16:01,517 --> 00:16:02,350
+And I get to choose.
+
+295
+00:16:02,350 --> 00:16:03,810
+So I choose a five.
+
+296
+00:16:03,810 --> 00:16:05,340
+I can choose three, nine, or two.
+
+297
+00:16:05,340 --> 00:16:07,570
+I get to choose, so I choose the nine.
+
+298
+00:16:07,570 --> 00:16:09,290
+Six, five, or two, I choose.
+
+299
+00:16:09,290 --> 00:16:11,539
+I get to choose the six.
+
+300
+00:16:11,539 --> 00:16:13,080
+Level above that, who gets to choose?
+
+301
+00:16:13,080 --> 00:16:16,280
+
+302
+00:16:16,280 --> 00:16:18,140
+Who gets to choose?
+
+303
+00:16:18,140 --> 00:16:20,000
+The other guy, my opponent.
+
+304
+00:16:20,000 --> 00:16:22,583
+So they choose five,
+nine, or six, which one?
+
+305
+00:16:22,583 --> 00:16:23,410
+>> AUDIENCE: The five.
+
+306
+00:16:23,410 --> 00:16:25,250
+>> SPEAKER: They choose the five.
+
+307
+00:16:25,250 --> 00:16:27,400
+They get to choose the minimum.
+
+308
+00:16:27,400 --> 00:16:29,690
+And then the last one,
+choose one, two, or three.
+
+309
+00:16:29,690 --> 00:16:31,720
+I get to choose, so I choose three.
+
+310
+00:16:31,720 --> 00:16:34,370
+Nine, seven, or two, I choose nine.
+
+311
+00:16:34,370 --> 00:16:37,070
+And 11, six, or four, I choose 11.
+
+312
+00:16:37,070 --> 00:16:41,190
+My opponent then chooses three,
+nine, or 11, chooses the minimum.
+
+313
+00:16:41,190 --> 00:16:43,290
+He gives me a three.
+
+314
+00:16:43,290 --> 00:16:47,780
+And then finally at the top of
+the tree, I get to choose again.
+
+315
+00:16:47,780 --> 00:16:51,190
+And I get to choose between
+a four, a five, or a three.
+
+316
+00:16:51,190 --> 00:16:52,270
+So I take the five.
+
+317
+00:16:52,270 --> 00:16:55,070
+
+318
+00:16:55,070 --> 00:17:00,891
+>> If I got to control everything, I'd
+take the path that led to the 11.
+
+319
+00:17:00,891 --> 00:17:02,390
+But I don't get to make that choice.
+
+320
+00:17:02,390 --> 00:17:04,220
+If I go down that path.
+
+321
+00:17:04,220 --> 00:17:10,710
+My opponent will force me into
+the choice that leads to a three.
+
+322
+00:17:10,710 --> 00:17:14,530
+So the best that I can do is
+to take that middle branch,
+
+323
+00:17:14,530 --> 00:17:19,859
+make that choice that's eventually
+going to lead me to five points.
+
+324
+00:17:19,859 --> 00:17:23,230
+That's what minimax does.
+
+325
+00:17:23,230 --> 00:17:23,807
+>> All right.
+
+326
+00:17:23,807 --> 00:17:24,890
+Let's take a look at that.
+
+327
+00:17:24,890 --> 00:17:27,480
+
+328
+00:17:27,480 --> 00:17:32,330
+So here in the CS50
+IDE is a program that
+
+329
+00:17:32,330 --> 00:17:36,540
+implements minimax to play tic-tac-toe.
+
+330
+00:17:36,540 --> 00:17:40,100
+We're going to build
+up a representation.
+
+331
+00:17:40,100 --> 00:17:44,390
+We're going to have two opponent--
+or two players, our computer
+
+332
+00:17:44,390 --> 00:17:46,090
+player and a human player.
+
+333
+00:17:46,090 --> 00:17:48,980
+
+334
+00:17:48,980 --> 00:17:53,090
+Player number one will be playing
+the O. That'll be the machine player.
+
+335
+00:17:53,090 --> 00:17:55,747
+They get to move second.
+
+336
+00:17:55,747 --> 00:17:57,830
+And the other player, our
+human player, will be X.
+
+337
+00:17:57,830 --> 00:17:59,880
+>> And to make my life a
+little simple, I'm going
+
+338
+00:17:59,880 --> 00:18:03,060
+to label that player negative one.
+
+339
+00:18:03,060 --> 00:18:05,026
+So I can just multiply
+by negative one to swap
+
+340
+00:18:05,026 --> 00:18:06,400
+between one player and the other.
+
+341
+00:18:06,400 --> 00:18:09,030
+
+342
+00:18:09,030 --> 00:18:12,250
+All right, so let's take a look at
+what we're actually going to do.
+
+343
+00:18:12,250 --> 00:18:15,840
+We're going to define our board.
+
+344
+00:18:15,840 --> 00:18:19,060
+It's going to be, well, we're going
+to allow it to be three by three,
+
+345
+00:18:19,060 --> 00:18:21,580
+or we can even play
+five by five or seven
+
+346
+00:18:21,580 --> 00:18:28,870
+by seven tic-tac-toe if you'd
+like, based on some dimension D.
+
+347
+00:18:28,870 --> 00:18:31,260
+>> And we'll have a couple
+of helper functions
+
+348
+00:18:31,260 --> 00:18:34,360
+that'll do things like
+initialize the screen-- or sorry,
+
+349
+00:18:34,360 --> 00:18:38,900
+initialize our variables, clear the
+screen, draw the board on the screen,
+
+350
+00:18:38,900 --> 00:18:41,060
+one that checks a board
+to see whether or not
+
+351
+00:18:41,060 --> 00:18:44,520
+there's a winner, one that
+parses through the command line,
+
+352
+00:18:44,520 --> 00:18:50,670
+just to help out, one that reads in
+input, and one function called minimax.
+
+353
+00:18:50,670 --> 00:18:52,746
+And that's the one
+we'll care most about.
+
+354
+00:18:52,746 --> 00:18:54,120
+But let's look first at the main.
+
+355
+00:18:54,120 --> 00:18:57,490
+
+356
+00:18:57,490 --> 00:18:58,510
+>> What do we do?
+
+357
+00:18:58,510 --> 00:19:00,570
+Well, we're going to
+parse our command line,
+
+358
+00:19:00,570 --> 00:19:04,300
+just read in and see what
+dimension board we'd like to have.
+
+359
+00:19:04,300 --> 00:19:07,330
+We'll initialize our board.
+
+360
+00:19:07,330 --> 00:19:10,360
+And then we'll enter one
+big wild loop, repeatedly
+
+361
+00:19:10,360 --> 00:19:16,630
+accept moves until the game is
+won, or there's no moves left.
+
+362
+00:19:16,630 --> 00:19:20,560
+Every time we go through that
+loop, we'll clear the screen.
+
+363
+00:19:20,560 --> 00:19:23,290
+We'll draw the board on the screen.
+
+364
+00:19:23,290 --> 00:19:28,750
+And we're deliberately sort of
+abstracting these away as subroutines,
+
+365
+00:19:28,750 --> 00:19:32,030
+so that we don't have to worry too much
+about the details of how they happen.
+
+366
+00:19:32,030 --> 00:19:33,480
+>> You'll have the code later today.
+
+367
+00:19:33,480 --> 00:19:37,970
+And if you want to look through
+and find out, you can see them all.
+
+368
+00:19:37,970 --> 00:19:39,890
+But we'll draw a board on the screen.
+
+369
+00:19:39,890 --> 00:19:43,620
+And then we'll check and
+see, do we have a winner?
+
+370
+00:19:43,620 --> 00:19:46,290
+Has someone won this game?
+
+371
+00:19:46,290 --> 00:19:49,260
+If they have, we'll print
+out a victory message.
+
+372
+00:19:49,260 --> 00:19:51,680
+And we'll end the game.
+
+373
+00:19:51,680 --> 00:19:54,510
+>> We'll also check and
+see if there's a tie.
+
+374
+00:19:54,510 --> 00:19:56,620
+It'll be easy to see if there's a tie.
+
+375
+00:19:56,620 --> 00:20:00,700
+It means that all the spaces are full,
+but there hasn't been a winner yet.
+
+376
+00:20:00,700 --> 00:20:03,580
+We can declare a tie and be done.
+
+377
+00:20:03,580 --> 00:20:10,530
+Then the real meat-- if
+it's a machine player,
+
+378
+00:20:10,530 --> 00:20:14,120
+we'll allow that
+machine player to search
+
+379
+00:20:14,120 --> 00:20:19,500
+through using this minimax algorithm,
+to find the best move that it can.
+
+380
+00:20:19,500 --> 00:20:22,310
+And then we'll put that move up.
+
+381
+00:20:22,310 --> 00:20:27,640
+>> Otherwise, if it's a human player,
+we'll read some input from the human.
+
+382
+00:20:27,640 --> 00:20:30,800
+And then whether it's the human
+player or the machine player,
+
+383
+00:20:30,800 --> 00:20:32,800
+we'll do a couple little
+bits of error checking,
+
+384
+00:20:32,800 --> 00:20:36,910
+make sure it stays within the boundaries
+of the actual dimensions of the board
+
+385
+00:20:36,910 --> 00:20:40,040
+that we have, make sure
+that that space is empty,
+
+386
+00:20:40,040 --> 00:20:43,570
+that no one's put a
+piece in there already.
+
+387
+00:20:43,570 --> 00:20:45,810
+And then we'll just put
+a piece on the board,
+
+388
+00:20:45,810 --> 00:20:51,550
+change the player to the next layer, and
+increment how many moves have happened.
+
+389
+00:20:51,550 --> 00:20:54,090
+>> That's the main loop for
+our tic-tac-toe game.
+
+390
+00:20:54,090 --> 00:20:57,000
+
+391
+00:20:57,000 --> 00:21:02,340
+Minimax, then, is exactly
+the algorithm that we before.
+
+392
+00:21:02,340 --> 00:21:04,710
+The only adjustment that
+we've made so that we
+
+393
+00:21:04,710 --> 00:21:07,290
+can play higher
+dimensional boards is we've
+
+394
+00:21:07,290 --> 00:21:11,070
+kept this extra parameter called depth.
+
+395
+00:21:11,070 --> 00:21:14,870
+And depth just says, if I'm
+searching downward through that tree
+
+396
+00:21:14,870 --> 00:21:19,022
+and I get so far down
+beyond some level depth
+
+397
+00:21:19,022 --> 00:21:20,730
+that I just don't want
+to go any further,
+
+398
+00:21:20,730 --> 00:21:25,630
+I'm going to stop and just
+evaluate the board at that point.
+
+399
+00:21:25,630 --> 00:21:27,310
+I'll check and see if there's a winner.
+
+400
+00:21:27,310 --> 00:21:29,240
+If there's a winner, I return them.
+
+401
+00:21:29,240 --> 00:21:31,720
+Otherwise, I'll go through a loop.
+
+402
+00:21:31,720 --> 00:21:34,380
+And I'll say, for all of
+the possible locations
+
+403
+00:21:34,380 --> 00:21:38,080
+that I could possibly
+take as my move, I'll
+
+404
+00:21:38,080 --> 00:21:43,760
+build a hypothetical board that
+includes my move on that board,
+
+405
+00:21:43,760 --> 00:21:45,960
+and then recursively calls minimax.
+
+406
+00:21:45,960 --> 00:21:49,360
+
+407
+00:21:49,360 --> 00:21:53,900
+>> If it's my move, I get to find the
+one that's got the largest score.
+
+408
+00:21:53,900 --> 00:21:58,710
+If it's my opponent's move, we find
+the one that's got the minimum score.
+
+409
+00:21:58,710 --> 00:22:02,240
+And everything else is
+just record keeping.
+
+410
+00:22:02,240 --> 00:22:04,789
+All right, so let's see this run.
+
+411
+00:22:04,789 --> 00:22:06,830
+Actually, maybe we can
+get a couple of volunteers
+
+412
+00:22:06,830 --> 00:22:09,930
+to come up and play tic-tac-toe.
+
+413
+00:22:09,930 --> 00:22:12,780
+[INAUDIBLE] one, and one
+more, two, right there.
+
+414
+00:22:12,780 --> 00:22:13,550
+Come on up.
+
+415
+00:22:13,550 --> 00:22:19,290
+
+416
+00:22:19,290 --> 00:22:23,650
+>> So let's go ahead and
+restart this completely.
+
+417
+00:22:23,650 --> 00:22:24,150
+So, hi.
+
+418
+00:22:24,150 --> 00:22:24,920
+>> AUDIENCE: Hi.
+
+419
+00:22:24,920 --> 00:22:25,420
+>> SPEAKER: What's your name?
+
+420
+00:22:25,420 --> 00:22:26,086
+>> AUDIENCE: Gorav.
+
+421
+00:22:26,086 --> 00:22:26,840
+SPEAKER: Gorav.
+
+422
+00:22:26,840 --> 00:22:27,800
+>> AUDIENCE: I'm Layla.
+
+423
+00:22:27,800 --> 00:22:29,490
+>> SPEAKER: And Layla, and Layla, sorry.
+
+424
+00:22:29,490 --> 00:22:30,384
+Come on up.
+
+425
+00:22:30,384 --> 00:22:32,050
+Gorav, we're going to have you go first.
+
+426
+00:22:32,050 --> 00:22:37,710
+And I'm going to ask you to be a not
+terribly good tic-tac-toe player.
+
+427
+00:22:37,710 --> 00:22:40,130
+OK, so all the pressure is off on you.
+
+428
+00:22:40,130 --> 00:22:44,660
+Let's see, though, that our machine
+player can actually do something smart.
+
+429
+00:22:44,660 --> 00:22:45,310
+So go ahead.
+
+430
+00:22:45,310 --> 00:22:49,830
+You're going to type in which coordinate
+you would like to put your X in.
+
+431
+00:22:49,830 --> 00:22:55,170
+A0, OK, and the machine has gone
+right away and put its mark in A1.
+
+432
+00:22:55,170 --> 00:22:56,640
+>> Put the O on the board.
+
+433
+00:22:56,640 --> 00:22:58,970
+All right, now go ahead.
+
+434
+00:22:58,970 --> 00:23:00,193
+Where would you like to go?
+
+435
+00:23:00,193 --> 00:23:03,510
+
+436
+00:23:03,510 --> 00:23:05,090
+C2.
+
+437
+00:23:05,090 --> 00:23:08,430
+Our machine player has taken
+the middle square, blocked you.
+
+438
+00:23:08,430 --> 00:23:10,320
+So that was a good,
+smart thing for it to do.
+
+439
+00:23:10,320 --> 00:23:13,430
+
+440
+00:23:13,430 --> 00:23:14,250
+You've blocked it.
+
+441
+00:23:14,250 --> 00:23:15,210
+That's excellent.
+
+442
+00:23:15,210 --> 00:23:16,390
+It takes the corner there.
+
+443
+00:23:16,390 --> 00:23:23,890
+
+444
+00:23:23,890 --> 00:23:30,430
+>> And it's going to force you to
+take the one last space, B0.
+
+445
+00:23:30,430 --> 00:23:32,220
+And the game ends in a tie.
+
+446
+00:23:32,220 --> 00:23:35,030
+But it played a reasonable
+game against you, right?
+
+447
+00:23:35,030 --> 00:23:36,956
+All right, thanks very much, Gorav.
+
+448
+00:23:36,956 --> 00:23:40,860
+>> [APPLAUSE]
+
+449
+00:23:40,860 --> 00:23:44,723
+>> All right, Layla, we're going
+up the game on you here.
+
+450
+00:23:44,723 --> 00:23:46,940
+>> AUDIENCE: Oh, great.
+
+451
+00:23:46,940 --> 00:23:49,950
+>> SPEAKER: We're going to give
+you four by four tic-tac-toe.
+
+452
+00:23:49,950 --> 00:23:54,760
+Now, in four by four, you have to win
+with four in a row, not three in a row.
+
+453
+00:23:54,760 --> 00:23:56,135
+And it's all yours.
+
+454
+00:23:56,135 --> 00:24:02,180
+
+455
+00:24:02,180 --> 00:24:04,420
+So Layla took D1.
+
+456
+00:24:04,420 --> 00:24:11,730
+We're now going to follow
+our computer player here.
+
+457
+00:24:11,730 --> 00:24:16,910
+Three by three tic-tac-toe is the kind
+of thing that is easy for all of us.
+
+458
+00:24:16,910 --> 00:24:21,960
+But it's still nice to see the
+computer player making smart moves.
+
+459
+00:24:21,960 --> 00:24:23,725
+Four by four gets to
+be a little trickier.
+
+460
+00:24:23,725 --> 00:24:42,960
+
+461
+00:24:42,960 --> 00:24:44,230
+>> Nicely done.
+
+462
+00:24:44,230 --> 00:24:46,210
+All right, so Layla's finished off.
+
+463
+00:24:46,210 --> 00:24:48,270
+Oh, and we should have ended there.
+
+464
+00:24:48,270 --> 00:24:51,870
+But let's do one more up here.
+
+465
+00:24:51,870 --> 00:24:53,480
+So Layla, thank you.
+
+466
+00:24:53,480 --> 00:24:55,112
+Nicely done.
+
+467
+00:24:55,112 --> 00:24:57,517
+>> [APPLAUSE]
+
+468
+00:24:57,517 --> 00:25:00,410
+
+469
+00:25:00,410 --> 00:25:04,750
+>> So our tic-tac-toe player goes
+through and finds locations,
+
+470
+00:25:04,750 --> 00:25:07,040
+solves them using this minimax.
+
+471
+00:25:07,040 --> 00:25:08,990
+And I had a depth setting
+on that so that it
+
+472
+00:25:08,990 --> 00:25:11,010
+wouldn't run too fast,
+which is probably why
+
+473
+00:25:11,010 --> 00:25:16,790
+Layla was able to go nicely ahead
+as she did, and did very well.
+
+474
+00:25:16,790 --> 00:25:20,450
+But these systems that just
+go through and brute force
+
+475
+00:25:20,450 --> 00:25:23,870
+go deeper, and deeper, and deeper,
+and keep finding the solution
+
+476
+00:25:23,870 --> 00:25:29,890
+that they need, those kinds of systems
+are quite successful at these, well,
+
+477
+00:25:29,890 --> 00:25:32,700
+standard board games.
+
+478
+00:25:32,700 --> 00:25:37,060
+>> And in fact, if we look at a
+three by three tic-tac-toe game,
+
+479
+00:25:37,060 --> 00:25:40,040
+this is basically a solved problem.
+
+480
+00:25:40,040 --> 00:25:45,430
+And this is a wonderful diagram
+from Randall Munroe at XKCD,
+
+481
+00:25:45,430 --> 00:25:52,130
+showing which move you should
+take, given your opponent's moves.
+
+482
+00:25:52,130 --> 00:25:56,420
+This is something that we could
+easily specify ahead of time.
+
+483
+00:25:56,420 --> 00:26:00,180
+But what happens as we get to more
+complex games, more intricate games,
+
+484
+00:26:00,180 --> 00:26:05,690
+where there are bigger boards, more
+possibilities, deeper strategy?
+
+485
+00:26:05,690 --> 00:26:09,660
+>> It turns out that this
+brute force searching still
+
+486
+00:26:09,660 --> 00:26:14,150
+does reasonably well, except
+when you get to the point
+
+487
+00:26:14,150 --> 00:26:19,230
+where that tree is so large
+that you can't represent it all.
+
+488
+00:26:19,230 --> 00:26:22,370
+
+489
+00:26:22,370 --> 00:26:28,280
+When you can't compute the entire tree,
+when you can't go forward and push
+
+490
+00:26:28,280 --> 00:26:32,204
+yourself to the point where you've
+gotten the entire tree in memory,
+
+491
+00:26:32,204 --> 00:26:34,370
+or whether you can get it
+in memory and it will just
+
+492
+00:26:34,370 --> 00:26:39,200
+take you way too long to search through
+it, you have to do something smarter.
+
+493
+00:26:39,200 --> 00:26:42,620
+
+494
+00:26:42,620 --> 00:26:46,450
+>> In order to do that, you
+have to do two things.
+
+495
+00:26:46,450 --> 00:26:49,030
+First, you have to find some
+way of limiting your depth.
+
+496
+00:26:49,030 --> 00:26:50,370
+Well, that's OK.
+
+497
+00:26:50,370 --> 00:26:55,740
+We can find some nice, bare minimum
+and say, you can only go so deep.
+
+498
+00:26:55,740 --> 00:27:00,890
+But when you do that, that means you
+have these partially incomplete boards.
+
+499
+00:27:00,890 --> 00:27:04,770
+And you have to choose, do I like
+this partially incomplete board,
+
+500
+00:27:04,770 --> 00:27:08,600
+or this partially incomplete board?
+
+501
+00:27:08,600 --> 00:27:11,910
+>> And on our four by
+four tic-tac-toe game,
+
+502
+00:27:11,910 --> 00:27:15,240
+our computer player got down
+to the bottom and it said,
+
+503
+00:27:15,240 --> 00:27:16,800
+I've got two different boards.
+
+504
+00:27:16,800 --> 00:27:17,940
+Neither one is a win.
+
+505
+00:27:17,940 --> 00:27:19,120
+Neither one is a loss.
+
+506
+00:27:19,120 --> 00:27:22,070
+Neither one is a tie.
+
+507
+00:27:22,070 --> 00:27:24,100
+How do I choose between them?
+
+508
+00:27:24,100 --> 00:27:26,200
+And it didn't have a
+smart way of doing that.
+
+509
+00:27:26,200 --> 00:27:28,910
+
+510
+00:27:28,910 --> 00:27:32,850
+>> We see this kind of
+evaluation happen all the time
+
+511
+00:27:32,850 --> 00:27:35,290
+as we get into more complex games.
+
+512
+00:27:35,290 --> 00:27:37,600
+Chess is a great example.
+
+513
+00:27:37,600 --> 00:27:41,550
+In chess, we have, first
+of all, a larger board.
+
+514
+00:27:41,550 --> 00:27:43,370
+We have far more pieces.
+
+515
+00:27:43,370 --> 00:27:47,930
+And the positioning of these pieces
+and the way that these pieces move
+
+516
+00:27:47,930 --> 00:27:50,370
+is critically important.
+
+517
+00:27:50,370 --> 00:27:53,700
+So if I want to use minimax,
+I need to be able to specify
+
+518
+00:27:53,700 --> 00:27:58,240
+and say, this board, where
+no one has won or lost yet,
+
+519
+00:27:58,240 --> 00:28:04,310
+is somehow better than this other
+board, where no one has won or lost.
+
+520
+00:28:04,310 --> 00:28:06,740
+>> To do that, I might do
+things like I might just
+
+521
+00:28:06,740 --> 00:28:10,787
+count how many pieces do I have
+and how many pieces do you have?
+
+522
+00:28:10,787 --> 00:28:12,870
+Or I might give different
+pieces different points.
+
+523
+00:28:12,870 --> 00:28:14,420
+My queen is worth 20 points.
+
+524
+00:28:14,420 --> 00:28:16,500
+Your pawn is worth one point.
+
+525
+00:28:16,500 --> 00:28:18,920
+Who has more points total?
+
+526
+00:28:18,920 --> 00:28:22,300
+Or I might consider things like,
+who's got the better board position?
+
+527
+00:28:22,300 --> 00:28:26,820
+Whose turn is it next,
+anything that I can
+
+528
+00:28:26,820 --> 00:28:31,220
+do to evaluate more accurately
+which of these possibilities
+
+529
+00:28:31,220 --> 00:28:34,660
+is better without
+exhaustively considering
+
+530
+00:28:34,660 --> 00:28:36,565
+every move that could come after that.
+
+531
+00:28:36,565 --> 00:28:39,740
+
+532
+00:28:39,740 --> 00:28:45,130
+>> Now to make that work,
+one of the things that's
+
+533
+00:28:45,130 --> 00:28:48,680
+going to become really important
+for us is not just moving straight
+
+534
+00:28:48,680 --> 00:28:53,720
+down to a particular depth
+limit, but being able to say,
+
+535
+00:28:53,720 --> 00:28:59,380
+one of these ideas that I
+have is so bad that it's
+
+536
+00:28:59,380 --> 00:29:02,280
+not worth considering
+all of the possible ways
+
+537
+00:29:02,280 --> 00:29:06,680
+that things can go from bad to worse.
+
+538
+00:29:06,680 --> 00:29:12,760
+To do that, we'll add into minimax
+a principle called alph-beta.
+
+539
+00:29:12,760 --> 00:29:16,340
+And alpha-beta says,
+if you have a bad idea,
+
+540
+00:29:16,340 --> 00:29:22,840
+don't waste your time trying to
+find out exactly how bad it is.
+
+541
+00:29:22,840 --> 00:29:24,990
+>> So here's what we're going to do.
+
+542
+00:29:24,990 --> 00:29:28,620
+We're going to take the same
+principles that we had before,
+
+543
+00:29:28,620 --> 00:29:32,200
+the same minimax type
+of search, only we're
+
+544
+00:29:32,200 --> 00:29:37,570
+going keep track, not only of the
+actual values that we have, but we'll
+
+545
+00:29:37,570 --> 00:29:41,440
+keep track of the best possible
+value that I could get,
+
+546
+00:29:41,440 --> 00:29:45,700
+and the worst possible
+outcome I could have.
+
+547
+00:29:45,700 --> 00:29:50,470
+And any time the worst possible
+thing is looking likely,
+
+548
+00:29:50,470 --> 00:29:52,694
+I'll abandon that part of the tree.
+
+549
+00:29:52,694 --> 00:29:54,610
+And I won't even bother
+looking at it anymore.
+
+550
+00:29:54,610 --> 00:29:57,680
+
+551
+00:29:57,680 --> 00:30:02,600
+>> All right, so imagine that we start
+with this same exact game tree.
+
+552
+00:30:02,600 --> 00:30:05,200
+And now we're going to go
+down again, all the way down
+
+553
+00:30:05,200 --> 00:30:07,200
+to that bottom left corner.
+
+554
+00:30:07,200 --> 00:30:11,180
+And in that bottom left corner, we
+look and we evaluate this board.
+
+555
+00:30:11,180 --> 00:30:15,700
+Maybe it's a four by four tic-tac-toe
+board, or maybe it's a chess board.
+
+556
+00:30:15,700 --> 00:30:18,620
+But we look at it, and we evaluate
+it, and we get a value of eight.
+
+557
+00:30:18,620 --> 00:30:22,290
+
+558
+00:30:22,290 --> 00:30:28,030
+>> At that point, we know that
+we are going to get at least
+
+559
+00:30:28,030 --> 00:30:32,380
+eight points from this bottom decision.
+
+560
+00:30:32,380 --> 00:30:36,620
+It doesn't matter what the other
+two are, that seven and that two.
+
+561
+00:30:36,620 --> 00:30:38,580
+They could be any values
+they wanted to be.
+
+562
+00:30:38,580 --> 00:30:41,279
+We're going to get at
+least eight points.
+
+563
+00:30:41,279 --> 00:30:43,070
+All right, but we could
+go ahead and check.
+
+564
+00:30:43,070 --> 00:30:45,080
+Maybe one of them is better than eight.
+
+565
+00:30:45,080 --> 00:30:46,000
+>> We look at the seven.
+
+566
+00:30:46,000 --> 00:30:46,910
+Is that better than eight?
+
+567
+00:30:46,910 --> 00:30:48,680
+No, that doesn't change
+our opinion at all.
+
+568
+00:30:48,680 --> 00:30:49,460
+We look at the two.
+
+569
+00:30:49,460 --> 00:30:50,543
+Is that better than eight?
+
+570
+00:30:50,543 --> 00:30:52,580
+No, that doesn't change
+our opinion at all.
+
+571
+00:30:52,580 --> 00:30:55,480
+So now we know we've exhausted
+all of the possibilities there.
+
+572
+00:30:55,480 --> 00:30:58,330
+We're not going to get
+anything better than eight.
+
+573
+00:30:58,330 --> 00:31:01,310
+We're going to get exactly eight.
+
+574
+00:31:01,310 --> 00:31:03,825
+>> And so we change that node and
+say, that is now a certainty.
+
+575
+00:31:03,825 --> 00:31:07,010
+
+576
+00:31:07,010 --> 00:31:10,270
+We go up one level above that.
+
+577
+00:31:10,270 --> 00:31:13,820
+And now we know something
+about that minimization level.
+
+578
+00:31:13,820 --> 00:31:18,560
+We know that we're never going to get
+more than eight points if we go down
+
+579
+00:31:18,560 --> 00:31:20,910
+that direction.
+
+580
+00:31:20,910 --> 00:31:22,980
+Because even if those
+other two branches turn out
+
+581
+00:31:22,980 --> 00:31:26,170
+to be fantastic and worth
+thousands of points each,
+
+582
+00:31:26,170 --> 00:31:31,666
+our opponent will give us the
+minimum, and give us the eight.
+
+583
+00:31:31,666 --> 00:31:32,790
+All right, well, let's see.
+
+584
+00:31:32,790 --> 00:31:35,190
+We'll keep going down that path.
+
+585
+00:31:35,190 --> 00:31:38,490
+We go down to that middle on the left.
+
+586
+00:31:38,490 --> 00:31:40,560
+We look down and we see there's a nine.
+
+587
+00:31:40,560 --> 00:31:45,590
+We know that we're going to get
+at least nine points by going down
+
+588
+00:31:45,590 --> 00:31:47,720
+that middle road.
+
+589
+00:31:47,720 --> 00:31:52,110
+And at this point, we can just pause.
+
+590
+00:31:52,110 --> 00:31:56,910
+And we can say, look, I
+know in the level above,
+
+591
+00:31:56,910 --> 00:32:01,160
+I'm going to get no more than eight
+points by going down this direction.
+
+592
+00:32:01,160 --> 00:32:05,670
+But if I went down the middle
+path instead of the left path,
+
+593
+00:32:05,670 --> 00:32:08,980
+I would get at least nine points.
+
+594
+00:32:08,980 --> 00:32:13,590
+>> My opponent is never going to
+let me go down that middle path.
+
+595
+00:32:13,590 --> 00:32:14,650
+They get to choose.
+
+596
+00:32:14,650 --> 00:32:18,140
+And they're going to choose the
+path to the left towards the eight,
+
+597
+00:32:18,140 --> 00:32:23,650
+rather than down the middle towards
+what's at least nine points.
+
+598
+00:32:23,650 --> 00:32:25,334
+So at that point, I'll stop.
+
+599
+00:32:25,334 --> 00:32:26,500
+And I'll say, you know what?
+
+600
+00:32:26,500 --> 00:32:29,990
+I don't have to look any
+more down in that direction.
+
+601
+00:32:29,990 --> 00:32:32,270
+Because I'm never going to get there.
+
+602
+00:32:32,270 --> 00:32:36,660
+>> I can skip over that one,
+and I can skip over that six,
+
+603
+00:32:36,660 --> 00:32:39,720
+because that's never going to happen.
+
+604
+00:32:39,720 --> 00:32:42,470
+So I'll go down and I'll
+consider the next possibility.
+
+605
+00:32:42,470 --> 00:32:44,830
+I go down there and I say, I see a two.
+
+606
+00:32:44,830 --> 00:32:47,125
+I know if I get to here, I'm
+going to get at least two.
+
+607
+00:32:47,125 --> 00:32:49,810
+
+608
+00:32:49,810 --> 00:32:50,470
+OK.
+
+609
+00:32:50,470 --> 00:32:51,520
+I keep going.
+
+610
+00:32:51,520 --> 00:32:52,440
+I see a four.
+
+611
+00:32:52,440 --> 00:32:54,920
+I know I'm going to get at least four.
+
+612
+00:32:54,920 --> 00:32:57,200
+There's still a lot between
+four and eight, though.
+
+613
+00:32:57,200 --> 00:32:58,454
+So I keep going.
+
+614
+00:32:58,454 --> 00:32:59,870
+I look down and I see there's one.
+
+615
+00:32:59,870 --> 00:33:01,614
+All right, I know if
+I go down this path,
+
+616
+00:33:01,614 --> 00:33:03,280
+I'm going to be able to choose the four.
+
+617
+00:33:03,280 --> 00:33:06,540
+
+618
+00:33:06,540 --> 00:33:08,980
+What's my opponent going to do?
+
+619
+00:33:08,980 --> 00:33:12,310
+Between something that gives me
+eight, something that gives me four,
+
+620
+00:33:12,310 --> 00:33:14,730
+and something that
+gives me at least nine,
+
+621
+00:33:14,730 --> 00:33:17,550
+well, he's going to give me the four.
+
+622
+00:33:17,550 --> 00:33:20,110
+And I know now at the
+very top, I'm going
+
+623
+00:33:20,110 --> 00:33:23,145
+to be able to get at least
+four points out of this game.
+
+624
+00:33:23,145 --> 00:33:27,030
+
+625
+00:33:27,030 --> 00:33:30,900
+>> The whole idea of alpha-beta
+is to cut off parts the tree so
+
+626
+00:33:30,900 --> 00:33:32,530
+that I don't look at them anymore.
+
+627
+00:33:32,530 --> 00:33:35,964
+But it still looks like I've been
+looking at a lot of the tree.
+
+628
+00:33:35,964 --> 00:33:36,880
+Let's keep going down.
+
+629
+00:33:36,880 --> 00:33:38,305
+We'll go down the next one now.
+
+630
+00:33:38,305 --> 00:33:39,680
+Down at the bottom, I find a one.
+
+631
+00:33:39,680 --> 00:33:41,030
+I know I'm going to get at least one.
+
+632
+00:33:41,030 --> 00:33:41,690
+I keep looking.
+
+633
+00:33:41,690 --> 00:33:42,625
+>> I find a three.
+
+634
+00:33:42,625 --> 00:33:44,250
+I know I'm going to get at least three.
+
+635
+00:33:44,250 --> 00:33:44,840
+I keep going.
+
+636
+00:33:44,840 --> 00:33:45,660
+I find a five.
+
+637
+00:33:45,660 --> 00:33:49,760
+I know I'm going to get five
+if I get down in that path.
+
+638
+00:33:49,760 --> 00:33:52,580
+And I also know then
+that my opponent, if I
+
+639
+00:33:52,580 --> 00:33:55,510
+choose the middle of
+the three big choices,
+
+640
+00:33:55,510 --> 00:34:01,440
+he's going to give me
+something that's five or less.
+
+641
+00:34:01,440 --> 00:34:02,150
+>> OK.
+
+642
+00:34:02,150 --> 00:34:03,400
+I can keep going there.
+
+643
+00:34:03,400 --> 00:34:06,470
+I can look down and I
+can say, what am I going
+
+644
+00:34:06,470 --> 00:34:08,239
+to get if I go down the middle path?
+
+645
+00:34:08,239 --> 00:34:09,909
+I'm going to get, well, three there.
+
+646
+00:34:09,909 --> 00:34:12,080
+I'm going to get something
+that's at least three.
+
+647
+00:34:12,080 --> 00:34:16,030
+There's still things between
+three and five, so I keep looking.
+
+648
+00:34:16,030 --> 00:34:20,203
+Oh, a nine, I'll definitely
+take that over a three.
+
+649
+00:34:20,203 --> 00:34:22,744
+I'm going to get at least nine
+if I go down that middle path.
+
+650
+00:34:22,744 --> 00:34:25,530
+
+651
+00:34:25,530 --> 00:34:31,010
+>> Now my opponent stops and says,
+look, there's no point anymore.
+
+652
+00:34:31,010 --> 00:34:33,669
+I know that my
+minimization opponent, he's
+
+653
+00:34:33,669 --> 00:34:36,210
+going to give me the thing that's
+less than or equal to five,
+
+654
+00:34:36,210 --> 00:34:39,030
+rather than the thing that's
+greater than or equal to nine.
+
+655
+00:34:39,030 --> 00:34:39,530
+I stop.
+
+656
+00:34:39,530 --> 00:34:40,779
+I don't look any more at that.
+
+657
+00:34:40,779 --> 00:34:43,280
+I keep going.
+
+658
+00:34:43,280 --> 00:34:44,850
+>> I look down on this one.
+
+659
+00:34:44,850 --> 00:34:46,370
+Down to the bottom, I find a six.
+
+660
+00:34:46,370 --> 00:34:50,040
+I know I'm going to get at least six.
+
+661
+00:34:50,040 --> 00:34:53,130
+And what can I do?
+
+662
+00:34:53,130 --> 00:34:54,877
+I can stop.
+
+663
+00:34:54,877 --> 00:34:57,460
+Because there's a choice between
+something that's at least six
+
+664
+00:34:57,460 --> 00:34:59,250
+and something that's
+less than five, he's
+
+665
+00:34:59,250 --> 00:35:02,570
+going to give me the thing
+that's less than five.
+
+666
+00:35:02,570 --> 00:35:04,779
+And now I know I'm going
+to get exactly that choice.
+
+667
+00:35:04,779 --> 00:35:06,195
+I'm going to get that five choice.
+
+668
+00:35:06,195 --> 00:35:08,980
+
+669
+00:35:08,980 --> 00:35:10,010
+>> I go back up to the top.
+
+670
+00:35:10,010 --> 00:35:11,450
+Which am I going to
+choose between something
+
+671
+00:35:11,450 --> 00:35:14,449
+that's greater than or equal to four,
+or something that's equal to five?
+
+672
+00:35:14,449 --> 00:35:17,140
+I'm going to take something
+that's at least five.
+
+673
+00:35:17,140 --> 00:35:20,490
+I go down the last path, all
+the way down to the bottom.
+
+674
+00:35:20,490 --> 00:35:21,260
+There's a one.
+
+675
+00:35:21,260 --> 00:35:23,410
+OK, at least I'm going to get one point.
+
+676
+00:35:23,410 --> 00:35:24,427
+I keep going.
+
+677
+00:35:24,427 --> 00:35:25,760
+Two, oh, that's better than one.
+
+678
+00:35:25,760 --> 00:35:27,100
+I'm going to get at least two.
+
+679
+00:35:27,100 --> 00:35:28,610
+I find a three.
+
+680
+00:35:28,610 --> 00:35:31,450
+I know I'm going to get three.
+
+681
+00:35:31,450 --> 00:35:34,690
+>> And the point above that,
+my opponent is going
+
+682
+00:35:34,690 --> 00:35:38,540
+to give me something that's
+less than or equal to three.
+
+683
+00:35:38,540 --> 00:35:40,940
+And now I can stop.
+
+684
+00:35:40,940 --> 00:35:46,290
+Because in the choice between me being
+able to get a five and my opponent
+
+685
+00:35:46,290 --> 00:35:52,290
+giving me something less than three,
+I'm always going to take that five.
+
+686
+00:35:52,290 --> 00:35:56,810
+So I don't evaluate that
+bottom part of the tree at all.
+
+687
+00:35:56,810 --> 00:35:59,470
+>> Now, this may seem minor.
+
+688
+00:35:59,470 --> 00:36:03,630
+But when little bits of arithmetic,
+greater than and less than,
+
+689
+00:36:03,630 --> 00:36:10,640
+can cut away entire parts of
+this exponentially growing tree,
+
+690
+00:36:10,640 --> 00:36:14,280
+that leads to a huge
+amount of savings, savings
+
+691
+00:36:14,280 --> 00:36:17,630
+that are large enough that I
+can start playing competitively
+
+692
+00:36:17,630 --> 00:36:21,330
+at more complex games.
+
+693
+00:36:21,330 --> 00:36:27,030
+>> All right, if we look at the size
+and complexity of different games,
+
+694
+00:36:27,030 --> 00:36:29,470
+tic-tac-toe was our easy example.
+
+695
+00:36:29,470 --> 00:36:32,150
+We've got a small board, three by three.
+
+696
+00:36:32,150 --> 00:36:36,030
+We get, at most, an average of
+about four different choices
+
+697
+00:36:36,030 --> 00:36:38,440
+as we go through the game.
+
+698
+00:36:38,440 --> 00:36:42,720
+We have somewhere around 10 to the
+fifth possible different leaves.
+
+699
+00:36:42,720 --> 00:36:45,200
+And building a tic-tac-toe
+player, well, we just did it.
+
+700
+00:36:45,200 --> 00:36:47,460
+It's easy.
+
+701
+00:36:47,460 --> 00:36:49,890
+>> If we go up to something more
+complex, like Connect Four.
+
+702
+00:36:49,890 --> 00:36:53,170
+Do you remember this game where
+you drop the little tokens in?
+
+703
+00:36:53,170 --> 00:36:58,490
+It's a six by seven board,
+not that much bigger, still
+
+704
+00:36:58,490 --> 00:37:00,770
+has about the same branching
+factor as tic-tac-toe.
+
+705
+00:37:00,770 --> 00:37:05,410
+I have about four choices
+where I can put things in.
+
+706
+00:37:05,410 --> 00:37:10,760
+But now, I've got a lot more
+leads, 10 to the 21st power.
+
+707
+00:37:10,760 --> 00:37:14,440
+That's something that's easy
+enough that we solve it right away.
+
+708
+00:37:14,440 --> 00:37:17,560
+>> Checkers, more complex-- you
+got an eight by eight board.
+
+709
+00:37:17,560 --> 00:37:20,570
+You're only on half of
+them at any time, though.
+
+710
+00:37:20,570 --> 00:37:24,930
+You've got a branching
+factor that's about 2.8.
+
+711
+00:37:24,930 --> 00:37:28,160
+Well, we've got a couple
+moves you can take.
+
+712
+00:37:28,160 --> 00:37:33,870
+You've got about 10 to the 31st leaves,
+larger, and larger, and larger spaces.
+
+713
+00:37:33,870 --> 00:37:37,340
+As I have to search through
+those bigger and bigger spaces,
+
+714
+00:37:37,340 --> 00:37:42,220
+that's when things like alpha-beta and
+being able to cut away entire branches
+
+715
+00:37:42,220 --> 00:37:44,420
+becomes essential.
+
+716
+00:37:44,420 --> 00:37:47,440
+>> Now, checkers was easy enough in 1992.
+
+717
+00:37:47,440 --> 00:37:51,400
+A computer program called
+Chinook beat the world checkers
+
+718
+00:37:51,400 --> 00:37:53,590
+champion, Marion Tinsley.
+
+719
+00:37:53,590 --> 00:37:57,260
+And since then, no
+human master player has
+
+720
+00:37:57,260 --> 00:38:02,290
+been able to beat the best
+computational systems.
+
+721
+00:38:02,290 --> 00:38:06,570
+If we look at something like chess, now
+again, we have an eight by eight board.
+
+722
+00:38:06,570 --> 00:38:09,870
+But we have much more complex
+pieces, much more complex movements.
+
+723
+00:38:09,870 --> 00:38:14,610
+We have a branching factor of about
+35, 35 possible moves on average
+
+724
+00:38:14,610 --> 00:38:20,030
+that I can take, and a state
+space, a number of leaves
+
+725
+00:38:20,030 --> 00:38:28,950
+that's grown to 10 to the 123rd power,
+enormous numbers of possibilities.
+
+726
+00:38:28,950 --> 00:38:35,570
+>> Even still, modern processors
+are able to do this successfully.
+
+727
+00:38:35,570 --> 00:38:43,900
+In 1995 and then in 1997, a computer
+program called Deep Blue built by IBM
+
+728
+00:38:43,900 --> 00:38:49,601
+that ran on a giant supercomputer
+beat the current world champion,
+
+729
+00:38:49,601 --> 00:38:50,225
+Garry Kasparov.
+
+730
+00:38:50,225 --> 00:38:54,000
+
+731
+00:38:54,000 --> 00:38:56,650
+This was a turning point.
+
+732
+00:38:56,650 --> 00:39:00,620
+Today, though, that same processing
+power sits on my MacBook.
+
+733
+00:39:00,620 --> 00:39:04,180
+
+734
+00:39:04,180 --> 00:39:06,440
+>> Processing speed keeps
+getting faster and faster.
+
+735
+00:39:06,440 --> 00:39:09,500
+We can evaluate more and more
+boards quicker and quicker.
+
+736
+00:39:09,500 --> 00:39:14,550
+But more importantly, we have better
+evaluation functions and better pruning
+
+737
+00:39:14,550 --> 00:39:15,460
+methods.
+
+738
+00:39:15,460 --> 00:39:19,560
+So we can search the
+space more complexly.
+
+739
+00:39:19,560 --> 00:39:22,350
+The biggest of the board
+games that we can think of,
+
+740
+00:39:22,350 --> 00:39:26,310
+something like Go that's
+got a 19 by 19 board,
+
+741
+00:39:26,310 --> 00:39:32,490
+now suddenly, we're past the point
+where computational systems can win.
+
+742
+00:39:32,490 --> 00:39:34,530
+There's no computational
+system out there
+
+743
+00:39:34,530 --> 00:39:38,880
+that can beat a professional Go player.
+
+744
+00:39:38,880 --> 00:39:45,000
+The best systems today rank it about
+the sort of good amateur level.
+
+745
+00:39:45,000 --> 00:39:49,285
+So there's still quite a bit out
+there that you can't get to yet.
+
+746
+00:39:49,285 --> 00:39:51,840
+
+747
+00:39:51,840 --> 00:39:55,360
+>> All right, these
+traditional board games,
+
+748
+00:39:55,360 --> 00:39:58,560
+these kinds of systems where we
+build this minimax, whether it's got
+
+749
+00:39:58,560 --> 00:40:06,300
+alpha-beta or not, these algorithms work
+because there are certain constraints.
+
+750
+00:40:06,300 --> 00:40:08,520
+We have perfect information
+about the world.
+
+751
+00:40:08,520 --> 00:40:11,690
+We know where all the pieces are.
+
+752
+00:40:11,690 --> 00:40:13,570
+The world is static.
+
+753
+00:40:13,570 --> 00:40:16,220
+Nobody gets to move the
+pieces around while I'm
+
+754
+00:40:16,220 --> 00:40:20,640
+sitting there thinking, taking my turn.
+
+755
+00:40:20,640 --> 00:40:23,140
+There's an action space that's discrete.
+
+756
+00:40:23,140 --> 00:40:26,900
+I can put my pawn here,
+or I can put my pawn here.
+
+757
+00:40:26,900 --> 00:40:30,520
+I'm not allowed to put my pawn on
+the line in between the two squares.
+
+758
+00:40:30,520 --> 00:40:34,430
+
+759
+00:40:34,430 --> 00:40:36,520
+>> And finally, the actions
+are deterministic.
+
+760
+00:40:36,520 --> 00:40:39,790
+I know that if I say,
+rook to knight three,
+
+761
+00:40:39,790 --> 00:40:44,660
+my rook is going to end up at knight
+three, as long as it's a valid move.
+
+762
+00:40:44,660 --> 00:40:47,830
+There's no uncertainty about that.
+
+763
+00:40:47,830 --> 00:40:52,490
+Now, as I go to more
+different kinds of games,
+
+764
+00:40:52,490 --> 00:40:55,960
+we have to break those assumptions.
+
+765
+00:40:55,960 --> 00:41:00,020
+>> What if I go to something
+like classic video games?
+
+766
+00:41:00,020 --> 00:41:04,180
+Here's a selection of video
+games from the Atari 2600.
+
+767
+00:41:04,180 --> 00:41:05,180
+What do I have up there?
+
+768
+00:41:05,180 --> 00:41:08,440
+I've got Frogger, Space
+Invaders, Pitfall, and Pac-Man.
+
+769
+00:41:08,440 --> 00:41:11,290
+
+770
+00:41:11,290 --> 00:41:14,840
+What kinds of environments
+do I have here now?
+
+771
+00:41:14,840 --> 00:41:16,900
+Which of these assumptions
+do I have to break?
+
+772
+00:41:16,900 --> 00:41:19,410
+
+773
+00:41:19,410 --> 00:41:21,570
+>> Well, it depends on the game.
+
+774
+00:41:21,570 --> 00:41:28,170
+I could play chess on the 2600, and
+it would be just like it was before.
+
+775
+00:41:28,170 --> 00:41:33,020
+For most of these systems, there's
+complete knowledge about the world.
+
+776
+00:41:33,020 --> 00:41:36,300
+There's completely
+deterministic actions.
+
+777
+00:41:36,300 --> 00:41:38,330
+But usually, the world's
+no longer static.
+
+778
+00:41:38,330 --> 00:41:41,970
+That is, while I'm sitting there
+waiting, something is moving.
+
+779
+00:41:41,970 --> 00:41:44,320
+The ghosts are coming to get me.
+
+780
+00:41:44,320 --> 00:41:46,570
+The scorpion is following me underneath.
+
+781
+00:41:46,570 --> 00:41:48,880
+The space invaders are
+coming closer and closer.
+
+782
+00:41:48,880 --> 00:41:54,020
+
+783
+00:41:54,020 --> 00:41:55,510
+How well can we do against these?
+
+784
+00:41:55,510 --> 00:41:58,640
+
+785
+00:41:58,640 --> 00:42:02,790
+>> A few years ago, Google
+had a project called
+
+786
+00:42:02,790 --> 00:42:12,030
+DeepMind, where they trained a computer
+program to play Atari 2600 games.
+
+787
+00:42:12,030 --> 00:42:16,120
+And if you think this isn't serious
+business, the results of their study
+
+788
+00:42:16,120 --> 00:42:19,920
+were published in Nature, so
+just about as good a publication
+
+789
+00:42:19,920 --> 00:42:22,500
+as you can possibly get.
+
+790
+00:42:22,500 --> 00:42:24,340
+And here's how well they performed.
+
+791
+00:42:24,340 --> 00:42:29,220
+>> They have an algorithm that sat
+and watched just the screen inputs.
+
+792
+00:42:29,220 --> 00:42:34,080
+It got no instructions whatsoever
+about the rules of the game.
+
+793
+00:42:34,080 --> 00:42:42,610
+And it was supposed to figure out,
+based its score, how well it was doing.
+
+794
+00:42:42,610 --> 00:42:46,560
+This was a system that used something
+called reinforcement learning.
+
+795
+00:42:46,560 --> 00:42:48,380
+That is, it looked at its score.
+
+796
+00:42:48,380 --> 00:42:51,620
+And if it got a good score, it said,
+I should remember those things.
+
+797
+00:42:51,620 --> 00:42:53,310
+And I should do those again.
+
+798
+00:42:53,310 --> 00:42:56,450
+And if it got a bad score, it said,
+I shouldn't do those things again.
+
+799
+00:42:56,450 --> 00:42:59,750
+
+800
+00:42:59,750 --> 00:43:03,430
+>> This is the performance
+of those trained systems
+
+801
+00:43:03,430 --> 00:43:07,490
+allowed to play for a
+few hours on each game,
+
+802
+00:43:07,490 --> 00:43:12,490
+compared against professional gamers.
+
+803
+00:43:12,490 --> 00:43:19,670
+So for all of the games that are
+to the left side of this line,
+
+804
+00:43:19,670 --> 00:43:25,920
+this self-trained computer program
+outperformed the professional gamers.
+
+805
+00:43:25,920 --> 00:43:29,690
+And for everything to the
+right, the professional gamers
+
+806
+00:43:29,690 --> 00:43:30,920
+were still the best.
+
+807
+00:43:30,920 --> 00:43:34,040
+
+808
+00:43:34,040 --> 00:43:36,850
+For something that knew
+nothing about the rules, that
+
+809
+00:43:36,850 --> 00:43:43,020
+knew nothing about the structure of the
+games, this is impressive performance.
+
+810
+00:43:43,020 --> 00:43:45,660
+And this is what we're able to do today.
+
+811
+00:43:45,660 --> 00:43:50,239
+>> OK, you say, but if we
+think about AI in games,
+
+812
+00:43:50,239 --> 00:43:52,530
+normally we think about the
+things that we can actually
+
+813
+00:43:52,530 --> 00:43:54,180
+sit down and play against.
+
+814
+00:43:54,180 --> 00:43:58,760
+If I sit down and I play
+StarCraft, or I play Free Sieve,
+
+815
+00:43:58,760 --> 00:44:01,870
+the computer opponent is the
+person controlling the Zerg,
+
+816
+00:44:01,870 --> 00:44:06,770
+or controlling the other civilization.
+
+817
+00:44:06,770 --> 00:44:11,920
+How do those players
+actually find their moves?
+
+818
+00:44:11,920 --> 00:44:18,810
+>> Well, these games are structured
+much the same way as our board games,
+
+819
+00:44:18,810 --> 00:44:22,250
+these games that we'll
+collectively call four X games,
+
+820
+00:44:22,250 --> 00:44:26,040
+explore, expand-- forget the ones.
+
+821
+00:44:26,040 --> 00:44:26,980
+What are they?
+
+822
+00:44:26,980 --> 00:44:32,150
+Explore, expand, and extinguish,
+I think is the last one.
+
+823
+00:44:32,150 --> 00:44:36,060
+But they're basically
+exploration and conquer games.
+
+824
+00:44:36,060 --> 00:44:41,020
+Typically, the computer opponent
+there has limited information.
+
+825
+00:44:41,020 --> 00:44:45,486
+They don't know exactly what's
+going on behind that fog of war.
+
+826
+00:44:45,486 --> 00:44:47,735
+They don't get to see what
+you have in your inventory.
+
+827
+00:44:47,735 --> 00:44:50,240
+
+828
+00:44:50,240 --> 00:44:52,800
+>> There's an environment that is dynamic.
+
+829
+00:44:52,800 --> 00:44:56,180
+Everything is changing all the time.
+
+830
+00:44:56,180 --> 00:45:00,290
+You don't get to sit and
+wait to take your move.
+
+831
+00:45:00,290 --> 00:45:02,810
+But most things are still discrete.
+
+832
+00:45:02,810 --> 00:45:04,200
+I have to put my city here.
+
+833
+00:45:04,200 --> 00:45:06,750
+Or I have to put my city here.
+
+834
+00:45:06,750 --> 00:45:08,950
+And everything is deterministic.
+
+835
+00:45:08,950 --> 00:45:14,660
+When I say, move my unit here, my unit
+moves here, unless an obstacle suddenly
+
+836
+00:45:14,660 --> 00:45:17,700
+comes into play.
+
+837
+00:45:17,700 --> 00:45:21,610
+Now, that's not all computer
+games that are out there today.
+
+838
+00:45:21,610 --> 00:45:27,320
+>> If I go and I play a first person type
+game, something like Thief or Fallout
+
+839
+00:45:27,320 --> 00:45:33,350
+or Skyrim, or Halo, now
+I have computer opponents
+
+840
+00:45:33,350 --> 00:45:37,860
+that are out there that have
+a very different situation.
+
+841
+00:45:37,860 --> 00:45:40,020
+They have, again, limited information.
+
+842
+00:45:40,020 --> 00:45:43,420
+They only can see a
+certain field of view.
+
+843
+00:45:43,420 --> 00:45:45,180
+The environment is still dynamic.
+
+844
+00:45:45,180 --> 00:45:48,280
+Things are changing all the time.
+
+845
+00:45:48,280 --> 00:45:52,300
+>> But now I have a much more
+continuous action space.
+
+846
+00:45:52,300 --> 00:45:57,170
+I can be just peeking a
+little bit out of the doorway.
+
+847
+00:45:57,170 --> 00:46:00,650
+And some games, my
+actions are stochastic.
+
+848
+00:46:00,650 --> 00:46:04,590
+I get to try to jump over that wall,
+but I've got a chance of failing.
+
+849
+00:46:04,590 --> 00:46:08,280
+
+850
+00:46:08,280 --> 00:46:14,550
+These types of games are getting closer
+and closer to the kinds of controllers
+
+851
+00:46:14,550 --> 00:46:17,330
+that we build in robotics.
+
+852
+00:46:17,330 --> 00:46:21,050
+>> In robotics, we have to assume
+that we have limited information.
+
+853
+00:46:21,050 --> 00:46:23,070
+We have sensors that
+tell us about the world.
+
+854
+00:46:23,070 --> 00:46:25,860
+We have an always-changing,
+dynamic environment.
+
+855
+00:46:25,860 --> 00:46:30,440
+We have a world in which space is
+continuous, rather than discrete.
+
+856
+00:46:30,440 --> 00:46:36,260
+And our actions, when we try
+them, have a chance of failing.
+
+857
+00:46:36,260 --> 00:46:40,960
+And in fact, modern game
+controllers for your Halo opponent,
+
+858
+00:46:40,960 --> 00:46:48,690
+or for those NPCs in Skyrim, basically
+run small robotics architectures.
+
+859
+00:46:48,690 --> 00:46:50,380
+>> They sense the world.
+
+860
+00:46:50,380 --> 00:46:52,910
+They build a model of the world.
+
+861
+00:46:52,910 --> 00:46:57,950
+They compute based upon a set of
+goals that they'd like to accomplish.
+
+862
+00:46:57,950 --> 00:47:03,110
+They plan actions based
+on what they know.
+
+863
+00:47:03,110 --> 00:47:07,940
+And those are exactly the same kinds
+of systems that we build in robotics.
+
+864
+00:47:07,940 --> 00:47:11,420
+So these architectures, to
+bring this back together,
+
+865
+00:47:11,420 --> 00:47:14,500
+are often quite the same.
+
+866
+00:47:14,500 --> 00:47:16,340
+>> So let's see if we can see that.
+
+867
+00:47:16,340 --> 00:47:19,210
+Let's go back to our
+tic-tac-toe example.
+
+868
+00:47:19,210 --> 00:47:22,690
+And I'm going to ask a couple of my
+post-docs to come up and help me.
+
+869
+00:47:22,690 --> 00:47:26,970
+So Chen Ming, and Alessandro, and
+Olivier, if you guys would come up.
+
+870
+00:47:26,970 --> 00:47:32,080
+
+871
+00:47:32,080 --> 00:47:35,440
+And I'm going to need
+a couple of volunteers
+
+872
+00:47:35,440 --> 00:47:37,590
+>> OK, I saw a hand up right
+there in the middle.
+
+873
+00:47:37,590 --> 00:47:39,965
+Let me take one more, somebody
+further in the back maybe.
+
+874
+00:47:39,965 --> 00:47:40,881
+All right, over there.
+
+875
+00:47:40,881 --> 00:47:41,490
+Come on up.
+
+876
+00:47:41,490 --> 00:47:44,190
+
+877
+00:47:44,190 --> 00:47:45,335
+All right.
+
+878
+00:47:45,335 --> 00:47:49,490
+So let's take that cover down.
+
+879
+00:47:49,490 --> 00:48:03,700
+And if you guys would come right
+back around here for me, fantastic.
+
+880
+00:48:03,700 --> 00:48:06,580
+>> So this is a robot called Baxter.
+
+881
+00:48:06,580 --> 00:48:10,880
+And Baxter is a robot that's a
+commercial platform, designed
+
+882
+00:48:10,880 --> 00:48:13,030
+by a company called Rethink.
+
+883
+00:48:13,030 --> 00:48:16,580
+And this robot is designed
+for small-scale manufacturing.
+
+884
+00:48:16,580 --> 00:48:19,265
+But today we're going to
+use it to play tic-tac-toe.
+
+885
+00:48:19,265 --> 00:48:21,930
+
+886
+00:48:21,930 --> 00:48:27,150
+Now, this robot is also something
+that's relatively unique.
+
+887
+00:48:27,150 --> 00:48:32,950
+Because if I were standing anywhere
+close to a standard factory automation
+
+888
+00:48:32,950 --> 00:48:39,580
+system, I'd be in very grave
+danger of being injured.
+
+889
+00:48:39,580 --> 00:48:45,600
+>> Baxter, however, is designed to be
+relatively safe to interact with.
+
+890
+00:48:45,600 --> 00:48:48,680
+And so I can push on this robot.
+
+891
+00:48:48,680 --> 00:48:52,350
+And you can see it's a little
+bit flexible as it moves around.
+
+892
+00:48:52,350 --> 00:48:57,250
+And I can reposition it
+where I'd like it to go.
+
+893
+00:48:57,250 --> 00:49:03,410
+Now in a normal robotic system,
+we would have a set of joints here
+
+894
+00:49:03,410 --> 00:49:07,970
+that would be directly
+responding to position commands.
+
+895
+00:49:07,970 --> 00:49:13,180
+And they wouldn't necessarily care
+if they were moving through open air,
+
+896
+00:49:13,180 --> 00:49:15,555
+or if they were moving
+through my ribcage.
+
+897
+00:49:15,555 --> 00:49:18,410
+
+898
+00:49:18,410 --> 00:49:19,120
+>> OK.
+
+899
+00:49:19,120 --> 00:49:22,090
+And typically, if you were
+here with an industrial system,
+
+900
+00:49:22,090 --> 00:49:23,400
+you would go nowhere near it.
+
+901
+00:49:23,400 --> 00:49:26,280
+There would be yellow
+safety tape all around it.
+
+902
+00:49:26,280 --> 00:49:28,310
+This system has a
+slightly different design
+
+903
+00:49:28,310 --> 00:49:32,130
+to be friendlier and easier
+for people to interact with,
+
+904
+00:49:32,130 --> 00:49:36,380
+in that in each joint, there's a spring.
+
+905
+00:49:36,380 --> 00:49:39,110
+And rather than controlling
+an exact position,
+
+906
+00:49:39,110 --> 00:49:43,110
+we control a certain amount of
+torque, a certain amount of force,
+
+907
+00:49:43,110 --> 00:49:45,874
+that we would like to be on that spring.
+
+908
+00:49:45,874 --> 00:49:47,790
+All right, so let me
+take our volunteers here.
+
+909
+00:49:47,790 --> 00:49:48,540
+Hi, what's your name?
+
+910
+00:49:48,540 --> 00:49:49,010
+>> AUDIENCE: Louis.
+
+911
+00:49:49,010 --> 00:49:49,635
+>> SPEAKER: Louis.
+
+912
+00:49:49,635 --> 00:49:50,490
+Nice to see you.
+
+913
+00:49:50,490 --> 00:49:50,990
+And?
+
+914
+00:49:50,990 --> 00:49:51,610
+>> AUDIENCE: David.
+
+915
+00:49:51,610 --> 00:49:51,960
+>> SPEAKER: David.
+
+916
+00:49:51,960 --> 00:49:52,550
+Nice to meet you.
+
+917
+00:49:52,550 --> 00:49:54,508
+If you guys would wait
+right here for a second,
+
+918
+00:49:54,508 --> 00:49:56,420
+I'm going to give you
+a chance to do this.
+
+919
+00:49:56,420 --> 00:50:00,610
+So this robot, if you come up
+and if you push gently on it,
+
+920
+00:50:00,610 --> 00:50:03,780
+you're going to see that
+it moves a little bit.
+
+921
+00:50:03,780 --> 00:50:06,349
+And if you grab it right
+here on the wrist just
+
+922
+00:50:06,349 --> 00:50:09,390
+above where those buttons are, it
+looks like you should grab the buttons,
+
+923
+00:50:09,390 --> 00:50:13,100
+but grab right above it instead, you'll
+be able to very gently manipulate it
+
+924
+00:50:13,100 --> 00:50:14,545
+through space.
+
+925
+00:50:14,545 --> 00:50:15,920
+Louis, you want to give it a try?
+
+926
+00:50:15,920 --> 00:50:19,465
+So give it just a little
+push to start with.
+
+927
+00:50:19,465 --> 00:50:23,190
+And then if you put your fingers
+right there and hold onto to it,
+
+928
+00:50:23,190 --> 00:50:24,807
+because it will move for you then.
+
+929
+00:50:24,807 --> 00:50:27,824
+
+930
+00:50:27,824 --> 00:50:29,365
+All right, you want to give it a try?
+
+931
+00:50:29,365 --> 00:50:29,980
+Come on up.
+
+932
+00:50:29,980 --> 00:50:32,300
+So give it just a gentle
+push there to start.
+
+933
+00:50:32,300 --> 00:50:33,820
+You can feel what it's like.
+
+934
+00:50:33,820 --> 00:50:40,060
+And then if you grab it right there,
+you'll be able to maneuver at around.
+
+935
+00:50:40,060 --> 00:50:41,280
+>> OK.
+
+936
+00:50:41,280 --> 00:50:47,360
+So typically, this kind of a robot would
+be used for small scale manufacturing.
+
+937
+00:50:47,360 --> 00:50:50,980
+And I'm going to move this arm just
+down out of the way a little bit here.
+
+938
+00:50:50,980 --> 00:50:55,750
+But today, we're going to use the
+same tic-tac-toe playing system
+
+939
+00:50:55,750 --> 00:50:59,520
+based on minimax that we built earlier.
+
+940
+00:50:59,520 --> 00:51:00,549
+OK?
+
+941
+00:51:00,549 --> 00:51:02,340
+So, you guys are each
+going to play a game.
+
+942
+00:51:02,340 --> 00:51:04,210
+Louis, you're going to be first.
+
+943
+00:51:04,210 --> 00:51:05,920
+Let me just hold up here for a second.
+
+944
+00:51:05,920 --> 00:51:10,949
+I'm going to have you stand right
+here, just so everybody can see you.
+
+945
+00:51:10,949 --> 00:51:11,990
+Are you guys set up here?
+
+946
+00:51:11,990 --> 00:51:13,120
+>> ROBOT: Welcome.
+
+947
+00:51:13,120 --> 00:51:15,910
+Let's play tic-tac-toe.
+
+948
+00:51:15,910 --> 00:51:20,860
+Do not grasp your token before
+I say that it is your turn.
+
+949
+00:51:20,860 --> 00:51:22,050
+I start the game.
+
+950
+00:51:22,050 --> 00:51:27,900
+
+951
+00:51:27,900 --> 00:51:28,750
+It is my turn.
+
+952
+00:51:28,750 --> 00:51:47,002
+
+953
+00:51:47,002 --> 00:51:50,210
+SPEAKER: Now, if you could take one of
+your pieces and go ahead and place it.
+
+954
+00:51:50,210 --> 00:51:51,446
+ROBOT: It is your turn.
+
+955
+00:51:51,446 --> 00:51:53,430
+[LAUGHTER]
+
+956
+00:51:53,430 --> 00:51:54,836
+It is my turn.
+
+957
+00:51:54,836 --> 00:51:56,820
+[LAUGHTER]
+
+958
+00:51:56,820 --> 00:52:12,196
+
+959
+00:52:12,196 --> 00:52:15,680
+[LAUGHTER]
+
+960
+00:52:15,680 --> 00:52:16,570
+It is your turn.
+
+961
+00:52:16,570 --> 00:52:21,397
+
+962
+00:52:21,397 --> 00:52:23,688
+SPEAKER: The human race is
+counting on you here, Louis.
+
+963
+00:52:23,688 --> 00:52:27,440
+
+964
+00:52:27,440 --> 00:52:28,350
+>> ROBOT: It is my turn.
+
+965
+00:52:28,350 --> 00:52:44,810
+
+966
+00:52:44,810 --> 00:52:47,015
+>> SPEAKER: So Baxter
+successfully blocked here.
+
+967
+00:52:47,015 --> 00:52:49,670
+
+968
+00:52:49,670 --> 00:52:52,480
+>> ROBOT: It is your turn.
+
+969
+00:52:52,480 --> 00:52:53,360
+It is my turn.
+
+970
+00:52:53,360 --> 00:53:14,730
+
+971
+00:53:14,730 --> 00:53:16,810
+It is your turn.
+
+972
+00:53:16,810 --> 00:53:17,760
+It is my turn.
+
+973
+00:53:17,760 --> 00:53:21,330
+
+974
+00:53:21,330 --> 00:53:23,830
+SPEAKER: And we'll let Baxter
+finish out its last move here.
+
+975
+00:53:23,830 --> 00:53:36,622
+
+976
+00:53:36,622 --> 00:53:39,090
+>> [LAUGHTER]
+
+977
+00:53:39,090 --> 00:53:40,480
+>> ROBOT: That's a tie.
+
+978
+00:53:40,480 --> 00:53:42,030
+I will win next time.
+
+979
+00:53:42,030 --> 00:53:43,365
+>> [LAUGHTER]
+
+980
+00:53:43,365 --> 00:53:45,210
+>> SPEAKER: All right,
+thanks very much, Louis.
+
+981
+00:53:45,210 --> 00:53:46,094
+Thank you.
+
+982
+00:53:46,094 --> 00:53:46,980
+You can go this way.
+
+983
+00:53:46,980 --> 00:53:49,759
+>> ROBOT: I start the game.
+
+984
+00:53:49,759 --> 00:53:51,800
+SPEAKER: So let me explain
+to you one more little
+
+985
+00:53:51,800 --> 00:53:55,410
+bit before we get our rematch here.
+
+986
+00:53:55,410 --> 00:53:57,200
+What exactly is happening?
+
+987
+00:53:57,200 --> 00:53:59,430
+So the robot has a camera up top here.
+
+988
+00:53:59,430 --> 00:54:01,330
+And it's looking down at the board.
+
+989
+00:54:01,330 --> 00:54:04,470
+And it's seeing whether
+it's got a red O or a blue
+
+990
+00:54:04,470 --> 00:54:10,450
+and white X. As those get placed on the
+board, that's basically the same input
+
+991
+00:54:10,450 --> 00:54:13,890
+that we would be reading in from
+our data structure from our screen.
+
+992
+00:54:13,890 --> 00:54:17,290
+It's running the same
+minimax algorithm to be
+
+993
+00:54:17,290 --> 00:54:21,010
+able to find where to
+place a good token.
+
+994
+00:54:21,010 --> 00:54:24,820
+>> And then we're giving a command about
+where we'd like a token to be placed.
+
+995
+00:54:24,820 --> 00:54:26,120
+The arm is moving out.
+
+996
+00:54:26,120 --> 00:54:31,750
+It's using a vacuum gripper to apply
+some suction to that wooden piece,
+
+997
+00:54:31,750 --> 00:54:35,240
+pick it up, move it to the right
+spot, and then release the suction
+
+998
+00:54:35,240 --> 00:54:36,950
+and drop it.
+
+999
+00:54:36,950 --> 00:54:38,990
+All right, we're going
+to give it one more shot
+
+1000
+00:54:38,990 --> 00:54:40,930
+with a slightly smarter player here.
+
+1001
+00:54:40,930 --> 00:54:42,290
+You ready?
+
+1002
+00:54:42,290 --> 00:54:46,150
+All right, if you'd stand right up
+here and give a-- turn out this way
+
+1003
+00:54:46,150 --> 00:54:47,955
+so you can see everybody.
+
+1004
+00:54:47,955 --> 00:54:48,830
+And then [INAUDIBLE].
+
+1005
+00:54:48,830 --> 00:54:49,330
+>> ROBOT: It is my turn.
+
+1006
+00:54:49,330 --> 00:54:50,455
+>> SPEAKER: Baxter will start.
+
+1007
+00:54:50,455 --> 00:55:10,750
+
+1008
+00:55:10,750 --> 00:55:11,730
+It is your turn.
+
+1009
+00:55:11,730 --> 00:55:16,490
+
+1010
+00:55:16,490 --> 00:55:17,520
+It is my turn.
+
+1011
+00:55:17,520 --> 00:55:38,740
+
+1012
+00:55:38,740 --> 00:55:39,690
+It is your turn.
+
+1013
+00:55:39,690 --> 00:55:46,330
+
+1014
+00:55:46,330 --> 00:55:47,165
+It is my turn.
+
+1015
+00:55:47,165 --> 00:56:01,252
+
+1016
+00:56:01,252 --> 00:56:06,192
+>> [LAUGHTER]
+
+1017
+00:56:06,192 --> 00:56:08,542
+>> SPEAKER: [WHISPERING] Just
+let him go ahead and win.
+
+1018
+00:56:08,542 --> 00:56:09,500
+ROBOT: It is your turn.
+
+1019
+00:56:09,500 --> 00:56:15,099
+
+1020
+00:56:15,099 --> 00:56:15,890
+SPEAKER: That's OK.
+
+1021
+00:56:15,890 --> 00:56:20,390
+
+1022
+00:56:20,390 --> 00:56:21,360
+>> ROBOT: It is my turn.
+
+1023
+00:56:21,360 --> 00:56:24,825
+
+1024
+00:56:24,825 --> 00:56:26,805
+>> [LAUGHTER]
+
+1025
+00:56:26,805 --> 00:56:42,650
+
+1026
+00:56:42,650 --> 00:56:43,510
+>> I win.
+
+1027
+00:56:43,510 --> 00:56:45,620
+>> [LAUGHTER]
+
+1028
+00:56:45,620 --> 00:56:46,595
+>> I start the game.
+
+1029
+00:56:46,595 --> 00:56:48,261
+>> SPEAKER: All right, thank you very much.
+
+1030
+00:56:48,261 --> 00:56:50,180
+
+1031
+00:56:50,180 --> 00:56:55,590
+All right, I think we've got time for
+one more excellent tic-tac-toe player,
+
+1032
+00:56:55,590 --> 00:57:00,490
+someone who can put this thing to
+match, who knows what they're doing.
+
+1033
+00:57:00,490 --> 00:57:03,010
+>> [LAUGHTER]
+
+1034
+00:57:03,010 --> 00:57:05,560
+>> Who's going to be our champion here?
+
+1035
+00:57:05,560 --> 00:57:08,110
+All right, your friends volunteered you.
+
+1036
+00:57:08,110 --> 00:57:11,190
+That's good enough for me.
+
+1037
+00:57:11,190 --> 00:57:12,194
+Tell me your name again.
+
+1038
+00:57:12,194 --> 00:57:12,860
+AUDIENCE: Tamir.
+
+1039
+00:57:12,860 --> 00:57:14,193
+SPEAKER: Tamir, nice to see you.
+
+1040
+00:57:14,193 --> 00:57:19,270
+All right, again, we're going to put you
+right up here so everyone can see you.
+
+1041
+00:57:19,270 --> 00:57:22,070
+You are our representative
+in this match now.
+
+1042
+00:57:22,070 --> 00:57:24,540
+Baxter is one and oh and oh.
+
+1043
+00:57:24,540 --> 00:57:26,300
+Or sorry, one oh and one.
+
+1044
+00:57:26,300 --> 00:57:27,490
+And it's up to you here.
+
+1045
+00:57:27,490 --> 00:57:29,340
+Baxter will get to move first, though.
+
+1046
+00:57:29,340 --> 00:57:30,435
+So.
+
+1047
+00:57:30,435 --> 00:57:31,310
+ROBOT: It is my turn.
+
+1048
+00:57:31,310 --> 00:57:45,226
+
+1049
+00:57:45,226 --> 00:57:48,208
+>> [LAUGHTER]
+
+1050
+00:57:48,208 --> 00:57:52,720
+
+1051
+00:57:52,720 --> 00:57:55,780
+>> It is your turn.
+
+1052
+00:57:55,780 --> 00:57:56,845
+It is my turn.
+
+1053
+00:57:56,845 --> 00:58:18,130
+
+1054
+00:58:18,130 --> 00:58:18,965
+It is your turn.
+
+1055
+00:58:18,965 --> 00:58:28,751
+
+1056
+00:58:28,751 --> 00:58:30,248
+It is my turn.
+
+1057
+00:58:30,248 --> 00:58:51,210
+
+1058
+00:58:51,210 --> 00:58:52,160
+It is your turn.
+
+1059
+00:58:52,160 --> 00:59:00,854
+
+1060
+00:59:00,854 --> 00:59:03,365
+>> [LAUGHTER]
+
+1061
+00:59:03,365 --> 00:59:04,240
+ROBOT: It is my turn.
+
+1062
+00:59:04,240 --> 00:59:06,930
+SPEAKER: It's a lot harder when
+you're standing up here, folks.
+
+1063
+00:59:06,930 --> 00:59:19,400
+
+1064
+00:59:19,400 --> 00:59:21,840
+[LAUGHTER]
+
+1065
+00:59:21,840 --> 00:59:26,730
+
+1066
+00:59:26,730 --> 00:59:29,054
+ROBOT: You humans are so easy to beat.
+
+1067
+00:59:29,054 --> 00:59:30,803
+[LAUGHTER AND APPLAUSE]
+
+1068
+00:59:30,803 --> 00:59:31,886
+SPEAKER: Thanks very much.
+
+1069
+00:59:31,886 --> 00:59:34,692
+ROBOT: I win.
+
+1070
+00:59:34,692 --> 00:59:35,400
+I start the game.
+
+1071
+00:59:35,400 --> 00:59:39,500
+>> SPEAKER: All right, so thanks very
+much to Olivier, and to Alessandro,
+
+1072
+00:59:39,500 --> 00:59:41,616
+and to Chen Ming.
+
+1073
+00:59:41,616 --> 00:59:45,600
+>> [APPLAUSE]
+
+1074
+00:59:45,600 --> 00:59:47,040
+>> I want to make one last point.
+
+1075
+00:59:47,040 --> 00:59:51,630
+So Baxter at the very
+end there, cheated.
+
+1076
+00:59:51,630 --> 00:59:54,160
+
+1077
+00:59:54,160 --> 00:59:56,310
+And that was unexpected.
+
+1078
+00:59:56,310 --> 01:00:00,440
+One of the fantastic
+things about AI is that we
+
+1079
+01:00:00,440 --> 01:00:05,070
+do work in AI so that we can build
+really interesting and intelligent
+
+1080
+01:00:05,070 --> 01:00:06,930
+devices.
+
+1081
+01:00:06,930 --> 01:00:10,130
+But we also do work in AI
+because it tells us something
+
+1082
+01:00:10,130 --> 01:00:13,940
+about how humans are intelligent.
+
+1083
+01:00:13,940 --> 01:00:17,280
+>> One of the favorite
+studies from my lab is
+
+1084
+01:00:17,280 --> 01:00:23,660
+looking at what happens when
+machines unexpectedly cheat.
+
+1085
+01:00:23,660 --> 01:00:27,070
+We did this originally not with
+Baxter playing tic-tac-toe,
+
+1086
+01:00:27,070 --> 01:00:30,340
+but with a smaller robot named Nao,
+who played rock-paper-scissors.
+
+1087
+01:00:30,340 --> 01:00:33,010
+
+1088
+01:00:33,010 --> 01:00:35,800
+And sometimes after
+playing lots and lots
+
+1089
+01:00:35,800 --> 01:00:41,580
+of boring rock-paper-scissors games,
+the robot would throw a gesture,
+
+1090
+01:00:41,580 --> 01:00:48,616
+lose, and then suddenly change
+its gesture and say, I win.
+
+1091
+01:00:48,616 --> 01:00:50,480
+>> [LAUGHTER]
+
+1092
+01:00:50,480 --> 01:00:56,090
+>> Now, sometimes we'd also have the robot,
+just as a control, throw a gesture,
+
+1093
+01:00:56,090 --> 01:01:01,270
+win, and change its gesture
+to lose, throw the match,
+
+1094
+01:01:01,270 --> 01:01:04,070
+cheat in order to lose.
+
+1095
+01:01:04,070 --> 01:01:07,540
+And that is not nearly as compelling.
+
+1096
+01:01:07,540 --> 01:01:09,890
+The robot that cheats
+in order to win people
+
+1097
+01:01:09,890 --> 01:01:14,660
+respond to as if it is
+out to get them, like it
+
+1098
+01:01:14,660 --> 01:01:17,690
+is actively seeking their destruction.
+
+1099
+01:01:17,690 --> 01:01:19,210
+>> [LAUGHTER]
+
+1100
+01:01:19,210 --> 01:01:20,990
+>> It becomes an agent.
+
+1101
+01:01:20,990 --> 01:01:21,840
+It is like a person.
+
+1102
+01:01:21,840 --> 01:01:23,970
+It has belief and intention.
+
+1103
+01:01:23,970 --> 01:01:27,470
+And it's not good intention.
+
+1104
+01:01:27,470 --> 01:01:33,790
+And the robot that throws the
+game is just malfunctioning.
+
+1105
+01:01:33,790 --> 01:01:36,990
+It's just a broken device.
+
+1106
+01:01:36,990 --> 01:01:41,405
+Let me show you a couple of examples
+of that from a few of our participants.
+
+1107
+01:01:41,405 --> 01:01:43,990
+
+1108
+01:01:43,990 --> 01:01:45,600
+So here's cheating in order to lose.
+
+1109
+01:01:45,600 --> 01:01:46,266
+>> [VIDEO PLAYBACK]
+
+1110
+01:01:46,266 --> 01:01:47,010
+-[INAUDIBLE] win.
+
+1111
+01:01:47,010 --> 01:01:49,550
+Let's play.
+
+1112
+01:01:49,550 --> 01:01:50,538
+>> -Wait, what?
+
+1113
+01:01:50,538 --> 01:01:54,490
+
+1114
+01:01:54,490 --> 01:01:55,352
+>> -[INAUDIBLE] win.
+
+1115
+01:01:55,352 --> 01:01:58,280
+Let's play.
+
+1116
+01:01:58,280 --> 01:01:59,400
+>> [INAUDIBLE] win.
+
+1117
+01:01:59,400 --> 01:02:02,290
+Let's play.
+
+1118
+01:02:02,290 --> 01:02:05,490
+>> SPEAKER: And here's cheating to win.
+
+1119
+01:02:05,490 --> 01:02:06,438
+>> -Yes, I win.
+
+1120
+01:02:06,438 --> 01:02:07,394
+Let's play.
+
+1121
+01:02:07,394 --> 01:02:08,828
+>> -You can't do that.
+
+1122
+01:02:08,828 --> 01:02:10,740
+>> [LAUGHTER]
+
+1123
+01:02:10,740 --> 01:02:12,174
+
+1124
+01:02:12,174 --> 01:02:13,979
+>> -Yes, I win.
+
+1125
+01:02:13,979 --> 01:02:14,520
+-You cheated.
+
+1126
+01:02:14,520 --> 01:02:17,990
+
+1127
+01:02:17,990 --> 01:02:20,010
+You cheated now.
+
+1128
+01:02:20,010 --> 01:02:21,140
+>> -Yes, I win.
+
+1129
+01:02:21,140 --> 01:02:22,940
+>> -Hey, you cheater.
+
+1130
+01:02:22,940 --> 01:02:26,670
+You cheat, super cheat.
+
+1131
+01:02:26,670 --> 01:02:27,650
+>> [END PLAYBACK]
+
+1132
+01:02:27,650 --> 01:02:31,130
+>> SPEAKER: These different
+reactions rapidly
+
+1133
+01:02:31,130 --> 01:02:34,890
+change our perception of the device.
+
+1134
+01:02:34,890 --> 01:02:36,780
+Does that mean that
+we deliberately build
+
+1135
+01:02:36,780 --> 01:02:40,370
+machines that cheat because that's
+the best engineering that we can do?
+
+1136
+01:02:40,370 --> 01:02:44,680
+No, but it tells us something
+really interesting about people.
+
+1137
+01:02:44,680 --> 01:02:49,710
+That thing that cheats you and
+steals your victory, that's
+
+1138
+01:02:49,710 --> 01:02:53,660
+something that's alive, that's
+animate, that's out to get you.
+
+1139
+01:02:53,660 --> 01:02:54,680
+It has mental state.
+
+1140
+01:02:54,680 --> 01:02:55,400
+It has belief.
+
+1141
+01:02:55,400 --> 01:02:57,170
+It has intention.
+
+1142
+01:02:57,170 --> 01:03:01,540
+>> That thing that hands the
+game to you, that's not.
+
+1143
+01:03:01,540 --> 01:03:04,670
+That's just malfunctioning.
+
+1144
+01:03:04,670 --> 01:03:08,900
+This is in many ways why it's
+easy to throw the game with kids.
+
+1145
+01:03:08,900 --> 01:03:12,050
+But if you try to cheat them
+and sort of claim victory
+
+1146
+01:03:12,050 --> 01:03:15,200
+when, you know, just to shorten the
+game, they'll catch you right away.
+
+1147
+01:03:15,200 --> 01:03:19,040
+
+1148
+01:03:19,040 --> 01:03:23,140
+These kinds of effects that
+we see coming out of AI,
+
+1149
+01:03:23,140 --> 01:03:26,490
+they teach us a lot about ourselves.
+
+1150
+01:03:26,490 --> 01:03:28,076
+>> All right, that's it for today.
+
+1151
+01:03:28,076 --> 01:03:30,450
+Thanks very much to David and
+the Harvard production team
+
+1152
+01:03:30,450 --> 01:03:32,350
+for coming down.
+
+1153
+01:03:32,350 --> 01:03:33,820
+>> [APPLAUSE]
+
+1154
+01:03:33,820 --> 01:03:36,760
+
+1155
+01:03:36,760 --> 01:03:41,840
+>> We'll see you for quiz one,
+and then for one last lecture.
+
+1156
+01:03:41,840 --> 01:03:43,025
+Have a great day.
+
+1157
+01:03:43,025 --> 01:03:44,965
+>> [APPLAUSE]
+
+1158
+01:03:44,965 --> 01:03:48,360
+
+1159
+01:03:48,360 --> 01:03:51,825
+>> [MUSIC PLAYING]
+
+1160
+01:03:51,825 --> 01:03:54,950
+DAVID J MALAN: Well, we probably need
+to introduce some kind of encryption,
+
+1161
+01:03:54,950 --> 01:03:55,450
+right?
+
+1162
+01:03:55,450 --> 01:03:58,650
+Because then the headers of
+these HTTP requests will be
+
+1163
+01:03:58,650 --> 01:04:01,530
+scrambled so that anyone
+trying to sniff your traffic
+
+1164
+01:04:01,530 --> 01:04:03,400
+won't actually be able to see them.
+
+1165
+01:04:03,400 --> 01:04:05,254
+So what's the solution to this problem?
+
+1166
+01:04:05,254 --> 01:04:07,920
+Well, we need to actually introduce
+encryption into the formula,
+
+1167
+01:04:07,920 --> 01:04:11,010
+so that when that person is
+transmitting data from A to B,
+
+1168
+01:04:11,010 --> 01:04:12,390
+we can securely send--
+
+1169
+01:04:12,390 --> 01:04:14,590
+>> [LAUGHTER]
+
+1170
+01:04:14,590 --> 01:04:19,530
+>> The information in a way that the
+adversary can't, in fact, see it.

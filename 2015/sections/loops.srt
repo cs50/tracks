@@ -1,0 +1,971 @@
+1
+00:00:00,000 --> 00:00:05,410
+
+2
+00:00:05,410 --> 00:00:07,640
+>> DOUG LLOYD: All right, so
+let's talk about loops.
+
+3
+00:00:07,640 --> 00:00:10,015
+So loops are kind of cool
+because they allow your program
+
+4
+00:00:10,015 --> 00:00:12,050
+to execute lines of code
+over and over and over.
+
+5
+00:00:12,050 --> 00:00:15,600
+Repeatedly, without having to copy
+and paste or otherwise repeat them.
+
+6
+00:00:15,600 --> 00:00:17,630
+There are three major
+kinds of loops you'll see.
+
+7
+00:00:17,630 --> 00:00:21,010
+You'll probably have occasion to use
+each one as you progress through CS50.
+
+8
+00:00:21,010 --> 00:00:22,940
+Some of these loops are pretty
+familiar to you from Scratch,
+
+9
+00:00:22,940 --> 00:00:25,814
+so again, as we did with conditionals,
+we'll put them up side by side
+
+10
+00:00:25,814 --> 00:00:28,930
+if there is an analogy we can draw.
+
+11
+00:00:28,930 --> 00:00:33,600
+>> First is forever from Scratch,
+which compares to while (true).
+
+12
+00:00:33,600 --> 00:00:35,390
+This is what we call an infinite loop.
+
+13
+00:00:35,390 --> 00:00:38,560
+The lines of code between the curly
+braces, much like the puzzle pieces
+
+14
+00:00:38,560 --> 00:00:41,190
+that fit inside the C
+of the forever block,
+
+15
+00:00:41,190 --> 00:00:45,290
+will execute repeatedly from top
+to bottom, over and over and over,
+
+16
+00:00:45,290 --> 00:00:46,085
+forever.
+
+17
+00:00:46,085 --> 00:00:48,710
+After all, if you recall our
+discussion of Boolean expressions,
+
+18
+00:00:48,710 --> 00:00:51,060
+true is always true.
+
+19
+00:00:51,060 --> 00:00:53,250
+So if we're doing
+something so long as true
+
+20
+00:00:53,250 --> 00:00:58,227
+is true-- it seems a little silly-- true
+is always true, so it'll always run.
+
+21
+00:00:58,227 --> 00:01:00,060
+It'll run forever and
+ever and ever until we
+
+22
+00:01:00,060 --> 00:01:02,900
+find a way to break out of it with
+a break statement, which again,
+
+23
+00:01:02,900 --> 00:01:06,350
+we saw a little while ago we
+were talking about switch.
+
+24
+00:01:06,350 --> 00:01:08,725
+>> Or otherwise just kill our
+program, which incidentally,
+
+25
+00:01:08,725 --> 00:01:11,110
+if you ever find yourself in a
+situation with an infinite loop
+
+26
+00:01:11,110 --> 00:01:13,484
+and you don't know how to stop
+your program from running.
+
+27
+00:01:13,484 --> 00:01:16,527
+Just hit control and C and
+that'll kill your program for you.
+
+28
+00:01:16,527 --> 00:01:18,360
+But this, again, is
+called an infinite loop.
+
+29
+00:01:18,360 --> 00:01:19,818
+It is a loop that will run forever.
+
+30
+00:01:19,818 --> 00:01:22,570
+
+31
+00:01:22,570 --> 00:01:25,610
+Now, while loops are not
+always infinite, because also
+
+32
+00:01:25,610 --> 00:01:27,880
+we can replace the Boolean
+expression with something
+
+33
+00:01:27,880 --> 00:01:29,867
+a little more useful than just true.
+
+34
+00:01:29,867 --> 00:01:30,950
+So here's another example.
+
+35
+00:01:30,950 --> 00:01:34,600
+While and some Boolean
+expression and then curly braces.
+
+36
+00:01:34,600 --> 00:01:38,310
+That's pretty much analogous
+to repeat until, from scratch.
+
+37
+00:01:38,310 --> 00:01:40,700
+Although in a second, I'll
+explain the difference.
+
+38
+00:01:40,700 --> 00:01:44,310
+>> So in C, if the Boolean expression
+inside of the while loop
+
+39
+00:01:44,310 --> 00:01:47,980
+evaluates to true, the lines of
+code between the curly braces
+
+40
+00:01:47,980 --> 00:01:51,900
+will execute repeatedly over and over
+and over until Boolean expression
+
+41
+00:01:51,900 --> 00:01:55,174
+evaluates to false.
+
+42
+00:01:55,174 --> 00:01:57,340
+So for example, you might
+have some sort of counter.
+
+43
+00:01:57,340 --> 00:02:01,440
+So say you at the beginning of
+this loop say int x equals zero.
+
+44
+00:02:01,440 --> 00:02:06,370
+While x is less than 100, do a couple
+things inside that curly braces,
+
+45
+00:02:06,370 --> 00:02:10,570
+then in the end of your loop, you say
+x plus plus, you're incrementing x.
+
+46
+00:02:10,570 --> 00:02:13,360
+Eventually x will get
+to 100 and you will
+
+47
+00:02:13,360 --> 00:02:15,760
+stop because the condition
+x is less than 100
+
+48
+00:02:15,760 --> 00:02:19,416
+will no longer be true as
+soon as x is equal to 100.
+
+49
+00:02:19,416 --> 00:02:21,820
+100 is not less than 100.
+
+50
+00:02:21,820 --> 00:02:25,870
+>> Now somewhat confusingly, the behavior
+of the scratch block is reversed.
+
+51
+00:02:25,870 --> 00:02:29,110
+So be really careful if this is
+your first foray into using loops.
+
+52
+00:02:29,110 --> 00:02:33,630
+Basically, the repeat
+until block in Scratch
+
+53
+00:02:33,630 --> 00:02:35,970
+will repeat something
+over and over and over,
+
+54
+00:02:35,970 --> 00:02:40,460
+until the expression, the Boolean
+expression in the hexagon is true.
+
+55
+00:02:40,460 --> 00:02:43,860
+So it will keep doing
+it until it is true.
+
+56
+00:02:43,860 --> 00:02:48,881
+Meanwhile, the while loop will
+continue to do it until it is false.
+
+57
+00:02:48,881 --> 00:02:51,630
+So they're quite similar, but
+there's that little distinction just
+
+58
+00:02:51,630 --> 00:02:55,140
+to be careful of especially as you make
+your first foray from transitioning
+
+59
+00:02:55,140 --> 00:02:58,149
+to Scratch into c.
+
+60
+00:02:58,149 --> 00:03:00,190
+The next kind of loop is
+actually pretty similar.
+
+61
+00:03:00,190 --> 00:03:02,860
+It's called the do while loop.
+
+62
+00:03:02,860 --> 00:03:07,060
+This loop will execute all the lines
+of code between the curly braces once,
+
+63
+00:03:07,060 --> 00:03:09,530
+and then it will check
+the Boolean expression.
+
+64
+00:03:09,530 --> 00:03:11,700
+If the Boolean expression
+evaluates to true,
+
+65
+00:03:11,700 --> 00:03:14,340
+it'll go back and repeat
+that process over and over
+
+66
+00:03:14,340 --> 00:03:17,690
+and over until the Boolean
+expression evaluates to false.
+
+67
+00:03:17,690 --> 00:03:23,370
+So this loop, unlike a while loop, is
+guaranteed to run at least one time.
+
+68
+00:03:23,370 --> 00:03:26,080
+This can be pretty useful.
+
+69
+00:03:26,080 --> 00:03:28,011
+>> Lastly, we have a for loop.
+
+70
+00:03:28,011 --> 00:03:30,010
+For loops are kind of
+syntactically unattractive
+
+71
+00:03:30,010 --> 00:03:32,330
+and there's a lot going
+on here, so bear with me
+
+72
+00:03:32,330 --> 00:03:34,640
+as we try and break these pieces apart.
+
+73
+00:03:34,640 --> 00:03:36,810
+Generally, the use case
+of a for loop is you
+
+74
+00:03:36,810 --> 00:03:40,136
+want to repeat something a
+specific number of times.
+
+75
+00:03:40,136 --> 00:03:42,010
+In this example here,
+I have the repeat block
+
+76
+00:03:42,010 --> 00:03:44,010
+from Scratch, which is
+analogous to the for loop
+
+77
+00:03:44,010 --> 00:03:47,340
+in C, repeating something 10 times.
+
+78
+00:03:47,340 --> 00:03:49,250
+And the for loop on
+the left there, which
+
+79
+00:03:49,250 --> 00:03:51,410
+is a four loop that
+would do the same thing.
+
+80
+00:03:51,410 --> 00:03:52,570
+This would go 10 times.
+
+81
+00:03:52,570 --> 00:03:56,720
+Counting from zero, we
+increment each pass of the loop.
+
+82
+00:03:56,720 --> 00:03:59,220
+And we keep doing that
+until i is less than 10.
+
+83
+00:03:59,220 --> 00:04:00,134
+>> So what happens?
+
+84
+00:04:00,134 --> 00:04:01,550
+There's a whole lot of code there.
+
+85
+00:04:01,550 --> 00:04:03,424
+Let's break it down to
+what is happening step
+
+86
+00:04:03,424 --> 00:04:05,684
+by step as we dig through a for loop.
+
+87
+00:04:05,684 --> 00:04:08,350
+The first thing that happened is
+the counter variable is center.
+
+88
+00:04:08,350 --> 00:04:11,970
+Everything to the left of that first
+semicolon inside the parentheses
+
+89
+00:04:11,970 --> 00:04:12,970
+is executed.
+
+90
+00:04:12,970 --> 00:04:15,180
+In this case, we are
+saying int i equals 0.
+
+91
+00:04:15,180 --> 00:04:18,709
+Declaring a new variable called i,
+that variables is a type integer
+
+92
+00:04:18,709 --> 00:04:22,570
+and we're saying the value inside
+that variable is going to be zero.
+
+93
+00:04:22,570 --> 00:04:25,480
+>> The second thing we do is
+we then immediately evaluate
+
+94
+00:04:25,480 --> 00:04:26,750
+the Boolean expression.
+
+95
+00:04:26,750 --> 00:04:30,100
+Boolean expression is in the
+middle of the two semicolons.
+
+96
+00:04:30,100 --> 00:04:31,360
+I is less than 10.
+
+97
+00:04:31,360 --> 00:04:32,410
+That's true here, right?
+
+98
+00:04:32,410 --> 00:04:36,030
+We just said i is equal to
+zero, and so 0 is less than 10,
+
+99
+00:04:36,030 --> 00:04:38,040
+and so that condition
+is true and we will now
+
+100
+00:04:38,040 --> 00:04:40,640
+proceed to execute the body of the loop.
+
+101
+00:04:40,640 --> 00:04:41,480
+If it was false.
+
+102
+00:04:41,480 --> 00:04:46,380
+If, for example, I said instead of
+i equals 0 there I said i equals 15,
+
+103
+00:04:46,380 --> 00:04:47,820
+int i equals 15.
+
+104
+00:04:47,820 --> 00:04:51,450
+Well 15 is not less than 10, so we
+would never enter the body of the loop
+
+105
+00:04:51,450 --> 00:04:55,450
+because the Boolean expression
+there would evaluate to be false.
+
+106
+00:04:55,450 --> 00:04:59,060
+>> After we go through from top to bottom,
+we encounter that closing curly brace,
+
+107
+00:04:59,060 --> 00:05:00,830
+a third thing happens.
+
+108
+00:05:00,830 --> 00:05:03,840
+The counter variable is
+incremented, or rather, the lines
+
+109
+00:05:03,840 --> 00:05:07,790
+of code of a statement after the
+second semicolon inside of the
+
+110
+00:05:07,790 --> 00:05:10,500
+for loops parentheses is executed.
+
+111
+00:05:10,500 --> 00:05:13,250
+So we start out by
+saying int i equals 0.
+
+112
+00:05:13,250 --> 00:05:15,770
+Then we check whether or not
+the Boolean expression is true.
+
+113
+00:05:15,770 --> 00:05:17,469
+0 is less than, 10 so it's true.
+
+114
+00:05:17,469 --> 00:05:19,510
+So we're going to proceed
+into the body the loop.
+
+115
+00:05:19,510 --> 00:05:22,676
+Things will happen inside the loop, and
+when we encounter that closing curly
+
+116
+00:05:22,676 --> 00:05:25,660
+brace, the next thing we
+do is we say i plus, plus.
+
+117
+00:05:25,660 --> 00:05:28,860
+I was zero now i is one.
+
+118
+00:05:28,860 --> 00:05:33,100
+Then, we again check the value of
+the Boolean expression in the middle.
+
+119
+00:05:33,100 --> 00:05:34,900
+One is less than 10.
+
+120
+00:05:34,900 --> 00:05:38,325
+So we'll go through this
+process again and again.
+
+121
+00:05:38,325 --> 00:05:40,590
+We'll get to the closing
+curly brace again.
+
+122
+00:05:40,590 --> 00:05:44,090
+We'll increment i from
+1 to 2 and from 2 to 3.
+
+123
+00:05:44,090 --> 00:05:48,290
+And so on and so on and so on, until
+eventually i's value becomes 10.
+
+124
+00:05:48,290 --> 00:05:49,950
+Is 10 less than 10?
+
+125
+00:05:49,950 --> 00:05:51,200
+No.
+
+126
+00:05:51,200 --> 00:05:53,800
+Counting from 0, we've gone
+through 10 iterations of loop.
+
+127
+00:05:53,800 --> 00:05:57,204
+We've repeated 10 times, just
+as we did in the Scratch block.
+
+128
+00:05:57,204 --> 00:05:59,370
+And so that's basically the
+process for a four loop.
+
+129
+00:05:59,370 --> 00:06:01,630
+>> Now taking away the
+actual code and putting it
+
+130
+00:06:01,630 --> 00:06:05,120
+in just some basic general statements.
+
+131
+00:06:05,120 --> 00:06:06,550
+Here's what happens.
+
+132
+00:06:06,550 --> 00:06:09,290
+All the statements in
+start are executed first.
+
+133
+00:06:09,290 --> 00:06:11,260
+You might have more than one.
+
+134
+00:06:11,260 --> 00:06:13,440
+Then, the Boolean expression is checked.
+
+135
+00:06:13,440 --> 00:06:17,850
+If the expression evaluates to true,
+execute the body the loop one time.
+
+136
+00:06:17,850 --> 00:06:21,060
+If the expression evaluates
+to false, we're done.
+
+137
+00:06:21,060 --> 00:06:23,040
+We don't execute the
+body of the loop at all.
+
+138
+00:06:23,040 --> 00:06:25,530
+After we've executed the
+body the loop one time,
+
+139
+00:06:25,530 --> 00:06:29,487
+we then do what is in
+the increment part there.
+
+140
+00:06:29,487 --> 00:06:31,820
+Which is usually going to be
+something like i plus, plus
+
+141
+00:06:31,820 --> 00:06:34,510
+or something like that, that
+modifies a counter variable.
+
+142
+00:06:34,510 --> 00:06:37,390
+Then, after we increment, we
+check the expression again
+
+143
+00:06:37,390 --> 00:06:41,120
+and repeat those steps over and over
+and over until the expression is
+
+144
+00:06:41,120 --> 00:06:42,890
+no longer true.
+
+145
+00:06:42,890 --> 00:06:44,469
+>> So what are the use cases for a loop?
+
+146
+00:06:44,469 --> 00:06:46,760
+Use you use a while loop when
+you want a loop to repeat
+
+147
+00:06:46,760 --> 00:06:51,200
+an unknown number of times, but
+it possibly might not run all.
+
+148
+00:06:51,200 --> 00:06:53,940
+A really common example of
+a while looping being used
+
+149
+00:06:53,940 --> 00:06:56,480
+is to run the control flow for a game.
+
+150
+00:06:56,480 --> 00:06:59,040
+You might not know how long the
+user is going to be playing,
+
+151
+00:06:59,040 --> 00:07:01,440
+but you want to keep
+doing the same thing.
+
+152
+00:07:01,440 --> 00:07:04,970
+Updating the positions of
+various sprites on the board.
+
+153
+00:07:04,970 --> 00:07:07,490
+You want to keep things
+moving at all times,
+
+154
+00:07:07,490 --> 00:07:09,110
+but you don't know when the
+user is going to stop playing
+
+155
+00:07:09,110 --> 00:07:10,450
+or when they're going
+to run out of lives.
+
+156
+00:07:10,450 --> 00:07:12,741
+So a while loop is really
+good for something like that.
+
+157
+00:07:12,741 --> 00:07:14,130
+That's a good use case.
+
+158
+00:07:14,130 --> 00:07:16,230
+>> For a do while loop,
+it's pretty similar.
+
+159
+00:07:16,230 --> 00:07:19,746
+You want a loop to repeat an unknown
+number of times, but at least once.
+
+160
+00:07:19,746 --> 00:07:22,370
+You might use this for a game
+too, but a really common use case
+
+161
+00:07:22,370 --> 00:07:24,420
+is prompting the user for input.
+
+162
+00:07:24,420 --> 00:07:28,609
+Generally, you might say something
+like, give me a positive integer,
+
+163
+00:07:28,609 --> 00:07:30,650
+and you might put that
+inside of a do while loop.
+
+164
+00:07:30,650 --> 00:07:33,900
+So it will always ask them at
+least once for a positive integer.
+
+165
+00:07:33,900 --> 00:07:36,850
+If they give you a positive integer,
+you might break out of the loop.
+
+166
+00:07:36,850 --> 00:07:37,599
+You might be done.
+
+167
+00:07:37,599 --> 00:07:39,900
+The Boolean expression in
+the do while might be false.
+
+168
+00:07:39,900 --> 00:07:41,137
+>> And you won't ask them again.
+
+169
+00:07:41,137 --> 00:07:44,470
+If they give you a negative number where
+they type some word or something that's
+
+170
+00:07:44,470 --> 00:07:46,630
+not really useful to
+you, you might use the
+
+171
+00:07:46,630 --> 00:07:49,770
+do while loop to go back and do
+it again and again and again.
+
+172
+00:07:49,770 --> 00:07:52,410
+You definitely want to ask
+them to give you a number once,
+
+173
+00:07:52,410 --> 00:07:56,350
+but you don't know how many times
+after that they might be pests.
+
+174
+00:07:56,350 --> 00:08:00,540
+And so a do while it's a great use
+case for prompting the user for input.
+
+175
+00:08:00,540 --> 00:08:03,060
+And a for loops use
+case typically is when
+
+176
+00:08:03,060 --> 00:08:06,230
+you want to repeat a loop
+a discrete number of times,
+
+177
+00:08:06,230 --> 00:08:08,230
+though you might not
+know the number of times
+
+178
+00:08:08,230 --> 00:08:10,040
+the moment the program is compiled.
+
+179
+00:08:10,040 --> 00:08:15,510
+>> So for example, maybe you have a program
+where you prompt the user for a number.
+
+180
+00:08:15,510 --> 00:08:17,660
+And they enter 100.
+
+181
+00:08:17,660 --> 00:08:20,510
+And then your for loop will
+in that case run 100 times.
+
+182
+00:08:20,510 --> 00:08:22,480
+Or maybe they enter
+1,000 in your program
+
+183
+00:08:22,480 --> 00:08:24,570
+and then run the loop 1,000 times.
+
+184
+00:08:24,570 --> 00:08:26,987
+It's a specific number of times.
+
+185
+00:08:26,987 --> 00:08:28,820
+They don't necessarily
+know what that number
+
+186
+00:08:28,820 --> 00:08:31,010
+is the moment program is compiled.
+
+187
+00:08:31,010 --> 00:08:35,010
+It's not like a while loop
+where it could be infinite.
+
+188
+00:08:35,010 --> 00:08:37,127
+It's rather a number
+that you just don't know.
+
+189
+00:08:37,127 --> 00:08:39,210
+Now even though I've
+outlined all these use cases,
+
+190
+00:08:39,210 --> 00:08:41,501
+you should know that in pretty
+much every circumstance,
+
+191
+00:08:41,501 --> 00:08:44,110
+you can interchange all
+three of these loops.
+
+192
+00:08:44,110 --> 00:08:46,890
+You can use a for loop where you
+would otherwise use a while loop.
+
+193
+00:08:46,890 --> 00:08:49,860
+You can use a for loop wherever
+you'd use a do while loop and so on.
+
+194
+00:08:49,860 --> 00:08:53,680
+It can be a little tricky sometimes,
+so generally it's a good practice
+
+195
+00:08:53,680 --> 00:08:55,140
+to adhere to a typical use case.
+
+196
+00:08:55,140 --> 00:08:57,599
+Use a do while loop if you
+wanted something once, at least.
+
+197
+00:08:57,599 --> 00:09:00,514
+Use a for loop if you want to do
+something a specific number of times.
+
+198
+00:09:00,514 --> 00:09:03,730
+After all, that's why there are
+three different kinds of loops.
+
+199
+00:09:03,730 --> 00:09:06,172
+>> So they can be used
+in the right context.
+
+200
+00:09:06,172 --> 00:09:07,880
+But you can interchange
+them if you want.
+
+201
+00:09:07,880 --> 00:09:10,790
+If you feel comfortable with while loops
+and you always want to use while loops.
+
+202
+00:09:10,790 --> 00:09:12,623
+It is something that
+you can do, although it
+
+203
+00:09:12,623 --> 00:09:15,590
+might be a little syntactically
+tricky, where a for loop
+
+204
+00:09:15,590 --> 00:09:17,850
+would be a lot more straightforward.
+
+205
+00:09:17,850 --> 00:09:21,100
+>> My name is Doug Lloyd and this is CS50.
+
+206
+00:09:21,100 --> 00:09:22,688

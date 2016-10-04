@@ -1,0 +1,347 @@
+1
+00:00:00,000 --> 00:00:00,499
+
+
+2
+00:00:00,499 --> 00:00:04,290
+ZAMYLA CHAN: Let's find
+the needle in the haystack.
+
+3
+00:00:04,290 --> 00:00:07,920
+Today in find.c we're going to
+help implement a program that
+
+4
+00:00:07,920 --> 00:00:10,590
+prompts the user for
+numbers to fill the haystack
+
+5
+00:00:10,590 --> 00:00:13,270
+and then searches the
+haystack for a needle.
+
+6
+00:00:13,270 --> 00:00:17,300
+Now, find.c calls sort and
+search, which are both functions
+
+7
+00:00:17,300 --> 00:00:19,010
+to find in helpers.c.
+
+8
+00:00:19,010 --> 00:00:20,880
+It's actually helpers.c
+where we're going
+
+9
+00:00:20,880 --> 00:00:23,980
+to be doing our programming today.
+
+10
+00:00:23,980 --> 00:00:25,690
+So what do we have to do?
+
+11
+00:00:25,690 --> 00:00:27,700
+Well, first we need to
+implement search, which
+
+12
+00:00:27,700 --> 00:00:31,670
+is a function that returns true if
+the value is found in the haystack
+
+13
+00:00:31,670 --> 00:00:33,530
+and false otherwise.
+
+14
+00:00:33,530 --> 00:00:37,820
+And then we also have to do sort,
+which sorts the values in the array
+
+15
+00:00:37,820 --> 00:00:39,510
+in incrementing order.
+
+16
+00:00:39,510 --> 00:00:41,500
+So first let's talk about search.
+
+17
+00:00:41,500 --> 00:00:44,220
+If you look at the
+distribution code in helpers.c
+
+18
+00:00:44,220 --> 00:00:47,750
+you'll find a preexisting
+linear search implementation
+
+19
+00:00:47,750 --> 00:00:50,700
+but we know that we can
+do much better than this.
+
+20
+00:00:50,700 --> 00:00:55,500
+Linear search is in O(n) time,
+which means that it's quite slow.
+
+21
+00:00:55,500 --> 00:01:00,320
+Instead of slowly iterating over
+every element of the list up until n,
+
+22
+00:01:00,320 --> 00:01:02,630
+let's talk about binary search.
+
+23
+00:01:02,630 --> 00:01:06,560
+Now, linear search can search any
+list, whereas binary search requires
+
+24
+00:01:06,560 --> 00:01:08,850
+that the list is sorted already.
+
+25
+00:01:08,850 --> 00:01:13,600
+But as long as you have a sorted list
+then binary search operates in O(log n)
+
+26
+00:01:13,600 --> 00:01:15,900
+time, which is quite efficient.
+
+27
+00:01:15,900 --> 00:01:17,850
+Let's take a look at an example.
+
+28
+00:01:17,850 --> 00:01:22,270
+Here I've populated an integer array
+of size nine with nine integers
+
+29
+00:01:22,270 --> 00:01:25,000
+and let's say we're
+looking for the number 17.
+
+30
+00:01:25,000 --> 00:01:27,720
+Now in this example, if we
+were to do a linear search
+
+31
+00:01:27,720 --> 00:01:32,570
+then it would take us 7 checks starting
+from index 0 all the way till index 7
+
+32
+00:01:32,570 --> 00:01:34,120
+to find that number.
+
+33
+00:01:34,120 --> 00:01:36,940
+So let's see how we can implement
+this using binary search
+
+34
+00:01:36,940 --> 00:01:39,380
+and find that needle a lot faster.
+
+35
+00:01:39,380 --> 00:01:42,780
+In binary search we start by
+looking at the whole array.
+
+36
+00:01:42,780 --> 00:01:46,910
+So from the left side of the array to
+the right side, we look at the entirety
+
+37
+00:01:46,910 --> 00:01:48,390
+and find the middle.
+
+38
+00:01:48,390 --> 00:01:50,560
+In this case, the
+middle is that index 4.
+
+39
+00:01:50,560 --> 00:01:52,310
+The value is 10.
+
+40
+00:01:52,310 --> 00:01:55,470
+So the assumption under binary
+search of the list is sorted.
+
+41
+00:01:55,470 --> 00:01:59,000
+So while 10 is not 17 and
+because the list is sorted,
+
+42
+00:01:59,000 --> 00:02:03,310
+we know that we don't need to look at
+the left half of the array anymore.
+
+43
+00:02:03,310 --> 00:02:05,360
+So similar to the way
+that we just throw aside
+
+44
+00:02:05,360 --> 00:02:08,850
+one half of the phone book in
+the beginning of this course,
+
+45
+00:02:08,850 --> 00:02:13,500
+we can just move our left
+bound all the way to the middle
+
+46
+00:02:13,500 --> 00:02:17,470
+but we've already checked the middle so
+we can get a little bit more efficient
+
+47
+00:02:17,470 --> 00:02:19,660
+and say, well since we've
+already checked the middle
+
+48
+00:02:19,660 --> 00:02:22,300
+we know that's not part of the
+array that we're looking for
+
+49
+00:02:22,300 --> 00:02:26,380
+so let's push they're bound to
+just beyond where the middle was.
+
+50
+00:02:26,380 --> 00:02:31,420
+So now we have our left bound at index
+5 and our right bound stays the same.
+
+51
+00:02:31,420 --> 00:02:35,020
+Let's calculate the middle and
+we find, truncating the integer,
+
+52
+00:02:35,020 --> 00:02:37,460
+that the middle is at index 6.
+
+53
+00:02:37,460 --> 00:02:39,850
+So we check that value there, 16.
+
+54
+00:02:39,850 --> 00:02:43,640
+16 is not 17, in fact
+it's less than 17, which
+
+55
+00:02:43,640 --> 00:02:48,410
+means that we can discard the left half
+again and just look at the right side.
+
+56
+00:02:48,410 --> 00:02:53,970
+So then we move our left bound all the
+way to index 7 and the right bounds
+
+57
+00:02:53,970 --> 00:02:55,400
+stays at 8.
+
+58
+00:02:55,400 --> 00:02:58,750
+Calculating the middle between
+7 and 8 brings us to 7.
+
+59
+00:02:58,750 --> 00:03:03,460
+We check that value and
+indeed we found our needle.
+
+60
+00:03:03,460 --> 00:03:06,990
+So let's talk about some
+pseudocode for this.
+
+61
+00:03:06,990 --> 00:03:09,060
+Essentially, while
+the length of the list
+
+62
+00:03:09,060 --> 00:03:12,240
+is greater than zero, that is
+we still have things to look at,
+
+63
+00:03:12,240 --> 00:03:14,550
+we want to look at
+the middle of the list
+
+64
+00:03:14,550 --> 00:03:18,550
+and if that middle is our needle if
+the number is found then that's great
+
+65
+00:03:18,550 --> 00:03:20,260
+and we can return true.
+
+66
+00:03:20,260 --> 00:03:23,660
+Otherwise we want to either
+search left or search right
+
+67
+00:03:23,660 --> 00:03:27,230
+depending on whether the number is
+higher or lower than our needle.
+
+68
+00:03:27,230 --> 00:03:30,780
+And then finally, if
+we've executed all of that
+
+69
+00:03:30,780 --> 00:03:33,050
+and we don't have any
+more list remaining then
+
+70
+00:03:33,050 --> 00:03:35,360
+that means that we
+return false because that
+
+71
+00:03:35,360 --> 00:03:39,770
+means that the needle is definitely
+not in that particular haystack.
+
+72
+00:03:39,770 --> 00:03:40,780
+Congratulations.
+
+73
+00:03:40,780 --> 00:03:45,780
+You've implemented a fast search,
+and now we can move on to sort.
+
+74
+00:03:45,780 --> 00:03:47,090

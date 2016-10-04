@@ -1,0 +1,713 @@
+1
+00:00:00,000 --> 00:00:02,350
+>> [MUSIC PLAYING]
+
+2
+00:00:02,350 --> 00:00:05,444
+
+3
+00:00:05,444 --> 00:00:06,360
+DOUG LLOYD: All right.
+
+4
+00:00:06,360 --> 00:00:07,770
+Kind of a strange topic, right?
+
+5
+00:00:07,770 --> 00:00:09,050
+Magic numbers.
+
+6
+00:00:09,050 --> 00:00:12,012
+What doe he mean when he's
+talking about magic numbers?
+
+7
+00:00:12,012 --> 00:00:14,220
+Well, some of the programs
+that we've written in CS50
+
+8
+00:00:14,220 --> 00:00:16,660
+so far have had some weird
+numbers kind of thrown in them.
+
+9
+00:00:16,660 --> 00:00:19,680
+Perhaps for reasons we don't
+entirely understand right now.
+
+10
+00:00:19,680 --> 00:00:23,950
+For example, in the Mario problem, we
+capped the height of the pyramid at 23.
+
+11
+00:00:23,950 --> 00:00:26,880
+We explicitly said you
+can't go higher than 23.
+
+12
+00:00:26,880 --> 00:00:28,702
+>> But what does 23 mean?
+
+13
+00:00:28,702 --> 00:00:30,410
+Well, if you read the
+spec carefully, you
+
+14
+00:00:30,410 --> 00:00:32,493
+might have seen that the
+reason we capped it at 23
+
+15
+00:00:32,493 --> 00:00:36,160
+is because the standard height
+of a terminal window is 24.
+
+16
+00:00:36,160 --> 00:00:38,860
+And so if we have the
+pyramid be taller than that,
+
+17
+00:00:38,860 --> 00:00:41,290
+it might do this weird thing
+where it runs off the screen.
+
+18
+00:00:41,290 --> 00:00:45,140
+And you know, what does
+that mean in context, right?
+
+19
+00:00:45,140 --> 00:00:48,880
+>> Is the meaning of 23 immediately obvious
+to somebody who looks at your program
+
+20
+00:00:48,880 --> 00:00:51,550
+and maybe has a different
+size terminal window?
+
+21
+00:00:51,550 --> 00:00:52,330
+Probably not.
+
+22
+00:00:52,330 --> 00:00:53,080
+It seems like, OK.
+
+23
+00:00:53,080 --> 00:00:55,005
+Well, why is it just less than 23?
+
+24
+00:00:55,005 --> 00:00:56,880
+In general, it's kind
+of a bad habit actually
+
+25
+00:00:56,880 --> 00:00:58,940
+to write constants into your code.
+
+26
+00:00:58,940 --> 00:01:02,190
+In doing so, when you actually do
+write a constant into your code,
+
+27
+00:01:02,190 --> 00:01:05,630
+it's sometimes referred to as using
+magic numbers, which is something
+
+28
+00:01:05,630 --> 00:01:08,030
+we generally want to try and avoid.
+
+29
+00:01:08,030 --> 00:01:12,830
+>> For example, let's take a look
+at this simple function here.
+
+30
+00:01:12,830 --> 00:01:15,726
+Obviously there's no data
+type in C called card or deck.
+
+31
+00:01:15,726 --> 00:01:16,600
+So just bear with me.
+
+32
+00:01:16,600 --> 00:01:18,910
+It's a little bit of
+pseudocode mixed in here.
+
+33
+00:01:18,910 --> 00:01:21,050
+This is a function called
+deal card that apparently
+
+34
+00:01:21,050 --> 00:01:26,570
+takes a deck as its parameter, and
+will output to me a single card.
+
+35
+00:01:26,570 --> 00:01:30,990
+>> And I'm doing something here where I
+have a loop that runs from 0 to 52,
+
+36
+00:01:30,990 --> 00:01:33,394
+and I deal a card.
+
+37
+00:01:33,394 --> 00:01:35,310
+Well, we've got a magic
+number in here, right.
+
+38
+00:01:35,310 --> 00:01:38,790
+Do you see what the magic number is?
+
+39
+00:01:38,790 --> 00:01:42,280
+Or more importantly, do you
+see what the problem is here?
+
+40
+00:01:42,280 --> 00:01:44,310
+Particularly if this
+is just one function
+
+41
+00:01:44,310 --> 00:01:48,030
+in its own file in a
+folder that contains
+
+42
+00:01:48,030 --> 00:01:49,970
+a bunch of different
+files, each of which
+
+43
+00:01:49,970 --> 00:01:51,670
+does another thing to a deck of cards.
+
+44
+00:01:51,670 --> 00:01:57,310
+Maybe it shuffles them, or deals a hand
+of five cards instead of a single card.
+
+45
+00:01:57,310 --> 00:01:59,420
+>> Do you see what the
+problem could be here?
+
+46
+00:01:59,420 --> 00:02:03,220
+Do you see the magic number
+I've injected into the code?
+
+47
+00:02:03,220 --> 00:02:04,390
+It's 52, right.
+
+48
+00:02:04,390 --> 00:02:06,440
+>> Like, intuitively you probably know, OK.
+
+49
+00:02:06,440 --> 00:02:09,740
+Like a standard deck of
+cards contains 52 cards.
+
+50
+00:02:09,740 --> 00:02:12,570
+But in our program, it's just
+kind of floating around in there.
+
+51
+00:02:12,570 --> 00:02:15,280
+It's like all of a sudden there's a 52.
+
+52
+00:02:15,280 --> 00:02:18,290
+>> One way to resolve this
+problem is to do this.
+
+53
+00:02:18,290 --> 00:02:22,724
+We're very explicitly now
+calling out the deck size as 52.
+
+54
+00:02:22,724 --> 00:02:25,390
+It gives it a little more intuitive
+meaning when in the for loop
+
+55
+00:02:25,390 --> 00:02:28,650
+later on we then say, i
+is less than deck size.
+
+56
+00:02:28,650 --> 00:02:32,666
+It just seems better than saying 52.
+
+57
+00:02:32,666 --> 00:02:34,290
+Now this does actually fix the problem.
+
+58
+00:02:34,290 --> 00:02:38,460
+It does give some symbolic
+meaning to the constant.
+
+59
+00:02:38,460 --> 00:02:40,820
+But it does kind of actually
+introduce another problem
+
+60
+00:02:40,820 --> 00:02:43,770
+that might not be immediately apparent.
+
+61
+00:02:43,770 --> 00:02:45,859
+Even if this variable
+is declared globally--
+
+62
+00:02:45,859 --> 00:02:47,650
+do you recall what it
+means when we declare
+
+63
+00:02:47,650 --> 00:02:50,500
+a variable globally versus locally?
+
+64
+00:02:50,500 --> 00:02:53,340
+Even if we declare a variable
+globally, what if there's
+
+65
+00:02:53,340 --> 00:02:55,500
+another function in
+our suite of functions
+
+66
+00:02:55,500 --> 00:02:59,750
+that deal with card manipulation
+that inadvertently changes deck size,
+
+67
+00:02:59,750 --> 00:03:02,727
+or it increases it by
+1 or decreases it by 1.
+
+68
+00:03:02,727 --> 00:03:04,060
+That could spell trouble, right?
+
+69
+00:03:04,060 --> 00:03:08,261
+Especially if we're dealing with a set
+of cards where shuffling the full deck
+
+70
+00:03:08,261 --> 00:03:08,760
+is required.
+
+71
+00:03:08,760 --> 00:03:12,804
+If deck size is decreased
+by 1, for example, to 51,
+
+72
+00:03:12,804 --> 00:03:14,970
+we're not actually shuffling
+all the cards possibly.
+
+73
+00:03:14,970 --> 00:03:16,500
+We're leaving one of them out.
+
+74
+00:03:16,500 --> 00:03:21,680
+And that value could perhaps be
+predicted or exploited by a bad actor.
+
+75
+00:03:21,680 --> 00:03:24,920
+>> C provides what's called a
+preprocessor directive, which
+
+76
+00:03:24,920 --> 00:03:27,764
+is also called a macro for
+creating symbolic constants.
+
+77
+00:03:27,764 --> 00:03:30,180
+And in fact, you've already
+seen a preprocessor directive,
+
+78
+00:03:30,180 --> 00:03:32,916
+even if you haven't heard it
+called that with #include.
+
+79
+00:03:32,916 --> 00:03:37,150
+It's another example of a macro
+or preprocessor directive.
+
+80
+00:03:37,150 --> 00:03:41,290
+>> The way to create symbolic constants,
+or giving a name to a constant
+
+81
+00:03:41,290 --> 00:03:43,740
+so that it has more
+meaning, is as follows.
+
+82
+00:03:43,740 --> 00:03:47,030
+#define, name, replacement.
+
+83
+00:03:47,030 --> 00:03:49,140
+Really important aside
+here really quick.
+
+84
+00:03:49,140 --> 00:03:54,180
+Don't put a semicolon at
+the end of your #defines.
+
+85
+00:03:54,180 --> 00:03:57,310
+So it's #define, name, replacement.
+
+86
+00:03:57,310 --> 00:03:59,540
+>> When your program is compiled,
+what actually happens
+
+87
+00:03:59,540 --> 00:04:01,740
+is the compiler if going
+to go through your code
+
+88
+00:04:01,740 --> 00:04:06,770
+and replace every instance of
+the word "name" with whatever you
+
+89
+00:04:06,770 --> 00:04:08,860
+put as replacement.
+
+90
+00:04:08,860 --> 00:04:13,060
+Analogously, if #include is sort
+of similar to copying and pasting,
+
+91
+00:04:13,060 --> 00:04:15,700
+then #define is sort of
+similar to find and replace,
+
+92
+00:04:15,700 --> 00:04:19,180
+if you've ever used that feature in a
+word processing program, for example.
+
+93
+00:04:19,180 --> 00:04:26,345
+>> So for example, if I
+#define pi as 3.14159265,
+
+94
+00:04:26,345 --> 00:04:28,720
+if you're better mathematically
+inclined and you suddenly
+
+95
+00:04:28,720 --> 00:04:31,640
+see 3.14159265 flying
+around in your code,
+
+96
+00:04:31,640 --> 00:04:33,517
+you probably know it's talking about pi.
+
+97
+00:04:33,517 --> 00:04:35,850
+But maybe we can give it a
+little more symbolic meaning.
+
+98
+00:04:35,850 --> 00:04:39,850
+And we can instead say #define
+pi as that mouthful of numbers
+
+99
+00:04:39,850 --> 00:04:42,110
+that I'm not going to keep
+reading over and over.
+
+100
+00:04:42,110 --> 00:04:45,560
+>> And what's going to happen then at
+compile time is when the program is
+
+101
+00:04:45,560 --> 00:04:48,530
+compiled, the first thing that
+will happen is it will go through
+
+102
+00:04:48,530 --> 00:04:51,520
+and it will replace every time
+it sees capital P, capital I,
+
+103
+00:04:51,520 --> 00:04:55,610
+it'll literally replace it with
+3.14 and so on, so that you
+
+104
+00:04:55,610 --> 00:04:58,090
+don't have to type it every
+time while your program still
+
+105
+00:04:58,090 --> 00:05:00,631
+has the functionality that you
+expect, because you're working
+
+106
+00:05:00,631 --> 00:05:05,090
+with manipulating, multiplying,
+dividing, whatever it is by pi.
+
+107
+00:05:05,090 --> 00:05:08,230
+>> You are not limited to this
+substitution for numbers only.
+
+108
+00:05:08,230 --> 00:05:12,279
+For example, I could #define
+course as the string CS50.
+
+109
+00:05:12,279 --> 00:05:14,070
+In this case, when the
+program is compiled,
+
+110
+00:05:14,070 --> 00:05:16,236
+#define will go through the
+code, replace every time
+
+111
+00:05:16,236 --> 00:05:19,900
+it sees "course" with the string CS50.
+
+112
+00:05:19,900 --> 00:05:21,720
+>> You'll notice here
+also that I frequently
+
+113
+00:05:21,720 --> 00:05:26,090
+#define all my defined symbolic
+constants, so to speak,
+
+114
+00:05:26,090 --> 00:05:28,130
+are always in all caps.
+
+115
+00:05:28,130 --> 00:05:28,960
+It's a convention.
+
+116
+00:05:28,960 --> 00:05:30,170
+It's not required.
+
+117
+00:05:30,170 --> 00:05:33,900
+The reason generally people will use
+all capitals when they're #defining
+
+118
+00:05:33,900 --> 00:05:37,590
+is just to make it really clear that
+this particular element of my code
+
+119
+00:05:37,590 --> 00:05:38,820
+is a defined constant.
+
+120
+00:05:38,820 --> 00:05:43,730
+If it was lowercase, it's possible that
+it might be confused with a variable.
+
+121
+00:05:43,730 --> 00:05:46,120
+And that's probably
+not a good thing to do.
+
+122
+00:05:46,120 --> 00:05:48,910
+>> So this particular
+solution is much better
+
+123
+00:05:48,910 --> 00:05:50,550
+than either of the previous ones.
+
+124
+00:05:50,550 --> 00:05:59,950
+If I first #define deck size 52, then
+now my use of 52, or deck size here,
+
+125
+00:05:59,950 --> 00:06:01,850
+is a lot more intuitive and a lot safer.
+
+126
+00:06:01,850 --> 00:06:03,280
+You can't manipulate a constant.
+
+127
+00:06:03,280 --> 00:06:05,259
+You can't say 52 plus plus.
+
+128
+00:06:05,259 --> 00:06:06,800
+That's not going to convert it to 53.
+
+129
+00:06:06,800 --> 00:06:09,390
+You can't change 52 to something.
+
+130
+00:06:09,390 --> 00:06:12,470
+>> You can change a variable
+whose value is 52,
+
+131
+00:06:12,470 --> 00:06:14,870
+which was the first fix we had before.
+
+132
+00:06:14,870 --> 00:06:17,000
+And you could increase
+that variable to 53.
+
+133
+00:06:17,000 --> 00:06:21,100
+But you can't say 52 plus plus and
+have that suddenly turn 52 into 53.
+
+134
+00:06:21,100 --> 00:06:23,350
+52 is always 52.
+
+135
+00:06:23,350 --> 00:06:28,860
+And so you can't inadvertently change
+deck size here by manipulating it,
+
+136
+00:06:28,860 --> 00:06:29,940
+
+137
+00:06:29,940 --> 00:06:32,390
+>> Another good side
+effect of this though is
+
+138
+00:06:32,390 --> 00:06:38,310
+that are you aware that not
+all countries around the world
+
+139
+00:06:38,310 --> 00:06:40,690
+use a deck of cards of size 52?
+
+140
+00:06:40,690 --> 00:06:45,630
+For example, it's really common in
+Germany to use a deck size of 32,
+
+141
+00:06:45,630 --> 00:06:48,020
+where they strip out some
+of the lower value cards.
+
+142
+00:06:48,020 --> 00:06:50,960
+And in this case, I
+wanted to port my suite
+
+143
+00:06:50,960 --> 00:06:55,390
+of functions that deal with
+card manipulation to Germany.
+
+144
+00:06:55,390 --> 00:06:59,440
+I could in the first instance we
+showed, have to go and replace
+
+145
+00:06:59,440 --> 00:07:03,570
+all instances of 52 in my code with 32.
+
+146
+00:07:03,570 --> 00:07:07,940
+>> But here, if I #define deck size
+as 32 at the very top of my code,
+
+147
+00:07:07,940 --> 00:07:11,730
+if I need to change it, I can
+just go and change that one thing.
+
+148
+00:07:11,730 --> 00:07:15,010
+Recompile my code, and all of
+a sudden it propagates through.
+
+149
+00:07:15,010 --> 00:07:18,850
+In fact, we can change deck
+size to any value we want.
+
+150
+00:07:18,850 --> 00:07:22,500
+>> Can I interest you in a
+game of deck size pickup?
+
+151
+00:07:22,500 --> 00:07:23,430
+>> I'm Doug Lloyd.
+
+152
+00:07:23,430 --> 00:07:25,840
+And this is CS50.
+
+153
+00:07:25,840 --> 00:07:27,772

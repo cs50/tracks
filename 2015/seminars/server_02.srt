@@ -1,0 +1,1565 @@
+1
+00:00:00,000 --> 00:00:00,390
+
+2
+00:00:00,390 --> 00:00:02,931
+>> DAVID MALAN: Now let's take a
+look at the actual distribution
+
+3
+00:00:02,931 --> 00:00:04,310
+code in the file called server.c.
+
+4
+00:00:04,310 --> 00:00:06,690
+Now keep in mind that this
+file's pretty large this week.
+
+5
+00:00:06,690 --> 00:00:09,922
+It's over 1,000 lines of code but
+most of those lines we have written.
+
+6
+00:00:09,922 --> 00:00:11,880
+And what we've left is
+a few blanks that you'll
+
+7
+00:00:11,880 --> 00:00:15,088
+need to fill in to add some of the most
+compelling features of the web server
+
+8
+00:00:15,088 --> 00:00:16,300
+to actually get it started.
+
+9
+00:00:16,300 --> 00:00:18,890
+Indeed, if you run the distribution
+code after compiling it
+
+10
+00:00:18,890 --> 00:00:21,400
+you'll find that the web server
+doesn't do all that much.
+
+11
+00:00:21,400 --> 00:00:24,585
+Instead the user gets a 501,
+not implemented, error message.
+
+12
+00:00:24,585 --> 00:00:27,210
+But that should make sense because
+we've indeed not implemented
+
+13
+00:00:27,210 --> 00:00:28,565
+all of its functionality.
+
+14
+00:00:28,565 --> 00:00:29,940
+So let's take a look at server.c.
+
+15
+00:00:29,940 --> 00:00:32,500
+And you'll want to go over
+this in a little more detail,
+
+16
+00:00:32,500 --> 00:00:34,200
+a little more slowly, at your own pace.
+
+17
+00:00:34,200 --> 00:00:36,616
+But for now let me try to guide
+you through it to give you
+
+18
+00:00:36,616 --> 00:00:39,230
+a sense of what's useful to
+know, what's less useful to know,
+
+19
+00:00:39,230 --> 00:00:41,212
+so that you can guide
+your own exploration.
+
+20
+00:00:41,212 --> 00:00:44,170
+So at the top of server.c, of course,
+we have a whole bunch of defines.
+
+21
+00:00:44,170 --> 00:00:46,130
+As well as a whole bunch of includes.
+
+22
+00:00:46,130 --> 00:00:49,610
+Worth noting is that we have
+a few global constants here,
+
+23
+00:00:49,610 --> 00:00:52,680
+which we use in our code to make
+sure that certain arrays are
+
+24
+00:00:52,680 --> 00:00:53,780
+of sufficient length.
+
+25
+00:00:53,780 --> 00:00:58,020
+Based on how long the HTTP requests we
+expect to be receiving, potentially,
+
+26
+00:00:58,020 --> 00:00:59,860
+from web clients, or browsers.
+
+27
+00:00:59,860 --> 00:01:04,000
+>> Meanwhile, let's scroll on down
+here, to one type definition.
+
+28
+00:01:04,000 --> 00:01:07,430
+Notice that just like in P set 4,
+whereby we played with file I/O,
+
+29
+00:01:07,430 --> 00:01:09,680
+similarly here, we're
+playing with a lot of bytes.
+
+30
+00:01:09,680 --> 00:01:11,490
+And so we've typedeffed
+char to be a byte.
+
+31
+00:01:11,490 --> 00:01:16,260
+In other words, the data type, capital
+B-y-t-e, doesn't exist by default in C.
+
+32
+00:01:16,260 --> 00:01:20,090
+So we've created it as a synonym for
+char so that we have some 8-bit value
+
+33
+00:01:20,090 --> 00:01:21,041
+with which to work.
+
+34
+00:01:21,041 --> 00:01:23,540
+Now there's a whole bunch of
+prototypes here, a few of which
+
+35
+00:01:23,540 --> 00:01:26,581
+are for functions you'll write, but
+most of them we've written ourselves.
+
+36
+00:01:26,581 --> 00:01:29,430
+Let's scroll down now to finally,
+just a few global variables.
+
+37
+00:01:29,430 --> 00:01:32,036
+One is this char star, AKA root.
+
+38
+00:01:32,036 --> 00:01:34,660
+Indeed, you'll notice we're not
+using the CS50 library anymore.
+
+39
+00:01:34,660 --> 00:01:36,330
+So we're instead just using char star.
+
+40
+00:01:36,330 --> 00:01:38,960
+And root is going to be a
+pointer to the string that
+
+41
+00:01:38,960 --> 00:01:41,700
+represents the root of the server.
+
+42
+00:01:41,700 --> 00:01:44,030
+So, for instance, when I
+ran the command earlier
+
+43
+00:01:44,030 --> 00:01:48,100
+and specified the root of "public," that
+directory inside of the distribution
+
+44
+00:01:48,100 --> 00:01:48,800
+code.
+
+45
+00:01:48,800 --> 00:01:52,160
+Root, here, would be a pointer
+to exactly that string, "public."
+
+46
+00:01:52,160 --> 00:01:57,830
+Or really the full path /home/ubuntu/
+so forth to that public directory.
+
+47
+00:01:57,830 --> 00:02:01,930
+>> Meanwhile, in line 67 here, we have
+what are called file descriptors.
+
+48
+00:02:01,930 --> 00:02:05,329
+These are similar in spirit
+to file star pointers.
+
+49
+00:02:05,329 --> 00:02:07,370
+But it turns out there's
+another set of functions
+
+50
+00:02:07,370 --> 00:02:11,050
+you can use with reading files or
+reading from network connections.
+
+51
+00:02:11,050 --> 00:02:13,280
+Like a web server web
+browser connection that
+
+52
+00:02:13,280 --> 00:02:16,480
+actually just uses integers instead
+of pointers, like we saw on P set 4.
+
+53
+00:02:16,480 --> 00:02:17,530
+But it's the same idea.
+
+54
+00:02:17,530 --> 00:02:21,180
+And I've made these global to keep
+track of a client file descriptor.
+
+55
+00:02:21,180 --> 00:02:22,960
+Like a pointer to my web client.
+
+56
+00:02:22,960 --> 00:02:24,212
+And a server file descriptor.
+
+57
+00:02:24,212 --> 00:02:27,170
+Sort of a pointer to the web server,
+but they're not actually pointers,
+
+58
+00:02:27,170 --> 00:02:28,360
+they're just numbers.
+
+59
+00:02:28,360 --> 00:02:30,940
+>> Finally, we have this global
+variable here called signaled.
+
+60
+00:02:30,940 --> 00:02:32,690
+Which is my way, true
+or false, of keeping
+
+61
+00:02:32,690 --> 00:02:35,450
+track of whether the user has
+signaled that he or she wants
+
+62
+00:02:35,450 --> 00:02:36,680
+to stop the web server.
+
+63
+00:02:36,680 --> 00:02:39,690
+And indeed there's a function
+that listens for Control C.
+
+64
+00:02:39,690 --> 00:02:43,650
+So that if you, the user, want to
+kill the server by hitting Control C,
+
+65
+00:02:43,650 --> 00:02:46,279
+that boolean variable you'll
+see in the code is set to true.
+
+66
+00:02:46,279 --> 00:02:49,070
+And then within a loop we keep
+checking the value of that variable.
+
+67
+00:02:49,070 --> 00:02:52,560
+And if it's true, we just
+quit the program altogether.
+
+68
+00:02:52,560 --> 00:02:54,050
+>> Let's now take a look at main.
+
+69
+00:02:54,050 --> 00:02:56,050
+You don't need to understand
+everything in main,
+
+70
+00:02:56,050 --> 00:02:58,030
+but let's give you a sense
+of the overall workflow.
+
+71
+00:02:58,030 --> 00:03:00,571
+And then take a closer look
+yourself at some of the comments.
+
+72
+00:03:00,571 --> 00:03:02,410
+In the first place,
+part way through main,
+
+73
+00:03:02,410 --> 00:03:04,050
+we parse the command line arguments.
+
+74
+00:03:04,050 --> 00:03:06,360
+It turns out that main is
+going to expect either dash
+
+75
+00:03:06,360 --> 00:03:09,700
+h for help, which just tells you how
+to run the program very succinctly.
+
+76
+00:03:09,700 --> 00:03:12,000
+Or dash p, which lets
+you specify a port.
+
+77
+00:03:12,000 --> 00:03:14,550
+But again, using the
+port 80 80, by default,
+
+78
+00:03:14,550 --> 00:03:16,940
+is what you should use CS 50 IDE.
+
+79
+00:03:16,940 --> 00:03:18,800
+>> Next, we just do some error checking.
+
+80
+00:03:18,800 --> 00:03:20,650
+Making sure that the
+port value is indeed
+
+81
+00:03:20,650 --> 00:03:22,770
+as we expect, within a particular range.
+
+82
+00:03:22,770 --> 00:03:24,630
+And then some of the magic starts.
+
+83
+00:03:24,630 --> 00:03:26,930
+We call this function
+start, which we wrote.
+
+84
+00:03:26,930 --> 00:03:31,360
+We pass into with the port, as
+well as any optional arguments
+
+85
+00:03:31,360 --> 00:03:33,770
+in order to start the server.
+
+86
+00:03:33,770 --> 00:03:35,830
+Specifically, that port number.
+
+87
+00:03:35,830 --> 00:03:39,750
+>> All right, next, this is fairly cryptic
+code that you won't see too often,
+
+88
+00:03:39,750 --> 00:03:43,170
+but it's a fancy way of telling
+the program to listen for a signal.
+
+89
+00:03:43,170 --> 00:03:46,200
+A signal being something like a
+special key stroke, like Control C.
+
+90
+00:03:46,200 --> 00:03:50,010
+So this code here is how we register
+what's called an event listener.
+
+91
+00:03:50,010 --> 00:03:54,420
+Whereby, anytime the user hits
+Control C that code tells the computer
+
+92
+00:03:54,420 --> 00:03:56,200
+to run a function called handler.
+
+93
+00:03:56,200 --> 00:03:59,844
+Which is written lower down, implemented
+lower down in this file, server.c,
+
+94
+00:03:59,844 --> 00:04:01,260
+that stops the program altogether.
+
+95
+00:04:01,260 --> 00:04:04,060
+But no need to worry about
+the inner details there.
+
+96
+00:04:04,060 --> 00:04:06,010
+>> Let's now focus on the inner loop.
+
+97
+00:04:06,010 --> 00:04:09,164
+Indeed, what the web server is doing
+is deliberately looping infinitely.
+
+98
+00:04:09,164 --> 00:04:12,080
+Because after all that's pretty much
+what you want a web server to do.
+
+99
+00:04:12,080 --> 00:04:13,910
+Until you explicitly
+stop it, you just want
+
+100
+00:04:13,910 --> 00:04:15,660
+to be sitting there
+effectively in a loop,
+
+101
+00:04:15,660 --> 00:04:17,970
+waiting for someone on the
+internet to connect to it.
+
+102
+00:04:17,970 --> 00:04:20,519
+So that the web server can
+then respond to some request.
+
+103
+00:04:20,519 --> 00:04:22,780
+>> Now notice at the top
+of the program I free
+
+104
+00:04:22,780 --> 00:04:26,030
+some variables, because later on you'll
+see we're using malloc in some places.
+
+105
+00:04:26,030 --> 00:04:27,988
+So I just want to make
+sure all of my variables
+
+106
+00:04:27,988 --> 00:04:30,487
+are initialized to some known values.
+
+107
+00:04:30,487 --> 00:04:32,820
+Down here I check whether the
+program has been signaled.
+
+108
+00:04:32,820 --> 00:04:35,944
+In other words, if the user hit Control
+C, let's just quit out of this loop
+
+109
+00:04:35,944 --> 00:04:37,150
+by calling stop.
+
+110
+00:04:37,150 --> 00:04:40,060
+>> And then now this code gets
+a little more interesting.
+
+111
+00:04:40,060 --> 00:04:42,460
+But notice that you don't have
+to write anything in main.
+
+112
+00:04:42,460 --> 00:04:44,760
+Rather, inside of main
+we do the following.
+
+113
+00:04:44,760 --> 00:04:47,520
+If the user has connected--
+this is a function we wrote,
+
+114
+00:04:47,520 --> 00:04:48,880
+that returns true or false.
+
+115
+00:04:48,880 --> 00:04:51,760
+And every time it's called
+it just says, yes, a client,
+
+116
+00:04:51,760 --> 00:04:53,550
+a browser has connected to the server.
+
+117
+00:04:53,550 --> 00:04:54,660
+Or, no, it has not.
+
+118
+00:04:54,660 --> 00:04:57,820
+And in this way can we just
+loop infinitely waiting for true
+
+119
+00:04:57,820 --> 00:04:59,610
+to be returned by that function.
+
+120
+00:04:59,610 --> 00:05:02,590
+>> Meanwhile, this next function,
+request, we also wrote for you.
+
+121
+00:05:02,590 --> 00:05:07,160
+This takes whatever is inside of that
+virtual envelope, the so-called HTTP
+
+122
+00:05:07,160 --> 00:05:10,180
+request, and actually
+parses it so to speak.
+
+123
+00:05:10,180 --> 00:05:13,260
+Looking at it top to bottom,
+left to right, and loads
+
+124
+00:05:13,260 --> 00:05:14,620
+all of those initial lines.
+
+125
+00:05:14,620 --> 00:05:17,250
+Like the get line and
+anything else below it,
+
+126
+00:05:17,250 --> 00:05:19,230
+into a variable that
+we've called message.
+
+127
+00:05:19,230 --> 00:05:20,590
+For an HTTP message.
+
+128
+00:05:20,590 --> 00:05:23,234
+And we've also loaded
+its length into length.
+
+129
+00:05:23,234 --> 00:05:24,400
+Now this is a bit different.
+
+130
+00:05:24,400 --> 00:05:25,650
+So let's take a quick look at this.
+
+131
+00:05:25,650 --> 00:05:27,110
+Even though you don't
+have to implement request,
+
+132
+00:05:27,110 --> 00:05:29,610
+it's helpful, perhaps, to
+understand how it works.
+
+133
+00:05:29,610 --> 00:05:33,450
+This function request apparently
+is taking in two arguments, message
+
+134
+00:05:33,450 --> 00:05:33,960
+and length.
+
+135
+00:05:33,960 --> 00:05:38,400
+But notice that I'm passing in an
+ampersand to both message and length.
+
+136
+00:05:38,400 --> 00:05:42,100
+But if we scroll up, what
+are message and length?
+
+137
+00:05:42,100 --> 00:05:44,795
+>> Well notice that message and
+length are declared inside
+
+138
+00:05:44,795 --> 00:05:47,900
+of main to be a char star.
+
+139
+00:05:47,900 --> 00:05:49,170
+And a size t.
+
+140
+00:05:49,170 --> 00:05:51,710
+Which is really just
+an int, respectively.
+
+141
+00:05:51,710 --> 00:05:55,830
+So what's curious here, though,
+is that if message is a char star
+
+142
+00:05:55,830 --> 00:06:01,160
+but I'm passing in ampersand of
+message, that's kind of like tech
+
+143
+00:06:01,160 --> 00:06:04,475
+getting the address of a pointer.
+
+144
+00:06:04,475 --> 00:06:06,550
+A double pointer, if you will.
+
+145
+00:06:06,550 --> 00:06:08,740
+>> And in fact, if I scroll on down.
+
+146
+00:06:08,740 --> 00:06:13,470
+Way down into this file, where
+request is actually implemented,
+
+147
+00:06:13,470 --> 00:06:16,770
+I'm going to see the following
+signature, or prototype,
+
+148
+00:06:16,770 --> 00:06:17,520
+for this function.
+
+149
+00:06:17,520 --> 00:06:19,580
+Which you've probably not seen before.
+
+150
+00:06:19,580 --> 00:06:21,180
+The request function returns a bool.
+
+151
+00:06:21,180 --> 00:06:22,430
+That's probably familiar.
+
+152
+00:06:22,430 --> 00:06:23,830
+But notice its first argument.
+
+153
+00:06:23,830 --> 00:06:26,329
+It's called message, but I
+could've called it anything here.
+
+154
+00:06:26,329 --> 00:06:27,575
+But it's char star star.
+
+155
+00:06:27,575 --> 00:06:29,420
+>> And this is kind of a neat thing.
+
+156
+00:06:29,420 --> 00:06:33,620
+Because I want this function
+request to allocate memory
+
+157
+00:06:33,620 --> 00:06:37,250
+for however big the HTTP request
+is in that virtual envelope
+
+158
+00:06:37,250 --> 00:06:41,670
+that it receives from the browser, I
+want to be able to return a string.
+
+159
+00:06:41,670 --> 00:06:43,820
+But I also want to be
+able to return a length.
+
+160
+00:06:43,820 --> 00:06:46,470
+So as you'll see in the
+specification, C, of course,
+
+161
+00:06:46,470 --> 00:06:47,850
+cannot return multiple values.
+
+162
+00:06:47,850 --> 00:06:49,860
+And in fact I'm only
+returning a bool here.
+
+163
+00:06:49,860 --> 00:06:51,860
+But just like we saw in
+lecture a while back you
+
+164
+00:06:51,860 --> 00:06:57,920
+can return two values if you
+pass in two values by reference.
+
+165
+00:06:57,920 --> 00:06:59,110
+Or by pointer.
+
+166
+00:06:59,110 --> 00:07:03,190
+So that you can actually go to
+those addresses, put values there,
+
+167
+00:07:03,190 --> 00:07:05,580
+and effectively via this
+back channel, so to speak,
+
+168
+00:07:05,580 --> 00:07:08,880
+can a function return
+multiple values to the caller.
+
+169
+00:07:08,880 --> 00:07:12,240
+>> In this case, request
+can return three values.
+
+170
+00:07:12,240 --> 00:07:14,140
+Its actual return type, a bool.
+
+171
+00:07:14,140 --> 00:07:16,490
+The message, a char star star.
+
+172
+00:07:16,490 --> 00:07:18,590
+And length, a size t.
+
+173
+00:07:18,590 --> 00:07:19,810
+Which is just an int.
+
+174
+00:07:19,810 --> 00:07:23,100
+Because this function request
+can go to the address length
+
+175
+00:07:23,100 --> 00:07:24,340
+and put a value there.
+
+176
+00:07:24,340 --> 00:07:26,970
+And it can go to the address of
+message and put a value there.
+
+177
+00:07:26,970 --> 00:07:28,380
+And that now should make sense.
+
+178
+00:07:28,380 --> 00:07:32,740
+>> Because even though message is
+a char star star, as soon as
+
+179
+00:07:32,740 --> 00:07:37,156
+you go there with star message,
+as we've seen before in code,
+
+180
+00:07:37,156 --> 00:07:38,280
+what are you going to find?
+
+181
+00:07:38,280 --> 00:07:41,030
+You're going to find waiting for
+you there, a chunk of memory that
+
+182
+00:07:41,030 --> 00:07:43,200
+should be a char star.
+
+183
+00:07:43,200 --> 00:07:44,414
+Or the address of a string.
+
+184
+00:07:44,414 --> 00:07:47,330
+And it's OK if you don't quite wrap
+your mind around that too quickly.
+
+185
+00:07:47,330 --> 00:07:51,470
+But consider that all we're doing
+is taking the address of a pointer
+
+186
+00:07:51,470 --> 00:07:53,980
+so that we can go there and
+actually put a pointer there.
+
+187
+00:07:53,980 --> 00:07:56,510
+But not to worry if that
+doesn't quite sink in just now.
+
+188
+00:07:56,510 --> 00:07:59,080
+Know for now that the
+request function effectively
+
+189
+00:07:59,080 --> 00:08:00,800
+provides you with those three values.
+
+190
+00:08:00,800 --> 00:08:02,290
+>> So let's now go back to main.
+
+191
+00:08:02,290 --> 00:08:06,570
+What's going on next, in
+main, is the following.
+
+192
+00:08:06,570 --> 00:08:12,020
+Once I have gotten inside of message
+and length, the two values I care about.
+
+193
+00:08:12,020 --> 00:08:14,340
+Then we go ahead and write
+some code for you that
+
+194
+00:08:14,340 --> 00:08:16,807
+allows you to read just the first line.
+
+195
+00:08:16,807 --> 00:08:18,640
+The so-called request
+line from the request.
+
+196
+00:08:18,640 --> 00:08:23,880
+Specifically, something like
+get/HTTP 1.1, and nothing more.
+
+197
+00:08:23,880 --> 00:08:26,200
+So there's a whole bunch of
+other HTTP headers, recall,
+
+198
+00:08:26,200 --> 00:08:28,680
+that a browser sends from
+a client to a server.
+
+199
+00:08:28,680 --> 00:08:31,790
+We're just ignoring all those so that
+all you see on the terminal window,
+
+200
+00:08:31,790 --> 00:08:38,559
+recall, is just something
+like, get/hello.HTML HTP/1.1.
+
+201
+00:08:38,559 --> 00:08:41,182
+>> So notice though, that these
+tricks we're doing here
+
+202
+00:08:41,182 --> 00:08:43,890
+are going to be useful, perhaps,
+in your own parse function which
+
+203
+00:08:43,890 --> 00:08:44,934
+you will implement.
+
+204
+00:08:44,934 --> 00:08:46,850
+Notice how that I'm just
+declaring a variable.
+
+205
+00:08:46,850 --> 00:08:49,650
+Happens to be const, which means,
+I promise not to change this.
+
+206
+00:08:49,650 --> 00:08:50,720
+Called haystack.
+
+207
+00:08:50,720 --> 00:08:52,860
+Then I cleverly named
+my next variable needle,
+
+208
+00:08:52,860 --> 00:08:56,130
+so that I can proverbially look
+for a needle in a haystack,
+
+209
+00:08:56,130 --> 00:08:58,530
+using a super handy
+function called str str.
+
+210
+00:08:58,530 --> 00:09:02,860
+S-T-R S-T-R, which per its man
+page, or per reference.CS50.NET,
+
+211
+00:09:02,860 --> 00:09:05,220
+allows you to search for
+one string in another.
+
+212
+00:09:05,220 --> 00:09:08,770
+And this is my way of
+searching for the end of a line
+
+213
+00:09:08,770 --> 00:09:11,750
+so that I can actually read
+just one line into memory.
+
+214
+00:09:11,750 --> 00:09:14,860
+>> Meanwhile, notice on
+line 176 here, I actually
+
+215
+00:09:14,860 --> 00:09:17,010
+allocate enough memory for that line.
+
+216
+00:09:17,010 --> 00:09:21,350
+And then using str and copy, and
+using just a ray bracket notation,
+
+217
+00:09:21,350 --> 00:09:23,070
+do I store in that array?
+
+218
+00:09:23,070 --> 00:09:24,926
+Exactly that first line.
+
+219
+00:09:24,926 --> 00:09:28,050
+In fact, let me just jump over quickly
+to the specification for problem set
+
+220
+00:09:28,050 --> 00:09:28,550
+six.
+
+221
+00:09:28,550 --> 00:09:29,841
+Do read through this in detail.
+
+222
+00:09:29,841 --> 00:09:32,190
+But what you will find is
+this particular line here.
+
+223
+00:09:32,190 --> 00:09:34,810
+Whereby based on the specification
+the formal definition
+
+224
+00:09:34,810 --> 00:09:40,180
+HTTP we specify what the very first
+line should be from any browser
+
+225
+00:09:40,180 --> 00:09:42,970
+to a server inside of that
+so-called virtual envelope.
+
+226
+00:09:42,970 --> 00:09:46,390
+>> Specifically, the browser should
+mention a method, like a get,
+
+227
+00:09:46,390 --> 00:09:47,830
+or post, or the like.
+
+228
+00:09:47,830 --> 00:09:50,610
+Then literally a space,
+represented here with just sp
+
+229
+00:09:50,610 --> 00:09:54,110
+so that it's explicit that
+we really want a space here.
+
+230
+00:09:54,110 --> 00:09:58,430
+Then request target which will
+be something like /hello.HTML.
+
+231
+00:09:58,430 --> 00:09:59,940
+Followed by another space.
+
+232
+00:09:59,940 --> 00:10:01,120
+Followed by a version.
+
+233
+00:10:01,120 --> 00:10:04,300
+Which would be something like HTTP/1.1.
+
+234
+00:10:04,300 --> 00:10:07,360
+Followed by C-R-L-F. Which is an
+acronym you're going to see a lot
+
+235
+00:10:07,360 --> 00:10:08,350
+in the specification.
+
+236
+00:10:08,350 --> 00:10:11,810
+And this is just a fancy way of
+saying backslash r, backslash n.
+
+237
+00:10:11,810 --> 00:10:14,210
+In other words, carriage
+return, new line.
+
+238
+00:10:14,210 --> 00:10:14,896
+Or line feed.
+
+239
+00:10:14,896 --> 00:10:16,020
+Carriage return, line feed.
+
+240
+00:10:16,020 --> 00:10:17,980
+That's what C-R-L-F means.
+
+241
+00:10:17,980 --> 00:10:20,180
+>> Now, meanwhile, if we
+go back to our code,
+
+242
+00:10:20,180 --> 00:10:22,430
+let's see what remains for you to do.
+
+243
+00:10:22,430 --> 00:10:26,350
+Inside of main, finally, there's
+a call to a parse function.
+
+244
+00:10:26,350 --> 00:10:30,670
+The purpose of parse is to take that
+very first line, whose definition we
+
+245
+00:10:30,670 --> 00:10:34,590
+just saw on the specification, and
+extract the so-called absolute path
+
+246
+00:10:34,590 --> 00:10:35,420
+and query.
+
+247
+00:10:35,420 --> 00:10:37,710
+Now take a look at the spec
+for what we mean by that.
+
+248
+00:10:37,710 --> 00:10:41,380
+>> But in the long story short,
+this thing here, request target,
+
+249
+00:10:41,380 --> 00:10:44,670
+is a string that can be
+broken up into two parts.
+
+250
+00:10:44,670 --> 00:10:47,680
+Or an absolute path like /hello.HTML.
+
+251
+00:10:47,680 --> 00:10:49,590
+Followed by an optional question mark.
+
+252
+00:10:49,590 --> 00:10:52,840
+And then something like q
+equals cats, or q equals dogs,
+
+253
+00:10:52,840 --> 00:10:55,760
+or any number of key value
+pairs that we saw in lecture
+
+254
+00:10:55,760 --> 00:10:59,420
+being part of the parameterization
+of an HTTP request.
+
+255
+00:10:59,420 --> 00:11:02,150
+>> So what you're going to need
+to do is implement parse.
+
+256
+00:11:02,150 --> 00:11:05,790
+And figure out how to iterate over
+line, which is just the first argument
+
+257
+00:11:05,790 --> 00:11:06,890
+that we're passing in.
+
+258
+00:11:06,890 --> 00:11:09,270
+Character for character for character.
+
+259
+00:11:09,270 --> 00:11:11,500
+Only going up to the end of that string.
+
+260
+00:11:11,500 --> 00:11:15,430
+Looking for that absolute path
+and looking for that query.
+
+261
+00:11:15,430 --> 00:11:18,880
+And what's nice about the fact that
+we've given you in the documentation
+
+262
+00:11:18,880 --> 00:11:21,460
+this grammatical definition
+of that first line,
+
+263
+00:11:21,460 --> 00:11:24,230
+here you're going to have to figure
+out, well, what is the method.
+
+264
+00:11:24,230 --> 00:11:25,170
+Is valid or not?
+
+265
+00:11:25,170 --> 00:11:27,460
+And we tell you in the spec
+when it is or isn't valid.
+
+266
+00:11:27,460 --> 00:11:29,120
+Get, for instance, will be valid.
+
+267
+00:11:29,120 --> 00:11:30,580
+Space will be easy to check for.
+
+268
+00:11:30,580 --> 00:11:34,460
+Just using week two style or problem
+set two style string checking.
+
+269
+00:11:34,460 --> 00:11:35,710
+Or character checking.
+
+270
+00:11:35,710 --> 00:11:37,570
+>> Request target is the thing
+you're going to want to parse.
+
+271
+00:11:37,570 --> 00:11:39,907
+So take a look at the spec
+for what's expected there.
+
+272
+00:11:39,907 --> 00:11:41,740
+And then lastly, HTTP
+version, you just want
+
+273
+00:11:41,740 --> 00:11:44,931
+to make sure it's among the
+supported versions like HTTP 1.1.
+
+274
+00:11:44,931 --> 00:11:47,430
+So essentially a parse function's
+going to be an opportunity
+
+275
+00:11:47,430 --> 00:11:50,013
+to just read this thing character
+for character for character,
+
+276
+00:11:50,013 --> 00:11:53,900
+or string by string, making sure
+that it matches this specification.
+
+277
+00:11:53,900 --> 00:11:54,900
+All right, back to main.
+
+278
+00:11:54,900 --> 00:11:55,858
+Let's see what remains.
+
+279
+00:11:55,858 --> 00:11:58,230
+So suppose you've now
+implemented your parse function.
+
+280
+00:11:58,230 --> 00:12:01,500
+We've parsed out from it the
+so-called absolute path and the query,
+
+281
+00:12:01,500 --> 00:12:03,520
+what does main now have to do with this?
+
+282
+00:12:03,520 --> 00:12:05,440
+Well, one, you'll see
+in the code that we URL
+
+283
+00:12:05,440 --> 00:12:09,420
+decoded in case the browser has
+encoded certain special characters
+
+284
+00:12:09,420 --> 00:12:12,670
+and special way, we go
+ahead and convert those back
+
+285
+00:12:12,670 --> 00:12:14,640
+to the appropriate Ascii characters.
+
+286
+00:12:14,640 --> 00:12:20,110
+>> Then we go ahead and figure out if
+the user has requested /hello.HTML,
+
+287
+00:12:20,110 --> 00:12:21,859
+what file do they really mean?
+
+288
+00:12:21,859 --> 00:12:24,150
+In other words, we need to
+take the root of the server,
+
+289
+00:12:24,150 --> 00:12:27,550
+that path to the public directory, and
+concatenate it with something like,
+
+290
+00:12:27,550 --> 00:12:28,840
+hello.HTML.
+
+291
+00:12:28,840 --> 00:12:31,240
+So that we have one bigger
+string that leads us exactly
+
+292
+00:12:31,240 --> 00:12:37,220
+to the actual hello.HTML file on
+CS50 IDEs hard drive, or disk.
+
+293
+00:12:37,220 --> 00:12:39,730
+>> Next, we check that the
+path actually exists.
+
+294
+00:12:39,730 --> 00:12:42,017
+Otherwise we throw a
+404 error for the user.
+
+295
+00:12:42,017 --> 00:12:43,850
+And, in fact, throughout
+our code you'll see
+
+296
+00:12:43,850 --> 00:12:46,630
+a lot of uses of this error
+function which we ourselves wrote,
+
+297
+00:12:46,630 --> 00:12:48,520
+and the specification walks you through.
+
+298
+00:12:48,520 --> 00:12:52,640
+This is just a way of returning
+something other than 200 to the user.
+
+299
+00:12:52,640 --> 00:12:55,790
+>> Now down here, I go ahead and
+figure out is what the user
+
+300
+00:12:55,790 --> 00:12:58,670
+has requested a file, or a directory.
+
+301
+00:12:58,670 --> 00:13:01,290
+Because if it's a directory, I
+want to do a couple of things.
+
+302
+00:13:01,290 --> 00:13:08,980
+One, if the user visits a
+URL that is for a directory,
+
+303
+00:13:08,980 --> 00:13:11,920
+but does not end in a slash,
+for conventional reasons,
+
+304
+00:13:11,920 --> 00:13:15,310
+I want to make sure that we change
+the URL to actually end in a slash.
+
+305
+00:13:15,310 --> 00:13:17,770
+And so you'll see in the source
+code that we've given you,
+
+306
+00:13:17,770 --> 00:13:21,980
+we force the user to redirect to not
+[? fu ?] but [? fu/, ?] if they've done
+
+307
+00:13:21,980 --> 00:13:22,480
+that.
+
+308
+00:13:22,480 --> 00:13:24,440
+And see the specification accordingly.
+
+309
+00:13:24,440 --> 00:13:26,120
+>> Meanwhile, we check one other thing.
+
+310
+00:13:26,120 --> 00:13:30,110
+If the user has visited a
+directory and that directory
+
+311
+00:13:30,110 --> 00:13:35,240
+contains a file called index.html
+or index.PHP, by human convention
+
+312
+00:13:35,240 --> 00:13:37,840
+we don't want to show them the
+contents of that directory.
+
+313
+00:13:37,840 --> 00:13:41,990
+We want to show them the contents
+of that default file, index.HTML,
+
+314
+00:13:41,990 --> 00:13:43,640
+or index.php.
+
+315
+00:13:43,640 --> 00:13:45,750
+And so the code I've
+highlighted here calls
+
+316
+00:13:45,750 --> 00:13:48,430
+a function called indexes
+that simply checks,
+
+317
+00:13:48,430 --> 00:13:53,610
+does there exist a file in here
+called index.html, or index.php.
+
+318
+00:13:53,610 --> 00:13:55,830
+>> Otherwise, if none of
+those conditions apply
+
+319
+00:13:55,830 --> 00:13:57,920
+we simply call function
+list, which we wrote,
+
+320
+00:13:57,920 --> 00:14:00,280
+which literally lists the
+contents of a directory.
+
+321
+00:14:00,280 --> 00:14:03,680
+All right, and what if the request
+that the user's browser has made
+
+322
+00:14:03,680 --> 00:14:05,830
+is not for a directory, but for a file?
+
+323
+00:14:05,830 --> 00:14:07,980
+Well, first we call a lookup function.
+
+324
+00:14:07,980 --> 00:14:10,750
+Which is going to tell the
+server, is this a JPEG, is this
+
+325
+00:14:10,750 --> 00:14:13,770
+an HTML file, is this a
+GIF, or some other format.
+
+326
+00:14:13,770 --> 00:14:17,300
+If so, it's then going to
+check, well, is it a PHP file.
+
+327
+00:14:17,300 --> 00:14:20,060
+If so, we want to call a function
+called interpret, that we wrote,
+
+328
+00:14:20,060 --> 00:14:22,540
+that interprets that PHP file
+and spits out the results.
+
+329
+00:14:22,540 --> 00:14:24,941
+Or, more compellingly,
+if it's anything else,
+
+330
+00:14:24,941 --> 00:14:26,690
+let's go ahead and
+just transfer the file.
+
+331
+00:14:26,690 --> 00:14:29,680
+Like the GIF or the JPEG
+from the server to the user,
+
+332
+00:14:29,680 --> 00:14:33,750
+as though they requested an HTML page,
+image, or any number of other things.
+
+333
+00:14:33,750 --> 00:14:37,920
+>> Finally, if nothing else seems to
+work, we're just going to say 501.
+
+334
+00:14:37,920 --> 00:14:42,190
+Which is that 501, not implemented
+message, meaning the server
+
+335
+00:14:42,190 --> 00:14:44,230
+is not yet complete.

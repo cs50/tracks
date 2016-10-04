@@ -1,0 +1,1363 @@
+1
+00:00:00,000 --> 00:00:00,499
+
+
+2
+00:00:00,499 --> 00:00:02,810
+ZAMYLA CHAN: Let's start
+by creating our dictionary.
+
+3
+00:00:02,810 --> 00:00:05,320
+For each word found in
+the dictionary text file,
+
+4
+00:00:05,320 --> 00:00:08,010
+we'll want to store it in the
+dictionary's data structure.
+
+5
+00:00:08,010 --> 00:00:12,210
+And it's up to us to create a
+representation for our dictionary,
+
+6
+00:00:12,210 --> 00:00:15,790
+whether it be a linked
+list, hash table, or try.
+
+7
+00:00:15,790 --> 00:00:18,170
+If you choose to implement
+your dictionary as a try,
+
+8
+00:00:18,170 --> 00:00:20,420
+then you can fast forward
+in this video, because we're
+
+9
+00:00:20,420 --> 00:00:23,510
+going to be talking about linked
+lists and hash tables now.
+
+10
+00:00:23,510 --> 00:00:26,690
+Hash tables can be thought
+of as an array of buckets,
+
+11
+00:00:26,690 --> 00:00:29,560
+where a hash function will
+give us the bucket that a given
+
+12
+00:00:29,560 --> 00:00:32,580
+key or value belongs to.
+
+13
+00:00:32,580 --> 00:00:34,290
+Let's look at an example.
+
+14
+00:00:34,290 --> 00:00:39,200
+Over my years working with CS50, I've
+accumulated a lot of CS50 Stress Balls.
+
+15
+00:00:39,200 --> 00:00:42,147
+So much so that I'm having
+trouble organizing them all.
+
+16
+00:00:42,147 --> 00:00:44,480
+I've numbered them in the
+order that I've received them.
+
+17
+00:00:44,480 --> 00:00:47,980
+So, in total I have
+10 CS50 Stress Balls.
+
+18
+00:00:47,980 --> 00:00:50,560
+Now, I want to tidy up my room.
+
+19
+00:00:50,560 --> 00:00:52,640
+So I put them all inside of a box.
+
+20
+00:00:52,640 --> 00:00:56,520
+Say I wanted to reminisce
+about my very first CS50 fair.
+
+21
+00:00:56,520 --> 00:00:58,570
+Then I would go to my
+box of stress balls
+
+22
+00:00:58,570 --> 00:01:02,250
+and I would sift through to
+find the ball with the number 1.
+
+23
+00:01:02,250 --> 00:01:05,410
+Now, I could be very lucky and I
+could find this ball right away.
+
+24
+00:01:05,410 --> 00:01:08,230
+Or I could spend some time
+sifting through this box
+
+25
+00:01:08,230 --> 00:01:10,240
+to find the right ball.
+
+26
+00:01:10,240 --> 00:01:13,670
+Instead, I decide to make this
+process a little bit easier.
+
+27
+00:01:13,670 --> 00:01:17,080
+And instead of putting all of
+my stress balls into one box,
+
+28
+00:01:17,080 --> 00:01:21,040
+I put them into two, one
+for odds and one for evens.
+
+29
+00:01:21,040 --> 00:01:24,170
+So now I have a reliable
+method of sorting my stress
+
+30
+00:01:24,170 --> 00:01:25,760
+balls into two groups.
+
+31
+00:01:25,760 --> 00:01:29,300
+So now, say I wanted to find
+the stress ball numbered 1.
+
+32
+00:01:29,300 --> 00:01:32,270
+Then I would be able to
+discard the evens box
+
+33
+00:01:32,270 --> 00:01:33,980
+and just look in the odds box.
+
+34
+00:01:33,980 --> 00:01:37,470
+And with half as many balls as
+before, then it's more likely
+
+35
+00:01:37,470 --> 00:01:39,870
+that I'll find that ball a lot faster.
+
+36
+00:01:39,870 --> 00:01:42,570
+What I essentially did, here,
+was create a hash table.
+
+37
+00:01:42,570 --> 00:01:47,100
+In this case, my hash table is small
+with only two buckets, my two boxes.
+
+38
+00:01:47,100 --> 00:01:50,830
+And my hash function, in this case,
+checks the number of the ball.
+
+39
+00:01:50,830 --> 00:01:53,250
+And if that number is
+odd, then that means
+
+40
+00:01:53,250 --> 00:01:57,330
+that the ball belongs in the odd
+box, and otherwise in the even box.
+
+41
+00:01:57,330 --> 00:02:01,150
+So, whenever I'm sorting my
+stress balls or looking for it,
+
+42
+00:02:01,150 --> 00:02:04,040
+I know which box it'll belong to.
+
+43
+00:02:04,040 --> 00:02:08,350
+Now, I hate to break it to you, but I
+have way more than just 10 CS50 Stress
+
+44
+00:02:08,350 --> 00:02:09,729
+Balls in my closet.
+
+45
+00:02:09,729 --> 00:02:13,250
+So, let's say I'm looking
+at just my first 20.
+
+46
+00:02:13,250 --> 00:02:16,820
+Well then, I can do the same process
+as before, and sort all of the odds
+
+47
+00:02:16,820 --> 00:02:20,360
+into the odd box and all of
+the evens into the even box.
+
+48
+00:02:20,360 --> 00:02:23,160
+But now I'm faced with the
+same problem as before.
+
+49
+00:02:23,160 --> 00:02:25,680
+With 10 stress balls
+per box, it might get
+
+50
+00:02:25,680 --> 00:02:29,170
+a little bit more difficult to find
+the ball that we're looking for.
+
+51
+00:02:29,170 --> 00:02:32,600
+So, I might decide that instead
+of just having two boxes,
+
+52
+00:02:32,600 --> 00:02:35,260
+I'm going to sort my
+stress balls into four.
+
+53
+00:02:35,260 --> 00:02:40,530
+With this organization, I have one box
+for balls numbered 1 through 5, another
+
+54
+00:02:40,530 --> 00:02:46,480
+for 6 through 10, another for 11
+through 15, and then my last box for 16
+
+55
+00:02:46,480 --> 00:02:48,100
+through 20.
+
+56
+00:02:48,100 --> 00:02:50,810
+So, here I have a nicely
+balanced hash table.
+
+57
+00:02:50,810 --> 00:02:54,890
+By that, I mean that I have the same
+number of keys-- or in this case,
+
+58
+00:02:54,890 --> 00:02:58,260
+stress balls-- per box-- bucket.
+
+59
+00:02:58,260 --> 00:03:02,510
+You can see how it might be unbalanced
+if instead of having these four
+
+60
+00:03:02,510 --> 00:03:07,130
+boxes, like so, I had created
+three boxes, one for balls 1
+
+61
+00:03:07,130 --> 00:03:12,930
+through 5, another for 6 through 10,
+and then another for 11 through 20.
+
+62
+00:03:12,930 --> 00:03:16,920
+So what we've learned is that a hash
+table is simply a collection, an array,
+
+63
+00:03:16,920 --> 00:03:18,000
+of buckets.
+
+64
+00:03:18,000 --> 00:03:22,710
+And the number of buckets that we have
+can change, as does the hash function,
+
+65
+00:03:22,710 --> 00:03:25,810
+depending on what we're dealing with.
+
+66
+00:03:25,810 --> 00:03:29,810
+Now in this case, we don't have physical
+boxes to sort our stress balls into.
+
+67
+00:03:29,810 --> 00:03:33,160
+What we're going to deal
+with is linked lists.
+
+68
+00:03:33,160 --> 00:03:36,100
+A hash table is simply
+an array of linked lists.
+
+69
+00:03:36,100 --> 00:03:39,890
+Now you'll see this slide pop up a lot,
+because it's a really important concept
+
+70
+00:03:39,890 --> 00:03:41,150
+to remember.
+
+71
+00:03:41,150 --> 00:03:43,400
+Linked lists are comprised of nodes.
+
+72
+00:03:43,400 --> 00:03:45,800
+The first component of
+the node is its value.
+
+73
+00:03:45,800 --> 00:03:48,380
+Now the data type of this value
+depends on what kind of node
+
+74
+00:03:48,380 --> 00:03:49,490
+you're dealing with.
+
+75
+00:03:49,490 --> 00:03:51,590
+In the previous example
+with my stress balls,
+
+76
+00:03:51,590 --> 00:03:53,810
+then the value would be an integer.
+
+77
+00:03:53,810 --> 00:03:56,230
+But in this case when we're
+dealing with words, then
+
+78
+00:03:56,230 --> 00:04:00,040
+the value is going to be a different
+type, most likely a char array.
+
+79
+00:04:00,040 --> 00:04:04,480
+The second component of a node
+is a pointer to another node.
+
+80
+00:04:04,480 --> 00:04:06,690
+This is important
+because in a linked list,
+
+81
+00:04:06,690 --> 00:04:09,700
+we have our first node,
+which then contains a pointer
+
+82
+00:04:09,700 --> 00:04:14,400
+to the node following it, which contains
+a pointer to the node after that,
+
+83
+00:04:14,400 --> 00:04:17,620
+so on and so forth, until the
+very last node in the list
+
+84
+00:04:17,620 --> 00:04:20,420
+contains a pointer to null.
+
+85
+00:04:20,420 --> 00:04:22,620
+So when we're dealing
+with linked lists, it's
+
+86
+00:04:22,620 --> 00:04:25,340
+very important not to lose any links.
+
+87
+00:04:25,340 --> 00:04:29,500
+So I find it very useful to
+draw schematics like these,
+
+88
+00:04:29,500 --> 00:04:32,620
+or even physically take hold of
+things and make sure that you
+
+89
+00:04:32,620 --> 00:04:36,460
+don't lose any links prematurely.
+
+90
+00:04:36,460 --> 00:04:40,270
+So how do we incorporate
+linked lists into hash tables?
+
+91
+00:04:40,270 --> 00:04:45,300
+Well, as I said before, hash tables
+are just arrays of linked lists.
+
+92
+00:04:45,300 --> 00:04:48,920
+So here, in this case, I
+have an integer hash table.
+
+93
+00:04:48,920 --> 00:04:53,760
+So every node contains an integer
+value as well as a node pointer.
+
+94
+00:04:53,760 --> 00:04:55,380
+And I have four buckets.
+
+95
+00:04:55,380 --> 00:05:00,450
+Try and figure out if you can see what
+the hash function for this might be.
+
+96
+00:05:00,450 --> 00:05:04,880
+Now, say I have three values that I
+want to insert into my hash table.
+
+97
+00:05:04,880 --> 00:05:09,390
+Then what I'll do is I'll take each
+node at a time, hash the value,
+
+98
+00:05:09,390 --> 00:05:12,770
+figure out which bucket or
+which linked list it belongs to,
+
+99
+00:05:12,770 --> 00:05:14,740
+and insert it there.
+
+100
+00:05:14,740 --> 00:05:17,810
+Now that we've got a nice
+grasp of these concepts,
+
+101
+00:05:17,810 --> 00:05:20,110
+let's take a look at some code.
+
+102
+00:05:20,110 --> 00:05:22,390
+So how do we go about creating nodes?
+
+103
+00:05:22,390 --> 00:05:27,140
+Well, we'll start by allocating enough
+space in memory to store our node.
+
+104
+00:05:27,140 --> 00:05:29,970
+To do that, we'll use
+the malloc function.
+
+105
+00:05:29,970 --> 00:05:33,020
+Malloc will need to know how
+many bytes to allocate in memory.
+
+106
+00:05:33,020 --> 00:05:36,020
+So then we'll use the size
+of function to calculate
+
+107
+00:05:36,020 --> 00:05:38,790
+the size in bytes of a node.
+
+108
+00:05:38,790 --> 00:05:42,460
+Once we have that, malloc
+will give us the pointer,
+
+109
+00:05:42,460 --> 00:05:46,760
+which indicates a spot in memory
+where it's reserved for our char
+
+110
+00:05:46,760 --> 00:05:49,550
+array and a pointer to a node.
+
+111
+00:05:49,550 --> 00:05:52,940
+So the key takeaway here is that
+whenever we're creating a node,
+
+112
+00:05:52,940 --> 00:05:57,150
+we actually just want to
+malloc a node pointer.
+
+113
+00:05:57,150 --> 00:06:00,700
+So if, say I wanted to
+create another node, node 2,
+
+114
+00:06:00,700 --> 00:06:02,880
+then I would do the same thing again.
+
+115
+00:06:02,880 --> 00:06:06,660
+Allocating another spot
+in memory for that node.
+
+116
+00:06:06,660 --> 00:06:09,490
+Now I want to set the
+values for these nodes.
+
+117
+00:06:09,490 --> 00:06:13,260
+So node 1 and node 2 are
+actually node pointers.
+
+118
+00:06:13,260 --> 00:06:17,470
+So I'll use arrow notation in
+order to access the word variable.
+
+119
+00:06:17,470 --> 00:06:21,280
+And then I can set those
+two words, hello world.
+
+120
+00:06:21,280 --> 00:06:23,450
+These are just two independent nodes.
+
+121
+00:06:23,450 --> 00:06:24,720
+How do I link them?
+
+122
+00:06:24,720 --> 00:06:29,205
+Well, I'll simply access
+the next variable for node 1
+
+123
+00:06:29,205 --> 00:06:32,330
+and point that to node 2.
+
+124
+00:06:32,330 --> 00:06:32,940
+Great.
+
+125
+00:06:32,940 --> 00:06:36,320
+So now we have a linked list of size 2.
+
+126
+00:06:36,320 --> 00:06:39,040
+Remember that a hash
+table is simply an array
+
+127
+00:06:39,040 --> 00:06:43,730
+of linked lists, where each element
+of the array is a node pointer.
+
+128
+00:06:43,730 --> 00:06:46,900
+So your hash table might
+look something like this.
+
+129
+00:06:46,900 --> 00:06:49,100
+You define your struct for a node.
+
+130
+00:06:49,100 --> 00:06:52,670
+And then you create an
+array of nodes, the same way
+
+131
+00:06:52,670 --> 00:06:56,110
+that you would create an array
+of any other variable type.
+
+132
+00:06:56,110 --> 00:06:58,860
+Here, my hash table has 50 buckets.
+
+133
+00:06:58,860 --> 00:07:03,290
+But depending on the hash function you
+decide, it could be a different number.
+
+134
+00:07:03,290 --> 00:07:06,100
+Now that we've created our
+dictionary as a hash table,
+
+135
+00:07:06,100 --> 00:07:09,900
+then it's time to populate the
+hash table with nodes containing
+
+136
+00:07:09,900 --> 00:07:11,660
+words found in the dictionary.
+
+137
+00:07:11,660 --> 00:07:12,990
+How do we do this?
+
+138
+00:07:12,990 --> 00:07:15,590
+Well, let's look at the fscanf function.
+
+139
+00:07:15,590 --> 00:07:18,760
+This piece of code will
+take the dictionary file--
+
+140
+00:07:18,760 --> 00:07:21,730
+in this case it's called
+file-- look for a string,
+
+141
+00:07:21,730 --> 00:07:25,280
+and then put that string
+into a variable called word.
+
+142
+00:07:25,280 --> 00:07:30,690
+And it will execute this loop until the
+end of the dictionary file is reached.
+
+143
+00:07:30,690 --> 00:07:32,690
+Now what goes inside of this loop?
+
+144
+00:07:32,690 --> 00:07:35,140
+Well, we know that for
+every word that we scan,
+
+145
+00:07:35,140 --> 00:07:37,940
+we want to malloc a node for it.
+
+146
+00:07:37,940 --> 00:07:40,300
+Now whenever we create
+a node, we always want
+
+147
+00:07:40,300 --> 00:07:43,100
+to check to make sure malloc succeeded.
+
+148
+00:07:43,100 --> 00:07:45,650
+But what happens if
+you run out of memory?
+
+149
+00:07:45,650 --> 00:07:47,340
+Well, malloc will return null.
+
+150
+00:07:47,340 --> 00:07:49,500
+So whenever we make a
+new node, you always
+
+151
+00:07:49,500 --> 00:07:53,190
+need to check to make sure
+that the pointer to that node
+
+152
+00:07:53,190 --> 00:07:54,420
+doesn't return null.
+
+153
+00:07:54,420 --> 00:07:57,020
+If it does, then you need
+to unload your dictionary
+
+154
+00:07:57,020 --> 00:08:00,210
+and return false so
+that speller will quit.
+
+155
+00:08:00,210 --> 00:08:03,850
+But if it succeeds, then you
+can proceed and copy that word
+
+156
+00:08:03,850 --> 00:08:07,270
+into your node by using
+the function string copy.
+
+157
+00:08:07,270 --> 00:08:07,970
+OK.
+
+158
+00:08:07,970 --> 00:08:12,480
+So now we have a new node with a value
+that we scanned in from the dictionary.
+
+159
+00:08:12,480 --> 00:08:16,940
+Let's go on and insert
+that into a linked list.
+
+160
+00:08:16,940 --> 00:08:18,880
+Remember I said that
+it's really important
+
+161
+00:08:18,880 --> 00:08:21,600
+to maintain all links
+in your linked lists,
+
+162
+00:08:21,600 --> 00:08:26,800
+and make sure not to let go of any
+links until you know it's safe.
+
+163
+00:08:26,800 --> 00:08:30,530
+Let's look at an incorrect
+way of doing this.
+
+164
+00:08:30,530 --> 00:08:34,570
+Say I wanted to insert my new node
+into the very beginning of my list
+
+165
+00:08:34,570 --> 00:08:35,929
+and put that first.
+
+166
+00:08:35,929 --> 00:08:39,260
+Well, if I have a node
+pointer, called head, pointing
+
+167
+00:08:39,260 --> 00:08:43,130
+to the very first element in my
+linked list, then I might say,
+
+168
+00:08:43,130 --> 00:08:47,230
+well, head now points to new node.
+
+169
+00:08:47,230 --> 00:08:52,930
+But this won't do because then
+I lose the link to the A node.
+
+170
+00:08:52,930 --> 00:08:55,630
+And then I lose the entire list.
+
+171
+00:08:55,630 --> 00:08:58,750
+Let's look at a correct way to do this.
+
+172
+00:08:58,750 --> 00:09:01,810
+Knowing that we're inserting new
+node into the very beginning,
+
+173
+00:09:01,810 --> 00:09:04,210
+and that becomes the
+first value, then that
+
+174
+00:09:04,210 --> 00:09:08,990
+means that new node should point
+to whichever node was previously
+
+175
+00:09:08,990 --> 00:09:10,910
+the first value in the list.
+
+176
+00:09:10,910 --> 00:09:17,330
+So let's point new node next to the
+pointer that head's pointing to.
+
+177
+00:09:17,330 --> 00:09:20,490
+Now that we have two pointers
+holding on to that A node,
+
+178
+00:09:20,490 --> 00:09:25,100
+we can safely reassign the
+head pointer to new node.
+
+179
+00:09:25,100 --> 00:09:28,230
+And there we have a linked list.
+
+180
+00:09:28,230 --> 00:09:31,700
+So now we know how to take a word
+from the dictionary and take that word
+
+181
+00:09:31,700 --> 00:09:36,430
+and put it into a node, and take that
+node and put it into a linked list.
+
+182
+00:09:36,430 --> 00:09:39,240
+So next we need to
+decide, well, how do we
+
+183
+00:09:39,240 --> 00:09:42,470
+know how to put which word
+in to which linked list?
+
+184
+00:09:42,470 --> 00:09:46,920
+Because remember, a hash table is
+simply an array of linked lists.
+
+185
+00:09:46,920 --> 00:09:50,760
+Well, how did we know which box
+to put which stress ball in?
+
+186
+00:09:50,760 --> 00:09:52,810
+We used a hash function.
+
+187
+00:09:52,810 --> 00:09:55,960
+The hash function, in this
+case, will take a string.
+
+188
+00:09:55,960 --> 00:09:58,810
+And from that string it
+will calculate an index,
+
+189
+00:09:58,810 --> 00:10:01,250
+the index corresponding
+to which bucket--
+
+190
+00:10:01,250 --> 00:10:05,630
+which element in the hash
+table-- that word belongs to.
+
+191
+00:10:05,630 --> 00:10:08,730
+Now hash functions all
+have to be deterministic.
+
+192
+00:10:08,730 --> 00:10:12,710
+What I mean by this, is that the same
+value needs to map to the same bucket
+
+193
+00:10:12,710 --> 00:10:13,880
+every time.
+
+194
+00:10:13,880 --> 00:10:17,810
+So in the stress ball example, when
+I had the number 1 stress ball,
+
+195
+00:10:17,810 --> 00:10:21,040
+I knew that with my hash
+function every time it
+
+196
+00:10:21,040 --> 00:10:24,600
+would indicate that I'd have
+to put it in the odd box.
+
+197
+00:10:24,600 --> 00:10:26,530
+So same with our spell checker.
+
+198
+00:10:26,530 --> 00:10:29,490
+Every single time that
+I hash the word apple,
+
+199
+00:10:29,490 --> 00:10:33,230
+it should give me the very
+same index, whether or not
+
+200
+00:10:33,230 --> 00:10:37,980
+I'm putting it into the dictionary for
+the first time or checking it later.
+
+201
+00:10:37,980 --> 00:10:42,220
+Once you've made your hash function,
+then you can hash your words.
+
+202
+00:10:42,220 --> 00:10:45,911
+The word that you want to hash is
+contained within your new node, arrow,
+
+203
+00:10:45,911 --> 00:10:46,410
+word.
+
+204
+00:10:46,410 --> 00:10:51,210
+So hashing that will give you the index
+of whichever bucket in your hash table
+
+205
+00:10:51,210 --> 00:10:53,660
+you should put that word in.
+
+206
+00:10:53,660 --> 00:10:57,180
+From there, you insert
+into the linked list.
+
+207
+00:10:57,180 --> 00:10:58,350
+How do you do that?
+
+208
+00:10:58,350 --> 00:11:01,230
+Well, I've already given
+you the tools to do so.
+
+209
+00:11:01,230 --> 00:11:04,570
+Knowing that a hash table is
+simply an array of linked lists
+
+210
+00:11:04,570 --> 00:11:08,220
+and that each element of
+an array is a node pointer,
+
+211
+00:11:08,220 --> 00:11:12,160
+pointing to the very first
+node in that linked list.
+
+212
+00:11:12,160 --> 00:11:16,240
+Another way to represent the dictionary
+data structure is with a try.
+
+213
+00:11:16,240 --> 00:11:19,357
+Now in tries, we're also going
+to make them up with nodes.
+
+214
+00:11:19,357 --> 00:11:22,190
+But in this case, the nodes are
+going to be different than the nodes
+
+215
+00:11:22,190 --> 00:11:24,110
+that we used in the hash table.
+
+216
+00:11:24,110 --> 00:11:27,730
+Every node for a try contains
+an array of node pointers,
+
+217
+00:11:27,730 --> 00:11:32,200
+one for every single letter in the
+alphabet and the apostrophe character.
+
+218
+00:11:32,200 --> 00:11:35,830
+Notice, here, how I included the
+apostrophe character with a backslash
+
+219
+00:11:35,830 --> 00:11:36,810
+in front of it?
+
+220
+00:11:36,810 --> 00:11:40,650
+That way I allow the
+apostrophe to parse correctly.
+
+221
+00:11:40,650 --> 00:11:44,280
+Now each element in that array
+will point to another node.
+
+222
+00:11:44,280 --> 00:11:46,500
+And then if that is
+null, then that means
+
+223
+00:11:46,500 --> 00:11:49,240
+that the letter that
+that array belongs to
+
+224
+00:11:49,240 --> 00:11:54,350
+is not the next letter of any word
+in any sequence in the dictionary.
+
+225
+00:11:54,350 --> 00:11:58,000
+Now just because a letter is
+contained within the path of the word
+
+226
+00:11:58,000 --> 00:12:01,940
+doesn't mean that it's the end of
+a valid word in the dictionary.
+
+227
+00:12:01,940 --> 00:12:04,390
+So every node will also
+indicate whether it's
+
+228
+00:12:04,390 --> 00:12:07,670
+the last character of a
+valid word in the dictionary.
+
+229
+00:12:07,670 --> 00:12:10,270
+So how do we represent this in a struct?
+
+230
+00:12:10,270 --> 00:12:14,390
+Well, we'll have our Boolean indicating
+whether the node is a word or not.
+
+231
+00:12:14,390 --> 00:12:16,560
+And then I'll have my
+array of node pointers.
+
+232
+00:12:16,560 --> 00:12:18,290
+In this case, I'm calling it children.
+
+233
+00:12:18,290 --> 00:12:23,160
+Finally, in order to keep track of
+the top or the beginning of your try,
+
+234
+00:12:23,160 --> 00:12:27,820
+we're going to have another node
+pointer, in this case, called root.
+
+235
+00:12:27,820 --> 00:12:31,850
+Scanning through the dictionary one word
+at a time will iterate through the try
+
+236
+00:12:31,850 --> 00:12:33,370
+as follows.
+
+237
+00:12:33,370 --> 00:12:35,710
+Given that each element
+in the children array
+
+238
+00:12:35,710 --> 00:12:38,700
+corresponds to a different
+letter, we'll check the value
+
+239
+00:12:38,700 --> 00:12:41,270
+at the appropriate index of children.
+
+240
+00:12:41,270 --> 00:12:44,530
+Now, if that node is null, then
+we'll malloc a new node for it
+
+241
+00:12:44,530 --> 00:12:47,540
+and have children at
+that index point to it.
+
+242
+00:12:47,540 --> 00:12:50,750
+But if it's not null, then that
+means we've already created the node.
+
+243
+00:12:50,750 --> 00:12:54,050
+So we can then move to that
+node and continue the process.
+
+244
+00:12:54,050 --> 00:12:56,750
+Finally, once we reach the
+end of the dictionary word,
+
+245
+00:12:56,750 --> 00:13:00,060
+we'll set the is word Boolean to true.
+
+246
+00:13:00,060 --> 00:13:04,600
+Let's go through an example, storing
+fox into an empty dictionary.
+
+247
+00:13:04,600 --> 00:13:06,570
+The word fox begins with the letter f.
+
+248
+00:13:06,570 --> 00:13:09,610
+So for the letter f, we're
+going to malloc a new node.
+
+249
+00:13:09,610 --> 00:13:12,980
+We're going to put this
+at children on index 5.
+
+250
+00:13:12,980 --> 00:13:16,780
+That's because f is the
+sixth letter of the alphabet.
+
+251
+00:13:16,780 --> 00:13:20,540
+So once we've done that, then
+we proceed to the next letter.
+
+252
+00:13:20,540 --> 00:13:22,380
+Well, o comes after f.
+
+253
+00:13:22,380 --> 00:13:26,930
+So then from that f node, we'll
+then access the corresponding node.
+
+254
+00:13:26,930 --> 00:13:29,580
+In this case, children at index 14.
+
+255
+00:13:29,580 --> 00:13:31,820
+And then we'll do the same thing for x.
+
+256
+00:13:31,820 --> 00:13:34,710
+Finally, here I indicate,
+by shading the box
+
+257
+00:13:34,710 --> 00:13:38,240
+in green, that is word is set to true.
+
+258
+00:13:38,240 --> 00:13:40,430
+Now that we've loaded
+fox into our dictionary,
+
+259
+00:13:40,430 --> 00:13:43,960
+let's go to the next valid
+word in our dictionary, foo.
+
+260
+00:13:43,960 --> 00:13:45,880
+Now foo starts with the letter f.
+
+261
+00:13:45,880 --> 00:13:48,340
+We've already created a node for that.
+
+262
+00:13:48,340 --> 00:13:50,240
+So we don't need to create a new one.
+
+263
+00:13:50,240 --> 00:13:53,610
+We progress to the second
+letter of this word, o.
+
+264
+00:13:53,610 --> 00:13:59,260
+And we've also already created an o
+node that follows the first f node.
+
+265
+00:13:59,260 --> 00:14:04,790
+So then the only node that we need to
+create is the last o in the word foo.
+
+266
+00:14:04,790 --> 00:14:08,360
+Remember that whenever you make a new
+node, you have to allocate space for it
+
+267
+00:14:08,360 --> 00:14:13,270
+in memory and make sure to check
+whether or not malloc returns null.
+
+268
+00:14:13,270 --> 00:14:16,150
+Now if it doesn't, and if you
+succeed in creating a node,
+
+269
+00:14:16,150 --> 00:14:17,860
+then you've reached the end of the word.
+
+270
+00:14:17,860 --> 00:14:20,570
+So we can set is word to true.
+
+271
+00:14:20,570 --> 00:14:24,310
+Let's go on and enter another
+word into our dictionary, dog.
+
+272
+00:14:24,310 --> 00:14:25,600
+I start with the letter d.
+
+273
+00:14:25,600 --> 00:14:28,240
+And d is the fourth
+letter of the alphabet.
+
+274
+00:14:28,240 --> 00:14:31,240
+So then I access children at index 3.
+
+275
+00:14:31,240 --> 00:14:34,886
+From there, I create another
+node for the letter o.
+
+276
+00:14:34,886 --> 00:14:39,620
+Notice that this node is going to be a
+new node, because the letter o in dog
+
+277
+00:14:39,620 --> 00:14:44,330
+follows the letter d, not the
+letter f as we previously created.
+
+278
+00:14:44,330 --> 00:14:46,500
+So then, completing the
+chain for the word dog,
+
+279
+00:14:46,500 --> 00:14:52,190
+I then create another node for the
+letter g, and then set is word to true.
+
+280
+00:14:52,190 --> 00:14:56,690
+Now let's say, the next word that
+I need to enter is the word do.
+
+281
+00:14:56,690 --> 00:14:59,650
+Well, do is a substring of dog.
+
+282
+00:14:59,650 --> 00:15:02,310
+So I won't need to
+create any more nodes.
+
+283
+00:15:02,310 --> 00:15:07,180
+What I'll need to do is navigate down
+to that o and set is word to true.
+
+284
+00:15:07,180 --> 00:15:10,460
+So following this chain, you
+could either end a valid word
+
+285
+00:15:10,460 --> 00:15:14,890
+at do or advance to dog.
+
+286
+00:15:14,890 --> 00:15:15,950
+And there you have it.
+
+287
+00:15:15,950 --> 00:15:18,960
+Whether or not you've implemented
+as a hash table or a try
+
+288
+00:15:18,960 --> 00:15:23,370
+or perhaps a linked list,
+you've created your dictionary.
+
+289
+00:15:23,370 --> 00:15:25,383

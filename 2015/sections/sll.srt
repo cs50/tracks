@@ -1,0 +1,2227 @@
+1
+00:00:00,000 --> 00:00:02,832
+>> [MUSIC PLAYING]
+
+2
+00:00:02,832 --> 00:00:05,670
+
+3
+00:00:05,670 --> 00:00:08,560
+>> DOUG LLOYD: OK, so at
+this point in the course,
+
+4
+00:00:08,560 --> 00:00:15,300
+we've covered a lot of the basics of C.
+We know a lot about variables, arrays,
+
+5
+00:00:15,300 --> 00:00:17,610
+pointers, all that good stuff.
+
+6
+00:00:17,610 --> 00:00:21,610
+Those are all sort of built
+in to see as the fundamentals,
+
+7
+00:00:21,610 --> 00:00:23,880
+but we can do more, right?
+
+8
+00:00:23,880 --> 00:00:27,930
+We can combine things
+together in interesting ways.
+
+9
+00:00:27,930 --> 00:00:31,010
+>> And so let's do that, let's start
+to branch out of what C gives us,
+
+10
+00:00:31,010 --> 00:00:35,270
+and start to create our own data
+structures using these building
+
+11
+00:00:35,270 --> 00:00:40,590
+blocks together to do something
+really valuable, useful.
+
+12
+00:00:40,590 --> 00:00:43,420
+One way we can do this is
+to talk about collections.
+
+13
+00:00:43,420 --> 00:00:48,360
+So so far we've had one kind of data
+structure for representing collections
+
+14
+00:00:48,360 --> 00:00:51,030
+of like values, similar values.
+
+15
+00:00:51,030 --> 00:00:52,350
+That would be an array.
+
+16
+00:00:52,350 --> 00:00:57,020
+We have collections of integers, or
+collections of characters and so on.
+
+17
+00:00:57,020 --> 00:01:00,890
+>> Structures are also sort of a data
+structure for collecting information,
+
+18
+00:01:00,890 --> 00:01:03,220
+but it's not for collecting like values.
+
+19
+00:01:03,220 --> 00:01:08,090
+It usually mixes different data types
+together inside of a single box.
+
+20
+00:01:08,090 --> 00:01:10,750
+But it's not itself
+used to chain together
+
+21
+00:01:10,750 --> 00:01:16,920
+or connect together similar
+items, like an array.
+
+22
+00:01:16,920 --> 00:01:20,960
+Arrays are great for
+element look up, but recall
+
+23
+00:01:20,960 --> 00:01:24,262
+that it's very difficult
+to insert into an array,
+
+24
+00:01:24,262 --> 00:01:26,470
+unless we're inserting at
+the very end of that array.
+
+25
+00:01:26,470 --> 00:01:29,730
+>> And the best example I have
+for that is insertion sort.
+
+26
+00:01:29,730 --> 00:01:31,650
+If you recall our video
+on insertion sort,
+
+27
+00:01:31,650 --> 00:01:34,110
+there was a lot of
+expense involved in having
+
+28
+00:01:34,110 --> 00:01:37,970
+to pick up elements, and shift them
+out of the way to fit something
+
+29
+00:01:37,970 --> 00:01:41,290
+into the middle of your array.
+
+30
+00:01:41,290 --> 00:01:44,690
+Arrays also suffer from another
+problem, which is inflexibility.
+
+31
+00:01:44,690 --> 00:01:47,150
+When we declare an array,
+we get one shot at it.
+
+32
+00:01:47,150 --> 00:01:49,790
+We get to say, I want
+this many elements.
+
+33
+00:01:49,790 --> 00:01:51,940
+Might be 100, it might
+be 1,000, it might
+
+34
+00:01:51,940 --> 00:01:55,930
+be x where x is a number that the user
+gave us at a prompt or at the command
+
+35
+00:01:55,930 --> 00:01:56,630
+line.
+
+36
+00:01:56,630 --> 00:01:59,905
+>> But we only get one shot at it, we
+don't get to then say oh, actually I
+
+37
+00:01:59,905 --> 00:02:04,360
+needed 101, or I needed x plus 20.
+
+38
+00:02:04,360 --> 00:02:07,910
+Too late, we've already declared the
+array, and if we want to get 101 or x
+
+39
+00:02:07,910 --> 00:02:12,050
+plus 20, we have to declare
+an entirely different array,
+
+40
+00:02:12,050 --> 00:02:15,540
+copy all the elements of the array
+over, and then we have enough.
+
+41
+00:02:15,540 --> 00:02:19,880
+And what if we are wrong again, what
+if we actually need 102, or x plus 40,
+
+42
+00:02:19,880 --> 00:02:21,970
+we have to do this again.
+
+43
+00:02:21,970 --> 00:02:26,250
+So they're very inflexible
+for resizing our data,
+
+44
+00:02:26,250 --> 00:02:29,360
+but if we combine together some
+of the basics that we've already
+
+45
+00:02:29,360 --> 00:02:33,230
+learned about pointers and structures,
+in particular using dynamic memory
+
+46
+00:02:33,230 --> 00:02:36,180
+allocation with malloc, we
+can put these pieces together
+
+47
+00:02:36,180 --> 00:02:40,960
+to create a new data structure-- a
+singly linked list we might say--
+
+48
+00:02:40,960 --> 00:02:45,400
+that allows us to grow and
+shrink a collection of values
+
+49
+00:02:45,400 --> 00:02:48,800
+and we won't have any wasted space.
+
+50
+00:02:48,800 --> 00:02:53,320
+>> So again, we call this idea,
+this notion, a linked list.
+
+51
+00:02:53,320 --> 00:02:56,320
+In particular, in this video we're
+talking about singly linked list,
+
+52
+00:02:56,320 --> 00:02:59,185
+and then another video we'll talk
+about doubly linked lists, which
+
+53
+00:02:59,185 --> 00:03:01,560
+is just a variation on a theme here.
+
+54
+00:03:01,560 --> 00:03:05,200
+But a singly linked list
+is comprised of nodes,
+
+55
+00:03:05,200 --> 00:03:08,559
+nodes just being an abstract term--
+it's just something I'm calling
+
+56
+00:03:08,559 --> 00:03:10,350
+that's a kind of
+structure, basically, I'm?
+
+57
+00:03:10,350 --> 00:03:16,190
+Just going to call it a node-- and this
+node has two members, or two fields.
+
+58
+00:03:16,190 --> 00:03:20,300
+It has data, usually an
+integer, a character float,
+
+59
+00:03:20,300 --> 00:03:23,790
+or could be some other data type
+that you've defined with a type def.
+
+60
+00:03:23,790 --> 00:03:29,290
+And it contains a pointer to
+another node of the same type.
+
+61
+00:03:29,290 --> 00:03:34,710
+>> So we have two things inside of
+this node, data and a pointer
+
+62
+00:03:34,710 --> 00:03:36,380
+to another node.
+
+63
+00:03:36,380 --> 00:03:39,370
+And if you start to visualize
+this, you can think about it
+
+64
+00:03:39,370 --> 00:03:42,280
+like a chain of nodes that
+are connected together.
+
+65
+00:03:42,280 --> 00:03:45,070
+We have the first node, it
+contains data, and a pointer
+
+66
+00:03:45,070 --> 00:03:49,110
+to the second node, which contains
+data, and a pointer to the third node.
+
+67
+00:03:49,110 --> 00:03:52,940
+And so that's why we call it a
+linked list, they're linked together.
+
+68
+00:03:52,940 --> 00:03:56,070
+>> What does this special
+node structure look like?
+
+69
+00:03:56,070 --> 00:04:01,120
+Well, if you recall from our video on
+defining custom types, with type def,
+
+70
+00:04:01,120 --> 00:04:05,400
+we can define a structure-- and
+type define a structure like this.
+
+71
+00:04:05,400 --> 00:04:11,240
+tyepdef struct sllist, and then I'm
+using the word value here arbitrarily
+
+72
+00:04:11,240 --> 00:04:13,891
+to indicate any data type really.
+
+73
+00:04:13,891 --> 00:04:16,890
+You could pass on an integer or float,
+you could have whatever you want.
+
+74
+00:04:16,890 --> 00:04:19,389
+It's not restricted to just
+integers, or anything like that.
+
+75
+00:04:19,389 --> 00:04:22,790
+So value is just an arbitrary
+data type, and then a pointer
+
+76
+00:04:22,790 --> 00:04:26,310
+to another node of the same type.
+
+77
+00:04:26,310 --> 00:04:29,690
+>> Now, there's a little catch
+here with defining a structure
+
+78
+00:04:29,690 --> 00:04:33,030
+when it's a self referential structure.
+
+79
+00:04:33,030 --> 00:04:35,340
+I have to have a temporary
+name for my structure.
+
+80
+00:04:35,340 --> 00:04:37,640
+At the end of the day I
+clearly want to call it
+
+81
+00:04:37,640 --> 00:04:43,030
+sll node, that's ultimately the new
+name part of my type definition,
+
+82
+00:04:43,030 --> 00:04:47,450
+but I can't use sll node
+in the middle of this.
+
+83
+00:04:47,450 --> 00:04:51,430
+The reason being, I haven't
+created a type called sll node
+
+84
+00:04:51,430 --> 00:04:55,200
+until I hit this final point here.
+
+85
+00:04:55,200 --> 00:04:59,720
+Up until that point, I have to have
+another way to refer to this data type.
+
+86
+00:04:59,720 --> 00:05:02,440
+>> And this is a self
+referential data type.
+
+87
+00:05:02,440 --> 00:05:06,314
+It;s a data type of a
+structure that contains a data,
+
+88
+00:05:06,314 --> 00:05:08,480
+and a pointer to another
+structure of the same type.
+
+89
+00:05:08,480 --> 00:05:11,750
+So I need to be able to refer to
+this data type at least temporarily,
+
+90
+00:05:11,750 --> 00:05:14,910
+so giving it a temporary
+name of struct sllist
+
+91
+00:05:14,910 --> 00:05:18,540
+allows me to then say I want a
+pointer to another struct sllist,
+
+92
+00:05:18,540 --> 00:05:24,690
+a struct sllist star, and then
+after I've completed the definition,
+
+93
+00:05:24,690 --> 00:05:27,220
+I can now call this type an sll node.
+
+94
+00:05:27,220 --> 00:05:30,520
+>> So that's why you see there's
+a temporary name here,
+
+95
+00:05:30,520 --> 00:05:31,879
+but a permanent name here.
+
+96
+00:05:31,879 --> 00:05:33,920
+Sometimes you might see
+definitions of structure,
+
+97
+00:05:33,920 --> 00:05:36,570
+for example, that aren't
+self referential, that
+
+98
+00:05:36,570 --> 00:05:39,390
+don't have a specifier name here.
+
+99
+00:05:39,390 --> 00:05:43,040
+It would just say typedef struct,
+open curly brace and then define it.
+
+100
+00:05:43,040 --> 00:05:45,620
+But if you're struct is self
+referential, as this one is,
+
+101
+00:05:45,620 --> 00:05:49,010
+you need to specify a
+temporary type name.
+
+102
+00:05:49,010 --> 00:05:51,310
+But ultimately, now
+that we've done this,
+
+103
+00:05:51,310 --> 00:05:53,620
+we can just refer to
+these nodes, these units,
+
+104
+00:05:53,620 --> 00:05:57,900
+as sll nodes for purposes
+of the rest of this video.
+
+105
+00:05:57,900 --> 00:06:00,900
+>> All right, so we know how to
+create a linked list node.
+
+106
+00:06:00,900 --> 00:06:03,240
+We know how to define
+a linked list node.
+
+107
+00:06:03,240 --> 00:06:06,670
+Now, if we're going to start
+using them to collect information,
+
+108
+00:06:06,670 --> 00:06:10,360
+there's a couple of operations we
+need to understand and work with.
+
+109
+00:06:10,360 --> 00:06:12,860
+We need to know how to create
+a linked list out of thin air.
+
+110
+00:06:12,860 --> 00:06:14,901
+If there's no list already,
+we want to start one.
+
+111
+00:06:14,901 --> 00:06:16,960
+So we need to be able
+to create a linked list,
+
+112
+00:06:16,960 --> 00:06:19,130
+we need to probably search
+through the link list
+
+113
+00:06:19,130 --> 00:06:21,830
+to find an element we're looking for.
+
+114
+00:06:21,830 --> 00:06:24,430
+We need to be able to insert
+new things into the list,
+
+115
+00:06:24,430 --> 00:06:25,930
+we want our list to be able to grow.
+
+116
+00:06:25,930 --> 00:06:28,638
+And similarly, we want to be able
+to delete things from our list,
+
+117
+00:06:28,638 --> 00:06:30,250
+we want our list to be able to shrink.
+
+118
+00:06:30,250 --> 00:06:32,160
+And at the end of our
+programs, especially
+
+119
+00:06:32,160 --> 00:06:34,550
+if you recall that we're
+dynamically allocating memory
+
+120
+00:06:34,550 --> 00:06:38,337
+to build these lists typically,
+we want to free all of that memory
+
+121
+00:06:38,337 --> 00:06:39,670
+when we're done working with it.
+
+122
+00:06:39,670 --> 00:06:44,627
+And so we need to be able to delete an
+entire linked list in one fail swoop.
+
+123
+00:06:44,627 --> 00:06:46,460
+So let's go through
+some of these operations
+
+124
+00:06:46,460 --> 00:06:51,192
+and how we might visualize them,
+talking in pseudocode code specifically.
+
+125
+00:06:51,192 --> 00:06:53,150
+So we want to create a
+linked list, so maybe we
+
+126
+00:06:53,150 --> 00:06:56,480
+want to define a function
+with this prototype.
+
+127
+00:06:56,480 --> 00:07:01,690
+sll node star, create, and I'm passing
+in one argument, some arbitrary data
+
+128
+00:07:01,690 --> 00:07:05,530
+type again, of some arbitrary data type.
+
+129
+00:07:05,530 --> 00:07:10,482
+But I'm returning-- this function should
+return to me a pointer, to a singly
+
+130
+00:07:10,482 --> 00:07:11,190
+linked list node.
+
+131
+00:07:11,190 --> 00:07:14,050
+Again, we're trying to create
+a linked list out of thin air,
+
+132
+00:07:14,050 --> 00:07:17,900
+so I need a pointer to
+that list when I'm done.
+
+133
+00:07:17,900 --> 00:07:19,420
+>> So what are the steps involved here?
+
+134
+00:07:19,420 --> 00:07:20,960
+Well, first thing I'm
+going to do is dynamically
+
+135
+00:07:20,960 --> 00:07:22,550
+allocate space for a new node.
+
+136
+00:07:22,550 --> 00:07:26,689
+Again, we're creating it out of thin
+air, so we need to malloc space for it.
+
+137
+00:07:26,689 --> 00:07:28,480
+And of course, immediately
+after we malloc,
+
+138
+00:07:28,480 --> 00:07:31,692
+we always check to make sure that our
+pointer-- we did not get back null.
+
+139
+00:07:31,692 --> 00:07:33,650
+Because if we try and
+deference a null pointer,
+
+140
+00:07:33,650 --> 00:07:36,190
+we're going to suffer a
+segfault and we don't want that.
+
+141
+00:07:36,190 --> 00:07:39,510
+>> Then we want to fill in the field,
+we want to initialize the value field
+
+142
+00:07:39,510 --> 00:07:41,690
+and initialize the next field.
+
+143
+00:07:41,690 --> 00:07:45,450
+And then we want to-- eventually as the
+function prototype indicates-- we want
+
+144
+00:07:45,450 --> 00:07:49,940
+to return a pointer to an sll node.
+
+145
+00:07:49,940 --> 00:07:51,710
+So what make this look like visually?
+
+146
+00:07:51,710 --> 00:07:55,230
+Well, first we're going to dynamically
+allocate space for a new sll node,
+
+147
+00:07:55,230 --> 00:07:58,320
+so we malloc-- that's
+a visual representation
+
+148
+00:07:58,320 --> 00:08:00,020
+of the node we just created.
+
+149
+00:08:00,020 --> 00:08:02,757
+And we check to make sure
+it's not null-- in this case,
+
+150
+00:08:02,757 --> 00:08:04,840
+the picture wouldn't have
+shown up if it was null,
+
+151
+00:08:04,840 --> 00:08:07,298
+we would have run out of memory,
+so we're good to go there.
+
+152
+00:08:07,298 --> 00:08:10,200
+So now we're on to step C,
+initialize the nodes value field.
+
+153
+00:08:10,200 --> 00:08:12,280
+Well, based on this function
+call I'm using here,
+
+154
+00:08:12,280 --> 00:08:16,700
+looks like I want to pass in 6,
+so I'll 6 in the value field.
+
+155
+00:08:16,700 --> 00:08:18,865
+Now, initialize the next field.
+
+156
+00:08:18,865 --> 00:08:21,640
+Well, what am I going to do there,
+there is nothing next, right,
+
+157
+00:08:21,640 --> 00:08:23,600
+this is the only thing in the list.
+
+158
+00:08:23,600 --> 00:08:27,206
+So what's the next thing in the list?
+
+159
+00:08:27,206 --> 00:08:29,660
+>> It shouldn't point to anything, right.
+
+160
+00:08:29,660 --> 00:08:33,600
+There's nothing else there, so what is
+the concept we know of that's nothing--
+
+161
+00:08:33,600 --> 00:08:35,638
+pointers to nothing?
+
+162
+00:08:35,638 --> 00:08:37,929
+It should be maybe we want
+to put a null pointer there,
+
+163
+00:08:37,929 --> 00:08:40,178
+and I'll represent the null
+pointer as just a red box,
+
+164
+00:08:40,178 --> 00:08:41,559
+we can't go any further.
+
+165
+00:08:41,559 --> 00:08:44,430
+As we'll see a little later on,
+we will have eventually chains
+
+166
+00:08:44,430 --> 00:08:46,330
+of arrows connecting
+these nodes together,
+
+167
+00:08:46,330 --> 00:08:48,480
+but when you hit the
+red box, that's null,
+
+168
+00:08:48,480 --> 00:08:51,150
+we can't go any further,
+that's the end of the list.
+
+169
+00:08:51,150 --> 00:08:53,960
+>> And lastly, we just want to
+return a pointer to this node.
+
+170
+00:08:53,960 --> 00:08:56,160
+So we'll call it new,
+and will return new
+
+171
+00:08:56,160 --> 00:08:59,370
+so it can be used in
+whatever function created it.
+
+172
+00:08:59,370 --> 00:09:03,100
+So there we go, We've created a singly
+linked list node out of thin air,
+
+173
+00:09:03,100 --> 00:09:05,920
+and now we have a list we can work with.
+
+174
+00:09:05,920 --> 00:09:08,260
+>> Now, let's say we already
+have a large chain,
+
+175
+00:09:08,260 --> 00:09:09,800
+and we want to find something in it.
+
+176
+00:09:09,800 --> 00:09:12,716
+And we want a function that's going
+to return true or false, depending
+
+177
+00:09:12,716 --> 00:09:15,840
+on whether a value exists in that list.
+
+178
+00:09:15,840 --> 00:09:18,160
+A function prototype, or
+declaration for that function,
+
+179
+00:09:18,160 --> 00:09:23,320
+might look like this-- bool find, and
+then we want to pass in two arguments.
+
+180
+00:09:23,320 --> 00:09:26,996
+>> The first, is a pointer to the
+first element of the linked list.
+
+181
+00:09:26,996 --> 00:09:29,620
+This is actually something you'll
+always want to keep track of,
+
+182
+00:09:29,620 --> 00:09:33,110
+and actually might be something that
+you even put in a global variable.
+
+183
+00:09:33,110 --> 00:09:35,360
+Once you create a list,
+you always, always
+
+184
+00:09:35,360 --> 00:09:38,990
+want to keep track of the very
+first element of the list.
+
+185
+00:09:38,990 --> 00:09:43,690
+That way you can refer to all the other
+elements by just following the chain,
+
+186
+00:09:43,690 --> 00:09:47,300
+without having to keep pointers
+intact to every single element.
+
+187
+00:09:47,300 --> 00:09:50,920
+You only need to keep track of the first
+one if they're all chained together.
+
+188
+00:09:50,920 --> 00:09:52,460
+>> And then the second thing
+we're passing in again
+
+189
+00:09:52,460 --> 00:09:54,376
+is arbitrarily some--
+whatever data type we're
+
+190
+00:09:54,376 --> 00:09:59,640
+looking for there is inside of
+hopefully one of the nodes in the list.
+
+191
+00:09:59,640 --> 00:10:00,980
+So what are the steps?
+
+192
+00:10:00,980 --> 00:10:04,250
+Well, the first thing we do is
+we create a transversal pointer
+
+193
+00:10:04,250 --> 00:10:06,015
+pointing to the lists head.
+
+194
+00:10:06,015 --> 00:10:08,890
+Well, why do we do that, we already
+have a pointer at the lists head,
+
+195
+00:10:08,890 --> 00:10:10,974
+why don't we just move that one around?
+
+196
+00:10:10,974 --> 00:10:13,140
+Well, like I just said,
+it's really important for us
+
+197
+00:10:13,140 --> 00:10:17,580
+to always keep track of the
+very first element in the list.
+
+198
+00:10:17,580 --> 00:10:21,270
+And so it's actually better
+to create a duplicate of that,
+
+199
+00:10:21,270 --> 00:10:25,350
+and use that to move around so we never
+accidentally move away, or we always
+
+200
+00:10:25,350 --> 00:10:30,430
+have a pointer at some point that is
+right on the first element of the list.
+
+201
+00:10:30,430 --> 00:10:33,290
+So it's better to create a
+second one that we use to move.
+
+202
+00:10:33,290 --> 00:10:35,877
+>> Then we just compare whether
+the value field at that node
+
+203
+00:10:35,877 --> 00:10:38,960
+is what we're looking for, and if it's
+not, we just move to the next node.
+
+204
+00:10:38,960 --> 00:10:41,040
+And we keep doing that
+over, and over, and over,
+
+205
+00:10:41,040 --> 00:10:44,811
+until we either find
+the element, or we hit
+
+206
+00:10:44,811 --> 00:10:47,310
+null-- we've reached the end
+of the list and it isn't there.
+
+207
+00:10:47,310 --> 00:10:50,540
+This should hopefully ring a bell
+to you as just linear search,
+
+208
+00:10:50,540 --> 00:10:54,430
+we're just replicating it in
+a singly linked list structure
+
+209
+00:10:54,430 --> 00:10:56,280
+instead of using an array to do it.
+
+210
+00:10:56,280 --> 00:10:58,210
+>> So here's an example of
+a singly linked list.
+
+211
+00:10:58,210 --> 00:11:00,043
+This one consists of
+five nodes, and we have
+
+212
+00:11:00,043 --> 00:11:04,330
+a pointer to the head of the
+list, which is called list.
+
+213
+00:11:04,330 --> 00:11:07,385
+The first thing we want to do is
+again, create that traversal pointer.
+
+214
+00:11:07,385 --> 00:11:09,760
+So we have now two pointers
+that point to the same thing.
+
+215
+00:11:09,760 --> 00:11:15,025
+>> Now, notice here also, I didn't
+have to malloc any space for trav.
+
+216
+00:11:15,025 --> 00:11:18,970
+I didn't say trav equals malloc
+something, that node already exists,
+
+217
+00:11:18,970 --> 00:11:21,160
+that space in memory already exists.
+
+218
+00:11:21,160 --> 00:11:24,290
+So all I'm actually doing is
+creating another pointer to it.
+
+219
+00:11:24,290 --> 00:11:28,210
+I'm not mallocing an additional
+space, just have now two pointers
+
+220
+00:11:28,210 --> 00:11:31,370
+pointing to the same thing.
+
+221
+00:11:31,370 --> 00:11:33,710
+>> So is 2 what I'm looking for?
+
+222
+00:11:33,710 --> 00:11:37,220
+Well, no, so instead I'm
+going to move to the next one.
+
+223
+00:11:37,220 --> 00:11:41,740
+So basically I would say,
+trav equals trav next.
+
+224
+00:11:41,740 --> 00:11:43,630
+Is 3 what I'm looking for, no.
+
+225
+00:11:43,630 --> 00:11:45,780
+So I continue to go
+through, until eventually
+
+226
+00:11:45,780 --> 00:11:48,690
+get to 6 which is what I'm looking
+for based on the function call
+
+227
+00:11:48,690 --> 00:11:51,600
+I have at the top
+there, and so I'm done.
+
+228
+00:11:51,600 --> 00:11:54,150
+>> Now, what if the element I'm
+looking for isn't in the list,
+
+229
+00:11:54,150 --> 00:11:55,510
+is it still going to work?
+
+230
+00:11:55,510 --> 00:11:57,120
+Well, notice that the list
+here is subtly different,
+
+231
+00:11:57,120 --> 00:11:59,410
+and this is another thing that's
+important with linked lists,
+
+232
+00:11:59,410 --> 00:12:01,780
+you don't have to preserve
+them in any particular order.
+
+233
+00:12:01,780 --> 00:12:05,390
+You can if you want, but
+you may have already noticed
+
+234
+00:12:05,390 --> 00:12:09,310
+that we're not keeping track of
+what number element we are at.
+
+235
+00:12:09,310 --> 00:12:13,150
+>> And that's sort of one trade that we
+have with linked list verses arrays,
+
+236
+00:12:13,150 --> 00:12:15,300
+is it we don't have
+random access anymore.
+
+237
+00:12:15,300 --> 00:12:18,150
+We can't just say, I want
+to go to the 0th element,
+
+238
+00:12:18,150 --> 00:12:21,410
+or the 6th element of my array,
+which I can do in an array.
+
+239
+00:12:21,410 --> 00:12:25,080
+I can't say I want to go to the
+0th element, or the 6th element,
+
+240
+00:12:25,080 --> 00:12:30,360
+or the 25th element of my linked list,
+there's no index associated with them.
+
+241
+00:12:30,360 --> 00:12:33,660
+And so it doesn't really matter
+if we preserve our list in order.
+
+242
+00:12:33,660 --> 00:12:36,080
+If you want to you
+certainly can, but there's
+
+243
+00:12:36,080 --> 00:12:38,567
+no reason why they need to
+be preserved in any order.
+
+244
+00:12:38,567 --> 00:12:40,400
+So again, let's try and
+find 6 in this list.
+
+245
+00:12:40,400 --> 00:12:43,200
+Well, we start at the
+beginning, we don't find 6,
+
+246
+00:12:43,200 --> 00:12:47,690
+and then we continue not finding
+6, until we eventually get to here.
+
+247
+00:12:47,690 --> 00:12:52,790
+So right now trav points to the node
+containing 8, and six is not in there.
+
+248
+00:12:52,790 --> 00:12:55,250
+>> So the next step would be
+to go to the next pointer,
+
+249
+00:12:55,250 --> 00:12:57,440
+so say trav equals trav next.
+
+250
+00:12:57,440 --> 00:13:00,750
+Well, trav next, indicated by
+the red box there, is null.
+
+251
+00:13:00,750 --> 00:13:03,020
+So there's nowhere else to
+go, and so at this point
+
+252
+00:13:03,020 --> 00:13:06,120
+we can conclude that we've reached
+the end of the linked list,
+
+253
+00:13:06,120 --> 00:13:07,190
+and 6 isn't in there.
+
+254
+00:13:07,190 --> 00:13:10,980
+And it would be returned
+false in this case.
+
+255
+00:13:10,980 --> 00:13:14,540
+>> OK, how do we insert a new
+node into the linked list?
+
+256
+00:13:14,540 --> 00:13:17,310
+So we've been able to create
+a linked list out of nowhere,
+
+257
+00:13:17,310 --> 00:13:19,370
+but we probably want to
+build a chain and not
+
+258
+00:13:19,370 --> 00:13:22,620
+create a bunch of distinct lists.
+
+259
+00:13:22,620 --> 00:13:25,700
+We want to have one list that
+has a bunch of nodes in it,
+
+260
+00:13:25,700 --> 00:13:28,040
+not a bunch of lists with a single node.
+
+261
+00:13:28,040 --> 00:13:31,260
+So we can't just keep using the Create
+function we defined earlier, now we
+
+262
+00:13:31,260 --> 00:13:33,860
+want to insert into a
+list that already exists.
+
+263
+00:13:33,860 --> 00:13:36,499
+>> So this case, we're going
+to pass in two arguments,
+
+264
+00:13:36,499 --> 00:13:39,290
+the pointer to the head of that
+linked list that we want to add to.
+
+265
+00:13:39,290 --> 00:13:40,910
+Again, that's why it's so
+important that we always
+
+266
+00:13:40,910 --> 00:13:43,400
+keep track of it, because
+it's the only way we really
+
+267
+00:13:43,400 --> 00:13:46,690
+have to refer to the whole list is
+just by a pointer to the first element.
+
+268
+00:13:46,690 --> 00:13:49,360
+So we want to pass in a
+pointer to that first element,
+
+269
+00:13:49,360 --> 00:13:52,226
+and whatever value we
+want to add to the list.
+
+270
+00:13:52,226 --> 00:13:54,600
+And eventually this function
+is going to return a pointer
+
+271
+00:13:54,600 --> 00:13:57,980
+to the new head of a linked list.
+
+272
+00:13:57,980 --> 00:13:59,700
+>> What are the steps involved here?
+
+273
+00:13:59,700 --> 00:14:02,249
+Well, just like with create,
+we need to dynamically allocate
+
+274
+00:14:02,249 --> 00:14:05,540
+space for a new node, and check to make
+sure we don't run out of memory, again,
+
+275
+00:14:05,540 --> 00:14:07,150
+because we're using malloc.
+
+276
+00:14:07,150 --> 00:14:09,080
+Then we want to populate
+and insert the node,
+
+277
+00:14:09,080 --> 00:14:12,730
+so put the number, whatever
+val is, into the node.
+
+278
+00:14:12,730 --> 00:14:17,310
+We want to insert the node at
+the beginning of the linked list.
+
+279
+00:14:17,310 --> 00:14:19,619
+>> There's a reason that I
+want to do this, and it
+
+280
+00:14:19,619 --> 00:14:21,910
+might be worth taking a second
+to pause the video here,
+
+281
+00:14:21,910 --> 00:14:25,860
+and think about why I would want to
+insert at the beginning of a linked
+
+282
+00:14:25,860 --> 00:14:26,589
+list.
+
+283
+00:14:26,589 --> 00:14:28,630
+Again, I mentioned earlier
+that it doesn't really
+
+284
+00:14:28,630 --> 00:14:33,020
+matter if we preserve it in any
+order, so maybe that's a clue.
+
+285
+00:14:33,020 --> 00:14:36,040
+And you saw what would happen if we
+wanted to-- or from just a second
+
+286
+00:14:36,040 --> 00:14:37,360
+ago when we were going
+through search you
+
+287
+00:14:37,360 --> 00:14:39,235
+could see what might
+happen if we were trying
+
+288
+00:14:39,235 --> 00:14:41,330
+to insert at the end of the list.
+
+289
+00:14:41,330 --> 00:14:44,750
+Because we don't have a
+pointer to the end of the list.
+
+290
+00:14:44,750 --> 00:14:47,490
+>> So the reason that I would want
+to insert at the beginning,
+
+291
+00:14:47,490 --> 00:14:49,380
+is because I can do it immediately.
+
+292
+00:14:49,380 --> 00:14:52,730
+I have a pointer at the beginning, and
+we'll see this in a visual in a second.
+
+293
+00:14:52,730 --> 00:14:55,605
+But if I want to insert at the end,
+I have to start at the beginning,
+
+294
+00:14:55,605 --> 00:14:58,760
+traverse all the way to the
+end, and then tack it on.
+
+295
+00:14:58,760 --> 00:15:01,420
+So that would mean that
+inserting at the end of the list
+
+296
+00:15:01,420 --> 00:15:04,140
+would become an o of n
+operation, going back
+
+297
+00:15:04,140 --> 00:15:06,720
+to our discussion of
+computational complexity.
+
+298
+00:15:06,720 --> 00:15:10,140
+It'd become an o of n operation, where
+as the list got bigger, and bigger,
+
+299
+00:15:10,140 --> 00:15:13,310
+and bigger, it'll become more and
+more difficult to tack something
+
+300
+00:15:13,310 --> 00:15:14,661
+on at the end.
+
+301
+00:15:14,661 --> 00:15:17,410
+But it's always really easy to
+tack something on at the beginning,
+
+302
+00:15:17,410 --> 00:15:19,060
+you're always at the beginning.
+
+303
+00:15:19,060 --> 00:15:21,620
+>> And we'll see a visual of this again.
+
+304
+00:15:21,620 --> 00:15:24,100
+And then once we're done, once
+we've inserted the new node,
+
+305
+00:15:24,100 --> 00:15:26,880
+we want to return our pointer to
+the new head of a linked list, which
+
+306
+00:15:26,880 --> 00:15:29,213
+since we're inserting at the
+beginning, will actually be
+
+307
+00:15:29,213 --> 00:15:31,060
+a pointer to the node we just created.
+
+308
+00:15:31,060 --> 00:15:33,280
+Let's visualize this,
+because I think it'll help.
+
+309
+00:15:33,280 --> 00:15:36,661
+>> So here's our list, it consists of
+four elements, a node containing 15,
+
+310
+00:15:36,661 --> 00:15:38,410
+which points to a node
+containing 9, which
+
+311
+00:15:38,410 --> 00:15:41,370
+points to a node containing 13,
+which points to a node containing
+
+312
+00:15:41,370 --> 00:15:44,840
+10, which has the null
+pointer as its next pointer
+
+313
+00:15:44,840 --> 00:15:47,010
+so that's the end of the list.
+
+314
+00:15:47,010 --> 00:15:50,200
+So we want to insert a
+new node with the value 12
+
+315
+00:15:50,200 --> 00:15:52,720
+at the beginning of this
+list, what do we do?
+
+316
+00:15:52,720 --> 00:15:58,770
+Well, first we malloc space for the
+node, and then we put 12 in there.
+
+317
+00:15:58,770 --> 00:16:02,211
+>> So now we've reached a
+decision point, right?
+
+318
+00:16:02,211 --> 00:16:03,960
+We have a couple of
+pointers that we could
+
+319
+00:16:03,960 --> 00:16:06,770
+move, which one should we move first?
+
+320
+00:16:06,770 --> 00:16:09,250
+Should we make 12 point to
+the new head of the list--
+
+321
+00:16:09,250 --> 00:16:13,020
+or excuse me, should we make 12
+point to the old head of the list?
+
+322
+00:16:13,020 --> 00:16:15,319
+Or should we say that the
+list now begins at 12.
+
+323
+00:16:15,319 --> 00:16:17,110
+There's a distinction
+there, and we'll look
+
+324
+00:16:17,110 --> 00:16:19,870
+at what happens with both in a second.
+
+325
+00:16:19,870 --> 00:16:23,350
+>> But this leads to a
+great topic for sidebar,
+
+326
+00:16:23,350 --> 00:16:26,280
+which is that one of the
+trickiest things with linked lists
+
+327
+00:16:26,280 --> 00:16:30,980
+is to arrange the pointers
+in the correct order.
+
+328
+00:16:30,980 --> 00:16:34,520
+If you move things out of order,
+you can end up accidentally
+
+329
+00:16:34,520 --> 00:16:36,050
+orphaning the rest of the list.
+
+330
+00:16:36,050 --> 00:16:37,300
+And here's an example of that.
+
+331
+00:16:37,300 --> 00:16:40,540
+So let's go with the idea of--
+well, we've just created 12.
+
+332
+00:16:40,540 --> 00:16:43,180
+We know 12 is going to be
+the new head of the list,
+
+333
+00:16:43,180 --> 00:16:47,660
+and so why don't we just move
+the list pointer to point there.
+
+334
+00:16:47,660 --> 00:16:49,070
+>> OK, so that's good.
+
+335
+00:16:49,070 --> 00:16:51,560
+So now where does 12 next point?
+
+336
+00:16:51,560 --> 00:16:54,580
+I mean, visually we can see
+that it will point to 15,
+
+337
+00:16:54,580 --> 00:16:57,250
+as humans it's really obvious to us.
+
+338
+00:16:57,250 --> 00:17:00,300
+How does the computer know?
+
+339
+00:17:00,300 --> 00:17:02,720
+We don't have anything
+pointing to 15 anymore, right?
+
+340
+00:17:02,720 --> 00:17:05,869
+>> We've lost any ability to refer to 15.
+
+341
+00:17:05,869 --> 00:17:11,460
+We can't say new arrow next equals
+something, there's nothing there.
+
+342
+00:17:11,460 --> 00:17:13,510
+In fact, we've orphaned
+the rest of the list
+
+343
+00:17:13,510 --> 00:17:16,465
+by doing so, we've
+accidentally broken the chain.
+
+344
+00:17:16,465 --> 00:17:18,089
+And we certainly don't want to do that.
+
+345
+00:17:18,089 --> 00:17:20,000
+>> So let's go back and try this again.
+
+346
+00:17:20,000 --> 00:17:24,060
+Maybe the right thing to do
+is to set 12's next pointer
+
+347
+00:17:24,060 --> 00:17:28,290
+to the old head of the list first,
+then we can move the list over.
+
+348
+00:17:28,290 --> 00:17:30,420
+And in fact, that is the
+correct order that we
+
+349
+00:17:30,420 --> 00:17:32,836
+need to follow when we're
+working with singly linked list.
+
+350
+00:17:32,836 --> 00:17:36,460
+We always want to connect the
+new element into the list,
+
+351
+00:17:36,460 --> 00:17:41,010
+before we take that kind of
+important step of changing
+
+352
+00:17:41,010 --> 00:17:43,360
+where the head of the linked list is.
+
+353
+00:17:43,360 --> 00:17:46,740
+Again, that's such a fundamental thing,
+we don't want to lose track of it.
+
+354
+00:17:46,740 --> 00:17:49,310
+>> So we want to make sure that
+everything is chained together,
+
+355
+00:17:49,310 --> 00:17:52,040
+before we move that pointer.
+
+356
+00:17:52,040 --> 00:17:55,300
+And so this would be the correct order,
+which is to connect 12 to the list,
+
+357
+00:17:55,300 --> 00:17:57,630
+then say that the list starts a 12.
+
+358
+00:17:57,630 --> 00:18:00,860
+If we said the list starts at 12 and
+then tried to connect 12 to the list,
+
+359
+00:18:00,860 --> 00:18:02,193
+we've already seen what happens.
+
+360
+00:18:02,193 --> 00:18:04,920
+We lose the list by mistake.
+
+361
+00:18:04,920 --> 00:18:06,740
+>> OK, so one more thing to talk about.
+
+362
+00:18:06,740 --> 00:18:09,750
+What if we want to get rid of
+an entire linked list at once?
+
+363
+00:18:09,750 --> 00:18:11,750
+Again, we're mallocing
+all this space, and so we
+
+364
+00:18:11,750 --> 00:18:13,351
+need to free it when we're done.
+
+365
+00:18:13,351 --> 00:18:15,350
+So now we want to delete
+the entire linked list.
+
+366
+00:18:15,350 --> 00:18:16,850
+Well, what do we want to do?
+
+367
+00:18:16,850 --> 00:18:20,460
+>> If we've reached the null pointer, we
+want to stop, otherwise, just delete
+
+368
+00:18:20,460 --> 00:18:23,420
+the rest of the list and then free me.
+
+369
+00:18:23,420 --> 00:18:28,890
+Delete the rest of the list,
+and then free the current node.
+
+370
+00:18:28,890 --> 00:18:32,850
+What does that sound like,
+what technique have we talked
+
+371
+00:18:32,850 --> 00:18:35,440
+about previously does that sound like?
+
+372
+00:18:35,440 --> 00:18:39,560
+Delete everybody else, then
+come back and delete me.
+
+373
+00:18:39,560 --> 00:18:42,380
+>> That's recursion, we've made the
+problem a little bit smaller,
+
+374
+00:18:42,380 --> 00:18:46,910
+we're saying delete everybody
+else, then you can delete me.
+
+375
+00:18:46,910 --> 00:18:50,940
+And further down the road, that node
+will say, delete everybody else.
+
+376
+00:18:50,940 --> 00:18:53,940
+But eventually we'll get to the
+point where the list is null,
+
+377
+00:18:53,940 --> 00:18:55,310
+and that's our base case.
+
+378
+00:18:55,310 --> 00:18:57,010
+>> So let's take a look at this,
+and how this might work.
+
+379
+00:18:57,010 --> 00:18:59,759
+So here's our list, it's the same
+list we were just talking about,
+
+380
+00:18:59,759 --> 00:19:00,980
+and there's the steps.
+
+381
+00:19:00,980 --> 00:19:04,200
+There's a lot of text here, but
+hopefully the visualization will help.
+
+382
+00:19:04,200 --> 00:19:08,557
+>> So we have-- and I also pulled
+up our stack frames illustration
+
+383
+00:19:08,557 --> 00:19:10,890
+from our video on call stacks,
+and hopefully all of this
+
+384
+00:19:10,890 --> 00:19:13,260
+together will show you what's going on.
+
+385
+00:19:13,260 --> 00:19:14,510
+So here's our pseudocode code.
+
+386
+00:19:14,510 --> 00:19:17,830
+If we reach a null
+pointer, stop, otherwise,
+
+387
+00:19:17,830 --> 00:19:21,320
+delete the rest of the list,
+then free the current node.
+
+388
+00:19:21,320 --> 00:19:25,700
+So right now, list--
+the pointer that we're
+
+389
+00:19:25,700 --> 00:19:28,410
+passing in to destroy points to 12.
+
+390
+00:19:28,410 --> 00:19:33,340
+12 is not a null pointer, so we're
+going to delete the rest of the list.
+
+391
+00:19:33,340 --> 00:19:35,450
+>> What is deleting the
+rest of us involved?
+
+392
+00:19:35,450 --> 00:19:37,950
+Well, it means making a
+call to destroy, saying
+
+393
+00:19:37,950 --> 00:19:42,060
+that 15 is the beginning of the
+rest of the list we want to destroy.
+
+394
+00:19:42,060 --> 00:19:47,480
+And so the call to destroy
+12 is kind of on hold.
+
+395
+00:19:47,480 --> 00:19:52,690
+It's frozen there, waiting for the
+call to destroy 15, to finish its job.
+
+396
+00:19:52,690 --> 00:19:56,280
+>> Well, 15 is not a null pointer, and
+so it's going to say, all right,
+
+397
+00:19:56,280 --> 00:19:58,450
+well, delete the rest of the list.
+
+398
+00:19:58,450 --> 00:20:00,760
+The rest of the list starts
+at 9, and so we'll just
+
+399
+00:20:00,760 --> 00:20:04,514
+wait until you delete all that
+stuff, then come back and delete me.
+
+400
+00:20:04,514 --> 00:20:06,680
+Well 9's going to say, well,
+I'm not a null pointer,
+
+401
+00:20:06,680 --> 00:20:09,020
+so delete the rest the list from here.
+
+402
+00:20:09,020 --> 00:20:11,805
+And so try and destroy 13.
+
+403
+00:20:11,805 --> 00:20:15,550
+13 says, I'm not null pointer,
+same thing, it passes the buck.
+
+404
+00:20:15,550 --> 00:20:17,930
+10 is not null pointer, 10
+contains a null pointer,
+
+405
+00:20:17,930 --> 00:20:20,200
+but 10 is not itself a
+null pointer right now,
+
+406
+00:20:20,200 --> 00:20:22,470
+and so it passes the buck too.
+
+407
+00:20:22,470 --> 00:20:25,560
+>> And now list points there, it
+really would point to some--
+
+408
+00:20:25,560 --> 00:20:28,710
+if I had more space in the image,
+it would point to some random space
+
+409
+00:20:28,710 --> 00:20:29,960
+that we don't know what it is.
+
+410
+00:20:29,960 --> 00:20:34,680
+It's the null pointer though, the list
+is literally now set it's values null.
+
+411
+00:20:34,680 --> 00:20:36,820
+It's pointing right inside that red box.
+
+412
+00:20:36,820 --> 00:20:39,960
+We reached a null pointer, so
+we can stop, and we're done.
+
+413
+00:20:39,960 --> 00:20:46,230
+>> And so that purple frame is now-- at the
+top of stack-- that's the active frame,
+
+414
+00:20:46,230 --> 00:20:47,017
+but it's done.
+
+415
+00:20:47,017 --> 00:20:48,600
+If we've reached a null pointer, stop.
+
+416
+00:20:48,600 --> 00:20:51,290
+We don't do anything, we
+can't free a null pointer,
+
+417
+00:20:51,290 --> 00:20:55,070
+we didn't malloc any
+space, and so we're done.
+
+418
+00:20:55,070 --> 00:20:57,590
+So that function frame
+is destroyed, and we
+
+419
+00:20:57,590 --> 00:21:00,930
+resume-- we pick up where we left
+off with the next highest one, which
+
+420
+00:21:00,930 --> 00:21:02,807
+is this dark blue frame here.
+
+421
+00:21:02,807 --> 00:21:04,390
+So we pick up right where we left off.
+
+422
+00:21:04,390 --> 00:21:06,598
+We deleted the rest of the
+list already, so now we're
+
+423
+00:21:06,598 --> 00:21:08,000
+going to free the current nodes.
+
+424
+00:21:08,000 --> 00:21:12,920
+So now we can free this node, and now
+we've reached the end of the function.
+
+425
+00:21:12,920 --> 00:21:16,810
+And so that function frame is destroyed,
+and we pick up at the light blue one.
+
+426
+00:21:16,810 --> 00:21:20,650
+>> So it says-- I've already done--
+deleting the rest of the list, so
+
+427
+00:21:20,650 --> 00:21:23,140
+free the current node.
+
+428
+00:21:23,140 --> 00:21:26,520
+And now the yellow frame is
+back on top of the stack.
+
+429
+00:21:26,520 --> 00:21:29,655
+And so as you see, we're now
+destroying the list from right to left.
+
+430
+00:21:29,655 --> 00:21:33,710
+
+431
+00:21:33,710 --> 00:21:37,280
+>> What would have happened, though,
+if we had done things the wrong way?
+
+432
+00:21:37,280 --> 00:21:39,410
+Just like when we tried
+to add an element.
+
+433
+00:21:39,410 --> 00:21:41,909
+If we messed up the chain, if
+we didn't connect the pointers
+
+434
+00:21:41,909 --> 00:21:44,690
+in the correct order, if we
+just freed the first element,
+
+435
+00:21:44,690 --> 00:21:47,420
+if we just freed the
+head of the list, now we
+
+436
+00:21:47,420 --> 00:21:49,642
+have no way to refer to
+the rest of the list.
+
+437
+00:21:49,642 --> 00:21:51,350
+And so we would have
+orphaned everything,
+
+438
+00:21:51,350 --> 00:21:53,880
+we would have had what's
+called a memory leak.
+
+439
+00:21:53,880 --> 00:21:56,800
+If you recall from our video
+on dynamic memory allocation,
+
+440
+00:21:56,800 --> 00:21:58,650
+that's not very good thing.
+
+441
+00:21:58,650 --> 00:22:00,810
+>> So as I said, there
+are several operations
+
+442
+00:22:00,810 --> 00:22:04,010
+that we need to use to work
+with linked list effectively.
+
+443
+00:22:04,010 --> 00:22:08,430
+And you may have noticed I omitted one,
+deleting a single element from a linked
+
+444
+00:22:08,430 --> 00:22:09,064
+list.
+
+445
+00:22:09,064 --> 00:22:10,980
+The reason I did that
+is it's actually kind of
+
+446
+00:22:10,980 --> 00:22:14,360
+tricky to think about how to delete
+a single element from a singly
+
+447
+00:22:14,360 --> 00:22:15,600
+linked list.
+
+448
+00:22:15,600 --> 00:22:19,950
+We need to be able to skip over
+something in the list, which
+
+449
+00:22:19,950 --> 00:22:22,975
+means we get to a point-- we
+want to delete this node--
+
+450
+00:22:22,975 --> 00:22:25,350
+but in order to make it so we
+don't lose any information,
+
+451
+00:22:25,350 --> 00:22:30,530
+we need to connect this
+node over here, here.
+
+452
+00:22:30,530 --> 00:22:33,390
+>> So I probably did that wrong
+from a visual perspective.
+
+453
+00:22:33,390 --> 00:22:36,830
+So we're at the beginning of our
+list, we're proceeding through,
+
+454
+00:22:36,830 --> 00:22:40,510
+we want to delete this node.
+
+455
+00:22:40,510 --> 00:22:43,440
+If we just delete it,
+we've broken the chain.
+
+456
+00:22:43,440 --> 00:22:45,950
+This node right here
+refers to everything else,
+
+457
+00:22:45,950 --> 00:22:48,260
+it contains the chain from here on out.
+
+458
+00:22:48,260 --> 00:22:51,190
+>> So what we need to do actually
+after we get to this point,
+
+459
+00:22:51,190 --> 00:22:56,670
+is we need to step back one, and
+connect this node over to this node,
+
+460
+00:22:56,670 --> 00:22:58,590
+so we can then delete
+the one in the middle.
+
+461
+00:22:58,590 --> 00:23:02,120
+But singly linked lists don't
+provide us a way to go backwards.
+
+462
+00:23:02,120 --> 00:23:05,160
+So we need to either keep
+two pointers, and move them
+
+463
+00:23:05,160 --> 00:23:09,527
+sort of off step, one behind the
+other as we go, or get to a point
+
+464
+00:23:09,527 --> 00:23:11,110
+and then send another pointer through.
+
+465
+00:23:11,110 --> 00:23:13,150
+And as you can see, it
+can get a little messy.
+
+466
+00:23:13,150 --> 00:23:15,360
+Fortunately, we have
+another way to resolve that,
+
+467
+00:23:15,360 --> 00:23:17,810
+when we talk about doubly linked lists.
+
+468
+00:23:17,810 --> 00:23:20,720
+>> I'm Doug Lloyd, this is CS50.
+
+469
+00:23:20,720 --> 00:23:22,298

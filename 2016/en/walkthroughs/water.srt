@@ -1,0 +1,738 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+2
+00:00:00,500 --> 00:00:01,960
+SPEAKER 1: Let's talk about water.
+
+3
+00:00:01,960 --> 00:00:07,280
+In this problem, we ask the user to tell
+us how long in minutes their shower was
+
+4
+00:00:07,280 --> 00:00:11,040
+and then we calculate the equivalent
+number of bottles of water
+
+5
+00:00:11,040 --> 00:00:12,970
+that their shower used.
+
+6
+00:00:12,970 --> 00:00:16,379
+>> So what are our to-do's
+for this problem?
+
+7
+00:00:16,379 --> 00:00:20,050
+First, we're going to want
+to prompt and then validate
+
+8
+00:00:20,050 --> 00:00:22,100
+the input that the user gives us.
+
+9
+00:00:22,100 --> 00:00:24,790
+Once we ensure that we
+have valid user input,
+
+10
+00:00:24,790 --> 00:00:28,230
+we're going to calculate the
+equivalent number of bottles of water
+
+11
+00:00:28,230 --> 00:00:30,770
+that the user had during
+their shower, and then we're
+
+12
+00:00:30,770 --> 00:00:33,720
+going to tell them by
+printing out that number.
+
+13
+00:00:33,720 --> 00:00:37,230
+>> So let's tackle our first
+task, prompting and validating
+
+14
+00:00:37,230 --> 00:00:38,550
+the user input.
+
+15
+00:00:38,550 --> 00:00:40,910
+For this we've written a
+function for you called
+
+16
+00:00:40,910 --> 00:00:43,950
+get_int located in the CS50 Library.
+
+17
+00:00:43,950 --> 00:00:48,710
+get_int ensures that the user inputs
+an integer, so any positive numbers,
+
+18
+00:00:48,710 --> 00:00:51,700
+negative numbers, or
+zero are all accepted.
+
+19
+00:00:51,700 --> 00:00:55,900
+But if the user inputs anything else,
+so any combination of letters or numbers
+
+20
+00:00:55,900 --> 00:00:59,710
+or decimal numbers, then the
+user will be prompted to retry
+
+21
+00:00:59,710 --> 00:01:04,319
+and the function won't accept anything
+until the user gives them an integer.
+
+22
+00:01:04,319 --> 00:01:06,410
+>> So how do we use get_int?
+
+23
+00:01:06,410 --> 00:01:10,830
+If you open your workspace and
+create a file named integer.c let's
+
+24
+00:01:10,830 --> 00:01:12,110
+type the following.
+
+25
+00:01:12,110 --> 00:01:14,760
+Hashtag include cs50.h.
+
+26
+00:01:14,760 --> 00:01:18,480
+This is necessary because get_int
+is a cs50 library function,
+
+27
+00:01:18,480 --> 00:01:21,890
+so we must hashtag include
+its declaration in order
+
+28
+00:01:21,890 --> 00:01:23,370
+to use the function.
+
+29
+00:01:23,370 --> 00:01:26,570
+And then in my main
+function I'm just going
+
+30
+00:01:26,570 --> 00:01:29,560
+to simply call the function get_int.
+
+31
+00:01:29,560 --> 00:01:31,750
+>> So let's run this and see how it works.
+
+32
+00:01:31,750 --> 00:01:35,092
+I've already compiled it, so let's
+just go ahead and run this program,
+
+33
+00:01:35,092 --> 00:01:36,480
+./integer.
+
+34
+00:01:36,480 --> 00:01:39,880
+Here I have a prompt and
+here's where I input the value.
+
+35
+00:01:39,880 --> 00:01:44,880
+Say I put in just some integer,
+50, the program excepts and quits
+
+36
+00:01:44,880 --> 00:01:45,960
+and that's that.
+
+37
+00:01:45,960 --> 00:01:49,350
+>> But say I run it again and
+I input something else.
+
+38
+00:01:49,350 --> 00:01:51,350
+Perhaps, hello world.
+
+39
+00:01:51,350 --> 00:01:55,660
+That's not an integer so the
+program will prompt me to retry.
+
+40
+00:01:55,660 --> 00:01:59,160
+Let's try again with
+perhaps a decimal this time.
+
+41
+00:01:59,160 --> 00:02:03,450
+0.5, again, not an integer so
+the program won't accept it
+
+42
+00:02:03,450 --> 00:02:05,290
+and it'll tell me to retry.
+
+43
+00:02:05,290 --> 00:02:07,070
+So let's give it another number.
+
+44
+00:02:07,070 --> 00:02:09,830
+The program accepts it,
+quits, and we're done.
+
+45
+00:02:09,830 --> 00:02:13,520
+>> So now we have a function
+that allows us and ensures
+
+46
+00:02:13,520 --> 00:02:16,790
+that the user inputs an
+integer, but how can we
+
+47
+00:02:16,790 --> 00:02:20,330
+actually keep track of the
+integer inputted by the user?
+
+48
+00:02:20,330 --> 00:02:25,260
+Well, all we'll do is store
+this value in a variable, say n.
+
+49
+00:02:25,260 --> 00:02:30,580
+So if I declare an integer n,
+and I set that value to get_int,
+
+50
+00:02:30,580 --> 00:02:34,700
+then n will then store whatever
+value the user inputted.
+
+51
+00:02:34,700 --> 00:02:38,620
+>> All right, so now we've ensured that
+the user will give us an integer
+
+52
+00:02:38,620 --> 00:02:42,550
+and we know how to keep track
+of the integer, but remember,
+
+53
+00:02:42,550 --> 00:02:45,610
+integers are both positive and negative.
+
+54
+00:02:45,610 --> 00:02:49,110
+So it doesn't really make sense
+in the context of this problem
+
+55
+00:02:49,110 --> 00:02:53,570
+that the user takes a shower
+of say negative 12 minutes.
+
+56
+00:02:53,570 --> 00:02:59,310
+So we need to make sure that the user
+actually gives us a positive integer.
+
+57
+00:02:59,310 --> 00:03:02,130
+Now we don't have just a
+single function for that,
+
+58
+00:03:02,130 --> 00:03:04,620
+so we're going to have
+to create that ourselves.
+
+59
+00:03:04,620 --> 00:03:07,190
+>> So we want to continually
+prompt the user
+
+60
+00:03:07,190 --> 00:03:09,730
+until they give us a positive integer.
+
+61
+00:03:09,730 --> 00:03:14,300
+If I'm doing something continuously then
+that's akin to a loop, a repetition.
+
+62
+00:03:14,300 --> 00:03:19,130
+So one of the constructs that we use
+in c to implement repetition and loops
+
+63
+00:03:19,130 --> 00:03:20,410
+is a while loop.
+
+64
+00:03:20,410 --> 00:03:23,020
+So a while loop, as
+shown here, will execute
+
+65
+00:03:23,020 --> 00:03:27,030
+whatever is in the body of the loop as
+long as the given condition evaluates
+
+66
+00:03:27,030 --> 00:03:27,900
+to true.
+
+67
+00:03:27,900 --> 00:03:30,640
+As soon as that condition
+evaluates to false, then
+
+68
+00:03:30,640 --> 00:03:34,830
+the program will proceed to whatever
+comes after the body of the loop.
+
+69
+00:03:34,830 --> 00:03:39,400
+>> So while loops are going to
+be really useful in CS50.
+
+70
+00:03:39,400 --> 00:03:42,590
+But in this particular
+case, we know that we're
+
+71
+00:03:42,590 --> 00:03:48,140
+going to prompt the user at least
+once and then only loop if necessary.
+
+72
+00:03:48,140 --> 00:03:51,080
+So here we come to a
+special construct and that's
+
+73
+00:03:51,080 --> 00:03:55,020
+very similar to the while
+loop called a do-while loop.
+
+74
+00:03:55,020 --> 00:03:58,840
+>> So a do-while loop executes the
+body of the loop at least once
+
+75
+00:03:58,840 --> 00:04:01,750
+and then it checks to see
+whether it should execute,
+
+76
+00:04:01,750 --> 00:04:05,310
+as opposed to a while loop,
+which will check the condition
+
+77
+00:04:05,310 --> 00:04:07,200
+and then execute the body.
+
+78
+00:04:07,200 --> 00:04:11,880
+So in a do-while loop what we might
+do is prompt the user for an integer,
+
+79
+00:04:11,880 --> 00:04:14,450
+and then check if it's invalid or not.
+
+80
+00:04:14,450 --> 00:04:18,130
+If it's invalid, then we'll
+repeat the process asking the user
+
+81
+00:04:18,130 --> 00:04:22,290
+to give us another integer, and then
+only when that integer is valid,
+
+82
+00:04:22,290 --> 00:04:25,060
+we'll continue to
+whatever comes afterwards.
+
+83
+00:04:25,060 --> 00:04:28,030
+>> Now you'll notice that the
+declaration of the integer n
+
+84
+00:04:28,030 --> 00:04:31,670
+is slightly different to what we
+did before in the previous example
+
+85
+00:04:31,670 --> 00:04:33,640
+and this is because of scope.
+
+86
+00:04:33,640 --> 00:04:37,920
+If we had declared the integer n inside
+of the body of the do-while loop,
+
+87
+00:04:37,920 --> 00:04:42,640
+then we wouldn't be able to access
+that value of n outside of those curly
+
+88
+00:04:42,640 --> 00:04:45,050
+braces indicating the body of the loop.
+
+89
+00:04:45,050 --> 00:04:51,080
+But we do in fact want to access the
+value of n later on in our program.
+
+90
+00:04:51,080 --> 00:04:55,730
+>> OK, so now let's talk about
+what this condition should be.
+
+91
+00:04:55,730 --> 00:05:00,400
+We want to only reprompt the
+user as long as n is invalid.
+
+92
+00:05:00,400 --> 00:05:04,640
+So think to yourself what an invalid
+integer value would look like
+
+93
+00:05:04,640 --> 00:05:08,060
+and then create a Boolean
+expression to express that.
+
+94
+00:05:08,060 --> 00:05:13,070
+>> We're almost finished with our subtask
+of prompting and validating user input.
+
+95
+00:05:13,070 --> 00:05:16,010
+So let's make this a little
+bit more user friendly
+
+96
+00:05:16,010 --> 00:05:18,390
+and give the user a little
+bit more information
+
+97
+00:05:18,390 --> 00:05:20,510
+of what we're prompting them for.
+
+98
+00:05:20,510 --> 00:05:24,500
+So let's prompt the user, per the
+spec, with the string minutes.
+
+99
+00:05:24,500 --> 00:05:28,935
+So using your printf statements, make
+sure that you match this exactly.
+
+100
+00:05:28,935 --> 00:05:30,230
+>> All right.
+
+101
+00:05:30,230 --> 00:05:33,840
+So now we have a valid user
+input, a positive integer
+
+102
+00:05:33,840 --> 00:05:37,400
+value for how many minutes
+they spent in the shower.
+
+103
+00:05:37,400 --> 00:05:41,300
+So what's next is to calculate
+the equivalent number of bottles.
+
+104
+00:05:41,300 --> 00:05:45,250
+What we're going to do here might
+be very obvious to you at first,
+
+105
+00:05:45,250 --> 00:05:46,640
+and that's OK.
+
+106
+00:05:46,640 --> 00:05:49,320
+What we want to do is we
+want to start practicing
+
+107
+00:05:49,320 --> 00:05:53,810
+the idea of detecting patterns and
+developing formulae for the problem.
+
+108
+00:05:53,810 --> 00:05:57,200
+>> So we're told per the spec
+that one minute in the shower
+
+109
+00:05:57,200 --> 00:05:59,960
+is equivalent to about
+12 bottles of water.
+
+110
+00:05:59,960 --> 00:06:03,020
+So then two minutes would
+be equivalent to 24,
+
+111
+00:06:03,020 --> 00:06:05,850
+and five minutes would
+be equivalent to 60.
+
+112
+00:06:05,850 --> 00:06:08,390
+So now if you think
+you've got it, then let's
+
+113
+00:06:08,390 --> 00:06:10,390
+see if you can come up
+with a pattern or formula
+
+114
+00:06:10,390 --> 00:06:14,990
+to express if we have say, n
+minutes, how many bottles of water
+
+115
+00:06:14,990 --> 00:06:17,930
+would that be expressed in terms of n?
+
+116
+00:06:17,930 --> 00:06:20,680
+>> Again, even though this
+might be simple at first,
+
+117
+00:06:20,680 --> 00:06:23,240
+later on when we get to
+more complicated problems
+
+118
+00:06:23,240 --> 00:06:26,360
+we're going to want to get into
+the practice of identifying
+
+119
+00:06:26,360 --> 00:06:30,120
+patterns and developing formulae
+to figure these things out.
+
+120
+00:06:30,120 --> 00:06:33,450
+>> In c you have access to
+standard arithmetic operations,
+
+121
+00:06:33,450 --> 00:06:36,520
+addition, subtraction,
+multiplication, and division.
+
+122
+00:06:36,520 --> 00:06:38,420
+So I'll leave it to
+you now to figure out
+
+123
+00:06:38,420 --> 00:06:41,300
+how to express the
+equivalent number of bottles
+
+124
+00:06:41,300 --> 00:06:43,990
+that the user consumed
+during their shower.
+
+125
+00:06:43,990 --> 00:06:45,700
+>> All right, we're almost done.
+
+126
+00:06:45,700 --> 00:06:50,650
+We've prompted the user for their input,
+we've ensured that it's valid input,
+
+127
+00:06:50,650 --> 00:06:53,330
+and then we've figured out how
+to calculate the equivalent
+
+128
+00:06:53,330 --> 00:06:55,480
+number of bottles that they consumed.
+
+129
+00:06:55,480 --> 00:06:59,430
+So the last thing to do is to output
+the equivalent number of bottles
+
+130
+00:06:59,430 --> 00:07:02,410
+and hopefully encourage
+them to conserve some water.
+
+131
+00:07:02,410 --> 00:07:06,270
+>> Outputting the value will
+be a printf statement.
+
+132
+00:07:06,270 --> 00:07:09,720
+If I wanted to tell you that I
+have three pets, for instance,
+
+133
+00:07:09,720 --> 00:07:13,090
+I might use a printf statement
+that looks something like this.
+
+134
+00:07:13,090 --> 00:07:15,880
+I have three pets, and a new
+line for nice formatting.
+
+135
+00:07:15,880 --> 00:07:17,880
+>> Now we don't want to
+simply hard code things.
+
+136
+00:07:17,880 --> 00:07:20,740
+Say the number of my
+pets changes over time.
+
+137
+00:07:20,740 --> 00:07:25,080
+Then I'm going to make use of
+placeholders in my printf statement.
+
+138
+00:07:25,080 --> 00:07:27,350
+So here my number is an integer.
+
+139
+00:07:27,350 --> 00:07:31,480
+So I'm going to make a placeholder
+for an integer using %i.
+
+140
+00:07:31,480 --> 00:07:33,930
+I'm going to write the string,
+and then after the string
+
+141
+00:07:33,930 --> 00:07:38,000
+I write a comma and then the
+variable that I want to print.
+
+142
+00:07:38,000 --> 00:07:42,730
+So that value will be printed
+in lieu of that placeholder, %i.
+
+143
+00:07:42,730 --> 00:07:47,630
+>> You can use placeholders, as
+well, for floats with a %f.
+
+144
+00:07:47,630 --> 00:07:50,420
+You can also have multiple
+placeholders in a string.
+
+145
+00:07:50,420 --> 00:07:53,950
+For instance, if I have some number
+of dogs and some number of cats,
+
+146
+00:07:53,950 --> 00:07:59,210
+I put two placeholders here and then
+my two variables in respective order.
+
+147
+00:07:59,210 --> 00:08:03,130
+>> So now that we know how to print
+the values stored in variables,
+
+148
+00:08:03,130 --> 00:08:06,030
+the very last thing to
+do is to ensure that we
+
+149
+00:08:06,030 --> 00:08:10,920
+print the value in the exact format
+indicated in the specification.
+
+150
+00:08:10,920 --> 00:08:14,990
+With that, we've prompted the
+user and validated their input.
+
+151
+00:08:14,990 --> 00:08:17,920
+We've then calculated the equivalent
+number of bottles of water
+
+152
+00:08:17,920 --> 00:08:22,100
+that they consume during their shower,
+and we've outputted that value to them.
+
+153
+00:08:22,100 --> 00:08:24,440
+And so, we've completed water.
+
+154
+00:08:24,440 --> 00:08:28,730
+>> My name is [? Zamila, ?]
+and this is CS50.
+
+155
+00:08:28,730 --> 00:08:29,909

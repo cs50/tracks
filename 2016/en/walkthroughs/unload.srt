@@ -1,0 +1,269 @@
+1
+00:00:00,000 --> 00:00:00,367
+
+
+2
+00:00:00,367 --> 00:00:02,950
+SPEAKER: Now that we've created
+our dictionary data structure,
+
+3
+00:00:02,950 --> 00:00:07,640
+it's time to free up all of that memory
+that we had previously allocated.
+
+4
+00:00:07,640 --> 00:00:10,080
+So how does one free a linked list?
+
+5
+00:00:10,080 --> 00:00:11,810
+It might look something like this.
+
+6
+00:00:11,810 --> 00:00:14,643
+Here I follow the same convention
+that I've used throughout the walk
+
+7
+00:00:14,643 --> 00:00:17,290
+through where the node
+pointer, called head,
+
+8
+00:00:17,290 --> 00:00:21,020
+refers to the very first
+node in a linked list.
+
+9
+00:00:21,020 --> 00:00:23,870
+The code to free a linked list
+might look something like this.
+
+10
+00:00:23,870 --> 00:00:27,870
+Here I assign a new node
+pointer, called cursor, to head.
+
+11
+00:00:27,870 --> 00:00:30,690
+Remember that following the
+convention of this walk through,
+
+12
+00:00:30,690 --> 00:00:34,430
+I've used head to refer to the node
+pointer that points to the very
+
+13
+00:00:34,430 --> 00:00:36,930
+first element in a linked list.
+
+14
+00:00:36,930 --> 00:00:41,170
+For your hashtable, it might
+be named something different.
+
+15
+00:00:41,170 --> 00:00:45,930
+Then I enter a loop that advances
+as long as the cursor is not null.
+
+16
+00:00:45,930 --> 00:00:50,160
+Within that, I create a temporary node
+pointer, initially pointing to cursor.
+
+17
+00:00:50,160 --> 00:00:54,280
+I advance the cursor and then
+free that temporary node pointer.
+
+18
+00:00:54,280 --> 00:00:55,880
+What does that look like?
+
+19
+00:00:55,880 --> 00:00:58,360
+Well I leave it to you to
+follow through this example,
+
+20
+00:00:58,360 --> 00:01:03,120
+erasing and creating arrows as necessary
+to see how this method of freeing
+
+21
+00:01:03,120 --> 00:01:06,640
+will ensure that no
+node is left un-freed.
+
+22
+00:01:06,640 --> 00:01:09,320
+If instead of a
+hashtable or linked list,
+
+23
+00:01:09,320 --> 00:01:12,430
+you've decided to implement
+your dictionary as a try,
+
+24
+00:01:12,430 --> 00:01:15,120
+then you'll unload from
+the bottom to the top.
+
+25
+00:01:15,120 --> 00:01:19,440
+What I mean by this is that you can
+travel to the lowest possible node,
+
+26
+00:01:19,440 --> 00:01:21,940
+from there you can free all
+of those pointers and children
+
+27
+00:01:21,940 --> 00:01:24,590
+because you know they're not
+linking to anything else.
+
+28
+00:01:24,590 --> 00:01:27,690
+From there, you can then
+go up to the parent node
+
+29
+00:01:27,690 --> 00:01:31,640
+and backtrack upwards that way, freeing
+all of the elements in each children
+
+30
+00:01:31,640 --> 00:01:34,340
+array until you hit the root node.
+
+31
+00:01:34,340 --> 00:01:36,820
+If you get stuck, remember
+to take pen to paper
+
+32
+00:01:36,820 --> 00:01:39,460
+and draw out your try data
+structure in whichever
+
+33
+00:01:39,460 --> 00:01:41,670
+schematic makes most sense to you.
+
+34
+00:01:41,670 --> 00:01:45,820
+And there, you can ensure that following
+your code, you free all of the nodes
+
+35
+00:01:45,820 --> 00:01:47,470
+that you've ever created.
+
+36
+00:01:47,470 --> 00:01:50,600
+If you've chosen to go with
+a try for a data structure,
+
+37
+00:01:50,600 --> 00:01:54,790
+then I challenge you to look at
+recursion for an elegant implementation
+
+38
+00:01:54,790 --> 00:01:56,980
+of the unload function.
+
+39
+00:01:56,980 --> 00:02:01,130
+Finally, whether or not you've
+chosen a hashtable or a try,
+
+40
+00:02:01,130 --> 00:02:03,420
+make sure to run
+valgrind, which will check
+
+41
+00:02:03,420 --> 00:02:06,580
+to make sure that all of the memory
+that you've allocated in your program,
+
+42
+00:02:06,580 --> 00:02:08,460
+you've also freed by the end.
+
+43
+00:02:08,460 --> 00:02:11,980
+If valgrind gives you the
+OK, then you're good to go
+
+44
+00:02:11,980 --> 00:02:14,810
+and you've successfully
+unloaded your dictionary.
+
+45
+00:02:14,810 --> 00:02:17,800
+My last couple tips to you
+before you go out and code,
+
+46
+00:02:17,800 --> 00:02:20,930
+is to try make it easier
+on yourself to debug.
+
+47
+00:02:20,930 --> 00:02:23,850
+Pass in a smaller dictionary
+to speller instead.
+
+48
+00:02:23,850 --> 00:02:27,820
+By default, speller will run
+with the large dictionary file.
+
+49
+00:02:27,820 --> 00:02:30,100
+But also, try passing
+in the small dictionary
+
+50
+00:02:30,100 --> 00:02:32,530
+file provided in the distribution code.
+
+51
+00:02:32,530 --> 00:02:36,640
+Or you can even make your own
+dictionary and your own input text file.
+
+52
+00:02:36,640 --> 00:02:41,900
+Perhaps, use the words that we talked
+about today, fox, food, dog, and do.
+
+53
+00:02:41,900 --> 00:02:45,150
+Finally, pen and paper are
+going to be your best friend.
+
+54
+00:02:45,150 --> 00:02:47,980
+Try drawing out your
+dictionary as you create it,
+
+55
+00:02:47,980 --> 00:02:51,570
+load it, check it, and finally, unload.
+
+56
+00:02:51,570 --> 00:02:55,900
+My name is Zamyla, and this was speller.
+
+57
+00:02:55,900 --> 00:02:57,260

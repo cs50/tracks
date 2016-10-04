@@ -1,0 +1,4445 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+2
+00:00:00,500 --> 00:00:10,960
+[MUSIC PLAYING]
+
+3
+00:00:10,960 --> 00:00:12,960
+ROGER ZURAWICKI: Hi, my
+name is Roger Zurawicki,
+
+4
+00:00:12,960 --> 00:00:16,410
+and I will be covering
+the CS50 Meteor seminar.
+
+5
+00:00:16,410 --> 00:00:21,520
+Meteor is a new framework
+devoted to the new kind of web,
+
+6
+00:00:21,520 --> 00:00:25,220
+not the PHP making requests
+back and forth kind
+
+7
+00:00:25,220 --> 00:00:29,070
+of web we saw in the PHPP set,
+but the more dynamic JavaScript
+
+8
+00:00:29,070 --> 00:00:31,370
+parts of the web.
+
+9
+00:00:31,370 --> 00:00:36,260
+Things Meteor can do
+includes Live Updating
+
+10
+00:00:36,260 --> 00:00:42,380
+and immediately communicating
+between users of the same website.
+
+11
+00:00:42,380 --> 00:00:46,420
+>> For this seminar, we have
+code hosted at my GitHub.
+
+12
+00:00:46,420 --> 00:00:49,690
+You can go to this URL and download it.
+
+13
+00:00:49,690 --> 00:00:53,085
+If you know how to use Git,
+you can clone the repository.
+
+14
+00:00:53,085 --> 00:00:55,460
+If you don't know how to use
+Git or have not used GitHub,
+
+15
+00:00:55,460 --> 00:00:57,030
+that's completely fine.
+
+16
+00:00:57,030 --> 00:01:00,480
+I will show you really quickly
+how we can go to GitHub,
+
+17
+00:01:00,480 --> 00:01:03,604
+and there's an option to
+download a zip right there.
+
+18
+00:01:03,604 --> 00:01:06,770
+Once you download this directory, you
+can get started playing with our code.
+
+19
+00:01:06,770 --> 00:01:10,200
+
+20
+00:01:10,200 --> 00:01:13,190
+>> More information about Meteor
+can be found at meteor.com.
+
+21
+00:01:13,190 --> 00:01:16,580
+In the Seminar folder, I actually
+have some Meteor projects we can use.
+
+22
+00:01:16,580 --> 00:01:20,380
+
+23
+00:01:20,380 --> 00:01:26,400
+One of the folders we have in our
+seminar project is the todos app.
+
+24
+00:01:26,400 --> 00:01:28,780
+So if I go into it I,
+have Meteor installed.
+
+25
+00:01:28,780 --> 00:01:35,690
+So to run it, I just need to type
+Meteor, and Meteor will install.
+
+26
+00:01:35,690 --> 00:01:38,310
+As you can see, we have to
+make sure we installed Meteor.
+
+27
+00:01:38,310 --> 00:01:40,562
+So I'm just going to
+run it one more time
+
+28
+00:01:40,562 --> 00:01:42,520
+to make sure that Meteor
+is properly installed.
+
+29
+00:01:42,520 --> 00:01:46,370
+
+30
+00:01:46,370 --> 00:01:48,450
+>> While I have Meteor
+installing, I can show you
+
+31
+00:01:48,450 --> 00:01:53,760
+some live demos of Meteor sites
+going live right now on the internet.
+
+32
+00:01:53,760 --> 00:01:57,990
+I have a demo of our app.
+
+33
+00:01:57,990 --> 00:02:00,740
+You can access it at the following URL.
+
+34
+00:02:00,740 --> 00:02:06,350
+This is the to do app that we
+have in our seminar directory.
+
+35
+00:02:06,350 --> 00:02:09,940
+The URL for this is
+rozu-rabbit.meteor.com.
+
+36
+00:02:09,940 --> 00:02:14,782
+You'll see that Meteor will actually
+host your Meteor projects for free.
+
+37
+00:02:14,782 --> 00:02:17,490
+And at the end of the seminar,
+you'll be able to do this as well.
+
+38
+00:02:17,490 --> 00:02:20,550
+
+39
+00:02:20,550 --> 00:02:22,160
+>> This is a to do list app.
+
+40
+00:02:22,160 --> 00:02:27,740
+And you can sign in, create
+accounts, and add tasks.
+
+41
+00:02:27,740 --> 00:02:30,020
+You can create an account like so.
+
+42
+00:02:30,020 --> 00:02:33,050
+
+43
+00:02:33,050 --> 00:02:35,850
+And now, once you have an
+account, you can add tasks.
+
+44
+00:02:35,850 --> 00:02:42,780
+For example, one of the tasks I
+might need to go pick up my laundry.
+
+45
+00:02:42,780 --> 00:02:45,160
+And if you're on this
+site online, you'll
+
+46
+00:02:45,160 --> 00:02:49,790
+actually see this task on
+your computer in real time.
+
+47
+00:02:49,790 --> 00:02:53,760
+>> I can show you a quick demo
+of this by opening rozu-rabbit
+
+48
+00:02:53,760 --> 00:02:56,700
+in another tab with the same URL.
+
+49
+00:02:56,700 --> 00:03:00,360
+And we see that the same data comes up.
+
+50
+00:03:00,360 --> 00:03:02,240
+We can also run it in
+a different browser.
+
+51
+00:03:02,240 --> 00:03:03,420
+Say I run it in Safari.
+
+52
+00:03:03,420 --> 00:03:04,720
+That way we're not logged in.
+
+53
+00:03:04,720 --> 00:03:07,750
+
+54
+00:03:07,750 --> 00:03:11,060
+So we have the same Meteor
+app, and once it loads,
+
+55
+00:03:11,060 --> 00:03:13,910
+we'll see the same data
+we did in the first one.
+
+56
+00:03:13,910 --> 00:03:16,710
+As you can see, I'm not logged in here.
+
+57
+00:03:16,710 --> 00:03:20,000
+And when the audience checks data,
+it updates on all the browsers
+
+58
+00:03:20,000 --> 00:03:20,910
+simultaneously.
+
+59
+00:03:20,910 --> 00:03:23,740
+This is one of the really
+cool features about Meteor.
+
+60
+00:03:23,740 --> 00:03:27,700
+With almost no work, you
+have a live updating app
+
+61
+00:03:27,700 --> 00:03:31,240
+that changes on all of
+your devices at once.
+
+62
+00:03:31,240 --> 00:03:36,690
+>> If I check the check box here
+in my to do list, we will have,
+
+63
+00:03:36,690 --> 00:03:41,230
+in my other Chrome browser,
+the item checked off.
+
+64
+00:03:41,230 --> 00:03:42,605
+And this happens instantaneously.
+
+65
+00:03:42,605 --> 00:03:46,340
+
+66
+00:03:46,340 --> 00:03:47,280
+All right.
+
+67
+00:03:47,280 --> 00:03:52,730
+So it looks like Meteor
+installation is ready now.
+
+68
+00:03:52,730 --> 00:03:57,000
+So now let's go back to the
+todos app and run this locally.
+
+69
+00:03:57,000 --> 00:04:01,599
+>> If you have a Meteor project, you can
+just run it with the command Meteor.
+
+70
+00:04:01,599 --> 00:04:03,640
+Once you do this, Meteor
+will do some preparation
+
+71
+00:04:03,640 --> 00:04:06,120
+to make sure all of
+your code is in check.
+
+72
+00:04:06,120 --> 00:04:12,440
+And then it'll tell you that the
+project is ready to be served.
+
+73
+00:04:12,440 --> 00:04:17,750
+You might need to allow your
+firewall, if your computer blocks you.
+
+74
+00:04:17,750 --> 00:04:22,440
+>> So what Meteor is telling me
+right now is that at this website
+
+75
+00:04:22,440 --> 00:04:26,100
+local to my computer, I can see
+what this Meteor project is.
+
+76
+00:04:26,100 --> 00:04:29,290
+Note that right now, my app is
+not accessible to the internet.
+
+77
+00:04:29,290 --> 00:04:35,170
+We'll cover how to bring your Meteor
+app to a live site a bit later on.
+
+78
+00:04:35,170 --> 00:04:40,510
+So I'm just going to copy this
+URL now and go into Google Chrome.
+
+79
+00:04:40,510 --> 00:04:42,600
+>> And this is the to do
+list from the example.
+
+80
+00:04:42,600 --> 00:04:46,080
+You can see they implemented
+a few more features here.
+
+81
+00:04:46,080 --> 00:04:49,210
+We have different tabs, we
+have the same account features,
+
+82
+00:04:49,210 --> 00:04:52,141
+and we can add new lists.
+
+83
+00:04:52,141 --> 00:04:54,140
+Now, one of the really
+cool feature about Meteor
+
+84
+00:04:54,140 --> 00:04:57,450
+is that not only can this
+work on your web browser,
+
+85
+00:04:57,450 --> 00:05:00,030
+but you can also create
+native iPhone and Android
+
+86
+00:05:00,030 --> 00:05:02,990
+apps through a tool called PhoneGap.
+
+87
+00:05:02,990 --> 00:05:06,740
+>> So some projects will come
+pre-configured for running
+
+88
+00:05:06,740 --> 00:05:08,700
+on iOS, like this todos app.
+
+89
+00:05:08,700 --> 00:05:14,780
+So all I need to do to run it in iOS
+is type Meteor, run, and then iOS.
+
+90
+00:05:14,780 --> 00:05:17,540
+And when I do that, Meteor
+will prepare the package again.
+
+91
+00:05:17,540 --> 00:05:21,670
+And then, once it's ready, it'll
+load the iOS simulator on my command.
+
+92
+00:05:21,670 --> 00:05:24,745
+Note you can only run iOS apps
+if you have a Mac computer.
+
+93
+00:05:24,745 --> 00:05:27,650
+
+94
+00:05:27,650 --> 00:05:30,730
+You can run your apps on
+Android on all platforms.
+
+95
+00:05:30,730 --> 00:05:34,070
+
+96
+00:05:34,070 --> 00:05:38,290
+>> So now you can see that my iPhone
+simulator came up on my screen.
+
+97
+00:05:38,290 --> 00:05:40,370
+And in just a moment,
+it'll load with the app.
+
+98
+00:05:40,370 --> 00:05:46,070
+
+99
+00:05:46,070 --> 00:05:48,490
+If we make it just a bit
+smaller to fit on the screen,
+
+100
+00:05:48,490 --> 00:05:50,780
+we see we have our iPhone app.
+
+101
+00:05:50,780 --> 00:05:53,220
+And just so we don't
+get confused, let's make
+
+102
+00:05:53,220 --> 00:05:59,790
+sure we are on the same
+website, the local host 3000.
+
+103
+00:05:59,790 --> 00:06:03,490
+>> So right here is an example
+of the Meteor app I have,
+
+104
+00:06:03,490 --> 00:06:08,770
+the todos app, running both on
+a phone and on a web browser.
+
+105
+00:06:08,770 --> 00:06:10,770
+And when I change stuff
+in the web browser,
+
+106
+00:06:10,770 --> 00:06:12,675
+it immediately goes to the phone.
+
+107
+00:06:12,675 --> 00:06:16,500
+And I can delete something on the phone,
+and it changes in the web browser.
+
+108
+00:06:16,500 --> 00:06:21,050
+>> Now, normally to create native
+phone app for iOS or Android,
+
+109
+00:06:21,050 --> 00:06:26,090
+you need to know either Java or
+Objective C. The technology Meteor uses
+
+110
+00:06:26,090 --> 00:06:29,240
+to allow JavaScript to run as
+your app is called PhoneGap.
+
+111
+00:06:29,240 --> 00:06:31,320
+What your app essentially
+is is a web browser.
+
+112
+00:06:31,320 --> 00:06:34,500
+And Meteor handles all
+the tricky parts involved
+
+113
+00:06:34,500 --> 00:06:39,820
+for bringing that web browser to
+your iPhone or your Android device.
+
+114
+00:06:39,820 --> 00:06:42,210
+You can see that the
+user interface is smooth,
+
+115
+00:06:42,210 --> 00:06:45,290
+and it looks and feels very
+much like a native app.
+
+116
+00:06:45,290 --> 00:06:48,620
+Notice that if I go to the home
+screen now, I also get an icon.
+
+117
+00:06:48,620 --> 00:06:50,880
+This isn't a website like
+you'd find in Safari.
+
+118
+00:06:50,880 --> 00:06:51,860
+This is its own app.
+
+119
+00:06:51,860 --> 00:06:54,130
+You can install and
+delete it if you'd like.
+
+120
+00:06:54,130 --> 00:06:59,500
+
+121
+00:06:59,500 --> 00:07:04,436
+>> We can briefly show you what the code
+for this kind of todos app looks like.
+
+122
+00:07:04,436 --> 00:07:08,260
+If you look in the todos folder,
+you will see there are many folders.
+
+123
+00:07:08,260 --> 00:07:11,440
+But over the course
+of the seminar, we'll
+
+124
+00:07:11,440 --> 00:07:14,780
+understand what each folder is used for.
+
+125
+00:07:14,780 --> 00:07:17,830
+Let's go into the terminal so we
+can see the files a bit better.
+
+126
+00:07:17,830 --> 00:07:20,410
+>> I'm going to press Control
+C to stop the server,
+
+127
+00:07:20,410 --> 00:07:22,770
+and now I'm back in the todos app.
+
+128
+00:07:22,770 --> 00:07:26,660
+I have different folders here, like
+the client folder, the server folder.
+
+129
+00:07:26,660 --> 00:07:30,500
+And these folders simply mean that
+everything in the client folder
+
+130
+00:07:30,500 --> 00:07:32,630
+gets executed on your web browser.
+
+131
+00:07:32,630 --> 00:07:35,530
+Everything in a server folder
+gets executed on a server.
+
+132
+00:07:35,530 --> 00:07:38,100
+>> What I want to point
+out is that what we had
+
+133
+00:07:38,100 --> 00:07:42,140
+when we had our phone running and
+our web browser, these were clients.
+
+134
+00:07:42,140 --> 00:07:45,730
+But what's running in a
+terminal, that's the server.
+
+135
+00:07:45,730 --> 00:07:48,710
+We have other folders, like
+lib, which is library code,
+
+136
+00:07:48,710 --> 00:07:51,050
+like your helper
+functions, which you can
+
+137
+00:07:51,050 --> 00:07:53,710
+use on both the client and the server.
+
+138
+00:07:53,710 --> 00:07:55,820
+And then you have a public
+folder and resources
+
+139
+00:07:55,820 --> 00:07:59,310
+folder necessary for getting
+your images and other CSS loaded.
+
+140
+00:07:59,310 --> 00:08:02,630
+
+141
+00:08:02,630 --> 00:08:09,360
+>> If you have Meteor installed, we will
+continue with the tutorial for Meteor.
+
+142
+00:08:09,360 --> 00:08:12,790
+You can go to this URL,
+meteor.com/install,
+
+143
+00:08:12,790 --> 00:08:17,990
+to get the command line that I
+showed you that installs Meteor.
+
+144
+00:08:17,990 --> 00:08:20,240
+We will go through the first
+few steps to get a better
+
+145
+00:08:20,240 --> 00:08:22,760
+feel about how to install Meteor.
+
+146
+00:08:22,760 --> 00:08:28,000
+>> But first, I think it's important that
+we review a little bit of JavaScript.
+
+147
+00:08:28,000 --> 00:08:32,360
+To show you some examples of how
+our C knowledge can be translated
+
+148
+00:08:32,360 --> 00:08:34,950
+to JavaScript, I've
+created a few examples.
+
+149
+00:08:34,950 --> 00:08:36,940
+They are in the js directory.
+
+150
+00:08:36,940 --> 00:08:41,750
+So if in the seminars folder you
+look, there's a folder called js.
+
+151
+00:08:41,750 --> 00:08:44,540
+And in here, we have a few examples.
+
+152
+00:08:44,540 --> 00:08:50,120
+>> Let's open up the first
+example and see very quickly.
+
+153
+00:08:50,120 --> 00:08:53,980
+What we see is your standard
+hello world command.
+
+154
+00:08:53,980 --> 00:08:56,520
+You notice in C that you
+have quite a few lines.
+
+155
+00:08:56,520 --> 00:09:00,490
+And as CS50 students know,
+we need a main function,
+
+156
+00:09:00,490 --> 00:09:05,730
+and we have to include the standard
+I/O library in order to call printf.
+
+157
+00:09:05,730 --> 00:09:09,320
+>> Let's look at how JavaScript compares.
+
+158
+00:09:09,320 --> 00:09:11,560
+I'm going to open ex1.js.
+
+159
+00:09:11,560 --> 00:09:14,650
+Commented out is what the
+C code would look like,
+
+160
+00:09:14,650 --> 00:09:17,550
+and the line below is all
+you need to run in Node.
+
+161
+00:09:17,550 --> 00:09:20,452
+You don't need a main function, you
+don't need to include any files,
+
+162
+00:09:20,452 --> 00:09:21,660
+and you don't need to return.
+
+163
+00:09:21,660 --> 00:09:23,810
+You just call console.log.
+
+164
+00:09:23,810 --> 00:09:26,370
+This is the equivalent of your printf.
+
+165
+00:09:26,370 --> 00:09:29,310
+>> And it takes the same
+arguments printf would.
+
+166
+00:09:29,310 --> 00:09:33,870
+And in order to run it,
+instead of running make ex1,
+
+167
+00:09:33,870 --> 00:09:38,930
+you would just call Node ex1.js.
+
+168
+00:09:38,930 --> 00:09:41,830
+You write Node and then
+the file, and it gets run.
+
+169
+00:09:41,830 --> 00:09:43,580
+It does not get compiled.
+
+170
+00:09:43,580 --> 00:09:45,970
+JavaScript is a interpreted language.
+
+171
+00:09:45,970 --> 00:09:49,150
+So it doesn't need to be
+compiled before it's run.
+
+172
+00:09:49,150 --> 00:09:53,450
+If I wanted to run ex1.c,
+I have to make it first,
+
+173
+00:09:53,450 --> 00:09:59,160
+and then I can run the executable
+to get the same output.
+
+174
+00:09:59,160 --> 00:10:02,460
+>> Let's quickly cover some
+other JavaScript concepts.
+
+175
+00:10:02,460 --> 00:10:04,490
+Let's look at example two.
+
+176
+00:10:04,490 --> 00:10:14,690
+In ex2.js, in ex2.c, we can
+see that we have some code.
+
+177
+00:10:14,690 --> 00:10:16,550
+Let me quickly go to
+a better text editor
+
+178
+00:10:16,550 --> 00:10:18,400
+that will show these
+new lines a bit better.
+
+179
+00:10:18,400 --> 00:10:21,760
+
+180
+00:10:21,760 --> 00:10:22,380
+All right.
+
+181
+00:10:22,380 --> 00:10:24,190
+Here we have example 2.c.
+
+182
+00:10:24,190 --> 00:10:27,360
+Here we have different types
+that we're printing out.
+
+183
+00:10:27,360 --> 00:10:30,880
+And as we know, printf takes
+different percent arguments
+
+184
+00:10:30,880 --> 00:10:34,050
+to access different pieces of data.
+
+185
+00:10:34,050 --> 00:10:36,840
+If we want to print
+a string, we call %s.
+
+186
+00:10:36,840 --> 00:10:40,390
+If we want to call a floating
+point number, we called %f.
+
+187
+00:10:40,390 --> 00:10:45,810
+And there's no easy way to call a
+Boolean by its true or false value.
+
+188
+00:10:45,810 --> 00:10:50,760
+But if you use %d, you can get
+a 0 or a 1 for false and true.
+
+189
+00:10:50,760 --> 00:10:53,270
+>> JavaScript is a bit nicer for us.
+
+190
+00:10:53,270 --> 00:10:57,740
+In JavaScript, let's look at the few
+differences we have in this file.
+
+191
+00:10:57,740 --> 00:11:05,790
+First, you notice that in C we have to
+initialize every variable with a type.
+
+192
+00:11:05,790 --> 00:11:06,940
+S is a char star.
+
+193
+00:11:06,940 --> 00:11:08,930
+It's a string, and it
+cannot be any other type.
+
+194
+00:11:08,930 --> 00:11:10,450
+N is a float.
+
+195
+00:11:10,450 --> 00:11:11,780
+B is a Bool.
+
+196
+00:11:11,780 --> 00:11:14,220
+>> But in JavaScript,
+there are dynamic types.
+
+197
+00:11:14,220 --> 00:11:16,400
+That means that you don't
+need to tell JavaScript
+
+198
+00:11:16,400 --> 00:11:17,860
+what types your variables will be.
+
+199
+00:11:17,860 --> 00:11:22,730
+You just say var for variable, the name
+of the variable, and then its value.
+
+200
+00:11:22,730 --> 00:11:24,690
+So a var can be anything really.
+
+201
+00:11:24,690 --> 00:11:25,640
+It can be a string.
+
+202
+00:11:25,640 --> 00:11:27,300
+It can be a floating point number.
+
+203
+00:11:27,300 --> 00:11:28,560
+It can be a character.
+
+204
+00:11:28,560 --> 00:11:31,250
+It can be a Boolean.
+
+205
+00:11:31,250 --> 00:11:34,380
+And console log works a bit differently.
+
+206
+00:11:34,380 --> 00:11:37,340
+If you want to print
+a number, you call %d.
+
+207
+00:11:37,340 --> 00:11:41,740
+But most values can be
+printed as strings just fine.
+
+208
+00:11:41,740 --> 00:11:46,220
+>> Let's run this in Node
+to see what would happen.
+
+209
+00:11:46,220 --> 00:11:51,880
+I can call Node ex2.js,
+and we get printf
+
+210
+00:11:51,880 --> 00:11:56,870
+with the values CS50, N as
+the floating point number,
+
+211
+00:11:56,870 --> 00:12:00,620
+and then B as the Boolean
+converted to a string true.
+
+212
+00:12:00,620 --> 00:12:03,830
+What about if we made example 2.c?
+
+213
+00:12:03,830 --> 00:12:09,630
+Well, we still have some
+more annoyances with printf.
+
+214
+00:12:09,630 --> 00:12:13,110
+Notice that the floating point
+number has to be formatted correctly,
+
+215
+00:12:13,110 --> 00:12:18,120
+and that the Boolean can't simply
+be displayed as true or false.
+
+216
+00:12:18,120 --> 00:12:18,620
+All right.
+
+217
+00:12:18,620 --> 00:12:22,680
+Now let's look at example three.
+
+218
+00:12:22,680 --> 00:12:26,470
+In example three, we are showing
+how you would use a for loop.
+
+219
+00:12:26,470 --> 00:12:27,630
+In fact, it's very simple.
+
+220
+00:12:27,630 --> 00:12:31,430
+One of the nice things about
+JavaScript is that it is C based.
+
+221
+00:12:31,430 --> 00:12:33,920
+That means that a lot of your
+code will look very similar
+
+222
+00:12:33,920 --> 00:12:36,490
+and feel very much the same.
+
+223
+00:12:36,490 --> 00:12:39,220
+In a for loop, the only thing
+that has really changed here
+
+224
+00:12:39,220 --> 00:12:41,840
+is instead of int i, we have var i.
+
+225
+00:12:41,840 --> 00:12:45,470
+We can still assign it to value
+zero, check that it's less than five,
+
+226
+00:12:45,470 --> 00:12:49,390
+and increment it by one
+with the ++ operator.
+
+227
+00:12:49,390 --> 00:12:56,286
+We call console.log on i, and that
+will print us a number with each line.
+
+228
+00:12:56,286 --> 00:12:58,410
+Let's run it really quickly
+to see what it outputs.
+
+229
+00:12:58,410 --> 00:13:02,320
+
+230
+00:13:02,320 --> 00:13:03,880
+We get a new number in each line.
+
+231
+00:13:03,880 --> 00:13:06,920
+Another thing I want you
+to notice with console.log
+
+232
+00:13:06,920 --> 00:13:09,960
+is you didn't have to write
+backslash n for the new line.
+
+233
+00:13:09,960 --> 00:13:12,480
+Console.log will print
+everything on its own line.
+
+234
+00:13:12,480 --> 00:13:14,585
+That's a nice feature
+that JavaScript gives us.
+
+235
+00:13:14,585 --> 00:13:18,440
+
+236
+00:13:18,440 --> 00:13:22,600
+>> Now let's open up example four.
+
+237
+00:13:22,600 --> 00:13:28,710
+In example four, first in the C,
+we are calling a few functions.
+
+238
+00:13:28,710 --> 00:13:33,290
+Notice that we have to declare the
+functions before we use them in main.
+
+239
+00:13:33,290 --> 00:13:37,250
+If we had main first and
+then add and then high, make,
+
+240
+00:13:37,250 --> 00:13:39,540
+clang, or GCC would
+give us an error saying
+
+241
+00:13:39,540 --> 00:13:41,060
+that it doesn't know what high is.
+
+242
+00:13:41,060 --> 00:13:42,780
+It doesn't know what add is.
+
+243
+00:13:42,780 --> 00:13:46,480
+So in C, you have to be picky about the
+order in which you call your functions.
+
+244
+00:13:46,480 --> 00:13:49,220
+
+245
+00:13:49,220 --> 00:13:51,310
+>> Let's look at how you can
+do this in JavaScript.
+
+246
+00:13:51,310 --> 00:13:56,060
+We have different files because there
+are a few different ways to do this.
+
+247
+00:13:56,060 --> 00:13:58,950
+One way is pretty much
+a direct translation.
+
+248
+00:13:58,950 --> 00:14:02,180
+Because functions in C
+return types, and JavaScript
+
+249
+00:14:02,180 --> 00:14:05,210
+doesn't really know or care
+about what type you return,
+
+250
+00:14:05,210 --> 00:14:06,300
+you don't write a type.
+
+251
+00:14:06,300 --> 00:14:08,100
+Instead, you just need
+to write function,
+
+252
+00:14:08,100 --> 00:14:11,180
+and everything is pretty
+much the same as before.
+
+253
+00:14:11,180 --> 00:14:14,630
+>> When you have a variable, like in
+add, we just need to write x and y.
+
+254
+00:14:14,630 --> 00:14:16,060
+We don't need to say x is an int.
+
+255
+00:14:16,060 --> 00:14:18,940
+We don't need to say y is an int.
+
+256
+00:14:18,940 --> 00:14:21,030
+We return with the same syntax.
+
+257
+00:14:21,030 --> 00:14:24,230
+For high, we declare it with
+function instead of void.
+
+258
+00:14:24,230 --> 00:14:26,110
+Notice that whether
+it's void or non-void,
+
+259
+00:14:26,110 --> 00:14:28,380
+it's still all the same function.
+
+260
+00:14:28,380 --> 00:14:32,440
+And we simply don't put
+anything in parentheses,
+
+261
+00:14:32,440 --> 00:14:34,690
+and it looks very much like the C code.
+
+262
+00:14:34,690 --> 00:14:37,460
+And below, we can call it below.
+
+263
+00:14:37,460 --> 00:14:42,730
+>> If we look at example 4b, we notice
+that I've changed a few things.
+
+264
+00:14:42,730 --> 00:14:45,340
+The only thing I've changed
+really though is the order.
+
+265
+00:14:45,340 --> 00:14:47,340
+We have the same
+functions, but now they're
+
+266
+00:14:47,340 --> 00:14:52,200
+declared after they're used in
+console.log and high on lines 18, 19.
+
+267
+00:14:52,200 --> 00:14:54,740
+If you did this in C,
+make would throw an error.
+
+268
+00:14:54,740 --> 00:14:56,070
+Here, this works just fine.
+
+269
+00:14:56,070 --> 00:15:01,935
+And I can show this to you by
+calling Node on 4b example.
+
+270
+00:15:01,935 --> 00:15:05,350
+
+271
+00:15:05,350 --> 00:15:10,130
+>> Another way we can call functions
+is by saving functions as variables.
+
+272
+00:15:10,130 --> 00:15:13,790
+Like I said, a variable
+can have any type.
+
+273
+00:15:13,790 --> 00:15:16,720
+One of the types a variable
+can have is a function.
+
+274
+00:15:16,720 --> 00:15:19,800
+So if you look at example
+4c, what I've changed
+
+275
+00:15:19,800 --> 00:15:24,320
+here is var add instead of function add.
+
+276
+00:15:24,320 --> 00:15:26,807
+And now add equals a function.
+
+277
+00:15:26,807 --> 00:15:28,140
+This function here is anonymous.
+
+278
+00:15:28,140 --> 00:15:33,346
+It has no name, so it's just
+function and then the parentheses.
+
+279
+00:15:33,346 --> 00:15:35,220
+The syntax after that
+doesn't change, but you
+
+280
+00:15:35,220 --> 00:15:38,300
+do have to keep in mind that
+you have a variable that you're
+
+281
+00:15:38,300 --> 00:15:42,940
+storing the function into add, and a
+variable that you're storing into high.
+
+282
+00:15:42,940 --> 00:15:47,620
+>> Because add and high are now variables
+and not functions, something changes.
+
+283
+00:15:47,620 --> 00:15:50,190
+This is a common bug I see in
+a lot of people's JavaScripts,
+
+284
+00:15:50,190 --> 00:15:52,410
+and something to keep in mind.
+
+285
+00:15:52,410 --> 00:15:54,365
+When I run this, let's see what happens.
+
+286
+00:15:54,365 --> 00:15:57,410
+
+287
+00:15:57,410 --> 00:15:58,230
+I get an error.
+
+288
+00:15:58,230 --> 00:16:01,000
+It's saying undefined at this point.
+
+289
+00:16:01,000 --> 00:16:03,520
+So it's saying it
+doesn't know what add is.
+
+290
+00:16:03,520 --> 00:16:06,010
+>> Because now add is not a
+function, add is a variable.
+
+291
+00:16:06,010 --> 00:16:10,100
+And you haven't actually given
+add a value yet when you used it.
+
+292
+00:16:10,100 --> 00:16:14,460
+That brings us to example 4d, where if
+you want to use variables as functions,
+
+293
+00:16:14,460 --> 00:16:17,210
+you just need to make sure they
+get the value before they're used.
+
+294
+00:16:17,210 --> 00:16:20,200
+
+295
+00:16:20,200 --> 00:16:23,420
+>> Let's move on to example five then.
+
+296
+00:16:23,420 --> 00:16:27,390
+Here, we talk about
+structs in C. In C, structs
+
+297
+00:16:27,390 --> 00:16:30,320
+have this fixed structure to them
+because you have to declare them
+
+298
+00:16:30,320 --> 00:16:33,050
+before you use it, and
+you say I have a student,
+
+299
+00:16:33,050 --> 00:16:36,645
+and every student has exactly
+one name, one year, one gender.
+
+300
+00:16:36,645 --> 00:16:37,770
+It has to have all of them.
+
+301
+00:16:37,770 --> 00:16:42,280
+It can't have any other values,
+and they have to be specific types.
+
+302
+00:16:42,280 --> 00:16:47,540
+>> Then we can initialize the
+struct in this nice syntax
+
+303
+00:16:47,540 --> 00:16:49,470
+because it knows the order.
+
+304
+00:16:49,470 --> 00:16:51,460
+So it knows that Roger is a name.
+
+305
+00:16:51,460 --> 00:16:54,060
+It knows that 2016 is a
+year and M is a gender
+
+306
+00:16:54,060 --> 00:16:58,200
+because we told it this
+list is a struct student.
+
+307
+00:16:58,200 --> 00:17:01,607
+And then you can print
+it, accessing s.name.
+
+308
+00:17:01,607 --> 00:17:03,690
+Let's see how we would
+convert that to JavaScript.
+
+309
+00:17:03,690 --> 00:17:06,400
+
+310
+00:17:06,400 --> 00:17:09,790
+Notice that s is now a
+variable, and there's no type.
+
+311
+00:17:09,790 --> 00:17:10,920
+It's just a var again.
+
+312
+00:17:10,920 --> 00:17:14,480
+Because it doesn't matter if the
+type of this variable is a pointer,
+
+313
+00:17:14,480 --> 00:17:17,440
+it's a struct, or anything else.
+
+314
+00:17:17,440 --> 00:17:19,650
+We have a slightly different syntax.
+
+315
+00:17:19,650 --> 00:17:21,890
+This syntax is the object syntax.
+
+316
+00:17:21,890 --> 00:17:24,400
+>> You might have seen it in JSON.
+
+317
+00:17:24,400 --> 00:17:27,780
+JSON actually stands for the
+JavaScript Object Notation.
+
+318
+00:17:27,780 --> 00:17:31,240
+This is how you define
+objects in JavaScript.
+
+319
+00:17:31,240 --> 00:17:34,500
+We have a key, which is
+the value, like name.
+
+320
+00:17:34,500 --> 00:17:37,680
+And we give it values on
+the other side of the colon.
+
+321
+00:17:37,680 --> 00:17:41,850
+And one thing to keep in mind is you
+don't need to have a name and a year
+
+322
+00:17:41,850 --> 00:17:42,980
+and a gender for an object.
+
+323
+00:17:42,980 --> 00:17:44,570
+An object can have no values.
+
+324
+00:17:44,570 --> 00:17:46,920
+It can have as many as you'd like.
+
+325
+00:17:46,920 --> 00:17:50,375
+>> We can use these objects in just the
+same way we would use a struct, s.name.
+
+326
+00:17:50,375 --> 00:17:53,810
+
+327
+00:17:53,810 --> 00:17:57,080
+We can run it really quickly
+by doing node example 5.c.
+
+328
+00:17:57,080 --> 00:18:00,320
+
+329
+00:18:00,320 --> 00:18:02,520
+We can't actually run a C file in Node.
+
+330
+00:18:02,520 --> 00:18:03,654
+It doesn't know what C is.
+
+331
+00:18:03,654 --> 00:18:04,695
+It only knows JavaScript.
+
+332
+00:18:04,695 --> 00:18:09,865
+When we run the ex5.js, we get
+the value, which we expected.
+
+333
+00:18:09,865 --> 00:18:13,490
+
+334
+00:18:13,490 --> 00:18:15,980
+>> Let's move on to example six.
+
+335
+00:18:15,980 --> 00:18:18,930
+Here I just want to talk a little
+bit more about JavaScript arrays
+
+336
+00:18:18,930 --> 00:18:20,930
+because they're a bit
+different than what you're
+
+337
+00:18:20,930 --> 00:18:26,940
+used to in C. Arrays are notated,
+not with the brackets like in C,
+
+338
+00:18:26,940 --> 00:18:28,640
+with the curly braces, but brackets.
+
+339
+00:18:28,640 --> 00:18:32,150
+You can have an empty array,
+like arr in line four.
+
+340
+00:18:32,150 --> 00:18:34,680
+You can have arrays
+with multiple values.
+
+341
+00:18:34,680 --> 00:18:39,790
+And you access them
+just the same way in C.
+
+342
+00:18:39,790 --> 00:18:42,990
+>> Up to line seven, everything
+seems pretty straightforward.
+
+343
+00:18:42,990 --> 00:18:45,390
+One minor difference is here at line 10.
+
+344
+00:18:45,390 --> 00:18:48,620
+The way you get a length of an
+array is just by calling .length.
+
+345
+00:18:48,620 --> 00:18:50,620
+An array can actually be
+treated like an object,
+
+346
+00:18:50,620 --> 00:18:54,960
+and this object has a length property
+that you call to get the length of it.
+
+347
+00:18:54,960 --> 00:18:57,350
+Notice that this is different
+in C because in C you
+
+348
+00:18:57,350 --> 00:19:01,600
+have to know the length of
+your object ahead of time.
+
+349
+00:19:01,600 --> 00:19:04,700
+>> So another nice thing about arrays
+is that you can have different types.
+
+350
+00:19:04,700 --> 00:19:07,470
+If you have an array in C, there
+are arrays of a specific value,
+
+351
+00:19:07,470 --> 00:19:11,900
+either a struct pointer
+or floats or [INAUDIBLE].
+
+352
+00:19:11,900 --> 00:19:13,700
+Here, you can have different values.
+
+353
+00:19:13,700 --> 00:19:17,560
+I first had a floating point number,
+then a Boolean, then another integer.
+
+354
+00:19:17,560 --> 00:19:19,670
+And actually, they can change types too.
+
+355
+00:19:19,670 --> 00:19:21,220
+Look at line 16.
+
+356
+00:19:21,220 --> 00:19:26,760
+Array two is changing from being
+a number, an integer, to a string.
+
+357
+00:19:26,760 --> 00:19:30,920
+>> Another nice thing about arrays is here
+at line 19, they have infinite size.
+
+358
+00:19:30,920 --> 00:19:35,900
+You can just say I want the hundredth
+element to be the string legit.
+
+359
+00:19:35,900 --> 00:19:38,510
+And this doesn't seem to make
+sense because the array only
+
+360
+00:19:38,510 --> 00:19:41,080
+has space for three elements,
+so the end should be two.
+
+361
+00:19:41,080 --> 00:19:44,800
+But when you do this, let's
+see what array three becomes.
+
+362
+00:19:44,800 --> 00:19:47,460
+We would run this quickly
+with node example six.js.
+
+363
+00:19:47,460 --> 00:19:49,990
+
+364
+00:19:49,990 --> 00:19:52,180
+We get this really long
+array, and what happens
+
+365
+00:19:52,180 --> 00:19:55,100
+is we have the first few elements
+and then a bunch of blanks
+
+366
+00:19:55,100 --> 00:19:56,580
+until we get our string.
+
+367
+00:19:56,580 --> 00:19:58,580
+JavaScript fills in the
+array as it's needed.
+
+368
+00:19:58,580 --> 00:20:01,790
+
+369
+00:20:01,790 --> 00:20:05,420
+>> Let's finally go to our last example.
+
+370
+00:20:05,420 --> 00:20:08,180
+Here we have a list
+of different students.
+
+371
+00:20:08,180 --> 00:20:11,350
+I want to talk a little
+bit about some nice aspects
+
+372
+00:20:11,350 --> 00:20:14,240
+of for loops in JavaScript.
+
+373
+00:20:14,240 --> 00:20:17,500
+In C, for loops are kind of limited.
+
+374
+00:20:17,500 --> 00:20:21,490
+They have a fixed structure, where you
+have a variable, you have a condition,
+
+375
+00:20:21,490 --> 00:20:23,850
+and then you do something
+at the end of the loop.
+
+376
+00:20:23,850 --> 00:20:27,560
+And of course this works in JavaScript,
+as we saw in the previous examples.
+
+377
+00:20:27,560 --> 00:20:31,030
+But we also have nicer ways
+of doing this in JavaScript.
+
+378
+00:20:31,030 --> 00:20:33,870
+This is called a foreach loop.
+
+379
+00:20:33,870 --> 00:20:36,580
+>> Sorry, let's go back
+to example seven here.
+
+380
+00:20:36,580 --> 00:20:39,320
+We can also say section is a list.
+
+381
+00:20:39,320 --> 00:20:43,250
+So give me every i or
+every index in that list.
+
+382
+00:20:43,250 --> 00:20:46,255
+Then we can get the student
+by just calling section of i.
+
+383
+00:20:46,255 --> 00:20:50,690
+So all of the code of setting i
+equal to zero and making sure i
+
+384
+00:20:50,690 --> 00:20:54,420
+is less than the length and
+adding one to i every time, that's
+
+385
+00:20:54,420 --> 00:21:00,220
+taking care of you rather
+nicely with this foreach loop.
+
+386
+00:21:00,220 --> 00:21:02,830
+>> Not only do foreach loops
+work in lists or arrays,
+
+387
+00:21:02,830 --> 00:21:06,130
+they also work in objects,
+which is also nice.
+
+388
+00:21:06,130 --> 00:21:10,240
+You can get the name of
+every property by just taking
+
+389
+00:21:10,240 --> 00:21:15,030
+a dictionary or an object, like student,
+and then just saying give me every key.
+
+390
+00:21:15,030 --> 00:21:18,920
+A key would be these
+properties, name or house.
+
+391
+00:21:18,920 --> 00:21:22,870
+So what's going to happen here is that
+we print out first the name and then
+
+392
+00:21:22,870 --> 00:21:24,920
+the house of every student.
+
+393
+00:21:24,920 --> 00:21:29,170
+>> I can run this in Node
+really quickly to show you.
+
+394
+00:21:29,170 --> 00:21:35,510
+We get first the C style for loop, where
+we get every object being printed out.
+
+395
+00:21:35,510 --> 00:21:38,910
+And then we have the JavaScript
+style, where you can just
+
+396
+00:21:38,910 --> 00:21:41,510
+print out every key
+and value individually.
+
+397
+00:21:41,510 --> 00:21:45,560
+
+398
+00:21:45,560 --> 00:21:47,050
+>> All right.
+
+399
+00:21:47,050 --> 00:21:52,850
+Now that we've covered Node.js, I think
+we're ready to get started with Meteor.
+
+400
+00:21:52,850 --> 00:21:56,070
+Like I said, Meteor did a great job
+of writing some ready-made examples
+
+401
+00:21:56,070 --> 00:22:00,600
+for you that you can explore through
+this tutorial or in the seminar folder.
+
+402
+00:22:00,600 --> 00:22:03,750
+But here I want to
+start more from scratch.
+
+403
+00:22:03,750 --> 00:22:06,810
+>> Let's create a simple to do application.
+
+404
+00:22:06,810 --> 00:22:14,140
+This is kind of the base of what the to
+do application I showed you earlier is.
+
+405
+00:22:14,140 --> 00:22:16,990
+In this tutorial, you
+will see that there's
+
+406
+00:22:16,990 --> 00:22:20,180
+a command Meteor create to
+create a new Meteor project.
+
+407
+00:22:20,180 --> 00:22:24,510
+You need to call this in order
+to run Meteor projects because it
+
+408
+00:22:24,510 --> 00:22:27,470
+will run the commands
+to create the Meteor
+
+409
+00:22:27,470 --> 00:22:31,100
+files necessary for your project.
+
+410
+00:22:31,100 --> 00:22:35,920
+>> If you go into the terminal, we can
+go into the folder called step one.
+
+411
+00:22:35,920 --> 00:22:41,240
+And step one will correspond with
+the first step in the tutorial.
+
+412
+00:22:41,240 --> 00:22:44,020
+Notice there are folders, step
+one, step two, all the way to five.
+
+413
+00:22:44,020 --> 00:22:47,835
+And each one is corresponding
+to a step in this tutorial.
+
+414
+00:22:47,835 --> 00:22:50,960
+
+415
+00:22:50,960 --> 00:22:52,780
+I'm going to open it
+in my text editor here
+
+416
+00:22:52,780 --> 00:22:56,280
+so we can see a bit of what was created.
+
+417
+00:22:56,280 --> 00:22:58,530
+We notice that there
+are four main parts.
+
+418
+00:22:58,530 --> 00:23:01,170
+There's a Meteor directory, .meteor.
+
+419
+00:23:01,170 --> 00:23:03,180
+And that you usually
+don't need to touch.
+
+420
+00:23:03,180 --> 00:23:05,070
+Meteor takes care of
+that folder, and it just
+
+421
+00:23:05,070 --> 00:23:08,640
+makes sure that your
+project will work correctly.
+
+422
+00:23:08,640 --> 00:23:14,580
+>> We also have three files, a HTML file,
+a JavaScript file, and a CSS file.
+
+423
+00:23:14,580 --> 00:23:18,670
+Let's first start with the HTML file.
+
+424
+00:23:18,670 --> 00:23:21,310
+At first glance, this looks
+like a normal HTML document.
+
+425
+00:23:21,310 --> 00:23:23,490
+But notice that there
+are a few differences.
+
+426
+00:23:23,490 --> 00:23:26,520
+One, this isn't actually
+a complete HTML document.
+
+427
+00:23:26,520 --> 00:23:28,640
+We're missing the HTML tags.
+
+428
+00:23:28,640 --> 00:23:29,700
+This is normal.
+
+429
+00:23:29,700 --> 00:23:33,560
+In Meteor, you're not expected
+to create these HTML tags.
+
+430
+00:23:33,560 --> 00:23:35,260
+That's done for you.
+
+431
+00:23:35,260 --> 00:23:38,380
+You want to begin-- if you
+want to create a website,
+
+432
+00:23:38,380 --> 00:23:40,430
+you just need to start
+with the head tag,
+
+433
+00:23:40,430 --> 00:23:43,510
+define that, and then
+define the body tag.
+
+434
+00:23:43,510 --> 00:23:48,940
+>> But if you notice in this
+HTML file, we have a new tag.
+
+435
+00:23:48,940 --> 00:23:50,350
+We have the template tag.
+
+436
+00:23:50,350 --> 00:23:52,050
+This is not normal HTML.
+
+437
+00:23:52,050 --> 00:23:55,300
+This is a special version of HTML
+that Meteor makes available to you.
+
+438
+00:23:55,300 --> 00:23:57,660
+It's called space bars.
+
+439
+00:23:57,660 --> 00:24:00,980
+You can define templates as little
+modules, kind of like helper functions,
+
+440
+00:24:00,980 --> 00:24:03,660
+in your C or JavaScript code.
+
+441
+00:24:03,660 --> 00:24:06,020
+This template would
+have a name called task.
+
+442
+00:24:06,020 --> 00:24:10,520
+And you can see right here on line
+13 that you can call these templates.
+
+443
+00:24:10,520 --> 00:24:14,380
+And what Meteor will do is just
+fill in these tasks for you.
+
+444
+00:24:14,380 --> 00:24:17,540
+
+445
+00:24:17,540 --> 00:24:22,580
+>> Another thing you might notice is a
+bit different is this each function.
+
+446
+00:24:22,580 --> 00:24:26,130
+Each will take the variable
+tasks and kind of go through it
+
+447
+00:24:26,130 --> 00:24:28,810
+in that foreach loop we
+saw in example seven.
+
+448
+00:24:28,810 --> 00:24:34,200
+This each can take a dictionary
+or a list, an object or a list,
+
+449
+00:24:34,200 --> 00:24:38,820
+and it'll just go through all of the
+values like a foreach loop would.
+
+450
+00:24:38,820 --> 00:24:44,110
+So if we have a bunch of tasks, this
+will call the template on each task.
+
+451
+00:24:44,110 --> 00:24:49,590
+>> Let's run the Meteor project
+just to see that this happens.
+
+452
+00:24:49,590 --> 00:24:53,260
+I run the Meteor project with
+just Meteor or Meteor run.
+
+453
+00:24:53,260 --> 00:24:56,690
+And now Meteor just will need
+to quickly prepare the project,
+
+454
+00:24:56,690 --> 00:25:03,320
+start the database as necessary,
+and then post the app locally.
+
+455
+00:25:03,320 --> 00:25:07,200
+We can go to our web browser now.
+
+456
+00:25:07,200 --> 00:25:10,215
+And we'll see that we
+have a very simple app.
+
+457
+00:25:10,215 --> 00:25:22,190
+
+458
+00:25:22,190 --> 00:25:29,130
+So what we saw showed up was actually
+the step one, the step one file.
+
+459
+00:25:29,130 --> 00:25:33,260
+>> Let's move on to step two only because
+I think it will serve the same purpose.
+
+460
+00:25:33,260 --> 00:25:36,500
+I'm just going to change
+to the step two directory
+
+461
+00:25:36,500 --> 00:25:39,550
+and run Meteor again so we can see
+the template we just worked with.
+
+462
+00:25:39,550 --> 00:25:43,560
+
+463
+00:25:43,560 --> 00:25:45,730
+Yes, a question?
+
+464
+00:25:45,730 --> 00:25:49,724
+>> AUDIENCE: If we're getting permission
+denied, is that-- what's it
+
+465
+00:25:49,724 --> 00:25:50,390
+called for that?
+
+466
+00:25:50,390 --> 00:25:52,154
+
+467
+00:25:52,154 --> 00:25:54,070
+ROGER ZURAWICKI: If
+you're running Meteor run,
+
+468
+00:25:54,070 --> 00:25:57,280
+and you have permission
+denied, some of your files
+
+469
+00:25:57,280 --> 00:25:59,070
+might not have the right permission set.
+
+470
+00:25:59,070 --> 00:26:03,970
+So you have to check where
+the permissions are off.
+
+471
+00:26:03,970 --> 00:26:06,030
+They could be off in
+your Meteor project,
+
+472
+00:26:06,030 --> 00:26:08,550
+or they could be off in the
+Meteor files themselves.
+
+473
+00:26:08,550 --> 00:26:13,742
+>> AUDIENCE: If I downloaded it just now
+from your GitHub, then what should I do
+
+474
+00:26:13,742 --> 00:26:16,110
+[INAUDIBLE]?
+
+475
+00:26:16,110 --> 00:26:20,110
+>> ROGER ZURAWICKI: If you want
+to make sure you can access it,
+
+476
+00:26:20,110 --> 00:26:21,450
+there's a command you can run.
+
+477
+00:26:21,450 --> 00:26:26,590
+Let me quickly write it out
+so other people can see it.
+
+478
+00:26:26,590 --> 00:26:30,670
+I'm going to open a new tab here
+and go into my seminar folder.
+
+479
+00:26:30,670 --> 00:26:33,500
+
+480
+00:26:33,500 --> 00:26:36,490
+Chmod is the command
+to change permissions,
+
+481
+00:26:36,490 --> 00:26:40,060
+and you can say r for do it
+recursively for every file.
+
+482
+00:26:40,060 --> 00:26:46,040
+And permissions, you can try 0755
+to make sure you have full access,
+
+483
+00:26:46,040 --> 00:26:47,820
+and everyone else can read.
+
+484
+00:26:47,820 --> 00:26:50,100
+And if you just run
+this command, it'll make
+
+485
+00:26:50,100 --> 00:26:55,800
+sure the permissions are in
+check for the whole directory.
+
+486
+00:26:55,800 --> 00:26:59,160
+Running ls-l can show you the
+permissions in more detail.
+
+487
+00:26:59,160 --> 00:27:01,290
+This looks OK.
+
+488
+00:27:01,290 --> 00:27:03,900
+>> What's most Important is
+that you have all three
+
+489
+00:27:03,900 --> 00:27:06,610
+rwx for all the files in
+the seminar directory.
+
+490
+00:27:06,610 --> 00:27:09,415
+
+491
+00:27:09,415 --> 00:27:11,330
+Did that solve the problem?
+
+492
+00:27:11,330 --> 00:27:13,735
+>> AUDIENCE: It says missing
+operant [INAUDIBLE].
+
+493
+00:27:13,735 --> 00:27:17,980
+
+494
+00:27:17,980 --> 00:27:18,740
+[INAUDIBLE]
+
+495
+00:27:18,740 --> 00:27:20,490
+ROGER ZURAWICKI: You
+have to make sure you
+
+496
+00:27:20,490 --> 00:27:23,022
+have a dot at the end of your command.
+
+497
+00:27:23,022 --> 00:27:23,938
+AUDIENCE: [INAUDIBLE].
+
+498
+00:27:23,938 --> 00:27:36,395
+
+499
+00:27:36,395 --> 00:27:37,520
+ROGER ZURAWICKI: All right.
+
+500
+00:27:37,520 --> 00:27:42,220
+Let us quickly go back to the
+local host, the app we have.
+
+501
+00:27:42,220 --> 00:27:46,640
+And you'll see that we have a
+few tasks here, as expected.
+
+502
+00:27:46,640 --> 00:27:49,330
+
+503
+00:27:49,330 --> 00:27:51,990
+We have a bunch of CSS, which
+you don't need to worry about.
+
+504
+00:27:51,990 --> 00:27:53,740
+The Meteor tutorial
+just gives this to you
+
+505
+00:27:53,740 --> 00:27:58,010
+to make your to do list look a
+bit nicer than the plain HTML.
+
+506
+00:27:58,010 --> 00:28:02,290
+And we have the JavaScript file, which
+I'll go into more detail a bit later,
+
+507
+00:28:02,290 --> 00:28:04,272
+but it just provides these tasks.
+
+508
+00:28:04,272 --> 00:28:04,980
+This is task one.
+
+509
+00:28:04,980 --> 00:28:05,740
+This is task two.
+
+510
+00:28:05,740 --> 00:28:06,590
+This is task three.
+
+511
+00:28:06,590 --> 00:28:09,720
+So this is the data Meteor's getting.
+
+512
+00:28:09,720 --> 00:28:15,590
+>> One of the cool things about Meteor is
+that changes can happen automatically.
+
+513
+00:28:15,590 --> 00:28:18,990
+If I wanted to change the
+name of the first task,
+
+514
+00:28:18,990 --> 00:28:22,490
+so it would say this is not
+task one, and I save it,
+
+515
+00:28:22,490 --> 00:28:26,370
+then when I go to the web
+browser, you can refresh it,
+
+516
+00:28:26,370 --> 00:28:30,861
+and it automatically says
+this is not task one.
+
+517
+00:28:30,861 --> 00:28:32,860
+You can do the same thing
+in any of these files.
+
+518
+00:28:32,860 --> 00:28:37,940
+Make a change, instead of to do
+list, I will have it my to do list.
+
+519
+00:28:37,940 --> 00:28:40,980
+>> And one thing you just noticed,
+that I didn't even have to refresh.
+
+520
+00:28:40,980 --> 00:28:43,960
+The idea of refreshing is kind
+of solved for you with Meteor.
+
+521
+00:28:43,960 --> 00:28:48,970
+Whenever it detects the file changes,
+it will load the changes for you.
+
+522
+00:28:48,970 --> 00:28:53,110
+This works on all files, whether
+it's HTML, CSS, or JavaScript.
+
+523
+00:28:53,110 --> 00:28:57,990
+To show you what this app would look
+like without CSS, I can remove it all.
+
+524
+00:28:57,990 --> 00:29:04,720
+And when it's reloaded, you now have
+a not as nice-looking to do list.
+
+525
+00:29:04,720 --> 00:29:06,370
+Let's put that content back.
+
+526
+00:29:06,370 --> 00:29:11,343
+And surely enough, it
+refreshes, and our CSS is back.
+
+527
+00:29:11,343 --> 00:29:11,843
+Great.
+
+528
+00:29:11,843 --> 00:29:15,700
+
+529
+00:29:15,700 --> 00:29:20,010
+>> We can now move on with the tutorial.
+
+530
+00:29:20,010 --> 00:29:23,360
+Let's talk about step two, templates.
+
+531
+00:29:23,360 --> 00:29:27,140
+This is what we just saw
+with the different tasks.
+
+532
+00:29:27,140 --> 00:29:31,550
+Meteor will explain to you what
+templates and how this logic works.
+
+533
+00:29:31,550 --> 00:29:34,760
+But let's just look at the code to
+see if we can make sense out of it.
+
+534
+00:29:34,760 --> 00:29:38,030
+
+535
+00:29:38,030 --> 00:29:41,460
+>> In very simple applications,
+like what we have in the simple
+
+536
+00:29:41,460 --> 00:29:44,550
+to do, step one, step two, step
+three, step four, step five,
+
+537
+00:29:44,550 --> 00:29:45,700
+we don't have any folders.
+
+538
+00:29:45,700 --> 00:29:47,533
+We don't have the server
+folder I mentioned.
+
+539
+00:29:47,533 --> 00:29:50,510
+We don't have the client
+folder that was mentioned.
+
+540
+00:29:50,510 --> 00:29:52,290
+So Meteor will run all the files.
+
+541
+00:29:52,290 --> 00:29:55,210
+It'll run it both on the
+client, both on the server.
+
+542
+00:29:55,210 --> 00:29:58,840
+>> And if you want parts of your JavaScript
+code to run just on the client,
+
+543
+00:29:58,840 --> 00:30:02,350
+they need to make sure that you have
+an if statement, kind of like what
+
+544
+00:30:02,350 --> 00:30:04,890
+we have in our JavaScript file here.
+
+545
+00:30:04,890 --> 00:30:08,010
+So Meteor, only if
+it's the client, then I
+
+546
+00:30:08,010 --> 00:30:12,355
+want to define a template
+helper called tasks.
+
+547
+00:30:12,355 --> 00:30:15,050
+
+548
+00:30:15,050 --> 00:30:19,260
+What this code really
+does is it says there's
+
+549
+00:30:19,260 --> 00:30:21,800
+a object called template
+that Meteor provides.
+
+550
+00:30:21,800 --> 00:30:23,270
+And we're going to add a helper.
+
+551
+00:30:23,270 --> 00:30:27,680
+Helpers are these tasks,
+these things like the tasks.
+
+552
+00:30:27,680 --> 00:30:33,890
+>> You'll see that if we go back to the
+HTML file, we called each on tasks.
+
+553
+00:30:33,890 --> 00:30:35,750
+Tasks is not defined in the HTML.
+
+554
+00:30:35,750 --> 00:30:37,770
+It's defined in the JavaScript.
+
+555
+00:30:37,770 --> 00:30:42,610
+And Meteor needs to know what tasks is
+when we go into the JavaScript here.
+
+556
+00:30:42,610 --> 00:30:45,550
+Tasks is this helper.
+
+557
+00:30:45,550 --> 00:30:49,830
+Helper, you can think of
+it as a template variable.
+
+558
+00:30:49,830 --> 00:30:51,000
+And what does tasks do?
+
+559
+00:30:51,000 --> 00:30:53,580
+Well, it returns the list of values.
+
+560
+00:30:53,580 --> 00:30:56,750
+Because it's a list,
+we can call each in it.
+
+561
+00:30:56,750 --> 00:30:58,590
+So that's why we call each on tasks.
+
+562
+00:30:58,590 --> 00:30:59,730
+And now we have task.
+
+563
+00:30:59,730 --> 00:31:02,850
+
+564
+00:31:02,850 --> 00:31:03,990
+>> What does task do?
+
+565
+00:31:03,990 --> 00:31:07,740
+Well, it has this arrow
+here after the curly braces.
+
+566
+00:31:07,740 --> 00:31:09,130
+That means task is a template.
+
+567
+00:31:09,130 --> 00:31:11,100
+It's not a helper,
+like what we just saw.
+
+568
+00:31:11,100 --> 00:31:12,872
+It's a template we've defined.
+
+569
+00:31:12,872 --> 00:31:14,080
+And where have we defined it?
+
+570
+00:31:14,080 --> 00:31:16,950
+We've defined it below right here.
+
+571
+00:31:16,950 --> 00:31:21,160
+>> All this template does is render
+a list item, and it calls text.
+
+572
+00:31:21,160 --> 00:31:24,160
+Now, text seems to be a
+helper, but I'll show you
+
+573
+00:31:24,160 --> 00:31:26,610
+that this is actually still
+a data member of tasks.
+
+574
+00:31:26,610 --> 00:31:29,230
+
+575
+00:31:29,230 --> 00:31:33,670
+When you call each, it goes into
+the data structure a little bit.
+
+576
+00:31:33,670 --> 00:31:39,130
+Like the foreach loop, it now just looks
+at the first element in our object.
+
+577
+00:31:39,130 --> 00:31:41,850
+We see that text is
+defined here in our object.
+
+578
+00:31:41,850 --> 00:31:45,350
+So Meteor is smart to know that
+we're talking about this text,
+
+579
+00:31:45,350 --> 00:31:47,630
+not the helper called text.
+
+580
+00:31:47,630 --> 00:31:52,120
+It just gets the value of this
+text here and displays it as HTML,
+
+581
+00:31:52,120 --> 00:31:55,475
+and that's how the data goes
+from the JavaScript to the HTML.
+
+582
+00:31:55,475 --> 00:32:03,320
+
+583
+00:32:03,320 --> 00:32:07,030
+>> Moving on though, in this example
+we hard coded those values.
+
+584
+00:32:07,030 --> 00:32:10,440
+Meteor does two really
+nice things for us.
+
+585
+00:32:10,440 --> 00:32:15,050
+Besides the live refresh that we
+showed, it also manages our database.
+
+586
+00:32:15,050 --> 00:32:18,750
+If you had to work with PHP,
+you had to configure phpMyAdmin.
+
+587
+00:32:18,750 --> 00:32:21,320
+You had to make sure your
+tables were all in check.
+
+588
+00:32:21,320 --> 00:32:24,760
+You had to do a lot of work to make
+sure your data was formatted correctly,
+
+589
+00:32:24,760 --> 00:32:27,880
+and PHP could communicate with it.
+
+590
+00:32:27,880 --> 00:32:30,170
+>> Now, Meteor uses a new paradigm.
+
+591
+00:32:30,170 --> 00:32:32,310
+This is a more modern way
+of handling a database.
+
+592
+00:32:32,310 --> 00:32:34,580
+It's a technology called MongoDB.
+
+593
+00:32:34,580 --> 00:32:38,740
+Just like in JavaScript, we saw that it
+didn't matter what types the data had.
+
+594
+00:32:38,740 --> 00:32:39,640
+Everything was a var.
+
+595
+00:32:39,640 --> 00:32:40,570
+It wasn't a charstar.
+
+596
+00:32:40,570 --> 00:32:40,930
+It wasn't an int.
+
+597
+00:32:40,930 --> 00:32:41,970
+It wasn't a struct.
+
+598
+00:32:41,970 --> 00:32:44,210
+It was just var this, var that.
+
+599
+00:32:44,210 --> 00:32:46,320
+>> MongoDB works kind of the same way.
+
+600
+00:32:46,320 --> 00:32:48,160
+You don't have to define your tables.
+
+601
+00:32:48,160 --> 00:32:50,860
+You don't have to say a table
+has a name, which has an int.
+
+602
+00:32:50,860 --> 00:32:54,710
+It has, I don't know, a
+dollar, which is a decimal.
+
+603
+00:32:54,710 --> 00:32:58,360
+It's just these JavaScript objects,
+all these vars, essentially.
+
+604
+00:32:58,360 --> 00:33:02,780
+And this is a really powerful
+way to prototype your app.
+
+605
+00:33:02,780 --> 00:33:06,190
+And that's why Meteor
+takes advantage of this.
+
+606
+00:33:06,190 --> 00:33:11,080
+>> If we go to step three,
+let's see what has changed.
+
+607
+00:33:11,080 --> 00:33:15,480
+If we look at the todos HTML, not much.
+
+608
+00:33:15,480 --> 00:33:17,170
+CSS hasn't changed at all.
+
+609
+00:33:17,170 --> 00:33:22,420
+But the small change we see in HTML
+is we've changed how tasks is defined.
+
+610
+00:33:22,420 --> 00:33:23,800
+Tasks is now a function.
+
+611
+00:33:23,800 --> 00:33:25,800
+That means that every
+time we want to get tasks,
+
+612
+00:33:25,800 --> 00:33:27,480
+we're going to run this function.
+
+613
+00:33:27,480 --> 00:33:29,230
+It doesn't return the
+function as a value.
+
+614
+00:33:29,230 --> 00:33:33,710
+>> Meteor is smart to actually run the
+function to see what we get out.
+
+615
+00:33:33,710 --> 00:33:36,650
+And it returns this thing called tasks.
+
+616
+00:33:36,650 --> 00:33:40,650
+We've defined tasks on line one,
+and it's a Mongo collection.
+
+617
+00:33:40,650 --> 00:33:43,170
+Mongo is referring to
+the database Meteor uses,
+
+618
+00:33:43,170 --> 00:33:48,420
+and this new just means let's make
+a new collection, call it tasks.
+
+619
+00:33:48,420 --> 00:33:53,540
+In MySQL, this would be equivalent to
+looking for the table called tasks.
+
+620
+00:33:53,540 --> 00:33:56,350
+Mongo has collections, not tables.
+
+621
+00:33:56,350 --> 00:34:00,100
+So this just looks for tasks.
+
+622
+00:34:00,100 --> 00:34:04,820
+>> Now, template in our
+helper in the template, all
+
+623
+00:34:04,820 --> 00:34:08,380
+we have to do to get all the
+tasks is this function, find
+
+624
+00:34:08,380 --> 00:34:11,710
+and this empty brace.
+
+625
+00:34:11,710 --> 00:34:14,150
+This is more particular to Mongo syntax.
+
+626
+00:34:14,150 --> 00:34:16,159
+There's plenty of
+documentation online for how
+
+627
+00:34:16,159 --> 00:34:19,360
+you can make efficient and
+really useful Mongo queries.
+
+628
+00:34:19,360 --> 00:34:25,560
+But something like this is good
+enough for just finding all the data.
+
+629
+00:34:25,560 --> 00:34:30,100
+>> Now, one of the issues you might see
+is that we never actually add data.
+
+630
+00:34:30,100 --> 00:34:35,020
+So what happens when we
+actually run step three?
+
+631
+00:34:35,020 --> 00:34:37,550
+Let's quickly go into
+step three and run Meteor.
+
+632
+00:34:37,550 --> 00:34:42,870
+
+633
+00:34:42,870 --> 00:34:45,650
+Notice that I had another Meteor
+project running somewhere else,
+
+634
+00:34:45,650 --> 00:34:49,110
+so Meteor doesn't like that.
+
+635
+00:34:49,110 --> 00:34:52,810
+I'm just going to quickly close to
+the other Meteor with Control C,
+
+636
+00:34:52,810 --> 00:34:55,780
+go into step three,
+and run Meteor again.
+
+637
+00:34:55,780 --> 00:35:01,070
+
+638
+00:35:01,070 --> 00:35:03,180
+Notice it's starting
+MongoDB because MongoDB
+
+639
+00:35:03,180 --> 00:35:06,370
+is a part of every Meteor project.
+
+640
+00:35:06,370 --> 00:35:09,190
+>> So it says my application has errors.
+
+641
+00:35:09,190 --> 00:35:10,590
+That's a nice feature Meteor has.
+
+642
+00:35:10,590 --> 00:35:13,700
+It makes sure your
+HTML is well validated.
+
+643
+00:35:13,700 --> 00:35:17,710
+Let's quickly look at why this might be.
+
+644
+00:35:17,710 --> 00:35:26,110
+It seems I have accidentally
+copied the wrong HTML code.
+
+645
+00:35:26,110 --> 00:35:30,610
+If I save it now, Meteor
+automatically restarted the server,
+
+646
+00:35:30,610 --> 00:35:34,650
+and now the app is running as expected.
+
+647
+00:35:34,650 --> 00:35:39,220
+Notice to fix this, you can just run
+the same HTML file from step two,
+
+648
+00:35:39,220 --> 00:35:40,380
+copy it into step three.
+
+649
+00:35:40,380 --> 00:35:43,290
+
+650
+00:35:43,290 --> 00:35:45,917
+>> We can go back to our local host.
+
+651
+00:35:45,917 --> 00:35:47,500
+And now we see we have our to do list.
+
+652
+00:35:47,500 --> 00:35:50,070
+Great, but it's empty.
+
+653
+00:35:50,070 --> 00:35:54,210
+We don't actually have any
+tasks in our Mongo database.
+
+654
+00:35:54,210 --> 00:35:57,930
+So let's talk about a
+few ways we can do that.
+
+655
+00:35:57,930 --> 00:36:03,240
+If we go back to the terminal, we
+can close it and run Meteor Mongo.
+
+656
+00:36:03,240 --> 00:36:05,320
+>> If you're familiar
+with how Meteor works,
+
+657
+00:36:05,320 --> 00:36:14,100
+this actually gives you access
+to the full MongoDB for Meteor.
+
+658
+00:36:14,100 --> 00:36:17,570
+Notice that you have to be running
+Meteor first for this to work.
+
+659
+00:36:17,570 --> 00:36:23,840
+So if I run this in a new tab, I
+can go back to the same directory.
+
+660
+00:36:23,840 --> 00:36:29,040
+
+661
+00:36:29,040 --> 00:36:32,570
+And now Meteor works just fine.
+
+662
+00:36:32,570 --> 00:36:33,600
+This is a prompt.
+
+663
+00:36:33,600 --> 00:36:36,350
+
+664
+00:36:36,350 --> 00:36:38,790
+Let me make it a bit
+bigger so we can see.
+
+665
+00:36:38,790 --> 00:36:41,550
+This looks a bit different than
+what you might be used to you
+
+666
+00:36:41,550 --> 00:36:42,869
+don't really need to use Mongo.
+
+667
+00:36:42,869 --> 00:36:45,410
+The whole point of me here is
+so that you can use JavaScript.
+
+668
+00:36:45,410 --> 00:36:48,250
+But if you're curious,
+the Mongo API doesn't
+
+669
+00:36:48,250 --> 00:36:50,730
+use SQL, the Structured Query Language.
+
+670
+00:36:50,730 --> 00:36:55,570
+It uses its own language that
+looks a lot like JavaScript.
+
+671
+00:36:55,570 --> 00:37:00,520
+Very quickly, we can find
+the table via db.tasks.
+
+672
+00:37:00,520 --> 00:37:08,940
+And it's telling me
+turns out if we run find,
+
+673
+00:37:08,940 --> 00:37:13,450
+kind of similar to what we had with
+Meteor, we can load all the elements.
+
+674
+00:37:13,450 --> 00:37:17,330
+The problem is, we don't
+actually have any tasks defined.
+
+675
+00:37:17,330 --> 00:37:20,600
+So it can't get them.
+
+676
+00:37:20,600 --> 00:37:22,130
+>> We can insert, though.
+
+677
+00:37:22,130 --> 00:37:25,170
+So we can run insert
+with command insert.
+
+678
+00:37:25,170 --> 00:37:29,140
+And we just give it
+an object, and we just
+
+679
+00:37:29,140 --> 00:37:31,840
+make sure the format is what we expect.
+
+680
+00:37:31,840 --> 00:37:35,030
+If we looked at step two,
+we saw that every task
+
+681
+00:37:35,030 --> 00:37:39,590
+was an object with a text
+as the key and whatever
+
+682
+00:37:39,590 --> 00:37:41,640
+your to do item was as a variable.
+
+683
+00:37:41,640 --> 00:37:44,680
+So we can do something here.
+
+684
+00:37:44,680 --> 00:37:50,160
+>> We can have it insert a task
+called I come from Mongo.
+
+685
+00:37:50,160 --> 00:37:52,570
+And we press Enter, and it runs.
+
+686
+00:37:52,570 --> 00:37:56,900
+We can run find again, and we
+see that there is an object here.
+
+687
+00:37:56,900 --> 00:38:01,810
+Mongo assigns it an ID, which you
+don't really need to worry about.
+
+688
+00:38:01,810 --> 00:38:06,690
+What's important to you is the data
+you put in, is the data you get out.
+
+689
+00:38:06,690 --> 00:38:10,500
+>> Let's go back to our website,
+and hey, our task loaded.
+
+690
+00:38:10,500 --> 00:38:13,987
+And you can see that
+because Meteor is very smart
+
+691
+00:38:13,987 --> 00:38:16,570
+and always refreshes for you, I
+didn't have to touch the page.
+
+692
+00:38:16,570 --> 00:38:19,160
+It automatically loaded.
+
+693
+00:38:19,160 --> 00:38:23,520
+>> Let's run some code in
+JavaScript though to do this.
+
+694
+00:38:23,520 --> 00:38:26,120
+Like we have Node in the back
+end to execute out JavaScript,
+
+695
+00:38:26,120 --> 00:38:29,280
+we can also run JavaScript
+directly in our browsers.
+
+696
+00:38:29,280 --> 00:38:31,970
+You can do this by a feature
+called Inspect Element.
+
+697
+00:38:31,970 --> 00:38:34,210
+If I right click on a
+section of the page,
+
+698
+00:38:34,210 --> 00:38:36,730
+there's an option
+called Inspect Element.
+
+699
+00:38:36,730 --> 00:38:38,840
+If you're running a
+browser like Safari, you
+
+700
+00:38:38,840 --> 00:38:45,430
+may need to enable your developer
+tools before you get this feature.
+
+701
+00:38:45,430 --> 00:38:46,930
+>> What we care about is the console.
+
+702
+00:38:46,930 --> 00:38:48,930
+So we will just go to the
+console at the bottom.
+
+703
+00:38:48,930 --> 00:38:52,110
+
+704
+00:38:52,110 --> 00:38:55,970
+Now we can run any JavaScript
+here, like the JavaScript
+
+705
+00:38:55,970 --> 00:38:58,860
+files I showed in the js example.
+
+706
+00:38:58,860 --> 00:39:02,040
+But now let's look at tasks.
+
+707
+00:39:02,040 --> 00:39:04,955
+We can run our command.
+
+708
+00:39:04,955 --> 00:39:07,830
+And hopefully I'll be able to make
+it a bit bigger so we can all see.
+
+709
+00:39:07,830 --> 00:39:14,390
+
+710
+00:39:14,390 --> 00:39:18,450
+>> If we run tasks.find, and you'll
+see that this is the exact same code
+
+711
+00:39:18,450 --> 00:39:24,840
+that the JavaScript file uses
+in step three, this task.find.
+
+712
+00:39:24,840 --> 00:39:29,100
+We can run the same thing, and
+now we get some weird stuff.
+
+713
+00:39:29,100 --> 00:39:31,050
+How do we actually get the data?
+
+714
+00:39:31,050 --> 00:39:34,860
+Well, we have to run this
+command called fetch.
+
+715
+00:39:34,860 --> 00:39:37,150
+>> This is very useful for debugging.
+
+716
+00:39:37,150 --> 00:39:41,000
+What you get here is
+a cursor, and this is
+
+717
+00:39:41,000 --> 00:39:44,890
+a nice way Meteor has
+optimized fetching data.
+
+718
+00:39:44,890 --> 00:39:48,270
+This cursor has all the features for
+live updating and refreshing the page
+
+719
+00:39:48,270 --> 00:39:49,650
+when something has changed.
+
+720
+00:39:49,650 --> 00:39:51,280
+But it won't get us the data.
+
+721
+00:39:51,280 --> 00:39:52,720
+We can get the data via fetch.
+
+722
+00:39:52,720 --> 00:39:56,880
+And you see we have an object, and
+it's just like what we had in Mongo,
+
+723
+00:39:56,880 --> 00:40:00,040
+with an ID and the text we put in.
+
+724
+00:40:00,040 --> 00:40:04,200
+>> So how do we insert an item in Meteor?
+
+725
+00:40:04,200 --> 00:40:07,250
+Well, we just have tasks.
+
+726
+00:40:07,250 --> 00:40:09,990
+And then we can run the
+same insert command,
+
+727
+00:40:09,990 --> 00:40:17,520
+giving a dictionary or a object
+with the same format, text
+
+728
+00:40:17,520 --> 00:40:22,340
+and then I come from the console.
+
+729
+00:40:22,340 --> 00:40:27,240
+Take a look above because when I
+do this, it shows up on the website
+
+730
+00:40:27,240 --> 00:40:29,660
+automatically.
+
+731
+00:40:29,660 --> 00:40:33,291
+>> Notice that you can put anything
+you want in these items.
+
+732
+00:40:33,291 --> 00:40:35,040
+It doesn't have to
+have a fixed structure.
+
+733
+00:40:35,040 --> 00:40:39,790
+I could have a equal to the
+number three and b equal to false.
+
+734
+00:40:39,790 --> 00:40:41,600
+And it all works.
+
+735
+00:40:41,600 --> 00:40:46,000
+I can even choose not to
+include a text at all.
+
+736
+00:40:46,000 --> 00:40:48,320
+This is just not recommended
+though because then Meteor
+
+737
+00:40:48,320 --> 00:40:50,920
+will not know what to display.
+
+738
+00:40:50,920 --> 00:40:53,110
+But in each case, we
+get an ID, and that's
+
+739
+00:40:53,110 --> 00:40:54,785
+the ID of the object you can use.
+
+740
+00:40:54,785 --> 00:41:01,120
+
+741
+00:41:01,120 --> 00:41:03,280
+>> As we continue with
+step four and step five,
+
+742
+00:41:03,280 --> 00:41:06,870
+the tutorial will show you ways that
+you can create UI elements using
+
+743
+00:41:06,870 --> 00:41:13,130
+the HTML you know to
+create different tasks.
+
+744
+00:41:13,130 --> 00:41:15,440
+Let's look at step four really quickly.
+
+745
+00:41:15,440 --> 00:41:18,290
+We'll see that we added
+a section about events.
+
+746
+00:41:18,290 --> 00:41:20,874
+Templates can have
+helpers, which get us data.
+
+747
+00:41:20,874 --> 00:41:22,040
+But it can also call events.
+
+748
+00:41:22,040 --> 00:41:25,300
+And this is where stuff
+becomes useful, because events
+
+749
+00:41:25,300 --> 00:41:28,590
+are what happen when you click on
+different things on your website.
+
+750
+00:41:28,590 --> 00:41:33,790
+>> Here, our code is telling
+us to add this event.
+
+751
+00:41:33,790 --> 00:41:38,860
+Add it when you've submitted
+something with the class new task.
+
+752
+00:41:38,860 --> 00:41:41,910
+What you have here is a CSS selector.
+
+753
+00:41:41,910 --> 00:41:45,870
+So this just looks for an HTML
+element that has the class new task.
+
+754
+00:41:45,870 --> 00:41:47,940
+And it looks for the event, like submit.
+
+755
+00:41:47,940 --> 00:41:51,050
+Other events include
+click, hover, double click,
+
+756
+00:41:51,050 --> 00:41:54,450
+similar to what you get in normal HTML.
+
+757
+00:41:54,450 --> 00:41:56,770
+>> What you give it here is now a function.
+
+758
+00:41:56,770 --> 00:42:01,210
+And you can have your
+code in that function.
+
+759
+00:42:01,210 --> 00:42:06,360
+This function is what ends up getting
+called when you submit this new task.
+
+760
+00:42:06,360 --> 00:42:12,170
+Let's look at the HTML just so we
+understand what this new task is.
+
+761
+00:42:12,170 --> 00:42:15,570
+We've added a form here
+with class new task.
+
+762
+00:42:15,570 --> 00:42:19,880
+And it has an input that takes text.
+
+763
+00:42:19,880 --> 00:42:22,605
+And this is where we
+will add our new tasks.
+
+764
+00:42:22,605 --> 00:42:25,520
+
+765
+00:42:25,520 --> 00:42:29,780
+>> Let's run step four in the
+website to see what it looks like.
+
+766
+00:42:29,780 --> 00:42:32,710
+We can quit first out
+of the MongoDB we had
+
+767
+00:42:32,710 --> 00:42:35,300
+from our previous
+example with Control C.
+
+768
+00:42:35,300 --> 00:42:37,690
+And let's change it into
+the step four directory.
+
+769
+00:42:37,690 --> 00:42:41,000
+
+770
+00:42:41,000 --> 00:42:42,920
+We'll run Meteor again
+to start the server.
+
+771
+00:42:42,920 --> 00:42:46,850
+
+772
+00:42:46,850 --> 00:42:50,510
+And unfortunately, I had Meteor
+running in another terminal.
+
+773
+00:42:50,510 --> 00:42:53,080
+So I'm just going to
+make sure this closed.
+
+774
+00:42:53,080 --> 00:43:01,805
+Let's quit this and change
+to part four, step four.
+
+775
+00:43:01,805 --> 00:43:02,305
+OK.
+
+776
+00:43:02,305 --> 00:43:11,220
+
+777
+00:43:11,220 --> 00:43:13,250
+>> Now our Meteor code is running.
+
+778
+00:43:13,250 --> 00:43:19,480
+And you can see that it updated, without
+us even having to refresh the page.
+
+779
+00:43:19,480 --> 00:43:24,410
+What has changed here is now
+that we don't have any tasks,
+
+780
+00:43:24,410 --> 00:43:29,530
+but we have a form here, this
+text box, to add our new tasks.
+
+781
+00:43:29,530 --> 00:43:31,550
+And we can type our task here.
+
+782
+00:43:31,550 --> 00:43:34,564
+I come from the HTML page.
+
+783
+00:43:34,564 --> 00:43:36,105
+When I press Enter, it got submitted.
+
+784
+00:43:36,105 --> 00:43:39,180
+
+785
+00:43:39,180 --> 00:43:44,540
+>> We can see what happened as
+defined by the JavaScript code.
+
+786
+00:43:44,540 --> 00:43:49,930
+What this function did was
+take the text from the form,
+
+787
+00:43:49,930 --> 00:43:53,680
+and then just called tasks.insert,
+like we did in the console.
+
+788
+00:43:53,680 --> 00:43:56,410
+They also chose to add a createdAt date.
+
+789
+00:43:56,410 --> 00:43:59,840
+This is how you would
+specify the current time.
+
+790
+00:43:59,840 --> 00:44:03,220
+After that, it clears the form by making
+sure the value is the empty string.
+
+791
+00:44:03,220 --> 00:44:06,550
+>> And then it calls return false to
+make sure nothing else happens.
+
+792
+00:44:06,550 --> 00:44:10,350
+When you return false from a
+form event, that stops execution.
+
+793
+00:44:10,350 --> 00:44:14,520
+Say a form has an action,
+like submit to a PHP page.
+
+794
+00:44:14,520 --> 00:44:16,980
+If you had not returned
+false, you'd return true.
+
+795
+00:44:16,980 --> 00:44:18,500
+It would end up making that request.
+
+796
+00:44:18,500 --> 00:44:20,590
+False intercepts it and
+stops it right there.
+
+797
+00:44:20,590 --> 00:44:23,510
+
+798
+00:44:23,510 --> 00:44:28,610
+>> So that was a little demo about
+how Meteor works, and we've
+
+799
+00:44:28,610 --> 00:44:30,980
+been following the tutorial for a while.
+
+800
+00:44:30,980 --> 00:44:33,560
+And you can please feel
+free to continue doing this.
+
+801
+00:44:33,560 --> 00:44:37,760
+There are plenty of resources,
+and the tutorial is actually just
+
+802
+00:44:37,760 --> 00:44:40,400
+very good about explaining
+what's going on.
+
+803
+00:44:40,400 --> 00:44:44,362
+I do want to show you now, in
+the few minutes we have left,
+
+804
+00:44:44,362 --> 00:44:46,320
+what are some of the
+cooler features of Meteor,
+
+805
+00:44:46,320 --> 00:44:48,772
+and what are some of the
+more useful packages.
+
+806
+00:44:48,772 --> 00:44:51,730
+One of the great things about Meteor
+is that you have a package system.
+
+807
+00:44:51,730 --> 00:44:55,620
+You can easily incorporate code
+that many thousands of developers
+
+808
+00:44:55,620 --> 00:44:58,840
+have written worldwide
+into your Meteor project.
+
+809
+00:44:58,840 --> 00:45:02,410
+One example of this is what you might
+do in step nine of the tutorial, where
+
+810
+00:45:02,410 --> 00:45:07,435
+you are trying to add accounts
+to your Meteor project.
+
+811
+00:45:07,435 --> 00:45:10,010
+
+812
+00:45:10,010 --> 00:45:13,690
+If we have a CS50 PHP
+project, we would have
+
+813
+00:45:13,690 --> 00:45:17,810
+to rely on the framework
+or our own code to make
+
+814
+00:45:17,810 --> 00:45:20,820
+sure we securely handle
+passwords and usernames
+
+815
+00:45:20,820 --> 00:45:23,120
+and storing the database
+and all of that.
+
+816
+00:45:23,120 --> 00:45:25,670
+>> It turns out Meteor has some
+packages to do that for you,
+
+817
+00:45:25,670 --> 00:45:29,160
+and to do it very easily.
+
+818
+00:45:29,160 --> 00:45:31,950
+What we can do is add a few packages.
+
+819
+00:45:31,950 --> 00:45:37,450
+So let's do that right
+now in our console.
+
+820
+00:45:37,450 --> 00:45:42,460
+I'm going to quit the project and
+right now go into simple-todos.
+
+821
+00:45:42,460 --> 00:45:47,450
+
+822
+00:45:47,450 --> 00:45:50,050
+Now, simple-todos is
+the project that you
+
+823
+00:45:50,050 --> 00:45:53,500
+will have after being done
+with step 11 or step 12,
+
+824
+00:45:53,500 --> 00:45:55,250
+at the end of this tutorial.
+
+825
+00:45:55,250 --> 00:45:58,642
+And let's quickly look at it to see
+what are the different features we have.
+
+826
+00:45:58,642 --> 00:46:01,610
+Let's just make sure it's running.
+
+827
+00:46:01,610 --> 00:46:04,400
+Sometimes it takes a while
+to refresh, but here it is.
+
+828
+00:46:04,400 --> 00:46:09,710
+>> We have our option to hide
+complete tasks, and we can sign in.
+
+829
+00:46:09,710 --> 00:46:11,770
+And this was done with
+the Meteor package.
+
+830
+00:46:11,770 --> 00:46:12,270
+It's great.
+
+831
+00:46:12,270 --> 00:46:14,910
+We have now username
+and password sign in.
+
+832
+00:46:14,910 --> 00:46:19,170
+But what if we wanted to add
+another kind of login mechanism?
+
+833
+00:46:19,170 --> 00:46:22,560
+Let's say I wanted to log
+in with my Meteor account.
+
+834
+00:46:22,560 --> 00:46:27,270
+I'm going to run meteor add, and this
+is the syntax for adding packages.
+
+835
+00:46:27,270 --> 00:46:32,160
+I can say accounts, and accounts.meteor.
+
+836
+00:46:32,160 --> 00:46:35,720
+It's going to now find
+the package and load it.
+
+837
+00:46:35,720 --> 00:46:40,480
+You can see that I have not
+found the right package name.
+
+838
+00:46:40,480 --> 00:46:42,820
+>> So how do you find out about packages?
+
+839
+00:46:42,820 --> 00:46:46,380
+Well there's a great website, made
+available by the Meteor people,
+
+840
+00:46:46,380 --> 00:46:47,780
+called atmospherejs.com.
+
+841
+00:46:47,780 --> 00:46:52,520
+Atmospherejs, one word, dot
+com, is a great repository
+
+842
+00:46:52,520 --> 00:46:57,660
+for finding all of the Meteor
+packages in the repository.
+
+843
+00:46:57,660 --> 00:47:05,140
+I can search accounts, and then
+it'll show me all the relevant stuff,
+
+844
+00:47:05,140 --> 00:47:07,320
+all packages with the account's name.
+
+845
+00:47:07,320 --> 00:47:10,180
+
+846
+00:47:10,180 --> 00:47:13,270
+>> While that loads, we can try
+adding some other packages.
+
+847
+00:47:13,270 --> 00:47:19,380
+Maybe the Meteor package isn't working
+right now, but I can add Facebook.
+
+848
+00:47:19,380 --> 00:47:22,860
+
+849
+00:47:22,860 --> 00:47:27,190
+I can add the account and then
+run the Meteor project again.
+
+850
+00:47:27,190 --> 00:47:33,260
+
+851
+00:47:33,260 --> 00:47:36,900
+Once this starts, let's see
+what's changed on the website.
+
+852
+00:47:36,900 --> 00:47:40,010
+
+853
+00:47:40,010 --> 00:47:44,580
+You can see-- I might
+have to refresh it here.
+
+854
+00:47:44,580 --> 00:47:47,320
+>> I have a button to
+configure Facebook login.
+
+855
+00:47:47,320 --> 00:47:49,765
+And here, I have all
+the instructions Meteor
+
+856
+00:47:49,765 --> 00:47:52,960
+has prepared for you for
+setting up a Facebook app.
+
+857
+00:47:52,960 --> 00:47:58,990
+And you can use that
+information to add your IDs.
+
+858
+00:47:58,990 --> 00:48:04,130
+Once that's done, you'll have
+Facebook login working in your app.
+
+859
+00:48:04,130 --> 00:48:08,559
+>> I'm just going to get
+an app ID and a secret,
+
+860
+00:48:08,559 --> 00:48:10,100
+just to show you how this might work.
+
+861
+00:48:10,100 --> 00:48:16,000
+
+862
+00:48:16,000 --> 00:48:20,360
+You will need a Facebook account
+to use Facebook developer options.
+
+863
+00:48:20,360 --> 00:48:31,160
+
+864
+00:48:31,160 --> 00:48:35,290
+Let me just quickly find the
+Meteor keys that are necessary.
+
+865
+00:48:35,290 --> 00:48:46,994
+
+866
+00:48:46,994 --> 00:48:49,160
+I have another Meteor project
+that I'm going to use,
+
+867
+00:48:49,160 --> 00:48:55,590
+and I'm just going to take
+the keys from that file.
+
+868
+00:48:55,590 --> 00:49:14,410
+
+869
+00:49:14,410 --> 00:49:20,930
+>> And once I find it, I'll just be able
+to copy these keys into my Facebook.
+
+870
+00:49:20,930 --> 00:49:23,489
+So here is a key.
+
+871
+00:49:23,489 --> 00:49:24,280
+And this is secret.
+
+872
+00:49:24,280 --> 00:49:26,071
+You should not be
+sharing this with people.
+
+873
+00:49:26,071 --> 00:49:28,870
+
+874
+00:49:28,870 --> 00:49:30,910
+And then you give it your app secret.
+
+875
+00:49:30,910 --> 00:49:33,560
+And this is so Facebook
+knows you are you.
+
+876
+00:49:33,560 --> 00:49:37,630
+
+877
+00:49:37,630 --> 00:49:39,080
+And you save the configuration.
+
+878
+00:49:39,080 --> 00:49:45,160
+
+879
+00:49:45,160 --> 00:49:48,640
+>> I think in the process I
+have stopped my Meteor app.
+
+880
+00:49:48,640 --> 00:49:52,290
+So I just want to make
+sure it's still there.
+
+881
+00:49:52,290 --> 00:49:54,962
+
+882
+00:49:54,962 --> 00:49:58,610
+OK, let's make sure our Meteor server
+is running so the web page is running.
+
+883
+00:49:58,610 --> 00:50:02,440
+Notice if we stop the Meteor
+server, the page is still there.
+
+884
+00:50:02,440 --> 00:50:04,700
+It just won't update anymore.
+
+885
+00:50:04,700 --> 00:50:10,290
+The Meteor server is necessary
+for making sure the page is live.
+
+886
+00:50:10,290 --> 00:50:14,050
+>> OK, I've submitted it, and now
+I can sign in with Facebook.
+
+887
+00:50:14,050 --> 00:50:17,400
+Now it's just a matter of
+having a Facebook pop up
+
+888
+00:50:17,400 --> 00:50:21,710
+and putting in your account
+information and logging in.
+
+889
+00:50:21,710 --> 00:50:24,520
+
+890
+00:50:24,520 --> 00:50:27,930
+Once you do that, Facebook might
+nag you for some more security.
+
+891
+00:50:27,930 --> 00:50:29,810
+So we'll just stop there.
+
+892
+00:50:29,810 --> 00:50:34,110
+The point is that when you're done
+with that, you'll have Facebook login.
+
+893
+00:50:34,110 --> 00:50:37,850
+>> Meteor has a bunch of
+other packages as well.
+
+894
+00:50:37,850 --> 00:50:39,200
+You can log in with Google+.
+
+895
+00:50:39,200 --> 00:50:40,500
+You can log in with GitHub.
+
+896
+00:50:40,500 --> 00:50:42,170
+You can log in with Twitter.
+
+897
+00:50:42,170 --> 00:50:44,870
+Or if you search, you'll
+find plenty of other things
+
+898
+00:50:44,870 --> 00:50:49,170
+like Meetup, LinkedIn,
+and Meteor Developer.
+
+899
+00:50:49,170 --> 00:50:53,100
+So Meteor Developer was the
+package I was looking for.
+
+900
+00:50:53,100 --> 00:50:56,170
+meteor add accounts-meteor-developer.
+
+901
+00:50:56,170 --> 00:51:06,192
+
+902
+00:51:06,192 --> 00:51:07,900
+In the meantime, I
+also want to recommend
+
+903
+00:51:07,900 --> 00:51:11,340
+some other packages for your projects.
+
+904
+00:51:11,340 --> 00:51:14,670
+It might prove useful to
+include the jQuery package.
+
+905
+00:51:14,670 --> 00:51:17,909
+This allows you to use
+jQuery in your clients.
+
+906
+00:51:17,909 --> 00:51:21,200
+You could just do it with one line, and
+Meteor will make sure you're up to date
+
+907
+00:51:21,200 --> 00:51:21,825
+on jQuery.
+
+908
+00:51:21,825 --> 00:51:24,330
+
+909
+00:51:24,330 --> 00:51:27,450
+I also recommend houston:admin.
+
+910
+00:51:27,450 --> 00:51:31,550
+>> This is kind of like a phpMyAdmin
+kind of tool for your MongoDB.
+
+911
+00:51:31,550 --> 00:51:33,890
+This allows you to edit
+your data quite easily
+
+912
+00:51:33,890 --> 00:51:37,950
+without having to go to the Mongo shell,
+like I had done earlier in the seminar.
+
+913
+00:51:37,950 --> 00:51:43,160
+
+914
+00:51:43,160 --> 00:51:47,101
+So now that that's running, let's run
+Meteor again and see what we can do.
+
+915
+00:51:47,101 --> 00:51:56,240
+
+916
+00:51:56,240 --> 00:52:00,720
+>> You notice that adding some packages
+might have them present some warnings.
+
+917
+00:52:00,720 --> 00:52:02,720
+You won't need to worry
+about that with houston.
+
+918
+00:52:02,720 --> 00:52:06,040
+
+919
+00:52:06,040 --> 00:52:10,810
+So we can now have the option
+to configure Meteor admin.
+
+920
+00:52:10,810 --> 00:52:15,080
+And they give you the directions
+if you want to set that up.
+
+921
+00:52:15,080 --> 00:52:17,750
+
+922
+00:52:17,750 --> 00:52:20,440
+>> We can also now go to /admin.
+
+923
+00:52:20,440 --> 00:52:23,280
+This is brought to you
+by the houston package.
+
+924
+00:52:23,280 --> 00:52:27,470
+And this is Meteor admin interface.
+
+925
+00:52:27,470 --> 00:52:30,660
+You just create an
+admin account, like so.
+
+926
+00:52:30,660 --> 00:52:38,150
+And if you refresh the page, you might
+have some collections showing up.
+
+927
+00:52:38,150 --> 00:52:40,980
+
+928
+00:52:40,980 --> 00:52:43,460
+>> It's a very useful tool,
+and I strongly recommend it.
+
+929
+00:52:43,460 --> 00:52:46,717
+
+930
+00:52:46,717 --> 00:52:49,050
+You can see that because
+houston was giving some errors,
+
+931
+00:52:49,050 --> 00:52:52,330
+we don't have any collections
+showing up right now.
+
+932
+00:52:52,330 --> 00:52:56,800
+The way you would use houston is
+making sure this function gets
+
+933
+00:52:56,800 --> 00:52:58,860
+called in your simple-todos.
+
+934
+00:52:58,860 --> 00:53:01,370
+So houston doesn't
+know what my tasks are.
+
+935
+00:53:01,370 --> 00:53:04,490
+>> We set up a Mongo
+collection called tasks.
+
+936
+00:53:04,490 --> 00:53:11,390
+Let's go into simple-todos and just
+make sure that in the JavaScript,
+
+937
+00:53:11,390 --> 00:53:16,295
+we have added tasks to our collections.
+
+938
+00:53:16,295 --> 00:53:19,340
+
+939
+00:53:19,340 --> 00:53:25,670
+We've now saved, and it's building
+the application, refreshing.
+
+940
+00:53:25,670 --> 00:53:26,750
+And let's see.
+
+941
+00:53:26,750 --> 00:53:29,090
+Now we have some tasks.
+
+942
+00:53:29,090 --> 00:53:32,630
+And we can add some new tasks.
+
+943
+00:53:32,630 --> 00:53:35,840
+But if we want to add tasks,
+let's do it with the app itself.
+
+944
+00:53:35,840 --> 00:53:39,660
+
+945
+00:53:39,660 --> 00:53:41,050
+>> Now we can add some data.
+
+946
+00:53:41,050 --> 00:53:53,410
+Hi, this is a task.
+
+947
+00:53:53,410 --> 00:53:57,080
+It seems kind of strange that
+we're not seeing any tasks.
+
+948
+00:53:57,080 --> 00:54:00,290
+
+949
+00:54:00,290 --> 00:54:05,260
+We might want to check if we got any
+errors here, or maybe somewhere else.
+
+950
+00:54:05,260 --> 00:54:08,810
+
+951
+00:54:08,810 --> 00:54:20,260
+If we go into admin, that seems strange.
+
+952
+00:54:20,260 --> 00:54:24,080
+If you pull the repository
+after this seminar,
+
+953
+00:54:24,080 --> 00:54:27,580
+I will make sure that
+simple-todos works with houston.
+
+954
+00:54:27,580 --> 00:54:30,370
+Unfortunately, it doesn't seem to
+be working at this very moment.
+
+955
+00:54:30,370 --> 00:54:34,810
+
+956
+00:54:34,810 --> 00:54:37,640
+>> Are there any other questions?
+
+957
+00:54:37,640 --> 00:54:41,800
+Houston normally is a
+tool that works very well.
+
+958
+00:54:41,800 --> 00:54:44,510
+Houston specifically is a bit
+buggier than the other ones,
+
+959
+00:54:44,510 --> 00:54:49,470
+but I do recommend it when it works.
+
+960
+00:54:49,470 --> 00:54:50,080
+Yeah.
+
+961
+00:54:50,080 --> 00:54:52,395
+>> AUDIENCE: What can you do
+with the Facebook package
+
+962
+00:54:52,395 --> 00:54:54,270
+once a user is logged
+in with their Facebook?
+
+963
+00:54:54,270 --> 00:54:55,978
+>> ROGER ZURAWICKI: Once
+a user's logged in,
+
+964
+00:54:55,978 --> 00:54:59,540
+you can make calls to the Facebook API.
+
+965
+00:54:59,540 --> 00:55:02,890
+A lot of that lies more in
+how Facebook opens their API.
+
+966
+00:55:02,890 --> 00:55:05,120
+Meteor, make sure you
+have the connection.
+
+967
+00:55:05,120 --> 00:55:09,300
+But everything after that is a matter
+of learning how to use the Facebook API.
+
+968
+00:55:09,300 --> 00:55:10,216
+AUDIENCE: [INAUDIBLE].
+
+969
+00:55:10,216 --> 00:55:17,756
+
+970
+00:55:17,756 --> 00:55:18,880
+ROGER ZURAWICKI: All right.
+
+971
+00:55:18,880 --> 00:55:21,670
+Thank you very much for
+this CS50 seminar in Meteor.
+
+972
+00:55:21,670 --> 00:55:24,060
+If you have any questions,
+you can email me
+
+973
+00:55:24,060 --> 00:55:28,319
+at my email address
+listed below the seminar.
+
+974
+00:55:28,319 --> 00:55:30,110
+And I'll be happy to
+answer your questions.
+
+975
+00:55:30,110 --> 00:55:33,020
+I'll also be at the
+CS50 Hackathon should
+
+976
+00:55:33,020 --> 00:55:35,550
+you need help with your Meteor projects.
+
+977
+00:55:35,550 --> 00:55:37,650
+Thank you for watching.
+
+978
+00:55:37,650 --> 00:55:38,816

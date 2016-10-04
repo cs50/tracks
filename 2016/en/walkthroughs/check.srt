@@ -1,0 +1,282 @@
+1
+00:00:00,000 --> 00:00:00,762
+
+
+2
+00:00:00,762 --> 00:00:02,720
+SPEAKER: Now that we've
+created our dictionary,
+
+3
+00:00:02,720 --> 00:00:05,990
+it's time to implement check,
+which will check whether a given
+
+4
+00:00:05,990 --> 00:00:08,800
+string is in our dictionary or not.
+
+5
+00:00:08,800 --> 00:00:11,740
+Check is going to be a
+case insensitive function.
+
+6
+00:00:11,740 --> 00:00:14,620
+That means that whether or not
+the word that you're checking
+
+7
+00:00:14,620 --> 00:00:18,900
+contains uppercase letters or lowercase
+letters or a mixture there of,
+
+8
+00:00:18,900 --> 00:00:22,470
+it's going to return true as long
+as any combination of those cases
+
+9
+00:00:22,470 --> 00:00:24,490
+is found in the dictionary.
+
+10
+00:00:24,490 --> 00:00:26,350
+Then finally, we're
+going to let you assume
+
+11
+00:00:26,350 --> 00:00:30,840
+that the strings that you're passed in,
+will only have alphabetical characters
+
+12
+00:00:30,840 --> 00:00:32,040
+or apostrophes.
+
+13
+00:00:32,040 --> 00:00:37,010
+So no need to worry about cases with
+any numbers or other characters.
+
+14
+00:00:37,010 --> 00:00:39,310
+The premise of check is
+that if the word exists,
+
+15
+00:00:39,310 --> 00:00:42,950
+then you'll be able to find it in
+your dictionary data structure.
+
+16
+00:00:42,950 --> 00:00:45,430
+I'm going to follow the
+same order as I did in load,
+
+17
+00:00:45,430 --> 00:00:48,800
+so we're going to talk about
+linked lists and hashtables first.
+
+18
+00:00:48,800 --> 00:00:51,070
+And then, we'll talk about tries.
+
+19
+00:00:51,070 --> 00:00:55,140
+In a hashtable dictionary, which
+bucket would the word be in?
+
+20
+00:00:55,140 --> 00:00:56,070
+Remember that.
+
+21
+00:00:56,070 --> 00:01:00,720
+A hashtable is simply an array of linked
+lists where each element of the array
+
+22
+00:01:00,720 --> 00:01:02,580
+is a node pointer.
+
+23
+00:01:02,580 --> 00:01:05,590
+So then, once we know which
+linked list to search,
+
+24
+00:01:05,590 --> 00:01:08,080
+we're going to use the
+string case comparison
+
+25
+00:01:08,080 --> 00:01:11,400
+function to compare those two strings.
+
+26
+00:01:11,400 --> 00:01:15,020
+So how do we search that bucket
+for our word or in other words,
+
+27
+00:01:15,020 --> 00:01:17,590
+traverse a linked list?
+
+28
+00:01:17,590 --> 00:01:20,460
+Well let's assume first,
+that I've declared
+
+29
+00:01:20,460 --> 00:01:24,620
+a node pointer, called head, that points
+to the very first node in a linked
+
+30
+00:01:24,620 --> 00:01:25,790
+list.
+
+31
+00:01:25,790 --> 00:01:29,890
+Then I declare another node
+pointer, called cursor in this case,
+
+32
+00:01:29,890 --> 00:01:34,220
+that points to the very same node
+that the head pointer points to.
+
+33
+00:01:34,220 --> 00:01:37,090
+Notice here, that when I
+created the cursor pointer,
+
+34
+00:01:37,090 --> 00:01:39,480
+I didn't malloc any space.
+
+35
+00:01:39,480 --> 00:01:41,460
+That's because I'm
+not making a new node,
+
+36
+00:01:41,460 --> 00:01:43,850
+I'm simply creating a
+pointer that will point
+
+37
+00:01:43,850 --> 00:01:46,670
+to preexisting nodes in my linked list.
+
+38
+00:01:46,670 --> 00:01:48,750
+So then, we have a
+loop that will execute
+
+39
+00:01:48,750 --> 00:01:51,130
+as long as the cursor is not null.
+
+40
+00:01:51,130 --> 00:01:54,590
+Within that loop, you have
+space to do some process,
+
+41
+00:01:54,590 --> 00:01:59,220
+some repeated process on every single
+node, whether it is change the value
+
+42
+00:01:59,220 --> 00:02:03,010
+or calculate something or in
+this case, compare strings.
+
+43
+00:02:03,010 --> 00:02:06,110
+After you've done that,
+then you can reassign cursor
+
+44
+00:02:06,110 --> 00:02:08,830
+to whatever that node is pointing to.
+
+45
+00:02:08,830 --> 00:02:12,940
+And then, continue your loop
+until cursor points to null.
+
+46
+00:02:12,940 --> 00:02:15,150
+Now how do we traverse a try?
+
+47
+00:02:15,150 --> 00:02:17,250
+Well for each letter in
+the input word, then we'll
+
+48
+00:02:17,250 --> 00:02:21,040
+go to the corresponding element
+in children in that try.
+
+49
+00:02:21,040 --> 00:02:23,910
+If it's null, then that
+means the word is misspelled.
+
+50
+00:02:23,910 --> 00:02:26,540
+But if it's not, then we
+can move to the next letter
+
+51
+00:02:26,540 --> 00:02:29,240
+until we reach the
+end of the input word.
+
+52
+00:02:29,240 --> 00:02:33,530
+Now even if we've successfully followed
+every single letter down our try,
+
+53
+00:02:33,530 --> 00:02:36,060
+then that doesn't necessarily
+mean that our input
+
+54
+00:02:36,060 --> 00:02:39,130
+word is a word in our dictionary.
+
+55
+00:02:39,130 --> 00:02:43,080
+The final step that we'll need to do
+is to check whether the Boolean is
+
+56
+00:02:43,080 --> 00:02:44,740
+word is true or not.
+
+57
+00:02:44,740 --> 00:02:46,730
+If true, we can return true.
+
+58
+00:02:46,730 --> 00:02:49,810
+If false, then that's an invalid word.
+
+59
+00:02:49,810 --> 00:02:52,060
+Now that you know how to
+traverse your data structure,
+
+60
+00:02:52,060 --> 00:02:54,130
+you can get to checking.
+
+61
+00:02:54,130 --> 00:02:55,332

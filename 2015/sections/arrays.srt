@@ -1,0 +1,1300 @@
+1
+00:00:00,000 --> 00:00:03,388
+>> [MUSIC PLAYING]
+
+2
+00:00:03,388 --> 00:00:05,104
+
+3
+00:00:05,104 --> 00:00:06,020
+DOUG LLOYD: All right.
+
+4
+00:00:06,020 --> 00:00:07,680
+Working with single
+variables is pretty fun.
+
+5
+00:00:07,680 --> 00:00:09,500
+But what if we want to work
+with a lot of variables,
+
+6
+00:00:09,500 --> 00:00:12,760
+but we don't want to have a bunch of
+different names flying around our code?
+
+7
+00:00:12,760 --> 00:00:15,980
+In this case, arrays are
+going to come in really handy.
+
+8
+00:00:15,980 --> 00:00:19,510
+Arrays are a really fundamental data
+structure for any programming language
+
+9
+00:00:19,510 --> 00:00:20,260
+that you will use.
+
+10
+00:00:20,260 --> 00:00:24,450
+And they're really, really useful,
+particularly, as we'll see, in CS 50.
+
+11
+00:00:24,450 --> 00:00:27,870
+>> We use arrays to hold
+values of the same data type
+
+12
+00:00:27,870 --> 00:00:29,830
+at contiguous memory locations.
+
+13
+00:00:29,830 --> 00:00:32,430
+That is to say, it's a
+way that we can group
+
+14
+00:00:32,430 --> 00:00:35,430
+a bunch of integers together in
+memory or a bunch of characters
+
+15
+00:00:35,430 --> 00:00:38,270
+or floats in memory really
+close together and work
+
+16
+00:00:38,270 --> 00:00:41,930
+with them without having to give each
+one its own unique name, which can
+
+17
+00:00:41,930 --> 00:00:44,500
+get cumbersome after a little while.
+
+18
+00:00:44,500 --> 00:00:48,130
+>> Now, one way to analogize arrays
+is to think about your local post
+
+19
+00:00:48,130 --> 00:00:49,000
+office for a second.
+
+20
+00:00:49,000 --> 00:00:51,820
+So step away from programming
+and just close your eyes
+
+21
+00:00:51,820 --> 00:00:54,120
+and visualize in your mind
+your local post office.
+
+22
+00:00:54,120 --> 00:00:57,160
+Usually, in most post
+offices, there's a large bank
+
+23
+00:00:57,160 --> 00:01:00,490
+a post office boxes on the wall.
+
+24
+00:01:00,490 --> 00:01:03,510
+>> An array is a giant block
+of contiguous memory,
+
+25
+00:01:03,510 --> 00:01:06,120
+the same way that a mail
+bank in your post office
+
+26
+00:01:06,120 --> 00:01:11,230
+is a large space on the
+wall of the post office.
+
+27
+00:01:11,230 --> 00:01:15,750
+Arrays have been partitioned into small,
+identically sized blocks of space,
+
+28
+00:01:15,750 --> 00:01:19,930
+each of which is called an element, in
+the same way that the wall of the post
+
+29
+00:01:19,930 --> 00:01:23,840
+office has been partitioned into small,
+identically sized blocks of space,
+
+30
+00:01:23,840 --> 00:01:27,560
+which we call a PO box.
+
+31
+00:01:27,560 --> 00:01:31,650
+Each element of the array can
+store a certain amount of data,
+
+32
+00:01:31,650 --> 00:01:37,540
+just as each post office box is able
+to hold a certain amount of mail.
+
+33
+00:01:37,540 --> 00:01:41,540
+>> What can be stored in each element of
+the array is variables of the same data
+
+34
+00:01:41,540 --> 00:01:45,300
+type, such as int or char, just
+like in your post office box,
+
+35
+00:01:45,300 --> 00:01:47,300
+you can only fit things
+of a similar type,
+
+36
+00:01:47,300 --> 00:01:50,430
+such as letters or small packages.
+
+37
+00:01:50,430 --> 00:01:55,050
+Lastly, we can access each element of
+the array directly by index number,
+
+38
+00:01:55,050 --> 00:01:59,770
+just as we can access our post office
+box by knowing its mailbox number.
+
+39
+00:01:59,770 --> 00:02:02,750
+Hopefully, that analogy
+helps you get your head
+
+40
+00:02:02,750 --> 00:02:05,540
+around the idea of arrays by
+analogizing to something else
+
+41
+00:02:05,540 --> 00:02:08,400
+that you are probably
+already familiar with.
+
+42
+00:02:08,400 --> 00:02:13,182
+>> In C, the elements of an array are
+indexed starting from 0, not from 1.
+
+43
+00:02:13,182 --> 00:02:14,390
+And this is really important.
+
+44
+00:02:14,390 --> 00:02:18,530
+And in fact, this is why we, in CS 50,
+and why computer scientists frequently
+
+45
+00:02:18,530 --> 00:02:22,150
+will count from 0, is
+because of C's array
+
+46
+00:02:22,150 --> 00:02:24,660
+indexing, which always starts at 0.
+
+47
+00:02:24,660 --> 00:02:28,730
+So if an array consists of n elements,
+the first element of that array
+
+48
+00:02:28,730 --> 00:02:32,960
+is located at index 0, and
+the last element of the array
+
+49
+00:02:32,960 --> 00:02:36,610
+is located at index n minus 1.
+
+50
+00:02:36,610 --> 00:02:43,160
+Again, if there's n elements in our
+array, the last index is n minus 1.
+
+51
+00:02:43,160 --> 00:02:46,820
+>> So if our array has 50 elements, the
+first element is located at index 0,
+
+52
+00:02:46,820 --> 00:02:51,060
+and the last element
+is located at index 49.
+
+53
+00:02:51,060 --> 00:02:53,940
+Unfortunately, or fortunately,
+depending on your perspective,
+
+54
+00:02:53,940 --> 00:02:56,170
+C is very lenient here.
+
+55
+00:02:56,170 --> 00:02:59,480
+It will not prevent you from
+going out of bounds of your array.
+
+56
+00:02:59,480 --> 00:03:03,080
+You could access the minus
+3 element of your array
+
+57
+00:03:03,080 --> 00:03:07,400
+or the 59th element of your array,
+if your array only has 50 elements.
+
+58
+00:03:07,400 --> 00:03:11,060
+It won't stop your program from
+compiling, but at run time,
+
+59
+00:03:11,060 --> 00:03:14,350
+you might encounter a
+dreaded segmentation fault
+
+60
+00:03:14,350 --> 00:03:17,460
+if you start to access memory
+that is outside the bounds of what
+
+61
+00:03:17,460 --> 00:03:19,260
+you asked your program to give you.
+
+62
+00:03:19,260 --> 00:03:21,250
+So do be careful.
+
+63
+00:03:21,250 --> 00:03:23,120
+>> What does an array
+declaration look like?
+
+64
+00:03:23,120 --> 00:03:26,940
+How do we code an array into existence
+like we code any other variable?
+
+65
+00:03:26,940 --> 00:03:31,250
+There are three parts to an array
+declaration-- a type, a name,
+
+66
+00:03:31,250 --> 00:03:31,880
+and a size.
+
+67
+00:03:31,880 --> 00:03:34,088
+This is very similar to a
+variable declaration, which
+
+68
+00:03:34,088 --> 00:03:36,970
+is just a type and a name,
+the size element being
+
+69
+00:03:36,970 --> 00:03:39,860
+the special case for an array,
+because we are getting a bunch of them
+
+70
+00:03:39,860 --> 00:03:41,830
+at the same time.
+
+71
+00:03:41,830 --> 00:03:45,560
+>> So the type is what kind of variable you
+want each element of the array to be.
+
+72
+00:03:45,560 --> 00:03:47,150
+Do want it to an array of integers?
+
+73
+00:03:47,150 --> 00:03:49,010
+Then, your data type should be int.
+
+74
+00:03:49,010 --> 00:03:51,760
+Do you want it to be an
+array of doubles or floats?
+
+75
+00:03:51,760 --> 00:03:54,545
+Data type should be double or float.
+
+76
+00:03:54,545 --> 00:03:56,420
+The name is what you
+want to call your array.
+
+77
+00:03:56,420 --> 00:04:00,970
+What do you want to name this giant
+bank of integers or floats or chars
+
+78
+00:04:00,970 --> 00:04:03,250
+or doubles, or whatever have you?
+
+79
+00:04:03,250 --> 00:04:04,700
+What do you want to call it?
+
+80
+00:04:04,700 --> 00:04:06,110
+Pretty self explanatory.
+
+81
+00:04:06,110 --> 00:04:08,610
+>> Lastly, size, which goes
+inside of square brackets,
+
+82
+00:04:08,610 --> 00:04:12,180
+is how many elements you would
+like your array to contain.
+
+83
+00:04:12,180 --> 00:04:13,530
+How many integers do you want?
+
+84
+00:04:13,530 --> 00:04:15,570
+How many floats do you want?
+
+85
+00:04:15,570 --> 00:04:19,070
+>> So for example, int student grades 40.
+
+86
+00:04:19,070 --> 00:04:26,020
+This declares an array called Student
+grades, which consists of 40 integers.
+
+87
+00:04:26,020 --> 00:04:28,180
+Pretty self explanatory, I hope.
+
+88
+00:04:28,180 --> 00:04:29,330
+Here's another example.
+
+89
+00:04:29,330 --> 00:04:31,560
+Double menu prices 8.
+
+90
+00:04:31,560 --> 00:04:34,610
+This creates an array called
+Menu prices, which consists
+
+91
+00:04:34,610 --> 00:04:38,300
+of room in memory for eight doubles.
+
+92
+00:04:38,300 --> 00:04:42,000
+
+93
+00:04:42,000 --> 00:04:45,750
+>> If you think of every element
+of an array of type data-type,
+
+94
+00:04:45,750 --> 00:04:49,860
+so for example, a single element of
+an array of type int, the same way you
+
+95
+00:04:49,860 --> 00:04:52,770
+would think of any other
+variable of type int,
+
+96
+00:04:52,770 --> 00:04:56,440
+all the familiar operations that we
+discussed previously in the Operations
+
+97
+00:04:56,440 --> 00:04:58,270
+video will make sense.
+
+98
+00:04:58,270 --> 00:05:01,620
+So here, we could declare an array
+of Booleans called Truthtable,
+
+99
+00:05:01,620 --> 00:05:05,590
+which consists of room for 10 Booleans.
+
+100
+00:05:05,590 --> 00:05:09,650
+>> And then, just like we could just assign
+a value to any other variable of type
+
+101
+00:05:09,650 --> 00:05:13,470
+Boolean, we could say something
+like Truthtable square bracket
+
+102
+00:05:13,470 --> 00:05:18,040
+2, which is how we indicate,
+which element of the truth table?
+
+103
+00:05:18,040 --> 00:05:20,350
+The third element of the
+truth table, because remember,
+
+104
+00:05:20,350 --> 00:05:21,800
+we're counting from 0.
+
+105
+00:05:21,800 --> 00:05:25,690
+So that's how we indicate the
+third element of the truth table.
+
+106
+00:05:25,690 --> 00:05:28,680
+Truthtable 2 equals false,
+just like we could declare--
+
+107
+00:05:28,680 --> 00:05:33,560
+or we could assign, rather, any
+Boolean type variable to be false.
+
+108
+00:05:33,560 --> 00:05:35,050
+>> We can also use it in conditions.
+
+109
+00:05:35,050 --> 00:05:39,000
+if(truthtable 7 ==
+true), which is to say,
+
+110
+00:05:39,000 --> 00:05:42,370
+if the eighth element
+of Truthtable is true,
+
+111
+00:05:42,370 --> 00:05:46,760
+maybe we want to print a message
+to the user, printf("TRUE!n");.
+
+112
+00:05:46,760 --> 00:05:50,290
+That causes us to say Truthtable
+10 equals true, right?
+
+113
+00:05:50,290 --> 00:05:53,590
+Well, I can, but it's pretty
+dangerous, because remember,
+
+114
+00:05:53,590 --> 00:05:56,260
+we have an array of 10 Booleans.
+
+115
+00:05:56,260 --> 00:06:02,340
+So the highest index that the
+compiler has given us is 9.
+
+116
+00:06:02,340 --> 00:06:06,010
+>> This program will compile, but
+if something else in memory
+
+117
+00:06:06,010 --> 00:06:09,110
+exists where we would
+expect Truthtable 10 to go,
+
+118
+00:06:09,110 --> 00:06:13,980
+we could suffer a segmentation fault. We
+might get away with it, but in general,
+
+119
+00:06:13,980 --> 00:06:14,710
+pretty dangerous.
+
+120
+00:06:14,710 --> 00:06:19,759
+So what I'm doing here is legal C,
+but not necessarily the best move.
+
+121
+00:06:19,759 --> 00:06:22,300
+Now, when you declare and
+initialize an array simultaneously,
+
+122
+00:06:22,300 --> 00:06:23,960
+there's actually a pretty
+special syntax that you
+
+123
+00:06:23,960 --> 00:06:26,250
+can use to fill up the array
+with its starting values.
+
+124
+00:06:26,250 --> 00:06:30,130
+It can get cumbersome to
+declare an array of size 100,
+
+125
+00:06:30,130 --> 00:06:33,430
+and then have to say, element 0
+equals this; element 1 equals this;
+
+126
+00:06:33,430 --> 00:06:34,850
+element 2 equals that.
+
+127
+00:06:34,850 --> 00:06:36,370
+What's the point, right?
+
+128
+00:06:36,370 --> 00:06:39,470
+>> If it's a small array, you
+could do something like this.
+
+129
+00:06:39,470 --> 00:06:44,360
+Bool truthtable 3 equals open
+curly brace and then comma
+
+130
+00:06:44,360 --> 00:06:48,060
+separate the list of elements
+that you want to put in the array.
+
+131
+00:06:48,060 --> 00:06:50,520
+Then close curly brace semicolon.
+
+132
+00:06:50,520 --> 00:06:53,910
+This creates an array of
+size three called Truthtable,
+
+133
+00:06:53,910 --> 00:06:56,090
+with elements false, true, and true.
+
+134
+00:06:56,090 --> 00:06:59,270
+And in fact, the instantiation
+syntax I have here is
+
+135
+00:06:59,270 --> 00:07:03,350
+exactly the same as doing the
+individual element syntax below.
+
+136
+00:07:03,350 --> 00:07:09,380
+These two ways of coding would
+produce the exact same array.
+
+137
+00:07:09,380 --> 00:07:11,740
+>> Similarly, we could iterate
+over all of the elements
+
+138
+00:07:11,740 --> 00:07:15,400
+of an array using a loop, which, in
+fact, is a very strongly recommended
+
+139
+00:07:15,400 --> 00:07:16,790
+at-home exercise.
+
+140
+00:07:16,790 --> 00:07:20,720
+How do you create an array
+of 100 integers, where
+
+141
+00:07:20,720 --> 00:07:23,477
+every element of the array is its index?
+
+142
+00:07:23,477 --> 00:07:26,560
+So for example, we have a array of 100
+integers, and in the first element,
+
+143
+00:07:26,560 --> 00:07:27,790
+we want to put 0.
+
+144
+00:07:27,790 --> 00:07:29,810
+In the second element, we want to put 1.
+
+145
+00:07:29,810 --> 00:07:33,319
+In the third element, we want
+to put 2; and so on and so on.
+
+146
+00:07:33,319 --> 00:07:35,360
+That's a really good
+at-home exercise to do that.
+
+147
+00:07:35,360 --> 00:07:38,190
+
+148
+00:07:38,190 --> 00:07:40,220
+>> Here, it doesn't look
+like too much has changed.
+
+149
+00:07:40,220 --> 00:07:44,170
+But notice that in between the
+square brackets, this time,
+
+150
+00:07:44,170 --> 00:07:45,830
+I've actually omitted the number.
+
+151
+00:07:45,830 --> 00:07:48,000
+If you're using this very
+special instantiation
+
+152
+00:07:48,000 --> 00:07:50,380
+syntax to create an
+array, you actually don't
+
+153
+00:07:50,380 --> 00:07:53,491
+need to indicate the size
+of the array beforehand.
+
+154
+00:07:53,491 --> 00:07:55,740
+The compiler is smart enough
+to know that you actually
+
+155
+00:07:55,740 --> 00:07:58,980
+want an array of size 3,
+because you put three elements
+
+156
+00:07:58,980 --> 00:08:00,640
+to the right of the equal sign.
+
+157
+00:08:00,640 --> 00:08:04,140
+If you had put four, it would have
+given you a truth table of size four;
+
+158
+00:08:04,140 --> 00:08:06,270
+and so on and so on.
+
+159
+00:08:06,270 --> 00:08:09,380
+>> Arrays are not restricted to a single
+dimension, which is pretty cool.
+
+160
+00:08:09,380 --> 00:08:12,000
+You can actually have as many
+side specifiers as you wish.
+
+161
+00:08:12,000 --> 00:08:16,470
+So for example, if you want to create
+a board for the game Battleship, which,
+
+162
+00:08:16,470 --> 00:08:20,910
+if you ever played, is a game that is
+played with pegs on the 10 by 10 grid,
+
+163
+00:08:20,910 --> 00:08:22,450
+you could create an array like this.
+
+164
+00:08:22,450 --> 00:08:26,030
+You could say Bool
+battleship square bracket 10
+
+165
+00:08:26,030 --> 00:08:29,590
+closed square bracket square
+bracket 10 closed square bracket.
+
+166
+00:08:29,590 --> 00:08:32,710
+>> And then, you can choose to
+interpret this in your mind as a 10
+
+167
+00:08:32,710 --> 00:08:35,576
+by 10 grid of cells.
+
+168
+00:08:35,576 --> 00:08:37,409
+Now, in fact, in memory,
+it really does just
+
+169
+00:08:37,409 --> 00:08:42,440
+remain a 100 element,
+single dimensional array.
+
+170
+00:08:42,440 --> 00:08:46,070
+And this, in fact, goes for if you
+have three dimensions or four or five.
+
+171
+00:08:46,070 --> 00:08:49,420
+It really just does multiply
+all of the indices--
+
+172
+00:08:49,420 --> 00:08:51,130
+or all of the size
+specifiers-- together,
+
+173
+00:08:51,130 --> 00:08:53,480
+and you just get a one-dimensional
+array of that size.
+
+174
+00:08:53,480 --> 00:08:57,090
+>> But in terms of organization and
+visualization and human perception,
+
+175
+00:08:57,090 --> 00:08:59,240
+it can be a lot easier
+to work with a grid
+
+176
+00:08:59,240 --> 00:09:02,980
+if you're working on a game
+like Tic-tac-toe or Battleship,
+
+177
+00:09:02,980 --> 00:09:05,179
+or something like that.
+
+178
+00:09:05,179 --> 00:09:06,970
+It's a great abstraction,
+instead of having
+
+179
+00:09:06,970 --> 00:09:09,340
+to think about a Tic-tac-toe
+board as a line of nine
+
+180
+00:09:09,340 --> 00:09:13,810
+squares or a Battleship board
+as a line of 100 squares.
+
+181
+00:09:13,810 --> 00:09:16,010
+A 10 by 10 grid or a three
+by three grid is probably
+
+182
+00:09:16,010 --> 00:09:17,225
+a lot more easy to perceive.
+
+183
+00:09:17,225 --> 00:09:19,820
+
+184
+00:09:19,820 --> 00:09:22,280
+>> Now, something really
+important about arrays.
+
+185
+00:09:22,280 --> 00:09:25,950
+We can treat each individual
+element of the array as a variable.
+
+186
+00:09:25,950 --> 00:09:27,700
+We saw that earlier
+when we were assigning
+
+187
+00:09:27,700 --> 00:09:32,240
+the value True to certain Booleans
+or testing them in conditionals.
+
+188
+00:09:32,240 --> 00:09:35,960
+But we can't treat entire
+arrays themselves as variables.
+
+189
+00:09:35,960 --> 00:09:41,760
+We cannot, for example, assign one array
+to another array using the assignment
+
+190
+00:09:41,760 --> 00:09:42,930
+operator.
+
+191
+00:09:42,930 --> 00:09:44,640
+It's not legal C.
+
+192
+00:09:44,640 --> 00:09:47,920
+>> If we want to, for example-- what
+we would be doing in that example
+
+193
+00:09:47,920 --> 00:09:50,200
+would be to copy one array into another.
+
+194
+00:09:50,200 --> 00:09:53,810
+If we want to do that, we actually
+need to use a loop to copy over
+
+195
+00:09:53,810 --> 00:09:56,550
+each individual element one at a time.
+
+196
+00:09:56,550 --> 00:09:58,700
+I know it's a little time consuming.
+
+197
+00:09:58,700 --> 00:10:04,022
+>> So for example, if we had these couple
+of lines of code, would this work?
+
+198
+00:10:04,022 --> 00:10:05,230
+Well, no, it wouldn't, right?
+
+199
+00:10:05,230 --> 00:10:07,860
+Because we're trying
+to assign food to bar.
+
+200
+00:10:07,860 --> 00:10:09,860
+That's not going to work,
+because it's an array,
+
+201
+00:10:09,860 --> 00:10:13,130
+and we just described
+that that's not legal C.
+
+202
+00:10:13,130 --> 00:10:15,580
+>> Instead, if we want to
+copy the contents of food
+
+203
+00:10:15,580 --> 00:10:18,070
+into bar, which is what
+we're trying to do here,
+
+204
+00:10:18,070 --> 00:10:19,970
+we would need a syntax like this.
+
+205
+00:10:19,970 --> 00:10:24,170
+We have a for loop that goes
+from J is equal to 0 up to 5,
+
+206
+00:10:24,170 --> 00:10:28,390
+and we increment J on every iteration of
+the loop and assign elements like that.
+
+207
+00:10:28,390 --> 00:10:33,360
+This would result in bar also
+being one, two, three, four, five,
+
+208
+00:10:33,360 --> 00:10:36,730
+but we have to do it this very
+slow element-by-element way,
+
+209
+00:10:36,730 --> 00:10:40,009
+instead of by just
+copying the entire array.
+
+210
+00:10:40,009 --> 00:10:42,050
+In other programming
+languages, more modern ones,
+
+211
+00:10:42,050 --> 00:10:45,610
+you can, in fact, do just
+that simple equals syntax.
+
+212
+00:10:45,610 --> 00:10:49,620
+But C, unfortunately, we're
+not allowed to do that.
+
+213
+00:10:49,620 --> 00:10:52,026
+>> Now, there's one other
+thing I want to mention
+
+214
+00:10:52,026 --> 00:10:54,650
+about arrays that can be a little
+bit tricky the first time you
+
+215
+00:10:54,650 --> 00:10:55,990
+work with them.
+
+216
+00:10:55,990 --> 00:10:59,860
+We discussed in a video
+about variable scope,
+
+217
+00:10:59,860 --> 00:11:04,940
+that most variables in C, when you call
+them in functions, are passed by value.
+
+218
+00:11:04,940 --> 00:11:08,620
+Do you remember what it means
+to pass something by value?
+
+219
+00:11:08,620 --> 00:11:12,570
+It means we're making a copy of the
+variable that's being passed in.
+
+220
+00:11:12,570 --> 00:11:16,290
+The callee function, the function
+that's receiving the variable,
+
+221
+00:11:16,290 --> 00:11:17,730
+doesn't get the variable itself.
+
+222
+00:11:17,730 --> 00:11:20,850
+It gets its own local
+copy of it to work with.
+
+223
+00:11:20,850 --> 00:11:24,070
+>> Arrays, of course, do
+not follow this rule.
+
+224
+00:11:24,070 --> 00:11:27,600
+Rather, what we call this
+is passing by reference.
+
+225
+00:11:27,600 --> 00:11:31,360
+The callee actually
+does receive the array.
+
+226
+00:11:31,360 --> 00:11:34,207
+It does not receive its
+own local copy of it.
+
+227
+00:11:34,207 --> 00:11:36,040
+And if you think about
+it, this makes sense.
+
+228
+00:11:36,040 --> 00:11:39,750
+If arrays are really large, it
+takes so much time and effort
+
+229
+00:11:39,750 --> 00:11:44,470
+to make a copy of an array of
+100 or 1,000 or 10,000 elements,
+
+230
+00:11:44,470 --> 00:11:48,290
+that it's not worth it for a
+function to receive a copy of it,
+
+231
+00:11:48,290 --> 00:11:51,037
+do some work with it, and then
+just be done with the copy;
+
+232
+00:11:51,037 --> 00:11:53,120
+it doesn't need to have
+it hanging around anymore.
+
+233
+00:11:53,120 --> 00:11:54,710
+>> Because arrays are some
+bulky and cumbersome,
+
+234
+00:11:54,710 --> 00:11:56,001
+we just pass them by reference.
+
+235
+00:11:56,001 --> 00:12:01,210
+We just trust that function
+to, don't break anything.
+
+236
+00:12:01,210 --> 00:12:03,010
+So it does actually get the array.
+
+237
+00:12:03,010 --> 00:12:05,290
+It doesn't get its own local copy of it.
+
+238
+00:12:05,290 --> 00:12:07,170
+>> So what does this mean,
+then, when the callee
+
+239
+00:12:07,170 --> 00:12:08,970
+manipulates elements of the array?
+
+240
+00:12:08,970 --> 00:12:10,780
+What happens?
+
+241
+00:12:10,780 --> 00:12:13,210
+For now, we'll gloss
+over why exactly this
+
+242
+00:12:13,210 --> 00:12:15,320
+happens, why arrays
+are passed by reference
+
+243
+00:12:15,320 --> 00:12:17,810
+and everything else is passed by value.
+
+244
+00:12:17,810 --> 00:12:20,470
+But I promise you, we will
+return and give you the answer
+
+245
+00:12:20,470 --> 00:12:23,750
+to this in a later video.
+
+246
+00:12:23,750 --> 00:12:28,110
+>> Here's one more exercise for you
+before we wrap up things on arrays.
+
+247
+00:12:28,110 --> 00:12:31,400
+The bunch of code here, that's
+not particularly good style,
+
+248
+00:12:31,400 --> 00:12:33,400
+just I'll make that caveat.
+
+249
+00:12:33,400 --> 00:12:36,660
+There's no comments in here,
+which is pretty bad form.
+
+250
+00:12:36,660 --> 00:12:39,750
+But it's only because I wanted to be
+able to fit everything on the screen.
+
+251
+00:12:39,750 --> 00:12:44,360
+>> At the top, you can see that I have
+two function declarations for set array
+
+252
+00:12:44,360 --> 00:12:45,820
+and set int.
+
+253
+00:12:45,820 --> 00:12:49,680
+Set array apparently takes an array
+of four integers as its input.
+
+254
+00:12:49,680 --> 00:12:52,767
+And set int apparently takes
+a single integer as its input.
+
+255
+00:12:52,767 --> 00:12:54,350
+But both of them don't have an output.
+
+256
+00:12:54,350 --> 00:12:57,689
+The output, the return
+type, of each one is void.
+
+257
+00:12:57,689 --> 00:12:59,480
+In Main, we have a
+couple of lines of code.
+
+258
+00:12:59,480 --> 00:13:02,730
+We declare an integer variable
+called A and assign it the value 10.
+
+259
+00:13:02,730 --> 00:13:07,080
+We declare an array of four integers
+called B and assign the elements 0, 1,
+
+260
+00:13:07,080 --> 00:13:08,730
+2, and 3, respectively.
+
+261
+00:13:08,730 --> 00:13:12,190
+Then, we have a call to set
+int and a call to set array.
+
+262
+00:13:12,190 --> 00:13:15,910
+The definitions of set array and set
+int are down below, at the bottom.
+
+263
+00:13:15,910 --> 00:13:17,640
+>> And so, again, I ask you the question.
+
+264
+00:13:17,640 --> 00:13:20,770
+What gets printed out
+here at the end of Main?
+
+265
+00:13:20,770 --> 00:13:23,020
+There's a printout col. I'm
+printing out two integers.
+
+266
+00:13:23,020 --> 00:13:28,010
+I'm printing out the contents of A and
+the contents of B square bracket 0.
+
+267
+00:13:28,010 --> 00:13:29,880
+Pause the video here and take a minute.
+
+268
+00:13:29,880 --> 00:13:35,482
+Can you figure out what this
+function will print at the end?
+
+269
+00:13:35,482 --> 00:13:38,190
+Hopefully, if you recall the
+distinction between passing by value
+
+270
+00:13:38,190 --> 00:13:41,680
+and passing by reference, this
+problem wasn't too tricky for you.
+
+271
+00:13:41,680 --> 00:13:44,130
+And the answer you would
+have found is this.
+
+272
+00:13:44,130 --> 00:13:47,660
+If you're not really sure as to
+why that's the case, take a second,
+
+273
+00:13:47,660 --> 00:13:50,620
+go back, review what I was just
+discussing about passing arrays
+
+274
+00:13:50,620 --> 00:13:53,450
+by reference, versus passing
+other variables by value,
+
+275
+00:13:53,450 --> 00:13:56,680
+and hopefully, it'll make
+a little bit more sense.
+
+276
+00:13:56,680 --> 00:13:59,760
+>> I'm Doug Lloyd, and this is CS50.
+
+277
+00:13:59,760 --> 00:14:01,467

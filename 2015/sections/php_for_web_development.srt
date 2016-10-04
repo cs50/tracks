@@ -1,0 +1,2362 @@
+1
+00:00:00,000 --> 00:00:05,720
+
+2
+00:00:05,720 --> 00:00:07,620
+>> DOUG LLOYD: So in our
+video on PHP syntax,
+
+3
+00:00:07,620 --> 00:00:10,480
+we talked a lot about how PHP
+can be used at the command line
+
+4
+00:00:10,480 --> 00:00:13,620
+to run programs in a manner that
+we're pretty familiar with from C.
+
+5
+00:00:13,620 --> 00:00:15,370
+But as I also mentioned
+in that video, PHP
+
+6
+00:00:15,370 --> 00:00:19,572
+was initially developed to
+implement web programming, websites.
+
+7
+00:00:19,572 --> 00:00:21,780
+And so in this video we're
+going to talk about how we
+
+8
+00:00:21,780 --> 00:00:23,890
+use PHP in the web development context.
+
+9
+00:00:23,890 --> 00:00:26,360
+>> We know, already, from
+our video on HTML,
+
+10
+00:00:26,360 --> 00:00:29,820
+that websites are built
+out of a set of HTML tags
+
+11
+00:00:29,820 --> 00:00:32,850
+that semantically define
+the structure of a web page.
+
+12
+00:00:32,850 --> 00:00:35,910
+But websites that are
+built with pure HTML
+
+13
+00:00:35,910 --> 00:00:39,510
+suffer from a very,
+very serious limitation.
+
+14
+00:00:39,510 --> 00:00:42,690
+>> And to illustrate this limitation,
+let's consider the following.
+
+15
+00:00:42,690 --> 00:00:45,665
+So now I want to build a web page
+that, whenever the user visits it,
+
+16
+00:00:45,665 --> 00:00:49,760
+it gives me the current
+time in Cambridge, Mass.,
+
+17
+00:00:49,760 --> 00:00:52,620
+displaying it to the latest minute.
+
+18
+00:00:52,620 --> 00:00:57,910
+If I was making this right now,
+I might say something like this.
+
+19
+00:00:57,910 --> 00:01:01,330
+Current time in Cambridge-- so I have
+HTML tags, head tags, title tags,
+
+20
+00:01:01,330 --> 00:01:04,610
+body tags-- the current
+time in Cambridge is 14:08,
+
+21
+00:01:04,610 --> 00:01:06,690
+printing out military time.
+
+22
+00:01:06,690 --> 00:01:11,390
+>> What happens if it's now 2:09 PM, 14:09?
+
+23
+00:01:11,390 --> 00:01:16,470
+Well so far, with HTML, I have
+to go in and change it to 14:09.
+
+24
+00:01:16,470 --> 00:01:19,390
+And then one minute later,
+I have to change it again.
+
+25
+00:01:19,390 --> 00:01:22,132
+And then one minute later,
+I have to change it again.
+
+26
+00:01:22,132 --> 00:01:24,590
+And as you can imagine, that's
+probably the worst job ever.
+
+27
+00:01:24,590 --> 00:01:29,420
+You're the webmaster for a web page,
+and every minute, 24 hours a day,
+
+28
+00:01:29,420 --> 00:01:35,970
+you need to update the current time by
+manually opening time.html and changing
+
+29
+00:01:35,970 --> 00:01:41,750
+just that snippet of code to say the
+current time in hours and minutes.
+
+30
+00:01:41,750 --> 00:01:45,850
+That's probably not a very
+good use of our resources,
+
+31
+00:01:45,850 --> 00:01:48,880
+both human and computational.
+
+32
+00:01:48,880 --> 00:01:51,297
+>> Websites that are all HTML
+are completely static.
+
+33
+00:01:51,297 --> 00:01:53,630
+The only way you can update
+content, as we've just seen,
+
+34
+00:01:53,630 --> 00:01:56,339
+is to manually open those source
+files, edit them, and save them.
+
+35
+00:01:56,339 --> 00:01:58,088
+And then when the user
+refreshes the page,
+
+36
+00:01:58,088 --> 00:02:01,080
+or visits the page for the first
+time, they'll get the latest content.
+
+37
+00:02:01,080 --> 00:02:03,970
+But only because we've
+manually edited it.
+
+38
+00:02:03,970 --> 00:02:07,980
+>> If we start to mix some PHP in there,
+our code can get a lot more flexible.
+
+39
+00:02:07,980 --> 00:02:11,940
+And we can have a way for our pages
+to be dynamic, or update themselves,
+
+40
+00:02:11,940 --> 00:02:15,360
+without requiring our poor
+webmaster in the previous example
+
+41
+00:02:15,360 --> 00:02:16,662
+to be manually updating things.
+
+42
+00:02:16,662 --> 00:02:17,870
+They can do it automatically.
+
+43
+00:02:17,870 --> 00:02:19,130
+We don't have to intervene.
+
+44
+00:02:19,130 --> 00:02:20,410
+We can get some sleep.
+
+45
+00:02:20,410 --> 00:02:24,850
+Which is probably a good thing if
+you're doing a lot of web programming.
+
+46
+00:02:24,850 --> 00:02:28,360
+>> So in CS50 IDE, we run a
+web server called Apache.
+
+47
+00:02:28,360 --> 00:02:35,250
+It's a very commonly used,
+open source web server system.
+
+48
+00:02:35,250 --> 00:02:37,320
+This system has the
+capacity to interpret
+
+49
+00:02:37,320 --> 00:02:41,260
+PHP, which is going to be useful if
+you want to do any PHP programming.
+
+50
+00:02:41,260 --> 00:02:45,230
+>> And in CS50 IDE, we have a command
+to make this very easy to do,
+
+51
+00:02:45,230 --> 00:02:47,280
+apache50 start.
+
+52
+00:02:47,280 --> 00:02:49,445
+And then that slash
+path, slash to, slash
+
+53
+00:02:49,445 --> 00:02:53,350
+dir, that's just a really common way of
+indicating what you've specified here
+
+54
+00:02:53,350 --> 00:02:56,510
+is a path to a particular
+directory that you
+
+55
+00:02:56,510 --> 00:03:00,800
+want to be the root
+site, or the root page,
+
+56
+00:03:00,800 --> 00:03:05,430
+or the folder from which your web server
+will start to examine files and serve
+
+57
+00:03:05,430 --> 00:03:07,850
+them up to clients who request them.
+
+58
+00:03:07,850 --> 00:03:12,110
+So let's pop over to CS50 IDE, just to
+show you, really quick, how this works.
+
+59
+00:03:12,110 --> 00:03:30,930
+
+60
+00:03:30,930 --> 00:03:36,240
+>> So here in CS50 IDE, I'm in a
+directory called Week Zero Nine.
+
+61
+00:03:36,240 --> 00:03:38,890
+And I have two-- I have
+executed an LS command just
+
+62
+00:03:38,890 --> 00:03:41,910
+above to show you that I have
+two directories in here, PHP,
+
+63
+00:03:41,910 --> 00:03:46,410
+which is the set of files that I used in
+the PHP syntax video, and then PHP-web,
+
+64
+00:03:46,410 --> 00:03:49,380
+which is the set of files that I
+would like to use in this video.
+
+65
+00:03:49,380 --> 00:03:53,480
+>> And I would like to start
+a web server instance
+
+66
+00:03:53,480 --> 00:03:59,089
+with the contents of the PHP-web folder
+as the files are being served up.
+
+67
+00:03:59,089 --> 00:04:00,130
+So what am I going to do?
+
+68
+00:04:00,130 --> 00:04:05,710
+I going to type apache50 space
+start, space PHP, dash web.
+
+69
+00:04:05,710 --> 00:04:08,100
+That's the path to directory
+from where I currently am.
+
+70
+00:04:08,100 --> 00:04:09,127
+Then I hit Enter.
+
+71
+00:04:09,127 --> 00:04:10,960
+It's going to do a
+little bit of stuff here.
+
+72
+00:04:10,960 --> 00:04:14,030
+And then it's going to say,
+Apache started successfully.
+
+73
+00:04:14,030 --> 00:04:20,689
+Your site is now available at-- and
+then there's the URL for the site.
+
+74
+00:04:20,689 --> 00:04:21,730
+So what am I going to do?
+
+75
+00:04:21,730 --> 00:04:26,234
+I'm going to quickly copy this.
+
+76
+00:04:26,234 --> 00:04:28,900
+And I'm going to open up-- and
+I'll zoom out a little bit here--
+
+77
+00:04:28,900 --> 00:04:31,570
+I'm going to open up
+a new tab in Chrome.
+
+78
+00:04:31,570 --> 00:04:34,320
+And I'm going to visit that URL.
+
+79
+00:04:34,320 --> 00:04:35,299
+>> I'm going to hit Enter.
+
+80
+00:04:35,299 --> 00:04:36,090
+It's going to load.
+
+81
+00:04:36,090 --> 00:04:37,510
+And I'll zoom out again.
+
+82
+00:04:37,510 --> 00:04:41,350
+And we can see here is the
+contents of my PHP web directory.
+
+83
+00:04:41,350 --> 00:04:45,290
+>> So now what is basically happening
+here is, my instance of CS50 IDE
+
+84
+00:04:45,290 --> 00:04:49,620
+is serving up these files to
+anybody who requests them.
+
+85
+00:04:49,620 --> 00:04:51,620
+And over the course of
+this video, we'll sort of
+
+86
+00:04:51,620 --> 00:04:55,400
+take a look at a bunch of these
+different files in context.
+
+87
+00:04:55,400 --> 00:04:57,614
+>> To test that your Apache
+server is working,
+
+88
+00:04:57,614 --> 00:04:59,780
+which is generally going
+to be the case in CS50 IDE,
+
+89
+00:04:59,780 --> 00:05:02,696
+but if you do this more generally,
+and you start building your own web
+
+90
+00:05:02,696 --> 00:05:04,990
+servers, there's a really
+common sort of analog to,
+
+91
+00:05:04,990 --> 00:05:08,500
+"hello world," that is usually
+used for PHP web development.
+
+92
+00:05:08,500 --> 00:05:12,855
+Which is to have a file
+consisting of just this code--
+
+93
+00:05:12,855 --> 00:05:18,247
+a PHP delimiter set with PHP info,
+parentheses, semicolon in between.
+
+94
+00:05:18,247 --> 00:05:20,580
+Which is basically a special
+PHP function that tells you
+
+95
+00:05:20,580 --> 00:05:23,970
+what version of PHP you are running.
+
+96
+00:05:23,970 --> 00:05:26,850
+>> So in CS50 IDE, I have
+that file available just
+
+97
+00:05:26,850 --> 00:05:28,680
+to show you what this would look like.
+
+98
+00:05:28,680 --> 00:05:32,860
+So I'm looking at my index
+from my PHP instance.
+
+99
+00:05:32,860 --> 00:05:35,870
+My Apache instance is running
+the contents of PHP-Web.
+
+100
+00:05:35,870 --> 00:05:39,290
+And I have a file here called info.php.
+
+101
+00:05:39,290 --> 00:05:41,164
+>> I'm going to click it, zoom out.
+
+102
+00:05:41,164 --> 00:05:43,080
+This is what you're going
+to see, pretty much.
+
+103
+00:05:43,080 --> 00:05:45,729
+This is just telling me that
+my Apache server is working.
+
+104
+00:05:45,729 --> 00:05:48,270
+And this is, apparently, the
+version of PHP that I'm running.
+
+105
+00:05:48,270 --> 00:05:51,590
+This is my analog to "hello world."
+
+106
+00:05:51,590 --> 00:05:53,070
+>> So I know things are operational.
+
+107
+00:05:53,070 --> 00:05:54,150
+So we're good to go.
+
+108
+00:05:54,150 --> 00:05:55,730
+We can proceed from here.
+
+109
+00:05:55,730 --> 00:05:57,790
+>> So let's revisit that
+time example we were
+
+110
+00:05:57,790 --> 00:06:01,950
+talking about with our poor webmaster
+who had to update the page constantly.
+
+111
+00:06:01,950 --> 00:06:05,020
+This might be a fix for how
+I would implement things
+
+112
+00:06:05,020 --> 00:06:08,080
+so that the webmaster didn't
+have to keep updating the time.
+
+113
+00:06:08,080 --> 00:06:10,270
+It would just sort of
+happen automatically.
+
+114
+00:06:10,270 --> 00:06:13,710
+>> The down below, the HTML, it's
+pretty similar, with one exception.
+
+115
+00:06:13,710 --> 00:06:16,720
+But here I've got some PHP at the top.
+
+116
+00:06:16,720 --> 00:06:19,940
+I have, apparently, called this
+function date_default_timezone_set.
+
+117
+00:06:19,940 --> 00:06:22,106
+>> And we don't talk about all
+these functions in CS50,
+
+118
+00:06:22,106 --> 00:06:24,670
+because PHP has probably
+tens of thousands.
+
+119
+00:06:24,670 --> 00:06:27,540
+That might be a bit of an
+exaggeration, but it might not be.
+
+120
+00:06:27,540 --> 00:06:29,490
+It's got a lot of functions built in.
+
+121
+00:06:29,490 --> 00:06:33,290
+And so this is a function apparently
+sets my time zone as US/Eastern,
+
+122
+00:06:33,290 --> 00:06:36,320
+which is the time zone that I'm
+currently in making this video.
+
+123
+00:06:36,320 --> 00:06:38,430
+>> Then I make a call to
+function called, date.
+
+124
+00:06:38,430 --> 00:06:43,850
+And, apparently, I'm storing the
+HIS of something called, time.
+
+125
+00:06:43,850 --> 00:06:45,320
+So what's going on here?
+
+126
+00:06:45,320 --> 00:06:48,040
+>> Well, basically what's
+happening is, I'm making a call
+
+127
+00:06:48,040 --> 00:06:51,650
+to some server that is going to
+tell me what the time currently is.
+
+128
+00:06:51,650 --> 00:06:56,150
+And I'm converting it to a format
+of hours, minutes, seconds.
+
+129
+00:06:56,150 --> 00:07:00,540
+And the reason it's capital H is this
+is going to give me 24 hour time, not 12
+
+130
+00:07:00,540 --> 00:07:02,362
+hour time, which would be lowercase h.
+
+131
+00:07:02,362 --> 00:07:04,570
+And I'm just storing that
+in a variable called, time.
+
+132
+00:07:04,570 --> 00:07:07,028
+So that second line of PHP
+there, the call to the function,
+
+133
+00:07:07,028 --> 00:07:09,037
+date, is just getting
+some string, which is
+
+134
+00:07:09,037 --> 00:07:12,120
+going to give me the date, and the
+time, and a bunch of other information.
+
+135
+00:07:12,120 --> 00:07:16,480
+And the first argument there, that HIS,
+is just extracting the important part
+
+136
+00:07:16,480 --> 00:07:20,614
+that I care about for this example,
+which is the hour, minute, and second.
+
+137
+00:07:20,614 --> 00:07:22,030
+So that's the all that's going on.
+
+138
+00:07:22,030 --> 00:07:23,562
+So I store that in a variable $time.
+
+139
+00:07:23,562 --> 00:07:25,270
+And then down at the
+very bottom there, I
+
+140
+00:07:25,270 --> 00:07:28,980
+have that shorthand for
+printing out the current time.
+
+141
+00:07:28,980 --> 00:07:32,050
+So I'm just going to print
+out what the current time is.
+
+142
+00:07:32,050 --> 00:07:37,220
+>> So let's take a look at this in
+CS50 IDE and see how we're now
+
+143
+00:07:37,220 --> 00:07:40,002
+saving that webmaster a lot of trouble.
+
+144
+00:07:40,002 --> 00:07:42,570
+All right, so here I am again
+back at the root directory
+
+145
+00:07:42,570 --> 00:07:45,040
+of my Apache instance.
+
+146
+00:07:45,040 --> 00:07:51,585
+And I have a file here called time.php.
+
+147
+00:07:51,585 --> 00:07:53,559
+I'm just going to click on that.
+
+148
+00:07:53,559 --> 00:07:55,850
+And I'll scroll up, because
+we're zoomed in pretty far.
+
+149
+00:07:55,850 --> 00:07:57,257
+The current time is 14:20:34.
+
+150
+00:07:57,257 --> 00:07:59,090
+So I'm doing it hours,
+minutes, and seconds.
+
+151
+00:07:59,090 --> 00:08:01,910
+And I can refresh the
+page and get new time.
+
+152
+00:08:01,910 --> 00:08:02,420
+--41.
+
+153
+00:08:02,420 --> 00:08:07,240
+I'm going to refresh the page
+and get new time, 44, 46, 47.
+
+154
+00:08:07,240 --> 00:08:10,490
+>> So, I am clearly not
+changing anything myself.
+
+155
+00:08:10,490 --> 00:08:11,720
+I'm here refreshing the page.
+
+156
+00:08:11,720 --> 00:08:13,711
+So I can't be back there editing it.
+
+157
+00:08:13,711 --> 00:08:15,710
+And I promise you, I don't
+have any confederates
+
+158
+00:08:15,710 --> 00:08:18,230
+who are editing the file
+on my behalf on the side.
+
+159
+00:08:18,230 --> 00:08:21,260
+>> I'm just using that PHP function,
+time, to generate the time for me
+
+160
+00:08:21,260 --> 00:08:22,340
+automatically.
+
+161
+00:08:22,340 --> 00:08:24,800
+So that even if I'm asleep,
+and my web server is running,
+
+162
+00:08:24,800 --> 00:08:28,884
+the user who visits that page is still
+going to get exactly the current time.
+
+163
+00:08:28,884 --> 00:08:29,800
+So that's pretty good.
+
+164
+00:08:29,800 --> 00:08:33,609
+I've made my site more dynamic
+with not too much PHP code.
+
+165
+00:08:33,609 --> 00:08:36,650
+It was just two lines of code and then
+a little bit of a print statement.
+
+166
+00:08:36,650 --> 00:08:38,441
+And already I have a
+much more dynamic site
+
+167
+00:08:38,441 --> 00:08:42,750
+than that first example we saw
+at the beginning of the video.
+
+168
+00:08:42,750 --> 00:08:46,660
+>> So, recall from the video on PHP syntax
+that when the PHP interpreter runs
+
+169
+00:08:46,660 --> 00:08:50,000
+our program, it ignores everything
+that's not inside of PHP delimiters,
+
+170
+00:08:50,000 --> 00:08:51,500
+spitting it out.
+
+171
+00:08:51,500 --> 00:08:54,410
+In that example, what the thing
+that it was spitting out was HTML.
+
+172
+00:08:54,410 --> 00:08:58,080
+And this means I can now
+intersperse HTML and PHP together.
+
+173
+00:08:58,080 --> 00:09:01,920
+Because the interpreter will just
+ignore the HTML and literally output it.
+
+174
+00:09:01,920 --> 00:09:04,140
+Which is good, right?
+
+175
+00:09:04,140 --> 00:09:06,100
+>> Because presumably,
+at the end of the day,
+
+176
+00:09:06,100 --> 00:09:08,360
+I would like my site to
+be constructed of HTML.
+
+177
+00:09:08,360 --> 00:09:12,880
+So that any web browser can interpret
+it, or understand the HTML on the page
+
+178
+00:09:12,880 --> 00:09:17,270
+and render it as something that we
+can actually understand as humans.
+
+179
+00:09:17,270 --> 00:09:19,430
+And I can only use PHP
+for the parts of my site
+
+180
+00:09:19,430 --> 00:09:23,390
+the require dynamism, that require me
+to have things that update constantly.
+
+181
+00:09:23,390 --> 00:09:26,630
+The static information
+can stay the same.
+
+182
+00:09:26,630 --> 00:09:27,540
+>> OK, so that's fine.
+
+183
+00:09:27,540 --> 00:09:28,540
+But why would I do this?
+
+184
+00:09:28,540 --> 00:09:30,400
+Why would I mix HTML and PHP?
+
+185
+00:09:30,400 --> 00:09:33,850
+I could just print out all the
+HTML, using the PHP print function.
+
+186
+00:09:33,850 --> 00:09:35,870
+Why am I not doing that?
+
+187
+00:09:35,870 --> 00:09:37,100
+Think about it for a second.
+
+188
+00:09:37,100 --> 00:09:41,220
+>> Why, when I could just print out-- I
+could have lines of PHP that just say,
+
+189
+00:09:41,220 --> 00:09:43,841
+print HTML tag, print head.
+
+190
+00:09:43,841 --> 00:09:44,840
+Why am I not doing that?
+
+191
+00:09:44,840 --> 00:09:48,230
+Why am I mixing the PHP and HTML?
+
+192
+00:09:48,230 --> 00:09:50,080
+>> Well, if you think
+about it for a second.
+
+193
+00:09:50,080 --> 00:09:52,824
+PHP, the interpreter has
+to interpret what it sees.
+
+194
+00:09:52,824 --> 00:09:54,990
+And so it's going to have
+to execute a line of code.
+
+195
+00:09:54,990 --> 00:09:56,450
+Print out HTML.
+
+196
+00:09:56,450 --> 00:09:57,700
+Print out open head tag.
+
+197
+00:09:57,700 --> 00:09:58,969
+Print out open title tag.
+
+198
+00:09:58,969 --> 00:10:00,760
+It's going to have to
+execute and interpret
+
+199
+00:10:00,760 --> 00:10:02,671
+that every single step of the way.
+
+200
+00:10:02,671 --> 00:10:04,670
+Why not just let the
+interpreter just gloss over
+
+201
+00:10:04,670 --> 00:10:06,878
+things it doesn't understand
+and do it automatically?
+
+202
+00:10:06,878 --> 00:10:11,365
+It's going to save me a lot of time
+to mix my HTML and my PHP together.
+
+203
+00:10:11,365 --> 00:10:16,220
+>> And so that's why we don't
+just have open PHP delimiter
+
+204
+00:10:16,220 --> 00:10:19,450
+and then just print out the entire
+content of our page as one giant PHP
+
+205
+00:10:19,450 --> 00:10:24,330
+call to the function, Print, and then
+close PHP delimiter and we're done.
+
+206
+00:10:24,330 --> 00:10:27,620
+So that's why we mix them up together.
+
+207
+00:10:27,620 --> 00:10:32,345
+>> So far, we haven't seen too much of
+a difference from general PHP syntax.
+
+208
+00:10:32,345 --> 00:10:33,720
+It's been pretty straightforward.
+
+209
+00:10:33,720 --> 00:10:35,553
+We've already seen the
+question mark, equal.
+
+210
+00:10:35,553 --> 00:10:39,012
+We saw a couple of new function calls,
+but nothing really fancy going on.
+
+211
+00:10:39,012 --> 00:10:40,720
+Let's maybe make things
+a little fancier.
+
+212
+00:10:40,720 --> 00:10:44,360
+What if we want to pass information
+between different PHP files,
+
+213
+00:10:44,360 --> 00:10:47,280
+so that maybe the user can
+submit information to me.
+
+214
+00:10:47,280 --> 00:10:50,230
+And then I could do something
+with it on another page.
+
+215
+00:10:50,230 --> 00:10:52,990
+>> So PHP has support for
+something called Super Global
+
+216
+00:10:52,990 --> 00:10:55,297
+Variables, which sounds pretty awesome.
+
+217
+00:10:55,297 --> 00:10:57,130
+They're really just
+giant associative arrays
+
+218
+00:10:57,130 --> 00:10:59,900
+that help implement this
+functionality of passing
+
+219
+00:10:59,900 --> 00:11:05,010
+information between PHP files that
+are existing on our web server.
+
+220
+00:11:05,010 --> 00:11:07,760
+>> The first of these super
+globals is called $_GET.
+
+221
+00:11:07,760 --> 00:11:10,140
+And it's probably the
+simplest to understand.
+
+222
+00:11:10,140 --> 00:11:12,430
+What happens with $_GET?
+
+223
+00:11:12,430 --> 00:11:16,240
+Well, basically, the user is
+going to type extra information
+
+224
+00:11:16,240 --> 00:11:18,390
+at the end of our URLs.
+
+225
+00:11:18,390 --> 00:11:21,460
+And whatever they type, assuming
+it's formatted in a particular way
+
+226
+00:11:21,460 --> 00:11:25,830
+called a query string, which is just
+a set of key value pairs separated
+
+227
+00:11:25,830 --> 00:11:27,810
+by ampersands.
+
+228
+00:11:27,810 --> 00:11:32,362
+Those key value pairs will be
+stored in a $_GET associative array.
+
+229
+00:11:32,362 --> 00:11:34,070
+And from our video on
+PHP syntax, we know
+
+230
+00:11:34,070 --> 00:11:40,080
+how to work with
+associative arrays already.
+
+231
+00:11:40,080 --> 00:11:44,090
+So here is an example of
+some PHP, where maybe I'm
+
+232
+00:11:44,090 --> 00:11:50,180
+extracting all of the key value pairs
+that the user supplied in the URL.
+
+233
+00:11:50,180 --> 00:11:51,970
+So I have my Open PHP delimiter.
+
+234
+00:11:51,970 --> 00:11:53,410
+I have a foreach loop.
+
+235
+00:11:53,410 --> 00:11:57,410
+I'm iterating across the Super
+Global Array called $_GET.
+
+236
+00:11:57,410 --> 00:12:00,160
+>> And I want to be able to refer
+to both the key and the value.
+
+237
+00:12:00,160 --> 00:12:02,410
+And I'm just printing them
+out, each one on apparently
+
+238
+00:12:02,410 --> 00:12:03,780
+its own paragraph tag here.
+
+239
+00:12:03,780 --> 00:12:07,620
+I'm printing out some HTML
+and interpolating the values
+
+240
+00:12:07,620 --> 00:12:12,900
+of key and value into that statement.
+
+241
+00:12:12,900 --> 00:12:16,980
+>> So let's take a look at how this
+would actually work on our IDE.
+
+242
+00:12:16,980 --> 00:12:18,980
+And maybe this will help
+illustrate a little bit
+
+243
+00:12:18,980 --> 00:12:21,880
+of what GET is actually doing.
+
+244
+00:12:21,880 --> 00:12:23,610
+So I'm back here in my web root.
+
+245
+00:12:23,610 --> 00:12:25,318
+And I'll zoom in a
+little bit to show you
+
+246
+00:12:25,318 --> 00:12:28,620
+that I have a file called, get1.php.
+
+247
+00:12:28,620 --> 00:12:31,830
+>> So let's click on get1.php.
+
+248
+00:12:31,830 --> 00:12:36,600
+And I'm not seeing any content.
+
+249
+00:12:36,600 --> 00:12:38,390
+That's weird, right?
+
+250
+00:12:38,390 --> 00:12:39,740
+Well, not really actually.
+
+251
+00:12:39,740 --> 00:12:42,030
+Because I didn't supply
+anything in the URL.
+
+252
+00:12:42,030 --> 00:12:46,270
+I'm going to get1.php, but I
+didn't supply any key value pairs
+
+253
+00:12:46,270 --> 00:12:47,450
+as part of my query string.
+
+254
+00:12:47,450 --> 00:12:50,510
+So let's add a query string
+and see what this file can do.
+
+255
+00:12:50,510 --> 00:12:53,040
+>> To begin a query string you
+just type question mark.
+
+256
+00:12:53,040 --> 00:13:00,820
+Then maybe I'll say name=Doug&year=2015.
+
+257
+00:13:00,820 --> 00:13:02,914
+And then I will hit Enter.
+
+258
+00:13:02,914 --> 00:13:04,080
+Now notice what's happening.
+
+259
+00:13:04,080 --> 00:13:05,480
+I'm still in get1.php.
+
+260
+00:13:05,480 --> 00:13:08,445
+But now I've supplied
+key value pairs, and I'm
+
+261
+00:13:08,445 --> 00:13:14,940
+printing them out on their own
+paragraph-- name, Doug-- year, 2015.
+
+262
+00:13:14,940 --> 00:13:17,970
+That's exactly the code we just
+saw on the slide a moment ago.
+
+263
+00:13:17,970 --> 00:13:22,290
+>> And if I want to maybe add another
+key value pair, &class=CS50.
+
+264
+00:13:22,290 --> 00:13:25,325
+
+265
+00:13:25,325 --> 00:13:27,580
+Now I have another key value
+pair that's printed out
+
+266
+00:13:27,580 --> 00:13:30,025
+when I revisit the URL again.
+
+267
+00:13:30,025 --> 00:13:31,900
+Now maybe this isn't
+formatted terribly well.
+
+268
+00:13:31,900 --> 00:13:33,660
+So I have another version of get.php.
+
+269
+00:13:33,660 --> 00:13:36,350
+It's get2.php.
+
+270
+00:13:36,350 --> 00:13:39,070
+>> The difference in this
+one is I have CSS file,
+
+271
+00:13:39,070 --> 00:13:41,690
+and it formats things a
+little more nicely for me.
+
+272
+00:13:41,690 --> 00:13:43,940
+It's maybe not the most
+beautiful CSS in the world.
+
+273
+00:13:43,940 --> 00:13:45,650
+But it's just another way of doing it.
+
+274
+00:13:45,650 --> 00:13:52,840
+So I can still get access
+to my variables using $_GET.
+
+275
+00:13:52,840 --> 00:13:56,610
+And in this case, I'm just kind of
+making the CSS a little more fancy.
+
+276
+00:13:56,610 --> 00:13:58,360
+And if we pop over to
+my IDE for a second,
+
+277
+00:13:58,360 --> 00:14:06,870
+I'll show you in my PHP web
+directory here, get2.php.
+
+278
+00:14:06,870 --> 00:14:10,010
+We'll open it up, some HTML here.
+
+279
+00:14:10,010 --> 00:14:13,220
+Apparently I'm linking in that
+CSS file I was talking about.
+
+280
+00:14:13,220 --> 00:14:14,570
+I open a table tag.
+
+281
+00:14:14,570 --> 00:14:15,970
+And then here's my foreach loop.
+
+282
+00:14:15,970 --> 00:14:18,450
+>> Here is that, what I
+showed on the slide before.
+
+283
+00:14:18,450 --> 00:14:21,007
+The only difference is I
+have this key and value CSS
+
+284
+00:14:21,007 --> 00:14:22,340
+styling that I'm applying to it.
+
+285
+00:14:22,340 --> 00:14:25,622
+But that's all I'm doing, is I'm
+iterating across $_GET to get all
+
+286
+00:14:25,622 --> 00:14:26,580
+of the key value pairs.
+
+287
+00:14:26,580 --> 00:14:28,890
+>> And I'm printing them out as the table.
+
+288
+00:14:28,890 --> 00:14:33,230
+And, apparently, I'm formatting the keys
+in one way, with the <td class="key".
+
+289
+00:14:33,230 --> 00:14:40,057
+So apparently that applies to some
+class selector in my CSS file GET.CSS.
+
+290
+00:14:40,057 --> 00:14:42,890
+And, apparently, I'm printing out
+my values a totally different way.
+
+291
+00:14:42,890 --> 00:14:45,530
+Which is pretty much
+what we saw here, where
+
+292
+00:14:45,530 --> 00:14:47,710
+our values were printed
+with a blue background,
+
+293
+00:14:47,710 --> 00:14:49,969
+and our keys were printed
+with a yellow background.
+
+294
+00:14:49,969 --> 00:14:52,010
+So that's how I'm getting
+those different styles.
+
+295
+00:14:52,010 --> 00:14:54,054
+Because I'm using different CSS classes.
+
+296
+00:14:54,054 --> 00:14:55,470
+But that's pretty much it for GET.
+
+297
+00:14:55,470 --> 00:14:58,380
+Like I'm just extracting information.
+
+298
+00:14:58,380 --> 00:15:01,000
+And in this case, I'm just
+printing it to the screen.
+
+299
+00:15:01,000 --> 00:15:04,310
+I'm getting it out of the URL,
+and that's what GET does for us.
+
+300
+00:15:04,310 --> 00:15:06,470
+>> Do you see a possible
+problem here though?
+
+301
+00:15:06,470 --> 00:15:11,720
+Why would we maybe
+not want to use $_GET?
+
+302
+00:15:11,720 --> 00:15:15,440
+What if, maybe, I was making this query?
+
+303
+00:15:15,440 --> 00:15:18,000
+--to get3.php, which I
+don't have on my IDE.
+
+304
+00:15:18,000 --> 00:15:19,640
+It's just a hypothetical file.
+
+305
+00:15:19,640 --> 00:15:22,187
+But notice here that apparently
+passing my password in.
+
+306
+00:15:22,187 --> 00:15:23,770
+And maybe my password is embarrassing.
+
+307
+00:15:23,770 --> 00:15:28,070
+Or maybe I don't want people to
+know what my password is, right.
+
+308
+00:15:28,070 --> 00:15:33,140
+>> If I'm passing it though-- if I'm using
+the $_GET method, what happens is,
+
+309
+00:15:33,140 --> 00:15:34,970
+that's going to be in the URL.
+
+310
+00:15:34,970 --> 00:15:39,890
+So some malicious user might
+be able to see what I'm doing.
+
+311
+00:15:39,890 --> 00:15:42,040
+I may be passing them
+sensitive information.
+
+312
+00:15:42,040 --> 00:15:43,310
+Or maybe it's not even a malicious user.
+
+313
+00:15:43,310 --> 00:15:45,790
+Maybe it's just your friend who
+is standing over your shoulder.
+
+314
+00:15:45,790 --> 00:15:47,650
+And now they know the password
+to your Facebook account.
+
+315
+00:15:47,650 --> 00:15:49,483
+>> And maybe they wouldn't
+do anything with it.
+
+316
+00:15:49,483 --> 00:15:53,749
+But if your password were
+submitted via $_GET to Facebook,
+
+317
+00:15:53,749 --> 00:15:55,290
+now they know your Facebook password.
+
+318
+00:15:55,290 --> 00:15:59,000
+Because it's right there in the URL
+when you've done submitting information.
+
+319
+00:15:59,000 --> 00:16:01,887
+>> And so perhaps that's not the best
+way to pass sensitive information.
+
+320
+00:16:01,887 --> 00:16:04,470
+It's a good way to pass information
+that we don't particularly
+
+321
+00:16:04,470 --> 00:16:05,886
+care about as being too sensitive.
+
+322
+00:16:05,886 --> 00:16:09,347
+Because GET is pretty fast,
+relative to the other super globals
+
+323
+00:16:09,347 --> 00:16:10,430
+we're going to talk about.
+
+324
+00:16:10,430 --> 00:16:13,330
+But maybe not the best tool
+for sensitive information.
+
+325
+00:16:13,330 --> 00:16:15,990
+>> For that we might want to
+use something called $_POST,
+
+326
+00:16:15,990 --> 00:16:18,560
+which is another Super Global Variable.
+
+327
+00:16:18,560 --> 00:16:20,750
+It's another associative array.
+
+328
+00:16:20,750 --> 00:16:23,240
+So it works pretty much
+exactly the same as GET.
+
+329
+00:16:23,240 --> 00:16:26,850
+Except, instead of extracting
+information from the URL,
+
+330
+00:16:26,850 --> 00:16:29,870
+it does something through HTTP headers.
+
+331
+00:16:29,870 --> 00:16:32,080
+So recall from our
+video on HTTP, we talked
+
+332
+00:16:32,080 --> 00:16:34,850
+about how browsers, servers,
+and clients communicate.
+
+333
+00:16:34,850 --> 00:16:38,070
+And information is passed back
+and forth in HTTP headers.
+
+334
+00:16:38,070 --> 00:16:43,330
+>> With $_POST, information is typically
+sent through those HTTP headers.
+
+335
+00:16:43,330 --> 00:16:49,770
+And we'll most commonly see $_POST in
+the context of submitting HTML forms.
+
+336
+00:16:49,770 --> 00:16:52,390
+You can still use HTML forms
+to submit things to GET.
+
+337
+00:16:52,390 --> 00:16:56,120
+But they're usually used
+in the context of POST.
+
+338
+00:16:56,120 --> 00:17:00,280
+>> So here's an example of an HTML form.
+
+339
+00:17:00,280 --> 00:17:06,750
+Now we've seen these before, but we have
+not seen this part, action="post.php".
+
+340
+00:17:06,750 --> 00:17:10,756
+So when we talked about forms in the
+context of HTML, I had a Submit button.
+
+341
+00:17:10,756 --> 00:17:13,630
+And if you recall, I'd click Submit
+and then the page just refreshed,
+
+342
+00:17:13,630 --> 00:17:14,660
+didn't do anything.
+
+343
+00:17:14,660 --> 00:17:18,250
+>> In this case, I'm submitting
+whatever I type at this form,
+
+344
+00:17:18,250 --> 00:17:20,750
+to a PHP file called post.php.
+
+345
+00:17:20,750 --> 00:17:25,810
+And, apparently, the way I'm doing that
+in this form is using the POST method.
+
+346
+00:17:25,810 --> 00:17:29,040
+So every piece of information
+that I type into this form
+
+347
+00:17:29,040 --> 00:17:31,470
+will be submitted
+through the HTTP headers.
+
+348
+00:17:31,470 --> 00:17:36,440
+>> It will be accessible in post.php,
+because that's the action of my form.
+
+349
+00:17:36,440 --> 00:17:39,811
+It will be accessible
+by going to $_POST.
+
+350
+00:17:39,811 --> 00:17:42,310
+And apparently, the way I can
+get at each individual element
+
+351
+00:17:42,310 --> 00:17:44,765
+with that associative array
+is with this attribute,
+
+352
+00:17:44,765 --> 00:17:48,130
+the Name attribute of our input tags.
+
+353
+00:17:48,130 --> 00:17:53,540
+>> So apparently I can say $_POST square
+brackets name to get whatever the user
+
+354
+00:17:53,540 --> 00:17:55,440
+typed in the first field.
+
+355
+00:17:55,440 --> 00:18:01,030
+And $_POST password, of pw rather,
+to get at whatever the user typed
+
+356
+00:18:01,030 --> 00:18:03,650
+in the second field.
+
+357
+00:18:03,650 --> 00:18:06,414
+>> So let's take a look at
+this over in CS50 IDE.
+
+358
+00:18:06,414 --> 00:18:08,330
+So here we are, and I'll
+zoom in for a second.
+
+359
+00:18:08,330 --> 00:18:12,380
+And we have a file called post.html.
+
+360
+00:18:12,380 --> 00:18:13,690
+I click on post.html.
+
+361
+00:18:13,690 --> 00:18:16,300
+At the very top here I have
+a very simple web form.
+
+362
+00:18:16,300 --> 00:18:18,750
+It's the form we just saw
+on the slide a second ago.
+
+363
+00:18:18,750 --> 00:18:25,610
+>> I can type, Doug, and I can
+type my password, which we all
+
+364
+00:18:25,610 --> 00:18:27,340
+know is squadgoals.
+
+365
+00:18:27,340 --> 00:18:30,100
+And I will hit Submit.
+
+366
+00:18:30,100 --> 00:18:32,290
+And apparently, that
+submits to post.php.
+
+367
+00:18:32,290 --> 00:18:33,810
+And I'm apparently printing that.
+
+368
+00:18:33,810 --> 00:18:36,490
+So I'm getting rid of all the security
+that POST gives me by just printing out
+
+369
+00:18:36,490 --> 00:18:37,720
+the username and password.
+
+370
+00:18:37,720 --> 00:18:38,960
+>> The user's name is Doug.
+
+371
+00:18:38,960 --> 00:18:40,810
+The user's password is squadgoals.
+
+372
+00:18:40,810 --> 00:18:42,480
+How did I do this?
+
+373
+00:18:42,480 --> 00:18:44,800
+Well, pop over to IDE
+again for a second.
+
+374
+00:18:44,800 --> 00:18:51,340
+We will scroll down to take
+a look at post.php, which was
+
+375
+00:18:51,340 --> 00:18:54,040
+the action that I used to submit here.
+
+376
+00:18:54,040 --> 00:18:55,739
+That was the action of my HTML form.
+
+377
+00:18:55,739 --> 00:18:56,780
+And that's all I'm doing.
+
+378
+00:18:56,780 --> 00:19:01,370
+The user's name is, and I'm printing
+out the contents of $_POST "name".
+
+379
+00:19:01,370 --> 00:19:04,660
+And then the user's password
+is $_POST "password".
+
+380
+00:19:04,660 --> 00:19:08,920
+So I was given that information
+by submitting the HTML form.
+
+381
+00:19:08,920 --> 00:19:13,790
+And I can now extract it using $_POST
+because the method I used to transmit
+
+382
+00:19:13,790 --> 00:19:17,470
+data with that form was the POST method.
+
+383
+00:19:17,470 --> 00:19:20,640
+>> Now it's probably not
+so great-- I'm going
+
+384
+00:19:20,640 --> 00:19:24,510
+to go back for a second
+to our set here--
+
+385
+00:19:24,510 --> 00:19:30,120
+it's probably not so great if I am
+submitting information with POST,
+
+386
+00:19:30,120 --> 00:19:32,532
+which is ostensibly more secure.
+
+387
+00:19:32,532 --> 00:19:34,740
+It's probably not so great
+if I'm doing that and then
+
+388
+00:19:34,740 --> 00:19:36,470
+printing out the user's password.
+
+389
+00:19:36,470 --> 00:19:38,540
+It's supposed to be more secure.
+
+390
+00:19:38,540 --> 00:19:40,870
+>> OK, but it's not entirely secure.
+
+391
+00:19:40,870 --> 00:19:42,910
+And so in this little
+snippet here I want
+
+392
+00:19:42,910 --> 00:19:46,410
+to just draw your attention to some
+data security concerns, just something
+
+393
+00:19:46,410 --> 00:19:51,200
+to think about as you're
+working or using the internet.
+
+394
+00:19:51,200 --> 00:19:53,890
+This is just something to consider.
+
+395
+00:19:53,890 --> 00:19:57,980
+>> I told you that information is
+submitted through HTTP headers
+
+396
+00:19:57,980 --> 00:19:59,724
+when you use the POST method.
+
+397
+00:19:59,724 --> 00:20:01,390
+Which means they're not entirely secure.
+
+398
+00:20:01,390 --> 00:20:05,610
+They're harder to find than
+using the GET method, where
+
+399
+00:20:05,610 --> 00:20:06,882
+it's just right in the URL.
+
+400
+00:20:06,882 --> 00:20:08,340
+But there's still a way to find it.
+
+401
+00:20:08,340 --> 00:20:10,423
+And I just want to show
+you this so that you maybe
+
+402
+00:20:10,423 --> 00:20:12,940
+start to think about this
+as you're working, or using
+
+403
+00:20:12,940 --> 00:20:14,560
+websites and submitting
+passwords, and maybe using
+
+404
+00:20:14,560 --> 00:20:16,518
+the same password in a
+lot of different places.
+
+405
+00:20:16,518 --> 00:20:22,060
+Know that is is still actually pretty
+easy to find out somebody's password.
+
+406
+00:20:22,060 --> 00:20:25,190
+>> And so here, I'm going
+to go to post2.html.
+
+407
+00:20:25,190 --> 00:20:28,850
+And the difference with post2.html
+and post2.php is pretty subtle.
+
+408
+00:20:28,850 --> 00:20:31,420
+The difference is just
+that I don't print out
+
+409
+00:20:31,420 --> 00:20:33,520
+the password when I submit the form.
+
+410
+00:20:33,520 --> 00:20:35,260
+>> So I'm going to type in, Doug.
+
+411
+00:20:35,260 --> 00:20:38,365
+And I'm going to type
+in, squadgoals, even
+
+412
+00:20:38,365 --> 00:20:40,770
+though we know that's the password.
+
+413
+00:20:40,770 --> 00:20:42,540
+Before I submit the
+form though, I'm going
+
+414
+00:20:42,540 --> 00:20:45,864
+to open up Developer Tools, just to
+show you what's going to happen here.
+
+415
+00:20:45,864 --> 00:20:47,530
+So in Chrome, I'm just going to hit F12.
+
+416
+00:20:47,530 --> 00:20:54,120
+
+417
+00:20:54,120 --> 00:20:57,230
+And that's going to open up my
+Developer Tools on the right hand side.
+
+418
+00:20:57,230 --> 00:20:59,480
+I haven't submitted the form yet.
+
+419
+00:20:59,480 --> 00:21:02,680
+Now I'm going to hit Submit on my form.
+
+420
+00:21:02,680 --> 00:21:05,370
+And apparently, I made a
+call to, or I made a request
+
+421
+00:21:05,370 --> 00:21:07,620
+to post2.php, which makes sense.
+
+422
+00:21:07,620 --> 00:21:10,040
+I'm going to click on that.
+
+423
+00:21:10,040 --> 00:21:13,802
+>> Then over here, I'm going
+to click on Headers.
+
+424
+00:21:13,802 --> 00:21:15,410
+There's a lot of stuff going on here.
+
+425
+00:21:15,410 --> 00:21:21,310
+But if I scroll down to the very
+bottom, notice right there-- my calendar
+
+426
+00:21:21,310 --> 00:21:25,180
+has blocked it for a second-- right
+there at the very bottom corner,
+
+427
+00:21:25,180 --> 00:21:27,386
+name-- Doug, pw-- squadgoals.
+
+428
+00:21:27,386 --> 00:21:30,010
+So even though I'm using the POST
+method, which is more secure,
+
+429
+00:21:30,010 --> 00:21:33,570
+just be aware that when you do so,
+you're still transmitting information
+
+430
+00:21:33,570 --> 00:21:34,430
+through HTTP.
+
+431
+00:21:34,430 --> 00:21:36,770
+And it can still be
+found by an adversary.
+
+432
+00:21:36,770 --> 00:21:39,270
+It's just something we're going
+to have to deal with really.
+
+433
+00:21:39,270 --> 00:21:41,980
+Maybe there's some ways to encrypt our
+passwords before we send them over,
+
+434
+00:21:41,980 --> 00:21:44,410
+which would be a better,
+which I'm not doing here.
+
+435
+00:21:44,410 --> 00:21:47,010
+>> But just be aware that the POST
+method has limitations too.
+
+436
+00:21:47,010 --> 00:21:49,801
+It's an improvement over GET in
+terms of being immediately visible.
+
+437
+00:21:49,801 --> 00:21:51,280
+But it's not a complete fix.
+
+438
+00:21:51,280 --> 00:21:53,280
+So here's an example of
+a quick at home exercise
+
+439
+00:21:53,280 --> 00:21:56,350
+that you can use to get some
+practice working with PHP.
+
+440
+00:21:56,350 --> 00:21:58,300
+Create the following pair of web pages.
+
+441
+00:21:58,300 --> 00:22:00,960
+The first should just be a very simple
+form with a single field and a Submit
+
+442
+00:22:00,960 --> 00:22:01,460
+button.
+
+443
+00:22:01,460 --> 00:22:04,070
+So very similar to what we
+just did with post.html.
+
+444
+00:22:04,070 --> 00:22:07,450
+>> And then the second
+file you should create
+
+445
+00:22:07,450 --> 00:22:11,687
+is a file, a PHP file, that
+is expecting input, via POST,
+
+446
+00:22:11,687 --> 00:22:14,770
+and based on what the user typed, which
+you can assume will be an integer.
+
+447
+00:22:14,770 --> 00:22:16,160
+You don't have to do any
+error checking or the like.
+
+448
+00:22:16,160 --> 00:22:18,284
+You can assume the user
+will type an integer value,
+
+449
+00:22:18,284 --> 00:22:22,230
+or something like an interpreted by
+PHP as an integer, into that form.
+
+450
+00:22:22,230 --> 00:22:24,790
+You just want to create an
+n by n multiplication table.
+
+451
+00:22:24,790 --> 00:22:28,480
+>> So if the user submits 10, we want to
+have a 10 by 10 multiplication table.
+
+452
+00:22:28,480 --> 00:22:31,832
+If the user submits a 12, we want
+a 12 by 12 multiplication table.
+
+453
+00:22:31,832 --> 00:22:33,790
+Just so you can see what
+we're driving at here,
+
+454
+00:22:33,790 --> 00:22:36,040
+we'll take a look at
+this file in my IDE.
+
+455
+00:22:36,040 --> 00:22:38,080
+>> So here in IDE, I have mult_form.html.
+
+456
+00:22:38,080 --> 00:22:41,370
+
+457
+00:22:41,370 --> 00:22:43,100
+I'll click it.
+
+458
+00:22:43,100 --> 00:22:46,020
+All I want to do is submit a value.
+
+459
+00:22:46,020 --> 00:22:47,590
+Type in 10, hit Submit.
+
+460
+00:22:47,590 --> 00:22:51,190
+And apparently, mult_table.php, which
+we can see at the top there in the URL,
+
+461
+00:22:51,190 --> 00:22:53,970
+I'm creating a 10 by 10
+multiplication table.
+
+462
+00:22:53,970 --> 00:22:59,365
+>> If I type 15 and hit Submit, now I
+have a 15 by 15 multiplication table.
+
+463
+00:22:59,365 --> 00:23:02,240
+I'm, of course, not going to show
+you the contents of mult_table.php,
+
+464
+00:23:02,240 --> 00:23:04,781
+because that would take the fun
+out of this at home exercise.
+
+465
+00:23:04,781 --> 00:23:07,480
+But it's a great way to get some
+practice working with PHP loops
+
+466
+00:23:07,480 --> 00:23:10,889
+and POST, very simple, hopefully
+stress free example, just
+
+467
+00:23:10,889 --> 00:23:12,180
+to do a little bit of practice.
+
+468
+00:23:12,180 --> 00:23:16,540
+And I've got a little CSS going on
+here to to make my individual table
+
+469
+00:23:16,540 --> 00:23:19,710
+cells just kind of pop off a
+little bit and look a little more
+
+470
+00:23:19,710 --> 00:23:22,205
+like a multiplication table,
+as opposed to just text just
+
+471
+00:23:22,205 --> 00:23:23,261
+kind of sitting there.
+
+472
+00:23:23,261 --> 00:23:26,260
+The last super global we'll talk about
+in this video is something called
+
+473
+00:23:26,260 --> 00:23:27,597
+$_SESSION.
+
+474
+00:23:27,597 --> 00:23:29,930
+And maybe this is actually
+the best example of something
+
+475
+00:23:29,930 --> 00:23:31,700
+we would consider global.
+
+476
+00:23:31,700 --> 00:23:33,189
+It's another array.
+
+477
+00:23:33,189 --> 00:23:34,480
+It's another associative array.
+
+478
+00:23:34,480 --> 00:23:40,580
+But it is accessible through every
+PHP file that exists on our system.
+
+479
+00:23:40,580 --> 00:23:43,410
+>> We don't have to submit
+information one page at a time
+
+480
+00:23:43,410 --> 00:23:45,400
+like we do with GET and with POST.
+
+481
+00:23:45,400 --> 00:23:46,380
+It's always there.
+
+482
+00:23:46,380 --> 00:23:50,040
+And so this is great for a page
+where you are logged in, for example,
+
+483
+00:23:50,040 --> 00:23:53,120
+and you want your login information
+to persist from page to page to page.
+
+484
+00:23:53,120 --> 00:23:58,180
+>> You can just start a session and then
+use $_SESSION to save things like
+
+485
+00:23:58,180 --> 00:24:02,320
+the user's name, or the user's
+ID information, and so on.
+
+486
+00:24:02,320 --> 00:24:07,600
+And that information will remain in
+$_SESSION until you destroy the session
+
+487
+00:24:07,600 --> 00:24:09,550
+a little bit later on.
+
+488
+00:24:09,550 --> 00:24:12,375
+>> Writing dynamic websites with
+PHP makes them a lot better.
+
+489
+00:24:12,375 --> 00:24:14,250
+Your sites become very
+dynamic, and you don't
+
+490
+00:24:14,250 --> 00:24:17,670
+have to do too much more than what
+you otherwise would have done just
+
+491
+00:24:17,670 --> 00:24:18,920
+doing it with HTML.
+
+492
+00:24:18,920 --> 00:24:21,630
+But it requires practice,
+a lot of practice.
+
+493
+00:24:21,630 --> 00:24:26,897
+>> You already know how to work with C,
+and so jumping to PHP isn't too tricky.
+
+494
+00:24:26,897 --> 00:24:28,730
+What is maybe a little
+bit tricky is working
+
+495
+00:24:28,730 --> 00:24:33,180
+with this new idea of GET and POST,
+and maybe mixing your HTML and your PHP
+
+496
+00:24:33,180 --> 00:24:34,220
+together.
+
+497
+00:24:34,220 --> 00:24:37,570
+But also be aware that the internet
+is a vast repository of information.
+
+498
+00:24:37,570 --> 00:24:41,670
+And PHP's documentation is available
+in many places, but perhaps most
+
+499
+00:24:41,670 --> 00:24:43,354
+canonically at php.net.
+
+500
+00:24:43,354 --> 00:24:45,520
+And you can find there,
+lots of different functions,
+
+501
+00:24:45,520 --> 00:24:48,330
+and use cases, and examples
+upon examples, upon examples.
+
+502
+00:24:48,330 --> 00:24:51,340
+Where if you want to try and figure
+out how to do something, odds are,
+
+503
+00:24:51,340 --> 00:24:52,964
+somebody's probably done it before you.
+
+504
+00:24:52,964 --> 00:24:55,840
+And you can use them as
+inspiration to implement whatever
+
+505
+00:24:55,840 --> 00:24:58,230
+it is you're trying to implement too.
+
+506
+00:24:58,230 --> 00:24:59,230
+>> I'm Doug Lloyd.
+
+507
+00:24:59,230 --> 00:25:01,210
+This is CS50.
+
+508
+00:25:01,210 --> 00:25:02,608

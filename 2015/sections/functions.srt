@@ -1,0 +1,2037 @@
+1
+00:00:00,000 --> 00:00:04,664
+
+2
+00:00:04,664 --> 00:00:05,580
+DOUG LLOYD: All right.
+
+3
+00:00:05,580 --> 00:00:08,877
+So now let's tackle a
+really big topic, functions.
+
+4
+00:00:08,877 --> 00:00:11,460
+So far in the course, all the
+programs that we've been writing
+
+5
+00:00:11,460 --> 00:00:12,969
+have been written inside of main.
+
+6
+00:00:12,969 --> 00:00:14,260
+They're pretty simple programs.
+
+7
+00:00:14,260 --> 00:00:16,940
+You don't need to have all these
+branches and things going on.
+
+8
+00:00:16,940 --> 00:00:18,773
+We can just fit it all
+inside of main and it
+
+9
+00:00:18,773 --> 00:00:20,407
+doesn't get terribly overwhelming.
+
+10
+00:00:20,407 --> 00:00:22,990
+But as the course goes on and
+as you begin to develop programs
+
+11
+00:00:22,990 --> 00:00:26,260
+independently, they're probably going
+to start to get a lot more than 10
+
+12
+00:00:26,260 --> 00:00:27,200
+or 15 lines.
+
+13
+00:00:27,200 --> 00:00:31,400
+You might get hundreds or thousands
+or tens of thousands of lines of code.
+
+14
+00:00:31,400 --> 00:00:34,690
+And it's really not
+that crazy a thought.
+
+15
+00:00:34,690 --> 00:00:39,720
+As such, it's probably not a good idea
+to keep everything inside of main.
+
+16
+00:00:39,720 --> 00:00:43,240
+It can get a little difficult to find
+what you're looking for if you do that.
+
+17
+00:00:43,240 --> 00:00:47,040
+>> Fortunately, though C, and pretty much
+every other programming language that
+
+18
+00:00:47,040 --> 00:00:50,386
+might work with, allows
+us to write functions.
+
+19
+00:00:50,386 --> 00:00:52,260
+And I'm just going to
+take a quick aside here
+
+20
+00:00:52,260 --> 00:00:54,971
+to mention that functions is
+one area of computer science.
+
+21
+00:00:54,971 --> 00:00:57,970
+And you'll see many more of them at
+various points throughout the course
+
+22
+00:00:57,970 --> 00:00:59,290
+and if you continue on.
+
+23
+00:00:59,290 --> 00:01:02,280
+Where there's a lot of
+synonyms for the same word.
+
+24
+00:01:02,280 --> 00:01:03,390
+So we call the functions.
+
+25
+00:01:03,390 --> 00:01:05,980
+But you might also hear them
+referred to as procedures,
+
+26
+00:01:05,980 --> 00:01:09,570
+or methods, particularly, if you've ever
+done any object oriented programming
+
+27
+00:01:09,570 --> 00:01:11,950
+before-- and don't worry
+if you haven't, not
+
+28
+00:01:11,950 --> 00:01:14,280
+a big deal-- but in
+audit oriented languages
+
+29
+00:01:14,280 --> 00:01:16,129
+are frequently called methods.
+
+30
+00:01:16,129 --> 00:01:17,670
+Sometimes they're called subroutines.
+
+31
+00:01:17,670 --> 00:01:20,690
+But they really all refer
+to the same basic idea.
+
+32
+00:01:20,690 --> 00:01:22,480
+>> Let's see what that idea is.
+
+33
+00:01:22,480 --> 00:01:23,310
+What is a function?
+
+34
+00:01:23,310 --> 00:01:26,470
+Well a function is really
+nothing more than a black box.
+
+35
+00:01:26,470 --> 00:01:31,430
+A black box that has a set of zero
+or more inputs and a single output.
+
+36
+00:01:31,430 --> 00:01:33,420
+So for example, this
+might be a function.
+
+37
+00:01:33,420 --> 00:01:35,510
+This is a function called func.
+
+38
+00:01:35,510 --> 00:01:39,330
+And it takes three inputs a, b, and c.
+
+39
+00:01:39,330 --> 00:01:42,580
+And inside that black box, we
+don't know exactly what it does,
+
+40
+00:01:42,580 --> 00:01:45,100
+but it processes the inputs
+in some way and then it
+
+41
+00:01:45,100 --> 00:01:48,680
+gives a single output, in this case, z.
+
+42
+00:01:48,680 --> 00:01:50,504
+Now to make it a little
+less abstract, we
+
+43
+00:01:50,504 --> 00:01:52,420
+could say that maybe we
+have a function called
+
+44
+00:01:52,420 --> 00:01:58,750
+add that takes three inputs a, b, and
+c and processes the output in some way
+
+45
+00:01:58,750 --> 00:02:01,010
+inside the black box to
+produce a single output.
+
+46
+00:02:01,010 --> 00:02:05,190
+So in this case, if
+add takes 3, 6, and 7.
+
+47
+00:02:05,190 --> 00:02:07,020
+Somewhere inside the
+add function, we would
+
+48
+00:02:07,020 --> 00:02:09,750
+expect them to be added together
+to produce the output, which
+
+49
+00:02:09,750 --> 00:02:13,220
+is 3 plus 6 plus 7 or 16.
+
+50
+00:02:13,220 --> 00:02:17,940
+>> Similarly, you have a function called
+mult that takes two inputs, a and b,
+
+51
+00:02:17,940 --> 00:02:21,070
+processes them in some way such
+that the output of the function
+
+52
+00:02:21,070 --> 00:02:22,920
+is the product of the two inputs.
+
+53
+00:02:22,920 --> 00:02:25,080
+The two inputs multiplied together.
+
+54
+00:02:25,080 --> 00:02:29,150
+4 and 5 being passed into mult,
+something happens, the output we expect
+
+55
+00:02:29,150 --> 00:02:31,090
+is 20.
+
+56
+00:02:31,090 --> 00:02:32,507
+Why do we call it a black box?
+
+57
+00:02:32,507 --> 00:02:34,840
+Well if we aren't writing the
+functions ourselves, which
+
+58
+00:02:34,840 --> 00:02:36,869
+we've done quite a bit so far cs50.
+
+59
+00:02:36,869 --> 00:02:39,910
+We've seen print f, for example, which
+is a function that we didn't write
+
+60
+00:02:39,910 --> 00:02:42,305
+ourselves, but we do use all the time.
+
+61
+00:02:42,305 --> 00:02:44,180
+If we aren't writing
+the functions ourselves,
+
+62
+00:02:44,180 --> 00:02:48,450
+we don't really need to know how it's
+actually implemented under the hood.
+
+63
+00:02:48,450 --> 00:02:51,710
+>> So for example the black box I
+just showed you for multiplication,
+
+64
+00:02:51,710 --> 00:02:53,740
+mult a, b could be
+defined-- and this is just
+
+65
+00:02:53,740 --> 00:02:57,902
+some pseudocode-- could be
+defined as output a times b.
+
+66
+00:02:57,902 --> 00:02:58,860
+That make sense, right.
+
+67
+00:02:58,860 --> 00:03:01,370
+If we have a function called
+mult that takes two inputs.
+
+68
+00:03:01,370 --> 00:03:04,750
+We would expect that the output would
+be the two inputs multiplied together,
+
+69
+00:03:04,750 --> 00:03:06,240
+a times b.
+
+70
+00:03:06,240 --> 00:03:09,170
+But mult could also be
+implemented like this,
+
+71
+00:03:09,170 --> 00:03:13,150
+we have a counter variable to
+get set inside of mult to 0.
+
+72
+00:03:13,150 --> 00:03:18,000
+And then we repeat this process
+b times add a to counter.
+
+73
+00:03:18,000 --> 00:03:24,270
+For example, if we multiply 3a by
+5b, we could say set counter to 0,
+
+74
+00:03:24,270 --> 00:03:27,700
+repeat five times, add 3 to counter.
+
+75
+00:03:27,700 --> 00:03:34,490
+So we start at 0 and then we do
+this five times 3, 6, 9, 12, 15.
+
+76
+00:03:34,490 --> 00:03:37,500
+It's the same result. We
+still get 3 times 5 just
+
+77
+00:03:37,500 --> 00:03:39,500
+the implementation is different.
+
+78
+00:03:39,500 --> 00:03:41,490
+>> That's what we mean
+when we say a black box.
+
+79
+00:03:41,490 --> 00:03:44,406
+It just means we don't really care
+how it's implemented under the hood
+
+80
+00:03:44,406 --> 00:03:46,170
+as long as the output is what we expect.
+
+81
+00:03:46,170 --> 00:03:49,045
+In fact, that's part of the contract
+of using functions, particularly
+
+82
+00:03:49,045 --> 00:03:50,630
+functions that others write.
+
+83
+00:03:50,630 --> 00:03:53,980
+The behavior is always going
+to be typical, unpredictable
+
+84
+00:03:53,980 --> 00:03:55,420
+based on the name of the function.
+
+85
+00:03:55,420 --> 00:03:57,500
+And that's why it's really
+important when you write functions
+
+86
+00:03:57,500 --> 00:04:00,020
+or when other people write
+functions that you might use,
+
+87
+00:04:00,020 --> 00:04:03,590
+that those functions have
+clear, relatively obvious names,
+
+88
+00:04:03,590 --> 00:04:04,990
+and are well documented.
+
+89
+00:04:04,990 --> 00:04:08,560
+Which is certainly the case
+for function like print f.
+
+90
+00:04:08,560 --> 00:04:09,860
+>> So why do we use functions?
+
+91
+00:04:09,860 --> 00:04:14,220
+Well as I said earlier, if we write
+all of our code inside of main things
+
+92
+00:04:14,220 --> 00:04:17,120
+can get really cumbersome
+and really complicated.
+
+93
+00:04:17,120 --> 00:04:19,980
+Functions allow us the ability
+to organize things and break up
+
+94
+00:04:19,980 --> 00:04:24,540
+a very complicated problem into
+a lot more manageable sub parts.
+
+95
+00:04:24,540 --> 00:04:28,130
+Functions also allow us to
+simplify the coding process.
+
+96
+00:04:28,130 --> 00:04:33,080
+It's a lot easier to debug a 10
+line function versus a 100 line
+
+97
+00:04:33,080 --> 00:04:35,890
+function or a 1,000 line function.
+
+98
+00:04:35,890 --> 00:04:38,400
+If we only have to debug
+small pieces at a time,
+
+99
+00:04:38,400 --> 00:04:42,110
+or write small pieces at the time,
+it makes that programming experience
+
+100
+00:04:42,110 --> 00:04:43,070
+a lot better.
+
+101
+00:04:43,070 --> 00:04:44,910
+Trust me on that one.
+
+102
+00:04:44,910 --> 00:04:48,400
+>> Lastly, if we write functions we
+can reuse those various parts.
+
+103
+00:04:48,400 --> 00:04:49,880
+Functions can be recycled.
+
+104
+00:04:49,880 --> 00:04:51,880
+They can be used in
+one program or another.
+
+105
+00:04:51,880 --> 00:04:53,713
+You've already written
+the function, all you
+
+106
+00:04:53,713 --> 00:04:56,530
+need to do is tell that program
+where to find that function.
+
+107
+00:04:56,530 --> 00:04:59,680
+We've been recycling and using
+print f for over 40 years.
+
+108
+00:04:59,680 --> 00:05:02,150
+But it was only written one time.
+
+109
+00:05:02,150 --> 00:05:04,270
+Pretty useful, right.
+
+110
+00:05:04,270 --> 00:05:04,830
+All right.
+
+111
+00:05:04,830 --> 00:05:06,040
+So functions are great.
+
+112
+00:05:06,040 --> 00:05:06,860
+We know that.
+
+113
+00:05:06,860 --> 00:05:08,700
+Now let's start writing them.
+
+114
+00:05:08,700 --> 00:05:10,830
+Let's start getting
+them into our programs.
+
+115
+00:05:10,830 --> 00:05:13,869
+In order to do that, the first
+thing we do is declare the function.
+
+116
+00:05:13,869 --> 00:05:16,160
+When you declare a function
+what you're basically doing
+
+117
+00:05:16,160 --> 00:05:18,900
+is telling the compiler,
+hey, just so you know,
+
+118
+00:05:18,900 --> 00:05:20,850
+I am going to be writing
+a function later on
+
+119
+00:05:20,850 --> 00:05:22,987
+and here's what it's going to look like.
+
+120
+00:05:22,987 --> 00:05:24,820
+The reason for this is
+because compilers can
+
+121
+00:05:24,820 --> 00:05:27,900
+do some weird things if
+they see a set of symbols
+
+122
+00:05:27,900 --> 00:05:29,560
+that they're not familiar with.
+
+123
+00:05:29,560 --> 00:05:33,000
+So we just give the compiler a
+heads up, I'm creating a function
+
+124
+00:05:33,000 --> 00:05:35,492
+and it's going to do this.
+
+125
+00:05:35,492 --> 00:05:38,450
+Function declarations generally if
+you're organizing your code in a way
+
+126
+00:05:38,450 --> 00:05:41,872
+that others will be able to
+understand and make use of,
+
+127
+00:05:41,872 --> 00:05:44,330
+you generally want to put all
+of your function declarations
+
+128
+00:05:44,330 --> 00:05:48,220
+at the very top of your code, right
+before you start writing main even.
+
+129
+00:05:48,220 --> 00:05:50,770
+And conveniently, there's
+a very standard form
+
+130
+00:05:50,770 --> 00:05:53,500
+that every function declaration follows.
+
+131
+00:05:53,500 --> 00:05:56,090
+They all pretty much look like this.
+
+132
+00:05:56,090 --> 00:06:01,440
+There are three parts to a function
+declaration, return type, name,
+
+133
+00:06:01,440 --> 00:06:03,420
+and argument list.
+
+134
+00:06:03,420 --> 00:06:07,180
+>> Now the return type is what kind of
+variable the function will output.
+
+135
+00:06:07,180 --> 00:06:10,710
+So for example, if we think back a
+minute ago to the multiplying two
+
+136
+00:06:10,710 --> 00:06:15,690
+numbers function, what do we expect if
+we multiply an integer by an integer
+
+137
+00:06:15,690 --> 00:06:18,502
+the output will be
+probably an integer, right.
+
+138
+00:06:18,502 --> 00:06:20,710
+Multiplied two integers
+together, you get an integer.
+
+139
+00:06:20,710 --> 00:06:24,167
+So the return type of that
+function would be int.
+
+140
+00:06:24,167 --> 00:06:26,000
+Name is what you want
+to call your function.
+
+141
+00:06:26,000 --> 00:06:29,330
+This is probably the least important
+part of the function declaration,
+
+142
+00:06:29,330 --> 00:06:30,827
+in terms of functionality.
+
+143
+00:06:30,827 --> 00:06:33,160
+But is actually probably one
+of the most important parts
+
+144
+00:06:33,160 --> 00:06:36,243
+of the function declaration in terms
+of knowing what the function actually
+
+145
+00:06:36,243 --> 00:06:37,120
+does.
+
+146
+00:06:37,120 --> 00:06:40,474
+If you name your function f or g or
+h or mystery or something like that,
+
+147
+00:06:40,474 --> 00:06:42,765
+you're probably going to get
+a little tripped up trying
+
+148
+00:06:42,765 --> 00:06:44,650
+to remember what those functions do.
+
+149
+00:06:44,650 --> 00:06:47,880
+So it's important to give your
+function's meaningful names.
+
+150
+00:06:47,880 --> 00:06:51,030
+>> Lastly, argument list is
+the comma separated list
+
+151
+00:06:51,030 --> 00:06:55,260
+of all the inputs to your function,
+each of which has a type and a name.
+
+152
+00:06:55,260 --> 00:06:57,840
+So not only do you have to
+specify what type of variable
+
+153
+00:06:57,840 --> 00:07:00,760
+the function will output,
+you also want to specify
+
+154
+00:07:00,760 --> 00:07:07,694
+what type and types of variables the
+function will be accepting as inputs.
+
+155
+00:07:07,694 --> 00:07:08,860
+So let's do an example here.
+
+156
+00:07:08,860 --> 00:07:10,220
+Let's just take a look
+at a more concrete one.
+
+157
+00:07:10,220 --> 00:07:13,130
+So here's an example of a function
+declaration for a function that
+
+158
+00:07:13,130 --> 00:07:14,925
+would add two integers together.
+
+159
+00:07:14,925 --> 00:07:17,800
+The sum of two integers is going to
+be an integer as well, as we just
+
+160
+00:07:17,800 --> 00:07:18,450
+discussed.
+
+161
+00:07:18,450 --> 00:07:21,610
+And so the return type,
+here in green, would be int.
+
+162
+00:07:21,610 --> 00:07:25,190
+That just tells us that add two ints
+is going to, at the end of the day,
+
+163
+00:07:25,190 --> 00:07:28,799
+output, or spit it back
+out to us, an integer.
+
+164
+00:07:28,799 --> 00:07:31,590
+Given what this function does we
+want to give it a meaningful name.
+
+165
+00:07:31,590 --> 00:07:33,630
+Add two ints seems
+appropriate, considering
+
+166
+00:07:33,630 --> 00:07:37,574
+we're taking two integers as inputs
+and hopefully adding them together.
+
+167
+00:07:37,574 --> 00:07:40,240
+It might be a bit of a cumbersome
+name and frankly this function
+
+168
+00:07:40,240 --> 00:07:42,430
+is probably not necessary
+since we have the addition
+
+169
+00:07:42,430 --> 00:07:46,310
+operator, if you recall from our
+discussion of operators, previously.
+
+170
+00:07:46,310 --> 00:07:49,650
+But let's just say for sake of
+argument that this function is useful
+
+171
+00:07:49,650 --> 00:07:52,860
+and so we'll call it add two ints.
+
+172
+00:07:52,860 --> 00:07:55,230
+Lastly, this function takes two inputs.
+
+173
+00:07:55,230 --> 00:07:56,960
+Each of which is an integer.
+
+174
+00:07:56,960 --> 00:07:59,900
+So we have this comma
+separated list of inputs.
+
+175
+00:07:59,900 --> 00:08:02,830
+Now we generally want to
+give a name to each of them
+
+176
+00:08:02,830 --> 00:08:05,070
+so that they can be used
+within the function.
+
+177
+00:08:05,070 --> 00:08:07,180
+The names aren't terribly important.
+
+178
+00:08:07,180 --> 00:08:11,400
+>> In this case, we don't necessarily
+have any meaning attached to them.
+
+179
+00:08:11,400 --> 00:08:13,140
+So we can just call them a and b.
+
+180
+00:08:13,140 --> 00:08:14,257
+That's totally fine.
+
+181
+00:08:14,257 --> 00:08:16,090
+If however, you find
+yourself in a situation
+
+182
+00:08:16,090 --> 00:08:19,497
+where the names of the variables
+might actually be important,
+
+183
+00:08:19,497 --> 00:08:21,830
+you might want to call them
+something other than a and b
+
+184
+00:08:21,830 --> 00:08:24,701
+to give them something more
+symbolically meaningful.
+
+185
+00:08:24,701 --> 00:08:27,700
+But in this case, we don't really
+know anything else about the function.
+
+186
+00:08:27,700 --> 00:08:29,320
+We just want to add two integers.
+
+187
+00:08:29,320 --> 00:08:32,429
+So we'll just call
+those integers a and b.
+
+188
+00:08:32,429 --> 00:08:33,990
+That's one example.
+
+189
+00:08:33,990 --> 00:08:36,287
+>> Why don't you take a second
+to think about this one,
+
+190
+00:08:36,287 --> 00:08:38,870
+how would you write a function
+declaration for a function that
+
+191
+00:08:38,870 --> 00:08:42,940
+multiplies two floating point numbers?
+
+192
+00:08:42,940 --> 00:08:45,910
+Do you remember what a
+floating point number is?
+
+193
+00:08:45,910 --> 00:08:48,120
+What would this function
+declaration look like?
+
+194
+00:08:48,120 --> 00:08:53,330
+I actually recommend you pause the video
+here and take how much time you need.
+
+195
+00:08:53,330 --> 00:08:55,521
+Think about what this
+function declaration would be?
+
+196
+00:08:55,521 --> 00:08:56,770
+What would the return type be?
+
+197
+00:08:56,770 --> 00:08:58,103
+What would a meaningful name be?
+
+198
+00:08:58,103 --> 00:08:59,580
+What would the inputs be?
+
+199
+00:08:59,580 --> 00:09:03,190
+So why don't you pause the video here
+and write-up a function declaration
+
+200
+00:09:03,190 --> 00:09:07,640
+for a function that would multiply
+two floating point numbers together.
+
+201
+00:09:07,640 --> 00:09:09,330
+Hopefully you paused the video.
+
+202
+00:09:09,330 --> 00:09:12,950
+>> So let's take a look at an example
+of one possible declaration.
+
+203
+00:09:12,950 --> 00:09:17,340
+Float mult two reals float x, float y.
+
+204
+00:09:17,340 --> 00:09:19,090
+The product of two
+floating point numbers,
+
+205
+00:09:19,090 --> 00:09:21,710
+which recall are how we
+represent real numbers
+
+206
+00:09:21,710 --> 00:09:26,770
+or numbers with decimal values in c,
+is going to be a floating point number.
+
+207
+00:09:26,770 --> 00:09:28,570
+When you multiply a
+decimal by a decimal,
+
+208
+00:09:28,570 --> 00:09:30,460
+you're probably going to get a decimal.
+
+209
+00:09:30,460 --> 00:09:31,960
+You want to give it a relevant name.
+
+210
+00:09:31,960 --> 00:09:33,810
+Multiply two reals seems fine.
+
+211
+00:09:33,810 --> 00:09:36,620
+But you could really call it
+mult two floats, or mult floats.
+
+212
+00:09:36,620 --> 00:09:39,540
+Anything like that, as long as it
+gave some actual meaning to what
+
+213
+00:09:39,540 --> 00:09:41,469
+this black box was going to do.
+
+214
+00:09:41,469 --> 00:09:44,260
+And again, in this case, we don't
+seem to have any meaning attached
+
+215
+00:09:44,260 --> 00:09:46,390
+to the names of the
+variables we're passing in,
+
+216
+00:09:46,390 --> 00:09:48,645
+so we just call them x and y.
+
+217
+00:09:48,645 --> 00:09:51,020
+Now if you call them something
+else, that's totally fine.
+
+218
+00:09:51,020 --> 00:09:53,310
+In fact, if you did
+this declaration instead
+
+219
+00:09:53,310 --> 00:09:55,450
+using doubles instead
+of floats, if you recall
+
+220
+00:09:55,450 --> 00:09:59,100
+that doubles are a different
+way to more precisely
+
+221
+00:09:59,100 --> 00:10:02,330
+specify real numbers or
+floating point variables.
+
+222
+00:10:02,330 --> 00:10:03,620
+That's totally fine too.
+
+223
+00:10:03,620 --> 00:10:04,670
+Either one of those would be fine.
+
+224
+00:10:04,670 --> 00:10:06,711
+In fact, there are several
+different combinations
+
+225
+00:10:06,711 --> 00:10:08,410
+of ways to declare this function.
+
+226
+00:10:08,410 --> 00:10:10,884
+But these are two pretty good ones.
+
+227
+00:10:10,884 --> 00:10:12,550
+We've declared a function, that's great.
+
+228
+00:10:12,550 --> 00:10:15,700
+We've told the compiler what it
+is, what we're going to be doing.
+
+229
+00:10:15,700 --> 00:10:17,630
+Now let's actually write that function.
+
+230
+00:10:17,630 --> 00:10:20,750
+Let's give it a definition,
+so that inside the black box
+
+231
+00:10:20,750 --> 00:10:22,840
+predictable behavior is happening.
+
+232
+00:10:22,840 --> 00:10:26,270
+In fact, we are multiplying two real
+numbers together, or adding numbers
+
+233
+00:10:26,270 --> 00:10:29,760
+together, or doing whatever it is
+that we asked our function to do.
+
+234
+00:10:29,760 --> 00:10:32,780
+>> So in fact, let's try and define
+multiply two reals which we just
+
+235
+00:10:32,780 --> 00:10:35,350
+talked about a second ago.
+
+236
+00:10:35,350 --> 00:10:38,560
+Now the beginning of
+a function definition
+
+237
+00:10:38,560 --> 00:10:41,720
+looks almost exactly the same
+as a function declaration.
+
+238
+00:10:41,720 --> 00:10:43,170
+I have both of them here.
+
+239
+00:10:43,170 --> 00:10:47,770
+At the top is the function declaration,
+type, name, comma separated argument
+
+240
+00:10:47,770 --> 00:10:49,410
+list, semicolon.
+
+241
+00:10:49,410 --> 00:10:53,800
+The semicolon indicates that
+that is a function declaration.
+
+242
+00:10:53,800 --> 00:10:57,060
+The beginning of the function
+definition looks almost exactly
+
+243
+00:10:57,060 --> 00:11:03,790
+the same, type, name, comma separated
+argument list, no semicolon,
+
+244
+00:11:03,790 --> 00:11:05,206
+open curly brace.
+
+245
+00:11:05,206 --> 00:11:07,580
+The open curly brace, just as
+we've been doing with main,
+
+246
+00:11:07,580 --> 00:11:09,540
+means that we are now
+beginning to define
+
+247
+00:11:09,540 --> 00:11:14,567
+what happens inside the black box that
+we've decided to call mult two reals.
+
+248
+00:11:14,567 --> 00:11:15,900
+Here is one way to implement it.
+
+249
+00:11:15,900 --> 00:11:20,370
+We could say, we could declare a new
+variable of type float called product
+
+250
+00:11:20,370 --> 00:11:24,020
+and assign that variable
+to the value x times y.
+
+251
+00:11:24,020 --> 00:11:27,306
+And then return product.
+
+252
+00:11:27,306 --> 00:11:28,430
+What does return mean here.
+
+253
+00:11:28,430 --> 00:11:31,090
+Well return is the way
+we indicate that's how
+
+254
+00:11:31,090 --> 00:11:33,400
+we're passing the output back out.
+
+255
+00:11:33,400 --> 00:11:38,160
+So return something, is the same as,
+this is the output of the black box.
+
+256
+00:11:38,160 --> 00:11:40,732
+So that's how you do it.
+
+257
+00:11:40,732 --> 00:11:42,190
+Here's another way to implement it.
+
+258
+00:11:42,190 --> 00:11:45,050
+We could just return x times y.
+
+259
+00:11:45,050 --> 00:11:45,870
+x is a float.
+
+260
+00:11:45,870 --> 00:11:46,660
+y is a float.
+
+261
+00:11:46,660 --> 00:11:48,490
+So x times y is also a float.
+
+262
+00:11:48,490 --> 00:11:50,750
+We don't even need to
+create another variable.
+
+263
+00:11:50,750 --> 00:11:56,750
+So that's a different way to
+implement the exact same black box.
+
+264
+00:11:56,750 --> 00:11:58,570
+>> Now take a moment,
+pause the video again,
+
+265
+00:11:58,570 --> 00:12:01,680
+and try and define add two ints,
+which is the other function that we
+
+266
+00:12:01,680 --> 00:12:03,090
+talked about a moment ago.
+
+267
+00:12:03,090 --> 00:12:06,440
+Again here, I've put the function
+declaration, and so the semicolon,
+
+268
+00:12:06,440 --> 00:12:08,420
+and an open curly brace
+and a closed curly
+
+269
+00:12:08,420 --> 00:12:12,080
+brace to indicate where we will fill
+in the contents of add two ints,
+
+270
+00:12:12,080 --> 00:12:15,530
+so that we define the particular
+behavior inside the black box.
+
+271
+00:12:15,530 --> 00:12:16,380
+So pause the video.
+
+272
+00:12:16,380 --> 00:12:18,790
+And take as much time as
+you need to try and define
+
+273
+00:12:18,790 --> 00:12:25,040
+an implementation of add two ints, such
+that when the function outputs a value,
+
+274
+00:12:25,040 --> 00:12:29,209
+it does, in fact, return
+the sum of the two inputs.
+
+275
+00:12:29,209 --> 00:12:32,000
+So just like the previous example,
+there are several different ways
+
+276
+00:12:32,000 --> 00:12:34,210
+that you could implement add two ints.
+
+277
+00:12:34,210 --> 00:12:35,130
+Here's one.
+
+278
+00:12:35,130 --> 00:12:37,172
+In here in orange I've
+just had some comments--
+
+279
+00:12:37,172 --> 00:12:38,880
+I've just added some
+comments to indicate
+
+280
+00:12:38,880 --> 00:12:41,400
+what's happening on each line of code.
+
+281
+00:12:41,400 --> 00:12:45,430
+So I declare a variable
+called sum of type int.
+
+282
+00:12:45,430 --> 00:12:47,279
+I say sum equals a plus b.
+
+283
+00:12:47,279 --> 00:12:50,070
+That's where we're actually doing
+the work adding a and b together.
+
+284
+00:12:50,070 --> 00:12:51,850
+And I return sum.
+
+285
+00:12:51,850 --> 00:12:56,460
+And that makes sense because
+sum is a variable of type int.
+
+286
+00:12:56,460 --> 00:13:00,180
+And what's the data type that this
+function tells me it's going to output?
+
+287
+00:13:00,180 --> 00:13:00,680
+Int.
+
+288
+00:13:00,680 --> 00:13:03,072
+So I'm returning sum, which
+is an integer variable.
+
+289
+00:13:03,072 --> 00:13:06,030
+And that makes sense given what we've
+declared and defined our function
+
+290
+00:13:06,030 --> 00:13:07,320
+to do.
+
+291
+00:13:07,320 --> 00:13:09,700
+>> Now you can also define
+the function this way,
+
+292
+00:13:09,700 --> 00:13:15,260
+int sum equals a plus b-- skip that
+first step-- and then, return sum.
+
+293
+00:13:15,260 --> 00:13:17,760
+Now you could have also
+implemented it this way,
+
+294
+00:13:17,760 --> 00:13:19,180
+which I highly do not recommend.
+
+295
+00:13:19,180 --> 00:13:22,540
+This is bad style for one
+thing and really bad design,
+
+296
+00:13:22,540 --> 00:13:24,420
+but it does, in fact, work.
+
+297
+00:13:24,420 --> 00:13:30,199
+If you take this code, which is int
+add bad adder dot c, and use it.
+
+298
+00:13:30,199 --> 00:13:31,990
+It actually does add
+two integers together.
+
+299
+00:13:31,990 --> 00:13:37,632
+It's a very poor implementation
+of this particular behavior.
+
+300
+00:13:37,632 --> 00:13:38,340
+But it does work.
+
+301
+00:13:38,340 --> 00:13:41,200
+It's just here to illustrate
+the point that we don't really
+
+302
+00:13:41,200 --> 00:13:44,530
+care what happens inside
+the black box, as long
+
+303
+00:13:44,530 --> 00:13:46,510
+as it has the output that we expect.
+
+304
+00:13:46,510 --> 00:13:48,870
+This is a poorly designed black box.
+
+305
+00:13:48,870 --> 00:13:53,801
+But at the end the day, it does
+still output the sum of a plus b.
+
+306
+00:13:53,801 --> 00:13:54,300
+All right.
+
+307
+00:13:54,300 --> 00:13:56,320
+So we've declared functions.
+
+308
+00:13:56,320 --> 00:13:57,490
+And we've defined function.
+
+309
+00:13:57,490 --> 00:13:58,540
+So that's really good.
+
+310
+00:13:58,540 --> 00:14:03,020
+Now let's start to use the functions
+that we've declared and we've defined.
+
+311
+00:14:03,020 --> 00:14:05,960
+To call a function-- it's actually
+pretty easy-- all you need to do
+
+312
+00:14:05,960 --> 00:14:09,070
+is pass it appropriate arguments,
+arguments of the data type
+
+313
+00:14:09,070 --> 00:14:11,600
+that it expects, and
+then assign the return
+
+314
+00:14:11,600 --> 00:14:15,190
+value of that function
+and this-- excuse me--
+
+315
+00:14:15,190 --> 00:14:19,390
+assign the return value of that function
+to something of the correct type.
+
+316
+00:14:19,390 --> 00:14:22,410
+>> So let's have a look at
+this in practice in a file
+
+317
+00:14:22,410 --> 00:14:27,730
+called adder 1 dot c, which
+I have in my cs50 IDE.
+
+318
+00:14:27,730 --> 00:14:31,042
+So here is adder 1 dot c.
+
+319
+00:14:31,042 --> 00:14:33,500
+At the beginning you see I have
+my includes, pound include,
+
+320
+00:14:33,500 --> 00:14:35,460
+standard IO, and cs50 dot h.
+
+321
+00:14:35,460 --> 00:14:37,700
+And then I have my function declaration.
+
+322
+00:14:37,700 --> 00:14:39,570
+This is where I'm
+telling the compiler I'm
+
+323
+00:14:39,570 --> 00:14:42,850
+going to be writing a
+function called add two ints.
+
+324
+00:14:42,850 --> 00:14:45,780
+It's going to output an
+integer type variable.
+
+325
+00:14:45,780 --> 00:14:47,360
+That's what this part is right here.
+
+326
+00:14:47,360 --> 00:14:51,950
+And then I have two inputs to it a
+and b, each of which is an integer.
+
+327
+00:14:51,950 --> 00:14:58,250
+Inside of main, I ask the user for
+input by saying, give me an integer.
+
+328
+00:14:58,250 --> 00:15:01,040
+And they are prompted to forget
+int, which is a function that
+
+329
+00:15:01,040 --> 00:15:03,240
+is included in the cs50 library.
+
+330
+00:15:03,240 --> 00:15:07,660
+And that gets stored in
+x, an integer variable.
+
+331
+00:15:07,660 --> 00:15:09,886
+>> Then we prompt them for another integer.
+
+332
+00:15:09,886 --> 00:15:13,070
+We get another integer
+and store that in y.
+
+333
+00:15:13,070 --> 00:15:17,990
+And then, here on line 28, is
+where we make our function call.
+
+334
+00:15:17,990 --> 00:15:23,770
+We are saying, int z equals
+add 2 ints x comma y.
+
+335
+00:15:23,770 --> 00:15:25,980
+Do you see why this makes sense?
+
+336
+00:15:25,980 --> 00:15:29,710
+x is an integer type variable and
+y is an integer type variable.
+
+337
+00:15:29,710 --> 00:15:31,220
+So that's good.
+
+338
+00:15:31,220 --> 00:15:34,570
+That make sense with what our function
+declaration on line 17 looks like.
+
+339
+00:15:34,570 --> 00:15:38,300
+The comma separated input list
+expects two integers, a and b.
+
+340
+00:15:38,300 --> 00:15:40,300
+In that case, we can call
+them whatever we want.
+
+341
+00:15:40,300 --> 00:15:42,300
+It just expects two integers.
+
+342
+00:15:42,300 --> 00:15:44,930
+And x is an integer and y is an integer.
+
+343
+00:15:44,930 --> 00:15:45,640
+That works.
+
+344
+00:15:45,640 --> 00:15:48,680
+>> And we know that function is going
+to output an integers as well.
+
+345
+00:15:48,680 --> 00:15:51,290
+And so we are storing the
+output of the function,
+
+346
+00:15:51,290 --> 00:15:56,050
+add two ints, in an integer type
+variable, which we're calling z.
+
+347
+00:15:56,050 --> 00:16:01,980
+And then we can say, the sum of
+percent i and percent i is percent i.
+
+348
+00:16:01,980 --> 00:16:06,210
+x, y and z respectively
+filling in those percent i's.
+
+349
+00:16:06,210 --> 00:16:08,334
+What is the definition of
+add two ints look like?
+
+350
+00:16:08,334 --> 00:16:09,125
+It's pretty simple.
+
+351
+00:16:09,125 --> 00:16:11,270
+It's one of the ones we
+just saw a second ago,
+
+352
+00:16:11,270 --> 00:16:14,390
+int sum equals a plus b return sum.
+
+353
+00:16:14,390 --> 00:16:15,420
+Does this work?
+
+354
+00:16:15,420 --> 00:16:17,270
+Let's save the file.
+
+355
+00:16:17,270 --> 00:16:22,080
+And then down here on my terminal
+I'm going to make adder 1,
+
+356
+00:16:22,080 --> 00:16:23,000
+and I clear my screen.
+
+357
+00:16:23,000 --> 00:16:25,791
+I'm going to zoom in because I know
+it's a little difficult to see.
+
+358
+00:16:25,791 --> 00:16:31,520
+
+359
+00:16:31,520 --> 00:16:33,770
+>> So we compile this program as adder 1.
+
+360
+00:16:33,770 --> 00:16:37,910
+So we can do dot slash adder 1.
+
+361
+00:16:37,910 --> 00:16:40,060
+Give me an integer, 10.
+
+362
+00:16:40,060 --> 00:16:42,380
+Give me another integer, 20.
+
+363
+00:16:42,380 --> 00:16:45,200
+The sum of 10 and 20 is 30.
+
+364
+00:16:45,200 --> 00:16:47,615
+So we made a successful function call.
+
+365
+00:16:47,615 --> 00:16:55,820
+You can run the function again, negative
+10, 17 sum of negative 10 and 17 is 7.
+
+366
+00:16:55,820 --> 00:16:57,120
+This function works.
+
+367
+00:16:57,120 --> 00:16:59,240
+It has the behavior
+that we expect it to.
+
+368
+00:16:59,240 --> 00:17:03,610
+And so we've made a successful
+function, definition, declaration,
+
+369
+00:17:03,610 --> 00:17:07,288
+and a successful function call.
+
+370
+00:17:07,288 --> 00:17:09,079
+Couple miscellaneous
+points about functions
+
+371
+00:17:09,079 --> 00:17:10,611
+before we conclude this section.
+
+372
+00:17:10,611 --> 00:17:12,319
+Recall from our
+discussion of data types,
+
+373
+00:17:12,319 --> 00:17:16,109
+previously, that functions
+can sometimes take no inputs.
+
+374
+00:17:16,109 --> 00:17:17,930
+If that's the case, we
+declare the function
+
+375
+00:17:17,930 --> 00:17:19,788
+as having a void argument list.
+
+376
+00:17:19,788 --> 00:17:21,579
+Do you recall what the
+most common function
+
+377
+00:17:21,579 --> 00:17:25,036
+we've seen so far that takes
+a void argument list is?
+
+378
+00:17:25,036 --> 00:17:27,300
+It's main.
+
+379
+00:17:27,300 --> 00:17:30,850
+Recall also that function sometimes
+don't actually have an output.
+
+380
+00:17:30,850 --> 00:17:34,210
+In that case, we declare the function
+as having a void return type.
+
+381
+00:17:34,210 --> 00:17:37,880
+Let's conclude this section by
+tackling a practice problem.
+
+382
+00:17:37,880 --> 00:17:39,900
+>> So here's the problem laid out.
+
+383
+00:17:39,900 --> 00:17:43,630
+I want you to write a function
+called valid triangle.
+
+384
+00:17:43,630 --> 00:17:47,410
+What this function should do
+is take three real numbers
+
+385
+00:17:47,410 --> 00:17:51,930
+that represent the lengths of the three
+sides of a triangle as its parameters,
+
+386
+00:17:51,930 --> 00:17:54,550
+or its arguments, or its
+inputs-- another set of synonyms
+
+387
+00:17:54,550 --> 00:17:57,340
+that you might encounter.
+
+388
+00:17:57,340 --> 00:18:01,120
+This function should
+either output true or false
+
+389
+00:18:01,120 --> 00:18:04,960
+depending on whether those three lengths
+are capable of making a triangle.
+
+390
+00:18:04,960 --> 00:18:09,930
+Do you remember the data type that
+we used to indicate true or false?
+
+391
+00:18:09,930 --> 00:18:11,436
+Now how do you implement this?
+
+392
+00:18:11,436 --> 00:18:13,810
+Well know there are a couple
+of rules regarding triangles
+
+393
+00:18:13,810 --> 00:18:15,480
+that are actually useful to know.
+
+394
+00:18:15,480 --> 00:18:18,292
+A triangle can only have
+sides with positive length.
+
+395
+00:18:18,292 --> 00:18:19,000
+That makes sense.
+
+396
+00:18:19,000 --> 00:18:21,432
+You're probably saying, duh.
+
+397
+00:18:21,432 --> 00:18:23,390
+The other thing to note
+though, is that the sum
+
+398
+00:18:23,390 --> 00:18:25,484
+of the lengths of any
+two sides of the triangle
+
+399
+00:18:25,484 --> 00:18:27,650
+has to be greater than the
+length of the third side.
+
+400
+00:18:27,650 --> 00:18:28,690
+That's actually true.
+
+401
+00:18:28,690 --> 00:18:34,150
+You can't have a triangle of sides 1,
+2 and 4, for example, because 1 plus 2
+
+402
+00:18:34,150 --> 00:18:36,270
+is not greater than 4.
+
+403
+00:18:36,270 --> 00:18:38,870
+So those are the rules that
+determine whether or not the three
+
+404
+00:18:38,870 --> 00:18:42,740
+inputs can conceivably form a triangle.
+
+405
+00:18:42,740 --> 00:18:46,360
+So take a couple of minutes
+and declare and then define
+
+406
+00:18:46,360 --> 00:18:49,810
+this function called valid
+triangle, such that it actually
+
+407
+00:18:49,810 --> 00:18:51,650
+has the behavior specified here.
+
+408
+00:18:51,650 --> 00:18:57,030
+>> It will output true if those three sides
+are capable of comprising a triangle,
+
+409
+00:18:57,030 --> 00:19:01,950
+and false otherwise
+Ready to see how you did?
+
+410
+00:19:01,950 --> 00:19:04,650
+Here's one implementation
+of valid triangle.
+
+411
+00:19:04,650 --> 00:19:05,770
+It's not the only one.
+
+412
+00:19:05,770 --> 00:19:07,770
+Yours might vary slightly.
+
+413
+00:19:07,770 --> 00:19:11,040
+But this one does, in fact, have
+the behavior that we expect.
+
+414
+00:19:11,040 --> 00:19:14,450
+We declare our function at the
+very top, bool valid triangle
+
+415
+00:19:14,450 --> 00:19:16,630
+float x float y float z.
+
+416
+00:19:16,630 --> 00:19:18,930
+So again, this function
+takes three real numbers
+
+417
+00:19:18,930 --> 00:19:22,280
+as its arguments, floating
+point value variables,
+
+418
+00:19:22,280 --> 00:19:26,510
+and outputs a true or false
+value, which is a Boolean, recall.
+
+419
+00:19:26,510 --> 00:19:28,660
+So that's why the return type is bool.
+
+420
+00:19:28,660 --> 00:19:30,016
+Then we define the function.
+
+421
+00:19:30,016 --> 00:19:33,140
+First thing we do is check to make sure
+that all of the sides are positive.
+
+422
+00:19:33,140 --> 00:19:37,010
+If x is less than or equal
+to 0, or if y is equal to 0,
+
+423
+00:19:37,010 --> 00:19:41,050
+or if z is less than or equal to 0,
+that can't possibly be a triangle.
+
+424
+00:19:41,050 --> 00:19:42,380
+They don't have positive sides.
+
+425
+00:19:42,380 --> 00:19:45,790
+And so we can return
+false in that situation.
+
+426
+00:19:45,790 --> 00:19:49,010
+Next, we check to make sure
+that every pair of inputs
+
+427
+00:19:49,010 --> 00:19:51,830
+is greater than the third one.
+
+428
+00:19:51,830 --> 00:19:54,530
+>> So if x plus y is less
+than or equal to z,
+
+429
+00:19:54,530 --> 00:19:57,060
+or if x plus z is less
+than or equal to y,
+
+430
+00:19:57,060 --> 00:20:01,730
+or if y plus z is less than or equal to
+x, that also can't be a valid triangle.
+
+431
+00:20:01,730 --> 00:20:03,800
+So we return false again.
+
+432
+00:20:03,800 --> 00:20:06,900
+Assuming we passed both of the checks
+though, then we can return true.
+
+433
+00:20:06,900 --> 00:20:09,440
+Because those three sides
+are capable of returning--
+
+434
+00:20:09,440 --> 00:20:11,647
+of creating a valid triangle.
+
+435
+00:20:11,647 --> 00:20:12,230
+And that's it.
+
+436
+00:20:12,230 --> 00:20:13,830
+You've now declared and defined.
+
+437
+00:20:13,830 --> 00:20:17,330
+And you may be able to now
+use and call this function.
+
+438
+00:20:17,330 --> 00:20:19,470
+Great job.
+
+439
+00:20:19,470 --> 00:20:20,650
+I'm Doug Lloyd.
+
+440
+00:20:20,650 --> 00:20:22,820
+This is cs50.
+
+441
+00:20:22,820 --> 00:20:24,340

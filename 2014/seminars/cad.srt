@@ -1,0 +1,8738 @@
+1
+00:00:00,000 --> 00:00:05,712
+
+2
+00:00:05,712 --> 00:00:08,260
+>> ANSEL DUFF: All right, hi, everybody.
+
+3
+00:00:08,260 --> 00:00:09,140
+My name's Ansel.
+
+4
+00:00:09,140 --> 00:00:13,260
+I am, as you know, a senior in
+mechanical engineering in [INAUDIBLE].
+
+5
+00:00:13,260 --> 00:00:15,260
+Today, we're going to
+spend a little bit of time
+
+6
+00:00:15,260 --> 00:00:18,220
+reviewing how to design
+a part from scratch
+
+7
+00:00:18,220 --> 00:00:21,690
+and how to ensure that it will suit the
+needs of whatever its application may
+
+8
+00:00:21,690 --> 00:00:22,190
+be.
+
+9
+00:00:22,190 --> 00:00:26,210
+>> So today, we will first design
+this little lens support.
+
+10
+00:00:26,210 --> 00:00:28,310
+I have a couple of
+them printed out here.
+
+11
+00:00:28,310 --> 00:00:33,710
+And I have one actually attached to the
+mount that I just sat down right here.
+
+12
+00:00:33,710 --> 00:00:38,790
+And this just holds up a lens
+like so, mounts onto some
+
+13
+00:00:38,790 --> 00:00:42,470
+rails-- I don't have enough hands
+to hold this-- just like that.
+
+14
+00:00:42,470 --> 00:00:45,940
+So we'll go over how that
+was designed, and then
+
+15
+00:00:45,940 --> 00:00:48,260
+move on to another
+part, which is an iPhone
+
+16
+00:00:48,260 --> 00:00:51,260
+dock, which I've
+displayed here, in orange.
+
+17
+00:00:51,260 --> 00:00:53,760
+We'll go over how to CAD
+those, how they were designed,
+
+18
+00:00:53,760 --> 00:00:57,510
+how to take measurements, and how
+to ensure that this won't tip over,
+
+19
+00:00:57,510 --> 00:01:00,030
+for example, or this
+won't buckle under loads.
+
+20
+00:01:00,030 --> 00:01:02,320
+>> All right, so before
+we get started, I just
+
+21
+00:01:02,320 --> 00:01:06,060
+want to talk about some
+overarching design principles
+
+22
+00:01:06,060 --> 00:01:08,387
+when you're designing
+a part from scratch.
+
+23
+00:01:08,387 --> 00:01:10,220
+Much like when you're
+writing code, you want
+
+24
+00:01:10,220 --> 00:01:13,590
+to be very explicit in
+what you tell the computer.
+
+25
+00:01:13,590 --> 00:01:16,490
+You never want to leave
+anything ambiguous.
+
+26
+00:01:16,490 --> 00:01:18,914
+Luckily for us, in SolidWorks,
+when you sketch something,
+
+27
+00:01:18,914 --> 00:01:21,080
+all the lines are blue when
+you initially draw them,
+
+28
+00:01:21,080 --> 00:01:24,686
+and they become black once they're
+constrained in three dimensional space.
+
+29
+00:01:24,686 --> 00:01:26,810
+So if you have a sketch
+with some blue lines on it,
+
+30
+00:01:26,810 --> 00:01:29,726
+you know that you need to fix some
+of those things before you move on.
+
+31
+00:01:29,726 --> 00:01:33,680
+It's just like a sanity check before
+you make a picture out of a sketch.
+
+32
+00:01:33,680 --> 00:01:37,270
+>> So like I said, you want to
+be really explicit in how
+
+33
+00:01:37,270 --> 00:01:38,871
+the sketches are defined.
+
+34
+00:01:38,871 --> 00:01:41,120
+The way that it works is you
+start out with one point.
+
+35
+00:01:41,120 --> 00:01:43,590
+SolidWorks gives you an origin
+in three dimensional space.
+
+36
+00:01:43,590 --> 00:01:44,610
+And that point is fixed.
+
+37
+00:01:44,610 --> 00:01:47,750
+And it will always be there and
+will never move, ever, ever, ever.
+
+38
+00:01:47,750 --> 00:01:50,380
+So you base your whole
+sketch around this one point.
+
+39
+00:01:50,380 --> 00:01:54,032
+And then you relate every line to
+either the origin or another line
+
+40
+00:01:54,032 --> 00:01:55,240
+that's related to the origin.
+
+41
+00:01:55,240 --> 00:01:58,365
+So I know this sounds a little abstract
+right now, but once we get started,
+
+42
+00:01:58,365 --> 00:01:59,730
+it'll be a little bit clearer.
+
+43
+00:01:59,730 --> 00:02:03,430
+But just like I said, make
+sure that everything is black,
+
+44
+00:02:03,430 --> 00:02:05,730
+everything is completely
+defined, before we move on
+
+45
+00:02:05,730 --> 00:02:08,270
+and you won't run into problems later.
+
+46
+00:02:08,270 --> 00:02:11,400
+>> Another thing that I'm really big
+on is putting a lot of emphasis
+
+47
+00:02:11,400 --> 00:02:16,370
+on making sure that you design your part
+for scalability such that you can tweak
+
+48
+00:02:16,370 --> 00:02:20,540
+it later if a measurement is a little
+bit off with no negative consequences
+
+49
+00:02:20,540 --> 00:02:21,360
+or effects.
+
+50
+00:02:21,360 --> 00:02:24,240
+And the way do we do that is
+we add a lot of relations.
+
+51
+00:02:24,240 --> 00:02:29,670
+So for example, when we define this
+part, we have two parallel faces here.
+
+52
+00:02:29,670 --> 00:02:32,190
+Well, we told SolidWorks
+that they are parallel,
+
+53
+00:02:32,190 --> 00:02:35,050
+and you can draw two parallel
+lines, and SolidWorks
+
+54
+00:02:35,050 --> 00:02:36,560
+will snap your lines to a grid.
+
+55
+00:02:36,560 --> 00:02:39,290
+But unless you explicitly
+tell it that these lines need
+
+56
+00:02:39,290 --> 00:02:43,640
+to be parallel, maybe later on down
+the road when you try to extend the top
+
+57
+00:02:43,640 --> 00:02:46,690
+or maybe extend the base, if you
+hadn't added that relation in,
+
+58
+00:02:46,690 --> 00:02:50,520
+everything can become a mess.
+
+59
+00:02:50,520 --> 00:02:52,890
+>> So let's get started here.
+
+60
+00:02:52,890 --> 00:02:56,062
+And if at any point you have a question,
+please feel free to interrupt me.
+
+61
+00:02:56,062 --> 00:02:57,020
+It goes without saying.
+
+62
+00:02:57,020 --> 00:02:59,290
+But we'll get started.
+
+63
+00:02:59,290 --> 00:03:04,680
+So SolidWorks comes with tutorials
+that teach you the syntax of the GUI.
+
+64
+00:03:04,680 --> 00:03:07,080
+I think it would not be an
+efficient use of our time
+
+65
+00:03:07,080 --> 00:03:09,290
+to go over which buttons to click.
+
+66
+00:03:09,290 --> 00:03:12,910
+So I'll go very slowly today and walk
+through every step that I'm taking.
+
+67
+00:03:12,910 --> 00:03:15,680
+But just know that if you
+feel lost or confused,
+
+68
+00:03:15,680 --> 00:03:19,220
+there are tutorials that explain
+exactly what I'm doing here
+
+69
+00:03:19,220 --> 00:03:21,070
+but on a little bit of a lower level.
+
+70
+00:03:21,070 --> 00:03:22,820
+And I'm going to put
+a lot emphasis today
+
+71
+00:03:22,820 --> 00:03:24,627
+on adding relations to everything.
+
+72
+00:03:24,627 --> 00:03:25,960
+I'm going to go over that a lot.
+
+73
+00:03:25,960 --> 00:03:26,795
+You guys are going to get sick of it.
+
+74
+00:03:26,795 --> 00:03:27,836
+But it's super important.
+
+75
+00:03:27,836 --> 00:03:31,019
+And you'll see down the road that
+if we want to tweak a dimension,
+
+76
+00:03:31,019 --> 00:03:31,810
+it's really useful.
+
+77
+00:03:31,810 --> 00:03:33,650
+So we'll get started here.
+
+78
+00:03:33,650 --> 00:03:34,940
+We'll select new.
+
+79
+00:03:34,940 --> 00:03:36,690
+And we're going to design a part.
+
+80
+00:03:36,690 --> 00:03:40,500
+SolidWorks has three different
+types of files you can have.
+
+81
+00:03:40,500 --> 00:03:42,410
+There are parts,
+assemblies, and drawings.
+
+82
+00:03:42,410 --> 00:03:45,900
+Assemblies are just multiple
+parts with relations,
+
+83
+00:03:45,900 --> 00:03:48,690
+so the parts are related to each
+other in three dimensional space.
+
+84
+00:03:48,690 --> 00:03:52,730
+And then, a drawing is a document
+that you might send to a machine shop
+
+85
+00:03:52,730 --> 00:03:55,640
+or whatever to actually
+manufacture your part.
+
+86
+00:03:55,640 --> 00:03:59,140
+>> So we'll start with a
+part here and click OK.
+
+87
+00:03:59,140 --> 00:04:00,690
+Now, we have a blank canvas.
+
+88
+00:04:00,690 --> 00:04:03,810
+So we're going to start out with this.
+
+89
+00:04:03,810 --> 00:04:06,810
+And what we first are going to do,
+and this is true for every part,
+
+90
+00:04:06,810 --> 00:04:10,750
+is we need to create some sort
+of stock, some sort of material.
+
+91
+00:04:10,750 --> 00:04:15,340
+And then, once we have the material,
+we can extrude these web features.
+
+92
+00:04:15,340 --> 00:04:18,540
+I even wrote CS50 on the front of
+it, and then a hole in the bottom.
+
+93
+00:04:18,540 --> 00:04:21,200
+So first, let's start out.
+
+94
+00:04:21,200 --> 00:04:25,320
+We're going to select Sketch
+over here, and then Sketch again.
+
+95
+00:04:25,320 --> 00:04:28,100
+And SolidWorks prompts us
+with three different planes.
+
+96
+00:04:28,100 --> 00:04:31,390
+You can add planes later on down the
+road when you're designing your part.
+
+97
+00:04:31,390 --> 00:04:35,440
+But we're first going to have
+these three orthogonal planes.
+
+98
+00:04:35,440 --> 00:04:38,220
+And we will select top plane right now.
+
+99
+00:04:38,220 --> 00:04:39,130
+Oops.
+
+100
+00:04:39,130 --> 00:04:41,350
+That was not the top plane.
+
+101
+00:04:41,350 --> 00:04:43,700
+Just go back here and--
+
+102
+00:04:43,700 --> 00:04:46,040
+>> There's always this tree
+that is floating around here.
+
+103
+00:04:46,040 --> 00:04:49,080
+And this allows you to select
+features of your build or planes
+
+104
+00:04:49,080 --> 00:04:50,334
+or any relations.
+
+105
+00:04:50,334 --> 00:04:51,500
+And then, the part material.
+
+106
+00:04:51,500 --> 00:04:53,410
+So we're going to
+sketch on the top plane.
+
+107
+00:04:53,410 --> 00:04:54,650
+So we hit top.
+
+108
+00:04:54,650 --> 00:04:56,304
+And we are normal to it.
+
+109
+00:04:56,304 --> 00:04:57,720
+And then, here's our origin point.
+
+110
+00:04:57,720 --> 00:05:02,960
+So let's just make some
+sort of shape here.
+
+111
+00:05:02,960 --> 00:05:05,340
+We know that there is going
+to be a curve on the bottom
+
+112
+00:05:05,340 --> 00:05:06,700
+and a curve on the top.
+
+113
+00:05:06,700 --> 00:05:11,550
+So this is actually designed
+to fit onto this piece here.
+
+114
+00:05:11,550 --> 00:05:14,915
+This is actually a lens support that
+was given to us by our production team.
+
+115
+00:05:14,915 --> 00:05:16,420
+And it wasn't tall enough.
+
+116
+00:05:16,420 --> 00:05:19,890
+>> So the purpose of this part is actually
+to just extend this a little bit
+
+117
+00:05:19,890 --> 00:05:23,359
+by-- we'd chosen two
+inches, what we measured.
+
+118
+00:05:23,359 --> 00:05:24,400
+And it will just bolt on.
+
+119
+00:05:24,400 --> 00:05:26,816
+There's a hole that already
+existed in the bottom of this.
+
+120
+00:05:26,816 --> 00:05:28,960
+So we know that we want
+the width of our piece
+
+121
+00:05:28,960 --> 00:05:30,950
+to be the same as the
+width of the support.
+
+122
+00:05:30,950 --> 00:05:34,500
+And then, we want the radius on the
+bottom to be the same as the radius
+
+123
+00:05:34,500 --> 00:05:36,740
+here so that it fits nice and snugly.
+
+124
+00:05:36,740 --> 00:05:40,980
+And then, we'll add a hole on the
+bottom that we can bolt it onto it.
+
+125
+00:05:40,980 --> 00:05:45,070
+>> So we're just going to start out with
+the footprint of this feature, which
+
+126
+00:05:45,070 --> 00:05:46,090
+is just this base.
+
+127
+00:05:46,090 --> 00:05:51,790
+It's like a rectangle, but with
+curves on the top and bottom.
+
+128
+00:05:51,790 --> 00:05:54,962
+I don't know if I can
+make this stand up.
+
+129
+00:05:54,962 --> 00:05:57,670
+So to do that in SolidWorks, we
+could start out with a rectangle.
+
+130
+00:05:57,670 --> 00:05:59,870
+But that won't be exactly
+what we need because we
+
+131
+00:05:59,870 --> 00:06:02,220
+need a curved face on
+the top and bottom.
+
+132
+00:06:02,220 --> 00:06:04,340
+So I just selected line over here.
+
+133
+00:06:04,340 --> 00:06:07,620
+And now, when you see the
+pencil tool moving around now,
+
+134
+00:06:07,620 --> 00:06:09,280
+that means that we are ready to draw.
+
+135
+00:06:09,280 --> 00:06:11,700
+So we're going to start at the origin.
+
+136
+00:06:11,700 --> 00:06:13,390
+And we're going to draw vertically.
+
+137
+00:06:13,390 --> 00:06:17,110
+>> You'll notice that as the line becomes
+vertical, it'll snap to vertical.
+
+138
+00:06:17,110 --> 00:06:20,860
+And you see that this little yellow
+box right to the bottom right
+
+139
+00:06:20,860 --> 00:06:23,800
+of the pointer, that means that
+SolidWorks is automatically
+
+140
+00:06:23,800 --> 00:06:24,920
+adding a relation for you.
+
+141
+00:06:24,920 --> 00:06:28,100
+So that's the theme of today,
+what are the relations.
+
+142
+00:06:28,100 --> 00:06:31,830
+So when we click this,
+you'll notice that it's black
+
+143
+00:06:31,830 --> 00:06:34,250
+because SolidWorks knows
+that it's a vertical line
+
+144
+00:06:34,250 --> 00:06:35,830
+and it began at the origin.
+
+145
+00:06:35,830 --> 00:06:38,550
+But the endpoint is blue because
+we didn't tell SolidWorks
+
+146
+00:06:38,550 --> 00:06:39,950
+how long the line is.
+
+147
+00:06:39,950 --> 00:06:43,450
+So we're just going to
+make another one of these.
+
+148
+00:06:43,450 --> 00:06:46,170
+In fact, I'll even draw it
+purposefully off vertical
+
+149
+00:06:46,170 --> 00:06:47,930
+so that we can add the relation in.
+
+150
+00:06:47,930 --> 00:06:50,690
+>> You'll notice that it
+automatically wants
+
+151
+00:06:50,690 --> 00:06:53,460
+to add another line from the
+endpoint of the first line.
+
+152
+00:06:53,460 --> 00:06:57,194
+So if you just double click like
+I did here, we have another line.
+
+153
+00:06:57,194 --> 00:06:59,110
+If you just double click,
+it will cancel that.
+
+154
+00:06:59,110 --> 00:07:02,320
+So we can hit the green arrow.
+
+155
+00:07:02,320 --> 00:07:04,237
+I'm just going to delete this.
+
+156
+00:07:04,237 --> 00:07:06,070
+On most keyboards,
+there'll be a delete key.
+
+157
+00:07:06,070 --> 00:07:10,320
+But on a laptop keyboard, you have to
+hit the function key and then delete.
+
+158
+00:07:10,320 --> 00:07:14,430
+So we select it, and hit function,
+delete, and it goes away.
+
+159
+00:07:14,430 --> 00:07:16,660
+So we need to add the
+relation telling SolidWorks
+
+160
+00:07:16,660 --> 00:07:18,630
+that these lines are, in fact, parallel.
+
+161
+00:07:18,630 --> 00:07:20,540
+So I select one.
+
+162
+00:07:20,540 --> 00:07:24,110
+And then I'll hit the Control key,
+hold it down, and select the other.
+
+163
+00:07:24,110 --> 00:07:27,850
+And then this dialogue box
+pops up right near our cursor.
+
+164
+00:07:27,850 --> 00:07:30,330
+So we have a couple
+different options here.
+
+165
+00:07:30,330 --> 00:07:33,854
+>> We can make them both vertical,
+make them both horizontal, parallel.
+
+166
+00:07:33,854 --> 00:07:36,270
+In this case, making them
+parallel and making the vertical
+
+167
+00:07:36,270 --> 00:07:37,710
+will accomplish the same task.
+
+168
+00:07:37,710 --> 00:07:40,162
+But we can just hit parallel.
+
+169
+00:07:40,162 --> 00:07:42,370
+And then, we're going to
+add one more relation, which
+
+170
+00:07:42,370 --> 00:07:45,290
+is we're going to again hold down
+Control, select both, and tell
+
+171
+00:07:45,290 --> 00:07:47,500
+SolidWorks that they're the same length.
+
+172
+00:07:47,500 --> 00:07:48,750
+Cool.
+
+173
+00:07:48,750 --> 00:07:53,230
+So now, what I'm going to do is
+add what's called a center line.
+
+174
+00:07:53,230 --> 00:07:55,370
+>> So if we hit the line
+tool and the little arrow,
+
+175
+00:07:55,370 --> 00:07:56,940
+this drop down will pop up.
+
+176
+00:07:56,940 --> 00:07:59,090
+And we have the center line option.
+
+177
+00:07:59,090 --> 00:08:03,110
+You'll know that something is a
+center line because it's dashed.
+
+178
+00:08:03,110 --> 00:08:04,610
+It's not a solid line.
+
+179
+00:08:04,610 --> 00:08:06,750
+So let's draw one in.
+
+180
+00:08:06,750 --> 00:08:10,780
+And we need to tell SolidWorks that
+this is going to be horizontal.
+
+181
+00:08:10,780 --> 00:08:11,760
+Cool.
+
+182
+00:08:11,760 --> 00:08:16,330
+>> So this is just going to be the
+baseline upon which we will make sure
+
+183
+00:08:16,330 --> 00:08:20,090
+that these, like this
+one, isn't too high up.
+
+184
+00:08:20,090 --> 00:08:24,100
+So it seems to have already
+did that automatically.
+
+185
+00:08:24,100 --> 00:08:25,970
+But just to be safe,
+we'll make it explicit.
+
+186
+00:08:25,970 --> 00:08:30,430
+So if we select this point here, and
+then again, holding down Control,
+
+187
+00:08:30,430 --> 00:08:33,460
+select this line, we have the
+option of making them coincident.
+
+188
+00:08:33,460 --> 00:08:35,470
+So we'll select that.
+
+189
+00:08:35,470 --> 00:08:37,830
+Do that again one more time.
+
+190
+00:08:37,830 --> 00:08:40,320
+And now, we know that these
+lines are the same length.
+
+191
+00:08:40,320 --> 00:08:41,230
+They're parallel.
+
+192
+00:08:41,230 --> 00:08:44,330
+And they start on the same--
+this will become a plane,
+
+193
+00:08:44,330 --> 00:08:47,250
+but it's a line for now.
+
+194
+00:08:47,250 --> 00:08:50,510
+>> AUDIENCE: So is it the
+second one you clicked
+
+195
+00:08:50,510 --> 00:08:54,750
+on that is made coincident
+with the first one, or is it--
+
+196
+00:08:54,750 --> 00:08:59,170
+>> ANSEL DUFF: So both lines have endpoints
+that are coincident with this line.
+
+197
+00:08:59,170 --> 00:09:02,370
+So since everything is really simple
+right now because it's orthogonal.
+
+198
+00:09:02,370 --> 00:09:05,189
+>> AUDIENCE: Is one always
+moved to the other?
+
+199
+00:09:05,189 --> 00:09:05,980
+ANSEL DUFF: Oh, OK.
+
+200
+00:09:05,980 --> 00:09:07,850
+Yeah, so it's the order
+that you click it.
+
+201
+00:09:07,850 --> 00:09:11,100
+So if I had clicked the point
+and then the line versus the line
+
+202
+00:09:11,100 --> 00:09:12,990
+and then the point, yeah.
+
+203
+00:09:12,990 --> 00:09:16,890
+But luckily, the origin
+is a fixed point in space.
+
+204
+00:09:16,890 --> 00:09:20,370
+So now, we need to define
+their length, which
+
+205
+00:09:20,370 --> 00:09:23,250
+we can do by clicking this smart
+dimension in the upper left.
+
+206
+00:09:23,250 --> 00:09:27,130
+And then, select something
+that we want to dimension.
+
+207
+00:09:27,130 --> 00:09:31,380
+So this is probably one of the
+most important things in design,
+
+208
+00:09:31,380 --> 00:09:34,040
+dimension all of your pieces.
+
+209
+00:09:34,040 --> 00:09:36,780
+This is how you tell the
+program how tall it's
+
+210
+00:09:36,780 --> 00:09:41,620
+going to be, what the radius is for the
+top and bottom curved faces, the depth,
+
+211
+00:09:41,620 --> 00:09:42,682
+and so on and so forth.
+
+212
+00:09:42,682 --> 00:09:44,890
+And that's all done through
+the smart dimension tool.
+
+213
+00:09:44,890 --> 00:09:48,660
+>> So if we click on the line,
+this little arrow pops up.
+
+214
+00:09:48,660 --> 00:09:52,740
+And this can tell us once we
+click, we get a prompt wherein
+
+215
+00:09:52,740 --> 00:09:55,540
+we can type that we want this
+part to be 2 inches tall.
+
+216
+00:09:55,540 --> 00:09:59,160
+We had measured, and 2 inches seemed
+like it would be plenty of space.
+
+217
+00:09:59,160 --> 00:10:00,770
+So we hit 2.00.
+
+218
+00:10:00,770 --> 00:10:01,860
+2 is also fine.
+
+219
+00:10:01,860 --> 00:10:03,050
+Hit Enter.
+
+220
+00:10:03,050 --> 00:10:06,460
+And then, you'll notice that
+both lines are now 2 inches tall.
+
+221
+00:10:06,460 --> 00:10:10,174
+>> Now question, our first
+line is completely black.
+
+222
+00:10:10,174 --> 00:10:12,090
+It has two black endpoints
+and the line itself
+
+223
+00:10:12,090 --> 00:10:14,350
+is black because it's
+completely constrained
+
+224
+00:10:14,350 --> 00:10:15,760
+in this two dimensional plane.
+
+225
+00:10:15,760 --> 00:10:17,640
+But this line is blue.
+
+226
+00:10:17,640 --> 00:10:19,250
+Why is that the case?
+
+227
+00:10:19,250 --> 00:10:21,030
+Why is that line blue?
+
+228
+00:10:21,030 --> 00:10:24,902
+We've told SolidWorks that it's
+parallel to our original line.
+
+229
+00:10:24,902 --> 00:10:26,860
+AUDIENCE: How far it is
+from the original line.
+
+230
+00:10:26,860 --> 00:10:28,280
+ANSEL DUFF: Exactly, correct.
+
+231
+00:10:28,280 --> 00:10:30,591
+So here's where we need to measure.
+
+232
+00:10:30,591 --> 00:10:32,340
+We don't know how far
+this is going to be.
+
+233
+00:10:32,340 --> 00:10:34,040
+How wide is this supposed to be?
+
+234
+00:10:34,040 --> 00:10:36,980
+So we can hit Smart Dimension,
+then select the first line.
+
+235
+00:10:36,980 --> 00:10:38,420
+You'll notice that it's blue.
+
+236
+00:10:38,420 --> 00:10:39,800
+Then, select the second line.
+
+237
+00:10:39,800 --> 00:10:41,720
+And we get this width prompt.
+
+238
+00:10:41,720 --> 00:10:42,740
+So we can click it.
+
+239
+00:10:42,740 --> 00:10:46,040
+And SolidWorks now wants to know
+how wide the part is going to be.
+
+240
+00:10:46,040 --> 00:10:46,790
+But we don't know.
+
+241
+00:10:46,790 --> 00:10:48,510
+So we have to measure.
+
+242
+00:10:48,510 --> 00:10:51,540
+So we take our part, and
+we use a pair of calipers.
+
+243
+00:10:51,540 --> 00:10:53,650
+And we're going to just
+measure the width here.
+
+244
+00:10:53,650 --> 00:10:59,020
+>> So calipers are a really precise way
+of measuring any dimension, really.
+
+245
+00:10:59,020 --> 00:11:03,170
+They have two measuring prongs, I guess.
+
+246
+00:11:03,170 --> 00:11:06,380
+There's one on the bottom
+that can measure externally.
+
+247
+00:11:06,380 --> 00:11:08,041
+So you'll clamp down on something.
+
+248
+00:11:08,041 --> 00:11:10,790
+And then, there are two prongs on
+top that can measure internally,
+
+249
+00:11:10,790 --> 00:11:12,910
+like the diameter of
+a hole, for example.
+
+250
+00:11:12,910 --> 00:11:17,190
+So calipers are typically good
+to about a thousandth of an inch,
+
+251
+00:11:17,190 --> 00:11:20,430
+meaning that each tick
+on the front face here
+
+252
+00:11:20,430 --> 00:11:22,790
+represents one thousandth of an inch.
+
+253
+00:11:22,790 --> 00:11:26,200
+Typically, engineers
+will speak saying thou.
+
+254
+00:11:26,200 --> 00:11:27,830
+It's slang, almost.
+
+255
+00:11:27,830 --> 00:11:30,450
+Saying a part is 80 thou thick.
+
+256
+00:11:30,450 --> 00:11:32,640
+It's like, this is 80
+thousandths of an inch, just
+
+257
+00:11:32,640 --> 00:11:34,860
+some lingo to cue you guys in on.
+
+258
+00:11:34,860 --> 00:11:37,920
+>> So since they're so
+precise, the first tool,
+
+259
+00:11:37,920 --> 00:11:40,660
+or the first step when using
+calipers, is you open the prongs up.
+
+260
+00:11:40,660 --> 00:11:44,940
+And then you wipe them to
+eliminate any gunk that
+
+261
+00:11:44,940 --> 00:11:47,490
+will change your measurements.
+
+262
+00:11:47,490 --> 00:11:48,520
+And then, we close them.
+
+263
+00:11:48,520 --> 00:11:50,210
+And we ensure that it is zero.
+
+264
+00:11:50,210 --> 00:11:51,960
+I'm not sure if you
+can see all that well,
+
+265
+00:11:51,960 --> 00:11:55,620
+but once they're closed, the needle
+lines up with zero pretty well.
+
+266
+00:11:55,620 --> 00:11:57,620
+So we don't need to adjust anything.
+
+267
+00:11:57,620 --> 00:12:00,040
+So now, we open them up.
+
+268
+00:12:00,040 --> 00:12:03,730
+We're going to clamp down.
+
+269
+00:12:03,730 --> 00:12:07,870
+And I'll try my best to hold it up here.
+
+270
+00:12:07,870 --> 00:12:11,210
+>> There are inch indications
+on the actual stem
+
+271
+00:12:11,210 --> 00:12:12,850
+of the caliper, every tenth of an inch.
+
+272
+00:12:12,850 --> 00:12:17,610
+And then, there are hundred ticks,
+thousand, so 1/10 of an inch
+
+273
+00:12:17,610 --> 00:12:18,110
+all around.
+
+274
+00:12:18,110 --> 00:12:21,000
+So we clamp down here.
+
+275
+00:12:21,000 --> 00:12:23,280
+And we see that it's just
+past the one inch mark.
+
+276
+00:12:23,280 --> 00:12:26,090
+And it goes to four ticks past.
+
+277
+00:12:26,090 --> 00:12:31,920
+So one inch plus 4/1000 is 1.004 inches.
+
+278
+00:12:31,920 --> 00:12:34,820
+I suspect that whoever designed this
+part designed it to be one inch,
+
+279
+00:12:34,820 --> 00:12:37,970
+and then the anodizing
+added two thou on each side,
+
+280
+00:12:37,970 --> 00:12:42,198
+so 1.004 inches is our measurement.
+
+281
+00:12:42,198 --> 00:12:45,054
+>> AUDIENCE: How important was
+the vertical height measurement
+
+282
+00:12:45,054 --> 00:12:46,429
+that you originally talked about?
+
+283
+00:12:46,429 --> 00:12:49,064
+
+284
+00:12:49,064 --> 00:12:51,730
+ANSEL DUFF: This is kind of the
+specificity of this part itself.
+
+285
+00:12:51,730 --> 00:12:54,550
+But you'll notice that there's
+a bolt holding this in.
+
+286
+00:12:54,550 --> 00:12:59,250
+Two inches was more
+than enough when we were
+
+287
+00:12:59,250 --> 00:13:01,300
+talking about how tall
+this part should be.
+
+288
+00:13:01,300 --> 00:13:03,008
+It only really needs
+to be about an inch.
+
+289
+00:13:03,008 --> 00:13:05,010
+We just held a tape
+measure up and eyed it.
+
+290
+00:13:05,010 --> 00:13:07,010
+So we added another
+inch just for safety.
+
+291
+00:13:07,010 --> 00:13:11,430
+And if it is too long, this can slide
+down and accommodate that extra height.
+
+292
+00:13:11,430 --> 00:13:14,390
+So two inches was not
+measured that accurately.
+
+293
+00:13:14,390 --> 00:13:19,120
+We just kind of eyed it knowing that it
+could be adjusted and accommodated for.
+
+294
+00:13:19,120 --> 00:13:22,800
+So we'll enter in 1.004, hit Enter.
+
+295
+00:13:22,800 --> 00:13:24,690
+>> Cool, now both lines are black.
+
+296
+00:13:24,690 --> 00:13:25,750
+We're good to go.
+
+297
+00:13:25,750 --> 00:13:30,130
+So now, we need to put in
+an arc here and an arc here.
+
+298
+00:13:30,130 --> 00:13:33,740
+Spoiler alert, this is just kind of
+another specificity of this part.
+
+299
+00:13:33,740 --> 00:13:37,070
+They are the same radius
+because it's just an extender.
+
+300
+00:13:37,070 --> 00:13:41,002
+So if you had made the top radius
+and the bottom radius different,
+
+301
+00:13:41,002 --> 00:13:42,960
+you might be able to
+accommodate a larger lens.
+
+302
+00:13:42,960 --> 00:13:44,210
+But that wasn't our goal here.
+
+303
+00:13:44,210 --> 00:13:47,400
+So we have no idea how
+big this radius was.
+
+304
+00:13:47,400 --> 00:13:50,200
+But we knew the lens that it
+was trying to accommodate.
+
+305
+00:13:50,200 --> 00:13:53,610
+So much like we had just measured
+the width using our calipers,
+
+306
+00:13:53,610 --> 00:13:57,560
+we will do the same thing, if I
+can get them, for our lens here.
+
+307
+00:13:57,560 --> 00:14:04,840
+>> So I'm just going to open them up
+wide here, fit them around the lens,
+
+308
+00:14:04,840 --> 00:14:07,180
+don't press too much
+because it's rubber.
+
+309
+00:14:07,180 --> 00:14:09,400
+We don't want to deflect it.
+
+310
+00:14:09,400 --> 00:14:16,890
+And we see this 3.465 is the width.
+
+311
+00:14:16,890 --> 00:14:20,000
+So that 3.465 is going
+to be the diameter
+
+312
+00:14:20,000 --> 00:14:23,020
+that we are going to make these radii.
+
+313
+00:14:23,020 --> 00:14:27,214
+We're going to go over here and select
+the arc tool in our shape plane.
+
+314
+00:14:27,214 --> 00:14:30,380
+Hit the drop down, you'll notice there
+are a couple different types of arcs.
+
+315
+00:14:30,380 --> 00:14:32,890
+We're going to use
+center point arc, which
+
+316
+00:14:32,890 --> 00:14:37,150
+is us defining the center
+point and then two endpoints.
+
+317
+00:14:37,150 --> 00:14:39,440
+>> But as you can see,
+there's also a tangent
+
+318
+00:14:39,440 --> 00:14:41,560
+and three point arc option available.
+
+319
+00:14:41,560 --> 00:14:45,920
+So let's go here and just hit
+a center point arbitrarily.
+
+320
+00:14:45,920 --> 00:14:48,270
+And then, let's draw it here.
+
+321
+00:14:48,270 --> 00:14:51,430
+And I'm going to purposely
+go past what we need.
+
+322
+00:14:51,430 --> 00:14:54,960
+So everything is blue
+here, and that's because we
+
+323
+00:14:54,960 --> 00:14:57,960
+need to somehow make
+this point be completely
+
+324
+00:14:57,960 --> 00:15:02,390
+between these two and some
+specified distance away.
+
+325
+00:15:02,390 --> 00:15:05,330
+So let's add in another center line.
+
+326
+00:15:05,330 --> 00:15:07,865
+Just going to draw it vertically.
+
+327
+00:15:07,865 --> 00:15:11,620
+SolidWorks again snaps to vertical.
+
+328
+00:15:11,620 --> 00:15:16,350
+If you're ever wondering if in fact
+this is vertical, if you select it here,
+
+329
+00:15:16,350 --> 00:15:19,450
+you'll get all the relations
+on a line listed in this box.
+
+330
+00:15:19,450 --> 00:15:20,880
+>> So we see vertical, too.
+
+331
+00:15:20,880 --> 00:15:24,080
+That's telling us that the
+line is in fact vertical.
+
+332
+00:15:24,080 --> 00:15:27,560
+I have the option turned off
+right now to show relations.
+
+333
+00:15:27,560 --> 00:15:31,190
+Relations are shown by this
+little green box with some symbol.
+
+334
+00:15:31,190 --> 00:15:33,062
+In this case, it's a vertical line.
+
+335
+00:15:33,062 --> 00:15:35,020
+They can get kind of
+cluttered, especially when
+
+336
+00:15:35,020 --> 00:15:36,640
+you have a lot of features
+happening in your drawing.
+
+337
+00:15:36,640 --> 00:15:38,330
+So I just to turn them off.
+
+338
+00:15:38,330 --> 00:15:41,515
+But if ever you need to know
+the relations on a line, an arc,
+
+339
+00:15:41,515 --> 00:15:45,090
+a point, what have you, just select
+it, and then there's a list here.
+
+340
+00:15:45,090 --> 00:15:47,720
+>> So vertical was done by SolidWorks.
+
+341
+00:15:47,720 --> 00:15:50,910
+We added in the parallel
+to the second line.
+
+342
+00:15:50,910 --> 00:15:53,740
+Equal radius, equal
+length was just us telling
+
+343
+00:15:53,740 --> 00:15:55,640
+SolidWorks these are
+both the same length.
+
+344
+00:15:55,640 --> 00:15:59,730
+And then the distance was
+specified by this one inch.
+
+345
+00:15:59,730 --> 00:16:00,520
+Cool.
+
+346
+00:16:00,520 --> 00:16:05,290
+So we will add in the center
+line, can extend it down.
+
+347
+00:16:05,290 --> 00:16:07,360
+And then, we need to
+tell SolidWorks that it
+
+348
+00:16:07,360 --> 00:16:09,650
+is equidistant between these two.
+
+349
+00:16:09,650 --> 00:16:12,390
+So I'm going to add in
+another center line here.
+
+350
+00:16:12,390 --> 00:16:15,260
+
+351
+00:16:15,260 --> 00:16:18,990
+>> And you'll notice that it's
+coincident on both of these.
+
+352
+00:16:18,990 --> 00:16:22,880
+But we have no way yet of
+saying that this line needs
+
+353
+00:16:22,880 --> 00:16:25,000
+to hit the midpoint of this line.
+
+354
+00:16:25,000 --> 00:16:26,820
+So we can add in a point.
+
+355
+00:16:26,820 --> 00:16:28,440
+We go over here and select Point.
+
+356
+00:16:28,440 --> 00:16:30,100
+Looks like a little asterisk.
+
+357
+00:16:30,100 --> 00:16:32,480
+Then, as we move it
+along this line, you'll
+
+358
+00:16:32,480 --> 00:16:35,730
+notice that there is that
+yellow box in the middle of it.
+
+359
+00:16:35,730 --> 00:16:38,110
+And when we hover over
+the box, the symbol
+
+360
+00:16:38,110 --> 00:16:43,210
+goes from those three lines in this
+little yellow box to just two lines.
+
+361
+00:16:43,210 --> 00:16:45,960
+And that's SolidWorks's way of
+saying, this is the midpoint.
+
+362
+00:16:45,960 --> 00:16:48,790
+So we make a line there,
+make a dot, rather.
+
+363
+00:16:48,790 --> 00:16:50,820
+And in our relations
+box, it says midpoint.
+
+364
+00:16:50,820 --> 00:16:52,750
+So we know that's in the middle.
+
+365
+00:16:52,750 --> 00:16:55,870
+And then, hit the green check.
+
+366
+00:16:55,870 --> 00:16:59,600
+Undo the point box, because it'll just
+continue drawing points every time you
+
+367
+00:16:59,600 --> 00:17:01,004
+click, which we don't want.
+
+368
+00:17:01,004 --> 00:17:02,420
+So this point is already selected.
+
+369
+00:17:02,420 --> 00:17:05,069
+Now, we're going to make this
+point and this line coincident.
+
+370
+00:17:05,069 --> 00:17:06,680
+So hold down Control.
+
+371
+00:17:06,680 --> 00:17:07,819
+Select this.
+
+372
+00:17:07,819 --> 00:17:09,240
+Select coincident.
+
+373
+00:17:09,240 --> 00:17:10,349
+And you're good to go.
+
+374
+00:17:10,349 --> 00:17:11,974
+Sometimes, I'm just going to undo that.
+
+375
+00:17:11,974 --> 00:17:13,990
+Sometimes, when you
+have these two selected,
+
+376
+00:17:13,990 --> 00:17:15,819
+that little box doesn't pop up.
+
+377
+00:17:15,819 --> 00:17:18,060
+You can always just pop
+over to this left plane,
+
+378
+00:17:18,060 --> 00:17:20,510
+or left pane, rather,
+and then hit coincident,
+
+379
+00:17:20,510 --> 00:17:22,520
+and it'll have the same end result.
+
+380
+00:17:22,520 --> 00:17:23,260
+Cool.
+
+381
+00:17:23,260 --> 00:17:27,950
+>> So center lines are black if
+they're partially defined.
+
+382
+00:17:27,950 --> 00:17:30,895
+The end points in this are blue
+because we haven't defined its length.
+
+383
+00:17:30,895 --> 00:17:31,770
+But we don't need to.
+
+384
+00:17:31,770 --> 00:17:34,780
+It's not really relevant.
+
+385
+00:17:34,780 --> 00:17:37,870
+So now, we're going to put the
+center point of our arc on this line.
+
+386
+00:17:37,870 --> 00:17:38,870
+So we've selected it.
+
+387
+00:17:38,870 --> 00:17:40,370
+Again, hit Control.
+
+388
+00:17:40,370 --> 00:17:41,570
+Select the line.
+
+389
+00:17:41,570 --> 00:17:42,970
+Make it coincident.
+
+390
+00:17:42,970 --> 00:17:47,110
+Now, we know that this arc is
+going to be symmetric to the lines.
+
+391
+00:17:47,110 --> 00:17:50,490
+And now, we're going to
+make the endpoint of our arc
+
+392
+00:17:50,490 --> 00:17:52,440
+and the endpoint of our line coincident.
+
+393
+00:17:52,440 --> 00:17:55,800
+So I just was holding down
+Control, selected both of those,
+
+394
+00:17:55,800 --> 00:17:58,500
+and I hit merge in the left pane.
+
+395
+00:17:58,500 --> 00:18:03,270
+And now, we have a completely
+symmetric arc on the bottom.
+
+396
+00:18:03,270 --> 00:18:05,530
+>> So we need to have another one up top.
+
+397
+00:18:05,530 --> 00:18:08,250
+I'm going to highlight this
+just by clicking on it.
+
+398
+00:18:08,250 --> 00:18:12,810
+And then hit Command C, and then
+move the mouse away, Command V.
+
+399
+00:18:12,810 --> 00:18:14,260
+And now we have another one.
+
+400
+00:18:14,260 --> 00:18:19,730
+So again, we need to add all of our
+relations just to mirror this up top.
+
+401
+00:18:19,730 --> 00:18:24,380
+And select it, or select
+this center point.
+
+402
+00:18:24,380 --> 00:18:31,130
+Hit Control, select this line,
+make them coincident, cool.
+
+403
+00:18:31,130 --> 00:18:32,980
+I want to just move through this.
+
+404
+00:18:32,980 --> 00:18:37,840
+All I'm doing now is I'm just
+going to merge all the endpoints.
+
+405
+00:18:37,840 --> 00:18:41,420
+And then one last time.
+
+406
+00:18:41,420 --> 00:18:43,140
+Cool, so now we have two arcs.
+
+407
+00:18:43,140 --> 00:18:47,030
+>> But we need to tell SolidWorks
+that they are of the same radius.
+
+408
+00:18:47,030 --> 00:18:53,540
+So we'll select them both and say equal.
+
+409
+00:18:53,540 --> 00:18:54,600
+Cool.
+
+410
+00:18:54,600 --> 00:18:57,850
+And now, we will finally
+define their radius.
+
+411
+00:18:57,850 --> 00:19:03,000
+So I believe we said-- I don't
+remember what the number was.
+
+412
+00:19:03,000 --> 00:19:04,356
+I think it was .
+
+413
+00:19:04,356 --> 00:19:07,500
+3.465.
+
+414
+00:19:07,500 --> 00:19:11,120
+Yeah 3.465 was our diameter.
+
+415
+00:19:11,120 --> 00:19:13,460
+But you'll notice that
+we're defining the radius.
+
+416
+00:19:13,460 --> 00:19:20,730
+So what we're going to do
+is say 3.465 divided by 2.
+
+417
+00:19:20,730 --> 00:19:24,470
+The dimension box can understand
+algebraic expressions.
+
+418
+00:19:24,470 --> 00:19:28,862
+You can use parentheses, multiplication,
+division, et cetera, et cetera.
+
+419
+00:19:28,862 --> 00:19:30,570
+So that's all we're
+doing here because we
+
+420
+00:19:30,570 --> 00:19:33,290
+need to divide the diameter
+by 2 to get the radius.
+
+421
+00:19:33,290 --> 00:19:34,059
+Hit Enter.
+
+422
+00:19:34,059 --> 00:19:36,100
+We're fully defined, we'll
+notice that everything
+
+423
+00:19:36,100 --> 00:19:38,330
+is black except for this center line.
+
+424
+00:19:38,330 --> 00:19:40,142
+That is fine, doesn't need to be.
+
+425
+00:19:40,142 --> 00:19:41,350
+So now we have our footprint.
+
+426
+00:19:41,350 --> 00:19:44,760
+We have the platform that we
+will extrude to make the solid.
+
+427
+00:19:44,760 --> 00:19:47,730
+Then, once we have the solid, we
+can add all the other features.
+
+428
+00:19:47,730 --> 00:19:51,210
+The hole in the bottom, this webbing to
+save a little bit of material, and then
+
+429
+00:19:51,210 --> 00:19:53,810
+this bridge in the
+middle that says CS50.
+
+430
+00:19:53,810 --> 00:19:57,430
+>> So we're going to exit this sketch,
+and we're going to extrude it.
+
+431
+00:19:57,430 --> 00:20:00,200
+SolidWorks is based on
+sketches and features.
+
+432
+00:20:00,200 --> 00:20:03,160
+Once you've created a sketch and
+everything is completely defined,
+
+433
+00:20:03,160 --> 00:20:05,540
+you can exit the sketch and
+make a feature out of it.
+
+434
+00:20:05,540 --> 00:20:07,331
+In this case, we're
+going to extrude, we're
+
+435
+00:20:07,331 --> 00:20:09,470
+going to create material
+from the sketch.
+
+436
+00:20:09,470 --> 00:20:13,490
+But when we do the hole, you'll see
+that we create a sketch for the whole
+
+437
+00:20:13,490 --> 00:20:15,400
+and then make an extruded
+cut from the hole.
+
+438
+00:20:15,400 --> 00:20:19,240
+So if we go over from the
+top left and hit Exit Sketch,
+
+439
+00:20:19,240 --> 00:20:22,540
+we go to features pane, only
+most everything is grayed out.
+
+440
+00:20:22,540 --> 00:20:25,090
+But we do have the option
+to extrude boss base, which
+
+441
+00:20:25,090 --> 00:20:26,490
+is what we're going to select.
+
+442
+00:20:26,490 --> 00:20:30,040
+>> Once we hit this, you'll notice
+that the solid actually comes out.
+
+443
+00:20:30,040 --> 00:20:32,510
+SolidWorks has some default,
+maybe a tenth of an inch,
+
+444
+00:20:32,510 --> 00:20:34,230
+but we'll define the height.
+
+445
+00:20:34,230 --> 00:20:36,209
+So we hit extrude boss base.
+
+446
+00:20:36,209 --> 00:20:37,750
+Now, you'll notice that it's a solid.
+
+447
+00:20:37,750 --> 00:20:40,770
+And we need to define the
+depth, this d1 over here.
+
+448
+00:20:40,770 --> 00:20:45,740
+So again, we're going to measure
+the height using our part here.
+
+449
+00:20:45,740 --> 00:20:49,010
+We want the height to be
+the same height as the arm
+
+450
+00:20:49,010 --> 00:20:53,560
+here that the part came on so that
+it looks clean and does overhang.
+
+451
+00:20:53,560 --> 00:20:54,990
+There's no need for it.
+
+452
+00:20:54,990 --> 00:20:58,390
+>> So again, with our calipers,
+we just measure here.
+
+453
+00:20:58,390 --> 00:21:01,276
+This is pretty similar to what
+we did before and wiggle it
+
+454
+00:21:01,276 --> 00:21:03,650
+around a little bit, make sure
+you have nice, firm grasp.
+
+455
+00:21:03,650 --> 00:21:06,770
+This is made out of aluminum, so
+it's not going to deflect at all.
+
+456
+00:21:06,770 --> 00:21:13,710
+And we see that it is 0.751.
+
+457
+00:21:13,710 --> 00:21:15,100
+Awesome.
+
+458
+00:21:15,100 --> 00:21:18,850
+So we'll just type in 0.75.
+
+459
+00:21:18,850 --> 00:21:21,200
+And now, we have our solid.
+
+460
+00:21:21,200 --> 00:21:25,180
+So this is what will become
+the lens support itself.
+
+461
+00:21:25,180 --> 00:21:27,430
+We have a couple more
+features to add in.
+
+462
+00:21:27,430 --> 00:21:31,330
+>> So before, we were
+sketching on the top plane.
+
+463
+00:21:31,330 --> 00:21:33,490
+But now, we can sketch on
+any plane of the solid.
+
+464
+00:21:33,490 --> 00:21:36,010
+Or we could create our
+own plane using what's
+
+465
+00:21:36,010 --> 00:21:38,840
+called reference geometry, which
+is not necessary right now,
+
+466
+00:21:38,840 --> 00:21:40,540
+but could be later.
+
+467
+00:21:40,540 --> 00:21:42,180
+So let's just select this plane.
+
+468
+00:21:42,180 --> 00:21:45,180
+And then we're going to hit-- you'll
+notice that this little box pops up
+
+469
+00:21:45,180 --> 00:21:47,010
+when you move the mouse around.
+
+470
+00:21:47,010 --> 00:21:49,760
+If you lose it, it's always
+available on the top here.
+
+471
+00:21:49,760 --> 00:21:53,420
+There's this web of a box
+with a little arrow beside it.
+
+472
+00:21:53,420 --> 00:21:56,430
+You'll notice that there is a plane
+with an arrow coming out of it.
+
+473
+00:21:56,430 --> 00:21:59,370
+If you click this, this will make
+the view that you're looking at,
+
+474
+00:21:59,370 --> 00:22:02,400
+the computer's view, normal
+to the plane you've selected.
+
+475
+00:22:02,400 --> 00:22:03,650
+>> So we hit that.
+
+476
+00:22:03,650 --> 00:22:06,460
+And we have the plane that
+we're going to sketch on.
+
+477
+00:22:06,460 --> 00:22:09,921
+So if we go over to the sketch
+box over here we hit sketch,
+
+478
+00:22:09,921 --> 00:22:12,670
+SolidWorks is going to say, I don't
+know which plane to sketch on.
+
+479
+00:22:12,670 --> 00:22:13,960
+Which one did you intend?
+
+480
+00:22:13,960 --> 00:22:15,711
+And it won't even let
+you sketch anything.
+
+481
+00:22:15,711 --> 00:22:16,918
+It won't let you do anything.
+
+482
+00:22:16,918 --> 00:22:18,800
+That's why there's this error message.
+
+483
+00:22:18,800 --> 00:22:19,830
+So we hit the x.
+
+484
+00:22:19,830 --> 00:22:23,282
+We need to select the plane
+first and then hit sketch.
+
+485
+00:22:23,282 --> 00:22:24,240
+Now, we're going to go.
+
+486
+00:22:24,240 --> 00:22:26,300
+It didn't give us any
+errors or warnings.
+
+487
+00:22:26,300 --> 00:22:31,060
+So all we're going to do in this case
+is really just to find some webbing.
+
+488
+00:22:31,060 --> 00:22:33,860
+And then, I made a little
+bridge to say CS50.
+
+489
+00:22:33,860 --> 00:22:35,770
+We can keep that in there.
+
+490
+00:22:35,770 --> 00:22:38,560
+So one neat little
+feature that we can do
+
+491
+00:22:38,560 --> 00:22:42,480
+is we can unhide the sketch
+that we made for the footprint
+
+492
+00:22:42,480 --> 00:22:44,960
+and use all those
+geometries in this sketch.
+
+493
+00:22:44,960 --> 00:22:48,090
+So in our feature tree, we
+have this boss extrude one.
+
+494
+00:22:48,090 --> 00:22:51,020
+And then, I hit the little
+plus arrow underneath it.
+
+495
+00:22:51,020 --> 00:22:52,960
+And sketch two pops up.
+
+496
+00:22:52,960 --> 00:22:55,702
+So we can-- it's always a
+good idea to label things,
+
+497
+00:22:55,702 --> 00:22:57,160
+just like when you're writing code.
+
+498
+00:22:57,160 --> 00:22:59,090
+You want to appropriately
+label your variables
+
+499
+00:22:59,090 --> 00:23:00,880
+so that it's clear
+how you're using them.
+
+500
+00:23:00,880 --> 00:23:02,630
+It's the same case in
+SolidWorks where you
+
+501
+00:23:02,630 --> 00:23:06,190
+want to label all your features so
+that you know exactly what they do.
+
+502
+00:23:06,190 --> 00:23:11,062
+>> So if you select a feature and
+then hold your mouse down over it,
+
+503
+00:23:11,062 --> 00:23:12,520
+it prompts you to rename something.
+
+504
+00:23:12,520 --> 00:23:15,320
+So we'll call this base.
+
+505
+00:23:15,320 --> 00:23:20,940
+And then, same thing here, we'll
+just call this sketch base.
+
+506
+00:23:20,940 --> 00:23:25,570
+So by default, once you've exited
+a sketch, it becomes hidden.
+
+507
+00:23:25,570 --> 00:23:28,620
+But you can change this
+just by hitting this.
+
+508
+00:23:28,620 --> 00:23:33,370
+And then, this little box will
+pop up with a pair of glasses.
+
+509
+00:23:33,370 --> 00:23:37,790
+And you hit show, and now
+we have everything back.
+
+510
+00:23:37,790 --> 00:23:39,921
+You can see that there
+are endpoints here.
+
+511
+00:23:39,921 --> 00:23:40,420
+Cool.
+
+512
+00:23:40,420 --> 00:23:47,160
+>> So now, what we can do is we will
+sketch-- we can just hit line here
+
+513
+00:23:47,160 --> 00:23:52,630
+or even I'm going to just select
+all these entities, again,
+
+514
+00:23:52,630 --> 00:23:55,140
+by holding down Control.
+
+515
+00:23:55,140 --> 00:23:58,320
+And I'm going to go up
+here to offset entities.
+
+516
+00:23:58,320 --> 00:24:01,920
+So we want to add some wall thickness.
+
+517
+00:24:01,920 --> 00:24:05,350
+And that can be done by just
+taking the base footprint,
+
+518
+00:24:05,350 --> 00:24:08,190
+and then offsetting
+entities on the inside.
+
+519
+00:24:08,190 --> 00:24:10,550
+>> So then, we'll specify the depth.
+
+520
+00:24:10,550 --> 00:24:14,050
+So SolidWorks, by default, goes
+for the outside, apparently.
+
+521
+00:24:14,050 --> 00:24:17,230
+You could see this yellow line
+around the base of our feature.
+
+522
+00:24:17,230 --> 00:24:20,680
+So if we just hit reverse, now
+it becomes inside, which is cool.
+
+523
+00:24:20,680 --> 00:24:23,010
+A tenth of an inch sounds fine.
+
+524
+00:24:23,010 --> 00:24:24,020
+We hit the green arrow.
+
+525
+00:24:24,020 --> 00:24:26,190
+And we have our dimension down here.
+
+526
+00:24:26,190 --> 00:24:31,730
+Now typically, if we're defining this
+part to be like a load bearing part,
+
+527
+00:24:31,730 --> 00:24:34,190
+I guess technically it is
+varying the load of the lens.
+
+528
+00:24:34,190 --> 00:24:36,505
+But the plastic that
+we're using to print these
+
+529
+00:24:36,505 --> 00:24:42,900
+is actually pretty strong, so we're just
+going to guess on the wall thickness.
+
+530
+00:24:42,900 --> 00:24:48,670
+A tenth of an inch is plenty, probably
+a third of that is really required,
+
+531
+00:24:48,670 --> 00:24:50,940
+but we'll just add a little
+bit more for rigidity.
+
+532
+00:24:50,940 --> 00:24:53,740
+>> If we were designing it to be
+a part on, say, a race car,
+
+533
+00:24:53,740 --> 00:24:56,890
+we would run it through a computer
+simulation called Finite Element
+
+534
+00:24:56,890 --> 00:25:01,740
+Analysis, FEA, wherein the computer
+meshes up our part into arbitrarily
+
+535
+00:25:01,740 --> 00:25:04,170
+many little mesh segments.
+
+536
+00:25:04,170 --> 00:25:07,940
+And then, we subject it to
+loads and fixtures like saying,
+
+537
+00:25:07,940 --> 00:25:13,960
+don't let the base move, but subject
+the top curved face to a load of 150
+
+538
+00:25:13,960 --> 00:25:15,440
+Newtons normal to it.
+
+539
+00:25:15,440 --> 00:25:18,040
+Or I guess it's a curved face,
+it can't be normal to it.
+
+540
+00:25:18,040 --> 00:25:21,250
+But downward, and then it will
+tell you when the part will fail
+
+541
+00:25:21,250 --> 00:25:24,260
+and which areas of the part
+are under the most stress.
+
+542
+00:25:24,260 --> 00:25:25,920
+It's overkill right now.
+
+543
+00:25:25,920 --> 00:25:30,080
+But we'll just eye it, a
+tenth of an inch is plenty.
+
+544
+00:25:30,080 --> 00:25:31,450
+>> Cool, so now we have all this.
+
+545
+00:25:31,450 --> 00:25:38,000
+And we're going to add in another
+centerline to bisect this part here.
+
+546
+00:25:38,000 --> 00:25:39,440
+Just the same procedure as before.
+
+547
+00:25:39,440 --> 00:25:41,273
+I'm going to start to
+go a little bit faster
+
+548
+00:25:41,273 --> 00:25:43,350
+because this is becoming
+a little repetitive.
+
+549
+00:25:43,350 --> 00:25:44,510
+We'll add a point.
+
+550
+00:25:44,510 --> 00:25:46,140
+That is the midpoint here.
+
+551
+00:25:46,140 --> 00:25:47,990
+In fact, this is even unnecessary.
+
+552
+00:25:47,990 --> 00:25:52,870
+>> We can just draw the
+centerline from the midpoint.
+
+553
+00:25:52,870 --> 00:25:54,230
+So we find it.
+
+554
+00:25:54,230 --> 00:25:55,670
+That yellow box pops up.
+
+555
+00:25:55,670 --> 00:25:57,930
+So we hover over it.
+
+556
+00:25:57,930 --> 00:26:00,200
+Draw it across again.
+
+557
+00:26:00,200 --> 00:26:05,130
+Now, we have this line
+is bisecting this line.
+
+558
+00:26:05,130 --> 00:26:08,110
+This vertical line here.
+
+559
+00:26:08,110 --> 00:26:12,560
+>> So again, we can offset entities.
+
+560
+00:26:12,560 --> 00:26:13,720
+We want to.
+
+561
+00:26:13,720 --> 00:26:18,740
+We're going to create the bridge on
+which we will later extrude cut, CS50.
+
+562
+00:26:18,740 --> 00:26:20,280
+We want to add some thickness to it.
+
+563
+00:26:20,280 --> 00:26:24,440
+So we hit offset entities, and by
+default, it adds a line on one side.
+
+564
+00:26:24,440 --> 00:26:27,670
+But if we just hit bidirectional,
+there's a little check box down here,
+
+565
+00:26:27,670 --> 00:26:29,120
+it adds two.
+
+566
+00:26:29,120 --> 00:26:30,890
+And let's make this
+a little bit thicker.
+
+567
+00:26:30,890 --> 00:26:36,050
+So say 0.15, maybe even a
+little bit more than that.
+
+568
+00:26:36,050 --> 00:26:41,960
+So this is 0.2 inches on each
+side, so 0.4 inches in total.
+
+569
+00:26:41,960 --> 00:26:46,035
+Can move the dimensions out of the way
+so that we don't clutter the drawing.
+
+570
+00:26:46,035 --> 00:26:47,950
+That looks good.
+
+571
+00:26:47,950 --> 00:26:49,810
+>> Typically, when you're
+dimensioning a part,
+
+572
+00:26:49,810 --> 00:26:53,840
+there are seemingly infinitely many
+ways to display all the dimensions
+
+573
+00:26:53,840 --> 00:26:55,310
+on your sketch.
+
+574
+00:26:55,310 --> 00:27:01,490
+In the interest of not cluttering it,
+it's nice to move your dimensions away.
+
+575
+00:27:01,490 --> 00:27:04,850
+And there are other rules
+that kind of follow,
+
+576
+00:27:04,850 --> 00:27:07,420
+like you don't want them
+to crisscross or overlap,
+
+577
+00:27:07,420 --> 00:27:08,980
+because it becomes ambiguous.
+
+578
+00:27:08,980 --> 00:27:10,450
+But this is good for now.
+
+579
+00:27:10,450 --> 00:27:12,040
+So hit the green arrow.
+
+580
+00:27:12,040 --> 00:27:13,900
+Now, we want to add
+in this webbing, which
+
+581
+00:27:13,900 --> 00:27:17,030
+we're going to do in the same
+way with offset entities.
+
+582
+00:27:17,030 --> 00:27:18,350
+>> So we hit center line.
+
+583
+00:27:18,350 --> 00:27:24,400
+And I'm just going to draw two
+x's in here on the top and bottom.
+
+584
+00:27:24,400 --> 00:27:25,552
+Here is one.
+
+585
+00:27:25,552 --> 00:27:26,885
+do the same thing on the bottom.
+
+586
+00:27:26,885 --> 00:27:30,390
+
+587
+00:27:30,390 --> 00:27:32,590
+And you'll notice that
+all of these lines
+
+588
+00:27:32,590 --> 00:27:36,070
+are black because all of the
+points, all their endpoints,
+
+589
+00:27:36,070 --> 00:27:37,170
+are completely defined.
+
+590
+00:27:37,170 --> 00:27:37,990
+So that's cool.
+
+591
+00:27:37,990 --> 00:27:40,000
+We don't need to add any more relations.
+
+592
+00:27:40,000 --> 00:27:46,370
+And let's select them and
+hit offset entities again.
+
+593
+00:27:46,370 --> 00:27:49,792
+And that ought to do it.
+
+594
+00:27:49,792 --> 00:27:53,190
+You can only do one at
+a time, which is fine.
+
+595
+00:27:53,190 --> 00:27:56,130
+Offset entities, whoa, that looks crazy.
+
+596
+00:27:56,130 --> 00:27:58,940
+
+597
+00:27:58,940 --> 00:28:02,750
+I accidentally selected
+more than one thing.
+
+598
+00:28:02,750 --> 00:28:05,432
+Offset entities, that's weird.
+
+599
+00:28:05,432 --> 00:28:07,342
+Don't know why it's doing that.
+
+600
+00:28:07,342 --> 00:28:10,110
+
+601
+00:28:10,110 --> 00:28:14,150
+Hm, didn't expect that.
+
+602
+00:28:14,150 --> 00:28:15,380
+That's fine.
+
+603
+00:28:15,380 --> 00:28:17,480
+We will just do it by hand.
+
+604
+00:28:17,480 --> 00:28:21,270
+>> So we will add in-- I'm just
+going to draw in some lines
+
+605
+00:28:21,270 --> 00:28:24,010
+here that we will add
+relations to in a bit.
+
+606
+00:28:24,010 --> 00:28:29,860
+
+607
+00:28:29,860 --> 00:28:33,710
+So we want these lines to
+be parallel to this line.
+
+608
+00:28:33,710 --> 00:28:36,200
+So we just hit make parallel.
+
+609
+00:28:36,200 --> 00:28:40,880
+Then likewise, on the other side, cool.
+
+610
+00:28:40,880 --> 00:28:43,880
+
+611
+00:28:43,880 --> 00:28:47,533
+And we'll just make the endpoints match.
+
+612
+00:28:47,533 --> 00:28:49,497
+>> AUDIENCE: All of these
+varied thicknesses,
+
+613
+00:28:49,497 --> 00:28:51,461
+is this just experience and insight?
+
+614
+00:28:51,461 --> 00:28:53,916
+Or is there math that's
+behind the choice
+
+615
+00:28:53,916 --> 00:28:56,862
+of these thicknesses for
+the structural integrity?
+
+616
+00:28:56,862 --> 00:29:00,690
+>> ANSEL DUFF: Yeah, so right now, I'm
+just kind of going off of instinct
+
+617
+00:29:00,690 --> 00:29:03,330
+and eyeing it, guessing.
+
+618
+00:29:03,330 --> 00:29:06,640
+We had made a version zero prototype.
+
+619
+00:29:06,640 --> 00:29:08,140
+It's around here, and clear.
+
+620
+00:29:08,140 --> 00:29:11,010
+And I had guessed a
+tenth of an inch, and I
+
+621
+00:29:11,010 --> 00:29:14,030
+had the idea to just print
+one, a dummy, try it out.
+
+622
+00:29:14,030 --> 00:29:18,510
+Maybe modify a couple of the dimensions,
+and then go for the actual part.
+
+623
+00:29:18,510 --> 00:29:20,150
+But a tenth of an inch was fine.
+
+624
+00:29:20,150 --> 00:29:23,830
+If we wanted to be really a bit
+more thorough, what we could do
+
+625
+00:29:23,830 --> 00:29:26,730
+is we could calculate the
+axial stress under which it's
+
+626
+00:29:26,730 --> 00:29:29,700
+placed from the weight of a lens.
+
+627
+00:29:29,700 --> 00:29:33,260
+>> A great engineering practice and
+one that is upheld universally
+
+628
+00:29:33,260 --> 00:29:35,590
+is to design in a safety factor.
+
+629
+00:29:35,590 --> 00:29:38,287
+So let's say this lens
+weighs three pounds.
+
+630
+00:29:38,287 --> 00:29:39,120
+I just made that up.
+
+631
+00:29:39,120 --> 00:29:42,210
+But if we weighted this lens,
+and it weighs three pounds,
+
+632
+00:29:42,210 --> 00:29:46,630
+and you design your part to be
+able to sustain three pounds,
+
+633
+00:29:46,630 --> 00:29:49,940
+but buckle after that, then
+that's not really great practice
+
+634
+00:29:49,940 --> 00:29:52,752
+because there's going to be impulse
+when you pick the camera up.
+
+635
+00:29:52,752 --> 00:29:54,710
+This will experience
+greater than three pounds.
+
+636
+00:29:54,710 --> 00:29:57,560
+So you always want to
+design your part for greater
+
+637
+00:29:57,560 --> 00:29:59,320
+than it will actually ever experience.
+
+638
+00:29:59,320 --> 00:30:03,490
+So typically, a safety factor of
+two is fine for something like this.
+
+639
+00:30:03,490 --> 00:30:06,000
+But honestly, at a 1/10
+of an inch wall thickness,
+
+640
+00:30:06,000 --> 00:30:08,260
+this probably has a
+safety factor of like 15.
+
+641
+00:30:08,260 --> 00:30:11,030
+So right now, we're just
+going off of instinct.
+
+642
+00:30:11,030 --> 00:30:14,470
+>> But if we were to do it
+out of a material that's
+
+643
+00:30:14,470 --> 00:30:17,320
+a little bit easier to work
+with, like aluminum or steel,
+
+644
+00:30:17,320 --> 00:30:20,650
+we could calculate the
+stress and then compare that
+
+645
+00:30:20,650 --> 00:30:25,277
+to that material's yield
+stress or ultimate stress.
+
+646
+00:30:25,277 --> 00:30:28,110
+AUDIENCE: Does this kind of plastic
+such numbers associated with it?
+
+647
+00:30:28,110 --> 00:30:29,600
+Or is it [INAUDIBLE]?
+
+648
+00:30:29,600 --> 00:30:30,600
+ANSEL DUFF: No, it does.
+
+649
+00:30:30,600 --> 00:30:33,390
+So what we're using
+out of our 3D printer
+
+650
+00:30:33,390 --> 00:30:36,500
+is PLA filament, which
+is like a bioplastic.
+
+651
+00:30:36,500 --> 00:30:39,550
+And although I haven't
+personally looked these up,
+
+652
+00:30:39,550 --> 00:30:43,910
+I know there are figures available
+for yield stress and yield
+
+653
+00:30:43,910 --> 00:30:47,790
+sheer associated with this plastic.
+
+654
+00:30:47,790 --> 00:30:51,040
+We did not design for that because
+it's actually hollowed out.
+
+655
+00:30:51,040 --> 00:30:55,260
+The MakerBot software processes
+honeycomb, and it adds it in.
+
+656
+00:30:55,260 --> 00:30:57,660
+So it's not completely solid.
+
+657
+00:30:57,660 --> 00:31:00,240
+So those calculations would be faulty.
+
+658
+00:31:00,240 --> 00:31:03,350
+They would not be accurate, unless
+we made this completely solid.
+
+659
+00:31:03,350 --> 00:31:06,330
+But it would take days
+to print in that case.
+
+660
+00:31:06,330 --> 00:31:11,850
+So just in the interest of time, we
+let the hollowing happen and test.
+
+661
+00:31:11,850 --> 00:31:17,040
+>> So now, we're just
+going to tell SolidWorks
+
+662
+00:31:17,040 --> 00:31:19,460
+that these are the same distance away.
+
+663
+00:31:19,460 --> 00:31:21,120
+So there are two ways of doing this.
+
+664
+00:31:21,120 --> 00:31:25,310
+One way is to go to Smart Dimension
+and dimension both of these lines
+
+665
+00:31:25,310 --> 00:31:26,950
+and to make them the same number.
+
+666
+00:31:26,950 --> 00:31:29,450
+That's not a great practice
+because down the road,
+
+667
+00:31:29,450 --> 00:31:33,000
+if we find that this webbing is
+too thin, we would have to go
+
+668
+00:31:33,000 --> 00:31:38,450
+and change eight dimensions just
+for one fundamental property, right?
+
+669
+00:31:38,450 --> 00:31:42,200
+>> If we said that these webs are
+buckling, let's double their thickness,
+
+670
+00:31:42,200 --> 00:31:44,810
+you don't want to have to go
+in and modify eight dimensions.
+
+671
+00:31:44,810 --> 00:31:46,240
+It's like when you're
+writing code, if you're
+
+672
+00:31:46,240 --> 00:31:47,950
+going to be using the
+same number over and over
+
+673
+00:31:47,950 --> 00:31:50,710
+and over again, you define a constant
+at the beginning of the file,
+
+674
+00:31:50,710 --> 00:31:52,120
+and then use that constant throughout.
+
+675
+00:31:52,120 --> 00:31:54,580
+And then, when it's time to change it,
+you only have to change one number.
+
+676
+00:31:54,580 --> 00:31:56,030
+It's the same principle here.
+
+677
+00:31:56,030 --> 00:31:59,210
+So our constant is adding relations.
+
+678
+00:31:59,210 --> 00:32:01,990
+>> So we'll dimension it one time.
+
+679
+00:32:01,990 --> 00:32:09,450
+So we'll go Smart
+Dimension, we can go 0.05.
+
+680
+00:32:09,450 --> 00:32:14,770
+And I'm making this half
+of our 100 thou thickness
+
+681
+00:32:14,770 --> 00:32:17,595
+because there'll be two sides to it.
+
+682
+00:32:17,595 --> 00:32:22,100
+So we define it once, and then we add
+center lines to make the relations.
+
+683
+00:32:22,100 --> 00:32:24,480
+So we go here.
+
+684
+00:32:24,480 --> 00:32:25,360
+We make two.
+
+685
+00:32:25,360 --> 00:32:27,970
+And then, we're just going
+to make these equal length.
+
+686
+00:32:27,970 --> 00:32:29,505
+The dimension will be taken care of.
+
+687
+00:32:29,505 --> 00:32:33,652
+So highlight both, make them
+equal, and now this line is black.
+
+688
+00:32:33,652 --> 00:32:34,610
+So we'll do that again.
+
+689
+00:32:34,610 --> 00:32:38,250
+
+690
+00:32:38,250 --> 00:32:41,230
+Just going to go a little bit faster.
+
+691
+00:32:41,230 --> 00:32:44,810
+>> You'll notice that when I'm hovering the
+mouse over the line, it becomes orange.
+
+692
+00:32:44,810 --> 00:32:46,250
+And then, I click.
+
+693
+00:32:46,250 --> 00:32:50,630
+You can be sure that the line is--
+these two lines are coincident.
+
+694
+00:32:50,630 --> 00:32:53,370
+They meet at this end point
+because it was highlighted orange
+
+695
+00:32:53,370 --> 00:32:55,170
+when we selected it.
+
+696
+00:32:55,170 --> 00:33:00,740
+So make these parallel,
+likewise for this piece.
+
+697
+00:33:00,740 --> 00:33:04,680
+We're going to do the same thing with
+our center lines, zoom in a little bit.
+
+698
+00:33:04,680 --> 00:33:12,330
+
+699
+00:33:12,330 --> 00:33:14,230
+Just select these.
+
+700
+00:33:14,230 --> 00:33:16,530
+Selected a face there,
+that's why it turned blue.
+
+701
+00:33:16,530 --> 00:33:20,410
+>> And I'm going to go back to the
+original and make them all equal.
+
+702
+00:33:20,410 --> 00:33:25,390
+So we dictated the length of this
+with this dimension, 0.05 inches.
+
+703
+00:33:25,390 --> 00:33:28,695
+And because we made these all equals,
+SolidWorks just figured the rest out.
+
+704
+00:33:28,695 --> 00:33:33,695
+
+705
+00:33:33,695 --> 00:33:36,260
+I'm trying to think.
+
+706
+00:33:36,260 --> 00:33:39,340
+>> One option is we could
+take all these, in fact,
+
+707
+00:33:39,340 --> 00:33:40,840
+we probably didn't even need this x.
+
+708
+00:33:40,840 --> 00:33:41,881
+And we could mirror them.
+
+709
+00:33:41,881 --> 00:33:43,270
+You could manually redraw them.
+
+710
+00:33:43,270 --> 00:33:46,230
+But it's a bit redundant because
+the features are the same.
+
+711
+00:33:46,230 --> 00:33:49,390
+So what we will do
+is-- actually won't be
+
+712
+00:33:49,390 --> 00:33:51,720
+able to mirror it because
+these are not mirror images.
+
+713
+00:33:51,720 --> 00:33:55,030
+
+714
+00:33:55,030 --> 00:33:55,720
+Whoops.
+
+715
+00:33:55,720 --> 00:34:01,750
+>> So what I was thinking is this
+bulges out, and this bulges in.
+
+716
+00:34:01,750 --> 00:34:03,910
+So this is concave and this is convex.
+
+717
+00:34:03,910 --> 00:34:06,720
+If they were both
+convex or both concave,
+
+718
+00:34:06,720 --> 00:34:09,679
+you could highlight all of these,
+mirror them about the center line,
+
+719
+00:34:09,679 --> 00:34:11,670
+and then everything
+would be taken care of.
+
+720
+00:34:11,670 --> 00:34:14,159
+But if we were to do
+that, this line would
+
+721
+00:34:14,159 --> 00:34:16,451
+translate to being a
+convex line down here.
+
+722
+00:34:16,451 --> 00:34:17,659
+But we need it to be concave.
+
+723
+00:34:17,659 --> 00:34:18,960
+So that's no good.
+
+724
+00:34:18,960 --> 00:34:22,710
+We'll just draw it in by hand.
+
+725
+00:34:22,710 --> 00:34:26,400
+Adding in the cross of our center line.
+
+726
+00:34:26,400 --> 00:34:28,199
+Great.
+
+727
+00:34:28,199 --> 00:34:31,510
+Go back, select actual
+line, can zoom in.
+
+728
+00:34:31,510 --> 00:34:34,420
+>> In SolidWorks, you can just
+zoom by scrolling on your mouse.
+
+729
+00:34:34,420 --> 00:34:37,489
+And then, the middle click, so if
+you have a mouse with a jog wheel,
+
+730
+00:34:37,489 --> 00:34:39,800
+if you hold down that
+jog wheel, that will
+
+731
+00:34:39,800 --> 00:34:42,659
+allow you to change
+your view orientation.
+
+732
+00:34:42,659 --> 00:34:46,250
+Some mice, like mine here, they
+do not come with jog wheels.
+
+733
+00:34:46,250 --> 00:34:48,980
+It's a touch pad on top effectively.
+
+734
+00:34:48,980 --> 00:34:53,060
+So I've configured my mouse using
+a program called Magic Press, which
+
+735
+00:34:53,060 --> 00:34:57,020
+is a free Mac preference
+program to be able to just hold
+
+736
+00:34:57,020 --> 00:35:00,330
+two fingers down onto it and
+move the part around for view.
+
+737
+00:35:00,330 --> 00:35:05,056
+So if you're using a Mac and running
+a Windows virtual machine like I am,
+
+738
+00:35:05,056 --> 00:35:08,580
+I've seen a lot of people
+with the same Magic Mouse,
+
+739
+00:35:08,580 --> 00:35:10,550
+I would recommend Magic Press.
+
+740
+00:35:10,550 --> 00:35:12,040
+It's free.
+
+741
+00:35:12,040 --> 00:35:16,300
+So you can make these parallel.
+
+742
+00:35:16,300 --> 00:35:17,590
+Oops.
+
+743
+00:35:17,590 --> 00:35:18,970
+Not what I want.
+
+744
+00:35:18,970 --> 00:35:21,300
+>> So sometimes, when you're
+working at an obscure angle,
+
+745
+00:35:21,300 --> 00:35:23,750
+it can be kind of hard
+to see the relation.
+
+746
+00:35:23,750 --> 00:35:26,950
+So we're just going to select this
+little box here and then go back
+
+747
+00:35:26,950 --> 00:35:28,700
+to the normal.
+
+748
+00:35:28,700 --> 00:35:31,700
+And that'll make everything
+a lot easier to look at.
+
+749
+00:35:31,700 --> 00:35:33,747
+So sometimes, the part
+will be really far away.
+
+750
+00:35:33,747 --> 00:35:36,330
+If you want to zoom in and have
+it fit your screen if you just
+
+751
+00:35:36,330 --> 00:35:38,944
+hit F on your keyboard, that zooms in.
+
+752
+00:35:38,944 --> 00:35:41,610
+You can see it's kind of far away
+because these center lines are
+
+753
+00:35:41,610 --> 00:35:43,220
+a bit longer than they need to be.
+
+754
+00:35:43,220 --> 00:35:52,340
+But if we just shorten these down a
+bit, like so, and then hit F again,
+
+755
+00:35:52,340 --> 00:35:54,392
+now zoom in.
+
+756
+00:35:54,392 --> 00:35:55,730
+So we make these parallel.
+
+757
+00:35:55,730 --> 00:36:00,260
+
+758
+00:36:00,260 --> 00:36:01,970
+Awesome.
+
+759
+00:36:01,970 --> 00:36:05,350
+Do likewise here.
+
+760
+00:36:05,350 --> 00:36:08,590
+>> And then, we'll add in those
+little support structures,
+
+761
+00:36:08,590 --> 00:36:14,422
+these center lines to dictate the
+depth or the thickness of these lines.
+
+762
+00:36:14,422 --> 00:36:16,380
+You'll notice that when
+I'm drawing, SolidWorks
+
+763
+00:36:16,380 --> 00:36:18,120
+creates that yellow dashed line.
+
+764
+00:36:18,120 --> 00:36:21,030
+That dashed line is normal
+or orthogonal to the line
+
+765
+00:36:21,030 --> 00:36:24,140
+that this line that
+we're drawing started on.
+
+766
+00:36:24,140 --> 00:36:26,190
+So if you follow that
+dashed yellow line,
+
+767
+00:36:26,190 --> 00:36:30,141
+you can be sure that it
+is in fact orthogonal.
+
+768
+00:36:30,141 --> 00:36:31,080
+We'll do it again.
+
+769
+00:36:31,080 --> 00:36:33,980
+
+770
+00:36:33,980 --> 00:36:37,650
+>> Just for good measure,
+we can double check
+
+771
+00:36:37,650 --> 00:36:42,500
+once we're done sketching
+just by selecting a line,
+
+772
+00:36:42,500 --> 00:36:46,800
+and all the relations come up
+here, perpendicular, awesome.
+
+773
+00:36:46,800 --> 00:36:50,960
+We'll make these all equal length.
+
+774
+00:36:50,960 --> 00:36:51,760
+Select them all.
+
+775
+00:36:51,760 --> 00:36:54,676
+Then, we're going to go back to the
+original line that we dimensioned.
+
+776
+00:36:54,676 --> 00:36:56,850
+Select that, hit equal,
+and then we zoom out.
+
+777
+00:36:56,850 --> 00:36:57,980
+These lines are all black.
+
+778
+00:36:57,980 --> 00:36:58,890
+Cool.
+
+779
+00:36:58,890 --> 00:37:02,170
+>> So we are ready to exit our
+sketch and cut out these webs.
+
+780
+00:37:02,170 --> 00:37:06,017
+So we hit Exit Sketch notice that
+the sketch is still highlighted here
+
+781
+00:37:06,017 --> 00:37:07,850
+because we're going to
+do something with it.
+
+782
+00:37:07,850 --> 00:37:11,470
+Now, if I go to Features and I hit
+Extrude Cut, which is now an option,
+
+783
+00:37:11,470 --> 00:37:13,220
+it's going to freak
+out because it doesn't
+
+784
+00:37:13,220 --> 00:37:16,340
+know which sketch we're
+going to use as the base.
+
+785
+00:37:16,340 --> 00:37:18,540
+So leave that.
+
+786
+00:37:18,540 --> 00:37:19,370
+We can hide this.
+
+787
+00:37:19,370 --> 00:37:21,180
+We don't have any need for it.
+
+788
+00:37:21,180 --> 00:37:23,106
+>> So we select the sketch
+that we just made.
+
+789
+00:37:23,106 --> 00:37:23,980
+We can even label it.
+
+790
+00:37:23,980 --> 00:37:28,670
+We'll call it webbing,
+or just web sketch.
+
+791
+00:37:28,670 --> 00:37:31,020
+Now that it's highlighted,
+we can extrude
+
+792
+00:37:31,020 --> 00:37:33,450
+it, which is-- we don't
+want to create material.
+
+793
+00:37:33,450 --> 00:37:36,130
+We want to cut material away.
+
+794
+00:37:36,130 --> 00:37:39,040
+So we'll go and we'll
+use an extruded cut.
+
+795
+00:37:39,040 --> 00:37:42,140
+So now, there are a lot of
+geometries happening in our sketch.
+
+796
+00:37:42,140 --> 00:37:47,320
+>> We need to tell SolidWorks which pieces,
+which triangles and rectangles we
+
+797
+00:37:47,320 --> 00:37:48,370
+want to cut.
+
+798
+00:37:48,370 --> 00:37:51,250
+So if we go down here and we hit
+Selected Contours and highlight
+
+799
+00:37:51,250 --> 00:37:53,000
+this box, it becomes blue.
+
+800
+00:37:53,000 --> 00:37:56,200
+And then, you can click
+on different parts.
+
+801
+00:37:56,200 --> 00:37:59,360
+I'll just click on
+everything we want gone.
+
+802
+00:37:59,360 --> 00:38:02,120
+And it will cut everything
+away that is highlighted.
+
+803
+00:38:02,120 --> 00:38:05,840
+So there's the option now of
+how deep do we want to cut.
+
+804
+00:38:05,840 --> 00:38:07,052
+We could cut partially.
+
+805
+00:38:07,052 --> 00:38:08,760
+We don't have to cut
+all the way through.
+
+806
+00:38:08,760 --> 00:38:14,470
+We could do like 0.751 divided by 2.
+
+807
+00:38:14,470 --> 00:38:16,745
+This will cut halfway through.
+
+808
+00:38:16,745 --> 00:38:18,294
+You can see in the preview there.
+
+809
+00:38:18,294 --> 00:38:19,460
+But that's not what we want.
+
+810
+00:38:19,460 --> 00:38:20,950
+We want to go all the way through.
+
+811
+00:38:20,950 --> 00:38:23,830
+>> So this little dialogue
+box, we just click.
+
+812
+00:38:23,830 --> 00:38:27,520
+And select Up To Next, and
+that'll cut all the way through.
+
+813
+00:38:27,520 --> 00:38:29,272
+Hit the green arrow.
+
+814
+00:38:29,272 --> 00:38:31,730
+And our sketch is still
+highlighted, but if you click away,
+
+815
+00:38:31,730 --> 00:38:33,480
+now we have the webbing done.
+
+816
+00:38:33,480 --> 00:38:37,270
+So you'll notice if you look
+kind of closely at this part
+
+817
+00:38:37,270 --> 00:38:39,380
+that the corners are
+rounded off internally.
+
+818
+00:38:39,380 --> 00:38:41,290
+That's a feature called a fillet.
+
+819
+00:38:41,290 --> 00:38:44,480
+What a fillet does is it eliminates
+what are called stress concentrations.
+
+820
+00:38:44,480 --> 00:38:48,210
+If you have really sharp points
+at any place in your part,
+
+821
+00:38:48,210 --> 00:38:53,210
+whether it's made of some composite
+or steel or aluminum or what have you,
+
+822
+00:38:53,210 --> 00:38:55,600
+really sharp points can
+cause stress concentrations
+
+823
+00:38:55,600 --> 00:38:57,220
+when they're subjected to loads.
+
+824
+00:38:57,220 --> 00:38:59,190
+>> So if we were to really
+push this part, it
+
+825
+00:38:59,190 --> 00:39:01,860
+would likely break at one
+of these really sharp nodes.
+
+826
+00:39:01,860 --> 00:39:03,630
+So to combat that, we
+use what are called
+
+827
+00:39:03,630 --> 00:39:06,560
+fillets, which is just really
+gentle rounding in there.
+
+828
+00:39:06,560 --> 00:39:08,500
+So we go to this fillet feature.
+
+829
+00:39:08,500 --> 00:39:10,970
+We have a dialogue box.
+
+830
+00:39:10,970 --> 00:39:14,390
+I find it helpful to select
+this full preview option.
+
+831
+00:39:14,390 --> 00:39:18,470
+And all we have to do is just click on
+a line, and it creates a fillet for us.
+
+832
+00:39:18,470 --> 00:39:21,131
+So it defaulted to having the
+radius be a tenth of an inch.
+
+833
+00:39:21,131 --> 00:39:22,130
+That's a little extreme.
+
+834
+00:39:22,130 --> 00:39:27,220
+So we'll do maybe 20 thou.
+
+835
+00:39:27,220 --> 00:39:28,320
+That's a little small.
+
+836
+00:39:28,320 --> 00:39:29,769
+Split the difference, say.
+
+837
+00:39:29,769 --> 00:39:30,810
+Not split the difference.
+
+838
+00:39:30,810 --> 00:39:33,670
+Let's do 50 thou.
+
+839
+00:39:33,670 --> 00:39:34,740
+That looks good.
+
+840
+00:39:34,740 --> 00:39:37,420
+So now, we're just going to
+select all these other fillets.
+
+841
+00:39:37,420 --> 00:39:45,880
+
+842
+00:39:45,880 --> 00:39:47,760
+Kind of just fly through this.
+
+843
+00:39:47,760 --> 00:39:55,300
+
+844
+00:39:55,300 --> 00:39:58,330
+>> So once we complete the part,
+I'll go back and show you
+
+845
+00:39:58,330 --> 00:40:02,655
+how painless it is to
+modify a dimension.
+
+846
+00:40:02,655 --> 00:40:05,280
+Like I said, it's helpful to
+print out kind of a dummy version,
+
+847
+00:40:05,280 --> 00:40:06,950
+test it, see if it's strong enough.
+
+848
+00:40:06,950 --> 00:40:11,970
+Maybe you want to make the letters
+larger or something of the like.
+
+849
+00:40:11,970 --> 00:40:13,685
+Oops, I selected a face accidentally.
+
+850
+00:40:13,685 --> 00:40:16,090
+We don't want that.
+
+851
+00:40:16,090 --> 00:40:18,522
+Select this line, one more time.
+
+852
+00:40:18,522 --> 00:40:19,480
+That was the wrong one.
+
+853
+00:40:19,480 --> 00:40:22,490
+If it's hard for you
+to deselect that line,
+
+854
+00:40:22,490 --> 00:40:25,740
+you can go over to the box here that's
+listing everything, right click,
+
+855
+00:40:25,740 --> 00:40:26,630
+and then say delete.
+
+856
+00:40:26,630 --> 00:40:30,890
+Do not say Clear Selection
+because that'll delete every line,
+
+857
+00:40:30,890 --> 00:40:34,070
+unless that's what you want to do.
+
+858
+00:40:34,070 --> 00:40:37,420
+Cool, just one more to god.
+
+859
+00:40:37,420 --> 00:40:38,745
+Oh, missed a couple at the top.
+
+860
+00:40:38,745 --> 00:40:43,390
+
+861
+00:40:43,390 --> 00:40:44,916
+All right.
+
+862
+00:40:44,916 --> 00:40:49,065
+>> AUDIENCE: There's more up top, the
+left triangle at the top and bottom.
+
+863
+00:40:49,065 --> 00:40:52,280
+>> ANSEL DUFF: Oh, god.
+
+864
+00:40:52,280 --> 00:40:54,050
+That is code red.
+
+865
+00:40:54,050 --> 00:40:56,000
+All right, now we have our fillets.
+
+866
+00:40:56,000 --> 00:40:58,105
+Now, it looks a little weird.
+
+867
+00:40:58,105 --> 00:41:00,230
+They look a little bit
+bigger than they need to be.
+
+868
+00:41:00,230 --> 00:41:06,490
+So if we want to adjust that,
+let's just label this web fillet.
+
+869
+00:41:06,490 --> 00:41:11,940
+We can right click on this, and this
+box pops up, and we hit Edit Feature.
+
+870
+00:41:11,940 --> 00:41:13,720
+And we just have to change one number.
+
+871
+00:41:13,720 --> 00:41:19,020
+Let's do maybe say 30 thou.
+
+872
+00:41:19,020 --> 00:41:21,020
+And they become smaller
+and get the green arrow.
+
+873
+00:41:21,020 --> 00:41:24,390
+So if we wanted to change all those
+features, there were a lot of them,
+
+874
+00:41:24,390 --> 00:41:26,910
+you just had to change one number.
+
+875
+00:41:26,910 --> 00:41:28,680
+And that's really helpful for us.
+
+876
+00:41:28,680 --> 00:41:31,880
+>> Something that I've not yet done
+is save my part, not a bad idea
+
+877
+00:41:31,880 --> 00:41:32,880
+during the middle of it.
+
+878
+00:41:32,880 --> 00:41:34,250
+We'll just hit Save As.
+
+879
+00:41:34,250 --> 00:41:40,260
+We'll call it lens support 2,
+since I've already made one.
+
+880
+00:41:40,260 --> 00:41:45,270
+And now, we want to just add in
+letters, and then we're ready to go.
+
+881
+00:41:45,270 --> 00:41:51,290
+>> So to do that, we're going to make
+ourselves normal to this plane again.
+
+882
+00:41:51,290 --> 00:41:54,226
+Now that it's selected, we
+can go and sketch on it.
+
+883
+00:41:54,226 --> 00:41:55,850
+And now, we're going to add letters in.
+
+884
+00:41:55,850 --> 00:41:57,900
+So part is actually upside down.
+
+885
+00:41:57,900 --> 00:42:00,577
+This probably wasn't a
+good face to sketch on.
+
+886
+00:42:00,577 --> 00:42:01,910
+I'm going to sketch on this one.
+
+887
+00:42:01,910 --> 00:42:06,960
+
+888
+00:42:06,960 --> 00:42:10,400
+So sketch, SolidWorks
+has a letters feature.
+
+889
+00:42:10,400 --> 00:42:12,620
+But we need to orient
+the letters in space.
+
+890
+00:42:12,620 --> 00:42:15,171
+And that's done, again
+by making a center line.
+
+891
+00:42:15,171 --> 00:42:17,420
+In case you haven't noticed,
+that's kind of the theme,
+
+892
+00:42:17,420 --> 00:42:22,320
+to make center lines for
+anything you might need it for.
+
+893
+00:42:22,320 --> 00:42:27,500
+>> So for now, let's just add a
+Smart Dimension from this line.
+
+894
+00:42:27,500 --> 00:42:30,365
+We'll say 0.01 inches.
+
+895
+00:42:30,365 --> 00:42:31,240
+I'm just eyeing that.
+
+896
+00:42:31,240 --> 00:42:33,364
+We're going to go back and
+change that in a second.
+
+897
+00:42:33,364 --> 00:42:35,870
+But for now, it just
+constrains this line in space.
+
+898
+00:42:35,870 --> 00:42:36,370
+Cool.
+
+899
+00:42:36,370 --> 00:42:38,340
+So now, we go to our
+little font feature here.
+
+900
+00:42:38,340 --> 00:42:40,700
+It's that big A. So we just hit that.
+
+901
+00:42:40,700 --> 00:42:41,520
+That's A for Ansel.
+
+902
+00:42:41,520 --> 00:42:44,000
+So we type CS50.
+
+903
+00:42:44,000 --> 00:42:44,570
+Cool.
+
+904
+00:42:44,570 --> 00:42:47,280
+But we need to type the curve
+that it's going to sit on.
+
+905
+00:42:47,280 --> 00:42:49,880
+So just click on that line, awesome.
+
+906
+00:42:49,880 --> 00:42:51,330
+Now, it's a little bit small here.
+
+907
+00:42:51,330 --> 00:42:52,955
+We want to make it a little bit larger.
+
+908
+00:42:52,955 --> 00:42:54,960
+So by default, it uses
+the document font,
+
+909
+00:42:54,960 --> 00:42:58,140
+which is just defined in
+some property list somewhere.
+
+910
+00:42:58,140 --> 00:43:00,560
+>> So we'll deselect that,
+hit the font button,
+
+911
+00:43:00,560 --> 00:43:02,710
+and make this a little bit bigger.
+
+912
+00:43:02,710 --> 00:43:04,840
+I like to use this
+units option because it
+
+913
+00:43:04,840 --> 00:43:07,860
+allows you to specify
+the height in inches.
+
+914
+00:43:07,860 --> 00:43:11,530
+So I believe before we had made
+this bridge 0.4 of an inch high,
+
+915
+00:43:11,530 --> 00:43:17,070
+so perhaps making the letters 3/10
+of an inch tall, it'll look big.
+
+916
+00:43:17,070 --> 00:43:18,660
+That's pretty good.
+
+917
+00:43:18,660 --> 00:43:20,439
+Get the green arrow.
+
+918
+00:43:20,439 --> 00:43:21,730
+Make this a little bit smaller.
+
+919
+00:43:21,730 --> 00:43:26,350
+Let's halve it, so we
+could go divide by 2.
+
+920
+00:43:26,350 --> 00:43:29,687
+And then, we'll just drag this dot
+over to where I think it looks good.
+
+921
+00:43:29,687 --> 00:43:32,512
+
+922
+00:43:32,512 --> 00:43:33,970
+This is what we call a code orange.
+
+923
+00:43:33,970 --> 00:43:35,553
+The letters look a little bit too big.
+
+924
+00:43:35,553 --> 00:43:37,660
+So we're going to select them.
+
+925
+00:43:37,660 --> 00:43:41,210
+Go back to font, and let's make them
+a quarter of an inch tall instead
+
+926
+00:43:41,210 --> 00:43:42,742
+of 3/10.
+
+927
+00:43:42,742 --> 00:43:47,130
+Make them a little smaller,
+move them into position.
+
+928
+00:43:47,130 --> 00:43:47,630
+Cool.
+
+929
+00:43:47,630 --> 00:43:49,680
+That looks pretty good.
+
+930
+00:43:49,680 --> 00:43:58,470
+We'll add a couple,
+say, maybe bigger there.
+
+931
+00:43:58,470 --> 00:44:01,760
+>> SolidWorks is really interpretive
+in this dimension box.
+
+932
+00:44:01,760 --> 00:44:04,710
+I had mentioned before that you
+can use algebraic expressions.
+
+933
+00:44:04,710 --> 00:44:07,040
+But let's say we wanted
+to be in millimeters.
+
+934
+00:44:07,040 --> 00:44:11,140
+We could say make this 5 millimeters,
+and it will understand it.
+
+935
+00:44:11,140 --> 00:44:13,600
+So it'll automatically
+convert it to inches.
+
+936
+00:44:13,600 --> 00:44:20,070
+So 5 millimeters, SolidWorks
+tells us, is 0.19685039 inches.
+
+937
+00:44:20,070 --> 00:44:21,700
+So we'll go back to inches.
+
+938
+00:44:21,700 --> 00:44:25,810
+We'll say 0.07 inches.
+
+939
+00:44:25,810 --> 00:44:27,730
+My program is set up
+to default to inches.
+
+940
+00:44:27,730 --> 00:44:30,550
+Everything we do in the
+States is in inches.
+
+941
+00:44:30,550 --> 00:44:33,560
+But if you want to convert something,
+there's no need to go to Google
+
+942
+00:44:33,560 --> 00:44:36,390
+and convert it because
+SolidWorks will do it for you.
+
+943
+00:44:36,390 --> 00:44:40,450
+>> So this is just about centered.
+
+944
+00:44:40,450 --> 00:44:44,490
+If we really wanted to
+be very, very precise,
+
+945
+00:44:44,490 --> 00:44:46,510
+we could measure the
+width of the letters
+
+946
+00:44:46,510 --> 00:44:49,840
+and then center it against
+the center line of the piece.
+
+947
+00:44:49,840 --> 00:44:51,640
+But that's kind of overkill here.
+
+948
+00:44:51,640 --> 00:44:54,590
+We'll just visually center it for now.
+
+949
+00:44:54,590 --> 00:44:56,637
+That looks almost there.
+
+950
+00:44:56,637 --> 00:44:57,970
+We'll drag it over a little bit.
+
+951
+00:44:57,970 --> 00:45:01,071
+Sometimes, when you want to drag a
+point by a very small amount, if you
+
+952
+00:45:01,071 --> 00:45:03,820
+click on it and try to drag it a
+little bit, it won't do anything.
+
+953
+00:45:03,820 --> 00:45:08,260
+So it's nice to move it far away, and
+then come back close to where you were.
+
+954
+00:45:08,260 --> 00:45:10,980
+>> So hit F to bring us back out.
+
+955
+00:45:10,980 --> 00:45:12,500
+That looks pretty good.
+
+956
+00:45:12,500 --> 00:45:13,900
+We'll hit the green arrow.
+
+957
+00:45:13,900 --> 00:45:16,690
+Oh, wait a minute,
+somebody said in the back.
+
+958
+00:45:16,690 --> 00:45:18,100
+The sketch is still blue.
+
+959
+00:45:18,100 --> 00:45:19,770
+So what are we going to do?
+
+960
+00:45:19,770 --> 00:45:22,500
+You'll notice that we have put
+all the letters on this line.
+
+961
+00:45:22,500 --> 00:45:26,795
+But we haven't constrained them
+in this dimension, left to right.
+
+962
+00:45:26,795 --> 00:45:28,920
+So the way we do that, this
+is the point that we're
+
+963
+00:45:28,920 --> 00:45:32,340
+moving that dictates all letters,
+we will fix this point in space.
+
+964
+00:45:32,340 --> 00:45:33,352
+And it will not move.
+
+965
+00:45:33,352 --> 00:45:35,060
+So in our pane left
+here-- in fact, we'll
+
+966
+00:45:35,060 --> 00:45:37,439
+deselect it-- we click on this point.
+
+967
+00:45:37,439 --> 00:45:39,980
+This point dictates how the
+letters are placed left to right,
+
+968
+00:45:39,980 --> 00:45:41,010
+like I had mentioned.
+
+969
+00:45:41,010 --> 00:45:42,170
+>> Select this point.
+
+970
+00:45:42,170 --> 00:45:44,420
+We see all the relations
+over here, it's an empty box.
+
+971
+00:45:44,420 --> 00:45:45,030
+Nobody's home.
+
+972
+00:45:45,030 --> 00:45:46,550
+We hit fix.
+
+973
+00:45:46,550 --> 00:45:47,400
+Boom.
+
+974
+00:45:47,400 --> 00:45:48,470
+Oh my gosh.
+
+975
+00:45:48,470 --> 00:45:49,190
+What happened?
+
+976
+00:45:49,190 --> 00:45:51,430
+We have over defined the sketch.
+
+977
+00:45:51,430 --> 00:45:55,250
+So what this means is you
+have multiple relations,
+
+978
+00:45:55,250 --> 00:45:58,170
+multiple dimensions
+referring to the same entity.
+
+979
+00:45:58,170 --> 00:46:01,235
+So for example, if we had
+made two lines parallel,
+
+980
+00:46:01,235 --> 00:46:05,770
+and then we added a dimension up top
+to say that these lines are one inch
+
+981
+00:46:05,770 --> 00:46:09,580
+apart, then we add another dimension
+at the bottom to say these line are two
+
+982
+00:46:09,580 --> 00:46:12,520
+inches apart, SolidWorks is going
+to scream at us and give us the same
+
+983
+00:46:12,520 --> 00:46:16,220
+warning because you can't-- both
+dimensions are referring to the same
+
+984
+00:46:16,220 --> 00:46:17,290
+entity.
+
+985
+00:46:17,290 --> 00:46:19,020
+Somehow, we have done that here.
+
+986
+00:46:19,020 --> 00:46:24,290
+>> So we can let's just rebuild it.
+
+987
+00:46:24,290 --> 00:46:30,080
+If at any point you want to rebuild
+your sketch, or you change a dimension
+
+988
+00:46:30,080 --> 00:46:33,330
+and it didn't take, if you just hit this
+little stoplight at the top here next
+
+989
+00:46:33,330 --> 00:46:38,220
+to the mouse, hit that,
+SolidWorks will process it.
+
+990
+00:46:38,220 --> 00:46:42,290
+>> So this sketch has a little
+yield flag next to it,
+
+991
+00:46:42,290 --> 00:46:43,820
+which means something's wrong.
+
+992
+00:46:43,820 --> 00:46:46,410
+So if we right click
+and hit what's wrong,
+
+993
+00:46:46,410 --> 00:46:48,190
+we get a really unhelpful error message.
+
+994
+00:46:48,190 --> 00:46:49,760
+This sketch is over defined.
+
+995
+00:46:49,760 --> 00:46:55,140
+Consider deleting some-- so that
+didn't tell us anything new.
+
+996
+00:46:55,140 --> 00:46:56,450
+We'll go back to sketching it.
+
+997
+00:46:56,450 --> 00:46:57,960
+And what happened?
+
+998
+00:46:57,960 --> 00:47:00,330
+>> Oh, we can't fix it in
+space because it's already
+
+999
+00:47:00,330 --> 00:47:03,630
+defined to be 70 thou off of this line.
+
+1000
+00:47:03,630 --> 00:47:13,625
+So if we just delete this and refix
+this point, it should be fixed in space.
+
+1001
+00:47:13,625 --> 00:47:17,590
+
+1002
+00:47:17,590 --> 00:47:23,770
+So I know the letters are still
+blue, but they are fixed in space.
+
+1003
+00:47:23,770 --> 00:47:25,130
+That I'm sure of.
+
+1004
+00:47:25,130 --> 00:47:27,990
+So we'll just move on.
+
+1005
+00:47:27,990 --> 00:47:31,299
+>> Now, we're going to cut these
+letters into the material.
+
+1006
+00:47:31,299 --> 00:47:33,590
+If we wanted to, we could
+cut them all the way through.
+
+1007
+00:47:33,590 --> 00:47:35,960
+But that might compromise
+our part structurally.
+
+1008
+00:47:35,960 --> 00:47:40,240
+Not really, but it's not really great
+practice to add an aesthetic feature
+
+1009
+00:47:40,240 --> 00:47:44,290
+or have an aesthetic feature
+be structurally compromising.
+
+1010
+00:47:44,290 --> 00:47:48,100
+So we'll just cut them to be
+maybe 10 thou deep or 100 thou,
+
+1011
+00:47:48,100 --> 00:47:49,820
+depending on how it looks.
+
+1012
+00:47:49,820 --> 00:47:52,470
+So we highlight our sketch.
+
+1013
+00:47:52,470 --> 00:47:54,950
+We'll label it because
+we're good people.
+
+1014
+00:47:54,950 --> 00:48:00,630
+
+1015
+00:48:00,630 --> 00:48:02,480
+Computer froze for a second there.
+
+1016
+00:48:02,480 --> 00:48:06,960
+We'll call this letters sketch.
+
+1017
+00:48:06,960 --> 00:48:09,890
+And now, we will do an extruded cut.
+
+1018
+00:48:09,890 --> 00:48:12,030
+And we can change how deep they go.
+
+1019
+00:48:12,030 --> 00:48:15,370
+>> So right now, they are halfway through.
+
+1020
+00:48:15,370 --> 00:48:16,700
+That seems a little much.
+
+1021
+00:48:16,700 --> 00:48:18,926
+Let's do 200 thou.
+
+1022
+00:48:18,926 --> 00:48:23,390
+
+1023
+00:48:23,390 --> 00:48:24,780
+That looks pretty did.
+
+1024
+00:48:24,780 --> 00:48:26,200
+Hit the green arrow.
+
+1025
+00:48:26,200 --> 00:48:29,890
+And we are cooking, ready to go.
+
+1026
+00:48:29,890 --> 00:48:34,510
+So there are a lot of things that could
+be the next step in our manufacture.
+
+1027
+00:48:34,510 --> 00:48:36,290
+We've completely designed a part.
+
+1028
+00:48:36,290 --> 00:48:39,089
+We can build it in varying ways.
+
+1029
+00:48:39,089 --> 00:48:42,130
+But what we first want to do is double
+check that all of our measurements
+
+1030
+00:48:42,130 --> 00:48:42,789
+are right.
+
+1031
+00:48:42,789 --> 00:48:44,580
+It's very painless to
+change the dimensions
+
+1032
+00:48:44,580 --> 00:48:45,780
+when you're in this build state.
+
+1033
+00:48:45,780 --> 00:48:47,680
+The part is completely
+defined, and you just
+
+1034
+00:48:47,680 --> 00:48:50,920
+have to change maybe a number
+here or a number there.
+
+1035
+00:48:50,920 --> 00:48:54,040
+But it's not that fun to build
+it and then measure it or try
+
+1036
+00:48:54,040 --> 00:48:57,284
+to fit it and realize that
+you messed something up.
+
+1037
+00:48:57,284 --> 00:49:00,200
+We're not actually going to manufacture
+this part right now because it
+
+1038
+00:49:00,200 --> 00:49:01,783
+takes a very, very long time to print.
+
+1039
+00:49:01,783 --> 00:49:05,730
+But we would go back and
+double measure everything.
+
+1040
+00:49:05,730 --> 00:49:09,320
+Measure twice, cut once, and
+ensure that everything is correct.
+
+1041
+00:49:09,320 --> 00:49:12,550
+Let's hypothetically say that we
+messed one of the measurements up.
+
+1042
+00:49:12,550 --> 00:49:14,440
+>> Let's say that the webs are too thin.
+
+1043
+00:49:14,440 --> 00:49:17,430
+They were buckling and we
+want to make them thicker.
+
+1044
+00:49:17,430 --> 00:49:20,200
+It was kind of a pain to add in
+all those dimensions before, all
+
+1045
+00:49:20,200 --> 00:49:23,420
+those relations, and make all
+those lines of equal length.
+
+1046
+00:49:23,420 --> 00:49:25,680
+But now, if we want to
+make the webs thicker,
+
+1047
+00:49:25,680 --> 00:49:30,170
+we can just go-- oops,
+forgot to label this guy.
+
+1048
+00:49:30,170 --> 00:49:34,600
+We'll call this web cut.
+
+1049
+00:49:34,600 --> 00:49:36,752
+And this is letters cut.
+
+1050
+00:49:36,752 --> 00:49:39,350
+
+1051
+00:49:39,350 --> 00:49:42,637
+>> You'll notice that we have a
+very neatly organized tree.
+
+1052
+00:49:42,637 --> 00:49:45,720
+In fact, if we're going to make this
+part, we want to learn more about it,
+
+1053
+00:49:45,720 --> 00:49:47,360
+we need to define its material.
+
+1054
+00:49:47,360 --> 00:49:51,870
+So in this material box, we'll right
+click, and then hit Edit Material.
+
+1055
+00:49:51,870 --> 00:49:55,639
+And SolidWorks gives us a very long
+list of things that we can choose from.
+
+1056
+00:49:55,639 --> 00:49:57,680
+Let's say we're going to
+make it out of aluminum.
+
+1057
+00:49:57,680 --> 00:50:01,450
+We'll do 6061 P6, that's
+a tempering rating.
+
+1058
+00:50:01,450 --> 00:50:03,822
+We'll hit apply, close.
+
+1059
+00:50:03,822 --> 00:50:05,030
+And now it's out of aluminum.
+
+1060
+00:50:05,030 --> 00:50:06,850
+It looks slightly brighter.
+
+1061
+00:50:06,850 --> 00:50:08,260
+Doesn't really do much for us.
+
+1062
+00:50:08,260 --> 00:50:13,240
+>> But it allows us to measure some
+really interesting or cool aspects
+
+1063
+00:50:13,240 --> 00:50:16,010
+about this part specifically
+being made out of aluminum.
+
+1064
+00:50:16,010 --> 00:50:26,810
+For example, if we go to the
+Evaluate tab and hit Mass Properties,
+
+1065
+00:50:26,810 --> 00:50:30,750
+we see that the part
+weights 0.09 pounds.
+
+1066
+00:50:30,750 --> 00:50:32,750
+Volume is not going to
+change based on material.
+
+1067
+00:50:32,750 --> 00:50:36,230
+But weight is dictated by
+which material you use.
+
+1068
+00:50:36,230 --> 00:50:37,860
+It's pretty cool.
+
+1069
+00:50:37,860 --> 00:50:41,490
+If we were to run a stress simulation,
+the material that you choose
+
+1070
+00:50:41,490 --> 00:50:44,310
+will drastically alter the results.
+
+1071
+00:50:44,310 --> 00:50:45,790
+So that's pretty cool.
+
+1072
+00:50:45,790 --> 00:50:48,270
+>> If we wanted to make
+it look different, we
+
+1073
+00:50:48,270 --> 00:50:52,960
+could pop out this tab here just by
+hitting these double arrows and right
+
+1074
+00:50:52,960 --> 00:50:55,790
+click here and say appearance.
+
+1075
+00:50:55,790 --> 00:50:59,490
+And then, we can change to make
+it blue, whatever you want.
+
+1076
+00:50:59,490 --> 00:51:01,740
+And then, in a final
+render, if we wanted
+
+1077
+00:51:01,740 --> 00:51:07,780
+to make an actual render of this part,
+we can choose its surface finish.
+
+1078
+00:51:07,780 --> 00:51:09,960
+So a lot of times,
+you'll design your parts.
+
+1079
+00:51:09,960 --> 00:51:14,660
+They have this flat gray or
+flat black aesthetic to them.
+
+1080
+00:51:14,660 --> 00:51:18,700
+But that just lightens
+the load on SolidWorks
+
+1081
+00:51:18,700 --> 00:51:21,860
+so that you're not using
+superfluous graphics power
+
+1082
+00:51:21,860 --> 00:51:23,819
+to render your part while
+you're designing it.
+
+1083
+00:51:23,819 --> 00:51:25,610
+But if we did want to
+do a render, we would
+
+1084
+00:51:25,610 --> 00:51:27,230
+have to define the surface finish.
+
+1085
+00:51:27,230 --> 00:51:31,570
+So let's just say that it's
+polished aluminum for now.
+
+1086
+00:51:31,570 --> 00:51:33,690
+Notice that polished
+aluminum pops up over here.
+
+1087
+00:51:33,690 --> 00:51:34,940
+Hit the green arrow.
+
+1088
+00:51:34,940 --> 00:51:36,920
+Cool, that took.
+
+1089
+00:51:36,920 --> 00:51:40,280
+And let's just change this
+thickness of these webs.
+
+1090
+00:51:40,280 --> 00:51:44,950
+So all we have to do is go over to our
+very neatly organized feature tree.
+
+1091
+00:51:44,950 --> 00:51:46,560
+And we see web cut.
+
+1092
+00:51:46,560 --> 00:51:48,100
+Expand that.
+
+1093
+00:51:48,100 --> 00:51:49,680
+Click on the web sketch.
+
+1094
+00:51:49,680 --> 00:51:51,730
+And then, we're just going
+to change one number.
+
+1095
+00:51:51,730 --> 00:51:56,760
+>> So let's change it to instead
+of being 50 thou on each side,
+
+1096
+00:51:56,760 --> 00:52:01,740
+so 100 thou total, let's
+make it 80 thou total.
+
+1097
+00:52:01,740 --> 00:52:02,240
+Cool.
+
+1098
+00:52:02,240 --> 00:52:04,851
+You see the webs got
+a little bit skinnier.
+
+1099
+00:52:04,851 --> 00:52:05,350
+Awesome.
+
+1100
+00:52:05,350 --> 00:52:10,280
+So we just changed all those
+features just by one number.
+
+1101
+00:52:10,280 --> 00:52:11,630
+We changed the thickness.
+
+1102
+00:52:11,630 --> 00:52:14,960
+SolidWorks automatically recalculates
+the fillets to make them fit.
+
+1103
+00:52:14,960 --> 00:52:17,690
+It changes all the geometries.
+
+1104
+00:52:17,690 --> 00:52:21,100
+And it works because we had
+defined them to be all symmetrical
+
+1105
+00:52:21,100 --> 00:52:24,100
+and all defined off of one dimension.
+
+1106
+00:52:24,100 --> 00:52:26,260
+Like I said before, it's
+analogous to defining
+
+1107
+00:52:26,260 --> 00:52:27,945
+a constant when you're writing code.
+
+1108
+00:52:27,945 --> 00:52:30,510
+>> AUDIENCE: Does it work if
+you use any TrueType font,
+
+1109
+00:52:30,510 --> 00:52:34,330
+or are you limited to
+what they [INAUDIBLE]?
+
+1110
+00:52:34,330 --> 00:52:36,450
+>> ANSEL DUFF: It works
+off of your system font,
+
+1111
+00:52:36,450 --> 00:52:43,080
+so if we go back to our letters cut,
+we had just gone with the default font.
+
+1112
+00:52:43,080 --> 00:52:48,800
+If we hit Edit Sketch, zoom in a little
+bit, double click on the letters.
+
+1113
+00:52:48,800 --> 00:52:51,995
+If I can do that.
+
+1114
+00:52:51,995 --> 00:52:53,675
+Take a second to trace them out.
+
+1115
+00:52:53,675 --> 00:52:57,520
+
+1116
+00:52:57,520 --> 00:52:59,050
+And hit Font again.
+
+1117
+00:52:59,050 --> 00:53:00,660
+So we have a list of fonts here.
+
+1118
+00:53:00,660 --> 00:53:02,090
+And those are system fonts.
+
+1119
+00:53:02,090 --> 00:53:04,720
+If you want a specialty font,
+and it's not on this list,
+
+1120
+00:53:04,720 --> 00:53:08,010
+you're going to need to
+install it on your system.
+
+1121
+00:53:08,010 --> 00:53:10,760
+Just a little bit of Googling
+around on how to do that on Windows.
+
+1122
+00:53:10,760 --> 00:53:14,946
+>> AUDIENCE: Also, does this thing know
+what font size or changes are not
+
+1123
+00:53:14,946 --> 00:53:17,072
+going to be [INAUDIBLE]?
+
+1124
+00:53:17,072 --> 00:53:17,780
+ANSEL DUFF: Yeah.
+
+1125
+00:53:17,780 --> 00:53:24,110
+So the question was how do we know
+how thick or thin to make the fonts?
+
+1126
+00:53:24,110 --> 00:53:27,310
+How will the machine be able
+to handle really thin features?
+
+1127
+00:53:27,310 --> 00:53:30,020
+So of course, it's going to
+vary from machine to machine.
+
+1128
+00:53:30,020 --> 00:53:32,350
+But just by reading the
+spec sheet of our printer,
+
+1129
+00:53:32,350 --> 00:53:35,580
+we know that it has a
+resolution of about 4 thou, four
+
+1130
+00:53:35,580 --> 00:53:36,750
+thousandths of an inch.
+
+1131
+00:53:36,750 --> 00:53:41,300
+So we want to make all the
+features be well beyond that.
+
+1132
+00:53:41,300 --> 00:53:45,200
+So if you were to make a font that
+was, say, 10 thou tall, that's
+
+1133
+00:53:45,200 --> 00:53:48,260
+like two sheets of paper, you
+wouldn't be able to read it obviously.
+
+1134
+00:53:48,260 --> 00:53:50,965
+But just hypothetically,
+if we wanted to make
+
+1135
+00:53:50,965 --> 00:53:54,692
+a font that was on the order
+of the accuracy of the machine,
+
+1136
+00:53:54,692 --> 00:53:55,650
+it would look horrible.
+
+1137
+00:53:55,650 --> 00:54:00,270
+So in our case, we know that
+we're well beyond the accuracy
+
+1138
+00:54:00,270 --> 00:54:03,220
+of the machine in terms of the
+ratio of the height of our font,
+
+1139
+00:54:03,220 --> 00:54:05,650
+or even the thickness of
+any feature in the font
+
+1140
+00:54:05,650 --> 00:54:08,530
+to how accurate the machine
+is capable of being.
+
+1141
+00:54:08,530 --> 00:54:10,130
+>> So we're in the clear here.
+
+1142
+00:54:10,130 --> 00:54:13,600
+But if hypothetically you
+were using a machine that
+
+1143
+00:54:13,600 --> 00:54:18,616
+had an accuracy of maybe 250
+thou, like a quarter of an inch,
+
+1144
+00:54:18,616 --> 00:54:20,740
+then our font would look
+really crappy because it's
+
+1145
+00:54:20,740 --> 00:54:25,632
+on the same order of how
+accurate the machine is.
+
+1146
+00:54:25,632 --> 00:54:27,590
+Another thing that we
+need to pay attention to,
+
+1147
+00:54:27,590 --> 00:54:32,540
+and this is specific to 3D printing, is
+how thick are our layers going to be.
+
+1148
+00:54:32,540 --> 00:54:36,620
+So I'll go over to MakerBot settings in
+a little bit and we can play with this
+
+1149
+00:54:36,620 --> 00:54:38,620
+and talk more exhaustively
+about it in a second.
+
+1150
+00:54:38,620 --> 00:54:41,540
+But the way that the
+3D printer works is it
+
+1151
+00:54:41,540 --> 00:54:44,590
+extrudes filament in a
+very fine thread almost.
+
+1152
+00:54:44,590 --> 00:54:47,520
+And if we make the thread or
+the filament strand really,
+
+1153
+00:54:47,520 --> 00:54:51,194
+really large, then it's going
+to look kind of blotchy and not
+
+1154
+00:54:51,194 --> 00:54:52,610
+that clear when we actually print.
+
+1155
+00:54:52,610 --> 00:54:55,750
+>> So again, just as a
+rule of thumb, you want
+
+1156
+00:54:55,750 --> 00:54:58,280
+the size of your fonts
+or all the features
+
+1157
+00:54:58,280 --> 00:55:01,430
+to be well beyond the
+order of the thread size.
+
+1158
+00:55:01,430 --> 00:55:05,400
+
+1159
+00:55:05,400 --> 00:55:06,970
+Yeah, so Exit Sketch.
+
+1160
+00:55:06,970 --> 00:55:07,540
+And it takes.
+
+1161
+00:55:07,540 --> 00:55:12,480
+If we were to change the font,
+again, we can just hit this.
+
+1162
+00:55:12,480 --> 00:55:15,110
+And it will recalculate
+it automatically for us.
+
+1163
+00:55:15,110 --> 00:55:16,870
+So we'll go font here.
+
+1164
+00:55:16,870 --> 00:55:18,490
+Choose Comic Sans.
+
+1165
+00:55:18,490 --> 00:55:19,580
+Great, looks atrocious.
+
+1166
+00:55:19,580 --> 00:55:21,030
+Hit the green arrow.
+
+1167
+00:55:21,030 --> 00:55:22,040
+Exit the sketch.
+
+1168
+00:55:22,040 --> 00:55:25,581
+And you'll notice that
+it still looks so bad.
+
+1169
+00:55:25,581 --> 00:55:26,080
+Wow.
+
+1170
+00:55:26,080 --> 00:55:26,970
+I can't even look at that.
+
+1171
+00:55:26,970 --> 00:55:28,136
+I'm just going to undo that.
+
+1172
+00:55:28,136 --> 00:55:30,090
+Great.
+
+1173
+00:55:30,090 --> 00:55:33,540
+It will recalculate all the
+curves and make the cut.
+
+1174
+00:55:33,540 --> 00:55:34,830
+>> So cool.
+
+1175
+00:55:34,830 --> 00:55:35,740
+We are good to go.
+
+1176
+00:55:35,740 --> 00:55:37,272
+So now, the next step.
+
+1177
+00:55:37,272 --> 00:55:39,480
+You're going to want to grab
+a Snickers at this point
+
+1178
+00:55:39,480 --> 00:55:40,960
+because we've been working for a while.
+
+1179
+00:55:40,960 --> 00:55:42,460
+It's a good idea to take a breather.
+
+1180
+00:55:42,460 --> 00:55:44,870
+So what is the next step in manufacture?
+
+1181
+00:55:44,870 --> 00:55:45,850
+We could 3D print it.
+
+1182
+00:55:45,850 --> 00:55:47,360
+We could mill it.
+
+1183
+00:55:47,360 --> 00:55:48,916
+Those are the two popular options.
+
+1184
+00:55:48,916 --> 00:55:50,790
+If we were to mill it,
+we would have to write
+
+1185
+00:55:50,790 --> 00:55:53,800
+what's called G code or CAM,
+which is going to take a while,
+
+1186
+00:55:53,800 --> 00:55:55,620
+and we're not going to do.
+
+1187
+00:55:55,620 --> 00:55:59,180
+All that does is it tells a tool,
+like an N mill, which is basically
+
+1188
+00:55:59,180 --> 00:56:01,950
+a fancy drill bit, where
+to move around this piece
+
+1189
+00:56:01,950 --> 00:56:03,560
+to create all these features.
+
+1190
+00:56:03,560 --> 00:56:05,650
+Some things are impossible
+to do with a mill.
+
+1191
+00:56:05,650 --> 00:56:11,200
+>> For example, if we go to our fillet
+here, should be in web fillet,
+
+1192
+00:56:11,200 --> 00:56:15,490
+and we suppress that, which is done just
+by hitting this little downward arrow,
+
+1193
+00:56:15,490 --> 00:56:16,787
+all the fillets go away.
+
+1194
+00:56:16,787 --> 00:56:18,370
+We have all these really sharp points.
+
+1195
+00:56:18,370 --> 00:56:21,230
+This is a horrible design practice,
+and you should never do this.
+
+1196
+00:56:21,230 --> 00:56:25,460
+But hypothetically, if you did want to
+design a really sharp corner in here,
+
+1197
+00:56:25,460 --> 00:56:30,140
+you could not create that corner
+with an N mill of finite diameter.
+
+1198
+00:56:30,140 --> 00:56:34,330
+You cannot have-- you can
+conceptualize it as a fancy drill bit.
+
+1199
+00:56:34,330 --> 00:56:37,220
+You can't have a drill
+bit moving around and just
+
+1200
+00:56:37,220 --> 00:56:41,750
+bumping off the bottom of that corner
+node and leaving a very hard corner.
+
+1201
+00:56:41,750 --> 00:56:43,180
+That's just impossible.
+
+1202
+00:56:43,180 --> 00:56:45,780
+>> So those are things to be aware of.
+
+1203
+00:56:45,780 --> 00:56:48,370
+And when you create CAM, those
+will all become apparent.
+
+1204
+00:56:48,370 --> 00:56:51,530
+But just things to be aware of.
+
+1205
+00:56:51,530 --> 00:56:53,590
+Luckily, the 3D printer
+is really cool because it
+
+1206
+00:56:53,590 --> 00:56:57,110
+can create really obscure geometries
+and really obscure fixtures.
+
+1207
+00:56:57,110 --> 00:57:01,630
+So we're in the clear here, but it's
+nice to think about those things.
+
+1208
+00:57:01,630 --> 00:57:06,500
+So one last thing we want to
+add in is a hole on the bottom.
+
+1209
+00:57:06,500 --> 00:57:10,050
+Like I mentioned before, there's
+a mounting hole in our piece here.
+
+1210
+00:57:10,050 --> 00:57:11,730
+And that's how we bolt it in.
+
+1211
+00:57:11,730 --> 00:57:14,940
+>> When I made the version zero,
+I did not CAD in that hole.
+
+1212
+00:57:14,940 --> 00:57:18,170
+I just went and took a Sharpie
+and held it up and marked it
+
+1213
+00:57:18,170 --> 00:57:19,140
+and drilled it by hand.
+
+1214
+00:57:19,140 --> 00:57:22,098
+That was kind of a pain, and not
+really excited about doing that again,
+
+1215
+00:57:22,098 --> 00:57:23,430
+so we'll just CAD it in.
+
+1216
+00:57:23,430 --> 00:57:29,280
+So here's a really exciting time because
+we need to add in a reference plane
+
+1217
+00:57:29,280 --> 00:57:34,250
+because, shock, you cannot
+sketch on a curved face.
+
+1218
+00:57:34,250 --> 00:57:35,500
+Something that you cannot do.
+
+1219
+00:57:35,500 --> 00:57:36,380
+This face is curved.
+
+1220
+00:57:36,380 --> 00:57:38,280
+We had provided it with a radius before.
+
+1221
+00:57:38,280 --> 00:57:39,690
+I'm going to move this
+dimension out of the way.
+
+1222
+00:57:39,690 --> 00:57:40,710
+You cannot sketch on it.
+
+1223
+00:57:40,710 --> 00:57:44,810
+>> If we select it and try
+to hit sketch, oh my gosh,
+
+1224
+00:57:44,810 --> 00:57:46,810
+cannot sketch on a non-planar face.
+
+1225
+00:57:46,810 --> 00:57:49,870
+Wow, good thing your buddy
+Ansel told you about that.
+
+1226
+00:57:49,870 --> 00:57:53,240
+And he also taught you how
+to create a reference plane.
+
+1227
+00:57:53,240 --> 00:57:55,090
+So we select this.
+
+1228
+00:57:55,090 --> 00:57:59,430
+We hit Reference Geometry, Plane.
+
+1229
+00:57:59,430 --> 00:58:02,410
+Now, we have a plane that
+is tangent to our face.
+
+1230
+00:58:02,410 --> 00:58:04,805
+Or maybe we don't.
+
+1231
+00:58:04,805 --> 00:58:06,162
+That's not good.
+
+1232
+00:58:06,162 --> 00:58:08,960
+
+1233
+00:58:08,960 --> 00:58:11,190
+I don't know why it's doing that.
+
+1234
+00:58:11,190 --> 00:58:17,540
+
+1235
+00:58:17,540 --> 00:58:23,040
+>> So we need to-- if we were to just
+select this face and create tangency,
+
+1236
+00:58:23,040 --> 00:58:26,790
+the plane could be at
+infinitely many angles
+
+1237
+00:58:26,790 --> 00:58:30,140
+while still being tangent to that face.
+
+1238
+00:58:30,140 --> 00:58:34,240
+So we need to constrain it
+again using a second plane.
+
+1239
+00:58:34,240 --> 00:58:36,420
+So I had selected the
+side of our face here.
+
+1240
+00:58:36,420 --> 00:58:40,050
+And SolidWorks defaulted
+to perpendicularity.
+
+1241
+00:58:40,050 --> 00:58:44,620
+But you could select that yourself,
+and it would give the same result.
+
+1242
+00:58:44,620 --> 00:58:48,220
+>> So all we've done is
+just define this plane
+
+1243
+00:58:48,220 --> 00:58:51,530
+that is tangent to our
+bottom face here but then
+
+1244
+00:58:51,530 --> 00:58:53,670
+orthogonal to the side of the part.
+
+1245
+00:58:53,670 --> 00:58:56,000
+So when we create our
+hole, our hole is going
+
+1246
+00:58:56,000 --> 00:58:58,165
+to extrude normal to the
+plane, which is going
+
+1247
+00:58:58,165 --> 00:58:59,790
+to be parallel to the side of the part.
+
+1248
+00:58:59,790 --> 00:59:00,740
+That's what we want.
+
+1249
+00:59:00,740 --> 00:59:05,260
+If we were to create tangency
+on a different plane,
+
+1250
+00:59:05,260 --> 00:59:09,230
+then perhaps the hole would be at
+an angle, and nothing would line up.
+
+1251
+00:59:09,230 --> 00:59:12,000
+So this is a nice,
+simple example for us.
+
+1252
+00:59:12,000 --> 00:59:15,960
+So we just hit normal to, now we're
+normal to the bottom of the part,
+
+1253
+00:59:15,960 --> 00:59:20,850
+and now we can go through the
+same procedure of CADing up a hole
+
+1254
+00:59:20,850 --> 00:59:23,170
+and extruding it.
+
+1255
+00:59:23,170 --> 00:59:26,530
+>> So again, we'll just
+create a circle here.
+
+1256
+00:59:26,530 --> 00:59:30,480
+A better idea would be-- we're
+not technically sketching
+
+1257
+00:59:30,480 --> 00:59:33,804
+right now, which is why
+SolidWorks just yelled at us.
+
+1258
+00:59:33,804 --> 00:59:36,470
+It's kind of like your mom, yelling
+at you to clean up the room.
+
+1259
+00:59:36,470 --> 00:59:39,520
+So let's sketch here,
+add in some center lines.
+
+1260
+00:59:39,520 --> 00:59:43,454
+
+1261
+00:59:43,454 --> 00:59:45,370
+I don't know why it
+doesn't want me to sketch.
+
+1262
+00:59:45,370 --> 00:59:48,240
+Oh, we forgot to select the plane
+that we're going to sketch on.
+
+1263
+00:59:48,240 --> 00:59:56,060
+So let's rename our plane bottom plane,
+hit Sketch, make a center line here.
+
+1264
+00:59:56,060 --> 00:59:59,210
+Something that's really cool is
+even though we're normal to this
+
+1265
+00:59:59,210 --> 01:00:02,420
+and we haven't unlocked
+or unhidden any sketches,
+
+1266
+01:00:02,420 --> 01:00:06,260
+SolidWorks will still allow us to
+create a sketch that is making relations
+
+1267
+01:00:06,260 --> 01:00:09,210
+to features of the part that
+we did not tell it to do.
+
+1268
+01:00:09,210 --> 01:00:12,520
+>> So you'll notice, when I hold
+the pencil over the corner
+
+1269
+01:00:12,520 --> 01:00:16,330
+here, that little orange bubble pops up.
+
+1270
+01:00:16,330 --> 01:00:19,310
+We can create a relation
+to the corner of the part.
+
+1271
+01:00:19,310 --> 01:00:22,300
+But we didn't tell SolidWorks
+that we want it to do that.
+
+1272
+01:00:22,300 --> 01:00:24,580
+So I think that's super cool.
+
+1273
+01:00:24,580 --> 01:00:27,180
+So we'll just make a
+center line up top here.
+
+1274
+01:00:27,180 --> 01:00:29,528
+Make another one down the center.
+
+1275
+01:00:29,528 --> 01:00:33,300
+
+1276
+01:00:33,300 --> 01:00:33,800
+Uh-oh.
+
+1277
+01:00:33,800 --> 01:00:37,480
+
+1278
+01:00:37,480 --> 01:00:40,300
+I did not do it off the midpoint.
+
+1279
+01:00:40,300 --> 01:00:42,360
+That is offensive.
+
+1280
+01:00:42,360 --> 01:00:44,170
+All right, go down the middle here.
+
+1281
+01:00:44,170 --> 01:00:46,852
+
+1282
+01:00:46,852 --> 01:00:47,851
+>> It's vertical.
+
+1283
+01:00:47,851 --> 01:00:48,350
+Cool.
+
+1284
+01:00:48,350 --> 01:00:50,580
+It's all black, so we're good to go.
+
+1285
+01:00:50,580 --> 01:00:53,470
+We'll make a circle.
+
+1286
+01:00:53,470 --> 01:00:56,350
+And dimension its diameter.
+
+1287
+01:00:56,350 --> 01:01:02,577
+I'm just going to arbitrarily say
+0.10 inches, a tenth of an inch.
+
+1288
+01:01:02,577 --> 01:01:05,660
+Everything's bolted together, so we
+don't have anything to measure off of.
+
+1289
+01:01:05,660 --> 01:01:11,640
+But we would, if this were threaded,
+you could stick several different screws
+
+1290
+01:01:11,640 --> 01:01:14,190
+in there and then just
+find which matched.
+
+1291
+01:01:14,190 --> 01:01:16,200
+But it's not just a clearance hole.
+
+1292
+01:01:16,200 --> 01:01:18,430
+So there are two
+different types of holes,
+
+1293
+01:01:18,430 --> 01:01:22,180
+threaded or tapped holes, that will
+accept threads, accept a screw.
+
+1294
+01:01:22,180 --> 01:01:24,080
+And those will not be able to move.
+
+1295
+01:01:24,080 --> 01:01:25,680
+That's how you bolt things together.
+
+1296
+01:01:25,680 --> 01:01:27,900
+Or there are clearance
+holes, which are larger
+
+1297
+01:01:27,900 --> 01:01:30,020
+than the biggest
+diameter of the threads.
+
+1298
+01:01:30,020 --> 01:01:32,620
+>> And that allows threads to
+just pass right on through.
+
+1299
+01:01:32,620 --> 01:01:36,020
+So the way our fixture
+works here is that we
+
+1300
+01:01:36,020 --> 01:01:38,400
+have a clearance hole in the metal.
+
+1301
+01:01:38,400 --> 01:01:40,980
+And then, another
+clearance hole in the part.
+
+1302
+01:01:40,980 --> 01:01:44,360
+And then, just a nut on top.
+
+1303
+01:01:44,360 --> 01:01:48,700
+You could go in and measure with
+calipers using the interior prongs here
+
+1304
+01:01:48,700 --> 01:01:50,020
+what the diameter is.
+
+1305
+01:01:50,020 --> 01:01:52,830
+But everything's bolted together,
+so we're not going to do that.
+
+1306
+01:01:52,830 --> 01:01:55,460
+We'll just set it at 1/10
+of an inch arbitrarily.
+
+1307
+01:01:55,460 --> 01:01:58,090
+Then, you would measure this height.
+
+1308
+01:01:58,090 --> 01:02:02,500
+I'll just set it at 0.250.
+
+1309
+01:02:02,500 --> 01:02:03,880
+>> Again, this is arbitrary.
+
+1310
+01:02:03,880 --> 01:02:07,640
+But you would ideally measure
+that and be good to go.
+
+1311
+01:02:07,640 --> 01:02:08,910
+So hit the green arrow.
+
+1312
+01:02:08,910 --> 01:02:10,270
+Exit the sketch.
+
+1313
+01:02:10,270 --> 01:02:11,220
+Sketch is done.
+
+1314
+01:02:11,220 --> 01:02:14,620
+Now, we're going to make it into
+a feature by hitting extrude cut.
+
+1315
+01:02:14,620 --> 01:02:18,880
+We want it to only go through the
+first layer, so we hit Up To Next.
+
+1316
+01:02:18,880 --> 01:02:20,300
+Hit the green arrow.
+
+1317
+01:02:20,300 --> 01:02:20,989
+Now cool.
+
+1318
+01:02:20,989 --> 01:02:24,030
+So another cool thing, I'm just going
+to hide this plane because it's not
+
+1319
+01:02:24,030 --> 01:02:25,363
+doing anything for us right now.
+
+1320
+01:02:25,363 --> 01:02:28,300
+
+1321
+01:02:28,300 --> 01:02:31,390
+>> So another cool thing is that
+we did not tell SolidWorks
+
+1322
+01:02:31,390 --> 01:02:33,980
+how deep we wanted that hole to be.
+
+1323
+01:02:33,980 --> 01:02:37,460
+We just said Up To Next, which means
+that there are many, many layers here.
+
+1324
+01:02:37,460 --> 01:02:41,100
+There's one, two, three, four, five
+layers that it could have cut through.
+
+1325
+01:02:41,100 --> 01:02:44,690
+But just by saying Up To Next, it knew
+to only cut through the first one.
+
+1326
+01:02:44,690 --> 01:02:49,510
+If we were to say Through
+All, hit the green arrow,
+
+1327
+01:02:49,510 --> 01:02:50,810
+it sketches through everything.
+
+1328
+01:02:50,810 --> 01:02:53,430
+You can see daylight on
+the other side of it.
+
+1329
+01:02:53,430 --> 01:02:54,580
+That's not what we want.
+
+1330
+01:02:54,580 --> 01:02:56,080
+So Up To Next.
+
+1331
+01:02:56,080 --> 01:03:00,230
+There are a lot of options here,
+but Up To Next is what we want.
+
+1332
+01:03:00,230 --> 01:03:00,730
+Cool.
+
+1333
+01:03:00,730 --> 01:03:04,550
+So now our part is completely
+done, and it is time to machine it.
+
+1334
+01:03:04,550 --> 01:03:08,070
+So like I said, we're going
+to step through doing this
+
+1335
+01:03:08,070 --> 01:03:10,600
+with MakerBot 3D printer.
+
+1336
+01:03:10,600 --> 01:03:11,980
+But you can do it with anything.
+
+1337
+01:03:11,980 --> 01:03:14,100
+So we'll go here.
+
+1338
+01:03:14,100 --> 01:03:17,640
+We're going to save our
+part as a .stl file.
+
+1339
+01:03:17,640 --> 01:03:23,940
+So we do Save As, lend
+support to, and select .stl.
+
+1340
+01:03:23,940 --> 01:03:24,650
+Hit Save.
+
+1341
+01:03:24,650 --> 01:03:27,300
+I'm actually going to save
+this in my Downloads folder.
+
+1342
+01:03:27,300 --> 01:03:28,394
+Hit Save.
+
+1343
+01:03:28,394 --> 01:03:29,310
+SolidWorks prompts us.
+
+1344
+01:03:29,310 --> 01:03:30,700
+Do you want this to be an STL?
+
+1345
+01:03:30,700 --> 01:03:31,440
+Hit Yes.
+
+1346
+01:03:31,440 --> 01:03:31,940
+Cool.
+
+1347
+01:03:31,940 --> 01:03:35,900
+And now, we are ready to fire up
+to MakerBot desktop application.
+
+1348
+01:03:35,900 --> 01:03:38,028
+>> So let's do that.
+
+1349
+01:03:38,028 --> 01:03:41,840
+
+1350
+01:03:41,840 --> 01:03:43,890
+All right, ready to go.
+
+1351
+01:03:43,890 --> 01:03:48,175
+So at this point, I always like
+to view the plate from the top.
+
+1352
+01:03:48,175 --> 01:03:49,930
+It's nice to be on top.
+
+1353
+01:03:49,930 --> 01:03:51,640
+So we'll just go here.
+
+1354
+01:03:51,640 --> 01:03:52,162
+Add file.
+
+1355
+01:03:52,162 --> 01:03:53,620
+We're going to go to our downloads.
+
+1356
+01:03:53,620 --> 01:03:58,520
+I think we called it lens support 2.
+
+1357
+01:03:58,520 --> 01:04:02,500
+So here we go.
+
+1358
+01:04:02,500 --> 01:04:05,000
+Open it up.
+
+1359
+01:04:05,000 --> 01:04:05,965
+It is on our platform.
+
+1360
+01:04:05,965 --> 01:04:09,500
+
+1361
+01:04:09,500 --> 01:04:13,095
+>> So this is kind of an impractical
+way for us to print the part.
+
+1362
+01:04:13,095 --> 01:04:16,230
+If we zoom in a little
+bit here, you'll notice
+
+1363
+01:04:16,230 --> 01:04:19,360
+that the arc is touching the base.
+
+1364
+01:04:19,360 --> 01:04:22,470
+So the 3D printer is going to try
+to figure out a way to print this.
+
+1365
+01:04:22,470 --> 01:04:24,950
+But it's going to freak out
+unless you add supports to it.
+
+1366
+01:04:24,950 --> 01:04:26,590
+But that's kind of a headache.
+
+1367
+01:04:26,590 --> 01:04:31,020
+>> The easy way to do it
+is just to select turn.
+
+1368
+01:04:31,020 --> 01:04:33,930
+The part is selected because
+it's highlighted in yellow.
+
+1369
+01:04:33,930 --> 01:04:41,370
+Turn, and then we're going
+to want to go-- whoops.
+
+1370
+01:04:41,370 --> 01:04:43,320
+We're just going to
+push it back 90 degrees.
+
+1371
+01:04:43,320 --> 01:04:44,560
+Hit Lay Flat.
+
+1372
+01:04:44,560 --> 01:04:46,830
+Lay Flat ensures that its
+bottom face is touching
+
+1373
+01:04:46,830 --> 01:04:49,460
+the bottom face of the build plate.
+
+1374
+01:04:49,460 --> 01:04:50,780
+And we're good to go.
+
+1375
+01:04:50,780 --> 01:04:54,630
+So our maker bot is
+not right now connected
+
+1376
+01:04:54,630 --> 01:04:56,190
+to the network for some reason.
+
+1377
+01:04:56,190 --> 01:04:57,520
+But that's OK.
+
+1378
+01:04:57,520 --> 01:04:59,584
+We can just hit Export Print File.
+
+1379
+01:04:59,584 --> 01:05:00,875
+It'll take a second to process.
+
+1380
+01:05:00,875 --> 01:05:03,580
+
+1381
+01:05:03,580 --> 01:05:05,540
+>> And you can put it on
+a flash drive and then
+
+1382
+01:05:05,540 --> 01:05:08,150
+plug that flash drive into the printer.
+
+1383
+01:05:08,150 --> 01:05:13,530
+So it's a good idea sometimes to
+mess around with the settings.
+
+1384
+01:05:13,530 --> 01:05:17,310
+When you first open this box up,
+it'll say-- it has a couple presets.
+
+1385
+01:05:17,310 --> 01:05:19,300
+Do you want low resolution,
+high resolution?
+
+1386
+01:05:19,300 --> 01:05:22,390
+But we can actually change these
+at a much more granular level.
+
+1387
+01:05:22,390 --> 01:05:26,550
+So I'll just walk through a couple of
+these parameters and what they mean.
+
+1388
+01:05:26,550 --> 01:05:32,040
+>> Infill is percent of the volume of
+the part is being actually printed.
+
+1389
+01:05:32,040 --> 01:05:35,510
+So if infill were at 100%,
+everything would be printed.
+
+1390
+01:05:35,510 --> 01:05:39,200
+It wouldn't do any null hollow
+features, no honeycombing.
+
+1391
+01:05:39,200 --> 01:05:41,030
+It would print a completely solid part.
+
+1392
+01:05:41,030 --> 01:05:42,820
+It would take an eternity.
+
+1393
+01:05:42,820 --> 01:05:46,430
+So we will set it as 15% here.
+
+1394
+01:05:46,430 --> 01:05:49,070
+I think the default that
+MakerBot comes with is like 10%.
+
+1395
+01:05:49,070 --> 01:05:50,990
+But 15% is fine.
+
+1396
+01:05:50,990 --> 01:05:54,690
+If you print the part and then try
+it out and it buckles or breaks
+
+1397
+01:05:54,690 --> 01:05:57,440
+or it seems kind of weak, then
+you can just bump that number up
+
+1398
+01:05:57,440 --> 01:05:59,000
+and it'll be a lot stronger.
+
+1399
+01:05:59,000 --> 01:06:01,560
+The plastic filament itself
+is actually pretty strong,
+
+1400
+01:06:01,560 --> 01:06:03,610
+so just bump that number up.
+
+1401
+01:06:03,610 --> 01:06:04,910
+It'll make it a bit stronger.
+
+1402
+01:06:04,910 --> 01:06:07,450
+>> Number of shells is
+how many shells on top
+
+1403
+01:06:07,450 --> 01:06:10,660
+of the honeycomb, how many layers
+on top of the honeycomb it prints.
+
+1404
+01:06:10,660 --> 01:06:13,260
+I set it to five to give
+it a nice finish quality.
+
+1405
+01:06:13,260 --> 01:06:17,950
+And then, layer height is the diameter
+of the thread that is being extruded.
+
+1406
+01:06:17,950 --> 01:06:21,970
+So right now, 0.2 millimeters,
+a fifth of a millimeter
+
+1407
+01:06:21,970 --> 01:06:23,100
+is what it's printing at.
+
+1408
+01:06:23,100 --> 01:06:28,170
+But I think it goes all the way down
+to, wow, a hundredth of a millimeter.
+
+1409
+01:06:28,170 --> 01:06:28,870
+That is tiny.
+
+1410
+01:06:28,870 --> 01:06:35,550
+So that will take-- if we set this
+to 100% infill with five shells
+
+1411
+01:06:35,550 --> 01:06:40,465
+at 0.01 millimeter layer height, hit
+Save Settings, and then Export Print
+
+1412
+01:06:40,465 --> 01:06:44,130
+File, you'll see the expected
+time is going to be huge.
+
+1413
+01:06:44,130 --> 01:06:47,990
+We'll just let it process because I'm
+curious to see how large it would be.
+
+1414
+01:06:47,990 --> 01:06:54,510
+>> I think this part using 15% infill,
+0.2 millimeter layer, and five shells
+
+1415
+01:06:54,510 --> 01:06:56,115
+took about two hours to print.
+
+1416
+01:06:56,115 --> 01:06:58,240
+But you can see it's even
+taking a really long time
+
+1417
+01:06:58,240 --> 01:07:04,250
+to prepare and to create the
+actual MakerBot file for it.
+
+1418
+01:07:04,250 --> 01:07:07,840
+>> So something that's MakerBot about
+specific is that from this desktop
+
+1419
+01:07:07,840 --> 01:07:11,510
+application, it will export
+in a .makerbot file format.
+
+1420
+01:07:11,510 --> 01:07:14,000
+That is only file format
+that the machine will accept.
+
+1421
+01:07:14,000 --> 01:07:17,170
+If you try to give it an STL, it
+will freak out, maybe explode.
+
+1422
+01:07:17,170 --> 01:07:21,890
+So always a good idea to export
+in a .makerbot file format.
+
+1423
+01:07:21,890 --> 01:07:23,820
+So that's going to process.
+
+1424
+01:07:23,820 --> 01:07:30,270
+>> In the meantime, let's just hop back to
+SolidWorks here and look at our part.
+
+1425
+01:07:30,270 --> 01:07:33,580
+So this was kind of a
+nice example of a part
+
+1426
+01:07:33,580 --> 01:07:37,770
+because it allows you to design for
+something that already exists, right?
+
+1427
+01:07:37,770 --> 01:07:41,210
+We had to measure all the
+supports that already exist.
+
+1428
+01:07:41,210 --> 01:07:43,230
+In reality, there are a
+lot more considerations
+
+1429
+01:07:43,230 --> 01:07:46,120
+that you need to take into
+account for when designing a part.
+
+1430
+01:07:46,120 --> 01:07:51,270
+For example, I won't do an in depth
+demo of this little phone dock,
+
+1431
+01:07:51,270 --> 01:07:53,830
+but there were a couple
+more considerations
+
+1432
+01:07:53,830 --> 01:07:55,330
+that we needed to take into account.
+
+1433
+01:07:55,330 --> 01:07:57,329
+>> So you'll notice that
+when the phone is sitting,
+
+1434
+01:07:57,329 --> 01:07:59,340
+and I'll try to give
+you a side angle there.
+
+1435
+01:07:59,340 --> 01:08:01,170
+When the phone is
+sitting in the dock, it
+
+1436
+01:08:01,170 --> 01:08:03,990
+is kind of raked back by a little bit.
+
+1437
+01:08:03,990 --> 01:08:05,540
+I think I set that at 15 degrees.
+
+1438
+01:08:05,540 --> 01:08:06,900
+That's somewhat arbitrary.
+
+1439
+01:08:06,900 --> 01:08:11,100
+But as it's raked back, the
+center of gravity of the phone
+
+1440
+01:08:11,100 --> 01:08:14,760
+is going to be displaced
+from its base meaning that,
+
+1441
+01:08:14,760 --> 01:08:19,260
+if when designing the part we had just
+cut it off and not had this back panel,
+
+1442
+01:08:19,260 --> 01:08:22,370
+but it was only this much,
+then when we put the phone in,
+
+1443
+01:08:22,370 --> 01:08:23,850
+it would've just toppled over.
+
+1444
+01:08:23,850 --> 01:08:26,880
+>> That's because the center
+of gravity of the whole part
+
+1445
+01:08:26,880 --> 01:08:30,490
+of the phone, the heavy part,
+would extend proud of the base.
+
+1446
+01:08:30,490 --> 01:08:33,090
+And it will create a tipping
+moment, and it'll fall over.
+
+1447
+01:08:33,090 --> 01:08:38,550
+So a way to combat that in design
+is to just make a quick mock up
+
+1448
+01:08:38,550 --> 01:08:41,580
+of your phone, which will
+take like two seconds.
+
+1449
+01:08:41,580 --> 01:08:43,310
+We'll just make a new part.
+
+1450
+01:08:43,310 --> 01:08:46,050
+Make the fastest mock up of an iPhone.
+
+1451
+01:08:46,050 --> 01:08:50,170
+So let's make a rectangle
+on the top plane.
+
+1452
+01:08:50,170 --> 01:08:55,490
+Here, create, define these.
+
+1453
+01:08:55,490 --> 01:08:57,364
+Just going to measure
+quickly with calipers.
+
+1454
+01:08:57,364 --> 01:09:00,370
+
+1455
+01:09:00,370 --> 01:09:10,010
+The width is 2.308.
+
+1456
+01:09:10,010 --> 01:09:24,260
+And then, the height is 4.880.
+
+1457
+01:09:24,260 --> 01:09:29,760
+And then, the depth, this is the number
+that everybody cares about in tech,
+
+1458
+01:09:29,760 --> 01:09:32,300
+0.30.
+
+1459
+01:09:32,300 --> 01:09:37,870
+I have a screen protector on it, 0.303.
+
+1460
+01:09:37,870 --> 01:09:39,130
+>> Cool.
+
+1461
+01:09:39,130 --> 01:09:39,802
+Extrude it.
+
+1462
+01:09:39,802 --> 01:09:43,910
+
+1463
+01:09:43,910 --> 01:09:48,830
+And then, I'll add some fillets.
+
+1464
+01:09:48,830 --> 01:09:51,798
+It's a little bit trickier
+to measure the fill diameter.
+
+1465
+01:09:51,798 --> 01:09:54,214
+You can use a gauge, but I
+don't have one on me right now.
+
+1466
+01:09:54,214 --> 01:09:59,318
+
+1467
+01:09:59,318 --> 01:10:01,890
+We'll just eye it, and that'll be fine.
+
+1468
+01:10:01,890 --> 01:10:10,050
+
+1469
+01:10:10,050 --> 01:10:12,180
+That looks about right, just visually.
+
+1470
+01:10:12,180 --> 01:10:15,990
+This is like a dummy phone that
+we just made in like a minute.
+
+1471
+01:10:15,990 --> 01:10:22,280
+So we'll save this as iPhone dummy.
+
+1472
+01:10:22,280 --> 01:10:28,300
+
+1473
+01:10:28,300 --> 01:10:32,190
+And now, we can create an
+assembly with our dock and measure
+
+1474
+01:10:32,190 --> 01:10:35,400
+how far the middle of our
+phone is from the base.
+
+1475
+01:10:35,400 --> 01:10:39,426
+So I had mentioned before that we
+create parts, assemblies, and drawings.
+
+1476
+01:10:39,426 --> 01:10:41,300
+Drawings are not really
+something that you'll
+
+1477
+01:10:41,300 --> 01:10:44,310
+mess with unless you're designing
+parts that will be made out
+
+1478
+01:10:44,310 --> 01:10:47,120
+of house at a machine
+shop or what have you.
+
+1479
+01:10:47,120 --> 01:10:50,530
+And it's a little bit more involved
+to properly dimension a drawing
+
+1480
+01:10:50,530 --> 01:10:54,020
+and make sure that every
+dimension is clear.
+
+1481
+01:10:54,020 --> 01:10:57,190
+And you also have to add tolerances,
+and that gets a little bit more
+
+1482
+01:10:57,190 --> 01:10:59,350
+involved, so we'll just
+kind of gloss over that.
+
+1483
+01:10:59,350 --> 01:11:02,490
+But let's say we want to make an
+assembly with the phone dock that I've
+
+1484
+01:11:02,490 --> 01:11:04,900
+already designed and our dummy phone.
+
+1485
+01:11:04,900 --> 01:11:06,930
+>> So we've already saved this.
+
+1486
+01:11:06,930 --> 01:11:08,590
+Let's go up to File.
+
+1487
+01:11:08,590 --> 01:11:10,880
+Make Assembly From Part.
+
+1488
+01:11:10,880 --> 01:11:14,090
+And then, we're going to
+hit Add and iPhone dummy.
+
+1489
+01:11:14,090 --> 01:11:17,510
+Also, nice to just select
+this graphics preview.
+
+1490
+01:11:17,510 --> 01:11:20,020
+That'll show you the actual part itself.
+
+1491
+01:11:20,020 --> 01:11:27,520
+And then, insert another component will
+browse for the iPhone dock, CS50 dock.
+
+1492
+01:11:27,520 --> 01:11:28,880
+Cool.
+
+1493
+01:11:28,880 --> 01:11:32,430
+So now, it's a nice sanity
+check just to double check
+
+1494
+01:11:32,430 --> 01:11:35,210
+that the phone will actually fit
+in the dock that we've designed
+
+1495
+01:11:35,210 --> 01:11:37,180
+and how it will look.
+
+1496
+01:11:37,180 --> 01:11:40,670
+So let's make this face coincident
+with the bottom of this face.
+
+1497
+01:11:40,670 --> 01:11:44,890
+And these relations are all handled
+through what are called mates
+
+1498
+01:11:44,890 --> 01:11:47,400
+in assemblies wherein
+you have two parts,
+
+1499
+01:11:47,400 --> 01:11:52,090
+and you need to join them by a
+list of defined joining features.
+
+1500
+01:11:52,090 --> 01:11:58,130
+>> So for example, we need to put our
+phone which is being currently blown up,
+
+1501
+01:11:58,130 --> 01:11:59,220
+call you later!
+
+1502
+01:11:59,220 --> 01:12:02,350
+In a dock, and we need to say
+that the bottom face of our phone
+
+1503
+01:12:02,350 --> 01:12:06,190
+is coincident with the inside
+bottom face of the dock.
+
+1504
+01:12:06,190 --> 01:12:08,230
+And then, this will be centered inside.
+
+1505
+01:12:08,230 --> 01:12:12,180
+We've given a little bit of a tolerance
+so that it's not a super tight fit.
+
+1506
+01:12:12,180 --> 01:12:14,440
+And that will completely define it.
+
+1507
+01:12:14,440 --> 01:12:16,640
+We'll make these two coincident.
+
+1508
+01:12:16,640 --> 01:12:23,020
+Select mate up here, and it defaults
+to coincident, but it's inverted.
+
+1509
+01:12:23,020 --> 01:12:27,210
+So if we just hit this little
+button down here, it'll flip it.
+
+1510
+01:12:27,210 --> 01:12:30,920
+We hit the green arrow.
+
+1511
+01:12:30,920 --> 01:12:33,560
+So looking good.
+
+1512
+01:12:33,560 --> 01:12:37,617
+I've actually forgotten what the
+tolerance was on the spacing.
+
+1513
+01:12:37,617 --> 01:12:39,700
+Like I said, I gave it a
+little bit of extra space
+
+1514
+01:12:39,700 --> 01:12:41,750
+because it doesn't really
+want to be a tight fit.
+
+1515
+01:12:41,750 --> 01:12:44,340
+So what we can do is measure
+the difference between them
+
+1516
+01:12:44,340 --> 01:12:45,590
+and then split the difference.
+
+1517
+01:12:45,590 --> 01:12:48,210
+>> So we can use the measure
+tool in SolidWorks.
+
+1518
+01:12:48,210 --> 01:12:50,502
+We go up here to evaluate, measure.
+
+1519
+01:12:50,502 --> 01:12:52,710
+Little tape measure comes
+up and that annoying window
+
+1520
+01:12:52,710 --> 01:12:54,700
+in the middle of your part.
+
+1521
+01:12:54,700 --> 01:12:58,580
+And we're going to select these two
+faces, they're highlighted in green.
+
+1522
+01:12:58,580 --> 01:13:01,960
+And their distance is 2.36 inches.
+
+1523
+01:13:01,960 --> 01:13:05,070
+So I think we said 2.36.
+
+1524
+01:13:05,070 --> 01:13:06,190
+We'll remember that.
+
+1525
+01:13:06,190 --> 01:13:09,680
+This was 2.308.
+
+1526
+01:13:09,680 --> 01:13:13,390
+So we'll just split that
+difference with space.
+
+1527
+01:13:13,390 --> 01:13:13,890
+Whoa.
+
+1528
+01:13:13,890 --> 01:13:16,830
+So we got a mate.
+
+1529
+01:13:16,830 --> 01:13:18,570
+Select these two faces.
+
+1530
+01:13:18,570 --> 01:13:19,690
+Coincident.
+
+1531
+01:13:19,690 --> 01:13:22,040
+Whoa, gotta add a little
+bit of space in there.
+
+1532
+01:13:22,040 --> 01:13:25,620
+So it was, I think, 2.36.
+
+1533
+01:13:25,620 --> 01:13:31,700
+We'll make this in parentheses to be
+clearer, minus 2.308 divided by 2.
+
+1534
+01:13:31,700 --> 01:13:33,630
+That's splitting the
+difference for space.
+
+1535
+01:13:33,630 --> 01:13:34,522
+Good to go.
+
+1536
+01:13:34,522 --> 01:13:36,730
+But if we eye it, it looks
+like the phone is actually
+
+1537
+01:13:36,730 --> 01:13:39,210
+extended in this
+direction beyond the dock.
+
+1538
+01:13:39,210 --> 01:13:40,945
+So we just need to flip it.
+
+1539
+01:13:40,945 --> 01:13:42,420
+It made very little difference.
+
+1540
+01:13:42,420 --> 01:13:43,800
+Can't really see all that well.
+
+1541
+01:13:43,800 --> 01:13:44,960
+Hit the green arrow.
+
+1542
+01:13:44,960 --> 01:13:50,860
+And then finally, we'll make this back
+face coincident to the back there.
+
+1543
+01:13:50,860 --> 01:13:54,480
+>> Realistically, there's also a
+tolerance for, you can see there,
+
+1544
+01:13:54,480 --> 01:13:55,560
+space in the front.
+
+1545
+01:13:55,560 --> 01:13:57,144
+We could split that difference.
+
+1546
+01:13:57,144 --> 01:13:59,310
+But it's just the same
+procedure, so it's redundant.
+
+1547
+01:13:59,310 --> 01:14:02,920
+Cool, so let's look at it from the side.
+
+1548
+01:14:02,920 --> 01:14:04,220
+Mate is still selected there.
+
+1549
+01:14:04,220 --> 01:14:08,170
+
+1550
+01:14:08,170 --> 01:14:11,480
+>> If we were to draw a line
+normal to this in the middle,
+
+1551
+01:14:11,480 --> 01:14:14,950
+you'll actually see that the
+center of gravity of the phone
+
+1552
+01:14:14,950 --> 01:14:16,670
+is somewhere in this region.
+
+1553
+01:14:16,670 --> 01:14:18,150
+It's in the middle of the base.
+
+1554
+01:14:18,150 --> 01:14:22,300
+We purposefully extended the base well
+beyond where the center of gravity
+
+1555
+01:14:22,300 --> 01:14:25,430
+falls such that it will be able
+to sustain a tipping moment,
+
+1556
+01:14:25,430 --> 01:14:27,800
+like when you place
+your phone in the dock.
+
+1557
+01:14:27,800 --> 01:14:29,970
+You don't have to do it super gently.
+
+1558
+01:14:29,970 --> 01:14:30,980
+You can just put it in.
+
+1559
+01:14:30,980 --> 01:14:32,280
+It doesn't fall over.
+
+1560
+01:14:32,280 --> 01:14:35,930
+>> If the distance between where the
+center of gravity falls on the base
+
+1561
+01:14:35,930 --> 01:14:38,570
+and how far we extend the
+base back was really small,
+
+1562
+01:14:38,570 --> 01:14:42,260
+it would take a very, very small
+tipping moment to actually tip it over.
+
+1563
+01:14:42,260 --> 01:14:44,920
+So that would just be very
+impractical because you
+
+1564
+01:14:44,920 --> 01:14:47,190
+would have to very delicately
+place your phone inside.
+
+1565
+01:14:47,190 --> 01:14:52,400
+So I just added maybe a
+quarter of an inch or half
+
+1566
+01:14:52,400 --> 01:14:53,770
+inch beyond what we needed.
+
+1567
+01:14:53,770 --> 01:14:56,954
+I did not calculate the required
+tipping moment to take this over.
+
+1568
+01:14:56,954 --> 01:14:58,620
+I think that might be a little overkill.
+
+1569
+01:14:58,620 --> 01:15:02,631
+>> But physically, that's
+how it would be done.
+
+1570
+01:15:02,631 --> 01:15:03,130
+Cool.
+
+1571
+01:15:03,130 --> 01:15:04,930
+So now, we have this assembly saved.
+
+1572
+01:15:04,930 --> 01:15:09,010
+You could make a more detailed
+iPhone if you wanted dimensions.
+
+1573
+01:15:09,010 --> 01:15:12,590
+I had made this little
+extrusion for the Home button,
+
+1574
+01:15:12,590 --> 01:15:14,880
+and this is iPhone specific.
+
+1575
+01:15:14,880 --> 01:15:17,360
+But if your phone's in
+the dock, you can just
+
+1576
+01:15:17,360 --> 01:15:20,610
+turn it on without having to take
+it out and look at all the text
+
+1577
+01:15:20,610 --> 01:15:26,270
+messages that you're getting
+or SnapChats, my preference.
+
+1578
+01:15:26,270 --> 01:15:32,280
+>> So another assumption, viewers at home
+might be thinking, Ansel, you idiot!
+
+1579
+01:15:32,280 --> 01:15:37,670
+You assumed that the phone was
+uniformly distributed mass wise,
+
+1580
+01:15:37,670 --> 01:15:44,090
+like that mass inside the boundaries
+of the phone is uniformly distributed.
+
+1581
+01:15:44,090 --> 01:15:45,200
+That is not the case.
+
+1582
+01:15:45,200 --> 01:15:47,370
+But I think that's a fine assumption.
+
+1583
+01:15:47,370 --> 01:15:49,200
+So we can save this assembly.
+
+1584
+01:15:49,200 --> 01:15:53,132
+We'll call it iPhone in dock.
+
+1585
+01:15:53,132 --> 01:15:53,840
+We're good to go.
+
+1586
+01:15:53,840 --> 01:16:00,590
+>> So you can create really complicated
+or ornate, involved assemblies
+
+1587
+01:16:00,590 --> 01:16:02,260
+from many, many parts.
+
+1588
+01:16:02,260 --> 01:16:07,100
+Just know that each part has a certain
+number of fixtures and lines associated
+
+1589
+01:16:07,100 --> 01:16:07,600
+with it.
+
+1590
+01:16:07,600 --> 01:16:09,720
+So if you have an assembly
+with a lot of parts
+
+1591
+01:16:09,720 --> 01:16:12,890
+and you want to move it around and
+measure and do a lot of things,
+
+1592
+01:16:12,890 --> 01:16:17,900
+it can become laggy depending on
+how powerful your computer is.
+
+1593
+01:16:17,900 --> 01:16:22,440
+Just something to be
+aware of that will happen.
+
+1594
+01:16:22,440 --> 01:16:25,940
+>> So that is kind of an intro to CAD.
+
+1595
+01:16:25,940 --> 01:16:30,530
+The takeaways, I would say, are
+definitely add relations everywhere.
+
+1596
+01:16:30,530 --> 01:16:32,880
+You will kick yourself
+in the rump if you don't.
+
+1597
+01:16:32,880 --> 01:16:39,090
+It's very painful to go back later
+and change redundant dimensions.
+
+1598
+01:16:39,090 --> 01:16:40,310
+It's useless, right?
+
+1599
+01:16:40,310 --> 01:16:44,490
+You always want to dimension everything
+such that you dimension one number,
+
+1600
+01:16:44,490 --> 01:16:46,450
+and then add relations from that number.
+
+1601
+01:16:46,450 --> 01:16:47,710
+That's a huge takeaway.
+
+1602
+01:16:47,710 --> 01:16:50,960
+Just being clean, just like when you're
+writing code, being clean and labeling
+
+1603
+01:16:50,960 --> 01:16:51,600
+everything.
+
+1604
+01:16:51,600 --> 01:16:58,980
+Labeling your features-- you'll notice
+that when we made this little lens
+
+1605
+01:16:58,980 --> 01:17:00,710
+support, everything is labeled.
+
+1606
+01:17:00,710 --> 01:17:03,960
+If you don't make this in house
+and you ship it to somebody,
+
+1607
+01:17:03,960 --> 01:17:07,420
+most places, maybe 95% of
+machine shops or whatever,
+
+1608
+01:17:07,420 --> 01:17:09,920
+will take a SolidWorks
+part file, you don't even
+
+1609
+01:17:09,920 --> 01:17:12,710
+have to make drawings for it,
+you just send them this file.
+
+1610
+01:17:12,710 --> 01:17:15,710
+And they'll be able to get every
+measurement they need off of this file.
+
+1611
+01:17:15,710 --> 01:17:19,590
+And it's a lot easier for them to work
+with if everything is neatly organized.
+
+1612
+01:17:19,590 --> 01:17:21,180
+You can even add folders.
+
+1613
+01:17:21,180 --> 01:17:25,460
+We can select the bottom feature,
+hit Shift, or rather hold down Shift,
+
+1614
+01:17:25,460 --> 01:17:26,524
+and select the top.
+
+1615
+01:17:26,524 --> 01:17:28,440
+And everything in the
+middle becomes selected.
+
+1616
+01:17:28,440 --> 01:17:32,090
+And then right click adds a new folder.
+
+1617
+01:17:32,090 --> 01:17:34,245
+We'll call it awesome folder.
+
+1618
+01:17:34,245 --> 01:17:36,820
+
+1619
+01:17:36,820 --> 01:17:39,412
+And now, everything is in a folder.
+
+1620
+01:17:39,412 --> 01:17:42,120
+Things like that, just making
+everything very neat and organized,
+
+1621
+01:17:42,120 --> 01:17:43,990
+another takeaway.
+
+1622
+01:17:43,990 --> 01:17:46,360
+>> And then ultimately,
+being very explicit.
+
+1623
+01:17:46,360 --> 01:17:49,410
+So there are relations between
+something that you've already defined
+
+1624
+01:17:49,410 --> 01:17:52,100
+and other things that are
+related to it, but then there
+
+1625
+01:17:52,100 --> 01:17:53,420
+are also dimension relations.
+
+1626
+01:17:53,420 --> 01:17:57,070
+So it's really important to
+be explicit and make sure
+
+1627
+01:17:57,070 --> 01:18:00,470
+that everything in your sketch is
+completely black before you move on.
+
+1628
+01:18:00,470 --> 01:18:04,450
+So at this point, I'm going to
+open the floor up to questions,
+
+1629
+01:18:04,450 --> 01:18:06,950
+and we can start to talk a
+little bit more about that.
+
+1630
+01:18:06,950 --> 01:18:10,480
+And then, once questions are done,
+I'll show you the render process pretty
+
+1631
+01:18:10,480 --> 01:18:15,070
+quickly wherein we can generate a
+really realistic looking image of this.
+
+1632
+01:18:15,070 --> 01:18:19,890
+When you're looking at this in CAD, it
+just looks kind of a dull gray blob.
+
+1633
+01:18:19,890 --> 01:18:24,010
+But when you do a render, it will
+be very, very realistic looking.
+
+1634
+01:18:24,010 --> 01:18:25,620
+So questions?
+
+1635
+01:18:25,620 --> 01:18:27,970
+>> AUDIENCE: MakerBot stuff?
+
+1636
+01:18:27,970 --> 01:18:30,145
+>> ANSEL DUFF: Any other questions?
+
+1637
+01:18:30,145 --> 01:18:36,334
+The MakerBot is, no fault of
+our own, actually, no, it's
+
+1638
+01:18:36,334 --> 01:18:37,500
+definitely fault of our own.
+
+1639
+01:18:37,500 --> 01:18:40,230
+We have lost a couple sheets,
+the tape sheets on the bottom.
+
+1640
+01:18:40,230 --> 01:18:45,446
+So once we get those in,
+we'll be able to print again.
+
+1641
+01:18:45,446 --> 01:18:46,494
+>> AUDIENCE: [INAUDIBLE].
+
+1642
+01:18:46,494 --> 01:18:47,660
+ANSEL DUFF: Oh, what's that?
+
+1643
+01:18:47,660 --> 01:18:48,542
+Oh, yeah.
+
+1644
+01:18:48,542 --> 01:18:50,750
+I thought you were talking
+about the actual MakerBot.
+
+1645
+01:18:50,750 --> 01:18:52,500
+76%, wow.
+
+1646
+01:18:52,500 --> 01:18:54,486
+It's going so slowly.
+
+1647
+01:18:54,486 --> 01:18:57,420
+I thought you meant can we print yet.
+
+1648
+01:18:57,420 --> 01:18:59,378
+AUDIENCE: You put together
+the tutorial online.
+
+1649
+01:18:59,378 --> 01:19:04,474
+Does that include the best resources
+for people to remember what to click
+
+1650
+01:19:04,474 --> 01:19:07,684
+and how to do some of the
+things you went through today?
+
+1651
+01:19:07,684 --> 01:19:08,350
+ANSEL DUFF: Yes.
+
+1652
+01:19:08,350 --> 01:19:12,120
+So there is-- the MakerBot tutorial,
+is that what you're referring to?
+
+1653
+01:19:12,120 --> 01:19:14,830
+>> AUDIENCE: The one you
+put on the website.
+
+1654
+01:19:14,830 --> 01:19:16,960
+>> ANSEL DUFF: Yeah, this one.
+
+1655
+01:19:16,960 --> 01:19:18,990
+So this is MakerBot specific.
+
+1656
+01:19:18,990 --> 01:19:21,830
+This is not SolidWorks specific.
+
+1657
+01:19:21,830 --> 01:19:24,870
+I hope that this video will be
+available in high resolution
+
+1658
+01:19:24,870 --> 01:19:30,890
+as a reference to the syntax and
+the GUI associated with SolidWorks.
+
+1659
+01:19:30,890 --> 01:19:36,000
+But the tutorials, I think, are super
+helpful as far as getting started goes.
+
+1660
+01:19:36,000 --> 01:19:42,430
+So when I hit New, or even use a hot
+key for that, but if we go to File, New,
+
+1661
+01:19:42,430 --> 01:19:45,470
+we get this prompt box where
+we would typically select part.
+
+1662
+01:19:45,470 --> 01:19:48,090
+But if we hit this
+tutorials box, then we
+
+1663
+01:19:48,090 --> 01:19:50,720
+are venturing into the
+world of the tutorial.
+
+1664
+01:19:50,720 --> 01:19:57,090
+>> So this is how I learned SolidWorks,
+was doing a bunch of these tutorials.
+
+1665
+01:19:57,090 --> 01:20:00,380
+In fact, if you take
+CS 51, which is kind
+
+1666
+01:20:00,380 --> 01:20:04,120
+of the intro to computer
+and machine design class,
+
+1667
+01:20:04,120 --> 01:20:06,800
+they will require, I
+think, the first p-set zero
+
+1668
+01:20:06,800 --> 01:20:08,594
+is doing all these tutorials.
+
+1669
+01:20:08,594 --> 01:20:09,510
+They're super helpful.
+
+1670
+01:20:09,510 --> 01:20:10,410
+They're quick.
+
+1671
+01:20:10,410 --> 01:20:13,730
+You follow along in your own time.
+
+1672
+01:20:13,730 --> 01:20:15,612
+They're a good way to
+learn the commands.
+
+1673
+01:20:15,612 --> 01:20:18,320
+I know I was starting to go a
+little bit quickly towards the end.
+
+1674
+01:20:18,320 --> 01:20:21,759
+>> AUDIENCE: Do they have cheat
+sheets or PDFs you've come across?
+
+1675
+01:20:21,759 --> 01:20:23,300
+ANSEL DUFF: Yeah, so there is a page.
+
+1676
+01:20:23,300 --> 01:20:25,690
+I'll put it on the staff site.
+
+1677
+01:20:25,690 --> 01:20:29,690
+There is a page with a bunch
+of hot keys for SolidWorks.
+
+1678
+01:20:29,690 --> 01:20:31,840
+SolidWorks is also super configurable.
+
+1679
+01:20:31,840 --> 01:20:34,450
+Like, you can change
+just about everything.
+
+1680
+01:20:34,450 --> 01:20:37,300
+If we go back to the main page--
+I'm just going to cancel this.
+
+1681
+01:20:37,300 --> 01:20:41,300
+If we go back to the main page, if you
+don't like this toolbar being there,
+
+1682
+01:20:41,300 --> 01:20:43,152
+you can drag it and put off to the side.
+
+1683
+01:20:43,152 --> 01:20:45,610
+I'll put it back up top, because
+I think it's the cleanest.
+
+1684
+01:20:45,610 --> 01:20:47,180
+You can change just about everything.
+
+1685
+01:20:47,180 --> 01:20:50,475
+If you want everything to be in
+millimeters, you can change that.
+
+1686
+01:20:50,475 --> 01:20:52,600
+You'll notice, when we were
+dimensioning something,
+
+1687
+01:20:52,600 --> 01:20:56,150
+let's go back here, that
+everything's to two decimal places.
+
+1688
+01:20:56,150 --> 01:20:56,860
+That's rubbish.
+
+1689
+01:20:56,860 --> 01:20:58,134
+Let's make it to three.
+
+1690
+01:20:58,134 --> 01:21:00,050
+We'll go to Document
+Properties up here, which
+
+1691
+01:21:00,050 --> 01:21:03,270
+is two icons over from the stop light.
+
+1692
+01:21:03,270 --> 01:21:07,590
+Document Properties,
+Dimensions, and then we
+
+1693
+01:21:07,590 --> 01:21:09,290
+set this to three decimal places.
+
+1694
+01:21:09,290 --> 01:21:10,050
+Hit OK.
+
+1695
+01:21:10,050 --> 01:21:12,570
+Everything changes to
+three decimal places.
+
+1696
+01:21:12,570 --> 01:21:15,280
+You can customize up the wazoo.
+
+1697
+01:21:15,280 --> 01:21:20,560
+>> But the biggest thing, I think the
+most useful user aspect of SolidWorks
+
+1698
+01:21:20,560 --> 01:21:23,540
+are hotkeys, just like
+many programs out there.
+
+1699
+01:21:23,540 --> 01:21:26,620
+I've been using them a lot,
+mainly holding down Control
+
+1700
+01:21:26,620 --> 01:21:30,500
+to add relations, Shift to highlight
+multiple things, and F to fit,
+
+1701
+01:21:30,500 --> 01:21:33,867
+like if we zoom out and then hit
+F. It fits the part in our view.
+
+1702
+01:21:33,867 --> 01:21:35,950
+But there are many, many,
+many, many more hotkeys.
+
+1703
+01:21:35,950 --> 01:21:38,690
+And I will put the page on the
+staff site that lists all them,
+
+1704
+01:21:38,690 --> 01:21:40,010
+and they're super useful.
+
+1705
+01:21:40,010 --> 01:21:41,972
+And just little shortcuts
+like double clicking
+
+1706
+01:21:41,972 --> 01:21:43,430
+when you're drawing a line to exit.
+
+1707
+01:21:43,430 --> 01:21:46,590
+
+1708
+01:21:46,590 --> 01:21:48,242
+Any other questions?
+
+1709
+01:21:48,242 --> 01:21:50,367
+>> AUDIENCE: Where do you [INAUDIBLE]?
+
+1710
+01:21:50,367 --> 01:21:51,450
+ANSEL DUFF: That's hidden.
+
+1711
+01:21:51,450 --> 01:21:52,860
+That is hidden.
+
+1712
+01:21:52,860 --> 01:21:55,419
+>> AUDIENCE: Why is the MakerBot
+printing that [INAUDIBLE]?
+
+1713
+01:21:55,419 --> 01:21:56,960
+ANSEL DUFF: So that's actually a bug.
+
+1714
+01:21:56,960 --> 01:21:59,110
+I contacted the manufacturer.
+
+1715
+01:21:59,110 --> 01:22:03,230
+There's somebody with the same
+name at that organization.
+
+1716
+01:22:03,230 --> 01:22:09,189
+>> AUDIENCE: The random one when you
+did the plane tangent to the hole,
+
+1717
+01:22:09,189 --> 01:22:11,272
+is it then possible once
+you've drawn on the plane
+
+1718
+01:22:11,272 --> 01:22:14,950
+to make the plane itself
+curve to fit on the surface?
+
+1719
+01:22:14,950 --> 01:22:18,307
+What if you drew something
+on the plane to eventually go
+
+1720
+01:22:18,307 --> 01:22:21,736
+onto the surface itself.
+
+1721
+01:22:21,736 --> 01:22:22,860
+ANSEL DUFF: Great question.
+
+1722
+01:22:22,860 --> 01:22:27,690
+So let's go back here to
+bottom plane, normal to it.
+
+1723
+01:22:27,690 --> 01:22:32,700
+Sometimes after a restless night,
+my bottom plane is not there either.
+
+1724
+01:22:32,700 --> 01:22:34,310
+But hit bottom plane.
+
+1725
+01:22:34,310 --> 01:22:35,830
+We're good to go.
+
+1726
+01:22:35,830 --> 01:22:39,950
+The question was, if we draw something
+on the plane, can it wrap around?
+
+1727
+01:22:39,950 --> 01:22:42,970
+Or rather, can the plane itself
+wrap around to a curved surface?
+
+1728
+01:22:42,970 --> 01:22:45,220
+And the answer to that,
+disappointingly, is no.
+
+1729
+01:22:45,220 --> 01:22:50,400
+You cannot wrap a plane to a face that
+is not planar, not completely flat.
+
+1730
+01:22:50,400 --> 01:22:55,110
+But if we did, watch, let's
+go back and sketch on here.
+
+1731
+01:22:55,110 --> 01:23:03,915
+And we'll write, I don't
+know, let's write SolidWorks.
+
+1732
+01:23:03,915 --> 01:23:08,010
+
+1733
+01:23:08,010 --> 01:23:13,170
+>> If we wanted extrude this here,
+even though we sketched it
+
+1734
+01:23:13,170 --> 01:23:18,700
+on a plane that was tangent to the
+curved surface, it will still work
+
+1735
+01:23:18,700 --> 01:23:21,960
+and it'll still take
+to a curved surface.
+
+1736
+01:23:21,960 --> 01:23:22,960
+If that makes any sense.
+
+1737
+01:23:22,960 --> 01:23:27,860
+You can make holes, any feature
+that you want in a sketch,
+
+1738
+01:23:27,860 --> 01:23:30,000
+and then apply that to a curved surface.
+
+1739
+01:23:30,000 --> 01:23:33,800
+But all the sketching has
+to be done on a plane.
+
+1740
+01:23:33,800 --> 01:23:37,200
+Also, the nice thing about the feature
+tree is that once you create something,
+
+1741
+01:23:37,200 --> 01:23:40,170
+it's easy to pick and choose
+what you want in your assembly.
+
+1742
+01:23:40,170 --> 01:23:43,710
+So like this, SolidWorks looks
+ridiculous because it's overflowing.
+
+1743
+01:23:43,710 --> 01:23:46,870
+>> So if we wanted to kind of put i
+on a shelf and use it later down
+
+1744
+01:23:46,870 --> 01:23:51,760
+the road, we don't want it right now,
+if we just hit Suppress, it goes away.
+
+1745
+01:23:51,760 --> 01:23:55,319
+So all I did was I left clicked, and
+then this little dialogue box pops up.
+
+1746
+01:23:55,319 --> 01:23:56,610
+You have a ton of options here.
+
+1747
+01:23:56,610 --> 01:23:58,390
+I just hit suppress.
+
+1748
+01:23:58,390 --> 01:24:00,090
+>> AUDIENCE: [INAUDIBLE].
+
+1749
+01:24:00,090 --> 01:24:02,710
+>> ANSEL DUFF: If we want it gone,
+or rather if we want it back,
+
+1750
+01:24:02,710 --> 01:24:04,090
+we just hit Unsuppress.
+
+1751
+01:24:04,090 --> 01:24:06,190
+It's back.
+
+1752
+01:24:06,190 --> 01:24:08,440
+So that's a really useful feature.
+
+1753
+01:24:08,440 --> 01:24:11,509
+Not so much in parts, but
+when you have an assembly,
+
+1754
+01:24:11,509 --> 01:24:13,800
+there are a couple other--
+I'll go back to the assembly
+
+1755
+01:24:13,800 --> 01:24:16,170
+and show you some cool
+assembly features.
+
+1756
+01:24:16,170 --> 01:24:22,500
+So if we wanted to see how the
+phone how the fillets morph
+
+1757
+01:24:22,500 --> 01:24:25,320
+to the fillets of the dock,
+we can highlight this.
+
+1758
+01:24:25,320 --> 01:24:26,750
+So we go to dock.
+
+1759
+01:24:26,750 --> 01:24:28,940
+Then we hit Change Transparency.
+
+1760
+01:24:28,940 --> 01:24:31,270
+This makes it semi-transparent.
+
+1761
+01:24:31,270 --> 01:24:36,970
+You'll notice that the fillets that
+we made here, there's plenty of space.
+
+1762
+01:24:36,970 --> 01:24:39,430
+>> Additionally, we'll change that back.
+
+1763
+01:24:39,430 --> 01:24:44,240
+You can also view in plane while
+moving through the depth of the part.
+
+1764
+01:24:44,240 --> 01:24:46,620
+So this little count,
+it's like a half donut.
+
+1765
+01:24:46,620 --> 01:24:48,190
+It's called Section View.
+
+1766
+01:24:48,190 --> 01:24:53,797
+If we hit that, actually,
+we want a different plane.
+
+1767
+01:24:53,797 --> 01:24:55,204
+Let's do top plane.
+
+1768
+01:24:55,204 --> 01:25:00,450
+
+1769
+01:25:00,450 --> 01:25:05,167
+>> So we hit Section View, and
+then move this in and out.
+
+1770
+01:25:05,167 --> 01:25:06,000
+Kind of hard to see.
+
+1771
+01:25:06,000 --> 01:25:07,180
+We'll zoom in a little bit.
+
+1772
+01:25:07,180 --> 01:25:11,800
+But this actually takes your field
+of view, your plane of vision,
+
+1773
+01:25:11,800 --> 01:25:13,500
+and pushes it through the part.
+
+1774
+01:25:13,500 --> 01:25:16,000
+So what's blue is actual material.
+
+1775
+01:25:16,000 --> 01:25:18,510
+There's a phone, there's a fillet.
+
+1776
+01:25:18,510 --> 01:25:21,420
+It's not that interesting for this part.
+
+1777
+01:25:21,420 --> 01:25:23,630
+But this can be done in
+both assemblies and parts.
+
+1778
+01:25:23,630 --> 01:25:26,150
+So if we go back to
+our lens support, then
+
+1779
+01:25:26,150 --> 01:25:30,300
+hit the same thing,
+little half donut here.
+
+1780
+01:25:30,300 --> 01:25:31,600
+It's kind of cool to see.
+
+1781
+01:25:31,600 --> 01:25:34,740
+>> Sometimes, when you're designing
+a complicated internal feature,
+
+1782
+01:25:34,740 --> 01:25:36,970
+this is really useful
+to check clearances,
+
+1783
+01:25:36,970 --> 01:25:40,870
+as a sanity check to make sure that
+holes are concentric, what have you.
+
+1784
+01:25:40,870 --> 01:25:43,590
+But you can just move it up and down.
+
+1785
+01:25:43,590 --> 01:25:48,615
+I'm just holding it down, left clicking,
+and it will show you everything.
+
+1786
+01:25:48,615 --> 01:25:49,865
+This can be done on any plane.
+
+1787
+01:25:49,865 --> 01:25:53,830
+
+1788
+01:25:53,830 --> 01:25:56,230
+So we'll see if the MakerBot is done.
+
+1789
+01:25:56,230 --> 01:25:56,790
+Oh, 80%.
+
+1790
+01:25:56,790 --> 01:25:59,150
+We'll do the render and we'll come back.
+
+1791
+01:25:59,150 --> 01:26:02,660
+>> So we had defined this
+part to be aluminum.
+
+1792
+01:26:02,660 --> 01:26:07,050
+We had also defined its
+appearance to be gray.
+
+1793
+01:26:07,050 --> 01:26:09,490
+We'll do polished aluminum.
+
+1794
+01:26:09,490 --> 01:26:13,750
+So as far as SolidWorks is
+concerned, it's appearance
+
+1795
+01:26:13,750 --> 01:26:16,332
+is completely taken care
+of, completely defined.
+
+1796
+01:26:16,332 --> 01:26:18,040
+So now, we're going
+to go and we're going
+
+1797
+01:26:18,040 --> 01:26:20,490
+to make a really realistic render of it.
+
+1798
+01:26:20,490 --> 01:26:23,330
+It's going to look as
+it would in real life.
+
+1799
+01:26:23,330 --> 01:26:33,740
+So the package I have enabled here
+is, actually, I don't have it enabled.
+
+1800
+01:26:33,740 --> 01:26:39,890
+If there's something, you can pick
+and choose which tools are displayed.
+
+1801
+01:26:39,890 --> 01:26:43,770
+>> The package that we have in our
+office has everything available,
+
+1802
+01:26:43,770 --> 01:26:46,950
+the academic license has
+every feature that SolidWorks
+
+1803
+01:26:46,950 --> 01:26:49,190
+makes incorporate in our package.
+
+1804
+01:26:49,190 --> 01:26:50,530
+But not all of them are showing.
+
+1805
+01:26:50,530 --> 01:26:55,600
+So if you want to add or subtract
+from this menu, just right click.
+
+1806
+01:26:55,600 --> 01:26:56,919
+Nope.
+
+1807
+01:26:56,919 --> 01:26:58,960
+You right click, and then
+you get this list here.
+
+1808
+01:26:58,960 --> 01:27:00,710
+So we want Render Tools.
+
+1809
+01:27:00,710 --> 01:27:04,896
+Render Tools uses an engine called
+Photo View 360, which may or may not
+
+1810
+01:27:04,896 --> 01:27:05,420
+be enabled.
+
+1811
+01:27:05,420 --> 01:27:10,790
+So to double check, we'll
+go to Tools, Add-ins,
+
+1812
+01:27:10,790 --> 01:27:12,710
+and then we select Photo View 360.
+
+1813
+01:27:12,710 --> 01:27:13,514
+Hit OK.
+
+1814
+01:27:13,514 --> 01:27:14,430
+Now, we're good to go.
+
+1815
+01:27:14,430 --> 01:27:16,620
+So we go to Render Tools.
+
+1816
+01:27:16,620 --> 01:27:18,122
+You can do a preview render.
+
+1817
+01:27:18,122 --> 01:27:19,830
+But it's not going to
+do anything for us.
+
+1818
+01:27:19,830 --> 01:27:23,320
+So we're going all
+the way, final render.
+
+1819
+01:27:23,320 --> 01:27:25,960
+And this will take a little
+bit of time to process.
+
+1820
+01:27:25,960 --> 01:27:27,444
+But it'll look pretty cool.
+
+1821
+01:27:27,444 --> 01:27:35,730
+
+1822
+01:27:35,730 --> 01:27:39,380
+>> So there are all these parameters on
+the right hand side that we can adjust.
+
+1823
+01:27:39,380 --> 01:27:43,990
+The resolution, lighting,
+where the light's coming from,
+
+1824
+01:27:43,990 --> 01:27:46,819
+the diffusivity of the surface.
+
+1825
+01:27:46,819 --> 01:27:47,860
+Those are all adjustable.
+
+1826
+01:27:47,860 --> 01:27:49,420
+But we're just using the defaults.
+
+1827
+01:27:49,420 --> 01:27:52,660
+You can even move it
+around a little bit.
+
+1828
+01:27:52,660 --> 01:27:54,920
+You can see it's really shiny.
+
+1829
+01:27:54,920 --> 01:27:57,419
+All the fillets are glistening.
+
+1830
+01:27:57,419 --> 01:27:58,460
+Oops, just lost my power.
+
+1831
+01:27:58,460 --> 01:28:01,493
+All the fillets are glistening.
+
+1832
+01:28:01,493 --> 01:28:06,160
+Sky is the limit as far as that goes.
+
+1833
+01:28:06,160 --> 01:28:08,920
+It's pretty cool.
+
+1834
+01:28:08,920 --> 01:28:11,190
+>> For some letters, and in
+fact a doorknob that we
+
+1835
+01:28:11,190 --> 01:28:19,220
+had designed a little bit earlier,
+I had done a render of the door
+
+1836
+01:28:19,220 --> 01:28:21,930
+handle also in false aluminum,
+and this is what it looks like.
+
+1837
+01:28:21,930 --> 01:28:29,675
+
+1838
+01:28:29,675 --> 01:28:31,800
+There are some more advanced
+features with renders,
+
+1839
+01:28:31,800 --> 01:28:34,960
+like you can add-- like if you were
+designing a battery pack, for example,
+
+1840
+01:28:34,960 --> 01:28:38,180
+you can have a sticker that
+says high voltage or decals.
+
+1841
+01:28:38,180 --> 01:28:41,020
+You can import your own
+decals and add them.
+
+1842
+01:28:41,020 --> 01:28:46,250
+So it's very product designy.
+
+1843
+01:28:46,250 --> 01:28:50,776
+85%, I'm dying to know how
+long this is going to take.
+
+1844
+01:28:50,776 --> 01:28:51,627
+Yes?
+
+1845
+01:28:51,627 --> 01:28:53,710
+AUDIENCE: You are printing
+something that's solid,
+
+1846
+01:28:53,710 --> 01:28:56,251
+and then you have something
+that's [INAUDIBLE] in the middle.
+
+1847
+01:28:56,251 --> 01:29:01,230
+MakerBot and SolidWorks work together
+and printed in a way that [INAUDIBLE]?
+
+1848
+01:29:01,230 --> 01:29:05,130
+
+1849
+01:29:05,130 --> 01:29:06,370
+>> ANSEL DUFF: Great question.
+
+1850
+01:29:06,370 --> 01:29:10,330
+So the question was, is there a way
+for us to print internal features?
+
+1851
+01:29:10,330 --> 01:29:12,830
+Internal features are
+something that's suspended.
+
+1852
+01:29:12,830 --> 01:29:16,530
+A good example is like if
+you were to print an A,
+
+1853
+01:29:16,530 --> 01:29:19,610
+the center triangle of the A
+is an internal feature that's
+
+1854
+01:29:19,610 --> 01:29:20,830
+completely suspended.
+
+1855
+01:29:20,830 --> 01:29:26,670
+Or rather, if you were to print
+a hook that's overarching,
+
+1856
+01:29:26,670 --> 01:29:29,987
+when the printer wants to get to the
+level where this part of the book
+
+1857
+01:29:29,987 --> 01:29:31,820
+first starts, there's
+nothing holding it up.
+
+1858
+01:29:31,820 --> 01:29:33,340
+It can't just print in mid-air.
+
+1859
+01:29:33,340 --> 01:29:37,880
+Those are called internal features
+or suspended features, many names
+
+1860
+01:29:37,880 --> 01:29:39,040
+for the same idea.
+
+1861
+01:29:39,040 --> 01:29:43,040
+>> But the answer to your
+question is yes and no.
+
+1862
+01:29:43,040 --> 01:29:46,330
+SolidWorks does not do
+anything to that extent.
+
+1863
+01:29:46,330 --> 01:29:48,820
+SolidWorks is a CADing
+and simulation program.
+
+1864
+01:29:48,820 --> 01:29:55,235
+And we can design really
+precise and advanced parts.
+
+1865
+01:29:55,235 --> 01:29:57,710
+And even create CAM and G code for them.
+
+1866
+01:29:57,710 --> 01:30:00,210
+But it doesn't really care
+about how we make them.
+
+1867
+01:30:00,210 --> 01:30:04,790
+It only cares about us designing them
+very precisely and very efficiently.
+
+1868
+01:30:04,790 --> 01:30:10,250
+>> However, once we've exported our
+part as a .obj or .stl-- side note,
+
+1869
+01:30:10,250 --> 01:30:13,703
+if you have the option to choose between
+exporting using the file formats .obj
+
+1870
+01:30:13,703 --> 01:30:17,121
+and .stl, always go with STL.
+
+1871
+01:30:17,121 --> 01:30:20,370
+Once we've exported and we put it into
+the MakerBot desktop application, which
+
+1872
+01:30:20,370 --> 01:30:24,372
+is what we're looking at right now, we
+have the option of creating supports,
+
+1873
+01:30:24,372 --> 01:30:26,080
+printing these little
+support structures.
+
+1874
+01:30:26,080 --> 01:30:28,700
+They're little towers
+that taper off at the end
+
+1875
+01:30:28,700 --> 01:30:30,340
+and then hold those internal features.
+
+1876
+01:30:30,340 --> 01:30:32,946
+So if we wanted to print
+a hook, for example,
+
+1877
+01:30:32,946 --> 01:30:35,070
+when it prints this part
+of the hook, it would also
+
+1878
+01:30:35,070 --> 01:30:36,730
+start to print a little tower.
+
+1879
+01:30:36,730 --> 01:30:39,690
+And then, when the tower gets
+close to this base of the hook,
+
+1880
+01:30:39,690 --> 01:30:42,317
+it would taper off into a really,
+really small plastic feature.
+
+1881
+01:30:42,317 --> 01:30:44,150
+And that will support
+this part of the hook.
+
+1882
+01:30:44,150 --> 01:30:46,250
+Then, it would just join the two.
+
+1883
+01:30:46,250 --> 01:30:48,480
+>> And we do have the option
+of printing like that.
+
+1884
+01:30:48,480 --> 01:30:49,980
+That option is turned off right now.
+
+1885
+01:30:49,980 --> 01:30:52,510
+We haven't really needed it.
+
+1886
+01:30:52,510 --> 01:30:54,419
+But yes, we can do that.
+
+1887
+01:30:54,419 --> 01:30:55,460
+And that's how it's done.
+
+1888
+01:30:55,460 --> 01:30:55,980
+You print supports.
+
+1889
+01:30:55,980 --> 01:30:58,420
+And then, once everything
+is done, just break it away
+
+1890
+01:30:58,420 --> 01:31:00,835
+and you can peel the supports off.
+
+1891
+01:31:00,835 --> 01:31:05,370
+
+1892
+01:31:05,370 --> 01:31:09,255
+Any other questions,
+concerns, comments, remarks?
+
+1893
+01:31:09,255 --> 01:31:11,880
+>> AUDIENCE: Yeah, supports.
+
+1894
+01:31:11,880 --> 01:31:12,820
+Within the shapes?
+
+1895
+01:31:12,820 --> 01:31:15,796
+I'm thinking like going
+back to the A example, what
+
+1896
+01:31:15,796 --> 01:31:19,330
+if the A had something
+hanging down from the top?
+
+1897
+01:31:19,330 --> 01:31:22,756
+Then the support is
+latched onto the A itself.
+
+1898
+01:31:22,756 --> 01:31:25,140
+
+1899
+01:31:25,140 --> 01:31:27,890
+ANSEL DUFF: I can't say for sure
+without actually trying to do it.
+
+1900
+01:31:27,890 --> 01:31:29,240
+But it would be cool.
+
+1901
+01:31:29,240 --> 01:31:31,460
+I would imagine that
+they could print supports
+
+1902
+01:31:31,460 --> 01:31:36,430
+that are on the side of the A that
+don't interfere with your part.
+
+1903
+01:31:36,430 --> 01:31:39,530
+Some internal features are going
+to become kind of a lost cause.
+
+1904
+01:31:39,530 --> 01:31:44,240
+For example, if you wanted to print a
+sphere with a smaller sphere located
+
+1905
+01:31:44,240 --> 01:31:49,090
+internally, they're both
+independent, not attached at all,
+
+1906
+01:31:49,090 --> 01:31:51,634
+it would probably try to
+print supports inside it.
+
+1907
+01:31:51,634 --> 01:31:54,800
+But then, you'd never be able to remove
+those supports unless you cut a hole
+
+1908
+01:31:54,800 --> 01:31:56,970
+and peeled them out.
+
+1909
+01:31:56,970 --> 01:31:59,720
+>> So it almost takes a
+little bit of foresight
+
+1910
+01:31:59,720 --> 01:32:02,850
+when you're designing the part
+and getting the part prepared
+
+1911
+01:32:02,850 --> 01:32:06,730
+for print to ensure that
+it will be printable.
+
+1912
+01:32:06,730 --> 01:32:10,440
+So like this feature, when it
+first imported, it was vertical.
+
+1913
+01:32:10,440 --> 01:32:13,070
+That would be really challenging
+for the printer to print.
+
+1914
+01:32:13,070 --> 01:32:18,140
+So always make sure that
+you lay it on its side.
+
+1915
+01:32:18,140 --> 01:32:18,980
+And you'll be set.
+
+1916
+01:32:18,980 --> 01:32:30,360
+
+1917
+01:32:30,360 --> 01:32:31,720
+88%.
+
+1918
+01:32:31,720 --> 01:32:33,450
+We will sit here until it's done!
+
+1919
+01:32:33,450 --> 01:32:40,350
+
+1920
+01:32:40,350 --> 01:32:43,100
+>> [APPLAUSE]
+
+1921
+01:32:43,100 --> 01:32:45,248

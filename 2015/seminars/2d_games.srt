@@ -1,0 +1,3712 @@
+1
+00:00:00,000 --> 00:00:05,069
+
+2
+00:00:05,069 --> 00:00:06,110
+THOMAS LIVELY: All right.
+
+3
+00:00:06,110 --> 00:00:07,450
+Hi, everyone.
+
+4
+00:00:07,450 --> 00:00:08,690
+I'm Thomas Lively.
+
+5
+00:00:08,690 --> 00:00:15,160
+This seminar is going to be
+writing 2D games in C using SDL.
+
+6
+00:00:15,160 --> 00:00:17,970
+So I know you're all
+asking, yeah, I really
+
+7
+00:00:17,970 --> 00:00:22,050
+want to play games and make games,
+but what is this SDL business?
+
+8
+00:00:22,050 --> 00:00:25,320
+So SDL is a C library.
+
+9
+00:00:25,320 --> 00:00:28,270
+It stands for the Simple
+DirectMedia Layer.
+
+10
+00:00:28,270 --> 00:00:31,340
+And it's a cross platform,
+game development library.
+
+11
+00:00:31,340 --> 00:00:37,160
+It works on Windows, Mac,
+Linux, even iOS and Android.
+
+12
+00:00:37,160 --> 00:00:40,380
+It handles things like
+access to the audio systems
+
+13
+00:00:40,380 --> 00:00:44,900
+for the computer, the keyboard, and
+mouse, joysticks, if they're attached.
+
+14
+00:00:44,900 --> 00:00:48,300
+On mobile, it can even do the
+touch input and all of that.
+
+15
+00:00:48,300 --> 00:00:53,030
+And of course, it handles graphics,
+drawing things to the screen.
+
+16
+00:00:53,030 --> 00:00:56,470
+>> So it's very widely used, even though
+you may not have heard of it before.
+
+17
+00:00:56,470 --> 00:01:00,860
+It's built into, for example,
+Valve's source engine,
+
+18
+00:01:00,860 --> 00:01:04,970
+which powers games such as
+Portal and Team Fortress 2.
+
+19
+00:01:04,970 --> 00:01:08,680
+It's also in a very large number
+of indie games that come out,
+
+20
+00:01:08,680 --> 00:01:13,545
+so I'm excited to see what you
+all will be making with it.
+
+21
+00:01:13,545 --> 00:01:20,000
+>> The seminar goals are to get you
+set out to be developing with SDL.
+
+22
+00:01:20,000 --> 00:01:22,700
+We're going to learn how
+to create a game window.
+
+23
+00:01:22,700 --> 00:01:26,130
+We're going to create sprites,
+which are the images in your game
+
+24
+00:01:26,130 --> 00:01:27,744
+that can move around.
+
+25
+00:01:27,744 --> 00:01:29,910
+We're going to learn how
+to and animate the sprites,
+
+26
+00:01:29,910 --> 00:01:32,910
+so move them around, make
+them change over time.
+
+27
+00:01:32,910 --> 00:01:35,580
+And we're going to learn how
+to capture keyboard and mouse
+
+28
+00:01:35,580 --> 00:01:38,240
+input from the computer.
+
+29
+00:01:38,240 --> 00:01:41,550
+What we won't be talking
+about today is 3D graphics,
+
+30
+00:01:41,550 --> 00:01:45,520
+because that's a very complicated
+subject that we don't have time for.
+
+31
+00:01:45,520 --> 00:01:49,010
+We won't learn how to
+play audio on our games.
+
+32
+00:01:49,010 --> 00:01:53,300
+And we won't be building
+for anything but Linux.
+
+33
+00:01:53,300 --> 00:01:58,330
+>> Now the caveats there are that,
+hopefully, by the end the seminar,
+
+34
+00:01:58,330 --> 00:02:01,660
+you'll be comfortable with
+the SDL documentation,
+
+35
+00:02:01,660 --> 00:02:05,370
+so you'll be able to go figure out
+how to play audio for yourself.
+
+36
+00:02:05,370 --> 00:02:12,150
+Also building for Mac or PC should work
+exactly the same as building for Linux,
+
+37
+00:02:12,150 --> 00:02:14,700
+but the setup's going to
+be a little different.
+
+38
+00:02:14,700 --> 00:02:17,700
+So you should be able to figure
+out how to do these things
+
+39
+00:02:17,700 --> 00:02:20,900
+by the end of today's seminar.
+
+40
+00:02:20,900 --> 00:02:26,980
+>> So for the set up, we're going
+to use a virtual machine.
+
+41
+00:02:26,980 --> 00:02:31,010
+We would use the CS50 IDE, because
+we're just going to be writing in C.
+
+42
+00:02:31,010 --> 00:02:35,120
+But since the IDE isn't a browser, we
+can't create new windows or display
+
+43
+00:02:35,120 --> 00:02:36,410
+graphics in it.
+
+44
+00:02:36,410 --> 00:02:38,450
+So we need a virtual machine.
+
+45
+00:02:38,450 --> 00:02:47,790
+So you can follow the instructions
+here at manual.CS50.net/appliance/15
+
+46
+00:02:47,790 --> 00:02:53,290
+to install the official CS50 appliance,
+which is merely a Linux virtual
+
+47
+00:02:53,290 --> 00:02:55,110
+machine.
+
+48
+00:02:55,110 --> 00:02:58,090
+>> And then once you have
+that all set up-- it
+
+49
+00:02:58,090 --> 00:03:02,090
+might take a little while, because
+a very large download-- you're going
+
+50
+00:03:02,090 --> 00:03:07,060
+to run in the VM sudo apt-get update.
+
+51
+00:03:07,060 --> 00:03:09,410
+And that's really going
+to update all the software
+
+52
+00:03:09,410 --> 00:03:12,670
+packages on your virtual machine.
+
+53
+00:03:12,670 --> 00:03:20,130
+>> After that, you're going to run
+sudo apt-get install, libsdl2-2.0-0,
+
+54
+00:03:20,130 --> 00:03:27,960
+libsdl2-dbg, libsdl2-dev, and
+additionally libsdl2-image-2.0-0,
+
+55
+00:03:27,960 --> 00:03:32,560
+libsdl2-image-dbg,
+and libsdl2-image-dev.
+
+56
+00:03:32,560 --> 00:03:33,640
+So what does that do?
+
+57
+00:03:33,640 --> 00:03:38,440
+That merely installs the debug
+information, documentation, headers,
+
+58
+00:03:38,440 --> 00:03:41,260
+and binaries for two libraries.
+
+59
+00:03:41,260 --> 00:03:45,090
+Regular old, SDL 2.0,
+and another library
+
+60
+00:03:45,090 --> 00:03:50,110
+called SDL Image, which
+we're going to be using
+
+61
+00:03:50,110 --> 00:03:54,560
+to load image files into our game.
+
+62
+00:03:54,560 --> 00:03:57,860
+>> So once you have that also
+that, just when it asks,
+
+63
+00:03:57,860 --> 00:04:01,100
+you just type yes, hit Enter
+to install those packages,
+
+64
+00:04:01,100 --> 00:04:04,430
+and then you should be good to go.
+
+65
+00:04:04,430 --> 00:04:14,800
+So to get the distribution code, you
+can-- oh dear, this is not updated.
+
+66
+00:04:14,800 --> 00:04:18,480
+Unless you have a GitHub account--
+if you have a GitHub account,
+
+67
+00:04:18,480 --> 00:04:24,450
+you can do this Git
+clone command to the repo
+
+68
+00:04:24,450 --> 00:04:30,490
+and that will download the Git
+repo with all the code in it,
+
+69
+00:04:30,490 --> 00:04:31,700
+so that you'll have the code.
+
+70
+00:04:31,700 --> 00:04:36,470
+>> If you don't have a GitHub
+account, what you should do is type
+
+71
+00:04:36,470 --> 00:04:48,867
+wgithttps://github.com/tlively/sdl
+seminar-- and here it's different--
+
+72
+00:04:48,867 --> 00:04:49,700
+/archive/master.zip.
+
+73
+00:04:49,700 --> 00:04:55,610
+
+74
+00:04:55,610 --> 00:04:59,220
+So again, that's the exact same
+URL, except it's going to be
+
+75
+00:04:59,220 --> 00:05:09,010
+tlively/SDL_seminar/master.zip and
+you're using wgit to download that.
+
+76
+00:05:09,010 --> 00:05:12,940
+And then you can merely
+unzip that archive
+
+77
+00:05:12,940 --> 00:05:14,900
+and then you'll have
+all the source code.
+
+78
+00:05:14,900 --> 00:05:17,580
+So sorry about that.
+
+79
+00:05:17,580 --> 00:05:23,880
+And then the code will also be hosted at
+the CS50 seminar's web page in a couple
+
+80
+00:05:23,880 --> 00:05:25,230
+days.
+
+81
+00:05:25,230 --> 00:05:26,590
+>> All right.
+
+82
+00:05:26,590 --> 00:05:29,932
+So how do we get started
+writing our own game?
+
+83
+00:05:29,932 --> 00:05:31,890
+Well, the first thing
+we're going to want to do
+
+84
+00:05:31,890 --> 00:05:34,740
+is look at the SDL documentation.
+
+85
+00:05:34,740 --> 00:05:37,020
+So here's the VM.
+
+86
+00:05:37,020 --> 00:05:38,720
+And here's the web page.
+
+87
+00:05:38,720 --> 00:05:40,340
+I've navigated to live libsdl.org.
+
+88
+00:05:40,340 --> 00:05:43,110
+
+89
+00:05:43,110 --> 00:05:48,140
+What I'm going to do here is go over
+to the sidebar, under documentation,
+
+90
+00:05:48,140 --> 00:05:51,040
+and click on the wiki.
+
+91
+00:05:51,040 --> 00:05:56,870
+This will bring me to the wiki that
+has most of the documentation for SDL.
+
+92
+00:05:56,870 --> 00:06:01,360
+Over on the sidebar here, we're
+going to click API by category,
+
+93
+00:06:01,360 --> 00:06:04,300
+because is going to give
+us a nice categorical view
+
+94
+00:06:04,300 --> 00:06:07,770
+of the entire API for SDL.
+
+95
+00:06:07,770 --> 00:06:12,390
+>> So for example, we have
+the basic initialization
+
+96
+00:06:12,390 --> 00:06:18,380
+and shut down, all the sort of
+administrative stuff for using SDL,
+
+97
+00:06:18,380 --> 00:06:21,630
+and then we have the section for
+displaying things to the screen.
+
+98
+00:06:21,630 --> 00:06:23,000
+That's video.
+
+99
+00:06:23,000 --> 00:06:25,790
+Input events, that's getting
+input from the keyboard,
+
+100
+00:06:25,790 --> 00:06:29,710
+getting input from the mouse, and
+the joystick, if you have it even.
+
+101
+00:06:29,710 --> 00:06:32,901
+There's force feedback for things
+like game controllers, which
+
+102
+00:06:32,901 --> 00:06:34,150
+we're not going to talk about.
+
+103
+00:06:34,150 --> 00:06:35,630
+And here's audio.
+
+104
+00:06:35,630 --> 00:06:38,940
+And then there's a bunch of other
+stuff that SDL can do for you.
+
+105
+00:06:38,940 --> 00:06:43,830
+>> But today we're going to focus
+on the initialization here,
+
+106
+00:06:43,830 --> 00:06:48,332
+displaying images in the video
+section, and handling input events.
+
+107
+00:06:48,332 --> 00:06:50,290
+So these are the main
+sections of documentation
+
+108
+00:06:50,290 --> 00:06:53,050
+that you should be worrying about.
+
+109
+00:06:53,050 --> 00:06:57,170
+Just for fun, if we go over
+here and click on API by name,
+
+110
+00:06:57,170 --> 00:07:04,350
+we can see a list of every
+single thing in the SDL library.
+
+111
+00:07:04,350 --> 00:07:11,330
+So all these functions, enumerations,
+structures, a crazy amount of stuff,
+
+112
+00:07:11,330 --> 00:07:12,820
+alphabetical order.
+
+113
+00:07:12,820 --> 00:07:14,580
+And clearly, until
+you know you're doing,
+
+114
+00:07:14,580 --> 00:07:19,100
+this isn't going to be too helpful,
+which is why we do API by category.
+
+115
+00:07:19,100 --> 00:07:20,810
+>> So let's get started.
+
+116
+00:07:20,810 --> 00:07:25,680
+Hopefully you've already
+downloaded the distribution code.
+
+117
+00:07:25,680 --> 00:07:30,070
+And so what you can do is, right
+here in the CS50 appliance,
+
+118
+00:07:30,070 --> 00:07:31,150
+simply open a terminal.
+
+119
+00:07:31,150 --> 00:07:33,750
+
+120
+00:07:33,750 --> 00:07:34,440
+Here we go.
+
+121
+00:07:34,440 --> 00:07:40,740
+So I've already downloaded the
+distribution code using the .zip
+
+122
+00:07:40,740 --> 00:07:41,690
+method.
+
+123
+00:07:41,690 --> 00:07:43,140
+And I've unzipped it.
+
+124
+00:07:43,140 --> 00:07:46,120
+So here it is in the SDL seminar master.
+
+125
+00:07:46,120 --> 00:07:49,750
+So I'm going to go into that directory.
+
+126
+00:07:49,750 --> 00:07:55,310
+And what we see here is
+that we have seven C files.
+
+127
+00:07:55,310 --> 00:07:58,070
+And this is going to the code
+we're going to be looking at today.
+
+128
+00:07:58,070 --> 00:08:00,040
+We have a makefile.
+
+129
+00:08:00,040 --> 00:08:06,950
+And we have a resources directory,
+which simply has an image
+
+130
+00:08:06,950 --> 00:08:09,070
+that you'll be seeing soon enough.
+
+131
+00:08:09,070 --> 00:08:16,060
+>> So let's open up these files
+using the G-Edit editor.
+
+132
+00:08:16,060 --> 00:08:22,000
+So I want to open all the files that
+begin with hello and end with .c.
+
+133
+00:08:22,000 --> 00:08:23,380
+Here we go.
+
+134
+00:08:23,380 --> 00:08:28,180
+So that's a tiny window, so we're
+going to try to make that bigger.
+
+135
+00:08:28,180 --> 00:08:28,900
+No, it went away.
+
+136
+00:08:28,900 --> 00:08:32,836
+
+137
+00:08:32,836 --> 00:08:34,570
+>> All right.
+
+138
+00:08:34,570 --> 00:08:37,959
+So here's the very first
+file we're going to look at.
+
+139
+00:08:37,959 --> 00:08:39,000
+It's called hello1_sdl.c.
+
+140
+00:08:39,000 --> 00:08:41,890
+
+141
+00:08:41,890 --> 00:08:47,980
+And all this does is initialize the SDL
+library so that we can start using it.
+
+142
+00:08:47,980 --> 00:08:51,550
+How would you know to come
+up with this code yourself?
+
+143
+00:08:51,550 --> 00:08:53,850
+Well, if we look over
+at the documentation
+
+144
+00:08:53,850 --> 00:08:58,040
+and we go into the initialization
+and shut down section,
+
+145
+00:08:58,040 --> 00:09:02,230
+it's going to tell us all
+about how to initialize SDL.
+
+146
+00:09:02,230 --> 00:09:06,630
+So definitely read this some other time.
+
+147
+00:09:06,630 --> 00:09:09,230
+It's going to tell you all
+about what's going on here.
+
+148
+00:09:09,230 --> 00:09:14,360
+But the main crux of the matter is that
+we need to call this function SDL In It
+
+149
+00:09:14,360 --> 00:09:18,910
+and pass it what kinds of things
+we want the library to initialize.
+
+150
+00:09:18,910 --> 00:09:23,620
+So in our case, we're just going
+to initialize the video for now,
+
+151
+00:09:23,620 --> 00:09:26,690
+so that we can start displaying images.
+
+152
+00:09:26,690 --> 00:09:32,370
+>> Over here, you can see if
+we click on a SDL In It, we
+
+153
+00:09:32,370 --> 00:09:36,160
+can get even more information,
+including the return value.
+
+154
+00:09:36,160 --> 00:09:39,050
+So we see here that it
+returnes zero on success.
+
+155
+00:09:39,050 --> 00:09:43,320
+So in our code, we're going to
+see if it doesn't return zero,
+
+156
+00:09:43,320 --> 00:09:47,020
+and if it doesn't return
+zero, so it wasn't successful,
+
+157
+00:09:47,020 --> 00:09:50,650
+then we're going to simply print
+an error using this other function,
+
+158
+00:09:50,650 --> 00:09:56,260
+SDL get error, which returns a string
+describing the error that occurred.
+
+159
+00:09:56,260 --> 00:09:58,510
+We're going to print that
+error and then we're just
+
+160
+00:09:58,510 --> 00:10:02,270
+going to exit the program
+with an error code.
+
+161
+00:10:02,270 --> 00:10:06,470
+>> Then another thing that we need
+to do is, before program exits,
+
+162
+00:10:06,470 --> 00:10:10,830
+if we successfully initialized SDL,
+we just need to call it SDL quit.
+
+163
+00:10:10,830 --> 00:10:15,750
+And that's going to handle cleaning up
+all of SDL's internal resources for us.
+
+164
+00:10:15,750 --> 00:10:21,240
+So the documentation there-- again,
+here we are in the initialization
+
+165
+00:10:21,240 --> 00:10:23,640
+and shut down section
+of the documentation.
+
+166
+00:10:23,640 --> 00:10:26,680
+You can just click on the
+function here, SDL quit,
+
+167
+00:10:26,680 --> 00:10:28,700
+and you can read all about that as well.
+
+168
+00:10:28,700 --> 00:10:31,400
+And a lot of these function
+documentation pages
+
+169
+00:10:31,400 --> 00:10:35,630
+have example code, so this
+is very good resource.
+
+170
+00:10:35,630 --> 00:10:39,610
+Definitely spend some time
+reading parts of this wiki
+
+171
+00:10:39,610 --> 00:10:42,520
+if you're going to do
+this for a project.
+
+172
+00:10:42,520 --> 00:10:43,760
+>> All right.
+
+173
+00:10:43,760 --> 00:10:46,590
+So that's our entire program.
+
+174
+00:10:46,590 --> 00:10:53,935
+What we can do now is-- I'm
+going to open the makefile here,
+
+175
+00:10:53,935 --> 00:10:56,150
+so I'm going to take a
+look at how that works.
+
+176
+00:10:56,150 --> 00:10:59,500
+And it's a very simple makefile,
+similar to what you've seen before.
+
+177
+00:10:59,500 --> 00:11:04,010
+One of the main differences
+is that, here, this
+
+178
+00:11:04,010 --> 00:11:07,870
+is going to insert the result of running
+this command, which you've already
+
+179
+00:11:07,870 --> 00:11:10,850
+installed if you've installed SDL.
+
+180
+00:11:10,850 --> 00:11:13,230
+And this is a command
+that's going to generate
+
+181
+00:11:13,230 --> 00:11:16,710
+some extra flags for the compiler.
+
+182
+00:11:16,710 --> 00:11:22,050
+>> In addition to that, we're giving it
+all the usual commands, as well as
+
+183
+00:11:22,050 --> 00:11:23,430
+these two commands.
+
+184
+00:11:23,430 --> 00:11:30,270
+So the -lsdl2-image handles
+linking in the SDL image library.
+
+185
+00:11:30,270 --> 00:11:36,200
+And the -lm actually handles linking
+in the standard C math library.
+
+186
+00:11:36,200 --> 00:11:40,630
+So we aren't going to need
+those for all of our C files,
+
+187
+00:11:40,630 --> 00:11:43,900
+but we just put them in so that we can
+use the same makefile for everything
+
+188
+00:11:43,900 --> 00:11:44,816
+without modifications.
+
+189
+00:11:44,816 --> 00:11:46,970
+
+190
+00:11:46,970 --> 00:11:50,080
+>> Over here in sources,
+this is where you'd
+
+191
+00:11:50,080 --> 00:11:53,680
+put the files that you were going
+to compile for your project.
+
+192
+00:11:53,680 --> 00:11:57,570
+But since every one of my C
+files here has a main function,
+
+193
+00:11:57,570 --> 00:12:00,000
+it's going to get confused
+if we put them all in.
+
+194
+00:12:00,000 --> 00:12:06,930
+So I'm going to just say,
+for now, hello1_sdl.c,
+
+195
+00:12:06,930 --> 00:12:11,150
+which is the one we just looked at.
+
+196
+00:12:11,150 --> 00:12:18,740
+So if I go back over
+here, I can do make.
+
+197
+00:12:18,740 --> 00:12:22,160
+And what it did is it just
+compiled that first file.
+
+198
+00:12:22,160 --> 00:12:28,780
+And then we can type ./game, because
+it's the executable it produced.
+
+199
+00:12:28,780 --> 00:12:31,660
+And all it did was print
+initialization successful.
+
+200
+00:12:31,660 --> 00:12:33,300
+So we did something right.
+
+201
+00:12:33,300 --> 00:12:36,200
+But that was kind of boring,
+because we didn't see a window,
+
+202
+00:12:36,200 --> 00:12:37,900
+nothing was moving around.
+
+203
+00:12:37,900 --> 00:12:41,030
+>> So great, we got SDL initialized.
+
+204
+00:12:41,030 --> 00:12:43,520
+Now, let's move on to something
+a little more interesting.
+
+205
+00:12:43,520 --> 00:12:54,700
+So here we have hello2_window.c, and
+this is going to be a slightly more
+
+206
+00:12:54,700 --> 00:13:00,010
+complex C program that
+initializes SDL just like before,
+
+207
+00:13:00,010 --> 00:13:04,250
+except now we're also going
+to initialize SDL timer.
+
+208
+00:13:04,250 --> 00:13:07,720
+And this is going to let us
+access the internal timer
+
+209
+00:13:07,720 --> 00:13:10,550
+and use functions relating to time.
+
+210
+00:13:10,550 --> 00:13:11,920
+>> And then let's look down here.
+
+211
+00:13:11,920 --> 00:13:16,840
+What we do is we have this pointer
+to an SDL window struct, which
+
+212
+00:13:16,840 --> 00:13:21,160
+is going to be created by this call
+to the function, SDL create window.
+
+213
+00:13:21,160 --> 00:13:25,380
+Now, this takes a lot of arguments,
+so let's go look at the documentation.
+
+214
+00:13:25,380 --> 00:13:27,930
+So again, I'm going to
+API by category, I'm
+
+215
+00:13:27,930 --> 00:13:33,820
+going down to video here, and the first
+section, displaying window management.
+
+216
+00:13:33,820 --> 00:13:36,470
+So this section has
+a ton of stuff in it,
+
+217
+00:13:36,470 --> 00:13:39,970
+but if you look through
+these functions, you'll
+
+218
+00:13:39,970 --> 00:13:43,620
+see that probably the one we
+want is called SDL create window,
+
+219
+00:13:43,620 --> 00:13:46,600
+which happens to be right at the top.
+
+220
+00:13:46,600 --> 00:13:49,080
+>> And so this is the
+documentation for this function.
+
+221
+00:13:49,080 --> 00:13:53,710
+The window's going to have a title,
+an x and y position on the screen,
+
+222
+00:13:53,710 --> 00:13:56,960
+it's going to have a width, a height,
+and then it's going to take some flags.
+
+223
+00:13:56,960 --> 00:14:01,220
+Now, we don't actually care about
+any of these flags right now,
+
+224
+00:14:01,220 --> 00:14:04,560
+but if you wanted to do something
+like make a full screen window,
+
+225
+00:14:04,560 --> 00:14:07,920
+you could take a look at that.
+
+226
+00:14:07,920 --> 00:14:13,190
+For now, we're just going
+to use these special values,
+
+227
+00:14:13,190 --> 00:14:18,775
+SDL window plus centered
+for x and y in order
+
+228
+00:14:18,775 --> 00:14:21,800
+to just create the window
+in the center of our screen.
+
+229
+00:14:21,800 --> 00:14:24,370
+>> So that's what that's doing.
+
+230
+00:14:24,370 --> 00:14:27,960
+And if window happens to be
+null, meaning there is an error,
+
+231
+00:14:27,960 --> 00:14:32,570
+then again we're just going to
+print the error using SDL get error.
+
+232
+00:14:32,570 --> 00:14:36,570
+And then because we initialized
+SDL, we now need to close it.
+
+233
+00:14:36,570 --> 00:14:40,900
+So we call SDL quit before
+returning one for main.
+
+234
+00:14:40,900 --> 00:14:42,905
+>> So we have this window open hopefully.
+
+235
+00:14:42,905 --> 00:14:44,613
+And what we're going
+to do is we're going
+
+236
+00:14:44,613 --> 00:14:50,340
+to call SDL for 5,000 milliseconds,
+which is the same as five seconds.
+
+237
+00:14:50,340 --> 00:14:55,640
+And when we're done with that,
+it's going to destroy the window,
+
+238
+00:14:55,640 --> 00:14:59,470
+clean up the SDL library,
+and exit the program.
+
+239
+00:14:59,470 --> 00:15:05,240
+So let's go ahead and give that a shot.
+
+240
+00:15:05,240 --> 00:15:08,660
+>> So now instead of changing
+the makefile every time,
+
+241
+00:15:08,660 --> 00:15:12,180
+I can simply do make, and
+then on the command line,
+
+242
+00:15:12,180 --> 00:15:16,090
+say sources equals and then
+the file we're compiling.
+
+243
+00:15:16,090 --> 00:15:17,090
+So it's hello2_window.c.
+
+244
+00:15:17,090 --> 00:15:21,390
+
+245
+00:15:21,390 --> 00:15:21,890
+Fantastic.
+
+246
+00:15:21,890 --> 00:15:22,970
+No erros.
+
+247
+00:15:22,970 --> 00:15:26,085
+Now, if we run our executable,
+we see this window.
+
+248
+00:15:26,085 --> 00:15:27,960
+Now there are a few
+problems with the window.
+
+249
+00:15:27,960 --> 00:15:32,820
+We can move it around, but it has
+this background junk inside of it.
+
+250
+00:15:32,820 --> 00:15:34,660
+So we haven't drawn
+anything, and so it's
+
+251
+00:15:34,660 --> 00:15:38,210
+just full of garbage, which
+is pretty much what we expect.
+
+252
+00:15:38,210 --> 00:15:41,010
+>> Furthermore, we can't close the window.
+
+253
+00:15:41,010 --> 00:15:44,780
+I'm pressing this X in the
+corner and nothing's happening.
+
+254
+00:15:44,780 --> 00:15:47,840
+So we'll see how to fix
+that in a little bit.
+
+255
+00:15:47,840 --> 00:15:51,750
+So let's fix the part where the
+window is full of garbage first.
+
+256
+00:15:51,750 --> 00:16:00,850
+So if we go over to hello3_image.c, what
+we can see is that we've added a few
+
+257
+00:16:00,850 --> 00:16:03,360
+more things here.
+
+258
+00:16:03,360 --> 00:16:08,740
+We've added this new header
+file to get the timer functions.
+
+259
+00:16:08,740 --> 00:16:11,490
+I guess we did that in the last
+one, too, and I didn't mention it.
+
+260
+00:16:11,490 --> 00:16:13,550
+But now because we're
+working with images,
+
+261
+00:16:13,550 --> 00:16:18,720
+we need to include the SDL
+image header file as well.
+
+262
+00:16:18,720 --> 00:16:22,087
+So it's the same thing as
+before, initializing SDL here,
+
+263
+00:16:22,087 --> 00:16:23,420
+same deal with creating windows.
+
+264
+00:16:23,420 --> 00:16:25,380
+We've seen that before now.
+
+265
+00:16:25,380 --> 00:16:29,870
+>> Now we need to create something called
+a renderer, which sort of goes along
+
+266
+00:16:29,870 --> 00:16:30,800
+with the window.
+
+267
+00:16:30,800 --> 00:16:33,860
+But it's a sort of
+abstract object that's
+
+268
+00:16:33,860 --> 00:16:37,370
+in charge of doing all these
+drawing operations to the window.
+
+269
+00:16:37,370 --> 00:16:41,580
+And it actually corresponds
+to a program loaded
+
+270
+00:16:41,580 --> 00:16:47,880
+into the graphics hardware in your
+computer or your phone or whatever.
+
+271
+00:16:47,880 --> 00:16:51,005
+So the flags we want to pass it--
+and you can look at the documentation
+
+272
+00:16:51,005 --> 00:16:56,160
+to get more detail here-- are going
+to be SDL render accelerated, which
+
+273
+00:16:56,160 --> 00:16:58,550
+means it's going to be
+using the graphics hardware
+
+274
+00:16:58,550 --> 00:17:01,490
+and not just emulated in software.
+
+275
+00:17:01,490 --> 00:17:07,390
+>> And we're going to use
+SDL RENDERER PRESENTVSYNC.
+
+276
+00:17:07,390 --> 00:17:12,280
+VSYNC is a thing that simply makes
+your graphics look better and prevents
+
+277
+00:17:12,280 --> 00:17:14,970
+this thing called screen
+terror, where half
+
+278
+00:17:14,970 --> 00:17:17,720
+of one frame and half of the next
+frame get drawn at the same time
+
+279
+00:17:17,720 --> 00:17:20,056
+and it looks awful.
+
+280
+00:17:20,056 --> 00:17:23,130
+But again, you can go read
+about that on your own.
+
+281
+00:17:23,130 --> 00:17:24,319
+>> So we have some flags here.
+
+282
+00:17:24,319 --> 00:17:27,810
+And so we're just going to call
+this function SDL create renderer.
+
+283
+00:17:27,810 --> 00:17:31,340
+We're going to give it the window
+to associate with that renderer.
+
+284
+00:17:31,340 --> 00:17:34,520
+Negative one means we don't care what
+graphics driver we're going to use.
+
+285
+00:17:34,520 --> 00:17:36,603
+So that should pretty much
+always be negative one,
+
+286
+00:17:36,603 --> 00:17:39,010
+unless you know about graphics drivers.
+
+287
+00:17:39,010 --> 00:17:41,650
+And then we're just going
+to pass it our flags.
+
+288
+00:17:41,650 --> 00:17:47,240
+So if that returns null, then we're
+going to print the error as usual,
+
+289
+00:17:47,240 --> 00:17:49,550
+but then we're also going
+to destroy the window
+
+290
+00:17:49,550 --> 00:17:54,970
+to clean up those resources before
+calling SDL quit and returning.
+
+291
+00:17:54,970 --> 00:17:58,110
+>> Now, the interesting part here
+is where we load our image
+
+292
+00:17:58,110 --> 00:18:00,870
+using this function IMG_load.
+
+293
+00:18:00,870 --> 00:18:04,050
+This is the only function we're going
+to use from the SDL image library.
+
+294
+00:18:04,050 --> 00:18:05,480
+It's the only one we need.
+
+295
+00:18:05,480 --> 00:18:12,950
+It's a function that takes the string
+that is the path of any image resource.
+
+296
+00:18:12,950 --> 00:18:18,024
+And it can be a .png, a GIF,
+bitmap, any of these things.
+
+297
+00:18:18,024 --> 00:18:19,690
+And that's why this function is so nice.
+
+298
+00:18:19,690 --> 00:18:22,560
+It can handle pretty much any format.
+
+299
+00:18:22,560 --> 00:18:27,240
+Loads it into memory and stores it
+as a thing called an SDL surface.
+
+300
+00:18:27,240 --> 00:18:34,660
+>> Now an SDL surface is merely a struct
+that represents image data in memory.
+
+301
+00:18:34,660 --> 00:18:38,054
+So you can read more about
+that in the documentation two.
+
+302
+00:18:38,054 --> 00:18:40,720
+And if this errors, then we're
+going to do the whole thing where
+
+303
+00:18:40,720 --> 00:18:44,480
+we print the error, close our
+resources, and then quit the program.
+
+304
+00:18:44,480 --> 00:18:48,970
+Now the interesting thing is, before
+we can draw this image to the window,
+
+305
+00:18:48,970 --> 00:18:51,390
+we need to actually make it a texture.
+
+306
+00:18:51,390 --> 00:18:54,460
+Now a texture corresponds
+to image data loaded
+
+307
+00:18:54,460 --> 00:18:57,820
+into the graphic's hardware's memory.
+
+308
+00:18:57,820 --> 00:19:00,720
+>> So a surface is in main
+memory, regular memory
+
+309
+00:19:00,720 --> 00:19:05,550
+that we've been using all semester,
+and a texture is in this separate VRAM
+
+310
+00:19:05,550 --> 00:19:09,410
+memory that the graphics card controls.
+
+311
+00:19:09,410 --> 00:19:13,170
+So we call this function
+SDL_CreateTextureFromSurface.
+
+312
+00:19:13,170 --> 00:19:17,104
+We give it our renderer and our surface.
+
+313
+00:19:17,104 --> 00:19:19,020
+And then we're actually
+done with the surface,
+
+314
+00:19:19,020 --> 00:19:20,311
+so we're just going to free it.
+
+315
+00:19:20,311 --> 00:19:22,210
+We don't need it anymore.
+
+316
+00:19:22,210 --> 00:19:26,650
+And then so if this call
+errored and returned null,
+
+317
+00:19:26,650 --> 00:19:29,630
+then we're going to do the whole
+error reporting thing again.
+
+318
+00:19:29,630 --> 00:19:30,920
+>> All right.
+
+319
+00:19:30,920 --> 00:19:34,810
+Here, we get into some
+actual rendering functions.
+
+320
+00:19:34,810 --> 00:19:37,730
+So calling SDL_RenderClear
+and passing it
+
+321
+00:19:37,730 --> 00:19:42,550
+the renderer associated with our window
+simply makes the window go black.
+
+322
+00:19:42,550 --> 00:19:47,650
+So it removes that junk that we saw in
+our window before and makes it black.
+
+323
+00:19:47,650 --> 00:19:50,750
+And then we're going
+to call SDL_RenderCopy,
+
+324
+00:19:50,750 --> 00:19:53,010
+give it our renderer, our texture.
+
+325
+00:19:53,010 --> 00:19:55,800
+And we'll talk about what
+these fields are in a bit.
+
+326
+00:19:55,800 --> 00:19:57,830
+But that's going to
+take the texture data
+
+327
+00:19:57,830 --> 00:20:03,100
+and copy it onto our
+window to draw the image.
+
+328
+00:20:03,100 --> 00:20:07,020
+So after we've done this copy
+the data onto our window,
+
+329
+00:20:07,020 --> 00:20:11,180
+we have to do this extra function
+called SDL_RenderPresent.
+
+330
+00:20:11,180 --> 00:20:15,360
+>> And this is interesting
+because this gets
+
+331
+00:20:15,360 --> 00:20:18,770
+into a topic called double buffering.
+
+332
+00:20:18,770 --> 00:20:24,380
+So double buffering is a technique that
+makes your graphics look a lot better.
+
+333
+00:20:24,380 --> 00:20:28,240
+Again, it prevents that screen tearing
+I was talking about earlier, where
+
+334
+00:20:28,240 --> 00:20:29,590
+you have two buffers.
+
+335
+00:20:29,590 --> 00:20:32,260
+There's a back buffer in
+memory and a front buffer.
+
+336
+00:20:32,260 --> 00:20:36,410
+The front buffer is literally
+what's on your screen at the moment.
+
+337
+00:20:36,410 --> 00:20:42,070
+So we do all these draw variations,
+like SDL render copy or SDL_RenderClear
+
+338
+00:20:42,070 --> 00:20:43,080
+to the back buffer.
+
+339
+00:20:43,080 --> 00:20:44,800
+So they modify things
+in the back buffer.
+
+340
+00:20:44,800 --> 00:20:48,970
+Here we might be drawing this
+green square to the back buffer.
+
+341
+00:20:48,970 --> 00:20:52,300
+>> So then when we're done doing
+our render operations, which
+
+342
+00:20:52,300 --> 00:20:55,700
+might take a really long
+time, what we're going to do
+
+343
+00:20:55,700 --> 00:20:57,860
+is switch the buffers.
+
+344
+00:20:57,860 --> 00:21:00,720
+So it literally just takes the
+front buffer and the back buffer
+
+345
+00:21:00,720 --> 00:21:02,990
+and switches them, so
+that, instantaneously,
+
+346
+00:21:02,990 --> 00:21:06,630
+in one operation, instead of
+maybe hundreds or thousands,
+
+347
+00:21:06,630 --> 00:21:10,910
+all of our newly rendered
+objects are on the screen.
+
+348
+00:21:10,910 --> 00:21:13,160
+And this prevents things
+like the screen refreshing
+
+349
+00:21:13,160 --> 00:21:16,710
+when we've only drawn half
+of our objects for the frame.
+
+350
+00:21:16,710 --> 00:21:21,280
+So that's why we need to call
+SDL_RenderPresent, as well
+
+351
+00:21:21,280 --> 00:21:23,320
+as SDL_RenderCopy.
+
+352
+00:21:23,320 --> 00:21:25,749
+>> Again, we're just going
+to wait for five seconds.
+
+353
+00:21:25,749 --> 00:21:27,540
+Then we're going to
+clean up our resources.
+
+354
+00:21:27,540 --> 00:21:29,540
+We have quite a few more this time.
+
+355
+00:21:29,540 --> 00:21:31,750
+And then we're just going
+to exit the program.
+
+356
+00:21:31,750 --> 00:21:35,350
+So let's do that.
+
+357
+00:21:35,350 --> 00:21:41,880
+I'm going to type make, and then sources
+equals hello-- this is now 3image.c.
+
+358
+00:21:41,880 --> 00:21:49,632
+
+359
+00:21:49,632 --> 00:21:52,240
+All right, that compiled no errors.
+
+360
+00:21:52,240 --> 00:21:57,210
+And you can see here I've now
+drawn out my image, Hello, CS50!
+
+361
+00:21:57,210 --> 00:22:00,560
+to our window, which
+disappears after five seconds.
+
+362
+00:22:00,560 --> 00:22:02,090
+>> Now, this still has problems, right?
+
+363
+00:22:02,090 --> 00:22:05,750
+This is not a good application,
+because when I try to close the window,
+
+364
+00:22:05,750 --> 00:22:06,500
+nothing happens.
+
+365
+00:22:06,500 --> 00:22:09,540
+That x is still not responsive.
+
+366
+00:22:09,540 --> 00:22:17,420
+So let's take a look at the
+next file, hello4animation.
+
+367
+00:22:17,420 --> 00:22:21,850
+So this is the file
+that's going to introduce
+
+368
+00:22:21,850 --> 00:22:25,124
+moving and movement to our image.
+
+369
+00:22:25,124 --> 00:22:27,040
+So we're going to do the
+same thing as before,
+
+370
+00:22:27,040 --> 00:22:30,190
+initiate SDL, create the
+window, create the renderer,
+
+371
+00:22:30,190 --> 00:22:33,030
+load the image into
+memory, create the texture.
+
+372
+00:22:33,030 --> 00:22:35,090
+We've seen all of that before.
+
+373
+00:22:35,090 --> 00:22:36,770
+Now, this is new.
+
+374
+00:22:36,770 --> 00:22:42,305
+We're going to have a structure called
+an SDL rect, which is just a rectangle.
+
+375
+00:22:42,305 --> 00:22:49,950
+If we go over here, we can
+do a search for SDL rect,
+
+376
+00:22:49,950 --> 00:22:54,040
+and you can see it's a
+very simple structure.
+
+377
+00:22:54,040 --> 00:22:56,760
+It has an x, a y for
+the position, and it
+
+378
+00:22:56,760 --> 00:23:02,080
+has a width and a height for
+the size of the rectangle.
+
+379
+00:23:02,080 --> 00:23:07,785
+>> So what we're going to do is we're
+going to define this SDL rect dest,
+
+380
+00:23:07,785 --> 00:23:09,480
+for destination.
+
+381
+00:23:09,480 --> 00:23:14,130
+And this is the place
+on the screen where
+
+382
+00:23:14,130 --> 00:23:16,005
+we're going to be drawing
+our image, right So
+
+383
+00:23:16,005 --> 00:23:17,880
+if we're going to be
+moving the image around,
+
+384
+00:23:17,880 --> 00:23:20,300
+then the destination where
+we're going to draw the image
+
+385
+00:23:20,300 --> 00:23:22,620
+need to be moving around.
+
+386
+00:23:22,620 --> 00:23:24,910
+So we're going to call this
+function SDL_QueryTexture.
+
+387
+00:23:24,910 --> 00:23:27,550
+
+388
+00:23:27,550 --> 00:23:33,500
+And notice I'm passing the address
+of dest.w, which is the width,
+
+389
+00:23:33,500 --> 00:23:36,950
+and dest.h, which is the height.
+
+390
+00:23:36,950 --> 00:23:40,425
+And so SDL_QueryTexture is going
+to store in those fields the width
+
+391
+00:23:40,425 --> 00:23:41,675
+and the height of our texture.
+
+392
+00:23:41,675 --> 00:23:44,680
+
+393
+00:23:44,680 --> 00:23:47,030
+>> And then what I'm going
+to do is I'm going
+
+394
+00:23:47,030 --> 00:23:55,580
+to set dest.x to be window
+width minus dest.w, which is
+
+395
+00:23:55,580 --> 00:23:59,000
+the width of the sprite, divided by 2.
+
+396
+00:23:59,000 --> 00:24:03,860
+And this is going to set it up so
+that the image is perfectly centered
+
+397
+00:24:03,860 --> 00:24:06,780
+in our window, all right?
+
+398
+00:24:06,780 --> 00:24:08,652
+So now I have a y position.
+
+399
+00:24:08,652 --> 00:24:10,360
+And this is going to
+be a variable that's
+
+400
+00:24:10,360 --> 00:24:16,390
+changing, because we're going to be
+moving the image in the y direction.
+
+401
+00:24:16,390 --> 00:24:19,050
+And now we have something
+called an animation loop.
+
+402
+00:24:19,050 --> 00:24:21,180
+>> So how does the animation work?
+
+403
+00:24:21,180 --> 00:24:27,630
+Well, human eye can detect 12 distinct
+images in every second, all right?
+
+404
+00:24:27,630 --> 00:24:33,060
+So if you flash 12 image cards at me
+in a second, I saw each of those images
+
+405
+00:24:33,060 --> 00:24:35,950
+as its own distinct individual image.
+
+406
+00:24:35,950 --> 00:24:39,690
+Now, if you flash more
+images at me in a second,
+
+407
+00:24:39,690 --> 00:24:42,140
+then my eye would start
+to blur them together
+
+408
+00:24:42,140 --> 00:24:46,920
+and I would perceive it as motion,
+instead of one distinct image.
+
+409
+00:24:46,920 --> 00:24:51,930
+So, for example, movies and television,
+they flash images at you 24 times
+
+410
+00:24:51,930 --> 00:24:52,570
+a second.
+
+411
+00:24:52,570 --> 00:24:55,110
+So that's 24 frames per second.
+
+412
+00:24:55,110 --> 00:25:00,136
+Computer screens, on the other hand,
+often are at 60 frames per second.
+
+413
+00:25:00,136 --> 00:25:01,260
+That's their refresh speed.
+
+414
+00:25:01,260 --> 00:25:04,650
+That's how often they refresh
+the picture on the screen.
+
+415
+00:25:04,650 --> 00:25:08,960
+So our target is going to be 60
+frames per second for our games.
+
+416
+00:25:08,960 --> 00:25:11,770
+
+417
+00:25:11,770 --> 00:25:13,710
+>> So let's see that in the code.
+
+418
+00:25:13,710 --> 00:25:19,064
+So for each frame, we're first
+going to clear the window.
+
+419
+00:25:19,064 --> 00:25:20,230
+This is the general pattern.
+
+420
+00:25:20,230 --> 00:25:22,450
+You always clear the
+window each frame, and then
+
+421
+00:25:22,450 --> 00:25:25,210
+do all of your drawing
+operations, and then at the end,
+
+422
+00:25:25,210 --> 00:25:29,610
+do RenderPresent to show
+everything in the frame.
+
+423
+00:25:29,610 --> 00:25:33,910
+And then you're going to
+have a wait at the end
+
+424
+00:25:33,910 --> 00:25:36,340
+to wait until the next
+frame should begin.
+
+425
+00:25:36,340 --> 00:25:38,650
+>> So if I was doing a lot of
+complex computation here
+
+426
+00:25:38,650 --> 00:25:43,100
+that took more than 16 milliseconds,
+it would be impossible for me
+
+427
+00:25:43,100 --> 00:25:46,890
+to get that frame rate of 60 that
+I wanted, because each frame is
+
+428
+00:25:46,890 --> 00:25:48,750
+taking too long to compute.
+
+429
+00:25:48,750 --> 00:25:52,340
+Furthermore, we're really doing
+sort of a negligible amount of work
+
+430
+00:25:52,340 --> 00:25:54,820
+here, because there's only
+one thing we're drawing.
+
+431
+00:25:54,820 --> 00:25:59,390
+So I just wait 1/60 of a
+second, which is the length
+
+432
+00:25:59,390 --> 00:26:01,520
+of a frame in between frames.
+
+433
+00:26:01,520 --> 00:26:05,610
+So I'm sort of pretending doing
+all my work takes zero time.
+
+434
+00:26:05,610 --> 00:26:09,050
+But in a real game,
+you'd have to subtract
+
+435
+00:26:09,050 --> 00:26:13,760
+the amount of time it took to do
+all this work from your rest time.
+
+436
+00:26:13,760 --> 00:26:16,970
+>> So anyway, what am I
+actually doing in this loop?
+
+437
+00:26:16,970 --> 00:26:19,070
+I clear the window.
+
+438
+00:26:19,070 --> 00:26:27,470
+I set the dest.y, which is an int to
+my actual y position cast into an int.
+
+439
+00:26:27,470 --> 00:26:32,070
+Now, I want float resolution
+for my y position in my game,
+
+440
+00:26:32,070 --> 00:26:34,150
+but then to actually
+draw it onto the screen,
+
+441
+00:26:34,150 --> 00:26:39,070
+it needs ints, because it's in units of
+pixels, so that's what the cast is for.
+
+442
+00:26:39,070 --> 00:26:41,745
+I'm going to draw the image.
+
+443
+00:26:41,745 --> 00:26:45,180
+So this is the source rectangle.
+
+444
+00:26:45,180 --> 00:26:47,060
+And this is the destination rectangle.
+
+445
+00:26:47,060 --> 00:26:50,310
+So I passed null for
+the source rectangle
+
+446
+00:26:50,310 --> 00:26:53,426
+to say I want to draw my entire texture.
+
+447
+00:26:53,426 --> 00:26:55,300
+But if you had a lot of
+textures in your game
+
+448
+00:26:55,300 --> 00:26:59,120
+and they're all in one big texture map
+that was loaded into SDL as just one
+
+449
+00:26:59,120 --> 00:27:02,850
+texture, you could
+use a source rectangle
+
+450
+00:27:02,850 --> 00:27:06,750
+to pick one of the smaller textures,
+one of the smaller sprites,
+
+451
+00:27:06,750 --> 00:27:09,450
+out of that big texture map.
+
+452
+00:27:09,450 --> 00:27:14,740
+>> So again, I'm passing my render, my
+texture, and now the destination.
+
+453
+00:27:14,740 --> 00:27:18,320
+This is going to be where in the
+window it's going to be drawn.
+
+454
+00:27:18,320 --> 00:27:21,390
+And then, because I'm animating
+something, I need movement,
+
+455
+00:27:21,390 --> 00:27:25,150
+I'm going to be updating the
+sprite position on each frame.
+
+456
+00:27:25,150 --> 00:27:30,190
+So I have this constant called scroll
+speed in units of pixels per second.
+
+457
+00:27:30,190 --> 00:27:34,320
+Now, each time we do a movement,
+the frame is only 1/60 of a second.
+
+458
+00:27:34,320 --> 00:27:36,740
+So I'm going to divide that by 60.
+
+459
+00:27:36,740 --> 00:27:42,350
+And then, let's see, I'm
+subtracting that from y position.
+
+460
+00:27:42,350 --> 00:27:44,470
+Why am I subtracting?
+
+461
+00:27:44,470 --> 00:27:46,169
+We'll get to that in a second.
+
+462
+00:27:46,169 --> 00:27:48,460
+So then I clean up my resources
+and the program's over.
+
+463
+00:27:48,460 --> 00:27:49,830
+>> So let's make that.
+
+464
+00:27:49,830 --> 00:27:52,450
+
+465
+00:27:52,450 --> 00:28:03,570
+So let's go into make SRCS=hello4
+animation.c, all right?
+
+466
+00:28:03,570 --> 00:28:05,720
+Game.
+
+467
+00:28:05,720 --> 00:28:06,770
+There you go.
+
+468
+00:28:06,770 --> 00:28:12,690
+So I have it scrolling up the
+window, which is pretty neat.
+
+469
+00:28:12,690 --> 00:28:17,110
+But hold on, I was subtracting
+from the y position every time.
+
+470
+00:28:17,110 --> 00:28:18,910
+What's going on there?
+
+471
+00:28:18,910 --> 00:28:24,010
+Well, it turns out that in SDL, and
+in fact, in most computer graphics,
+
+472
+00:28:24,010 --> 00:28:28,890
+the origin for the coordinate system
+is the top left of the window.
+
+473
+00:28:28,890 --> 00:28:34,960
+>> So the positive x direction goes
+across your window to the right.
+
+474
+00:28:34,960 --> 00:28:38,110
+And the positive y direction
+actually goes down.
+
+475
+00:28:38,110 --> 00:28:40,470
+So again, the origin's in
+the top left of your window,
+
+476
+00:28:40,470 --> 00:28:46,190
+positive y direction is down,
+and positive x is to the right.
+
+477
+00:28:46,190 --> 00:28:48,770
+So when I subtract from
+the y position, that's
+
+478
+00:28:48,770 --> 00:28:52,640
+going to make it go on the negative
+y direction, which is up the window.
+
+479
+00:28:52,640 --> 00:28:55,500
+So that's what's going on there.
+
+480
+00:28:55,500 --> 00:28:56,510
+Cool.
+
+481
+00:28:56,510 --> 00:28:59,240
+>> Let's look at the next file.
+
+482
+00:28:59,240 --> 00:29:05,700
+Here is the part of the
+show where we finally
+
+483
+00:29:05,700 --> 00:29:08,920
+get that X in the corner of the window
+that's supposed to close the window
+
+484
+00:29:08,920 --> 00:29:10,660
+to work.
+
+485
+00:29:10,660 --> 00:29:12,800
+So what's going on?
+
+486
+00:29:12,800 --> 00:29:17,520
+We initialize SDL, create the window,
+create the renderer, load the image,
+
+487
+00:29:17,520 --> 00:29:19,770
+create the texture
+like we've seen before.
+
+488
+00:29:19,770 --> 00:29:26,850
+We have the same destination rectangle
+as before, same call to query texture.
+
+489
+00:29:26,850 --> 00:29:29,780
+But this time, we're then
+going to divide the width
+
+490
+00:29:29,780 --> 00:29:33,110
+and the height of our destination by 4.
+
+491
+00:29:33,110 --> 00:29:36,430
+This only has the effect of
+scaling our image down when
+
+492
+00:29:36,430 --> 00:29:39,884
+we display it in the window by four.
+
+493
+00:29:39,884 --> 00:29:40,800
+So that's pretty neat.
+
+494
+00:29:40,800 --> 00:29:42,770
+We can just scale just like that.
+
+495
+00:29:42,770 --> 00:29:45,970
+We're going to start the sprite
+in the center of the screen.
+
+496
+00:29:45,970 --> 00:29:49,410
+And now we have x and y velocity and
+they're both going to start at zero.
+
+497
+00:29:49,410 --> 00:29:53,740
+
+498
+00:29:53,740 --> 00:29:55,880
+>> This is the wrong file.
+
+499
+00:29:55,880 --> 00:29:56,380
+I'm sorry.
+
+500
+00:29:56,380 --> 00:29:57,960
+So that's all true.
+
+501
+00:29:57,960 --> 00:30:00,170
+That's all still in this file.
+
+502
+00:30:00,170 --> 00:30:03,210
+We have the divide by 4 and everything.
+
+503
+00:30:03,210 --> 00:30:07,830
+So here we have our x and y position
+for the center of the window.
+
+504
+00:30:07,830 --> 00:30:12,480
+And we give it an initial velocity
+of this constant speed, which
+
+505
+00:30:12,480 --> 00:30:15,180
+I believe is 300 pixels per second.
+
+506
+00:30:15,180 --> 00:30:19,850
+Now, we have this int could just as well
+be a boolean called close requested.
+
+507
+00:30:19,850 --> 00:30:23,970
+And instead of doing an
+infinite loop on a timer here,
+
+508
+00:30:23,970 --> 00:30:29,180
+we're going to be animating as
+long as close is not requested.
+
+509
+00:30:29,180 --> 00:30:30,960
+>> So how do we process events?
+
+510
+00:30:30,960 --> 00:30:35,600
+Well, SDL queues up events in a
+literal queue behind the scenes.
+
+511
+00:30:35,600 --> 00:30:38,860
+And then each frame,
+we can dequeue events
+
+512
+00:30:38,860 --> 00:30:43,900
+from that queue using
+this call SDL_PullEvent.
+
+513
+00:30:43,900 --> 00:30:46,730
+And again, definitely go read
+about this in the documentation.
+
+514
+00:30:46,730 --> 00:30:50,450
+There's a lot more detail and a lot
+more functions you can use with this.
+
+515
+00:30:50,450 --> 00:30:54,750
+We pass it the address
+of this thing, SDL_Event
+
+516
+00:30:54,750 --> 00:30:56,990
+that we have here on the stack.
+
+517
+00:30:56,990 --> 00:30:58,840
+>> Now, what is an SDL_event?
+
+518
+00:30:58,840 --> 00:31:02,356
+Because SDL, if we look in
+the documentation-- let's
+
+519
+00:31:02,356 --> 00:31:07,580
+see, API by category, input
+events, event handling,
+
+520
+00:31:07,580 --> 00:31:15,150
+we can look at the number
+of different events here
+
+521
+00:31:15,150 --> 00:31:18,600
+and we can see there's
+a whole ton of them.
+
+522
+00:31:18,600 --> 00:31:22,150
+So what is this SDL_Event thing?
+
+523
+00:31:22,150 --> 00:31:28,190
+
+524
+00:31:28,190 --> 00:31:31,107
+SDL_Event is a union.
+
+525
+00:31:31,107 --> 00:31:31,940
+Wow, what's a union?
+
+526
+00:31:31,940 --> 00:31:33,910
+You've probably never
+heard of that before.
+
+527
+00:31:33,910 --> 00:31:35,610
+And that's OK.
+
+528
+00:31:35,610 --> 00:31:39,420
+>> A union is kind of like
+a struct, except a struct
+
+529
+00:31:39,420 --> 00:31:41,960
+has a space for all of
+its fields and memory,
+
+530
+00:31:41,960 --> 00:31:45,060
+whereas a union only has
+enough space to fit the largest
+
+531
+00:31:45,060 --> 00:31:49,660
+one of its fields, which means it
+can only store one of its fields
+
+532
+00:31:49,660 --> 00:31:52,830
+at a time, which kind of
+makes sense for events, right?
+
+533
+00:31:52,830 --> 00:31:55,810
+We can have a keyboard
+event or a window event,
+
+534
+00:31:55,810 --> 00:31:59,750
+but a single event cannot be both a
+keyboard event and a window event,
+
+535
+00:31:59,750 --> 00:32:05,450
+so it'd be silly to have space for
+both of those inside our event union.
+
+536
+00:32:05,450 --> 00:32:07,770
+So if you wanted to
+create your own union,
+
+537
+00:32:07,770 --> 00:32:10,020
+it looks exactly the same
+as creating a struct,
+
+538
+00:32:10,020 --> 00:32:14,140
+except that we use the union keyword
+instead of the struct keyword.
+
+539
+00:32:14,140 --> 00:32:17,490
+And remember, for all of the
+things inside your union,
+
+540
+00:32:17,490 --> 00:32:22,020
+the actual variable that is the union
+can only have one of those values
+
+541
+00:32:22,020 --> 00:32:24,780
+at a time.
+
+542
+00:32:24,780 --> 00:32:29,940
+>> So how can we tell what kind of event
+we just popped off of this queue?
+
+543
+00:32:29,940 --> 00:32:33,370
+Well, we can test for event.type.
+
+544
+00:32:33,370 --> 00:32:35,792
+And if that is equal
+to SDL_Quit, we know
+
+545
+00:32:35,792 --> 00:32:37,500
+it's the event that
+was generated when we
+
+546
+00:32:37,500 --> 00:32:39,510
+hit that X in the corner of the window.
+
+547
+00:32:39,510 --> 00:32:44,270
+And we can set close requested equals 1.
+
+548
+00:32:44,270 --> 00:32:47,230
+The rest is just some animation
+that you've seen before.
+
+549
+00:32:47,230 --> 00:32:52,802
+So let's go ahead and make
+this and see how well it works.
+
+550
+00:32:52,802 --> 00:32:55,135
+So I'm going to type make and
+then SRCS=hello5_events.c.
+
+551
+00:32:55,135 --> 00:33:03,760
+
+552
+00:33:03,760 --> 00:33:04,770
+There we go.
+
+553
+00:33:04,770 --> 00:33:05,780
+Games.
+
+554
+00:33:05,780 --> 00:33:08,920
+>> Now, we can see it was
+indeed scaled down by four.
+
+555
+00:33:08,920 --> 00:33:10,360
+And now it's bouncing around.
+
+556
+00:33:10,360 --> 00:33:14,630
+I have some collision detection
+going on with the sides of the window
+
+557
+00:33:14,630 --> 00:33:16,840
+that we can take a look at.
+
+558
+00:33:16,840 --> 00:33:21,190
+And what happens when I go to close it?
+
+559
+00:33:21,190 --> 00:33:22,120
+It closes.
+
+560
+00:33:22,120 --> 00:33:22,740
+Fantastic.
+
+561
+00:33:22,740 --> 00:33:24,290
+We received that event.
+
+562
+00:33:24,290 --> 00:33:26,630
+And we handled it.
+
+563
+00:33:26,630 --> 00:33:30,730
+>> So let's look back at the code.
+
+564
+00:33:30,730 --> 00:33:33,020
+So how did I get it
+bouncing around like that?
+
+565
+00:33:33,020 --> 00:33:37,200
+Remember I set both x and
+y initially to the speeds.
+
+566
+00:33:37,200 --> 00:33:39,260
+And speed is a positive
+constant, so that's
+
+567
+00:33:39,260 --> 00:33:42,680
+going to get it starting out
+going down and to the right.
+
+568
+00:33:42,680 --> 00:33:45,680
+
+569
+00:33:45,680 --> 00:33:50,310
+>> Now, each frame, in addition to handling
+any events that may have occurred,
+
+570
+00:33:50,310 --> 00:33:57,520
+I'm going to detect whether my sprite
+is trying to go out of the window.
+
+571
+00:33:57,520 --> 00:34:03,610
+So we can do that by just checking
+x_pos with 0, y_pos 0, and then
+
+572
+00:34:03,610 --> 00:34:07,370
+also x_pos and y_pos with
+window width and window height.
+
+573
+00:34:07,370 --> 00:34:11,010
+Notice I've subtracted
+the width of the sprite.
+
+574
+00:34:11,010 --> 00:34:14,090
+And this is because if I didn't
+subtract the width of the sprite,
+
+575
+00:34:14,090 --> 00:34:17,760
+it would only check that
+the origin of the sprite
+
+576
+00:34:17,760 --> 00:34:19,690
+did not go outside the window.
+
+577
+00:34:19,690 --> 00:34:21,480
+But we want the entire
+width of the sprite
+
+578
+00:34:21,480 --> 00:34:24,030
+to always be inside the window and
+the entire height of the sprite
+
+579
+00:34:24,030 --> 00:34:25,321
+to always be inside the window.
+
+580
+00:34:25,321 --> 00:34:27,429
+So that's what the subtraction is for.
+
+581
+00:34:27,429 --> 00:34:30,080
+A lot of geometry here can
+be helpful to draw it out
+
+582
+00:34:30,080 --> 00:34:33,929
+on paper with the coordinate
+system to see what is going on.
+
+583
+00:34:33,929 --> 00:34:38,090
+>> So if I do collide, I just
+simply reset the position
+
+584
+00:34:38,090 --> 00:34:41,400
+so that it is not going
+out of the screen.
+
+585
+00:34:41,400 --> 00:34:47,179
+And I'm going to, if it bounces
+on one of the sidewalls,
+
+586
+00:34:47,179 --> 00:34:51,469
+I'm going to negate the
+x velocity so that it
+
+587
+00:34:51,469 --> 00:34:53,210
+starts bouncing in the other direction.
+
+588
+00:34:53,210 --> 00:34:56,210
+And similarly, if it hits
+the top or the bottom,
+
+589
+00:34:56,210 --> 00:34:59,820
+I'm going to set the y velocity
+equal to the negative y velocity,
+
+590
+00:34:59,820 --> 00:35:01,690
+so that it will bounce back.
+
+591
+00:35:01,690 --> 00:35:03,860
+So that's just how we got that here.
+
+592
+00:35:03,860 --> 00:35:07,560
+>> And the updating positions
+just like we've seen before,
+
+593
+00:35:07,560 --> 00:35:12,510
+divide by 60, because we're
+only handling 1/60 of a second.
+
+594
+00:35:12,510 --> 00:35:15,750
+And then rendering,
+exactly the same as before.
+
+595
+00:35:15,750 --> 00:35:19,810
+And so that's everything
+that was going on this file.
+
+596
+00:35:19,810 --> 00:35:22,490
+So that's how we do events.
+
+597
+00:35:22,490 --> 00:35:29,260
+The main thing to take away here
+is this SDL_PullEvent function.
+
+598
+00:35:29,260 --> 00:35:33,020
+And you should definitely read the
+documentation more about SDL_Event
+
+599
+00:35:33,020 --> 00:35:38,630
+the union, because this data type is
+very, very important, because we use it
+
+600
+00:35:38,630 --> 00:35:40,690
+for all sorts of events.
+
+601
+00:35:40,690 --> 00:35:46,539
+>> For example, we use it for keyboard
+events, which is what this file is for.
+
+602
+00:35:46,539 --> 00:35:47,330
+So what do we have?
+
+603
+00:35:47,330 --> 00:35:50,180
+We have the same thing as before,
+initialize SDL, create a window,
+
+604
+00:35:50,180 --> 00:35:55,260
+create a renderer, load the image
+into memory, create the texture.
+
+605
+00:35:55,260 --> 00:36:00,530
+Again, we're going to
+have this dest rectangle,
+
+606
+00:36:00,530 --> 00:36:04,890
+we're going to scale the image
+by four, make it a bit smaller.
+
+607
+00:36:04,890 --> 00:36:08,000
+Now, we are going to start the
+sprite in center of the screen.
+
+608
+00:36:08,000 --> 00:36:12,090
+But this time, we're going to set the
+initial x and y velocities to zero,
+
+609
+00:36:12,090 --> 00:36:15,140
+because the keyboard is
+going to control those.
+
+610
+00:36:15,140 --> 00:36:18,900
+And furthermore, we're going to
+keep track of these variables
+
+611
+00:36:18,900 --> 00:36:20,450
+up, down, left, and right.
+
+612
+00:36:20,450 --> 00:36:23,090
+And that's going to keep
+track of whether we've
+
+613
+00:36:23,090 --> 00:36:27,370
+pressed the keyboard buttons that
+correspond to up, down, left,
+
+614
+00:36:27,370 --> 00:36:28,460
+and right.
+
+615
+00:36:28,460 --> 00:36:32,440
+>> Now, this is kind of fancy
+because we can use W, A, S,
+
+616
+00:36:32,440 --> 00:36:35,480
+D here, or the actual arrow keys.
+
+617
+00:36:35,480 --> 00:36:38,590
+We'll see that in just a second.
+
+618
+00:36:38,590 --> 00:36:41,140
+So we're going to process
+the event just like before.
+
+619
+00:36:41,140 --> 00:36:42,530
+We pull the event.
+
+620
+00:36:42,530 --> 00:36:45,840
+But now we're going to
+switch on the event type.
+
+621
+00:36:45,840 --> 00:36:47,710
+If it's SDL_Quit, we're
+going to set close
+
+622
+00:36:47,710 --> 00:36:49,990
+requested to one, just like before.
+
+623
+00:36:49,990 --> 00:36:52,315
+That handles the x in
+the corner of the window,
+
+624
+00:36:52,315 --> 00:36:55,050
+so that our window actually closes.
+
+625
+00:36:55,050 --> 00:37:00,110
+>> Otherwise, if we get an SDL key down
+event, which means we pressed a key,
+
+626
+00:37:00,110 --> 00:37:04,470
+then what we're going to do is we're
+going to switch on this thing here,
+
+627
+00:37:04,470 --> 00:37:11,370
+which means-- so event.key
+means treat our event union,
+
+628
+00:37:11,370 --> 00:37:15,490
+go and get the key
+event structure in it.
+
+629
+00:37:15,490 --> 00:37:18,810
+So it turns out that this
+union is a key event structure.
+
+630
+00:37:18,810 --> 00:37:22,820
+And then go to the key
+event's structure its field
+
+631
+00:37:22,820 --> 00:37:26,140
+called keysym and then scancode.
+
+632
+00:37:26,140 --> 00:37:29,480
+And again, definitely read
+the documentation about this.
+
+633
+00:37:29,480 --> 00:37:31,220
+Keyword inputs quite interesting.
+
+634
+00:37:31,220 --> 00:37:34,020
+You can get scan codes or key codes.
+
+635
+00:37:34,020 --> 00:37:38,590
+And it's a little subtle, but
+the documentation is quite good.
+
+636
+00:37:38,590 --> 00:37:43,380
+>> So if we see the scan code for
+our key press being W or up,
+
+637
+00:37:43,380 --> 00:37:45,450
+we're going to set up equal to 1.
+
+638
+00:37:45,450 --> 00:37:47,240
+And then we break out of that switch.
+
+639
+00:37:47,240 --> 00:37:52,980
+If it's A or left, we set left to 1, et
+cetera, et cetera, for down and right.
+
+640
+00:37:52,980 --> 00:37:57,080
+Now, out in this outer switch,
+if we see a key up event,
+
+641
+00:37:57,080 --> 00:38:00,730
+that means we've released a key
+and we're no longer pressing it.
+
+642
+00:38:00,730 --> 00:38:05,380
+So I'm going to say up equals 0,
+left equals 0, down equals 0, right
+
+643
+00:38:05,380 --> 00:38:08,260
+equals 0, et cetera.
+
+644
+00:38:08,260 --> 00:38:12,070
+>> And notice we have in each of these
+two cases put right next to each other
+
+645
+00:38:12,070 --> 00:38:14,490
+with no separate code
+for the first case, which
+
+646
+00:38:14,490 --> 00:38:18,180
+means that whether it's
+an S or a down right here,
+
+647
+00:38:18,180 --> 00:38:20,520
+it's going to execute this code.
+
+648
+00:38:20,520 --> 00:38:22,090
+So that's pretty handy.
+
+649
+00:38:22,090 --> 00:38:24,830
+It prevents us having to do more
+conditions and ifs and things
+
+650
+00:38:24,830 --> 00:38:26,980
+like that.
+
+651
+00:38:26,980 --> 00:38:29,420
+>> So we're going to
+determine the velocity.
+
+652
+00:38:29,420 --> 00:38:31,020
+We set the velocity to 0.
+
+653
+00:38:31,020 --> 00:38:33,910
+Then if up is pressed
+and not down, then we
+
+654
+00:38:33,910 --> 00:38:37,450
+set the y velocity to negative speed.
+
+655
+00:38:37,450 --> 00:38:42,930
+Remember negative, because the
+negative y direction is up.
+
+656
+00:38:42,930 --> 00:38:45,540
+And the positive y direction is down.
+
+657
+00:38:45,540 --> 00:38:47,510
+If down is pressed
+and not up, then we're
+
+658
+00:38:47,510 --> 00:38:53,860
+going to set it to positive speed,
+which means going down the screen.
+
+659
+00:38:53,860 --> 00:38:55,460
+Same thing with left and right.
+
+660
+00:38:55,460 --> 00:38:58,200
+>> And then we're going to update
+the positions just like before.
+
+661
+00:38:58,200 --> 00:39:00,740
+We're going to do collision
+detection with bounds,
+
+662
+00:39:00,740 --> 00:39:04,290
+but we're not going to reset the
+velocity, because the velocity is just
+
+663
+00:39:04,290 --> 00:39:06,780
+controlled by the keyboard.
+
+664
+00:39:06,780 --> 00:39:11,230
+But we are going to reset the
+positions to keep it in the window.
+
+665
+00:39:11,230 --> 00:39:14,400
+And we're going to set the
+positions in the struct
+
+666
+00:39:14,400 --> 00:39:17,400
+and then do all the
+rendering stuff from before.
+
+667
+00:39:17,400 --> 00:39:20,750
+So let's see what it does.
+
+668
+00:39:20,750 --> 00:39:25,460
+So make SRCS-- let's see,
+this is hello6_keyboard.c.
+
+669
+00:39:25,460 --> 00:39:38,140
+
+670
+00:39:38,140 --> 00:39:38,820
+>> Oh, no.
+
+671
+00:39:38,820 --> 00:39:40,150
+So we got some warnings here.
+
+672
+00:39:40,150 --> 00:39:43,840
+And that's simply saying we didn't
+check for every single possible kind
+
+673
+00:39:43,840 --> 00:39:45,610
+of event.
+
+674
+00:39:45,610 --> 00:39:49,470
+That's OK, because
+there's 236 of them or so.
+
+675
+00:39:49,470 --> 00:39:51,760
+So I'm going to ignore those warnings.
+
+676
+00:39:51,760 --> 00:39:53,530
+It's still compiled fine.
+
+677
+00:39:53,530 --> 00:39:56,100
+So I'm going to play the game.
+
+678
+00:39:56,100 --> 00:39:57,590
+It's not moving.
+
+679
+00:39:57,590 --> 00:40:04,150
+But now, when I mash on my keyboard,
+I can do some WASD movement here,
+
+680
+00:40:04,150 --> 00:40:06,870
+I use my arrow keys as well.
+
+681
+00:40:06,870 --> 00:40:10,070
+And notice, even though I'm
+pressing right right now,
+
+682
+00:40:10,070 --> 00:40:13,804
+it's not going out of the window,
+because I reset it on every frame.
+
+683
+00:40:13,804 --> 00:40:14,720
+So that's pretty neat.
+
+684
+00:40:14,720 --> 00:40:19,420
+You can imagine moving around Mario with
+some arrow keys or something like that.
+
+685
+00:40:19,420 --> 00:40:22,880
+And yes, the X does work.
+
+686
+00:40:22,880 --> 00:40:26,900
+>> So final file we're going
+to look at, hellow7_mouse.
+
+687
+00:40:26,900 --> 00:40:29,600
+This is about getting mouse input.
+
+688
+00:40:29,600 --> 00:40:34,790
+So in this one, we
+import the math header,
+
+689
+00:40:34,790 --> 00:40:38,100
+because we're going to have
+a little bit of math here.
+
+690
+00:40:38,100 --> 00:40:45,260
+Same old, same old stuff, destination,
+same old, seen that before.
+
+691
+00:40:45,260 --> 00:40:46,910
+Well, this is interesting.
+
+692
+00:40:46,910 --> 00:40:51,730
+So we're back to only checking
+for the SDL quit event.
+
+693
+00:40:51,730 --> 00:40:52,460
+Why is that?
+
+694
+00:40:52,460 --> 00:40:55,110
+So you can get mouse input from events.
+
+695
+00:40:55,110 --> 00:40:57,670
+Like when the mouse moved,
+you get an event for that.
+
+696
+00:40:57,670 --> 00:41:00,520
+When a mouse button is pressed,
+you can get an event for that.
+
+697
+00:41:00,520 --> 00:41:05,760
+>> But there's another, slightly simpler
+perhaps, API for getting mouse input.
+
+698
+00:41:05,760 --> 00:41:09,500
+And that's simply SDL get mouse state.
+
+699
+00:41:09,500 --> 00:41:14,370
+So I have an int for x and
+y for the cursor position.
+
+700
+00:41:14,370 --> 00:41:18,910
+I pass it to SDL_GetMouseState,
+which sets these.
+
+701
+00:41:18,910 --> 00:41:22,200
+And this is position in the
+coordinate system of the window.
+
+702
+00:41:22,200 --> 00:41:25,520
+So if the mass is in the top left
+of the window, that would 0, 0.
+
+703
+00:41:25,520 --> 00:41:28,040
+
+704
+00:41:28,040 --> 00:41:33,380
+>> Now, what I'm going to do is I'm going
+to do a little bit of vector math.
+
+705
+00:41:33,380 --> 00:41:36,910
+I bet you thought you wouldn't
+see that in CS50, but here it is.
+
+706
+00:41:36,910 --> 00:41:40,720
+I'm going to do some vector
+math to get the vector
+
+707
+00:41:40,720 --> 00:41:43,840
+from the image to the cursor.
+
+708
+00:41:43,840 --> 00:41:53,280
+And so why do I have
+this subtraction here?
+
+709
+00:41:53,280 --> 00:42:01,350
+Well, if I just used dest.-- so
+I need to translate the mouse x
+
+710
+00:42:01,350 --> 00:42:05,166
+and y by half the width and
+the height of the image,
+
+711
+00:42:05,166 --> 00:42:08,040
+because I want the center of the
+image to be going towards the mouse,
+
+712
+00:42:08,040 --> 00:42:10,160
+not the origin of the image.
+
+713
+00:42:10,160 --> 00:42:15,650
+>> So that's just to make sure I'm talking
+about the center of the image here.
+
+714
+00:42:15,650 --> 00:42:19,510
+Then we get delta x and y, which
+is the difference from the target
+
+715
+00:42:19,510 --> 00:42:23,430
+to the actual position of the image.
+
+716
+00:42:23,430 --> 00:42:25,690
+And then we can get the
+distance here, which
+
+717
+00:42:25,690 --> 00:42:29,140
+is going to be Pythagorean
+theorem, square root of x
+
+718
+00:42:29,140 --> 00:42:32,720
+times x plus y times y.
+
+719
+00:42:32,720 --> 00:42:38,400
+>> Now to prevent jitter, and I can show
+you what this does if I don't do this,
+
+720
+00:42:38,400 --> 00:42:45,830
+if distance between the cursor and
+the image center is less than five,
+
+721
+00:42:45,830 --> 00:42:48,730
+I'm just not going to move the image.
+
+722
+00:42:48,730 --> 00:42:52,900
+Otherwise, we set the velocity.
+
+723
+00:42:52,900 --> 00:42:55,960
+And we set it so that the
+velocity will always be constant.
+
+724
+00:42:55,960 --> 00:42:58,770
+And the net result of all
+this math is that the image
+
+725
+00:42:58,770 --> 00:43:01,660
+is going to move towards the cursor.
+
+726
+00:43:01,660 --> 00:43:08,470
+>> Now, it turns out that
+SDL_GetMouseState,
+
+727
+00:43:08,470 --> 00:43:14,490
+in addition to setting the
+x and y arguments here,
+
+728
+00:43:14,490 --> 00:43:21,340
+it also returns an int that corresponds
+to the state of the mouse buttons.
+
+729
+00:43:21,340 --> 00:43:24,600
+So we can't read that
+directly, but we can
+
+730
+00:43:24,600 --> 00:43:29,090
+use these macros, a single
+bitwise operator, not that scary,
+
+731
+00:43:29,090 --> 00:43:30,650
+just a bitwise and.
+
+732
+00:43:30,650 --> 00:43:38,320
+So we say buttons, which is the result
+of our SDL_GetMouseState, if that
+
+733
+00:43:38,320 --> 00:43:43,990
+and bitwise and, this macro
+here, SDL_BUTTON_LEFT.
+
+734
+00:43:43,990 --> 00:43:47,680
+>> So this is going to simply resolve
+to the bitmap that corresponds
+
+735
+00:43:47,680 --> 00:43:51,090
+to left mouse button being pressed.
+
+736
+00:43:51,090 --> 00:43:55,470
+And so if the bitwise
+and occurs and it's
+
+737
+00:43:55,470 --> 00:43:59,340
+not zero, which means
+left button was pressed,
+
+738
+00:43:59,340 --> 00:44:04,320
+then we're actually going to negate
+both the x and the y velocities,
+
+739
+00:44:04,320 --> 00:44:06,700
+which will just make the image runaway.
+
+740
+00:44:06,700 --> 00:44:07,980
+Update positions.
+
+741
+00:44:07,980 --> 00:44:10,920
+Collisions detections, seen it
+all before, rendering, all right.
+
+742
+00:44:10,920 --> 00:44:11,510
+Let's make it.
+
+743
+00:44:11,510 --> 00:44:14,200
+
+744
+00:44:14,200 --> 00:44:16,050
+So you got make SRCS=hello7_mouse.c.
+
+745
+00:44:16,050 --> 00:44:21,720
+
+746
+00:44:21,720 --> 00:44:22,220
+Great.
+
+747
+00:44:22,220 --> 00:44:23,490
+No errors.
+
+748
+00:44:23,490 --> 00:44:24,900
+And game.
+
+749
+00:44:24,900 --> 00:44:26,440
+>> So here I have my mouse.
+
+750
+00:44:26,440 --> 00:44:29,000
+And the image is indeed
+chasing my mouse.
+
+751
+00:44:29,000 --> 00:44:33,140
+Now, in a game you make, maybe
+this is like an enemy chasing
+
+752
+00:44:33,140 --> 00:44:35,240
+your little character or whatever.
+
+753
+00:44:35,240 --> 00:44:37,440
+But here we have the
+image chasing the mouse.
+
+754
+00:44:37,440 --> 00:44:41,000
+And when I click, the mouse
+starts chasing the image
+
+755
+00:44:41,000 --> 00:44:42,860
+and the image is
+running away from mouse.
+
+756
+00:44:42,860 --> 00:44:43,810
+So that's pretty cool.
+
+757
+00:44:43,810 --> 00:44:47,770
+And notice again, there's
+still collision detection here.
+
+758
+00:44:47,770 --> 00:44:53,930
+>> So that is the final little
+demo I have set up here.
+
+759
+00:44:53,930 --> 00:44:58,870
+And let's take a look at one more thing.
+
+760
+00:44:58,870 --> 00:45:02,970
+So back here, I mentioned this jitter.
+
+761
+00:45:02,970 --> 00:45:05,000
+All right.
+
+762
+00:45:05,000 --> 00:45:12,890
+So if distance is less than five pixels,
+I was setting x and y velocity to zero.
+
+763
+00:45:12,890 --> 00:45:15,960
+What happens if we get rid of that?
+
+764
+00:45:15,960 --> 00:45:19,070
+So I'm going to just do this.
+
+765
+00:45:19,070 --> 00:45:23,820
+
+766
+00:45:23,820 --> 00:45:30,150
+Please excuse this horrendous style,
+but we commented out the correct code.
+
+767
+00:45:30,150 --> 00:45:38,080
+So I'm going to save that and do the
+same command from before to make it.
+
+768
+00:45:38,080 --> 00:45:38,785
+>> All right.
+
+769
+00:45:38,785 --> 00:45:39,660
+And now what happens?
+
+770
+00:45:39,660 --> 00:45:43,260
+
+771
+00:45:43,260 --> 00:45:43,760
+Good.
+
+772
+00:45:43,760 --> 00:45:45,801
+We're still following the
+mouse just like before,
+
+773
+00:45:45,801 --> 00:45:49,310
+but when we get to the mouse,
+we've got this gross jitter.
+
+774
+00:45:49,310 --> 00:45:50,320
+What's going on there?
+
+775
+00:45:50,320 --> 00:45:52,600
+Well, in our vector
+math, remember we were
+
+776
+00:45:52,600 --> 00:45:57,540
+taking the distance between the
+cursor and the center of the image?
+
+777
+00:45:57,540 --> 00:46:00,710
+Well, as that approaches
+0, we start getting
+
+778
+00:46:00,710 --> 00:46:06,280
+like this sort of crazy behavior
+where the image is sort of
+
+779
+00:46:06,280 --> 00:46:08,910
+like oscillating around the cursor.
+
+780
+00:46:08,910 --> 00:46:12,000
+And that's creating this jitter.
+
+781
+00:46:12,000 --> 00:46:13,020
+And that's really ugly.
+
+782
+00:46:13,020 --> 00:46:15,103
+And you probably don't
+want your games doing that,
+
+783
+00:46:15,103 --> 00:46:17,350
+unless it's some sort of special effect.
+
+784
+00:46:17,350 --> 00:46:21,960
+>> So that's why we have
+just this arbitrary
+
+785
+00:46:21,960 --> 00:46:27,150
+cut off of five pixels, where we say
+if it's within five pixels, we're good.
+
+786
+00:46:27,150 --> 00:46:29,560
+We don't need to move the image anymore.
+
+787
+00:46:29,560 --> 00:46:32,260
+So that's what's going on there.
+
+788
+00:46:32,260 --> 00:46:37,390
+
+789
+00:46:37,390 --> 00:46:40,870
+>> So that's pretty much it.
+
+790
+00:46:40,870 --> 00:46:44,390
+You now know how to create
+a window, load an image,
+
+791
+00:46:44,390 --> 00:46:49,330
+draw an image to the window, get
+keyboard input, get mouse input,
+
+792
+00:46:49,330 --> 00:46:52,190
+there's a bunch of other
+input that you wouldn't
+
+793
+00:46:52,190 --> 00:46:56,070
+know how to get if you just spend a
+few minutes looking at documentation.
+
+794
+00:46:56,070 --> 00:46:59,670
+So you actually have quite a
+few tools at your disposal now
+
+795
+00:46:59,670 --> 00:47:01,650
+to write a full-fledged game.
+
+796
+00:47:01,650 --> 00:47:05,030
+>> Now, every game needs some audio,
+but the audio documentation
+
+797
+00:47:05,030 --> 00:47:06,460
+is also pretty good.
+
+798
+00:47:06,460 --> 00:47:09,200
+And I'm willing to bet that if
+you understand all of the things
+
+799
+00:47:09,200 --> 00:47:14,560
+we talked about today with
+the images, and surfaces,
+
+800
+00:47:14,560 --> 00:47:18,370
+the windows, and everything, then
+figuring out the audio API is not
+
+801
+00:47:18,370 --> 00:47:21,170
+going to be that bad.
+
+802
+00:47:21,170 --> 00:47:27,420
+So I look forward to seeing
+what you create with SDL.
+
+803
+00:47:27,420 --> 00:47:31,595

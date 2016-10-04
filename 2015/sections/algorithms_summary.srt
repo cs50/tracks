@@ -1,0 +1,412 @@
+1
+00:00:00,000 --> 00:00:05,760
+
+2
+00:00:05,760 --> 00:00:08,900
+>> DOUG LLOYD: So in CS50 we learned about
+a variety of sorting and searching
+
+3
+00:00:08,900 --> 00:00:09,442
+algorithms.
+
+4
+00:00:09,442 --> 00:00:11,400
+And sometimes it can be
+a little tricky to keep
+
+5
+00:00:11,400 --> 00:00:14,161
+track of what algorithm does what.
+
+6
+00:00:14,161 --> 00:00:15,910
+We've really only
+skimmed the surface too,
+
+7
+00:00:15,910 --> 00:00:18,740
+there are many other searching
+and sorting algorithms.
+
+8
+00:00:18,740 --> 00:00:21,780
+So in this video let's
+just take a few minutes
+
+9
+00:00:21,780 --> 00:00:24,980
+to try and distill each algorithm
+down to its core elements
+
+10
+00:00:24,980 --> 00:00:27,810
+so you can remember the most
+important information about them
+
+11
+00:00:27,810 --> 00:00:31,970
+and be able to articulate the
+differences, if necessary.
+
+12
+00:00:31,970 --> 00:00:34,220
+>> The first is selection sort.
+
+13
+00:00:34,220 --> 00:00:38,210
+The basic idea behind selection sort
+is find the smallest unsorted element
+
+14
+00:00:38,210 --> 00:00:42,890
+in an array and swap it with the
+first unsorted element of that array.
+
+15
+00:00:42,890 --> 00:00:46,620
+We said that the worst-case
+run time of that was n squared.
+
+16
+00:00:46,620 --> 00:00:50,060
+And if you want to recall why, take
+a look at the selection sort video.
+
+17
+00:00:50,060 --> 00:00:54,560
+The best-case run time
+is also n squared.
+
+18
+00:00:54,560 --> 00:00:58,910
+>> Bubble sort, the idea behind that
+one is to swap adjacent pairs.
+
+19
+00:00:58,910 --> 00:01:01,730
+So that's the key that helps you
+remember the difference here.
+
+20
+00:01:01,730 --> 00:01:04,920
+Selection sort is, so far,
+find the smallest-- bubble
+
+21
+00:01:04,920 --> 00:01:06,790
+sort is swap adjacent pairs.
+
+22
+00:01:06,790 --> 00:01:08,710
+We swap adjacent pairs
+of elements if they
+
+23
+00:01:08,710 --> 00:01:12,530
+are out of order, which effectively
+bubbles larger elements to the right,
+
+24
+00:01:12,530 --> 00:01:17,060
+and at the same time it also begins
+to move smaller elements to the left.
+
+25
+00:01:17,060 --> 00:01:20,180
+The worst-case case run time
+of bubble sort is n squared.
+
+26
+00:01:20,180 --> 00:01:23,476
+The best-case run time
+of bubble sort is n.
+
+27
+00:01:23,476 --> 00:01:25,350
+Because in that situation
+we don't actually--
+
+28
+00:01:25,350 --> 00:01:27,141
+we might not need to
+make any swaps at all.
+
+29
+00:01:27,141 --> 00:01:31,026
+We only have to make one
+pass across all n elements.
+
+30
+00:01:31,026 --> 00:01:34,600
+>> In insertion sort, the
+basic idea here is shifting.
+
+31
+00:01:34,600 --> 00:01:36,630
+That's the keyword for insertion sort.
+
+32
+00:01:36,630 --> 00:01:39,630
+We're going to step once through
+the array from left to right.
+
+33
+00:01:39,630 --> 00:01:41,670
+And as we do, we're
+going to shift elements
+
+34
+00:01:41,670 --> 00:01:46,260
+we've already seen to make room for
+smaller ones that need to fit somewhere
+
+35
+00:01:46,260 --> 00:01:48,080
+back in that sorted portion.
+
+36
+00:01:48,080 --> 00:01:51,600
+So we build the sorted array one
+element at a time, left to right,
+
+37
+00:01:51,600 --> 00:01:54,740
+and we shift things to make room.
+
+38
+00:01:54,740 --> 00:01:58,650
+The worst-case run time of
+insertion sort is n squared.
+
+39
+00:01:58,650 --> 00:02:02,380
+The best-case run time is n.
+
+40
+00:02:02,380 --> 00:02:05,380
+>> Merge sort-- the keyword
+here is split and merge.
+
+41
+00:02:05,380 --> 00:02:08,949
+We split the full array, whether
+it's six elements, eight elements,
+
+42
+00:02:08,949 --> 00:02:13,790
+10,000 elements-- we split it
+down by half, by half, by half,
+
+43
+00:02:13,790 --> 00:02:17,720
+until we have under array
+of n one element arrays.
+
+44
+00:02:17,720 --> 00:02:19,470
+A set of n one element arrays.
+
+45
+00:02:19,470 --> 00:02:22,640
+So we started with one
+1,000-element array,
+
+46
+00:02:22,640 --> 00:02:26,550
+and we get to the point where we
+have 1,000 one-element arrays.
+
+47
+00:02:26,550 --> 00:02:30,990
+Then we begin to merge those sub arrays
+back together in the correct order.
+
+48
+00:02:30,990 --> 00:02:34,860
+So we take two one-element arrays
+and create a two-element array.
+
+49
+00:02:34,860 --> 00:02:38,180
+We take two two-element arrays
+and create a four-element array
+
+50
+00:02:38,180 --> 00:02:43,900
+and so on and so on until we've
+again rebuilt one n element array.
+
+51
+00:02:43,900 --> 00:02:48,410
+>> The worst-case run time of
+merge sort is n times log n.
+
+52
+00:02:48,410 --> 00:02:52,390
+We have n elements, but
+this recombining process
+
+53
+00:02:52,390 --> 00:02:56,960
+takes log n steps to get
+back to a full array.
+
+54
+00:02:56,960 --> 00:03:01,160
+The best case run time is also n log
+n because this process doesn't really
+
+55
+00:03:01,160 --> 00:03:04,090
+care whether the array was
+sorted or not to start with.
+
+56
+00:03:04,090 --> 00:03:07,590
+The process is the same, there's
+no way to short circuit things.
+
+57
+00:03:07,590 --> 00:03:11,610
+So n log n in the worst case,
+n log n in the best case.
+
+58
+00:03:11,610 --> 00:03:13,960
+>> We talked about two
+searching algorithms.
+
+59
+00:03:13,960 --> 00:03:16,230
+So linear search is about iterating.
+
+60
+00:03:16,230 --> 00:03:19,500
+We proceed across the array
+once, from left to right,
+
+61
+00:03:19,500 --> 00:03:21,950
+trying to find the number
+that we're looking for.
+
+62
+00:03:21,950 --> 00:03:24,550
+The worst-case run time is big O of n.
+
+63
+00:03:24,550 --> 00:03:27,610
+It might take us iterating
+across every single element
+
+64
+00:03:27,610 --> 00:03:30,660
+to find the element we're looking
+for, either in the last position,
+
+65
+00:03:30,660 --> 00:03:31,630
+or not at all.
+
+66
+00:03:31,630 --> 00:03:34,720
+But we can't confirm that until
+we've looked at everything.
+
+67
+00:03:34,720 --> 00:03:36,730
+m the best-case, we find immediately.
+
+68
+00:03:36,730 --> 00:03:41,060
+The best-case run time of
+linear search is omega of 1.
+
+69
+00:03:41,060 --> 00:03:43,689
+>> Lastly, there was binary search,
+which requires assorted array.
+
+70
+00:03:43,689 --> 00:03:45,605
+Remember that's a very
+important consideration
+
+71
+00:03:45,605 --> 00:03:47,155
+when working with binary search.
+
+72
+00:03:47,155 --> 00:03:50,180
+It's a prerequisite to using it--
+the array that you're looking through
+
+73
+00:03:50,180 --> 00:03:52,160
+must be sorted.
+
+74
+00:03:52,160 --> 00:03:54,500
+Otherwise, the keyword
+is divide and conquer.
+
+75
+00:03:54,500 --> 00:03:58,310
+Split the array into half and
+eliminate half of the elements
+
+76
+00:03:58,310 --> 00:04:00,780
+every time as you proceed through.
+
+77
+00:04:00,780 --> 00:04:04,330
+Because of this divide and conquer
+and splitting things in half approach,
+
+78
+00:04:04,330 --> 00:04:07,450
+the worst-case run time
+of binary search is
+
+79
+00:04:07,450 --> 00:04:11,730
+log n, which is substantially
+better than linear search's n.
+
+80
+00:04:11,730 --> 00:04:13,570
+The best-case run time is still one.
+
+81
+00:04:13,570 --> 00:04:17,010
+>> We might find it immediately the
+first time we make a division, but,
+
+82
+00:04:17,010 --> 00:04:19,339
+again, remember that
+although binary search is
+
+83
+00:04:19,339 --> 00:04:24,030
+substantially better than linear search
+by virtue of being log n versus n,
+
+84
+00:04:24,030 --> 00:04:27,110
+you might have to go through the work
+of sorting your array first, which
+
+85
+00:04:27,110 --> 00:04:32,010
+might make it less effective depending
+on the size of the iterating sorted.
+
+86
+00:04:32,010 --> 00:04:35,250
+>> I'm Doug Lloyd, this is CS50.
+
+87
+00:04:35,250 --> 00:04:36,757

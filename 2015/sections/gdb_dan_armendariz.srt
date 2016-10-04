@@ -1,0 +1,2031 @@
+1
+00:00:00,000 --> 00:00:05,409
+
+2
+00:00:05,409 --> 00:00:06,200
+DAN ARMENDARIZ: Hi.
+
+3
+00:00:06,200 --> 00:00:07,320
+I'm Dan Armendariz .
+
+4
+00:00:07,320 --> 00:00:09,390
+Today we're going to be
+looking at debugging.
+
+5
+00:00:09,390 --> 00:00:11,667
+Not only are we going to
+talk about some techniques,
+
+6
+00:00:11,667 --> 00:00:14,250
+but also we're going to look at
+some of the features contained
+
+7
+00:00:14,250 --> 00:00:19,150
+within the CS50 IDE that allow
+you to easily debug a program.
+
+8
+00:00:19,150 --> 00:00:21,252
+>> Just one example of
+something that can go wrong,
+
+9
+00:00:21,252 --> 00:00:23,710
+and it's actually something
+that we've already seen before.
+
+10
+00:00:23,710 --> 00:00:28,180
+In this case, this is a C program
+that accepts an integer from the user,
+
+11
+00:00:28,180 --> 00:00:32,549
+divides it by 2, and provides
+the output back to the user.
+
+12
+00:00:32,549 --> 00:00:35,580
+Now, from what we've
+seen earlier in lectures,
+
+13
+00:00:35,580 --> 00:00:39,330
+we know that this will actually cause
+specific types of division problems
+
+14
+00:00:39,330 --> 00:00:40,830
+when we have odd numbers.
+
+15
+00:00:40,830 --> 00:00:45,300
+Specifically, it will just throw away
+anything after the decimal point.
+
+16
+00:00:45,300 --> 00:00:48,150
+>> Now, we know that this
+happens to be the case.
+
+17
+00:00:48,150 --> 00:00:52,420
+And if we run it we can confirm
+our suspicions first by compiling
+
+18
+00:00:52,420 --> 00:00:55,430
+and then by running and
+entering an odd number.
+
+19
+00:00:55,430 --> 00:00:57,570
+This is nothing new,
+but this is actually
+
+20
+00:00:57,570 --> 00:01:02,100
+an example of a bug that can
+exist within a larger program that
+
+21
+00:01:02,100 --> 00:01:03,910
+becomes harder to track down.
+
+22
+00:01:03,910 --> 00:01:07,750
+Even though we know what the issue
+is, the true crux of the matter
+
+23
+00:01:07,750 --> 00:01:11,350
+might be trying to identify
+specifically where the error occurs,
+
+24
+00:01:11,350 --> 00:01:14,840
+identifying what that problem
+is, and then fixing it.
+
+25
+00:01:14,840 --> 00:01:19,500
+So I provide this as an example
+of what might be something
+
+26
+00:01:19,500 --> 00:01:24,130
+that we already know but can be buried
+within other elements of the code.
+
+27
+00:01:24,130 --> 00:01:28,190
+>> So opening this other source
+code file as an example,
+
+28
+00:01:28,190 --> 00:01:32,297
+this division problem is now
+part of a larger program.
+
+29
+00:01:32,297 --> 00:01:34,130
+Still might be a little
+bit contrived and we
+
+30
+00:01:34,130 --> 00:01:36,240
+might be able to easily
+identify it, especially
+
+31
+00:01:36,240 --> 00:01:38,130
+since we were just
+discussing this, but we
+
+32
+00:01:38,130 --> 00:01:43,350
+can figure out that this problem
+can exist on a larger scale.
+
+33
+00:01:43,350 --> 00:01:50,540
+If I compile this and now
+run it, enter an odd number,
+
+34
+00:01:50,540 --> 00:01:54,906
+we can see that we don't get precisely
+the output that we may have expected.
+
+35
+00:01:54,906 --> 00:01:56,780
+In this particular case,
+we might say that we
+
+36
+00:01:56,780 --> 00:02:01,160
+want to count all the numbers
+from 1 up to some specific number.
+
+37
+00:02:01,160 --> 00:02:03,220
+And we can see that we
+have a variety of issues
+
+38
+00:02:03,220 --> 00:02:08,960
+here if we're putting simply 0 and
+1 when we provide an input of 5.
+
+39
+00:02:08,960 --> 00:02:12,480
+>> So we already know that
+there's a problem here.
+
+40
+00:02:12,480 --> 00:02:16,720
+But we may not know precisely
+where this issue actually exists.
+
+41
+00:02:16,720 --> 00:02:18,720
+Now, one of the ways that
+we can try to fix this
+
+42
+00:02:18,720 --> 00:02:20,885
+is something that we've
+already been introduced to,
+
+43
+00:02:20,885 --> 00:02:23,960
+we can just use it on a larger scale.
+
+44
+00:02:23,960 --> 00:02:26,930
+On line 14 we have this
+printf function which
+
+45
+00:02:26,930 --> 00:02:30,710
+allows us to print out the state
+of various pieces of information.
+
+46
+00:02:30,710 --> 00:02:33,980
+And this is something that you
+should leverage within your program
+
+47
+00:02:33,980 --> 00:02:38,190
+to try to figure out exactly what's
+happening in various lines of code.
+
+48
+00:02:38,190 --> 00:02:41,450
+>> So even if this is not the
+final output that we actually
+
+49
+00:02:41,450 --> 00:02:44,930
+want to produce out of
+this program, we still
+
+50
+00:02:44,930 --> 00:02:47,390
+might have some debug
+statements where we
+
+51
+00:02:47,390 --> 00:02:52,070
+can try to figure out precisely what
+is happening inside of our code.
+
+52
+00:02:52,070 --> 00:02:56,310
+So in this case I will
+printf with a debug tag.
+
+53
+00:02:56,310 --> 00:02:58,840
+In this case this is just
+a debug string that I'm
+
+54
+00:02:58,840 --> 00:03:01,940
+outputting so that it becomes very
+clear in the output of my code
+
+55
+00:03:01,940 --> 00:03:04,280
+what it is that I want to show.
+
+56
+00:03:04,280 --> 00:03:09,510
+And output here, the number
+that we have computed.
+
+57
+00:03:09,510 --> 00:03:13,210
+>> In this case, I might want to
+know precisely what is happening
+
+58
+00:03:13,210 --> 00:03:16,480
+before and after some
+specific computation
+
+59
+00:03:16,480 --> 00:03:21,366
+so I might use a printf before
+and after that line of code.
+
+60
+00:03:21,366 --> 00:03:23,740
+In this case I could even make
+it a little bit more clear
+
+61
+00:03:23,740 --> 00:03:27,060
+by saying debug before
+and debug after so
+
+62
+00:03:27,060 --> 00:03:31,640
+that I don't confuse myself with
+multiple lines that look identical.
+
+63
+00:03:31,640 --> 00:03:37,380
+Now, if we recompile this and run
+it, enter a number like 5 again,
+
+64
+00:03:37,380 --> 00:03:40,190
+we can see that we have
+now output before and after
+
+65
+00:03:40,190 --> 00:03:45,070
+and find that we have not done a
+clear division or a clear having
+
+66
+00:03:45,070 --> 00:03:48,780
+of the number that we
+actually want to do.
+
+67
+00:03:48,780 --> 00:03:53,720
+>> Now, in this case, this is
+not really a clear output.
+
+68
+00:03:53,720 --> 00:03:57,510
+It's not really a clear outcome that
+we want out of this particular program.
+
+69
+00:03:57,510 --> 00:03:59,309
+And this is, again, a
+little bit contrived.
+
+70
+00:03:59,309 --> 00:04:01,100
+But perhaps one of the
+things that we could
+
+71
+00:04:01,100 --> 00:04:04,870
+do if the specification said
+that we want to divide this by 2
+
+72
+00:04:04,870 --> 00:04:08,110
+and add 1-- so in other
+words, we want to round up--
+
+73
+00:04:08,110 --> 00:04:13,150
+then we might know that we could do
+that particular thing in this case.
+
+74
+00:04:13,150 --> 00:04:19,100
+>> Now, here we know that we will be
+able to add 1 to our halved number.
+
+75
+00:04:19,100 --> 00:04:21,589
+Let's recompile this
+and confirm that this
+
+76
+00:04:21,589 --> 00:04:23,960
+is behaving the way that we want to.
+
+77
+00:04:23,960 --> 00:04:27,080
+We can see that now before
+having we have the number 5,
+
+78
+00:04:27,080 --> 00:04:29,600
+after having we have the number 3.
+
+79
+00:04:29,600 --> 00:04:34,407
+Which, according to our specification,
+is what we wanted to do.
+
+80
+00:04:34,407 --> 00:04:36,240
+But if we look at the
+output here we can see
+
+81
+00:04:36,240 --> 00:04:38,860
+that we might have another
+bug altogether, which is
+
+82
+00:04:38,860 --> 00:04:42,040
+that we are starting our count from 0.
+
+83
+00:04:42,040 --> 00:04:44,480
+Now again, this is something
+that we have seen in the past
+
+84
+00:04:44,480 --> 00:04:47,600
+and we can fix quite readily.
+
+85
+00:04:47,600 --> 00:04:52,230
+But in this case we also had the benefit
+of using the printf statement directly
+
+86
+00:04:52,230 --> 00:04:58,020
+inside of the for loop to know precisely
+where that error was occurring.
+
+87
+00:04:58,020 --> 00:05:00,250
+>> So printf statements are
+very useful in helping
+
+88
+00:05:00,250 --> 00:05:03,030
+you determine where
+precisely in your source code
+
+89
+00:05:03,030 --> 00:05:05,720
+a specific error is occurring.
+
+90
+00:05:05,720 --> 00:05:08,750
+And it's also important to realize
+that as we're writing code,
+
+91
+00:05:08,750 --> 00:05:11,228
+we might have assumptions
+about the state of a program
+
+92
+00:05:11,228 --> 00:05:13,686
+or we might have assumptions
+about what part of the program
+
+93
+00:05:13,686 --> 00:05:15,740
+is actually correct or incorrect.
+
+94
+00:05:15,740 --> 00:05:18,110
+When later on as we
+build on that program
+
+95
+00:05:18,110 --> 00:05:21,050
+and make it part of a
+complex and larger program,
+
+96
+00:05:21,050 --> 00:05:24,800
+that we realize that some aspect
+of that is actually buggy.
+
+97
+00:05:24,800 --> 00:05:27,780
+>> Using printf can really help
+narrow down and identify
+
+98
+00:05:27,780 --> 00:05:31,530
+the regions of a program that may not
+be behaving exactly the way that we
+
+99
+00:05:31,530 --> 00:05:34,660
+expect based on our assumptions.
+
+100
+00:05:34,660 --> 00:05:36,550
+But there's other
+tools available as well
+
+101
+00:05:36,550 --> 00:05:39,960
+that allow us to try to figure
+out where an error is occurring.
+
+102
+00:05:39,960 --> 00:05:44,810
+And also, specifically, what things
+are happening inside of the program.
+
+103
+00:05:44,810 --> 00:05:46,880
+So using printf is very
+useful when we want
+
+104
+00:05:46,880 --> 00:05:50,790
+to identify specific areas of
+a program that have some bug.
+
+105
+00:05:50,790 --> 00:05:52,620
+But also becomes tedious after a while.
+
+106
+00:05:52,620 --> 00:05:55,380
+In this case, this is a
+relatively simple program
+
+107
+00:05:55,380 --> 00:05:59,080
+with just one or two variables
+and it becomes very easy for us
+
+108
+00:05:59,080 --> 00:06:02,140
+to print out the value
+of those variables
+
+109
+00:06:02,140 --> 00:06:04,560
+in the context of the larger program.
+
+110
+00:06:04,560 --> 00:06:07,560
+>> But we might have a different
+program that has many variables
+
+111
+00:06:07,560 --> 00:06:11,410
+and it may not be quite
+so easy to use printf
+
+112
+00:06:11,410 --> 00:06:15,040
+to try to evaluate what is happening
+to each one of those variables
+
+113
+00:06:15,040 --> 00:06:18,480
+as the program is executing.
+
+114
+00:06:18,480 --> 00:06:21,850
+There's a program that exists
+called a debugger program.
+
+115
+00:06:21,850 --> 00:06:25,210
+In this case, the one that we will
+use is the gnu debugger, or GDB,
+
+116
+00:06:25,210 --> 00:06:29,150
+that allows us to inspect the internal
+workings of a program in a much more
+
+117
+00:06:29,150 --> 00:06:30,590
+detailed way.
+
+118
+00:06:30,590 --> 00:06:33,700
+We can actually execute
+GDB from the command line
+
+119
+00:06:33,700 --> 00:06:40,260
+here by simply typing GDB and the
+command that we want to debug.
+
+120
+00:06:40,260 --> 00:06:42,440
+In this case, count.
+
+121
+00:06:42,440 --> 00:06:46,540
+>> Now this case we can see that it
+brings us to a prompt that says GDB
+
+122
+00:06:46,540 --> 00:06:50,450
+and we can actually execute commands
+to GDB to actually begin execution
+
+123
+00:06:50,450 --> 00:06:54,770
+of the program, stop it at certain
+points, evaluate the variables,
+
+124
+00:06:54,770 --> 00:06:57,560
+and inspect the variables that
+exist in the program state
+
+125
+00:06:57,560 --> 00:07:00,000
+at that particular moment,
+and so on and so forth.
+
+126
+00:07:00,000 --> 00:07:02,120
+It provides a lot of power to us.
+
+127
+00:07:02,120 --> 00:07:04,850
+>> But it just so happens
+that the CS50 IDE also
+
+128
+00:07:04,850 --> 00:07:10,630
+provides a GUI, or a
+user interface, for GDB
+
+129
+00:07:10,630 --> 00:07:14,290
+that allows us to do this
+without needing the command line
+
+130
+00:07:14,290 --> 00:07:15,960
+interface whatsoever.
+
+131
+00:07:15,960 --> 00:07:18,450
+Or at all, even.
+
+132
+00:07:18,450 --> 00:07:21,820
+The way that I can access that
+is by using the Debug button
+
+133
+00:07:21,820 --> 00:07:25,010
+at the very top above the CS50 IDE.
+
+134
+00:07:25,010 --> 00:07:29,170
+Now, in the past, what we have
+seen is that we use the command
+
+135
+00:07:29,170 --> 00:07:32,550
+line to compile and then run a program.
+
+136
+00:07:32,550 --> 00:07:34,680
+The Debug button does
+both of those steps,
+
+137
+00:07:34,680 --> 00:07:39,260
+but it also will bring up the
+Debugger tab on the far right
+
+138
+00:07:39,260 --> 00:07:43,160
+that allows us to inspect a
+variety properties of the program
+
+139
+00:07:43,160 --> 00:07:45,390
+as it is executing.
+
+140
+00:07:45,390 --> 00:07:49,170
+>> If I click Debug, in this
+case, it will bring up
+
+141
+00:07:49,170 --> 00:07:53,120
+a new tab in the console
+window at the very bottom.
+
+142
+00:07:53,120 --> 00:07:56,040
+And you can see that this tab has
+some information at the very top
+
+143
+00:07:56,040 --> 00:07:57,560
+and we can largely ignore this.
+
+144
+00:07:57,560 --> 00:07:59,690
+But one of the things
+that we want to notice
+
+145
+00:07:59,690 --> 00:08:02,060
+is that it outputs
+the same thing that we
+
+146
+00:08:02,060 --> 00:08:07,890
+would get if we tried to run make on
+the C program in the terminal window.
+
+147
+00:08:07,890 --> 00:08:11,110
+Here we can see it's running Clang
+and it has a variety of flags
+
+148
+00:08:11,110 --> 00:08:17,550
+and it is compiling our count.c file
+which was the selected tab at the time
+
+149
+00:08:17,550 --> 00:08:19,990
+that I hit Debug.
+
+150
+00:08:19,990 --> 00:08:22,900
+>> So this is very useful because
+now, using this Debug button,
+
+151
+00:08:22,900 --> 00:08:27,550
+we can see simultaneously compile
+and then execute the program
+
+152
+00:08:27,550 --> 00:08:29,350
+that we actually want to run.
+
+153
+00:08:29,350 --> 00:08:33,360
+One of the flags that is important
+in this case we've actually
+
+154
+00:08:33,360 --> 00:08:37,120
+been using for the longest time but
+also just did some hand waving at,
+
+155
+00:08:37,120 --> 00:08:38,710
+which is this one right here.
+
+156
+00:08:38,710 --> 00:08:40,675
+In clang it says -ggdb3.
+
+157
+00:08:40,675 --> 00:08:43,460
+
+158
+00:08:43,460 --> 00:08:46,140
+In this case, what we are
+telling Clang, our compiler,
+
+159
+00:08:46,140 --> 00:08:49,830
+is that we want to compile
+our program but also provide
+
+160
+00:08:49,830 --> 00:08:53,070
+what are called symbol information
+so that the compiler actually
+
+161
+00:08:53,070 --> 00:08:56,180
+has access to a lot of the
+underlying information contained
+
+162
+00:08:56,180 --> 00:08:57,500
+within the program.
+
+163
+00:08:57,500 --> 00:09:00,150
+Most specifically, the number
+of functions that I have,
+
+164
+00:09:00,150 --> 00:09:02,890
+the names of those functions,
+the variables, the types
+
+165
+00:09:02,890 --> 00:09:06,620
+that those variables are, and a variety
+of other things that help the debugger
+
+166
+00:09:06,620 --> 00:09:09,199
+perform its operation.
+
+167
+00:09:09,199 --> 00:09:11,490
+Now, there's something else
+that's important to mention
+
+168
+00:09:11,490 --> 00:09:15,170
+when we're discussing running
+a program in this way.
+
+169
+00:09:15,170 --> 00:09:18,540
+Notice that it has actually
+brought up a new tab in our console
+
+170
+00:09:18,540 --> 00:09:19,630
+along the bottom.
+
+171
+00:09:19,630 --> 00:09:23,510
+We no longer have to interact
+directly with the terminal window,
+
+172
+00:09:23,510 --> 00:09:26,310
+but this new tab is
+actually terminal window,
+
+173
+00:09:26,310 --> 00:09:31,590
+it just is specific to the running
+program that we have created.
+
+174
+00:09:31,590 --> 00:09:33,350
+>> Notice that at the
+bottom, in combination
+
+175
+00:09:33,350 --> 00:09:38,390
+with some output by Clang, the compiler,
+and GDB, which we can largely ignore,
+
+176
+00:09:38,390 --> 00:09:42,700
+it actually shows the output of
+our program at the very bottom.
+
+177
+00:09:42,700 --> 00:09:46,130
+Now, it's important to realize
+that this one window actually
+
+178
+00:09:46,130 --> 00:09:48,240
+will show you the
+output from your program
+
+179
+00:09:48,240 --> 00:09:52,080
+but also can accept input
+for that program as well.
+
+180
+00:09:52,080 --> 00:09:54,350
+So notice that it says,
+please enter a number, which
+
+181
+00:09:54,350 --> 00:09:57,940
+is the same output that we had
+had in the terminal window before
+
+182
+00:09:57,940 --> 00:10:00,410
+but is now shown in this new tab.
+
+183
+00:10:00,410 --> 00:10:03,010
+I can input a number
+and it will actually
+
+184
+00:10:03,010 --> 00:10:10,050
+function as we expect showing us
+our debug output, the output that
+
+185
+00:10:10,050 --> 00:10:13,840
+might be buggy-- as we've seen
+before-- and at the very bottom
+
+186
+00:10:13,840 --> 00:10:16,770
+it actually has some additional
+output from GDB just saying
+
+187
+00:10:16,770 --> 00:10:19,440
+that this program has completed.
+
+188
+00:10:19,440 --> 00:10:23,820
+>> Now, as you saw in this particular run
+through, it wasn't particularly useful.
+
+189
+00:10:23,820 --> 00:10:26,540
+Because even though we had
+the debugger menu come up,
+
+190
+00:10:26,540 --> 00:10:28,630
+this was still a running program.
+
+191
+00:10:28,630 --> 00:10:31,680
+At no point did actually
+pause execution for us
+
+192
+00:10:31,680 --> 00:10:35,657
+to be able to inspect all of
+the variables contained within.
+
+193
+00:10:35,657 --> 00:10:37,740
+There's something else
+that we have to do in order
+
+194
+00:10:37,740 --> 00:10:41,810
+to get GDB to recognize that we want
+to pause execution of the program
+
+195
+00:10:41,810 --> 00:10:47,720
+and not just allow it to proceed
+normally as we would in any other case.
+
+196
+00:10:47,720 --> 00:10:50,420
+>> In order to pause execution
+at some specific line,
+
+197
+00:10:50,420 --> 00:10:52,720
+we need to create what's
+called a breakpoint.
+
+198
+00:10:52,720 --> 00:10:57,560
+And a breakpoint is very easily created
+in the CS50 IDE by taking your mouse
+
+199
+00:10:57,560 --> 00:11:02,000
+and clicking directly to the left
+of some specific line number.
+
+200
+00:11:02,000 --> 00:11:06,010
+Once I do that, a red dot appears
+which indicates that that line is now
+
+201
+00:11:06,010 --> 00:11:09,620
+a breakpoint, and the
+next time that I run GDB,
+
+202
+00:11:09,620 --> 00:11:12,430
+it will stop execution
+at that breakpoint
+
+203
+00:11:12,430 --> 00:11:15,170
+when it reaches that line of code.
+
+204
+00:11:15,170 --> 00:11:17,110
+>> Now, this is an important
+thing to realize.
+
+205
+00:11:17,110 --> 00:11:21,030
+That it's not necessarily the
+case that every line of code
+
+206
+00:11:21,030 --> 00:11:22,770
+is actually accessible.
+
+207
+00:11:22,770 --> 00:11:26,990
+If I were to create a
+function up here, for example,
+
+208
+00:11:26,990 --> 00:11:33,620
+void f, and just do a print
+line here, hello world,
+
+209
+00:11:33,620 --> 00:11:38,620
+if I never call this function, it will
+be the case that if I set a breakpoint
+
+210
+00:11:38,620 --> 00:11:41,600
+here the function will never
+be called and therefore
+
+211
+00:11:41,600 --> 00:11:44,900
+this particular breakpoint
+will never actually pause
+
+212
+00:11:44,900 --> 00:11:47,910
+execution of the program.
+
+213
+00:11:47,910 --> 00:11:52,910
+>> So let's say that I correctly create
+a breakpoint on some line of code
+
+214
+00:11:52,910 --> 00:11:55,230
+that will actually be executed.
+
+215
+00:11:55,230 --> 00:11:58,360
+Now, in this case, this is the
+first line in the main function
+
+216
+00:11:58,360 --> 00:12:01,510
+so it will certainly be the case
+that as soon as I begin execution
+
+217
+00:12:01,510 --> 00:12:05,110
+the very first line will be
+reached, GDB will pause execution,
+
+218
+00:12:05,110 --> 00:12:08,990
+and then I will be able to
+interact with the debugger.
+
+219
+00:12:08,990 --> 00:12:13,380
+You can set multiple lines as
+breakpoints if you would like.
+
+220
+00:12:13,380 --> 00:12:16,245
+We can also create a line up
+here in this segment of code
+
+221
+00:12:16,245 --> 00:12:17,370
+that will never be reached.
+
+222
+00:12:17,370 --> 00:12:19,634
+And we can also set one further below.
+
+223
+00:12:19,634 --> 00:12:21,550
+The reason that we would
+want to do this we'll
+
+224
+00:12:21,550 --> 00:12:23,890
+go into a little bit more
+detail in just a moment.
+
+225
+00:12:23,890 --> 00:12:26,390
+So for now, let me just disable
+these additional breakpoints
+
+226
+00:12:26,390 --> 00:12:28,860
+so that we can look at
+what happens when I have
+
+227
+00:12:28,860 --> 00:12:32,540
+one single breakpoint in my program.
+
+228
+00:12:32,540 --> 00:12:35,640
+I have made some changes to this
+program so I need to save it.
+
+229
+00:12:35,640 --> 00:12:39,370
+I will click Debug so that I can
+begin the compilation and then
+
+230
+00:12:39,370 --> 00:12:41,770
+execution of the debugger.
+
+231
+00:12:41,770 --> 00:12:46,190
+We will see that after moments the
+line that we selected as the breakpoint
+
+232
+00:12:46,190 --> 00:12:48,250
+is highlighted in yellow.
+
+233
+00:12:48,250 --> 00:12:52,330
+We can also notice that in the
+upper right in the Debug panel
+
+234
+00:12:52,330 --> 00:12:55,830
+that the Pause icon has turned
+into a little Play icon.
+
+235
+00:12:55,830 --> 00:12:59,600
+This means that we have paused
+execution in this particular case,
+
+236
+00:12:59,600 --> 00:13:02,730
+and hitting the Play button will
+allow us to resume execution
+
+237
+00:13:02,730 --> 00:13:04,890
+at that specific point.
+
+238
+00:13:04,890 --> 00:13:08,130
+>> Notice that there's a couple of other
+buttons available in this Debug panel
+
+239
+00:13:08,130 --> 00:13:09,120
+as well.
+
+240
+00:13:09,120 --> 00:13:14,360
+Step Over, which allows me to
+execute that one line of code
+
+241
+00:13:14,360 --> 00:13:17,890
+and step over to that
+line to the next one.
+
+242
+00:13:17,890 --> 00:13:21,980
+Which in this case would mean that
+the printf statement is executed
+
+243
+00:13:21,980 --> 00:13:27,190
+and it will then pause
+execution on line 13 like so.
+
+244
+00:13:27,190 --> 00:13:29,980
+And there's also a Step
+Into function which
+
+245
+00:13:29,980 --> 00:13:33,840
+is useful if I have created other
+functions elsewhere in the source code
+
+246
+00:13:33,840 --> 00:13:36,310
+and I want to step into
+those functions rather than
+
+247
+00:13:36,310 --> 00:13:38,200
+execute that function as a whole.
+
+248
+00:13:38,200 --> 00:13:42,127
+But we'll look more at this Step
+Into function in just a moment.
+
+249
+00:13:42,127 --> 00:13:45,210
+Now, notice some other things that
+actually exist within this Debug panel.
+
+250
+00:13:45,210 --> 00:13:50,180
+We have this panel called the Call Stack
+which shows us where exactly we are.
+
+251
+00:13:50,180 --> 00:13:55,770
+In this case, we are inside of the main
+function, our script is called count.c,
+
+252
+00:13:55,770 --> 00:13:58,490
+and we happen to be
+on line 13 column one.
+
+253
+00:13:58,490 --> 00:14:02,010
+Which is precisely what the
+highlighted region of the source code
+
+254
+00:14:02,010 --> 00:14:03,840
+indicates as well.
+
+255
+00:14:03,840 --> 00:14:07,790
+>> Now notice that this also shows
+under the Local Variables section
+
+256
+00:14:07,790 --> 00:14:11,600
+all of the variables that
+exists within this function.
+
+257
+00:14:11,600 --> 00:14:13,810
+It's important to note
+that all of the variables
+
+258
+00:14:13,810 --> 00:14:17,470
+will appear in this Local
+Variable section within a function
+
+259
+00:14:17,470 --> 00:14:19,270
+even before they are defined.
+
+260
+00:14:19,270 --> 00:14:22,900
+We can see here that we have a
+variable called num that has a default
+
+261
+00:14:22,900 --> 00:14:26,170
+value of 0 and it is of type int.
+
+262
+00:14:26,170 --> 00:14:28,990
+Now before we actually initialize
+all of these variables,
+
+263
+00:14:28,990 --> 00:14:31,575
+we're not necessarily
+guaranteed to see a value of 0.
+
+264
+00:14:31,575 --> 00:14:34,090
+And depending on other
+executions that you've performed
+
+265
+00:14:34,090 --> 00:14:36,890
+and the state of your memory when
+you actually run this program,
+
+266
+00:14:36,890 --> 00:14:39,630
+you might find that you
+don't see values of 0
+
+267
+00:14:39,630 --> 00:14:41,450
+and instead some other crazy numbers.
+
+268
+00:14:41,450 --> 00:14:43,280
+But don't worry about that.
+
+269
+00:14:43,280 --> 00:14:49,500
+It's not going to be relevant until
+you actually initialize the value.
+
+270
+00:14:49,500 --> 00:14:54,520
+>> Now, in this case, we can see
+that I have performed some outputs
+
+271
+00:14:54,520 --> 00:14:57,021
+and I'm right now paused execution.
+
+272
+00:14:57,021 --> 00:14:58,770
+But in this case, what
+I really want to do
+
+273
+00:14:58,770 --> 00:15:02,950
+is to now step over this line
+of code so that I can actually
+
+274
+00:15:02,950 --> 00:15:09,280
+query the user for that int that
+we want to use in our program.
+
+275
+00:15:09,280 --> 00:15:11,950
+Now, in this case, when
+I hit Step Over, notice
+
+276
+00:15:11,950 --> 00:15:16,780
+that the Pause-- rather the Resume
+button has changed to this Pause button
+
+277
+00:15:16,780 --> 00:15:18,912
+because this code is actually executing.
+
+278
+00:15:18,912 --> 00:15:20,620
+What is happening
+right now is that it is
+
+279
+00:15:20,620 --> 00:15:26,520
+waiting for us to input some information
+as we can see by our output text
+
+280
+00:15:26,520 --> 00:15:28,490
+at the very bottom.
+
+281
+00:15:28,490 --> 00:15:32,110
+>> So right now this is not actually
+paused even though it sort of appears
+
+282
+00:15:32,110 --> 00:15:33,760
+to be because nothing is happening.
+
+283
+00:15:33,760 --> 00:15:37,260
+But it just so happens that in
+my specific case, on line 13,
+
+284
+00:15:37,260 --> 00:15:40,270
+I'm waiting for user
+input and so GDB is not
+
+285
+00:15:40,270 --> 00:15:44,020
+able to inspect a
+program as it is running.
+
+286
+00:15:44,020 --> 00:15:46,700
+Now, the next time that
+I enter some input--
+
+287
+00:15:46,700 --> 00:15:49,890
+so I'll enter the number 5
+as we've seen in the past,
+
+288
+00:15:49,890 --> 00:15:53,810
+hit Return-- we notice that,
+immediately, GDB pauses
+
+289
+00:15:53,810 --> 00:15:56,320
+and again highlights the next line.
+
+290
+00:15:56,320 --> 00:16:00,210
+>> But notice that now, as a
+result of our inputting a value,
+
+291
+00:16:00,210 --> 00:16:03,820
+we have updated that value inside
+of our local variables, which
+
+292
+00:16:03,820 --> 00:16:10,440
+is very useful to know precisely
+what that number was in memory.
+
+293
+00:16:10,440 --> 00:16:13,060
+Now, I can allow this
+program to continue
+
+294
+00:16:13,060 --> 00:16:17,470
+playing until the end of its
+execution by hitting Resume.
+
+295
+00:16:17,470 --> 00:16:21,300
+We can see that, very quickly,
+just does program finish executing
+
+296
+00:16:21,300 --> 00:16:23,530
+with the same output that we had before.
+
+297
+00:16:23,530 --> 00:16:28,050
+The debugger closes and now this
+program has stopped completely.
+
+298
+00:16:28,050 --> 00:16:30,200
+>> I show that only for the
+purposes of seeing what
+
+299
+00:16:30,200 --> 00:16:32,180
+happens when we actually hit Resume.
+
+300
+00:16:32,180 --> 00:16:35,530
+But we actually are going to
+want to go back into this program
+
+301
+00:16:35,530 --> 00:16:38,710
+so that we can try to debug
+precisely what is happening.
+
+302
+00:16:38,710 --> 00:16:42,870
+Now that I'm using the debugger I may
+not need these debug printf statements.
+
+303
+00:16:42,870 --> 00:16:46,240
+So I could remove them as I will do now.
+
+304
+00:16:46,240 --> 00:16:50,840
+Just to go back to our simpler
+code that we had a moment ago.
+
+305
+00:16:50,840 --> 00:16:53,680
+>> Now, when I save the
+program and execute it,
+
+306
+00:16:53,680 --> 00:16:58,620
+it will again go to that initial
+breakpoint that I had on line 11
+
+307
+00:16:58,620 --> 00:17:02,590
+and I will be able to inspect
+my variables as I want to do.
+
+308
+00:17:02,590 --> 00:17:05,580
+It just so happens that this
+part isn't very interesting.
+
+309
+00:17:05,580 --> 00:17:08,760
+And I know with that I'm going
+to print out this statement--
+
+310
+00:17:08,760 --> 00:17:10,760
+please enter a number--
+and then I know that I'm
+
+311
+00:17:10,760 --> 00:17:14,069
+going to ask the user for
+that integer, so perhaps I
+
+312
+00:17:14,069 --> 00:17:18,220
+actually want to move my breakpoint
+a little bit further down.
+
+313
+00:17:18,220 --> 00:17:21,599
+You can remove breakpoints
+by clicking, again, directly
+
+314
+00:17:21,599 --> 00:17:23,349
+to the left of that line number.
+
+315
+00:17:23,349 --> 00:17:27,089
+That red dot will disappear indicating
+that that breakpoint is now gone.
+
+316
+00:17:27,089 --> 00:17:29,415
+>> Now, in this case,
+execution has been paused
+
+317
+00:17:29,415 --> 00:17:32,670
+and so it's not actually going to
+resume in that particular instance.
+
+318
+00:17:32,670 --> 00:17:35,120
+But I can set a breakpoint
+a little bit later.
+
+319
+00:17:35,120 --> 00:17:38,440
+And when I now resume
+my code, it will resume
+
+320
+00:17:38,440 --> 00:17:41,080
+until the point of that breakpoint.
+
+321
+00:17:41,080 --> 00:17:42,157
+Again, I hit Resume.
+
+322
+00:17:42,157 --> 00:17:44,240
+Doesn't seem like anything
+is happening but that's
+
+323
+00:17:44,240 --> 00:17:46,330
+because my code is waiting for input.
+
+324
+00:17:46,330 --> 00:17:52,790
+I will enter a number 5, hit Enter, and
+now the next breakpoint will be hit.
+
+325
+00:17:52,790 --> 00:17:57,180
+>> Now in this case, this is the
+line of code that before we knew
+
+326
+00:17:57,180 --> 00:17:58,710
+happened to be buggy.
+
+327
+00:17:58,710 --> 00:18:02,480
+So let's evaluate what happens
+at this particular point in time.
+
+328
+00:18:02,480 --> 00:18:07,500
+When a line is highlighted, this
+line has not yet been executed.
+
+329
+00:18:07,500 --> 00:18:11,380
+So in this case, we can see
+that I have a number which--
+
+330
+00:18:11,380 --> 00:18:16,500
+I have an integer with--
+called num that has a value 5
+
+331
+00:18:16,500 --> 00:18:19,980
+and I'm going to be performing
+some math on that number.
+
+332
+00:18:19,980 --> 00:18:25,010
+If I step over that, we can
+notice that the value for num
+
+333
+00:18:25,010 --> 00:18:28,670
+has changed in accordance with the
+arithmetic that we've actually done.
+
+334
+00:18:28,670 --> 00:18:31,690
+And now that we are
+inside of this for loop,
+
+335
+00:18:31,690 --> 00:18:33,980
+or now that the for loop
+itself is highlighted,
+
+336
+00:18:33,980 --> 00:18:37,340
+we see that we have a new
+variable called i that
+
+337
+00:18:37,340 --> 00:18:40,260
+is going to be used in that for loop.
+
+338
+00:18:40,260 --> 00:18:43,120
+>> Now, remember before that I
+mentioned that sometimes you're
+
+339
+00:18:43,120 --> 00:18:48,350
+going to see some kind of crazy numbers
+until-- as default before that number
+
+340
+00:18:48,350 --> 00:18:50,420
+or that variable is
+actually initialized.
+
+341
+00:18:50,420 --> 00:18:53,930
+We can see that precisely
+here in this variable
+
+342
+00:18:53,930 --> 00:18:56,240
+called i which has not
+yet been initialized
+
+343
+00:18:56,240 --> 00:18:58,920
+at the time of
+highlighting, but we can see
+
+344
+00:18:58,920 --> 00:19:01,960
+that it has some number that
+we wouldn't actually expect.
+
+345
+00:19:01,960 --> 00:19:02,510
+That's OK.
+
+346
+00:19:02,510 --> 00:19:04,551
+Don't worry about it
+because we have not actually
+
+347
+00:19:04,551 --> 00:19:09,840
+initialized that number until I
+step over this line and the value
+
+348
+00:19:09,840 --> 00:19:13,450
+i has been initialized to the value 1.
+
+349
+00:19:13,450 --> 00:19:16,290
+>> So to see that that's actually
+the case, let's step over.
+
+350
+00:19:16,290 --> 00:19:19,310
+We can now see that that
+line has been executed
+
+351
+00:19:19,310 --> 00:19:21,890
+and we are now highlighting
+this printf line.
+
+352
+00:19:21,890 --> 00:19:27,120
+And we can now see how our values
+of i and 3 have changed over time.
+
+353
+00:19:27,120 --> 00:19:31,340
+This is very useful to do, in fact,
+is to step over lines repeatedly.
+
+354
+00:19:31,340 --> 00:19:35,420
+And you can find what actually
+happens inside of your for loop
+
+355
+00:19:35,420 --> 00:19:38,540
+and what happens to the
+variables inside of that for loop
+
+356
+00:19:38,540 --> 00:19:44,090
+as that program execution
+occurs one step at a time.
+
+357
+00:19:44,090 --> 00:19:46,000
+>> Now, at this point I
+stepped over just enough
+
+358
+00:19:46,000 --> 00:19:49,240
+that I now am at the end of my program.
+
+359
+00:19:49,240 --> 00:19:51,870
+If I step over that, it will
+actually cease execution
+
+360
+00:19:51,870 --> 00:19:53,740
+as we have seen in the past.
+
+361
+00:19:53,740 --> 00:19:58,210
+Let me restart this yet again so that
+I can point something else out as well.
+
+362
+00:19:58,210 --> 00:20:00,240
+In this case, it is
+now asking me, again,
+
+363
+00:20:00,240 --> 00:20:01,990
+for a number which I will again enter.
+
+364
+00:20:01,990 --> 00:20:05,190
+But this time I'm going to enter in
+a larger number so that the for loop
+
+365
+00:20:05,190 --> 00:20:07,160
+will iterate more times.
+
+366
+00:20:07,160 --> 00:20:10,980
+In this case I'm going
+to enter a value of 11.
+
+367
+00:20:10,980 --> 00:20:13,280
+>> Now, again, because I'd set
+a breakpoint at line 15,
+
+368
+00:20:13,280 --> 00:20:15,350
+it's going to highlight that line.
+
+369
+00:20:15,350 --> 00:20:17,870
+We can see that our
+number 11 is correctly
+
+370
+00:20:17,870 --> 00:20:20,450
+represented in our local variables.
+
+371
+00:20:20,450 --> 00:20:27,350
+Stepping over that we can now watch
+what happens to our value of i
+
+372
+00:20:27,350 --> 00:20:30,570
+as we proceed inside of this for loop.
+
+373
+00:20:30,570 --> 00:20:36,850
+It gets incremented every time we
+reach the top of that for loop.
+
+374
+00:20:36,850 --> 00:20:40,000
+>> Now, one of the things that might
+be useful to do during execution
+
+375
+00:20:40,000 --> 00:20:44,970
+of this program is really to actually
+change the variables midstream
+
+376
+00:20:44,970 --> 00:20:47,340
+to see what happens to my program.
+
+377
+00:20:47,340 --> 00:20:51,430
+In this case I can actually
+double click the value.
+
+378
+00:20:51,430 --> 00:20:52,930
+Notice that it becomes a text field.
+
+379
+00:20:52,930 --> 00:20:55,170
+Now I can enter a
+different value altogether
+
+380
+00:20:55,170 --> 00:21:00,590
+to see how my program behaves
+when I've changed that variable.
+
+381
+00:21:00,590 --> 00:21:04,450
+>> Now in this case, the variable
+i now contains the value 10
+
+382
+00:21:04,450 --> 00:21:07,700
+but the program is still
+paused in execution.
+
+383
+00:21:07,700 --> 00:21:12,500
+When I step over, I see that i--
+the value i which I entered as 10
+
+384
+00:21:12,500 --> 00:21:17,050
+is now greater than the value of num
+which immediately causes the for loop
+
+385
+00:21:17,050 --> 00:21:19,120
+to stop executing.
+
+386
+00:21:19,120 --> 00:21:21,100
+Now that's not the only
+reason why you would
+
+387
+00:21:21,100 --> 00:21:24,340
+want to modify the variable in place.
+
+388
+00:21:24,340 --> 00:21:27,100
+You might actually want
+to try to modify it so
+
+389
+00:21:27,100 --> 00:21:29,430
+that you can continue
+execution of a loop
+
+390
+00:21:29,430 --> 00:21:32,260
+or so that you can modify
+some value before it
+
+391
+00:21:32,260 --> 00:21:37,459
+reaches some specific set of arithmetic
+that you are about to perform.
+
+392
+00:21:37,459 --> 00:21:39,500
+So now that we've actually
+changed the value of i
+
+393
+00:21:39,500 --> 00:21:41,980
+as the program was executing,
+it caused the for loop
+
+394
+00:21:41,980 --> 00:21:44,760
+to quit prematurely because
+all a sudden i happened
+
+395
+00:21:44,760 --> 00:21:46,770
+to be greater than the value of num.
+
+396
+00:21:46,770 --> 00:21:50,300
+Meaning that that for loop no
+longer needed to be executed.
+
+397
+00:21:50,300 --> 00:21:53,670
+Further, it happened to be the
+case that we changed the value of i
+
+398
+00:21:53,670 --> 00:21:58,150
+when the line 17 was highlighted
+which was the point in time
+
+399
+00:21:58,150 --> 00:22:01,170
+that the for loop execution
+was actually being evaluated.
+
+400
+00:22:01,170 --> 00:22:05,090
+If I had changed the value of
+i on a different line, say 19,
+
+401
+00:22:05,090 --> 00:22:08,350
+we would have seen different
+behavior because line 19 would
+
+402
+00:22:08,350 --> 00:22:13,200
+have executed before the loop
+condition was reevaluated.
+
+403
+00:22:13,200 --> 00:22:16,790
+>> Now at this point, I'm, again,
+at the end of this program
+
+404
+00:22:16,790 --> 00:22:20,597
+and I can allow this to proceed to
+allow my program to quit naturally.
+
+405
+00:22:20,597 --> 00:22:23,180
+But there's a couple of things
+that are important to take away
+
+406
+00:22:23,180 --> 00:22:24,840
+from this particular discussion.
+
+407
+00:22:24,840 --> 00:22:27,370
+You need to evaluate
+your own assumptions
+
+408
+00:22:27,370 --> 00:22:29,580
+about how the code should be behaving.
+
+409
+00:22:29,580 --> 00:22:33,110
+Any time you think that some piece
+of code you know happens to work,
+
+410
+00:22:33,110 --> 00:22:35,830
+that might be a red flag to go
+back and evaluate and be sure
+
+411
+00:22:35,830 --> 00:22:38,360
+that your assumption of
+how that code is operating
+
+412
+00:22:38,360 --> 00:22:42,800
+is actually true to how it is
+expressed in your source code.
+
+413
+00:22:42,800 --> 00:22:45,840
+>> But even more to point was when
+we were using the debugger.
+
+414
+00:22:45,840 --> 00:22:48,470
+You can put breakpoints
+at different lines of code
+
+415
+00:22:48,470 --> 00:22:52,660
+which will cause the debugger to
+pause execution at each of those lines
+
+416
+00:22:52,660 --> 00:22:56,750
+so that you can evaluate the
+memory or even change it in place.
+
+417
+00:22:56,750 --> 00:23:00,190
+And again, remember that you can
+create multiple breakpoints so that you
+
+418
+00:23:00,190 --> 00:23:04,950
+can also resume execution, skip
+over large portions of code,
+
+419
+00:23:04,950 --> 00:23:08,260
+and it will automatically
+pause at the next breakpoint.
+
+420
+00:23:08,260 --> 00:23:11,442
+>> There's actually more advanced
+features of the debugger as well.
+
+421
+00:23:11,442 --> 00:23:13,650
+But we'll have to refer you
+to some subsequent videos
+
+422
+00:23:13,650 --> 00:23:17,560
+in order to really tease apart how
+to use those particular functions.
+
+423
+00:23:17,560 --> 00:23:21,550
+For now, thank you very much for
+watching and good luck debugging.
+
+424
+00:23:21,550 --> 00:23:23,227

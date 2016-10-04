@@ -1,0 +1,2750 @@
+1
+00:00:00,000 --> 00:00:09,620
+
+2
+00:00:09,620 --> 00:00:11,550
+>> FRED WIDJAJA: All right.
+
+3
+00:00:11,550 --> 00:00:12,600
+Hi, everyone.
+
+4
+00:00:12,600 --> 00:00:19,450
+Thank you welcome for
+joining me at this seminar.
+
+5
+00:00:19,450 --> 00:00:23,130
+So today we going to be talking about
+how to develop apps for Android,
+
+6
+00:00:23,130 --> 00:00:26,870
+and particularly, we're going to
+be using Android Studio in order
+
+7
+00:00:26,870 --> 00:00:29,490
+to develop our apps.
+
+8
+00:00:29,490 --> 00:00:32,150
+>> So as you all may know.
+
+9
+00:00:32,150 --> 00:00:36,750
+Android uses Java, and so we'll be
+going through a brief introduction
+
+10
+00:00:36,750 --> 00:00:39,860
+on Java itself.
+
+11
+00:00:39,860 --> 00:00:45,830
+So I know many of you only have
+experience programming in C. So
+
+12
+00:00:45,830 --> 00:00:48,760
+that's totally fine, and that's
+because Java is very, very
+
+13
+00:00:48,760 --> 00:00:53,750
+similar to C, with little differences.
+
+14
+00:00:53,750 --> 00:01:00,040
+>> So the types in Java are
+fixed in the number of bytes.
+
+15
+00:01:00,040 --> 00:01:04,290
+So in C, we have shorts
+and longs, and they
+
+16
+00:01:04,290 --> 00:01:07,880
+differ in number of bits
+from machine to machine.
+
+17
+00:01:07,880 --> 00:01:10,990
+In Java, it's already set as a standard.
+
+18
+00:01:10,990 --> 00:01:16,320
+So bytes have eight bits, shorts
+have 16 bits, and so on and so forth.
+
+19
+00:01:16,320 --> 00:01:22,780
+We also have chars, booleans,
+and also floats and doubles.
+
+20
+00:01:22,780 --> 00:01:27,150
+So the way you program in
+Java, it's very similar.
+
+21
+00:01:27,150 --> 00:01:30,150
+So for example, we have
+for loops and while loops,
+
+22
+00:01:30,150 --> 00:01:39,090
+and if and else statements are
+exactly the same as you would do in C.
+
+23
+00:01:39,090 --> 00:01:45,390
+>> All right, so the special thing about
+Java is that it is object oriented.
+
+24
+00:01:45,390 --> 00:01:46,560
+Now, what are objects?
+
+25
+00:01:46,560 --> 00:01:49,220
+So if you look at the
+things around you, you'll
+
+26
+00:01:49,220 --> 00:01:54,540
+notice that every real world object
+has two common characteristics.
+
+27
+00:01:54,540 --> 00:01:59,100
+And that is that they have state
+and they have some sort of behavior.
+
+28
+00:01:59,100 --> 00:02:02,510
+>> So for example, dogs
+would have states which
+
+29
+00:02:02,510 --> 00:02:07,360
+are name, color, breed, maybe
+if the dog is hungry or not.
+
+30
+00:02:07,360 --> 00:02:12,490
+And some behaviors that dogs would have
+would be barking, or wagging a tail,
+
+31
+00:02:12,490 --> 00:02:14,340
+or fetching a ball.
+
+32
+00:02:14,340 --> 00:02:18,120
+So we can also apply this
+to inanimate objects.
+
+33
+00:02:18,120 --> 00:02:23,130
+So for example, cars, they have
+the model, year, max speed,
+
+34
+00:02:23,130 --> 00:02:25,500
+and so on and so forth.
+
+35
+00:02:25,500 --> 00:02:27,450
+And they have some behavior.
+
+36
+00:02:27,450 --> 00:02:33,050
+For example, accelerating, or
+braking, or going in reverse.
+
+37
+00:02:33,050 --> 00:02:38,910
+>> So Java objects attempt to model
+this by having fields and methods.
+
+38
+00:02:38,910 --> 00:02:45,050
+So fields are the states that
+the Java object may have,
+
+39
+00:02:45,050 --> 00:02:51,440
+while method would represent the
+behavior that a Java object would have.
+
+40
+00:02:51,440 --> 00:02:53,770
+So when I say methods
+and fields, I really
+
+41
+00:02:53,770 --> 00:02:56,470
+just mean variables and functions.
+
+42
+00:02:56,470 --> 00:03:02,120
+They are exactly the same, except
+that they apply to a certain object.
+
+43
+00:03:02,120 --> 00:03:04,880
+>> OK, so moving on to classes.
+
+44
+00:03:04,880 --> 00:03:08,950
+Java classes are like the
+blueprints for an object.
+
+45
+00:03:08,950 --> 00:03:12,270
+They tell you what methods
+it has, what fields it has,
+
+46
+00:03:12,270 --> 00:03:17,750
+and even here, we have something
+called access modifiers which
+
+47
+00:03:17,750 --> 00:03:19,570
+we'll get to in a while.
+
+48
+00:03:19,570 --> 00:03:26,930
+So to declare a Java class, it's
+very similar in syntax to a C struct.
+
+49
+00:03:26,930 --> 00:03:34,350
+>> Here we start off with public class Car,
+and then we have an open brace and then
+
+50
+00:03:34,350 --> 00:03:38,800
+some number of fields that
+you want the object to have.
+
+51
+00:03:38,800 --> 00:03:44,650
+And then here we have some methods,
+and we also have a object constructor.
+
+52
+00:03:44,650 --> 00:03:48,690
+Now what this object constructor
+does is it tells the object,
+
+53
+00:03:48,690 --> 00:03:53,370
+OK, I want to initialize this
+object with some sort of fields.
+
+54
+00:03:53,370 --> 00:03:58,310
+>> So here, we want every Car
+to have a model and a year.
+
+55
+00:03:58,310 --> 00:04:01,480
+So we have a constructor
+just specifically
+
+56
+00:04:01,480 --> 00:04:06,560
+for the model and the year, and
+this would set the model field
+
+57
+00:04:06,560 --> 00:04:12,510
+to a certain value, and
+the year field as well.
+
+58
+00:04:12,510 --> 00:04:16,019
+>> Now about the access
+modifiers I was talking about.
+
+59
+00:04:16,019 --> 00:04:21,560
+Here we have the public and
+private access modifiers.
+
+60
+00:04:21,560 --> 00:04:27,730
+So you can think of this as
+the RWX in your directories.
+
+61
+00:04:27,730 --> 00:04:33,020
+So they allow certain people
+to read, and have access
+
+62
+00:04:33,020 --> 00:04:35,150
+to these fields and methods.
+
+63
+00:04:35,150 --> 00:04:39,470
+>> So if I say that model and
+year and speed are private,
+
+64
+00:04:39,470 --> 00:04:46,360
+that means that other objects cannot
+attempt to access this object's fields
+
+65
+00:04:46,360 --> 00:04:47,760
+there are private.
+
+66
+00:04:47,760 --> 00:04:52,280
+But when I set the access
+modifier to be public,
+
+67
+00:04:52,280 --> 00:04:57,630
+now that means that other objects
+are free to access and even
+
+68
+00:04:57,630 --> 00:05:00,770
+used the methods that are defined here.
+
+69
+00:05:00,770 --> 00:05:04,160
+
+70
+00:05:04,160 --> 00:05:09,210
+>> So this is the basic
+Car object that I have.
+
+71
+00:05:09,210 --> 00:05:15,350
+We have the accelerate,
+break, and getSpeed methods.
+
+72
+00:05:15,350 --> 00:05:20,180
+To this point, is everyone clear on
+Java objects and how to declare them?
+
+73
+00:05:20,180 --> 00:05:22,710
+Cool, all right.
+
+74
+00:05:22,710 --> 00:05:29,120
+So if you want to use the Java
+object in a program itself,
+
+75
+00:05:29,120 --> 00:05:35,720
+then we can use this
+new Car constructor.
+
+76
+00:05:35,720 --> 00:05:41,250
+So here we're saying we want to declare
+a new object, which is of type Car.
+
+77
+00:05:41,250 --> 00:05:44,120
+And here it's applying
+the model and year,
+
+78
+00:05:44,120 --> 00:05:51,110
+which we have defined in
+this object right here.
+
+79
+00:05:51,110 --> 00:05:55,150
+>> So this is also another
+object, if you notice.
+
+80
+00:05:55,150 --> 00:05:59,820
+It's a class for the
+main program itself.
+
+81
+00:05:59,820 --> 00:06:04,660
+And we have this PSVM, or public
+static void main, function,
+
+82
+00:06:04,660 --> 00:06:08,200
+and its the starting
+point of your program,
+
+83
+00:06:08,200 --> 00:06:12,320
+similar to the main
+function in your C program.
+
+84
+00:06:12,320 --> 00:06:16,870
+Here, we can access and
+use the object's functions
+
+85
+00:06:16,870 --> 00:06:21,480
+using the dot and then the
+function name notation.
+
+86
+00:06:21,480 --> 00:06:26,130
+And we can even specify
+certain arguments or parameters
+
+87
+00:06:26,130 --> 00:06:28,260
+for that function.
+
+88
+00:06:28,260 --> 00:06:32,410
+>> OK, so now moving on to inheritance.
+
+89
+00:06:32,410 --> 00:06:37,670
+So real world objects may
+share the same characteristics.
+
+90
+00:06:37,670 --> 00:06:42,490
+So for example, there's
+different types of bicycles.
+
+91
+00:06:42,490 --> 00:06:47,280
+For example, mountain bike,
+city bikes, or tandem bikes.
+
+92
+00:06:47,280 --> 00:06:50,320
+So they have this common
+characteristic of being a bike.
+
+93
+00:06:50,320 --> 00:06:55,740
+>> And so bikes may have two wheels and
+they may have a handlebar, maybe even
+
+94
+00:06:55,740 --> 00:06:58,750
+a tail light or something like that.
+
+95
+00:06:58,750 --> 00:07:04,930
+So Java gives us this
+power to represent objects
+
+96
+00:07:04,930 --> 00:07:10,170
+that have certain common
+characteristics through inheritance.
+
+97
+00:07:10,170 --> 00:07:18,370
+Now, what inheritance does, is it
+passes on an object's fields and methods
+
+98
+00:07:18,370 --> 00:07:20,920
+on to a child object.
+
+99
+00:07:20,920 --> 00:07:24,080
+>> So for example, if I
+have a car, and it has
+
+100
+00:07:24,080 --> 00:07:28,570
+the state of having four
+wheels and one steering wheel,
+
+101
+00:07:28,570 --> 00:07:31,120
+then we can pass this on to
+certain different types of cars.
+
+102
+00:07:31,120 --> 00:07:35,470
+For example, we have the
+sedan, sports car, and an SUV.
+
+103
+00:07:35,470 --> 00:07:38,940
+Now, these three different
+types of cars would still
+
+104
+00:07:38,940 --> 00:07:42,050
+have four wheels and one
+steering wheel, but then they
+
+105
+00:07:42,050 --> 00:07:43,900
+may have certain
+special characteristics,
+
+106
+00:07:43,900 --> 00:07:49,980
+such as having five seats and
+a for a sedan, for example.
+
+107
+00:07:49,980 --> 00:07:58,510
+>> So to make use of this inheritance
+feature, we use this extends keyword.
+
+108
+00:07:58,510 --> 00:08:04,570
+So remember back to the Car
+object that I defined previously.
+
+109
+00:08:04,570 --> 00:08:06,730
+Now I define a Sedan object.
+
+110
+00:08:06,730 --> 00:08:09,930
+
+111
+00:08:09,930 --> 00:08:17,850
+So this Sedan object would have the
+same fields and functions, or methods,
+
+112
+00:08:17,850 --> 00:08:19,660
+that the Car would have.
+
+113
+00:08:19,660 --> 00:08:24,830
+But then, here I specify
+certain additional functions,
+
+114
+00:08:24,830 --> 00:08:26,830
+for example, the set
+number of passengers
+
+115
+00:08:26,830 --> 00:08:29,150
+and the get number of passengers.
+
+116
+00:08:29,150 --> 00:08:32,000
+>> Here, you may also notice
+that we can override methods,
+
+117
+00:08:32,000 --> 00:08:34,840
+and that means we're just
+replacing the behavior
+
+118
+00:08:34,840 --> 00:08:38,549
+to act differently in certain cases.
+
+119
+00:08:38,549 --> 00:08:42,710
+So, for example, I want to
+set a max speed for our car.
+
+120
+00:08:42,710 --> 00:08:49,840
+And to do that, I check whether this
+speed would go over the max speed.
+
+121
+00:08:49,840 --> 00:08:54,180
+And if it doesn't, then I call the
+super class' accelerate method.
+
+122
+00:08:54,180 --> 00:09:00,350
+So this is the super.accelerate() calls
+the super class' accelerate method.
+
+123
+00:09:00,350 --> 00:09:05,390
+
+124
+00:09:05,390 --> 00:09:09,940
+>> Finally, we're going to
+talk about interfaces.
+
+125
+00:09:09,940 --> 00:09:18,090
+So interfaces are a way to expose only
+certain methods to the outside world.
+
+126
+00:09:18,090 --> 00:09:19,980
+So they're like a table
+of contents, and you
+
+127
+00:09:19,980 --> 00:09:25,900
+can think of them as like
+the C header files, just
+
+128
+00:09:25,900 --> 00:09:33,680
+like methods with empty bodies, and they
+specify what the object or the class
+
+129
+00:09:33,680 --> 00:09:37,710
+has to have, or what methods
+the object or class has to have.
+
+130
+00:09:37,710 --> 00:09:41,360
+>> So for example, if I
+have a Bicycle interface,
+
+131
+00:09:41,360 --> 00:09:46,530
+and it has three different methods,
+and here if I implement this interface,
+
+132
+00:09:46,530 --> 00:09:49,864
+then that means that this Bicycle
+would need to implement the same three
+
+133
+00:09:49,864 --> 00:09:51,530
+methods that I defined in the interface.
+
+134
+00:09:51,530 --> 00:09:57,076
+
+135
+00:09:57,076 --> 00:10:01,390
+>> Up to this point, any other questions?
+
+136
+00:10:01,390 --> 00:10:03,240
+All right, cool.
+
+137
+00:10:03,240 --> 00:10:07,770
+So this was a very brief
+and quick tutorial on Java.
+
+138
+00:10:07,770 --> 00:10:14,560
+There's way more features and topics on
+Java, that you can actually go through.
+
+139
+00:10:14,560 --> 00:10:17,690
+For example, there's
+generics, there's data types,
+
+140
+00:10:17,690 --> 00:10:19,780
+there's even enums and stuff.
+
+141
+00:10:19,780 --> 00:10:23,400
+So if you want to learn more
+about it, do follow these links,
+
+142
+00:10:23,400 --> 00:10:25,840
+and they'll teach you more about them.
+
+143
+00:10:25,840 --> 00:10:30,220
+>> OK, so, let's move on to the
+actual meat of the seminar,
+
+144
+00:10:30,220 --> 00:10:34,080
+and that is actually
+Android programming.
+
+145
+00:10:34,080 --> 00:10:37,660
+So before we actually
+get to programming,
+
+146
+00:10:37,660 --> 00:10:40,800
+I want to talk about some jargon.
+
+147
+00:10:40,800 --> 00:10:46,980
+So an activity is
+Android's way of saying
+
+148
+00:10:46,980 --> 00:10:52,870
+it's a single screen
+within the application.
+
+149
+00:10:52,870 --> 00:11:01,100
+>> So, for example, if you have a Gmail
+app, we have the view emails activity.
+
+150
+00:11:01,100 --> 00:11:02,990
+And then if you click
+a certain email, that
+
+151
+00:11:02,990 --> 00:11:08,850
+will show another activity where
+it's a view email activity.
+
+152
+00:11:08,850 --> 00:11:14,740
+And then we also have the compose
+activity, or the edit message activity.
+
+153
+00:11:14,740 --> 00:11:18,380
+And so activities are
+generally just a single screen
+
+154
+00:11:18,380 --> 00:11:21,800
+within the application itself.
+
+155
+00:11:21,800 --> 00:11:28,410
+>> Now, views are the components that make
+up the screen, or the activity itself.
+
+156
+00:11:28,410 --> 00:11:34,430
+So they draw a certain
+thing in your screen.
+
+157
+00:11:34,430 --> 00:11:37,840
+So for example, it could be a
+text field, it could be a label,
+
+158
+00:11:37,840 --> 00:11:40,090
+it could be a checks box.
+
+159
+00:11:40,090 --> 00:11:44,110
+So it is many different types of views.
+
+160
+00:11:44,110 --> 00:11:47,780
+So now we have intents,
+and that's a message
+
+161
+00:11:47,780 --> 00:11:51,070
+that is passed on to another activity.
+
+162
+00:11:51,070 --> 00:11:58,997
+And they contain information as to
+what you want this activity to execute.
+
+163
+00:11:58,997 --> 00:12:00,830
+Finally, we have the
+manifest file, and that
+
+164
+00:12:00,830 --> 00:12:07,900
+is an XML file that gives your phone
+all the information about your app.
+
+165
+00:12:07,900 --> 00:12:12,230
+So that's includes the version, and
+the activities that you will have.
+
+166
+00:12:12,230 --> 00:12:17,480
+>> OK, so let's start.
+
+167
+00:12:17,480 --> 00:12:21,460
+So we're going to be
+using Android Studio.
+
+168
+00:12:21,460 --> 00:12:26,960
+So if you guys have this already
+installed, feel free to follow along.
+
+169
+00:12:26,960 --> 00:12:29,790
+We'll try and start over from scratch.
+
+170
+00:12:29,790 --> 00:12:35,260
+And so I'm going to try
+and create a new project.
+
+171
+00:12:35,260 --> 00:12:40,370
+And I'm going to call
+my project Android 101.
+
+172
+00:12:40,370 --> 00:12:45,770
+And here we put the name of the
+project in the application name field.
+
+173
+00:12:45,770 --> 00:12:48,500
+>> Company Domain, you don't
+really have to worry about that.
+
+174
+00:12:48,500 --> 00:12:57,000
+This is just how Android
+identifies your application.
+
+175
+00:12:57,000 --> 00:13:01,350
+So you have a domain name, you can type
+in your domain name inside of there.
+
+176
+00:13:01,350 --> 00:13:05,370
+But if you don't, you can feel
+free to type in anything you want.
+
+177
+00:13:05,370 --> 00:13:08,226
+So here I just type in frederickw.com.
+
+178
+00:13:08,226 --> 00:13:14,660
+>> And then, finally, I choose where
+I want to store my project in.
+
+179
+00:13:14,660 --> 00:13:21,080
+And I'm going to just choose my desktop.
+
+180
+00:13:21,080 --> 00:13:28,670
+So Users, Frederick
+Widjaja, and Desktop.
+
+181
+00:13:28,670 --> 00:13:31,340
+OK.
+
+182
+00:13:31,340 --> 00:13:34,090
+Then click Next.
+
+183
+00:13:34,090 --> 00:13:39,630
+Here, I'm going to choose the
+minimum API to be supported.
+
+184
+00:13:39,630 --> 00:13:44,910
+So in this case, I'm
+going to choose API 15.
+
+185
+00:13:44,910 --> 00:13:51,530
+And it's fine if you actually just
+choose 4.4 which is the latest API.
+
+186
+00:13:51,530 --> 00:13:53,560
+Or 5, in fact.
+
+187
+00:13:53,560 --> 00:13:57,714
+But then you just need to worry about
+which phones you're really supporting,
+
+188
+00:13:57,714 --> 00:13:59,130
+and which phones you're targeting.
+
+189
+00:13:59,130 --> 00:14:04,230
+
+190
+00:14:04,230 --> 00:14:06,260
+Click Next.
+
+191
+00:14:06,260 --> 00:14:09,780
+>> OK, so we come to this
+screen, and we're just
+
+192
+00:14:09,780 --> 00:14:15,110
+going to use create an
+activity through this.
+
+193
+00:14:15,110 --> 00:14:19,890
+So I'm going to click blank
+activity and then Next.
+
+194
+00:14:19,890 --> 00:14:23,110
+We're going to call it main
+activity, I think that's fine.
+
+195
+00:14:23,110 --> 00:14:27,800
+Just going to call it,
+press Finish right here.
+
+196
+00:14:27,800 --> 00:14:36,250
+Wait for it to load, and there we go.
+
+197
+00:14:36,250 --> 00:14:40,600
+>> So here we notice three
+different folders.
+
+198
+00:14:40,600 --> 00:14:44,290
+We have the manifest folder
+that contains our manifest.
+
+199
+00:14:44,290 --> 00:14:48,360
+If you open it, we'll see our package.
+
+200
+00:14:48,360 --> 00:14:54,000
+Or how Android identifies
+your application
+
+201
+00:14:54,000 --> 00:14:58,990
+and then we have this
+application tag, which
+
+202
+00:14:58,990 --> 00:15:05,420
+contains the title of our application
+as well as the icon for the application.
+
+203
+00:15:05,420 --> 00:15:08,050
+
+204
+00:15:08,050 --> 00:15:11,950
+>> We can actually run this
+application straight.
+
+205
+00:15:11,950 --> 00:15:14,600
+So why don't we try and do that?
+
+206
+00:15:14,600 --> 00:15:16,310
+I'm going to use Genymotion.
+
+207
+00:15:16,310 --> 00:15:22,150
+If you brought your own phone, you can
+link it up and run it if you want to.
+
+208
+00:15:22,150 --> 00:15:31,213
+But I'm just going to use an
+emulator, and I'm going to start this.
+
+209
+00:15:31,213 --> 00:15:31,713
+Ooh.
+
+210
+00:15:31,713 --> 00:15:41,030
+
+211
+00:15:41,030 --> 00:15:42,780
+Well I think that's
+going to take a while,
+
+212
+00:15:42,780 --> 00:15:49,580
+so I think we'll just get straight
+into explaining more about this.
+
+213
+00:15:49,580 --> 00:15:56,200
+So here we have the Java directory, or
+where your source files are contained.
+
+214
+00:15:56,200 --> 00:16:02,500
+Here we have the main activity itself.
+
+215
+00:16:02,500 --> 00:16:07,120
+You can see that it
+extends the activity class.
+
+216
+00:16:07,120 --> 00:16:12,750
+So our main activity is a screen
+that will be in our application.
+
+217
+00:16:12,750 --> 00:16:21,790
+And then here we notice that a number
+of functions are auto generated for us.
+
+218
+00:16:21,790 --> 00:16:26,037
+We have the onCreate function,
+and that will be called whenever--
+
+219
+00:16:26,037 --> 00:16:27,870
+STUDENT: Do you mind
+making the text larger?
+
+220
+00:16:27,870 --> 00:16:28,940
+FRED WIDJAJA: OK, sure.
+
+221
+00:16:28,940 --> 00:16:38,380
+
+222
+00:16:38,380 --> 00:16:41,640
+I'll try and increase the font size.
+
+223
+00:16:41,640 --> 00:17:03,570
+
+224
+00:17:03,570 --> 00:17:06,490
+Think that should be good.
+
+225
+00:17:06,490 --> 00:17:07,020
+That good?
+
+226
+00:17:07,020 --> 00:17:09,480
+>> STUDENT: Just a little bit
+higher, like 20 or something.
+
+227
+00:17:09,480 --> 00:17:09,829
+>> FRED WIDJAJA: 20?
+
+228
+00:17:09,829 --> 00:17:10,329
+OK.
+
+229
+00:17:10,329 --> 00:17:17,380
+
+230
+00:17:17,380 --> 00:17:20,990
+OK, all right.
+
+231
+00:17:20,990 --> 00:17:24,740
+So here we have onCreate
+method that would
+
+232
+00:17:24,740 --> 00:17:29,750
+be called when our activity
+is created in the [? show ?].
+
+233
+00:17:29,750 --> 00:17:32,100
+We have the
+onCreateOptionsMenu, and we'll
+
+234
+00:17:32,100 --> 00:17:38,370
+see that there's actually
+an action bar, and then
+
+235
+00:17:38,370 --> 00:17:42,920
+we can add certain menu items on to it.
+
+236
+00:17:42,920 --> 00:17:45,710
+And then here we have the
+onOptionsItemSelected.
+
+237
+00:17:45,710 --> 00:17:52,210
+So this is like an event listener, so
+whenever an option in our action bar
+
+238
+00:17:52,210 --> 00:17:58,450
+is clicked, this
+function will be called,
+
+239
+00:17:58,450 --> 00:18:01,270
+and it will be passed with a
+certain item that was clicked.
+
+240
+00:18:01,270 --> 00:18:05,670
+
+241
+00:18:05,670 --> 00:18:11,576
+>> OK, I'm going to see--
+that's not working well.
+
+242
+00:18:11,576 --> 00:18:13,028
+Let's try and start.
+
+243
+00:18:13,028 --> 00:18:16,416
+
+244
+00:18:16,416 --> 00:18:17,384
+Oh dear.
+
+245
+00:18:17,384 --> 00:18:21,740
+
+246
+00:18:21,740 --> 00:18:23,560
+OK.
+
+247
+00:18:23,560 --> 00:18:24,320
+This is worrying.
+
+248
+00:18:24,320 --> 00:18:39,390
+
+249
+00:18:39,390 --> 00:18:41,500
+OK, so anyway.
+
+250
+00:18:41,500 --> 00:18:44,940
+Here we have the layout
+for our activity itself.
+
+251
+00:18:44,940 --> 00:18:50,150
+This is our main activity, and here
+we notice that there's the action bar.
+
+252
+00:18:50,150 --> 00:18:54,460
+And then we have this hello
+world label, and we can actually
+
+253
+00:18:54,460 --> 00:18:57,830
+edit text right here.
+
+254
+00:18:57,830 --> 00:19:03,260
+If you go and scroll
+down to the Hello World,
+
+255
+00:19:03,260 --> 00:19:06,360
+we can change it to whatever we want.
+
+256
+00:19:06,360 --> 00:19:10,070
+For example, it could be, Hi there.
+
+257
+00:19:10,070 --> 00:19:12,820
+Welcome.
+
+258
+00:19:12,820 --> 00:19:14,345
+And there we go, it changes.
+
+259
+00:19:14,345 --> 00:19:20,380
+
+260
+00:19:20,380 --> 00:19:20,880
+Oh dear.
+
+261
+00:19:20,880 --> 00:19:24,310
+
+262
+00:19:24,310 --> 00:19:26,010
+This style not working.
+
+263
+00:19:26,010 --> 00:19:28,320
+OK, that's worrying.
+
+264
+00:19:28,320 --> 00:19:32,000
+OK, anyway, we can move on without that.
+
+265
+00:19:32,000 --> 00:19:38,560
+So for now, let's try and
+do some really basic stuff.
+
+266
+00:19:38,560 --> 00:19:42,450
+So here we going to have
+a label, and then we're
+
+267
+00:19:42,450 --> 00:19:47,005
+going to have a text view--
+sorry, not a text view,
+
+268
+00:19:47,005 --> 00:19:49,310
+we're going to have an edit text.
+
+269
+00:19:49,310 --> 00:19:53,900
+And that is a component
+for you to type and stuff.
+
+270
+00:19:53,900 --> 00:19:56,590
+
+271
+00:19:56,590 --> 00:20:07,240
+So we have a plain text, and then
+we just add it onto our interface.
+
+272
+00:20:07,240 --> 00:20:13,520
+>> Here, I want to also add some margin
+to the top so that it looks nicer.
+
+273
+00:20:13,520 --> 00:20:19,190
+So we're going to go on to the
+properties, and then at the top margin,
+
+274
+00:20:19,190 --> 00:20:23,120
+we're going to add in 20 DPs.
+
+275
+00:20:23,120 --> 00:20:28,170
+So now, DPs are just a
+unit of measure in Android,
+
+276
+00:20:28,170 --> 00:20:31,240
+and they stand for density
+independent pixels.
+
+277
+00:20:31,240 --> 00:20:35,380
+So, as you may know, Android, there's
+many different types of screens
+
+278
+00:20:35,380 --> 00:20:38,410
+and then they have
+different screen densities.
+
+279
+00:20:38,410 --> 00:20:42,584
+So here it's just going to be
+a density independent pixel,
+
+280
+00:20:42,584 --> 00:20:44,750
+so it's going to be same
+throughout all the screens.
+
+281
+00:20:44,750 --> 00:20:49,046
+
+282
+00:20:49,046 --> 00:20:55,270
+>> Going to extend this edit text, and
+then I'm also going to add a button.
+
+283
+00:20:55,270 --> 00:21:02,900
+
+284
+00:21:02,900 --> 00:21:04,370
+And it's going to say OK.
+
+285
+00:21:04,370 --> 00:21:09,639
+
+286
+00:21:09,639 --> 00:21:10,597
+20 DPs.
+
+287
+00:21:10,597 --> 00:21:14,430
+
+288
+00:21:14,430 --> 00:21:16,630
+OK.
+
+289
+00:21:16,630 --> 00:21:20,060
+So now we have three
+different components.
+
+290
+00:21:20,060 --> 00:21:25,630
+And the way we can refer to
+these in our main activity class
+
+291
+00:21:25,630 --> 00:21:29,620
+is by using this method
+called findViewByID.
+
+292
+00:21:29,620 --> 00:21:36,790
+So I'm going to define some fields.
+
+293
+00:21:36,790 --> 00:21:48,290
+So we have in TextView,
+so let's say helloText.
+
+294
+00:21:48,290 --> 00:21:55,400
+
+295
+00:21:55,400 --> 00:21:59,930
+And then if you're using Android Studio,
+you can use the shortcut alternate,
+
+296
+00:21:59,930 --> 00:22:01,120
+enter.
+
+297
+00:22:01,120 --> 00:22:07,400
+And click Import Class to automatically
+import the corresponding classes
+
+298
+00:22:07,400 --> 00:22:07,950
+that we need.
+
+299
+00:22:07,950 --> 00:22:10,590
+
+300
+00:22:10,590 --> 00:22:20,800
+And then here I'm going to add an ID to
+this TextView and call it text_hello.
+
+301
+00:22:20,800 --> 00:22:28,320
+
+302
+00:22:28,320 --> 00:22:32,050
+Now that we have defined
+an ID for this TextView,
+
+303
+00:22:32,050 --> 00:22:38,020
+we can use this to refer to the
+textview that we just defined.
+
+304
+00:22:38,020 --> 00:22:47,970
+So helloText equals
+TextView findViewByID,
+
+305
+00:22:47,970 --> 00:22:52,630
+and then we specify the ID that
+we want, which is r.ID.text_hello.
+
+306
+00:22:52,630 --> 00:22:55,360
+
+307
+00:22:55,360 --> 00:22:59,560
+>> So this is very similar to JavaScript
+and jQuery, where we can actually just
+
+308
+00:22:59,560 --> 00:23:05,430
+refer to certain elements
+in the layout just
+
+309
+00:23:05,430 --> 00:23:08,330
+by using the ID that we have specified.
+
+310
+00:23:08,330 --> 00:23:17,240
+So in general, to access a
+certain object or a certain field
+
+311
+00:23:17,240 --> 00:23:22,030
+in our layout, you're going to have
+to use this findViewByID method.
+
+312
+00:23:22,030 --> 00:23:26,290
+And then we're going to do the same
+things for the other two elements.
+
+313
+00:23:26,290 --> 00:23:29,570
+
+314
+00:23:29,570 --> 00:23:36,683
+Here, I am going to
+add the ID text_name.
+
+315
+00:23:36,683 --> 00:23:40,760
+
+316
+00:23:40,760 --> 00:23:42,770
+Yes.
+
+317
+00:23:42,770 --> 00:23:46,610
+As well as for this one.
+
+318
+00:23:46,610 --> 00:23:49,345
+
+319
+00:23:49,345 --> 00:23:49,845
+Button_ok.
+
+320
+00:23:49,845 --> 00:23:53,570
+
+321
+00:23:53,570 --> 00:23:58,120
+>> Now what I want this to do is
+when we click the OK button,
+
+322
+00:23:58,120 --> 00:24:02,110
+and we have inputted some sort
+of name into the text field,
+
+323
+00:24:02,110 --> 00:24:10,880
+then it's going to update this
+label to say, hi, name, welcome.
+
+324
+00:24:10,880 --> 00:24:16,520
+So, back in our main
+activity class, we're
+
+325
+00:24:16,520 --> 00:24:23,210
+also going to try and refer to
+those elements that we have to find.
+
+326
+00:24:23,210 --> 00:24:30,860
+>> So we have the EditText nameText.
+
+327
+00:24:30,860 --> 00:24:33,615
+
+328
+00:24:33,615 --> 00:24:36,000
+Oops.
+
+329
+00:24:36,000 --> 00:24:38,500
+Enter and alternate, import class.
+
+330
+00:24:38,500 --> 00:24:41,060
+And then also the OK button.
+
+331
+00:24:41,060 --> 00:24:45,660
+
+332
+00:24:45,660 --> 00:24:48,980
+Similarly, we're going to
+do the same thing over here.
+
+333
+00:24:48,980 --> 00:24:54,900
+nameText equals EditText
+findViewByID, r.ID.text_name.
+
+334
+00:24:54,900 --> 00:25:01,430
+
+335
+00:25:01,430 --> 00:25:03,380
+And then the OK button.
+
+336
+00:25:03,380 --> 00:25:10,180
+
+337
+00:25:10,180 --> 00:25:13,840
+findViewByID, r.ID, and then button_ok.
+
+338
+00:25:13,840 --> 00:25:16,400
+
+339
+00:25:16,400 --> 00:25:22,240
+>> OK, so now we have all three
+elements that we want to refer to.
+
+340
+00:25:22,240 --> 00:25:27,630
+So now I'm going to attach an
+on-click listener to our button
+
+341
+00:25:27,630 --> 00:25:30,440
+to listen for user clicks.
+
+342
+00:25:30,440 --> 00:25:35,780
+To that we just use the
+setOnClickListener event.
+
+343
+00:25:35,780 --> 00:25:38,860
+
+344
+00:25:38,860 --> 00:25:44,010
+Now, here it's saying we need
+to specify setOnClickListener,
+
+345
+00:25:44,010 --> 00:25:51,030
+and you can do that by just having a
+new onClickListener, and press Enter.
+
+346
+00:25:51,030 --> 00:25:56,935
+>> And then you have this anonymous
+class, or anonymous object.
+
+347
+00:25:56,935 --> 00:25:59,530
+
+348
+00:25:59,530 --> 00:26:02,790
+And we also have this onClick
+method, and that's basically
+
+349
+00:26:02,790 --> 00:26:05,580
+what it's going to be called
+whenever our button's clicked.
+
+350
+00:26:05,580 --> 00:26:15,860
+>> So here, I want to get the name that
+was input into an text field first So
+
+351
+00:26:15,860 --> 00:26:17,700
+String name equals to
+nameText.getText().
+
+352
+00:26:17,700 --> 00:26:21,670
+
+353
+00:26:21,670 --> 00:26:26,400
+Again, this is like the
+Java syntax for referring
+
+354
+00:26:26,400 --> 00:26:29,130
+to functions within the object.
+
+355
+00:26:29,130 --> 00:26:36,290
+So nameText.getText, and then we're
+going to convert it to a string.
+
+356
+00:26:36,290 --> 00:26:41,090
+Now we have the name that
+was input by the user.
+
+357
+00:26:41,090 --> 00:26:46,140
+>> And then we're going to
+generate a new string,
+
+358
+00:26:46,140 --> 00:26:48,980
+so it's going to be called hello.
+
+359
+00:26:48,980 --> 00:26:56,325
+I'm going to say, hi, name, welcome.
+
+360
+00:26:56,325 --> 00:27:00,810
+
+361
+00:27:00,810 --> 00:27:05,265
+And finally, you want
+to update the helloText.
+
+362
+00:27:05,265 --> 00:27:09,190
+So to do that, we simply call
+helloText.setText(hello).
+
+363
+00:27:09,190 --> 00:27:16,940
+
+364
+00:27:16,940 --> 00:27:17,440
+OK.
+
+365
+00:27:17,440 --> 00:27:20,430
+
+366
+00:27:20,430 --> 00:27:22,770
+Oops.
+
+367
+00:27:22,770 --> 00:27:30,645
+>> I'm going to try and re-run Genymotion
+one final time and see if it works.
+
+368
+00:27:30,645 --> 00:27:35,160
+
+369
+00:27:35,160 --> 00:27:38,810
+If it doesn't, it's totally fine.
+
+370
+00:27:38,810 --> 00:27:39,730
+OK.
+
+371
+00:27:39,730 --> 00:27:41,970
+So I guess it doesn't work.
+
+372
+00:27:41,970 --> 00:27:48,960
+
+373
+00:27:48,960 --> 00:27:52,955
+Actually, let me try and do this.
+
+374
+00:27:52,955 --> 00:27:56,188
+
+375
+00:27:56,188 --> 00:27:57,174
+Could be this.
+
+376
+00:27:57,174 --> 00:28:05,548
+
+377
+00:28:05,548 --> 00:28:06,048
+Genymotion.
+
+378
+00:28:06,048 --> 00:28:25,761
+
+379
+00:28:25,761 --> 00:28:26,261
+OK.
+
+380
+00:28:26,261 --> 00:28:33,240
+
+381
+00:28:33,240 --> 00:28:33,980
+All right.
+
+382
+00:28:33,980 --> 00:28:35,170
+Yes, it works.
+
+383
+00:28:35,170 --> 00:28:38,020
+OK.
+
+384
+00:28:38,020 --> 00:28:39,250
+That was frightening.
+
+385
+00:28:39,250 --> 00:28:40,890
+OK.
+
+386
+00:28:40,890 --> 00:28:43,270
+I did not mean to do that.
+
+387
+00:28:43,270 --> 00:28:46,570
+OK, so we have this Android emulator.
+
+388
+00:28:46,570 --> 00:28:49,070
+Let me turn this off.
+
+389
+00:28:49,070 --> 00:28:52,290
+
+390
+00:28:52,290 --> 00:28:55,720
+So we have our Android emulator.
+
+391
+00:28:55,720 --> 00:28:59,750
+So we're going to try and
+run this app that we made.
+
+392
+00:28:59,750 --> 00:29:04,100
+Just going to click the Play button,
+and it's going to say, waiting for adb.
+
+393
+00:29:04,100 --> 00:29:10,580
+
+394
+00:29:10,580 --> 00:29:12,780
+Oh, man.
+
+395
+00:29:12,780 --> 00:29:13,280
+Restart.
+
+396
+00:29:13,280 --> 00:29:25,419
+
+397
+00:29:25,419 --> 00:29:30,150
+OK, I guess this still doesn't work.
+
+398
+00:29:30,150 --> 00:29:31,280
+OK, nevermind, then.
+
+399
+00:29:31,280 --> 00:29:33,841
+
+400
+00:29:33,841 --> 00:29:38,150
+this is going to be a pity.
+
+401
+00:29:38,150 --> 00:29:41,030
+But so let's say that we want
+to create a new activity,
+
+402
+00:29:41,030 --> 00:29:45,730
+and we're going to have a
+picture in that activity.
+
+403
+00:29:45,730 --> 00:29:52,120
+To do that, we can just click
+this File, and then New.
+
+404
+00:29:52,120 --> 00:29:57,760
+And then here we can select
+Activity, and then Blank Activity.
+
+405
+00:29:57,760 --> 00:29:59,840
+Here, we're going to call
+it maybe CatActivity.
+
+406
+00:29:59,840 --> 00:30:03,030
+
+407
+00:30:03,030 --> 00:30:06,537
+>> OK, so now it generates two other files.
+
+408
+00:30:06,537 --> 00:30:08,245
+One is called
+activity_cat, and the other
+
+409
+00:30:08,245 --> 00:30:10,630
+is called catActivity, which is a class.
+
+410
+00:30:10,630 --> 00:30:13,250
+
+411
+00:30:13,250 --> 00:30:18,648
+So let's say that we want to add
+a picture of a cat right here.
+
+412
+00:30:18,648 --> 00:30:21,790
+
+413
+00:30:21,790 --> 00:30:25,220
+So when you do that, we're going
+to use the ImageView class.
+
+414
+00:30:25,220 --> 00:30:28,076
+
+415
+00:30:28,076 --> 00:30:31,340
+We're going to add it onto here.
+
+416
+00:30:31,340 --> 00:30:35,350
+And then set the margin to be 20 DP.
+
+417
+00:30:35,350 --> 00:30:37,920
+
+418
+00:30:37,920 --> 00:30:41,240
+>> And now we're going to find
+an image of a cat on internet.
+
+419
+00:30:41,240 --> 00:30:43,270
+So let's see.
+
+420
+00:30:43,270 --> 00:30:43,770
+Cat.
+
+421
+00:30:43,770 --> 00:30:48,280
+
+422
+00:30:48,280 --> 00:30:50,270
+OK.
+
+423
+00:30:50,270 --> 00:30:51,145
+I guess this is fine.
+
+424
+00:30:51,145 --> 00:30:59,070
+
+425
+00:30:59,070 --> 00:31:01,032
+OK.
+
+426
+00:31:01,032 --> 00:31:02,780
+So now we have our image.
+
+427
+00:31:02,780 --> 00:31:07,720
+So we're going to add
+it into our project.
+
+428
+00:31:07,720 --> 00:31:16,140
+Can do this by right
+clicking, and then-- we
+
+429
+00:31:16,140 --> 00:31:25,965
+can actually just open this,
+go downloads, sorry, desktop.
+
+430
+00:31:25,965 --> 00:31:28,310
+Going to try and find it.
+
+431
+00:31:28,310 --> 00:31:28,810
+Cat.
+
+432
+00:31:28,810 --> 00:31:34,580
+
+433
+00:31:34,580 --> 00:31:35,790
+Right here.
+
+434
+00:31:35,790 --> 00:31:42,820
+I'm going to copy it into my folder.
+
+435
+00:31:42,820 --> 00:31:46,800
+Now, it's going to ask me a few options.
+
+436
+00:31:46,800 --> 00:31:49,250
+Now, I just want this to
+be in the drawable folder,
+
+437
+00:31:49,250 --> 00:31:54,390
+and that's going to be for all
+different screen resolutions.
+
+438
+00:31:54,390 --> 00:31:57,100
+Alternatively, we can
+actually just select
+
+439
+00:31:57,100 --> 00:32:01,270
+which screen resolution you
+want this image to be in.
+
+440
+00:32:01,270 --> 00:32:06,150
+So going to select the
+drawable folder, click OK.
+
+441
+00:32:06,150 --> 00:32:08,660
+
+442
+00:32:08,660 --> 00:32:09,910
+Just going to name it cat.jpg.
+
+443
+00:32:09,910 --> 00:32:12,560
+
+444
+00:32:12,560 --> 00:32:15,970
+>> OK, so, now it's added
+into our image view.
+
+445
+00:32:15,970 --> 00:32:18,800
+
+446
+00:32:18,800 --> 00:32:22,020
+we're going to have to use
+this source right here,
+
+447
+00:32:22,020 --> 00:32:27,420
+and then we can use this dot dot dot
+button, and select the cat image.
+
+448
+00:32:27,420 --> 00:32:30,010
+
+449
+00:32:30,010 --> 00:32:32,620
+OK.
+
+450
+00:32:32,620 --> 00:32:39,480
+So now I want to make it such
+that it's just the right size.
+
+451
+00:32:39,480 --> 00:32:50,050
+So I'm going to select this adjust
+view bounds option right here,
+
+452
+00:32:50,050 --> 00:32:54,960
+and that automatically
+sets it to the right size.
+
+453
+00:32:54,960 --> 00:32:55,460
+OK.
+
+454
+00:32:55,460 --> 00:33:02,410
+
+455
+00:33:02,410 --> 00:33:09,380
+Now, to actually launch this
+activity from our previous activity,
+
+456
+00:33:09,380 --> 00:33:15,470
+you're going to have to use
+something called the intent.
+
+457
+00:33:15,470 --> 00:33:19,115
+So let's say I'm going to add another
+button that launches the activity.
+
+458
+00:33:19,115 --> 00:33:26,640
+
+459
+00:33:26,640 --> 00:33:29,150
+I'm going to add it here, right here.
+
+460
+00:33:29,150 --> 00:33:36,160
+And then it's going to
+have the text activate it.
+
+461
+00:33:36,160 --> 00:33:38,711
+
+462
+00:33:38,711 --> 00:33:39,210
+Oops.
+
+463
+00:33:39,210 --> 00:33:42,470
+
+464
+00:33:42,470 --> 00:33:43,320
+OK.
+
+465
+00:33:43,320 --> 00:33:47,560
+>> Now, how do we actually open the
+new activity within this activity?
+
+466
+00:33:47,560 --> 00:33:52,280
+
+467
+00:33:52,280 --> 00:33:54,650
+So same deal as before.
+
+468
+00:33:54,650 --> 00:34:01,120
+We need to add an ID to this
+button, and call it button_activate.
+
+469
+00:34:01,120 --> 00:34:09,489
+
+470
+00:34:09,489 --> 00:34:16,880
+And then in our main activity, going
+to have this new Button activateButton.
+
+471
+00:34:16,880 --> 00:34:21,630
+
+472
+00:34:21,630 --> 00:34:26,150
+And then also use the
+findViewByID method.
+
+473
+00:34:26,150 --> 00:34:29,449
+
+474
+00:34:29,449 --> 00:34:33,960
+activateButton equals Button
+findViewByID r.ID.button_activate.
+
+475
+00:34:33,960 --> 00:34:43,960
+
+476
+00:34:43,960 --> 00:34:45,830
+>> OK.
+
+477
+00:34:45,830 --> 00:34:48,500
+And then we also going to
+add in an onClickListener.
+
+478
+00:34:48,500 --> 00:34:56,360
+
+479
+00:34:56,360 --> 00:34:57,294
+New onClickListener.
+
+480
+00:34:57,294 --> 00:35:01,870
+
+481
+00:35:01,870 --> 00:35:07,145
+And then we're going to use
+this thing called Intent.
+
+482
+00:35:07,145 --> 00:35:10,070
+
+483
+00:35:10,070 --> 00:35:11,905
+Intent equals new Intent(this).
+
+484
+00:35:11,905 --> 00:35:17,260
+
+485
+00:35:17,260 --> 00:35:20,699
+And then the name of the
+activity that we want to show up.
+
+486
+00:35:20,699 --> 00:35:22,990
+So here in this, we're going
+to have catActivity.class.
+
+487
+00:35:22,990 --> 00:35:30,412
+
+488
+00:35:30,412 --> 00:35:31,147
+Sorry.
+
+489
+00:35:31,147 --> 00:35:33,230
+We're going to have to
+specify @MainActivity.this.
+
+490
+00:35:33,230 --> 00:35:36,100
+
+491
+00:35:36,100 --> 00:35:41,910
+So now the .this property is referring
+to the current instance of the object
+
+492
+00:35:41,910 --> 00:35:43,271
+itself.
+
+493
+00:35:43,271 --> 00:35:43,770
+OK.
+
+494
+00:35:43,770 --> 00:35:48,020
+Up to this point, any questions?
+
+495
+00:35:48,020 --> 00:35:48,890
+All good?
+
+496
+00:35:48,890 --> 00:35:49,390
+All right.
+
+497
+00:35:49,390 --> 00:35:52,890
+
+498
+00:35:52,890 --> 00:35:57,430
+>> And then if you want to start
+the activity, it's pretty simple.
+
+499
+00:35:57,430 --> 00:35:59,904
+We just call the the
+startActivity method.
+
+500
+00:35:59,904 --> 00:36:04,260
+
+501
+00:36:04,260 --> 00:36:07,355
+And then we pass in the Intent
+object that we have just defined.
+
+502
+00:36:07,355 --> 00:36:10,640
+
+503
+00:36:10,640 --> 00:36:16,140
+Unfortunately, we
+can't really show this.
+
+504
+00:36:16,140 --> 00:36:23,000
+I was hoping that we can actually run
+this and show it along in the seminar,
+
+505
+00:36:23,000 --> 00:36:26,661
+but unfortunately not.
+
+506
+00:36:26,661 --> 00:36:28,980
+Oh, man.
+
+507
+00:36:28,980 --> 00:36:29,480
+I see.
+
+508
+00:36:29,480 --> 00:36:32,134
+Oh, we're going to try and kill ATB.exe.
+
+509
+00:36:32,134 --> 00:36:43,510
+
+510
+00:36:43,510 --> 00:36:45,214
+OK.
+
+511
+00:36:45,214 --> 00:36:45,714
+Restart.
+
+512
+00:36:45,714 --> 00:36:53,490
+
+513
+00:36:53,490 --> 00:36:56,262
+Did it work?
+
+514
+00:36:56,262 --> 00:36:57,710
+Oh, OK.
+
+515
+00:36:57,710 --> 00:37:00,660
+So now it's actually compiling.
+
+516
+00:37:00,660 --> 00:37:02,410
+Oh.
+
+517
+00:37:02,410 --> 00:37:04,420
+Unfortunately, there's
+no devices running.
+
+518
+00:37:04,420 --> 00:37:06,040
+Let's try and restart my emulator.
+
+519
+00:37:06,040 --> 00:37:56,335
+
+520
+00:37:56,335 --> 00:37:57,880
+Ah, there we go.
+
+521
+00:37:57,880 --> 00:37:59,050
+It appeared.
+
+522
+00:37:59,050 --> 00:38:00,070
+OK.
+
+523
+00:38:00,070 --> 00:38:06,010
+So I'm going to launch my
+app on my Android emulator.
+
+524
+00:38:06,010 --> 00:38:08,330
+And we have the things
+that we defined just now.
+
+525
+00:38:08,330 --> 00:38:13,620
+So we have the label, the text view,
+the text field, and then button.
+
+526
+00:38:13,620 --> 00:38:18,449
+So I'm going to input
+my name right here,
+
+527
+00:38:18,449 --> 00:38:19,990
+and there we go, it changed the text.
+
+528
+00:38:19,990 --> 00:38:25,980
+So if we type in Foo, it's
+going to change to Foo.
+
+529
+00:38:25,980 --> 00:38:29,040
+>> And if I click the
+Activate button, which
+
+530
+00:38:29,040 --> 00:38:34,560
+we have linked to actually launch a
+new activity, hopefully this will work,
+
+531
+00:38:34,560 --> 00:38:35,190
+there we go.
+
+532
+00:38:35,190 --> 00:38:36,760
+It launches the new activity.
+
+533
+00:38:36,760 --> 00:38:40,001
+
+534
+00:38:40,001 --> 00:38:47,010
+To go back, we can press
+the Back button right here.
+
+535
+00:38:47,010 --> 00:38:47,510
+Or not.
+
+536
+00:38:47,510 --> 00:38:49,610
+Oh, there we go.
+
+537
+00:38:49,610 --> 00:38:51,450
+Oops.
+
+538
+00:38:51,450 --> 00:38:52,611
+That was bad.
+
+539
+00:38:52,611 --> 00:38:53,890
+OK.
+
+540
+00:38:53,890 --> 00:38:58,550
+>> So now that we have implemented
+some basic stuff in Android,
+
+541
+00:38:58,550 --> 00:39:04,800
+we can try and do some
+more complicated stuff.
+
+542
+00:39:04,800 --> 00:39:10,070
+So first, let's try and pass messages
+from one activity to another.
+
+543
+00:39:10,070 --> 00:39:13,760
+So let's say we want to pass in
+a name from the main activity
+
+544
+00:39:13,760 --> 00:39:16,710
+to the cat activity.
+
+545
+00:39:16,710 --> 00:39:19,740
+And a name would be
+retrieved from this nameText.
+
+546
+00:39:19,740 --> 00:39:23,510
+
+547
+00:39:23,510 --> 00:39:30,160
+>> OK, so first, we're going to
+retrieve the name right here.
+
+548
+00:39:30,160 --> 00:39:32,230
+String name equals
+nameText.getText().toString().
+
+549
+00:39:32,230 --> 00:39:39,588
+
+550
+00:39:39,588 --> 00:39:41,420
+OK.
+
+551
+00:39:41,420 --> 00:39:52,260
+And then we can use this thing
+called intent.putExtra(name),
+
+552
+00:39:52,260 --> 00:39:57,650
+and then it actually also wants
+a key for this extra field.
+
+553
+00:39:57,650 --> 00:40:05,520
+>> So I'm going to define a new
+key, we'll call it EXTRA_NAME.
+
+554
+00:40:05,520 --> 00:40:11,570
+
+555
+00:40:11,570 --> 00:40:17,160
+So I'm going to use this
+key, CatActivity.EXTRA_NAME,
+
+556
+00:40:17,160 --> 00:40:21,010
+and then pass in the name itself.
+
+557
+00:40:21,010 --> 00:40:26,370
+>> OK, so now we can actually retrieve
+this within the new CatActivity.
+
+558
+00:40:26,370 --> 00:40:38,650
+To do that, we have to use the
+intent equals getIntent method.
+
+559
+00:40:38,650 --> 00:40:41,360
+So now it's going to
+retrieve the intent that
+
+560
+00:40:41,360 --> 00:40:45,070
+was used to call this new activity.
+
+561
+00:40:45,070 --> 00:40:50,340
+So if you want to retrieve the string
+that we actually put inside the intent,
+
+562
+00:40:50,340 --> 00:41:00,255
+you can use an intent.getStringExtra
+and then pass in the same key,
+
+563
+00:41:00,255 --> 00:41:04,080
+
+564
+00:41:04,080 --> 00:41:10,570
+>> OK, so now let's say we you
+want to change this field.
+
+565
+00:41:10,570 --> 00:41:14,422
+
+566
+00:41:14,422 --> 00:41:15,630
+Change this field right here.
+
+567
+00:41:15,630 --> 00:41:18,400
+
+568
+00:41:18,400 --> 00:41:20,900
+And let's make the font
+size of this field larger.
+
+569
+00:41:20,900 --> 00:41:26,480
+So let's say I want this to be 20 DP.
+
+570
+00:41:26,480 --> 00:41:28,340
+OK.
+
+571
+00:41:28,340 --> 00:41:32,070
+And I'm going to add an
+ID for this TextView,
+
+572
+00:41:32,070 --> 00:41:35,690
+and I'm going to call it text_cat.
+
+573
+00:41:35,690 --> 00:41:41,170
+
+574
+00:41:41,170 --> 00:41:41,670
+Sorry.
+
+575
+00:41:41,670 --> 00:41:45,630
+
+576
+00:41:45,630 --> 00:41:51,310
+>> And back in CatActivity,
+same deal as before.
+
+577
+00:41:51,310 --> 00:41:55,090
+We're going to define some fields.
+
+578
+00:41:55,090 --> 00:41:58,890
+Here it's going to be
+a TextView catText.
+
+579
+00:41:58,890 --> 00:42:03,500
+
+580
+00:42:03,500 --> 00:42:11,750
+And then catText equals TextView
+findViewByID, r.ID.text_cat.
+
+581
+00:42:11,750 --> 00:42:17,230
+
+582
+00:42:17,230 --> 00:42:18,780
+OK.
+
+583
+00:42:18,780 --> 00:42:24,100
+And then back in here, I'm
+going to set the text right
+
+584
+00:42:24,100 --> 00:42:28,120
+after we retrieve for
+it from the intent.
+
+585
+00:42:28,120 --> 00:42:30,207
+
+586
+00:42:30,207 --> 00:42:30,790
+setText(name).
+
+587
+00:42:30,790 --> 00:42:36,020
+
+588
+00:42:36,020 --> 00:42:38,056
+>> OK, so let's try that out.
+
+589
+00:42:38,056 --> 00:42:39,070
+Click the Play button.
+
+590
+00:42:39,070 --> 00:42:41,830
+
+591
+00:42:41,830 --> 00:42:43,445
+I'm going to use the same device.
+
+592
+00:42:43,445 --> 00:42:47,770
+
+593
+00:42:47,770 --> 00:42:50,380
+Back in here.
+
+594
+00:42:50,380 --> 00:42:57,030
+So let's say I didn't input--
+if we don't specify any name,
+
+595
+00:42:57,030 --> 00:42:59,330
+let's see what happens.
+
+596
+00:42:59,330 --> 00:43:02,150
+So now there's nothing that appears.
+
+597
+00:43:02,150 --> 00:43:10,390
+So we go back and input our name,
+it's just going to say Fred.
+
+598
+00:43:10,390 --> 00:43:14,670
+So we can actually pass messages
+from one activity to another.
+
+599
+00:43:14,670 --> 00:43:15,170
+OK.
+
+600
+00:43:15,170 --> 00:43:18,040
+
+601
+00:43:18,040 --> 00:43:22,590
+>> So there's a bunch of other views
+that you can use in Android.
+
+602
+00:43:22,590 --> 00:43:29,740
+So now we have progress bars, we have
+list views, we have toggle buttons,
+
+603
+00:43:29,740 --> 00:43:33,950
+and if you really wanted
+to learn more about that,
+
+604
+00:43:33,950 --> 00:43:36,790
+you can actually visit these web pages.
+
+605
+00:43:36,790 --> 00:43:41,160
+They contain many different resources.
+
+606
+00:43:41,160 --> 00:43:45,230
+So for example, the API
+guide right here actually
+
+607
+00:43:45,230 --> 00:43:50,885
+gives you some code examples for
+certain features in the Android library.
+
+608
+00:43:50,885 --> 00:43:53,692
+
+609
+00:43:53,692 --> 00:43:57,560
+>> And a few tutorials I found useful
+when learning about Android.
+
+610
+00:43:57,560 --> 00:44:06,890
+That's the official tutorial itself,
+and also this other tutorial right here.
+
+611
+00:44:06,890 --> 00:44:10,200
+And finally, you can actually
+use different libraries
+
+612
+00:44:10,200 --> 00:44:12,710
+for your Android application.
+
+613
+00:44:12,710 --> 00:44:16,370
+Now, these actually extend
+the functionality of your app
+
+614
+00:44:16,370 --> 00:44:19,665
+without having to
+really write much code.
+
+615
+00:44:19,665 --> 00:44:21,540
+The downside is, of
+course, that you actually
+
+616
+00:44:21,540 --> 00:44:23,890
+have to learn the libraries yourself.
+
+617
+00:44:23,890 --> 00:44:29,170
+>> So for example, if you want to make
+use of Dropbox cloud technology,
+
+618
+00:44:29,170 --> 00:44:33,400
+then you can use the Dropbox API.
+
+619
+00:44:33,400 --> 00:44:36,530
+Similar with the Facebook API.
+
+620
+00:44:36,530 --> 00:44:40,490
+And then there's actually a few
+different other miscellaneous libraries
+
+621
+00:44:40,490 --> 00:44:41,700
+that you can use.
+
+622
+00:44:41,700 --> 00:44:45,560
+If you're trying to get, like,
+JSON from a certain website,
+
+623
+00:44:45,560 --> 00:44:49,560
+then I think the Google JSON
+library would be pretty helpful.
+
+624
+00:44:49,560 --> 00:44:56,200
+So now, that converts a JSON
+formatted text into a Java object,
+
+625
+00:44:56,200 --> 00:44:58,600
+and vice versa.
+
+626
+00:44:58,600 --> 00:45:01,110
+>> And then there's Retrofit and Picasso.
+
+627
+00:45:01,110 --> 00:45:07,240
+And that's if you want to use--
+that's for if you're using a rest API.
+
+628
+00:45:07,240 --> 00:45:13,300
+And Picasso, if you're using images
+for your Android application.
+
+629
+00:45:13,300 --> 00:45:14,350
+All right.
+
+630
+00:45:14,350 --> 00:45:18,030
+Thank you very much,
+and have fun coding.
+
+631
+00:45:18,030 --> 00:45:19,723

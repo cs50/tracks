@@ -1,0 +1,5323 @@
+1
+00:00:00,000 --> 00:00:11,736
+
+2
+00:00:11,736 --> 00:00:16,626
+>> [VIDEO PLAYBACK]
+
+3
+00:00:16,626 --> 00:00:19,410
+>> -A triumph of mathematical
+and mechanical skill
+
+4
+00:00:19,410 --> 00:00:23,270
+is this great new automatic
+calculator at Harvard University.
+
+5
+00:00:23,270 --> 00:00:27,140
+Intricate problems in mathematics
+put through the machine in coded form
+
+6
+00:00:27,140 --> 00:00:31,710
+on tape are accurately solved in a
+minute fraction of the time required
+
+7
+00:00:31,710 --> 00:00:32,819
+for human calculation.
+
+8
+00:00:32,819 --> 00:00:44,280
+
+9
+00:00:44,280 --> 00:00:48,220
+Designed to expedite all forms of
+mathematical and scientific research,
+
+10
+00:00:48,220 --> 00:00:53,840
+the giant mechanical brain will work for
+the United States Navy until war's end.
+
+11
+00:00:53,840 --> 00:01:03,620
+
+12
+00:01:03,620 --> 00:01:06,570
+>> [END PLAYBACK]
+
+13
+00:01:06,570 --> 00:01:08,590
+>> DAVID J. MALAN: This, is CS50.
+
+14
+00:01:08,590 --> 00:01:10,590
+The past was a magical
+place, but if you've ever
+
+15
+00:01:10,590 --> 00:01:13,366
+wondered what that device is
+in Harvard Science Center,
+
+16
+00:01:13,366 --> 00:01:16,150
+it is indeed part of the
+Harvard Mark I, and it's
+
+17
+00:01:16,150 --> 00:01:18,710
+on display there now
+for the past many years.
+
+18
+00:01:18,710 --> 00:01:20,590
+And what you'll see
+embedded in problem set
+
+19
+00:01:20,590 --> 00:01:24,416
+one is a look behind the scenes
+at what that device did, and does,
+
+20
+00:01:24,416 --> 00:01:27,540
+from Professor Harry Lewis, who is in
+the computer science department here.
+
+21
+00:01:27,540 --> 00:01:29,440
+So more on that in just a bit.
+
+22
+00:01:29,440 --> 00:01:33,990
+>> But today we begin to transition
+from last week to this,
+
+23
+00:01:33,990 --> 00:01:37,290
+and we'll bring mention
+of one photograph here
+
+24
+00:01:37,290 --> 00:01:38,630
+that's actually quite famous.
+
+25
+00:01:38,630 --> 00:01:42,270
+Does anyone know what this
+here is on the screen?
+
+26
+00:01:42,270 --> 00:01:43,880
+At least according to myth.
+
+27
+00:01:43,880 --> 00:01:44,837
+Yeah.
+
+28
+00:01:44,837 --> 00:01:45,920
+AUDIENCE: The first virus.
+
+29
+00:01:45,920 --> 00:01:49,570
+DAVID J. MALAN: So it was supposedly
+the very first actual bug in a computer.
+
+30
+00:01:49,570 --> 00:01:52,490
+Now in reality the word bug,
+for a mistake in a program,
+
+31
+00:01:52,490 --> 00:01:55,250
+has been with us for some
+time in the physical world,
+
+32
+00:01:55,250 --> 00:01:58,190
+and this was one of the first
+documented times where someone actually
+
+33
+00:01:58,190 --> 00:02:02,280
+plucked a large moth out of the Mark
+II computer, put it in the binder,
+
+34
+00:02:02,280 --> 00:02:05,006
+and then recorded it
+as the first known bug
+
+35
+00:02:05,006 --> 00:02:06,630
+to have actually been found physically.
+
+36
+00:02:06,630 --> 00:02:10,104
+So thus was entered
+that into today's lore.
+
+37
+00:02:10,104 --> 00:02:12,020
+Everything from last
+week is available online.
+
+38
+00:02:12,020 --> 00:02:14,840
+In particular resources that you might
+not necessarily notice, especially
+
+39
+00:02:14,840 --> 00:02:15,881
+if coming here in person.
+
+40
+00:02:15,881 --> 00:02:20,230
+So one of the teaching fellows every
+year makes a canonical set of notes,
+
+41
+00:02:20,230 --> 00:02:22,010
+so you needn't keep
+your head down, trying
+
+42
+00:02:22,010 --> 00:02:24,410
+to transcribe most anything
+that might happen here in class.
+
+43
+00:02:24,410 --> 00:02:25,940
+So realize that those
+so-called [? Scribd ?] notes
+
+44
+00:02:25,940 --> 00:02:29,350
+are online, certainly the slides and
+source code that we use in class.
+
+45
+00:02:29,350 --> 00:02:31,436
+We make full text transcripts
+available as well.
+
+46
+00:02:31,436 --> 00:02:34,310
+So if you vaguely remember some
+term, and want to look it up a little
+
+47
+00:02:34,310 --> 00:02:37,280
+more readily, realize that all
+of that is searchable online.
+
+48
+00:02:37,280 --> 00:02:38,930
+As well as walkthroughs as well.
+
+49
+00:02:38,930 --> 00:02:42,710
+Indeed, today we begin to look at
+a lower level programming language,
+
+50
+00:02:42,710 --> 00:02:45,290
+soon to be known to us
+as C, and it's very easy
+
+51
+00:02:45,290 --> 00:02:48,820
+to sort of get lost after just a few
+moments time, and then sort of wonder
+
+52
+00:02:48,820 --> 00:02:52,370
+how we actually got to some more
+complex example from the simplest.
+
+53
+00:02:52,370 --> 00:02:54,975
+And so realize we'll cherry
+pick during class some
+
+54
+00:02:54,975 --> 00:02:57,850
+of the representative examples, but
+realize that so much more is also
+
+55
+00:02:57,850 --> 00:03:01,140
+available online so you can work
+through it at your own pace,
+
+56
+00:03:01,140 --> 00:03:02,950
+however you're most comfortable.
+
+57
+00:03:02,950 --> 00:03:05,200
+>> But we left off with
+programs that were just this.
+
+58
+00:03:05,200 --> 00:03:09,690
+So I click the green flag,
+and what does this program do?
+
+59
+00:03:09,690 --> 00:03:10,710
+Says, hello, world.
+
+60
+00:03:10,710 --> 00:03:13,180
+It makes the cat say
+hello in his little world
+
+61
+00:03:13,180 --> 00:03:15,990
+on the top left hand side
+of Scratch's user interface.
+
+62
+00:03:15,990 --> 00:03:18,810
+But we started to introduce
+some terminology last week.
+
+63
+00:03:18,810 --> 00:03:23,614
+And so, things like this we called what?
+
+64
+00:03:23,614 --> 00:03:25,280
+What might be the generic term for this?
+
+65
+00:03:25,280 --> 00:03:26,266
+Yeah.
+
+66
+00:03:26,266 --> 00:03:28,210
+A method or a statement.
+
+67
+00:03:28,210 --> 00:03:29,280
+Sure, it's an action.
+
+68
+00:03:29,280 --> 00:03:30,140
+Do this.
+
+69
+00:03:30,140 --> 00:03:32,400
+And yet there were
+other shapes to scratch,
+
+70
+00:03:32,400 --> 00:03:35,360
+besides these so-called
+statement, they were also
+
+71
+00:03:35,360 --> 00:03:38,221
+things like this, which we called what?
+
+72
+00:03:38,221 --> 00:03:38,720
+Yeah.
+
+73
+00:03:38,720 --> 00:03:39,634
+So a loop.
+
+74
+00:03:39,634 --> 00:03:42,050
+And in this case, this thing
+repeats, obviously, 10 times.
+
+75
+00:03:42,050 --> 00:03:43,040
+There's a forever block.
+
+76
+00:03:43,040 --> 00:03:44,164
+There's a couple of others.
+
+77
+00:03:44,164 --> 00:03:48,309
+And today we're going to see how to
+translate this to a more modern world,
+
+78
+00:03:48,309 --> 00:03:50,850
+if you will, even though it's
+going to appear at first glance
+
+79
+00:03:50,850 --> 00:03:52,024
+to be much more arcane.
+
+80
+00:03:52,024 --> 00:03:53,190
+But those were indeed loops.
+
+81
+00:03:53,190 --> 00:03:56,182
+And then we have things like
+this, which had this shape,
+
+82
+00:03:56,182 --> 00:03:57,515
+and essentially asked questions.
+
+83
+00:03:57,515 --> 00:03:58,890
+And we referred to these as what?
+
+84
+00:03:58,890 --> 00:03:59,762
+>> AUDIENCE: Boolean expression.
+
+85
+00:03:59,762 --> 00:04:00,320
+>> DAVID J. MALAN: Yeah.
+
+86
+00:04:00,320 --> 00:04:01,340
+Boolean expression.
+
+87
+00:04:01,340 --> 00:04:04,502
+Something that is either true or
+false, yes or no, one or zero,
+
+88
+00:04:04,502 --> 00:04:05,960
+however you want to view the world.
+
+89
+00:04:05,960 --> 00:04:08,335
+But we called those Boolean
+expressions, and we plug them
+
+90
+00:04:08,335 --> 00:04:09,900
+into conditions, or branches.
+
+91
+00:04:09,900 --> 00:04:12,170
+And in the world of
+Scratch, everything nicely
+
+92
+00:04:12,170 --> 00:04:15,460
+interlocks in terms of its shape,
+if it makes logical sense to do so,
+
+93
+00:04:15,460 --> 00:04:18,490
+but you don't have to stop at just
+doing one thing conditionally,
+
+94
+00:04:18,490 --> 00:04:20,450
+you can have a proverbial
+fork in the road
+
+95
+00:04:20,450 --> 00:04:24,040
+and do either this or that if
+the condition is true or not.
+
+96
+00:04:24,040 --> 00:04:26,040
+And then, as you'll see,
+if you haven't already,
+
+97
+00:04:26,040 --> 00:04:27,480
+you can even nest these blocks.
+
+98
+00:04:27,480 --> 00:04:32,110
+So Scratch grows to fill the shapes
+that you might want to insert into it,
+
+99
+00:04:32,110 --> 00:04:35,330
+so you can actually express most
+any logic that you might want to do.
+
+100
+00:04:35,330 --> 00:04:38,220
+>> Now a few words of announcement
+for both here and New Haven.
+
+101
+00:04:38,220 --> 00:04:39,370
+So sectioning begins today.
+
+102
+00:04:39,370 --> 00:04:42,120
+The URL for this is on the course's
+website, for those unfamiliar.
+
+103
+00:04:42,120 --> 00:04:43,970
+Sections will be an
+opportunity to get together
+
+104
+00:04:43,970 --> 00:04:46,553
+in a much more intimate environment
+than [? Sanders ?] allows,
+
+105
+00:04:46,553 --> 00:04:50,347
+with 10 to 20 classmates with a
+teaching fellow at different tracks,
+
+106
+00:04:50,347 --> 00:04:51,930
+and different paces, if you so choose.
+
+107
+00:04:51,930 --> 00:04:54,080
+Indeed the course offers
+different sections
+
+108
+00:04:54,080 --> 00:04:57,340
+for those less comfortable, more
+comfortable, and somewhere in between,
+
+109
+00:04:57,340 --> 00:04:59,860
+and the role of thumb here, is
+there's no formal definition,
+
+110
+00:04:59,860 --> 00:05:04,600
+but if you're less comfortable,
+you kind of know it.
+
+111
+00:05:04,600 --> 00:05:07,470
+You're a bit intrepid about the
+idea of stepping foot, perhaps, back
+
+112
+00:05:07,470 --> 00:05:10,130
+in the classroom, or showing
+up to an in between section.
+
+113
+00:05:10,130 --> 00:05:12,770
+If you've been programming since you
+were six years old, more comfortable,
+
+114
+00:05:12,770 --> 00:05:13,400
+perhaps to you.
+
+115
+00:05:13,400 --> 00:05:16,150
+And if it's kind of a toss-up,
+that's exactly what the in between
+
+116
+00:05:16,150 --> 00:05:17,190
+is meant to be.
+
+117
+00:05:17,190 --> 00:05:18,410
+>> Now, in the meantime,
+for a class this size,
+
+118
+00:05:18,410 --> 00:05:21,326
+it takes us quite some time to section
+everyone, so we have so-called,
+
+119
+00:05:21,326 --> 00:05:24,030
+super sections, coming up this
+weekend and early next week,
+
+120
+00:05:24,030 --> 00:05:26,570
+so take a look at the course's website
+for those that are course wide,
+
+121
+00:05:26,570 --> 00:05:28,610
+and also filmed for those
+who cannot make them.
+
+122
+00:05:28,610 --> 00:05:33,470
+And sections themselves will start
+in week three of CS50 zero index.
+
+123
+00:05:33,470 --> 00:05:35,880
+Problem set 0 is already
+on the course's website.
+
+124
+00:05:35,880 --> 00:05:40,010
+And realize that you do have
+nine late days this semester.
+
+125
+00:05:40,010 --> 00:05:43,240
+So this is an upgrade from last
+year, when we had five late days.
+
+126
+00:05:43,240 --> 00:05:46,210
+>> So if you're wondering,
+we have nine problem sets.
+
+127
+00:05:46,210 --> 00:05:53,200
+You have nine late days, each of which
+you can only spend one per week on.
+
+128
+00:05:53,200 --> 00:05:56,089
+That effectively makes all of
+the problem sets due Friday,
+
+129
+00:05:56,089 --> 00:05:58,630
+but the goal is to put a little
+bit of psychological pressure
+
+130
+00:05:58,630 --> 00:06:01,100
+on you to try to get
+things in on Thursday
+
+131
+00:06:01,100 --> 00:06:03,960
+because as you will soon discover,
+for better or for worse, most
+
+132
+00:06:03,960 --> 00:06:07,820
+everything in the software world ends up
+taking much longer than you anticipate.
+
+133
+00:06:07,820 --> 00:06:10,620
+So consider it a sort
+of opportunity to help
+
+134
+00:06:10,620 --> 00:06:13,880
+yourself to target Thursday,
+but take comfort in that, yes,
+
+135
+00:06:13,880 --> 00:06:14,950
+everything is due Friday.
+
+136
+00:06:14,950 --> 00:06:17,590
+And if you submit them on
+Thursday, that's wonderful.
+
+137
+00:06:17,590 --> 00:06:21,020
+There's no bonus points or extra
+credit for meeting that deadline.
+
+138
+00:06:21,020 --> 00:06:23,250
+It's meant to be a crutch only.
+
+139
+00:06:23,250 --> 00:06:25,810
+>> And office hours, both
+here and in New Haven,
+
+140
+00:06:25,810 --> 00:06:28,840
+in person, if you'd like to
+meet with any of our courses
+
+141
+00:06:28,840 --> 00:06:31,060
+teaching fellows and CAs for assistance.
+
+142
+00:06:31,060 --> 00:06:31,640
+>> All right.
+
+143
+00:06:31,640 --> 00:06:33,110
+So now, let's make this more real.
+
+144
+00:06:33,110 --> 00:06:35,470
+And for a moment it's going to start
+to get a little more arcane, but very
+
+145
+00:06:35,470 --> 00:06:37,310
+quickly on Friday and
+next week we will be
+
+146
+00:06:37,310 --> 00:06:41,230
+able to do so much more than
+we could thus far in Scratch.
+
+147
+00:06:41,230 --> 00:06:44,350
+So we introduced code last
+week, albeit pictoral.
+
+148
+00:06:44,350 --> 00:06:45,620
+It was puzzle pieces.
+
+149
+00:06:45,620 --> 00:06:48,800
+And we formalized that it is
+something called source code,
+
+150
+00:06:48,800 --> 00:06:50,330
+but would did look like?
+
+151
+00:06:50,330 --> 00:06:52,550
+Well, it looked a little
+something like this.
+
+152
+00:06:52,550 --> 00:06:55,410
+And, in fact, just to kind of
+tease where we can go with this.
+
+153
+00:06:55,410 --> 00:06:57,800
+I'm going to go ahead and
+open up a window here,
+
+154
+00:06:57,800 --> 00:06:59,810
+and I'm just going to choose New File.
+
+155
+00:06:59,810 --> 00:07:03,200
+And I'm going to save this file
+as something like hello dot c.
+
+156
+00:07:03,200 --> 00:07:05,700
+More on that choice of
+words in just a moment.
+
+157
+00:07:05,700 --> 00:07:08,630
+And this is how someone might
+go about writing a program.
+
+158
+00:07:08,630 --> 00:07:13,990
+Include standard I/O dot h, int main
+void, and then open curly brace, close
+
+159
+00:07:13,990 --> 00:07:19,430
+curly brace, printf hello comma world,
+backslash n, semicolon, Save, done.
+
+160
+00:07:19,430 --> 00:07:19,930
+OK.
+
+161
+00:07:19,930 --> 00:07:21,670
+I've written my first
+program, but it's going
+
+162
+00:07:21,670 --> 00:07:23,878
+to be incredibly underwhelmed
+because when I actually
+
+163
+00:07:23,878 --> 00:07:27,352
+run this program, of course,
+by first writing make hello,
+
+164
+00:07:27,352 --> 00:07:30,310
+and then dot slash hello, and we'll
+go through this in much more detail
+
+165
+00:07:30,310 --> 00:07:31,730
+in a moment, that's all it does.
+
+166
+00:07:31,730 --> 00:07:33,270
+Doesn't pop open any windows.
+
+167
+00:07:33,270 --> 00:07:35,070
+It doesn't do anything
+particularly fancy.
+
+168
+00:07:35,070 --> 00:07:38,830
+All it does is what I told it to
+do, but how do we get to that?
+
+169
+00:07:38,830 --> 00:07:40,560
+And how do we build upon that?
+
+170
+00:07:40,560 --> 00:07:43,430
+Well, let's introduce a few
+different concepts here.
+
+171
+00:07:43,430 --> 00:07:47,170
+>> So one, we're about to start
+using a program called a compiler.
+
+172
+00:07:47,170 --> 00:07:51,470
+A compiler exists for Mac OS, Windows,
+Linux, any number of operating systems,
+
+173
+00:07:51,470 --> 00:07:54,540
+and we'll soon introduce you to the
+environment that we will be using,
+
+174
+00:07:54,540 --> 00:07:57,410
+but a compiler is just a general
+term for a piece of software
+
+175
+00:07:57,410 --> 00:08:01,940
+that takes source code and
+produces object code from it.
+
+176
+00:08:01,940 --> 00:08:03,940
+In other words, if you
+have as input your source
+
+177
+00:08:03,940 --> 00:08:08,250
+code, something like what I just typed,
+it ultimately produces object code.
+
+178
+00:08:08,250 --> 00:08:11,780
+And object code is really just
+a fancy way of saying it outputs
+
+179
+00:08:11,780 --> 00:08:12,926
+zero's and one's.
+
+180
+00:08:12,926 --> 00:08:14,800
+In other words, source
+code, even though it's
+
+181
+00:08:14,800 --> 00:08:17,240
+going to look a little arcane,
+and a little less friendly
+
+182
+00:08:17,240 --> 00:08:19,590
+than Scratch at first glance,
+it's at least something
+
+183
+00:08:19,590 --> 00:08:21,120
+that we humans can understand.
+
+184
+00:08:21,120 --> 00:08:24,360
+It kind of looks and sounds like
+English even though it's very succinct.
+
+185
+00:08:24,360 --> 00:08:28,040
+Whereas programming in zero's and
+one's, as our predecessors had to do,
+
+186
+00:08:28,040 --> 00:08:30,920
+some years ago, was not a
+particularly fun challenge.
+
+187
+00:08:30,920 --> 00:08:33,710
+And yet, this is what the
+computer still understands.
+
+188
+00:08:33,710 --> 00:08:37,010
+So compiler gets us from
+source code to object code.
+
+189
+00:08:37,010 --> 00:08:39,860
+It's like opening a file with the
+compiler, and when you save it,
+
+190
+00:08:39,860 --> 00:08:41,419
+you get those zeros and ones.
+
+191
+00:08:41,419 --> 00:08:43,419
+So we'll see how to do
+that in just a moment.
+
+192
+00:08:43,419 --> 00:08:47,400
+>> But let's now try to provide a
+bridge between last week and this,
+
+193
+00:08:47,400 --> 00:08:50,660
+so that even as we get hung up
+on things like curly braces,
+
+194
+00:08:50,660 --> 00:08:54,100
+and semicolons, and parentheses, and
+all of these intellectually interesting
+
+195
+00:08:54,100 --> 00:08:57,620
+aspects of programming, that very
+understandably trip people up early on,
+
+196
+00:08:57,620 --> 00:09:00,930
+realize that all of the ideas
+today, are the same as last.
+
+197
+00:09:00,930 --> 00:09:03,975
+So last, we saw this example
+here, Hello World program.
+
+198
+00:09:03,975 --> 00:09:07,500
+Well, starting today, if we want
+to implement that same program,
+
+199
+00:09:07,500 --> 00:09:10,800
+it's going to look a
+little something like this.
+
+200
+00:09:10,800 --> 00:09:14,040
+And we'll explain before long what int,
+and main, and void, and all of that
+
+201
+00:09:14,040 --> 00:09:18,770
+is, but at least I see here
+already the familiar Hello World.
+
+202
+00:09:18,770 --> 00:09:20,860
+>> Meanwhile, things like
+function, say hello,
+
+203
+00:09:20,860 --> 00:09:23,570
+is very simply going to be a
+very simple statement like this.
+
+204
+00:09:23,570 --> 00:09:26,930
+Printf hello world, with some
+quotes, with a backslash,
+
+205
+00:09:26,930 --> 00:09:29,780
+with a semicolon, but
+more on that to come.
+
+206
+00:09:29,780 --> 00:09:34,066
+Loops, meanwhile, this is a loop that,
+of course, says hello world forever,
+
+207
+00:09:34,066 --> 00:09:36,690
+and this one's going to look a
+little weirder than in the last,
+
+208
+00:09:36,690 --> 00:09:39,530
+but if I say something
+like, while true, I
+
+209
+00:09:39,530 --> 00:09:44,050
+can then print out Hello world
+again and again and again and again.
+
+210
+00:09:44,050 --> 00:09:46,660
+And then as you can kind
+of start to infer here,
+
+211
+00:09:46,660 --> 00:09:49,070
+this convention of using
+curly braces is kind
+
+212
+00:09:49,070 --> 00:09:52,050
+of like embracing the
+indented line of code there.
+
+213
+00:09:52,050 --> 00:09:55,840
+The printf line of code much like
+the yellow puzzle piece up above.
+
+214
+00:09:55,840 --> 00:09:58,740
+So we're not going to say forever,
+we're going to say while true,
+
+215
+00:09:58,740 --> 00:10:01,020
+but we'll see why that is in just a bit.
+
+216
+00:10:01,020 --> 00:10:04,210
+>> Meanwhile, if we have a loop like this,
+where you repeat something a finite
+
+217
+00:10:04,210 --> 00:10:07,730
+number times, this one too it's
+going to take a little getting used
+
+218
+00:10:07,730 --> 00:10:12,820
+to, but it's going to say for int
+i gets zero, i less than 10, i++,
+
+219
+00:10:12,820 --> 00:10:14,056
+and then printf again.
+
+220
+00:10:14,056 --> 00:10:15,430
+But there's going to be patterns.
+
+221
+00:10:15,430 --> 00:10:18,434
+And for those of you familiar
+with AP Computer Science, or Java,
+
+222
+00:10:18,434 --> 00:10:21,100
+or any number of other languages,
+almost all of these constructs
+
+223
+00:10:21,100 --> 00:10:23,820
+thus far should look mostly familiar.
+
+224
+00:10:23,820 --> 00:10:24,680
+>> So variable.
+
+225
+00:10:24,680 --> 00:10:29,270
+So here's a simple Scratch excerpt that
+sets a variable called counter to zero,
+
+226
+00:10:29,270 --> 00:10:33,150
+and then forever says the counter, and
+then it changes the counter by one.
+
+227
+00:10:33,150 --> 00:10:37,030
+So it starts with zero,
+and then one, two, three.
+
+228
+00:10:37,030 --> 00:10:42,560
+Well, how might we introduce that in
+this new language a little similarly?
+
+229
+00:10:42,560 --> 00:10:45,460
+Int counter equals
+zero, while true, which
+
+230
+00:10:45,460 --> 00:10:48,100
+is that same idea from before
+of doing something forever,
+
+231
+00:10:48,100 --> 00:10:49,530
+and I'm just going to printf.
+
+232
+00:10:49,530 --> 00:10:53,310
+And now it's getting a little strange,
+percent i, but more on that to come,
+
+233
+00:10:53,310 --> 00:10:55,140
+but these ideas are exactly the same.
+
+234
+00:10:55,140 --> 00:10:58,820
+We just now have to adhere to
+the syntax that the computer is
+
+235
+00:10:58,820 --> 00:11:00,010
+going to demand of us.
+
+236
+00:11:00,010 --> 00:11:04,620
+>> Boolean expression, something like
+sx less than y, or x less than y,
+
+237
+00:11:04,620 --> 00:11:06,354
+and y less than z.
+
+238
+00:11:06,354 --> 00:11:09,270
+It's going to look a little something
+like this, with parentheses just
+
+239
+00:11:09,270 --> 00:11:13,020
+like in math for good measure to just
+ensure that the order of operations
+
+240
+00:11:13,020 --> 00:11:14,750
+is as we intend.
+
+241
+00:11:14,750 --> 00:11:15,600
+And now, conditions.
+
+242
+00:11:15,600 --> 00:11:21,220
+So if x less than y, say x is less
+than y, else if x is greater than y,
+
+243
+00:11:21,220 --> 00:11:26,020
+say x is greater than y, otherwise
+logically, x must be equal to y.
+
+244
+00:11:26,020 --> 00:11:28,710
+So you might implement
+something like this in Scratch,
+
+245
+00:11:28,710 --> 00:11:31,230
+or you might implement
+it in this syntax.
+
+246
+00:11:31,230 --> 00:11:35,090
+And again, the curly braces are kind of
+giving us the same shape as the puzzle
+
+247
+00:11:35,090 --> 00:11:40,750
+pieces, but the syntax, now, is perhaps
+starting to follow some patterns.
+
+248
+00:11:40,750 --> 00:11:42,910
+>> So, what does this give us here?
+
+249
+00:11:42,910 --> 00:11:45,260
+So we're back then at our main program.
+
+250
+00:11:45,260 --> 00:11:47,930
+Let's actually, now,
+do something with it.
+
+251
+00:11:47,930 --> 00:11:50,660
+So in this very first
+line we see sharp include,
+
+252
+00:11:50,660 --> 00:11:53,160
+standard I/O, dot h, and
+then some weird angle
+
+253
+00:11:53,160 --> 00:11:57,330
+brackets below that. int main
+void, and then printf hello world.
+
+254
+00:11:57,330 --> 00:11:58,200
+So just take a step.
+
+255
+00:11:58,200 --> 00:12:02,440
+Someone who's never programmed before,
+at least explain one of these lines.
+
+256
+00:12:02,440 --> 00:12:04,490
+Using perhaps some of
+the jargon of last week.
+
+257
+00:12:04,490 --> 00:12:06,942
+What is printf, for instance?
+
+258
+00:12:06,942 --> 00:12:07,442
+Yeah.
+
+259
+00:12:07,442 --> 00:12:08,410
+>> AUDIENCE: [INAUDIBLE]
+
+260
+00:12:08,410 --> 00:12:08,610
+>> DAVID J. MALAN: Yeah.
+
+261
+00:12:08,610 --> 00:12:11,380
+It's a function, or a statement,
+from last week's terminology.
+
+262
+00:12:11,380 --> 00:12:13,470
+And it's an action
+that's doing something.
+
+263
+00:12:13,470 --> 00:12:15,855
+Now this function, or
+this statement, does
+
+264
+00:12:15,855 --> 00:12:17,550
+it appear to take some kind of input?
+
+265
+00:12:17,550 --> 00:12:20,080
+
+266
+00:12:20,080 --> 00:12:24,380
+And in what sense does it
+seem to take input, if so?
+
+267
+00:12:24,380 --> 00:12:26,180
+Input, what do I mean by that?
+
+268
+00:12:26,180 --> 00:12:26,720
+Yeah.
+
+269
+00:12:26,720 --> 00:12:27,595
+>> AUDIENCE: [INAUDIBLE]
+
+270
+00:12:27,595 --> 00:12:30,565
+
+271
+00:12:30,565 --> 00:12:31,440
+DAVID J. MALAN: Yeah.
+
+272
+00:12:31,440 --> 00:12:34,890
+So Scratch out a few puzzle pieces
+where you can parametrize it.
+
+273
+00:12:34,890 --> 00:12:37,980
+You could tell the repeat
+block how many times to repeat,
+
+274
+00:12:37,980 --> 00:12:40,320
+so that was an input of
+sorts, and just like Scratch
+
+275
+00:12:40,320 --> 00:12:43,060
+had a little white placeholder
+for the number you would type in,
+
+276
+00:12:43,060 --> 00:12:45,810
+so do we use in this
+text world parentheses
+
+277
+00:12:45,810 --> 00:12:49,910
+to give us that circular shape
+into which we can plug our input.
+
+278
+00:12:49,910 --> 00:12:53,180
+After all, tens of years ago
+when this language, called C,
+
+279
+00:12:53,180 --> 00:12:55,950
+was invented no one
+anticipated it's one of us,
+
+280
+00:12:55,950 --> 00:12:59,420
+these some years later, we'd
+want a function that says hello.
+
+281
+00:12:59,420 --> 00:12:59,920
+Right?
+
+282
+00:12:59,920 --> 00:13:02,880
+It'd be nice if there were a
+puzzle piece, or a key words,
+
+283
+00:13:02,880 --> 00:13:05,502
+that's called hello, that
+literally just says hello.
+
+284
+00:13:05,502 --> 00:13:06,460
+But we don't need that.
+
+285
+00:13:06,460 --> 00:13:09,320
+We can have something much lower
+level, like a generic print
+
+286
+00:13:09,320 --> 00:13:12,760
+command, that takes input,
+and prints whatever we want.
+
+287
+00:13:12,760 --> 00:13:14,960
+So notice now the pattern
+that will start to emerge.
+
+288
+00:13:14,960 --> 00:13:19,310
+Open paren, close paren is
+apparently embracing the input,
+
+289
+00:13:19,310 --> 00:13:21,770
+and then I see double
+quotes on both ends.
+
+290
+00:13:21,770 --> 00:13:25,110
+There is still weird backslash
+n, but hopefully now you
+
+291
+00:13:25,110 --> 00:13:29,900
+can start to visualize at least that
+printf is taking in some form of input.
+
+292
+00:13:29,900 --> 00:13:31,850
+Not as user friendly as
+Scratch, but it's just
+
+293
+00:13:31,850 --> 00:13:34,920
+like having plugged in some value there.
+
+294
+00:13:34,920 --> 00:13:38,306
+>> All right, now let's actually
+do something with this.
+
+295
+00:13:38,306 --> 00:13:40,930
+So some of you might know from
+having shopped the class before,
+
+296
+00:13:40,930 --> 00:13:42,638
+chatted with friends,
+that for many years
+
+297
+00:13:42,638 --> 00:13:44,590
+we used something called
+the CS50 appliance.
+
+298
+00:13:44,590 --> 00:13:49,160
+This was a term describing a technology
+called the virtual machine, which
+
+299
+00:13:49,160 --> 00:13:51,870
+is a piece of software that your
+predecessors would download off
+
+300
+00:13:51,870 --> 00:13:53,360
+the course's website for free.
+
+301
+00:13:53,360 --> 00:13:56,550
+They would also download a free piece
+of software called a hypervisor,
+
+302
+00:13:56,550 --> 00:14:00,590
+something called like VMware,
+or VirtualBox, or any number
+
+303
+00:14:00,590 --> 00:14:04,450
+of other tools, and on their Mac or PC
+or whatever computer they had last year
+
+304
+00:14:04,450 --> 00:14:06,620
+and in years past, they
+would double click an icon
+
+305
+00:14:06,620 --> 00:14:08,860
+to run this software
+called the hypervisor.
+
+306
+00:14:08,860 --> 00:14:12,220
+And then inside of that program
+they would open the CS50 appliance.
+
+307
+00:14:12,220 --> 00:14:14,710
+And the effect was that
+whether a predecessor of yours
+
+308
+00:14:14,710 --> 00:14:17,780
+was running Mac OS or
+Windows, he or she then
+
+309
+00:14:17,780 --> 00:14:22,910
+subsequently had a new window on their
+screen running CS50's environment.
+
+310
+00:14:22,910 --> 00:14:27,370
+So a virtual machine lets you run one
+operating system inside of another,
+
+311
+00:14:27,370 --> 00:14:28,785
+and that's exactly what we did.
+
+312
+00:14:28,785 --> 00:14:31,410
+Throughout most of the course we
+use an operating system called
+
+313
+00:14:31,410 --> 00:14:34,070
+Linux, specifically
+Ubuntu Linux, and this
+
+314
+00:14:34,070 --> 00:14:37,590
+is a very nice way in years past of
+making sure that everyone in the course
+
+315
+00:14:37,590 --> 00:14:38,840
+just had the same environment.
+
+316
+00:14:38,840 --> 00:14:41,339
+And you can use any kind of
+computer that you actually want.
+
+317
+00:14:41,339 --> 00:14:43,930
+Among the downsides, though,
+were it was like two gigabytes
+
+318
+00:14:43,930 --> 00:14:45,480
+to download this thing.
+
+319
+00:14:45,480 --> 00:14:50,310
+It didn't necessarily work super well on
+people whose computers that maybe only
+
+320
+00:14:50,310 --> 00:14:54,570
+had a gig or so of RAM, or not
+too many gigahertz of CPU speed,
+
+321
+00:14:54,570 --> 00:14:56,750
+and so this year, for
+this and other reasons,
+
+322
+00:14:56,750 --> 00:14:59,140
+have we been transitioning
+to this environment.
+
+323
+00:14:59,140 --> 00:15:03,730
+The so-called CS50 IDE, which is
+based on open source software,
+
+324
+00:15:03,730 --> 00:15:07,380
+and a supported platform
+that a company called Cloud9
+
+325
+00:15:07,380 --> 00:15:11,110
+supports in Europe, that
+allows us to have essentially
+
+326
+00:15:11,110 --> 00:15:15,770
+that exact same environment as in
+years past, but in the so-called cloud.
+
+327
+00:15:15,770 --> 00:15:17,532
+>> So what is the cloud?
+
+328
+00:15:17,532 --> 00:15:20,480
+You've probably clicked
+its icon on your Mac or PC.
+
+329
+00:15:20,480 --> 00:15:22,210
+What is the cloud?
+
+330
+00:15:22,210 --> 00:15:22,709
+Yeah?
+
+331
+00:15:22,709 --> 00:15:25,880
+
+332
+00:15:25,880 --> 00:15:26,780
+A little louder.
+
+333
+00:15:26,780 --> 00:15:30,510
+
+334
+00:15:30,510 --> 00:15:31,010
+Yeah.
+
+335
+00:15:31,010 --> 00:15:33,770
+It's just a bunch of computers
+elsewhere that store data and run
+
+336
+00:15:33,770 --> 00:15:34,880
+software and the like.
+
+337
+00:15:34,880 --> 00:15:39,390
+So it's really just to the word de
+jure of describing [? rentable ?]
+
+338
+00:15:39,390 --> 00:15:40,930
+computers that live elsewhere.
+
+339
+00:15:40,930 --> 00:15:42,810
+That you, yourself,
+don't necessarily own.
+
+340
+00:15:42,810 --> 00:15:45,256
+So when your data, or your
+programs, are in the cloud,
+
+341
+00:15:45,256 --> 00:15:47,630
+it just means it's on someone
+else's computers elsewhere,
+
+342
+00:15:47,630 --> 00:15:50,510
+and not, most likely, on your
+physical laptop or desktop.
+
+343
+00:15:50,510 --> 00:15:52,990
+And so that's what CS50 IDE now is.
+
+344
+00:15:52,990 --> 00:15:55,670
+>> Henceforth you'll go to a certain
+URL that will introduce you
+
+345
+00:15:55,670 --> 00:16:00,090
+to, in problem set 1, later this
+week, that will then, upon logging in,
+
+346
+00:16:00,090 --> 00:16:01,480
+give you this environment.
+
+347
+00:16:01,480 --> 00:16:03,896
+And much like Scratch had a
+few different panels involved,
+
+348
+00:16:03,896 --> 00:16:06,030
+so does CS50's IDE have exactly that.
+
+349
+00:16:06,030 --> 00:16:09,480
+On the top left hand side here, you're
+going to see a familiar file browser.
+
+350
+00:16:09,480 --> 00:16:11,930
+So any of the files that you
+put into this environment
+
+351
+00:16:11,930 --> 00:16:13,346
+are just going to be listed there.
+
+352
+00:16:13,346 --> 00:16:14,350
+Files and folders.
+
+353
+00:16:14,350 --> 00:16:16,790
+On the top right here,
+you're going to see a place
+
+354
+00:16:16,790 --> 00:16:18,420
+where you can actually write your code.
+
+355
+00:16:18,420 --> 00:16:21,860
+Initially in C, later in the
+term in PHP and JavaScript,
+
+356
+00:16:21,860 --> 00:16:24,739
+and, perhaps for final
+projects, Ruby or Java or Python
+
+357
+00:16:24,739 --> 00:16:27,280
+or any number of languages are
+supported in this environment.
+
+358
+00:16:27,280 --> 00:16:30,130
+It's not at all tied
+to CS50 specifically.
+
+359
+00:16:30,130 --> 00:16:33,390
+>> And then in the bottom corner here,
+especially for those more comfortable,
+
+360
+00:16:33,390 --> 00:16:35,590
+you have something
+called a terminal window.
+
+361
+00:16:35,590 --> 00:16:38,770
+And this terminal window allows
+you to execute any command that you
+
+362
+00:16:38,770 --> 00:16:40,860
+want in this cloud environment.
+
+363
+00:16:40,860 --> 00:16:42,860
+It allows you to install
+any additional software
+
+364
+00:16:42,860 --> 00:16:46,810
+that you want because you have so-called
+root, or administrator privileges.
+
+365
+00:16:46,810 --> 00:16:49,930
+So in other words, even though this
+is ultimately hosted in the cloud,
+
+366
+00:16:49,930 --> 00:16:52,400
+and even though we have
+simplified it to some extent
+
+367
+00:16:52,400 --> 00:16:57,110
+by default, literally introducing,
+thanks to Dan Armendariz, and Dino,
+
+368
+00:16:57,110 --> 00:17:01,070
+and Dan Bradley on CS50's team over the
+past many months, a less comfortable
+
+369
+00:17:01,070 --> 00:17:05,140
+mode that hides a lot of the
+initially confusing distractions.
+
+370
+00:17:05,140 --> 00:17:10,119
+Everything there exists to
+represent a typical computer system
+
+371
+00:17:10,119 --> 00:17:12,319
+that you might use in the real world.
+
+372
+00:17:12,319 --> 00:17:15,640
+>> So what does this all mean, and
+what can we actually do with it?
+
+373
+00:17:15,640 --> 00:17:19,124
+Let's actually take a peek at a program.
+
+374
+00:17:19,124 --> 00:17:21,290
+So I'm going to open up the
+actual environment here,
+
+375
+00:17:21,290 --> 00:17:23,894
+which is just our Chrome
+browser, which could be Firefox,
+
+376
+00:17:23,894 --> 00:17:26,640
+could be Internet Explorer,
+or some other browser as well.
+
+377
+00:17:26,640 --> 00:17:28,400
+It's full screened here for the moment.
+
+378
+00:17:28,400 --> 00:17:31,580
+And I want to actually tease
+apart what this program was.
+
+379
+00:17:31,580 --> 00:17:36,170
+So let's take a look, by zooming in up
+top, at what I did, and how I got here.
+
+380
+00:17:36,170 --> 00:17:38,315
+So here's those exact
+same lines of code.
+
+381
+00:17:38,315 --> 00:17:40,440
+So this is the statement,
+as you mentioned earlier.
+
+382
+00:17:40,440 --> 00:17:42,580
+The function that says hello.
+
+383
+00:17:42,580 --> 00:17:45,870
+The curly braces, on
+line four and line six,
+
+384
+00:17:45,870 --> 00:17:49,290
+presumably kind of envelop
+that line to associate it
+
+385
+00:17:49,290 --> 00:17:50,890
+with the essence of my program.
+
+386
+00:17:50,890 --> 00:17:54,890
+So indeed, this keyword main,
+that's up there on line three,
+
+387
+00:17:54,890 --> 00:17:59,450
+you can think of that as the equivalent
+of that when green flag clicked,
+
+388
+00:17:59,450 --> 00:18:01,080
+block in Scratch.
+
+389
+00:18:01,080 --> 00:18:05,280
+So that's all we have here, is when
+green flag clicked, print, or say,
+
+390
+00:18:05,280 --> 00:18:06,700
+hello world.
+
+391
+00:18:06,700 --> 00:18:11,210
+>> But let's take a guess, now, at what
+this first, more arcane line, is.
+
+392
+00:18:11,210 --> 00:18:15,100
+Sharp include, open angled
+bracket, standard I/O dot h,
+
+393
+00:18:15,100 --> 00:18:17,320
+close angled bracket.
+
+394
+00:18:17,320 --> 00:18:19,850
+What is that perhaps doing,
+especially if you've programmed
+
+395
+00:18:19,850 --> 00:18:21,390
+before in some other language.
+
+396
+00:18:21,390 --> 00:18:21,890
+Yeah?
+
+397
+00:18:21,890 --> 00:18:22,765
+>> AUDIENCE: [INAUDIBLE]
+
+398
+00:18:22,765 --> 00:18:25,095
+
+399
+00:18:25,095 --> 00:18:25,970
+DAVID J. MALAN: Yeah.
+
+400
+00:18:25,970 --> 00:18:26,470
+Exactly.
+
+401
+00:18:26,470 --> 00:18:29,455
+So this is giving you access to a
+library, so to speak, of functions.
+
+402
+00:18:29,455 --> 00:18:31,830
+And a library of functions is
+functions that someone else
+
+403
+00:18:31,830 --> 00:18:34,406
+wrote, either recently
+or long ago, so that you
+
+404
+00:18:34,406 --> 00:18:35,780
+don't have to reinvent the wheel.
+
+405
+00:18:35,780 --> 00:18:39,020
+For instance, we don't
+have to know, in 2015,
+
+406
+00:18:39,020 --> 00:18:42,280
+how to write code that puts
+a character on my screen.
+
+407
+00:18:42,280 --> 00:18:44,820
+Someone else has figured that
+out with the printf function
+
+408
+00:18:44,820 --> 00:18:47,280
+so that I can sort of abstract
+away from that, or layer
+
+409
+00:18:47,280 --> 00:18:49,350
+on top of his or her
+code, and now just take
+
+410
+00:18:49,350 --> 00:18:52,760
+for granted that any program I write
+can print something to the screen.
+
+411
+00:18:52,760 --> 00:18:58,150
+So this first line there in step one
+includes the so-called header file
+
+412
+00:18:58,150 --> 00:18:59,980
+for the standard library.
+
+413
+00:18:59,980 --> 00:19:02,630
+So see, the language in
+which we're now working
+
+414
+00:19:02,630 --> 00:19:05,010
+had a standard library
+with lots of functions.
+
+415
+00:19:05,010 --> 00:19:07,240
+Printf is one of them, and
+that first line of code
+
+416
+00:19:07,240 --> 00:19:10,040
+means give me access to
+those functions, so that I
+
+417
+00:19:10,040 --> 00:19:12,300
+don't have to reinvent that wheel.
+
+418
+00:19:12,300 --> 00:19:15,940
+>> Now let's go to the bottom window
+and do exactly what I did before.
+
+419
+00:19:15,940 --> 00:19:18,520
+A moment ago, when I was
+whizzing through the code,
+
+420
+00:19:18,520 --> 00:19:24,540
+typing it out for the first time,
+I very quickly typed, make hello.
+
+421
+00:19:24,540 --> 00:19:28,250
+What was that all about would you guess?
+
+422
+00:19:28,250 --> 00:19:29,150
+What was I doing?
+
+423
+00:19:29,150 --> 00:19:29,649
+Yeah?
+
+424
+00:19:29,649 --> 00:19:31,810
+
+425
+00:19:31,810 --> 00:19:32,310
+Never mind.
+
+426
+00:19:32,310 --> 00:19:32,970
+It's OK.
+
+427
+00:19:32,970 --> 00:19:33,492
+Yeah.
+
+428
+00:19:33,492 --> 00:19:34,450
+AUDIENCE: Compiling it.
+
+429
+00:19:34,450 --> 00:19:34,700
+DAVID J. MALAN: Yeah.
+
+430
+00:19:34,700 --> 00:19:35,770
+It was just compiling it.
+
+431
+00:19:35,770 --> 00:19:36,270
+Right?
+
+432
+00:19:36,270 --> 00:19:39,280
+Even if this is completely unfamiliar
+to you, it's pretty English like.
+
+433
+00:19:39,280 --> 00:19:41,155
+It's certainly not zeros
+and ones, so I still
+
+434
+00:19:41,155 --> 00:19:44,220
+need to run it through that so-called
+program, a compiler, that's going
+
+435
+00:19:44,220 --> 00:19:46,060
+to take it as input and produce output.
+
+436
+00:19:46,060 --> 00:19:48,270
+And at least, for now, in
+this Linux environment,
+
+437
+00:19:48,270 --> 00:19:51,030
+but this isn't prerequisite,
+this is just where we'll begin,
+
+438
+00:19:51,030 --> 00:19:53,960
+you generally interact with
+computer systems like this
+
+439
+00:19:53,960 --> 00:19:55,770
+by a so-called command line.
+
+440
+00:19:55,770 --> 00:19:57,790
+So with a blinking
+prompt and your keyboard,
+
+441
+00:19:57,790 --> 00:20:01,630
+and not so much your mouse, and not
+so much windows and icons and menus,
+
+442
+00:20:01,630 --> 00:20:02,980
+rather everything is textual.
+
+443
+00:20:02,980 --> 00:20:06,180
+And even though this feels, at first
+glance, perhaps, like a step backward,
+
+444
+00:20:06,180 --> 00:20:08,437
+it's actually a much more
+powerful and expressive way
+
+445
+00:20:08,437 --> 00:20:10,270
+of controlling a computer
+especially as you,
+
+446
+00:20:10,270 --> 00:20:12,950
+yourself, become more
+comfortable from less.
+
+447
+00:20:12,950 --> 00:20:16,790
+It's going to allow you to do a lot
+more things than just what Microsoft
+
+448
+00:20:16,790 --> 00:20:20,390
+or Apple allows you to do with
+their graphical operating system.
+
+449
+00:20:20,390 --> 00:20:23,270
+>> So when I hit Enter, now,
+nothing happens this time
+
+450
+00:20:23,270 --> 00:20:25,960
+because apparently the
+program hello is up to date.
+
+451
+00:20:25,960 --> 00:20:28,250
+And what was the command
+I ran after that?
+
+452
+00:20:28,250 --> 00:20:32,370
+Dot slash hello, and hello world.
+
+453
+00:20:32,370 --> 00:20:34,350
+Now let's take a step
+back for just a moment.
+
+454
+00:20:34,350 --> 00:20:39,510
+It turns out that make hello is just a
+simplified way of compiling a program.
+
+455
+00:20:39,510 --> 00:20:41,670
+Let's just introduce
+one piece of jargon,
+
+456
+00:20:41,670 --> 00:20:43,470
+but then move away
+from it, since it's not
+
+457
+00:20:43,470 --> 00:20:46,640
+all that interesting
+for today's purposes.
+
+458
+00:20:46,640 --> 00:20:51,000
+The compiler we're going to start using
+is called Clang, for the C language.
+
+459
+00:20:51,000 --> 00:20:54,280
+And this is a program that's run just
+like we did at the command line there.
+
+460
+00:20:54,280 --> 00:20:56,580
+And so if I want to
+compile a program that I
+
+461
+00:20:56,580 --> 00:21:00,790
+have written in a file called hello dot
+c, I literally just type clang hello c
+
+462
+00:21:00,790 --> 00:21:02,100
+enter.
+
+463
+00:21:02,100 --> 00:21:04,880
+>> The funny thing is,
+for historical reasons,
+
+464
+00:21:04,880 --> 00:21:07,750
+if I don't specify the
+name of the program
+
+465
+00:21:07,750 --> 00:21:11,690
+that I want to output, if I don't
+specify a file name for those zeros
+
+466
+00:21:11,690 --> 00:21:14,990
+and ones, a very weird
+convention was adopted years ago
+
+467
+00:21:14,990 --> 00:21:17,390
+where it felt kind of a
+good answer at the time,
+
+468
+00:21:17,390 --> 00:21:21,650
+well let's just arbitrarily call the
+first program we compile a dot out.
+
+469
+00:21:21,650 --> 00:21:22,900
+A comes first in the alphabet.
+
+470
+00:21:22,900 --> 00:21:23,920
+Out, it's the output.
+
+471
+00:21:23,920 --> 00:21:26,210
+So we will call the program
+by default a dot out.
+
+472
+00:21:26,210 --> 00:21:29,550
+And that's fine because if I want to
+run the program in this text based
+
+473
+00:21:29,550 --> 00:21:33,590
+environment, I just type
+dot slash a dot out enter.
+
+474
+00:21:33,590 --> 00:21:35,250
+And it would run exactly as before.
+
+475
+00:21:35,250 --> 00:21:36,880
+So let's see that real fast.
+
+476
+00:21:36,880 --> 00:21:40,370
+>> So if I go back to my
+source code in CS50 IDE,
+
+477
+00:21:40,370 --> 00:21:47,860
+and I instead do this, clang hello cot
+c enter, notice nothing seems to happen,
+
+478
+00:21:47,860 --> 00:21:49,790
+but almost always in
+this Linux environment,
+
+479
+00:21:49,790 --> 00:21:53,310
+when nothing bad seems to happen, that
+means something good actually happened.
+
+480
+00:21:53,310 --> 00:21:56,270
+If you don't see an error
+message, all is probably well.
+
+481
+00:21:56,270 --> 00:22:01,930
+And indeed, if I now do dot slash a dot
+out enter, I've run my same program.
+
+482
+00:22:01,930 --> 00:22:04,610
+I still have the hello program
+from earlier because indeed, it's
+
+483
+00:22:04,610 --> 00:22:07,430
+going to be so much nicer just
+type make instead of remembering
+
+484
+00:22:07,430 --> 00:22:10,240
+these incantations of
+commands, but let's see how we
+
+485
+00:22:10,240 --> 00:22:12,890
+might improve upon this, nonetheless.
+
+486
+00:22:12,890 --> 00:22:15,340
+>> So, this is the command
+to compile the code.
+
+487
+00:22:15,340 --> 00:22:19,100
+This is the command to run
+the compiled code thereafter.
+
+488
+00:22:19,100 --> 00:22:20,546
+How can I specify a file name?
+
+489
+00:22:20,546 --> 00:22:22,670
+Well let's just introduce
+one more piece of jargon.
+
+490
+00:22:22,670 --> 00:22:24,461
+When you're in this
+text based environment,
+
+491
+00:22:24,461 --> 00:22:27,400
+you're going to want to specify
+things called command line arguments.
+
+492
+00:22:27,400 --> 00:22:31,380
+Which is just a fancy way of saying,
+other words at the prompt that
+
+493
+00:22:31,380 --> 00:22:33,860
+tweak the behavior of whatever
+program you're running.
+
+494
+00:22:33,860 --> 00:22:37,320
+So specifically the program I'm
+running, by typing the name clang,
+
+495
+00:22:37,320 --> 00:22:38,504
+is the program called Clang.
+
+496
+00:22:38,504 --> 00:22:40,920
+So this is or the old school
+equivalent of double-clicking
+
+497
+00:22:40,920 --> 00:22:42,860
+on Microsoft Word or
+some program's icon.
+
+498
+00:22:42,860 --> 00:22:46,360
+I'm instead just typing its name,
+but in this version of the command,
+
+499
+00:22:46,360 --> 00:22:51,334
+I then have dash o space
+hello space hello dot c.
+
+500
+00:22:51,334 --> 00:22:53,500
+So even if you've never
+played in this world before,
+
+501
+00:22:53,500 --> 00:22:58,160
+just take a guess what
+does dash o hello do?
+
+502
+00:22:58,160 --> 00:23:00,620
+Or what does it tell clang to do?
+
+503
+00:23:00,620 --> 00:23:01,386
+Yeah.
+
+504
+00:23:01,386 --> 00:23:02,455
+>> AUDIENCE: [INAUDIBLE]
+
+505
+00:23:02,455 --> 00:23:03,330
+DAVID J. MALAN: Yeah.
+
+506
+00:23:03,330 --> 00:23:08,614
+It just sets the file's output to be
+hello instead of the sillier a dot out.
+
+507
+00:23:08,614 --> 00:23:09,780
+And, indeed, let's try this.
+
+508
+00:23:09,780 --> 00:23:14,250
+So if I now do, first
+let's do this, r m hello.
+
+509
+00:23:14,250 --> 00:23:15,590
+That's remove.
+
+510
+00:23:15,590 --> 00:23:18,450
+And it's going to say remove
+regular file hello, which
+
+511
+00:23:18,450 --> 00:23:22,210
+is unnecessarily arcane, but it just
+means do you want to delete the file,
+
+512
+00:23:22,210 --> 00:23:23,230
+and I type y for yes.
+
+513
+00:23:23,230 --> 00:23:27,340
+And notice, if you were glancing at top
+left, it did disappear from up there.
+
+514
+00:23:27,340 --> 00:23:32,180
+Let me now do clang dash o, and
+I'm going to go ahead and do hello,
+
+515
+00:23:32,180 --> 00:23:34,890
+in all caps, hello dot c.
+
+516
+00:23:34,890 --> 00:23:37,775
+Now, if I do dot slash
+hello, what would you expect?
+
+517
+00:23:37,775 --> 00:23:41,240
+
+518
+00:23:41,240 --> 00:23:42,430
+>> Maybe it's case sensitive.
+
+519
+00:23:42,430 --> 00:23:43,070
+Maybe it's not.
+
+520
+00:23:43,070 --> 00:23:44,030
+Let's see.
+
+521
+00:23:44,030 --> 00:23:45,230
+No such file or directory.
+
+522
+00:23:45,230 --> 00:23:47,438
+And we can kind of cheat by
+just looking at top left.
+
+523
+00:23:47,438 --> 00:23:49,630
+What did I obviously
+save the program as?
+
+524
+00:23:49,630 --> 00:23:51,070
+All caps hello.
+
+525
+00:23:51,070 --> 00:23:53,020
+So indeed, that's going
+to make a difference.
+
+526
+00:23:53,020 --> 00:23:54,540
+So now hello world is back.
+
+527
+00:23:54,540 --> 00:23:56,969
+Now this is all fine and good,
+and all very mind-numbing,
+
+528
+00:23:56,969 --> 00:23:59,760
+to sort of get bogged down in these
+details, but understanding them
+
+529
+00:23:59,760 --> 00:24:00,500
+is good.
+
+530
+00:24:00,500 --> 00:24:02,675
+>> Typing out these increasingly
+long incantations
+
+531
+00:24:02,675 --> 00:24:05,980
+is not going to be particularly
+fun, so people in the world
+
+532
+00:24:05,980 --> 00:24:08,260
+invented another program,
+some years ago, called
+
+533
+00:24:08,260 --> 00:24:12,190
+make, that quite simply
+allows you to type make,
+
+534
+00:24:12,190 --> 00:24:14,530
+the name of the program
+you want to make, and make
+
+535
+00:24:14,530 --> 00:24:18,580
+is smart in that it will look in
+the current folder, aka directory,
+
+536
+00:24:18,580 --> 00:24:21,440
+and if you have a file
+called hello dot c,
+
+537
+00:24:21,440 --> 00:24:25,800
+that is the file it will compile
+for you into a program called hello.
+
+538
+00:24:25,800 --> 00:24:29,950
+So it's a much simpler way of
+doing the more cryptic commands
+
+539
+00:24:29,950 --> 00:24:30,800
+that we did earlier.
+
+540
+00:24:30,800 --> 00:24:34,080
+And we have pre-configured
+CS50 IDE to know
+
+541
+00:24:34,080 --> 00:24:38,560
+that it should do dash o and a number of
+other flags, or command line arguments,
+
+542
+00:24:38,560 --> 00:24:40,670
+that we'll see before long.
+
+543
+00:24:40,670 --> 00:24:43,700
+>> But let's now actually do
+something more interesting.
+
+544
+00:24:43,700 --> 00:24:46,950
+Just typing out hello world all
+the time isn't all that compelling.
+
+545
+00:24:46,950 --> 00:24:52,280
+So let me go ahead and change
+this program and say, hello David.
+
+546
+00:24:52,280 --> 00:24:54,120
+Now I'm going to go down here.
+
+547
+00:24:54,120 --> 00:24:57,360
+I'm going to go ahead and do make hello.
+
+548
+00:24:57,360 --> 00:25:00,652
+And again now you're seeing
+make is showing you the longer
+
+549
+00:25:00,652 --> 00:25:03,360
+sequence of commands that it's
+doing because we've pre-configured
+
+550
+00:25:03,360 --> 00:25:05,200
+it that way, but we
+needn't worry for now
+
+551
+00:25:05,200 --> 00:25:10,735
+what it's doing other than it is
+compiling dot slash hello, hello world.
+
+552
+00:25:10,735 --> 00:25:14,969
+
+553
+00:25:14,969 --> 00:25:15,510
+What's wrong?
+
+554
+00:25:15,510 --> 00:25:16,177
+Yeah.
+
+555
+00:25:16,177 --> 00:25:17,370
+>> AUDIENCE: [INAUDIBLE]
+
+556
+00:25:17,370 --> 00:25:18,203
+>> DAVID J. MALAN: Yes.
+
+557
+00:25:18,203 --> 00:25:19,600
+So, noobie mistake.
+
+558
+00:25:19,600 --> 00:25:22,394
+I notice this is super subtle,
+but the asterisk here, in the tab,
+
+559
+00:25:22,394 --> 00:25:25,060
+just means you haven't saved it,
+and browsers and other programs
+
+560
+00:25:25,060 --> 00:25:25,930
+do this sometimes.
+
+561
+00:25:25,930 --> 00:25:27,939
+So control s or command
+s should save it.
+
+562
+00:25:27,939 --> 00:25:29,730
+Now let me go ahead
+and re-run the program.
+
+563
+00:25:29,730 --> 00:25:33,360
+
+564
+00:25:33,360 --> 00:25:34,260
+Recompiled.
+
+565
+00:25:34,260 --> 00:25:36,050
+Right, so it's a multi-step process.
+
+566
+00:25:36,050 --> 00:25:39,400
+None of which is particularly complex,
+but any time we change the file,
+
+567
+00:25:39,400 --> 00:25:43,450
+we need to change the resulting
+zeros and ones, and dot slash hello.
+
+568
+00:25:43,450 --> 00:25:43,950
+Wow.
+
+569
+00:25:43,950 --> 00:25:46,450
+So this is very underwhelming
+that we just printed out this.
+
+570
+00:25:46,450 --> 00:25:48,360
+Let's make things a
+little more dynamic, now.
+
+571
+00:25:48,360 --> 00:25:52,280
+>> Well it turns out, that like
+Scratch, C supports variables.
+
+572
+00:25:52,280 --> 00:25:54,790
+And it turns out if you want
+to have a variable that stores,
+
+573
+00:25:54,790 --> 00:25:57,300
+not a number like we
+typically did with Scratch,
+
+574
+00:25:57,300 --> 00:26:01,300
+but like a word, or a
+phrase, or a name, you
+
+575
+00:26:01,300 --> 00:26:04,837
+can specify a variable
+to be of type string.
+
+576
+00:26:04,837 --> 00:26:06,670
+So we'll see more of
+these in just a moment,
+
+577
+00:26:06,670 --> 00:26:09,090
+but it turns out that C, and
+a lot of languages like it,
+
+578
+00:26:09,090 --> 00:26:11,240
+have very specific types of variables.
+
+579
+00:26:11,240 --> 00:26:13,810
+It's not just like algebra,
+where you get an x, a y, and z
+
+580
+00:26:13,810 --> 00:26:16,940
+and those are just always
+numbers, in a programming language
+
+581
+00:26:16,940 --> 00:26:20,030
+you can store numbers, you can
+store individual characters,
+
+582
+00:26:20,030 --> 00:26:24,619
+you could store whole words, you could
+store whole images, whole sound files,
+
+583
+00:26:24,619 --> 00:26:25,160
+and the like.
+
+584
+00:26:25,160 --> 00:26:28,362
+So we need to specify what
+the type of our variable is.
+
+585
+00:26:28,362 --> 00:26:31,570
+And by convention I'm going to call my
+variable s just because it's succinct,
+
+586
+00:26:31,570 --> 00:26:33,510
+and s stands for string.
+
+587
+00:26:33,510 --> 00:26:36,400
+>> And then I'm going to store
+inside of this variable,
+
+588
+00:26:36,400 --> 00:26:39,570
+just like with Scratch
+when I use the set block,
+
+589
+00:26:39,570 --> 00:26:41,950
+I'm going to use the
+assignment operator in C,
+
+590
+00:26:41,950 --> 00:26:45,290
+which nicely enough is the equal
+sign, but the equal sign does this.
+
+591
+00:26:45,290 --> 00:26:53,220
+It moves something from the right into
+the left hand side of the expression.
+
+592
+00:26:53,220 --> 00:26:57,170
+So what I have done, to be clear in
+line five, is I've declared a variable.
+
+593
+00:26:57,170 --> 00:27:01,284
+I've told the computer, give me
+memory for a variable, call it s,
+
+594
+00:27:01,284 --> 00:27:03,950
+and know in advance that I'm going
+to be putting a string in it.
+
+595
+00:27:03,950 --> 00:27:05,950
+And a string is just a
+sequence of characters.
+
+596
+00:27:05,950 --> 00:27:09,190
+It's a word, or a phrase, or paragraph,
+but it's a sequence of characters.
+
+597
+00:27:09,190 --> 00:27:10,610
+It's not numbers.
+
+598
+00:27:10,610 --> 00:27:13,800
+What string am I going to be
+putting into that variable?
+
+599
+00:27:13,800 --> 00:27:16,185
+Well, apparently quote
+unquote, "Hannah".
+
+600
+00:27:16,185 --> 00:27:17,810
+Now notice the pattern that's emerging.
+
+601
+00:27:17,810 --> 00:27:19,260
+There's a left hand expression.
+
+602
+00:27:19,260 --> 00:27:21,810
+There's a right hand expression,
+separated by the equal sign.
+
+603
+00:27:21,810 --> 00:27:24,390
+And just take a guess, if
+unfamiliar nonetheless,
+
+604
+00:27:24,390 --> 00:27:27,430
+with what the semicolon is doing.
+
+605
+00:27:27,430 --> 00:27:28,865
+What's it presumably doing for us?
+
+606
+00:27:28,865 --> 00:27:29,365
+Yeah?
+
+607
+00:27:29,365 --> 00:27:29,840
+>> AUDIENCE: [INAUDIBLE]
+
+608
+00:27:29,840 --> 00:27:29,980
+>> DAVID J. MALAN: Yeah.
+
+609
+00:27:29,980 --> 00:27:31,170
+It's just terminating the line.
+
+610
+00:27:31,170 --> 00:27:31,669
+Right?
+
+611
+00:27:31,669 --> 00:27:34,260
+The computers want to be bluntly
+told, literally, what to do.
+
+612
+00:27:34,260 --> 00:27:36,343
+Like the peanut butter and
+jelly sandwich example,
+
+613
+00:27:36,343 --> 00:27:39,360
+if you don't specify
+exactly what you intend,
+
+614
+00:27:39,360 --> 00:27:42,190
+it might be left to judgment or error.
+
+615
+00:27:42,190 --> 00:27:44,890
+The semicolon means,
+that's it for this command.
+
+616
+00:27:44,890 --> 00:27:48,310
+It's being super precise, and it's
+a very easy thing to leave off.
+
+617
+00:27:48,310 --> 00:27:52,240
+So now this program doesn't seem to
+be behaving any differently until I
+
+618
+00:27:52,240 --> 00:27:53,500
+make it more dynamic.
+
+619
+00:27:53,500 --> 00:27:57,107
+So rather than hard could my own
+name, let me put a placeholder value.
+
+620
+00:27:57,107 --> 00:28:00,190
+And it turns out that, and I know this
+from having read the documentation,
+
+621
+00:28:00,190 --> 00:28:04,080
+and used the function for years, that
+printf was designed to be dynamic.
+
+622
+00:28:04,080 --> 00:28:07,510
+You don't have to know in advance
+what words you want to put in it.
+
+623
+00:28:07,510 --> 00:28:11,290
+You can instead have a
+placeholder, like percent s, which
+
+624
+00:28:11,290 --> 00:28:15,500
+is going to tell the
+computer, put a string here.
+
+625
+00:28:15,500 --> 00:28:17,740
+>> Which string do we want to put there?
+
+626
+00:28:17,740 --> 00:28:22,430
+Will turns out that between these
+parentheses, which remember, demarcate
+
+627
+00:28:22,430 --> 00:28:28,020
+the input to a function, if you have
+comma separated list of things here,
+
+628
+00:28:28,020 --> 00:28:31,790
+we actually pass in multiple
+inputs to a function.
+
+629
+00:28:31,790 --> 00:28:33,901
+So just like some Scratch
+blocks, you might not
+
+630
+00:28:33,901 --> 00:28:36,150
+have played with them for
+your projects yet or at all,
+
+631
+00:28:36,150 --> 00:28:38,250
+some Scratch blocks have two inputs.
+
+632
+00:28:38,250 --> 00:28:41,220
+Two white boxes you can
+type numbers or words into.
+
+633
+00:28:41,220 --> 00:28:45,210
+So to does C have functions like
+printf that can take two inputs.
+
+634
+00:28:45,210 --> 00:28:48,050
+And again, this comma
+is separating them.
+
+635
+00:28:48,050 --> 00:28:51,070
+So in English, again even if
+you've never programmed before,
+
+636
+00:28:51,070 --> 00:28:55,320
+by that logic printf is a function,
+takes two inputs, one of which
+
+637
+00:28:55,320 --> 00:28:58,810
+is a placeholder, what would you hope
+printf is going to do with this input?
+
+638
+00:28:58,810 --> 00:29:01,470
+
+639
+00:29:01,470 --> 00:29:03,220
+It's going to say hello
+Hannah, hopefully.
+
+640
+00:29:03,220 --> 00:29:05,274
+So to do this we need to save it.
+
+641
+00:29:05,274 --> 00:29:06,190
+I'm going to zoom out.
+
+642
+00:29:06,190 --> 00:29:10,701
+I'm going to go back down here
+and say, make hello enter.
+
+643
+00:29:10,701 --> 00:29:11,200
+Oh.
+
+644
+00:29:11,200 --> 00:29:14,830
+Something's wrong, and actually
+this is quite overwhelming.
+
+645
+00:29:14,830 --> 00:29:18,400
+I have six lines of code
+and like 12 lines of errors.
+
+646
+00:29:18,400 --> 00:29:22,120
+So, look forward to this.
+
+647
+00:29:22,120 --> 00:29:24,260
+So what's going on here?
+
+648
+00:29:24,260 --> 00:29:27,370
+So the best rule of thumb here,
+especially when you're starting out,
+
+649
+00:29:27,370 --> 00:29:29,370
+don't get distracted by
+the stuff at the bottom.
+
+650
+00:29:29,370 --> 00:29:31,220
+In fact, I very deliberately
+just scrolled up
+
+651
+00:29:31,220 --> 00:29:33,930
+because very often, a computer is
+not all that bright of a device.
+
+652
+00:29:33,930 --> 00:29:35,054
+It's going to get confused.
+
+653
+00:29:35,054 --> 00:29:37,220
+If it sees one thing that
+it doesn't understand,
+
+654
+00:29:37,220 --> 00:29:40,030
+it might mistake other
+lines of code as incorrect,
+
+655
+00:29:40,030 --> 00:29:41,649
+even though they're perfectly fine.
+
+656
+00:29:41,649 --> 00:29:43,940
+So you always want to work
+top down through the errors.
+
+657
+00:29:43,940 --> 00:29:47,850
+And admittedly this is
+super arcane at the moment.
+
+658
+00:29:47,850 --> 00:29:50,830
+>> Error, use of undeclared
+identifier string.
+
+659
+00:29:50,830 --> 00:29:52,130
+Did I mean standard in?
+
+660
+00:29:52,130 --> 00:29:53,720
+No, I meant string.
+
+661
+00:29:53,720 --> 00:29:55,830
+And it's pointing at, maybe it's a typo.
+
+662
+00:29:55,830 --> 00:30:00,570
+Sort of like, spell-checking in a
+very geeky way, but the reason here,
+
+663
+00:30:00,570 --> 00:30:02,840
+and you'll know this
+just by practice, is
+
+664
+00:30:02,840 --> 00:30:06,390
+that it turns out that string
+does not exist in C. In fact, C
+
+665
+00:30:06,390 --> 00:30:08,820
+is a particularly old language,
+and it's very low level,
+
+666
+00:30:08,820 --> 00:30:11,361
+and it doesn't a lot of features
+that you might have grown up
+
+667
+00:30:11,361 --> 00:30:14,620
+with if you have, in fact, programmed
+in Java, as some of you have,
+
+668
+00:30:14,620 --> 00:30:16,980
+but you can teach it new things.
+
+669
+00:30:16,980 --> 00:30:20,900
+And indeed, we have done this CS50,
+even though by the end of the semester,
+
+670
+00:30:20,900 --> 00:30:23,512
+all of these training wheels
+will have been taken off,
+
+671
+00:30:23,512 --> 00:30:25,220
+what we do in these
+first couple of weeks
+
+672
+00:30:25,220 --> 00:30:29,830
+initially is we also have
+you include CS50 dot h.
+
+673
+00:30:29,830 --> 00:30:31,230
+Which is a header file.
+
+674
+00:30:31,230 --> 00:30:32,440
+More on that in the future.
+
+675
+00:30:32,440 --> 00:30:36,430
+>> It's a file that contains functions
+that we have written for you.
+
+676
+00:30:36,430 --> 00:30:39,180
+And among those functions is
+functions for getting input
+
+677
+00:30:39,180 --> 00:30:43,520
+from the user, like strings, and
+numbers, and real numbers, and more.
+
+678
+00:30:43,520 --> 00:30:45,550
+But it also has a few shortcuts.
+
+679
+00:30:45,550 --> 00:30:48,200
+It defines a Boolean as a data type.
+
+680
+00:30:48,200 --> 00:30:50,340
+C does not have true or false.
+
+681
+00:30:50,340 --> 00:30:53,880
+But we can give it the notion of
+true or false by way of this library.
+
+682
+00:30:53,880 --> 00:30:57,670
+And it also doesn't have a string
+built in until we include this line.
+
+683
+00:30:57,670 --> 00:31:01,090
+So this line of code tells
+the compiler, hey, Clang, look
+
+684
+00:31:01,090 --> 00:31:03,570
+in this file for a whole
+bunch of code that CS50
+
+685
+00:31:03,570 --> 00:31:06,330
+has written so that
+anyone using this file
+
+686
+00:31:06,330 --> 00:31:09,330
+can take for granted the
+features they've added.
+
+687
+00:31:09,330 --> 00:31:11,220
+>> So now let me go ahead
+and clear the screen,
+
+688
+00:31:11,220 --> 00:31:14,178
+and if curious I'm just saying control
+l each time to clear the screen,
+
+689
+00:31:14,178 --> 00:31:15,500
+or you can type clear.
+
+690
+00:31:15,500 --> 00:31:19,220
+I'm just going to go ahead now and
+type make hello, and all is well.
+
+691
+00:31:19,220 --> 00:31:22,550
+Still an arcane output, but
+it's not an erroneous message.
+
+692
+00:31:22,550 --> 00:31:28,300
+Now if I do dot slash hello, and as an
+aside, dot slash is unfamiliar to most.
+
+693
+00:31:28,300 --> 00:31:30,430
+It just means, dot means
+the current directory.
+
+694
+00:31:30,430 --> 00:31:33,120
+So if you've ever used
+DOS, or Linux, or Unix
+
+695
+00:31:33,120 --> 00:31:35,410
+you might have done something
+like cd dot dot, where
+
+696
+00:31:35,410 --> 00:31:39,220
+dot dot means go backwards in
+time, or go backwards, or higher up
+
+697
+00:31:39,220 --> 00:31:40,370
+in your directory.
+
+698
+00:31:40,370 --> 00:31:43,090
+Dot just means look in
+the current directory.
+
+699
+00:31:43,090 --> 00:31:45,670
+I want hello, which is right here.
+
+700
+00:31:45,670 --> 00:31:47,750
+And indeed, now it says hello Hannah.
+
+701
+00:31:47,750 --> 00:31:51,120
+And if I change it again
+to Maria, recompile
+
+702
+00:31:51,120 --> 00:31:55,650
+it would make hello, dot slash
+hello, the program keeps changing.
+
+703
+00:31:55,650 --> 00:31:58,060
+>> But this is still a
+pretty stupid program.
+
+704
+00:31:58,060 --> 00:32:00,972
+If I want to ship this program,
+or give it to a friend,
+
+705
+00:32:00,972 --> 00:32:03,430
+or give it to Maria or Hannah
+for that matter, that's fine.
+
+706
+00:32:03,430 --> 00:32:07,300
+I can customize it for both of them,
+but it's never going to be dynamic.
+
+707
+00:32:07,300 --> 00:32:10,870
+They can't change it once it's compiled
+down into those zeros and ones.
+
+708
+00:32:10,870 --> 00:32:12,350
+So what we did something smarter?
+
+709
+00:32:12,350 --> 00:32:17,100
+What if, instead of hard-coding
+into the program this person's name,
+
+710
+00:32:17,100 --> 00:32:20,890
+what if we just get
+the string on demand?
+
+711
+00:32:20,890 --> 00:32:22,430
+>> So in other words, let me do this.
+
+712
+00:32:22,430 --> 00:32:24,030
+I'm going to recompile this program.
+
+713
+00:32:24,030 --> 00:32:25,710
+And let me zoom in at the bottom now.
+
+714
+00:32:25,710 --> 00:32:29,920
+Make hello dot slash hello.
+
+715
+00:32:29,920 --> 00:32:31,710
+Now nothing is happening.
+
+716
+00:32:31,710 --> 00:32:35,860
+Can we get a quick volunteer
+to make something happen?
+
+717
+00:32:35,860 --> 00:32:36,360
+Come on up.
+
+718
+00:32:36,360 --> 00:32:37,020
+What's your name?
+
+719
+00:32:37,020 --> 00:32:37,445
+>> PANCHO: Pancho.
+
+720
+00:32:37,445 --> 00:32:38,361
+>> DAVID J. MALAN: Pacho?
+
+721
+00:32:38,361 --> 00:32:39,609
+Come on up.
+
+722
+00:32:39,609 --> 00:32:42,150
+Once you get up here, this is
+going to be very underwhelming,
+
+723
+00:32:42,150 --> 00:32:44,060
+but it's more interesting
+than me typing it.
+
+724
+00:32:44,060 --> 00:32:49,007
+If you want to go ahead and type your
+name, I made this program just for you.
+
+725
+00:32:49,007 --> 00:32:49,840
+Just type your name.
+
+726
+00:32:49,840 --> 00:32:52,380
+
+727
+00:32:52,380 --> 00:32:53,900
+Enter.
+
+728
+00:32:53,900 --> 00:32:54,489
+Wonderful.
+
+729
+00:32:54,489 --> 00:32:55,780
+All right, thank you very much.
+
+730
+00:32:55,780 --> 00:32:56,708
+>> PANCHO: Thank you very much.
+
+731
+00:32:56,708 --> 00:32:57,636
+>> DAVID J. MALAN: OK.
+
+732
+00:32:57,636 --> 00:32:59,028
+>> [APPLAUSE]
+
+733
+00:32:59,028 --> 00:33:00,884
+
+734
+00:33:00,884 --> 00:33:01,840
+>> That was very kind.
+
+735
+00:33:01,840 --> 00:33:03,145
+Here you Go.
+
+736
+00:33:03,145 --> 00:33:03,770
+What did we do?
+
+737
+00:33:03,770 --> 00:33:05,930
+So we finally, at least,
+made this program dynamic.
+
+738
+00:33:05,930 --> 00:33:08,400
+Now it's still certainly
+by design underwhelming,
+
+739
+00:33:08,400 --> 00:33:11,480
+but we finally have the ability
+now to write code in advance, much
+
+740
+00:33:11,480 --> 00:33:13,770
+like the authors of printf,
+and then dynamically
+
+741
+00:33:13,770 --> 00:33:17,550
+adapt based on the input we are
+handed, either by the programmer,
+
+742
+00:33:17,550 --> 00:33:20,610
+or by the human who's actually
+interacting with the program.
+
+743
+00:33:20,610 --> 00:33:22,990
+So let's actually now try
+to do a few other constructs
+
+744
+00:33:22,990 --> 00:33:26,625
+and see if we can't make the programs
+themselves more sophisticated.
+
+745
+00:33:26,625 --> 00:33:29,250
+So let's go ahead and instead of
+writing this one from scratch,
+
+746
+00:33:29,250 --> 00:33:31,540
+I'm going to go into today's
+source code, and all of this
+
+747
+00:33:31,540 --> 00:33:34,290
+is available on the course's
+website, and you can drag and drop it
+
+748
+00:33:34,290 --> 00:33:36,590
+into your own environment
+come Friday once problem
+
+749
+00:33:36,590 --> 00:33:38,506
+set 1 gives you the
+instructions, or you could
+
+750
+00:33:38,506 --> 00:33:41,200
+do it at the command line as
+well, but more to come in p set 1.
+
+751
+00:33:41,200 --> 00:33:44,940
+>> Let's see what's in this program
+here called, adder dot c.
+
+752
+00:33:44,940 --> 00:33:47,970
+Now I've already commented
+it, but what's new?
+
+753
+00:33:47,970 --> 00:33:51,230
+At first glance, what line
+of code is absolutely new?
+
+754
+00:33:51,230 --> 00:33:53,930
+
+755
+00:33:53,930 --> 00:33:56,780
+Probably not fundamentally
+unfamiliar now.
+
+756
+00:33:56,780 --> 00:33:58,417
+>> AUDIENCE: [INAUDIBLE]
+
+757
+00:33:58,417 --> 00:34:00,250
+DAVID J. MALAN: Yeah,
+so int x equals get n.
+
+758
+00:34:00,250 --> 00:34:03,760
+We've never seen any of this
+before, but int is probably
+
+759
+00:34:03,760 --> 00:34:08,179
+the symbol for what kind of
+variable, [? from ?] an integer.
+
+760
+00:34:08,179 --> 00:34:09,040
+So int for integer.
+
+761
+00:34:09,040 --> 00:34:11,420
+It's just being more
+succinct. x is just arbitrary.
+
+762
+00:34:11,420 --> 00:34:13,920
+x and y and z are still
+pretty reasonable for numbers,
+
+763
+00:34:13,920 --> 00:34:16,790
+but generally we'll use words once
+our programs get more complex.
+
+764
+00:34:16,790 --> 00:34:18,940
+Get int, of course,
+much like get string,
+
+765
+00:34:18,940 --> 00:34:21,629
+is probably going to get
+an int from the user,
+
+766
+00:34:21,629 --> 00:34:23,670
+and then we're going to
+do the same thing with y.
+
+767
+00:34:23,670 --> 00:34:27,610
+And apparently, even though this
+last line, 24, looks more complex,
+
+768
+00:34:27,610 --> 00:34:32,679
+it's going to say the sum of this
+and that is this other thing.
+
+769
+00:34:32,679 --> 00:34:35,840
+>> And notice percent i
+probably denotes what?
+
+770
+00:34:35,840 --> 00:34:38,190
+What role does percent
+i apparently serve?
+
+771
+00:34:38,190 --> 00:34:40,739
+
+772
+00:34:40,739 --> 00:34:41,719
+It's just placeholders.
+
+773
+00:34:41,719 --> 00:34:42,219
+Right?
+
+774
+00:34:42,219 --> 00:34:45,149
+Percent s was for string,
+percent i is for integer.
+
+775
+00:34:45,149 --> 00:34:47,690
+There's going to be percent f
+for floating point value, which
+
+776
+00:34:47,690 --> 00:34:49,273
+is just a number with a decimal point.
+
+777
+00:34:49,273 --> 00:34:50,590
+In other words, a real number.
+
+778
+00:34:50,590 --> 00:34:55,270
+So let's actually compile this
+program real fast and do make adder.
+
+779
+00:34:55,270 --> 00:34:57,962
+Whoops.
+
+780
+00:34:57,962 --> 00:34:58,670
+Good opportunity.
+
+781
+00:34:58,670 --> 00:35:02,970
+So notice here, all this time my user
+name for this account is jharvard.
+
+782
+00:35:02,970 --> 00:35:06,620
+I am in CS50 IDE, aka IDE50.
+
+783
+00:35:06,620 --> 00:35:11,030
+And now in blue here, is a mention, but
+from the environment, of where I am.
+
+784
+00:35:11,030 --> 00:35:16,050
+And in fact, if I zoom up to the top
+here, notice that I have an IDE50
+
+785
+00:35:16,050 --> 00:35:19,490
+and I see this word, if you kind of
+turn your head to the side, workspace.
+
+786
+00:35:19,490 --> 00:35:23,890
+In a nutshell, the fact that
+I'm seeing tilde slash workspace
+
+787
+00:35:23,890 --> 00:35:26,910
+means that in this text
+based command environment,
+
+788
+00:35:26,910 --> 00:35:32,300
+I am in the text equivalent of
+this graphical folder up here.
+
+789
+00:35:32,300 --> 00:35:35,730
+So when I do dot slash
+adder, it's saying no rule
+
+790
+00:35:35,730 --> 00:35:37,372
+to make target adder stop.
+
+791
+00:35:37,372 --> 00:35:39,830
+I don't know what that means,
+but it's bad for some reason.
+
+792
+00:35:39,830 --> 00:35:43,310
+No such file or directory
+is even more clear.
+
+793
+00:35:43,310 --> 00:35:45,670
+Where is it then?
+
+794
+00:35:45,670 --> 00:35:47,820
+Based on where I clicked
+to open the file earlier.
+
+795
+00:35:47,820 --> 00:35:49,442
+Where might it be?
+
+796
+00:35:49,442 --> 00:35:52,050
+>> It's probably in source
+one w, for Wednesday,
+
+797
+00:35:52,050 --> 00:35:53,960
+and I can see it, indeed,
+if I open that up.
+
+798
+00:35:53,960 --> 00:35:57,220
+There is adder dot c, but in
+this text-based environment,
+
+799
+00:35:57,220 --> 00:35:59,380
+again, I have to be super explicit.
+
+800
+00:35:59,380 --> 00:36:03,950
+If I want to change directories into
+source one Wednesday, I need to type,
+
+801
+00:36:03,950 --> 00:36:07,210
+cd space source one
+Wednesday enter and now
+
+802
+00:36:07,210 --> 00:36:09,810
+my prompt changes to
+give me a visual cue that
+
+803
+00:36:09,810 --> 00:36:12,330
+I'm, indeed, elsewhere
+in my environment,
+
+804
+00:36:12,330 --> 00:36:15,710
+but now I can do make
+adder, it seems to work,
+
+805
+00:36:15,710 --> 00:36:18,190
+dot slash adder, give me an integer.
+
+806
+00:36:18,190 --> 00:36:19,080
+One.
+
+807
+00:36:19,080 --> 00:36:20,070
+Two.
+
+808
+00:36:20,070 --> 00:36:21,630
+The sum of one and two is three.
+
+809
+00:36:21,630 --> 00:36:24,140
+But if I don't cooperate,
+let's see what get int does.
+
+810
+00:36:24,140 --> 00:36:25,200
+Give me an integer.
+
+811
+00:36:25,200 --> 00:36:26,590
+No.
+
+812
+00:36:26,590 --> 00:36:27,350
+Retry.
+
+813
+00:36:27,350 --> 00:36:29,060
+OK.
+
+814
+00:36:29,060 --> 00:36:30,520
+Fine.
+
+815
+00:36:30,520 --> 00:36:32,130
+50.
+
+816
+00:36:32,130 --> 00:36:32,680
+50.
+
+817
+00:36:32,680 --> 00:36:33,010
+All right.
+
+818
+00:36:33,010 --> 00:36:34,055
+So it finally cooperates.
+
+819
+00:36:34,055 --> 00:36:36,430
+And that's some of the
+functionality that these functions
+
+820
+00:36:36,430 --> 00:36:37,760
+can have built in for you.
+
+821
+00:36:37,760 --> 00:36:43,330
+>> So inside the implementation
+of get int, what programming
+
+822
+00:36:43,330 --> 00:36:47,990
+construct from last week is probably in
+there to compel this behavior of retry,
+
+823
+00:36:47,990 --> 00:36:49,962
+retry, retry?
+
+824
+00:36:49,962 --> 00:36:51,670
+Yeah, there's probably
+some kind of loop.
+
+825
+00:36:51,670 --> 00:36:54,160
+It's going to look syntactically
+different from Scratch's blocks,
+
+826
+00:36:54,160 --> 00:36:55,880
+but that's indeed
+what's inside the file.
+
+827
+00:36:55,880 --> 00:36:58,505
+And in a few weeks time we'll
+actually look at the CS50 library
+
+828
+00:36:58,505 --> 00:37:02,000
+as to what's inside, but there's
+a loop imposing exactly that.
+
+829
+00:37:02,000 --> 00:37:04,840
+>> Let's play a silly little
+game here with this file.
+
+830
+00:37:04,840 --> 00:37:06,550
+Condition zero dot c.
+
+831
+00:37:06,550 --> 00:37:08,960
+We're just going to generally
+start counting at zero.
+
+832
+00:37:08,960 --> 00:37:11,220
+And I keep scrolling past
+some of the stuff at top.
+
+833
+00:37:11,220 --> 00:37:15,390
+In blue here, demarcated with all
+of these stars and the slashes,
+
+834
+00:37:15,390 --> 00:37:17,310
+those of you who program
+before, what is that?
+
+835
+00:37:17,310 --> 00:37:18,690
+Why do we keep skipping over it?
+
+836
+00:37:18,690 --> 00:37:19,110
+What?
+
+837
+00:37:19,110 --> 00:37:19,490
+>> AUDIENCE: It's a comment.
+
+838
+00:37:19,490 --> 00:37:19,800
+>> DAVID J. MALAN: Yeah.
+
+839
+00:37:19,800 --> 00:37:20,633
+It's just a comment.
+
+840
+00:37:20,633 --> 00:37:24,160
+This is a comment for humans
+to read, that in our case,
+
+841
+00:37:24,160 --> 00:37:27,120
+tells us what the name of the file
+is, who wrote it, and what it does,
+
+842
+00:37:27,120 --> 00:37:28,610
+so that you don't have
+to read through the code
+
+843
+00:37:28,610 --> 00:37:30,110
+to know what this file is all about.
+
+844
+00:37:30,110 --> 00:37:33,110
+It's just a description, but
+functionally it's irrelevant.
+
+845
+00:37:33,110 --> 00:37:35,930
+And I can even delete it from
+my file and it has no impact.
+
+846
+00:37:35,930 --> 00:37:38,740
+The juicy lines are these
+first two here, now.
+
+847
+00:37:38,740 --> 00:37:41,405
+int main void is the equivalent
+of our when green flag clicked,
+
+848
+00:37:41,405 --> 00:37:44,030
+so we're going to leave that be
+for today, and we'll come back,
+
+849
+00:37:44,030 --> 00:37:46,940
+eventually, as to what
+int and void are, but now,
+
+850
+00:37:46,940 --> 00:37:49,500
+notice what I've done
+here too, you can also,
+
+851
+00:37:49,500 --> 00:37:51,736
+if you have an in line
+comment, if you have
+
+852
+00:37:51,736 --> 00:37:54,670
+a thought you want to share
+about a particular line of code,
+
+853
+00:37:54,670 --> 00:37:58,910
+convention in C is to do slash
+slash, and then a few succinct words,
+
+854
+00:37:58,910 --> 00:38:01,500
+not a full sentence,
+generally not a paragraph,
+
+855
+00:38:01,500 --> 00:38:05,310
+that just explains to you, or your
+TF, or other readers or colleagues,
+
+856
+00:38:05,310 --> 00:38:06,990
+what your code is doing.
+
+857
+00:38:06,990 --> 00:38:10,150
+So rather than have to look
+at this and infer from lines
+
+858
+00:38:10,150 --> 00:38:12,550
+nine and 10, what is
+this doing, in line eight
+
+859
+00:38:12,550 --> 00:38:14,945
+I just give a comment to
+ask the user for an integer,
+
+860
+00:38:14,945 --> 00:38:17,820
+then I don't have to think too hard
+about what lines nine and 10 are.
+
+861
+00:38:17,820 --> 00:38:19,720
+I just know that that's what
+collectively they're doing.
+
+862
+00:38:19,720 --> 00:38:20,460
+>> How?
+
+863
+00:38:20,460 --> 00:38:22,060
+Well, here's the prompt.
+
+864
+00:38:22,060 --> 00:38:23,610
+Here's the getting of the int.
+
+865
+00:38:23,610 --> 00:38:25,984
+And based on the previous
+behavior, it seems like get int
+
+866
+00:38:25,984 --> 00:38:29,080
+is smart enough to make sure that
+the human cooperates and gives it
+
+867
+00:38:29,080 --> 00:38:30,090
+an integer.
+
+868
+00:38:30,090 --> 00:38:32,270
+But now we see this.
+
+869
+00:38:32,270 --> 00:38:33,740
+And this is reminiscent of Scratch.
+
+870
+00:38:33,740 --> 00:38:36,140
+I'm claiming that I'm
+analyzing the user's input,
+
+871
+00:38:36,140 --> 00:38:39,050
+but somewhat inaccurately.
+
+872
+00:38:39,050 --> 00:38:43,200
+And this apparently in C is how
+we express an if else, a branch,
+
+873
+00:38:43,200 --> 00:38:46,320
+a fork in the road, but I
+say somewhat inaccurately.
+
+874
+00:38:46,320 --> 00:38:50,470
+What's the bug in this program?
+
+875
+00:38:50,470 --> 00:38:51,610
+About further back?
+
+876
+00:38:51,610 --> 00:38:52,223
+Yeah.
+
+877
+00:38:52,223 --> 00:38:53,150
+>> AUDIENCE: [INAUDIBLE] zero.
+
+878
+00:38:53,150 --> 00:38:54,025
+>> DAVID J. MALAN: Yeah.
+
+879
+00:38:54,025 --> 00:38:57,630
+So if I type in zero, let's consider
+exactly that case, or corner case,
+
+880
+00:38:57,630 --> 00:38:58,450
+if you will.
+
+881
+00:38:58,450 --> 00:39:02,790
+So if I type in zero, which of the
+blocks is going to apparently grab it?
+
+882
+00:39:02,790 --> 00:39:04,660
+The if or the else?
+
+883
+00:39:04,660 --> 00:39:07,340
+The else, and it's going to say,
+you picked a negative number.
+
+884
+00:39:07,340 --> 00:39:10,476
+And indeed, zero is not supposed
+to be positive or negative,
+
+885
+00:39:10,476 --> 00:39:11,850
+and so that would be erroneously.
+
+886
+00:39:11,850 --> 00:39:12,930
+That would be a bug.
+
+887
+00:39:12,930 --> 00:39:14,580
+So how can we fix this?
+
+888
+00:39:14,580 --> 00:39:16,360
+Someone who has never programmed before?
+
+889
+00:39:16,360 --> 00:39:16,570
+Do you want--
+
+890
+00:39:16,570 --> 00:39:17,480
+>> AUDIENCE: [INAUDIBLE]
+
+891
+00:39:17,480 --> 00:39:17,990
+>> DAVID J. MALAN: Retracting?
+
+892
+00:39:17,990 --> 00:39:18,570
+>> AUDIENCE: [INAUDIBLE]
+
+893
+00:39:18,570 --> 00:39:18,930
+>> DAVID J. MALAN: Oh, you have?
+
+894
+00:39:18,930 --> 00:39:20,350
+Someone who has never programmed before.
+
+895
+00:39:20,350 --> 00:39:21,750
+Want to try your hand at
+this, in the red shirt?
+
+896
+00:39:21,750 --> 00:39:22,600
+Come on up.
+
+897
+00:39:22,600 --> 00:39:25,320
+Oh yeah, come on up, if you don't mind.
+
+898
+00:39:25,320 --> 00:39:27,586
+So never having programmed
+before, what's your name?
+
+899
+00:39:27,586 --> 00:39:28,210
+LAUREN: Lauren.
+
+900
+00:39:28,210 --> 00:39:29,626
+DAVID J. MALAN: Lauren, all right.
+
+901
+00:39:29,626 --> 00:39:31,150
+So fix this bug for us.
+
+902
+00:39:31,150 --> 00:39:35,070
+You've not seen C, presumably,
+and probably no other language.
+
+903
+00:39:35,070 --> 00:39:38,380
+So fix this program for us.
+
+904
+00:39:38,380 --> 00:39:39,100
+Nice to meet ya.
+
+905
+00:39:39,100 --> 00:39:39,615
+No pressure.
+
+906
+00:39:39,615 --> 00:39:40,156
+LAUREN: Yeah.
+
+907
+00:39:40,156 --> 00:39:43,350
+
+908
+00:39:43,350 --> 00:39:46,270
+>> DAVID J. MALAN: But again, if this
+gamble goes according to plan,
+
+909
+00:39:46,270 --> 00:39:48,350
+the takeaway here will
+be, just again, to start
+
+910
+00:39:48,350 --> 00:39:51,080
+to notice patterns and
+infer from existing syntax
+
+911
+00:39:51,080 --> 00:39:55,420
+how else you might express
+yourself, no pun intended, in order
+
+912
+00:39:55,420 --> 00:39:58,410
+to capture some additional scenario.
+
+913
+00:39:58,410 --> 00:39:59,603
+So we're saying else if.
+
+914
+00:39:59,603 --> 00:40:04,040
+
+915
+00:40:04,040 --> 00:40:05,230
+printf, good.
+
+916
+00:40:05,230 --> 00:40:09,120
+And notice with CS50
+IDE, and frankly-- IDE
+
+917
+00:40:09,120 --> 00:40:11,110
+stands for Integrated
+Development Environment.
+
+918
+00:40:11,110 --> 00:40:14,110
+It's just a fancy way of saying
+a program that helps you program.
+
+919
+00:40:14,110 --> 00:40:16,779
+It does user friendly things like
+when you type one parenthesis,
+
+920
+00:40:16,779 --> 00:40:18,320
+it automatically gives you the other.
+
+921
+00:40:18,320 --> 00:40:20,760
+The presumption being that you're
+eventually going to want to type that,
+
+922
+00:40:20,760 --> 00:40:22,400
+and it also does it with quotes.
+
+923
+00:40:22,400 --> 00:40:24,190
+>> So I like line 23.
+
+924
+00:40:24,190 --> 00:40:26,400
+99% of the way there.
+
+925
+00:40:26,400 --> 00:40:29,920
+Someone want to chime in with a tip?
+
+926
+00:40:29,920 --> 00:40:31,420
+I heard semicolon from the audience.
+
+927
+00:40:31,420 --> 00:40:32,080
+Good.
+
+928
+00:40:32,080 --> 00:40:33,260
+So that completes that.
+
+929
+00:40:33,260 --> 00:40:37,930
+And now, I just have a little
+consternation with line 21.
+
+930
+00:40:37,930 --> 00:40:41,370
+How do we want to express this?
+
+931
+00:40:41,370 --> 00:40:43,370
+What question do we want
+to ask, do you think?
+
+932
+00:40:43,370 --> 00:40:46,870
+
+933
+00:40:46,870 --> 00:40:50,330
+So previously we asked the question,
+if n is greater than zero, do this.
+
+934
+00:40:50,330 --> 00:40:51,870
+Else, do that.
+
+935
+00:40:51,870 --> 00:40:54,317
+So we need to choose a
+question to ask here.
+
+936
+00:40:54,317 --> 00:40:55,192
+AUDIENCE: [INAUDIBLE]
+
+937
+00:40:55,192 --> 00:40:56,530
+DAVID J. MALAN: Good.
+
+938
+00:40:56,530 --> 00:40:58,290
+So if n equals zero.
+
+939
+00:40:58,290 --> 00:41:01,140
+
+940
+00:41:01,140 --> 00:41:02,100
+Excellent.
+
+941
+00:41:02,100 --> 00:41:03,080
+So let's pause here.
+
+942
+00:41:03,080 --> 00:41:04,850
+Thank you so much for braving this.
+
+943
+00:41:04,850 --> 00:41:10,890
+Let me give you a little well-deserved
+stress ball, perhaps there.
+
+944
+00:41:10,890 --> 00:41:11,900
+So we're almost there.
+
+945
+00:41:11,900 --> 00:41:14,790
+In fact, Lauren, if you don't
+mind, let me make one tweak here,
+
+946
+00:41:14,790 --> 00:41:17,850
+just to be consistent even with
+what we saw in Scratch, what
+
+947
+00:41:17,850 --> 00:41:21,080
+do I want to do with lines
+21 and 24, just again based
+
+948
+00:41:21,080 --> 00:41:23,290
+on how we did this in Scratch, perhaps?
+
+949
+00:41:23,290 --> 00:41:24,230
+>> AUDIENCE: Move it up.
+
+950
+00:41:24,230 --> 00:41:25,605
+>> DAVID J. MALAN: Yeah, move it up.
+
+951
+00:41:25,605 --> 00:41:30,260
+So the else condition, the third, or
+fourth, or fifth, or final branch,
+
+952
+00:41:30,260 --> 00:41:34,100
+should indeed come afterward,
+and that's just by convention,
+
+953
+00:41:34,100 --> 00:41:36,047
+just because if you will.
+
+954
+00:41:36,047 --> 00:41:37,380
+So I do need to make this tweak.
+
+955
+00:41:37,380 --> 00:41:39,660
+And I need to put my
+curly brace back here.
+
+956
+00:41:39,660 --> 00:41:42,700
+And now, this program will compile.
+
+957
+00:41:42,700 --> 00:41:46,140
+We're so close, but there's
+a very, very subtle bug.
+
+958
+00:41:46,140 --> 00:41:47,200
+Let's see what happens.
+
+959
+00:41:47,200 --> 00:41:49,660
+>> First, let me go ahead and zoom out.
+
+960
+00:41:49,660 --> 00:41:53,405
+I'm going to go ahead and
+type make condition zero.
+
+961
+00:41:53,405 --> 00:41:55,070
+Oh, I lied.
+
+962
+00:41:55,070 --> 00:41:58,760
+Now the compiler is
+actually pretty smart.
+
+963
+00:41:58,760 --> 00:42:00,950
+And I don't really understand
+it's error message.
+
+964
+00:42:00,950 --> 00:42:04,310
+Using the result of an assignment
+as a condition without parentheses,
+
+965
+00:42:04,310 --> 00:42:05,740
+is apparently bad.
+
+966
+00:42:05,740 --> 00:42:07,100
+But what does that mean?
+
+967
+00:42:07,100 --> 00:42:10,860
+>> Well again, looking for patterns
+in code that we've seen before,
+
+968
+00:42:10,860 --> 00:42:16,640
+what is line 17 actually doing,
+even though Lauren intended slightly
+
+969
+00:42:16,640 --> 00:42:18,790
+otherwise?
+
+970
+00:42:18,790 --> 00:42:19,290
+Yeah.
+
+971
+00:42:19,290 --> 00:42:21,565
+>> AUDIENCE: [INAUDIBLE]
+
+972
+00:42:21,565 --> 00:42:22,440
+DAVID J. MALAN: Yeah.
+
+973
+00:42:22,440 --> 00:42:26,610
+So remember the equal sign, apparently
+as we've used it before, is not equals.
+
+974
+00:42:26,610 --> 00:42:29,240
+Its assignment, from right to left.
+
+975
+00:42:29,240 --> 00:42:33,810
+So line 17 at the moment
+is a condition, and it's
+
+976
+00:42:33,810 --> 00:42:37,890
+executing code inside the parentheses,
+but when that code executes,
+
+977
+00:42:37,890 --> 00:42:42,140
+what is happening to the value of zero?
+
+978
+00:42:42,140 --> 00:42:45,250
+What is happening to the value of n?
+
+979
+00:42:45,250 --> 00:42:46,810
+Becoming zero.
+
+980
+00:42:46,810 --> 00:42:50,520
+So if n is becoming zero,
+and again, as per last week,
+
+981
+00:42:50,520 --> 00:42:54,690
+we generally say that zero
+is false and one is true,
+
+982
+00:42:54,690 --> 00:42:57,410
+or yes is one and no is zero.
+
+983
+00:42:57,410 --> 00:42:59,590
+So true and false, one and 0.
+
+984
+00:42:59,590 --> 00:43:06,090
+If n as of line 17 has been
+given the value 0, is zero true?
+
+985
+00:43:06,090 --> 00:43:06,590
+No.
+
+986
+00:43:06,590 --> 00:43:08,280
+By definition, zero is false.
+
+987
+00:43:08,280 --> 00:43:10,860
+That's the convention we're
+going to cling to moving forward.
+
+988
+00:43:10,860 --> 00:43:17,320
+So will lines 18, 19, and 20
+ever apply now, logically?
+
+989
+00:43:17,320 --> 00:43:18,320
+They can't.
+
+990
+00:43:18,320 --> 00:43:21,640
+So we asked the question
+but not quite precisely,
+
+991
+00:43:21,640 --> 00:43:25,620
+and you wouldn't know this unless
+you've seen it, the solution in C
+
+992
+00:43:25,620 --> 00:43:29,610
+is when you want to express
+equality, you say equals equals.
+
+993
+00:43:29,610 --> 00:43:33,140
+So equal sign was already used up
+by assignment, from right to left.
+
+994
+00:43:33,140 --> 00:43:35,110
+Equals equals means equals.
+
+995
+00:43:35,110 --> 00:43:37,950
+And if you really want your mind
+to be bent, in JavaScript and PHP,
+
+996
+00:43:37,950 --> 00:43:40,490
+there's equals equals equals, which
+mean something else altogether,
+
+997
+00:43:40,490 --> 00:43:41,990
+but we'll get to that before long.
+
+998
+00:43:41,990 --> 00:43:45,760
+>> So this is a simple fix, but realize
+super easy to make this mistake,
+
+999
+00:43:45,760 --> 00:43:48,700
+and then wonder and struggle
+for minutes, if not an hour,
+
+1000
+00:43:48,700 --> 00:43:51,490
+why is my code not
+executing as I intend?
+
+1001
+00:43:51,490 --> 00:43:54,140
+It's because you didn't tell
+it precisely what you meant.
+
+1002
+00:43:54,140 --> 00:43:56,450
+So that was almost
+perfect, and it was great
+
+1003
+00:43:56,450 --> 00:44:00,760
+that we stumbled across these two little
+things because now if we fix them,
+
+1004
+00:44:00,760 --> 00:44:06,240
+and I do make condition zero
+dot slash condition zero,
+
+1005
+00:44:06,240 --> 00:44:07,490
+I'd like an integer please.
+
+1006
+00:44:07,490 --> 00:44:08,090
+Let's see.
+
+1007
+00:44:08,090 --> 00:44:09,160
+No.
+
+1008
+00:44:09,160 --> 00:44:10,740
+It's going to force me to do it.
+
+1009
+00:44:10,740 --> 00:44:11,990
+So 42.
+
+1010
+00:44:11,990 --> 00:44:13,590
+I picked a positive number.
+
+1011
+00:44:13,590 --> 00:44:16,470
+So now how do I prove
+this program correct?
+
+1012
+00:44:16,470 --> 00:44:19,990
+If you're a mathematician, you can't
+really prove this by trial and error,
+
+1013
+00:44:19,990 --> 00:44:20,490
+right?
+
+1014
+00:44:20,490 --> 00:44:23,180
+You can't just proof by
+example, but at least
+
+1015
+00:44:23,180 --> 00:44:25,494
+as a programmer we're not
+going to try to prove for now
+
+1016
+00:44:25,494 --> 00:44:27,660
+that this is actually
+correct, but I should probably
+
+1017
+00:44:27,660 --> 00:44:29,470
+test some representative cases.
+
+1018
+00:44:29,470 --> 00:44:31,070
+>> I've tested 42.
+
+1019
+00:44:31,070 --> 00:44:33,030
+I could test 43.
+
+1020
+00:44:33,030 --> 00:44:34,910
+I could test 44.
+
+1021
+00:44:34,910 --> 00:44:35,640
+Test 45.
+
+1022
+00:44:35,640 --> 00:44:36,140
+Right?
+
+1023
+00:44:36,140 --> 00:44:37,860
+But I could do this a really long time.
+
+1024
+00:44:37,860 --> 00:44:39,925
+What would be some more
+interesting cases to try?
+
+1025
+00:44:39,925 --> 00:44:41,050
+AUDIENCE: [INAUDIBLE] zero.
+
+1026
+00:44:41,050 --> 00:44:41,740
+DAVID J. MALAN: So zero.
+
+1027
+00:44:41,740 --> 00:44:42,297
+Certainly.
+
+1028
+00:44:42,297 --> 00:44:44,880
+And good, we've got it this time,
+thanks to Lauren's new code.
+
+1029
+00:44:44,880 --> 00:44:46,213
+What's another good case to try?
+
+1030
+00:44:46,213 --> 00:44:47,320
+AUDIENCE: Negative one.
+
+1031
+00:44:47,320 --> 00:44:50,070
+>> DAVID J. MALAN: Negative one, and
+maybe something a little bigger,
+
+1032
+00:44:50,070 --> 00:44:52,617
+so maybe negative 42,
+but in general, when
+
+1033
+00:44:52,617 --> 00:44:54,450
+testing your programs
+moving forward, you're
+
+1034
+00:44:54,450 --> 00:44:56,325
+going to want to think
+to yourself, like what
+
+1035
+00:44:56,325 --> 00:44:58,050
+are the fundamental different cases.
+
+1036
+00:44:58,050 --> 00:45:01,720
+And I dare say a negative case,
+a positive case, and a zero case
+
+1037
+00:45:01,720 --> 00:45:03,365
+pretty much rounds these out.
+
+1038
+00:45:03,365 --> 00:45:04,990
+Let's look at a variant of this though.
+
+1039
+00:45:04,990 --> 00:45:06,930
+Conditions one.
+
+1040
+00:45:06,930 --> 00:45:11,224
+This is a correct solution here,
+so that you'll see two and online,
+
+1041
+00:45:11,224 --> 00:45:13,390
+if you walk through the
+walkthroughs, will generally
+
+1042
+00:45:13,390 --> 00:45:18,090
+increment these stepwise until we
+get exactly the right approach.
+
+1043
+00:45:18,090 --> 00:45:20,070
+What if we wanted to ask
+two questions at once?
+
+1044
+00:45:20,070 --> 00:45:22,200
+>> Let me open up this instead.
+
+1045
+00:45:22,200 --> 00:45:26,740
+Non-switch, for reasons
+we'll see another time.
+
+1046
+00:45:26,740 --> 00:45:29,610
+What's new syntactically here?
+
+1047
+00:45:29,610 --> 00:45:32,760
+I'm currently playing a game
+where the computer is telling
+
+1048
+00:45:32,760 --> 00:45:35,550
+me, give me an integer
+between one and 10,
+
+1049
+00:45:35,550 --> 00:45:37,180
+and then I'm judging the user's input.
+
+1050
+00:45:37,180 --> 00:45:39,180
+In English, based on
+the code you see here
+
+1051
+00:45:39,180 --> 00:45:41,530
+in blue, what is this program doing?
+
+1052
+00:45:41,530 --> 00:45:44,256
+
+1053
+00:45:44,256 --> 00:45:46,380
+AUDIENCE: [INAUDIBLE] picked
+a big or small number.
+
+1054
+00:45:46,380 --> 00:45:46,484
+DAVID J. MALAN: Yeah.
+
+1055
+00:45:46,484 --> 00:45:49,450
+It's just adjudicating whether
+I picked a big, or medium,
+
+1056
+00:45:49,450 --> 00:45:53,900
+or small number based on a very
+arbitrary definition of small, medium,
+
+1057
+00:45:53,900 --> 00:45:58,510
+and large here, but notice
+the syntax that's new is this.
+
+1058
+00:45:58,510 --> 00:46:02,340
+There's no less than int or equal to
+sign, or greater than or equal to sign,
+
+1059
+00:46:02,340 --> 00:46:05,430
+where one is over the other, that you
+can express in like Microsoft Word.
+
+1060
+00:46:05,430 --> 00:46:08,180
+So in a programming language you
+typically just do two characters,
+
+1061
+00:46:08,180 --> 00:46:09,450
+one after the other.
+
+1062
+00:46:09,450 --> 00:46:12,695
+And what does this probably
+represent, ampersand ampersand.
+
+1063
+00:46:12,695 --> 00:46:13,570
+AUDIENCE: [INAUDIBLE]
+
+1064
+00:46:13,570 --> 00:46:13,680
+DAVID J. MALAN: Yeah.
+
+1065
+00:46:13,680 --> 00:46:16,910
+It just means and because it
+turns out that the authors of C
+
+1066
+00:46:16,910 --> 00:46:19,120
+used a single ampersand,
+which you might think
+
+1067
+00:46:19,120 --> 00:46:22,430
+would be perfect for the notion
+of and, is already used up,
+
+1068
+00:46:22,430 --> 00:46:27,300
+so ampersand ampersand actually
+captures the case we actually want.
+
+1069
+00:46:27,300 --> 00:46:30,610
+>> So let's now stumble across two things.
+
+1070
+00:46:30,610 --> 00:46:32,640
+Let me go ahead and open up one.
+
+1071
+00:46:32,640 --> 00:46:36,590
+Something that's a little worrisome.
+
+1072
+00:46:36,590 --> 00:46:37,970
+Imprecision dot c.
+
+1073
+00:46:37,970 --> 00:46:40,260
+Let me introduce two things here.
+
+1074
+00:46:40,260 --> 00:46:44,720
+One, notice that we can do
+math, as just as before when
+
+1075
+00:46:44,720 --> 00:46:47,797
+we did plus of two numbers, x and y.
+
+1076
+00:46:47,797 --> 00:46:49,380
+What is this program apparently doing?
+
+1077
+00:46:49,380 --> 00:46:52,140
+I've not commented it yet,
+and I've introduced percent f,
+
+1078
+00:46:52,140 --> 00:46:55,720
+but I quickly said earlier
+percent f means floating point
+
+1079
+00:46:55,720 --> 00:46:56,970
+value, which is real number.
+
+1080
+00:46:56,970 --> 00:46:59,520
+Something with a decimal
+point, which is not an integer.
+
+1081
+00:46:59,520 --> 00:47:02,270
+What do you think this program is
+trying to show me on the screen?
+
+1082
+00:47:02,270 --> 00:47:05,060
+
+1083
+00:47:05,060 --> 00:47:06,050
+Yeah?
+
+1084
+00:47:06,050 --> 00:47:07,550
+AUDIENCE: The result of one over 10.
+
+1085
+00:47:07,550 --> 00:47:07,780
+DAVID J. MALAN: Yeah.
+
+1086
+00:47:07,780 --> 00:47:09,680
+What's the result of one divided by 10.
+
+1087
+00:47:09,680 --> 00:47:12,721
+Right, because all of you have probably
+grown up knowing that one over 10
+
+1088
+00:47:12,721 --> 00:47:14,502
+is what?
+
+1089
+00:47:14,502 --> 00:47:16,220
+Yeah, it's just 1/10 or 0.1.
+
+1090
+00:47:16,220 --> 00:47:16,720
+Right?
+
+1091
+00:47:16,720 --> 00:47:19,010
+So let's see what this actually is.
+
+1092
+00:47:19,010 --> 00:47:21,010
+So let me go ahead and save this.
+
+1093
+00:47:21,010 --> 00:47:21,970
+Let me go down here.
+
+1094
+00:47:21,970 --> 00:47:26,360
+Make imprecision dot slash
+imprecision, and notice, too,
+
+1095
+00:47:26,360 --> 00:47:29,380
+in a Linux environment, you don't
+have to type out imprecision and take
+
+1096
+00:47:29,380 --> 00:47:30,010
+all day long.
+
+1097
+00:47:30,010 --> 00:47:32,910
+It generally, if you hit Tab, it
+will finish your thought for you,
+
+1098
+00:47:32,910 --> 00:47:36,660
+based on the words that are
+available in the current directory.
+
+1099
+00:47:36,660 --> 00:47:37,160
+OK.
+
+1100
+00:47:37,160 --> 00:47:37,970
+So you were right.
+
+1101
+00:47:37,970 --> 00:47:41,239
+One divided by 10 is, in fact, 0.1.
+
+1102
+00:47:41,239 --> 00:47:42,280
+But I'm a little curious.
+
+1103
+00:47:42,280 --> 00:47:44,196
+And it turns out printf
+supports some features
+
+1104
+00:47:44,196 --> 00:47:48,700
+whereby you can specify more than
+the default number of decimal points.
+
+1105
+00:47:48,700 --> 00:47:52,140
+So if I want to see 10 decimal
+points I can do percent,
+
+1106
+00:47:52,140 --> 00:47:55,510
+for the placeholder symbol, dot
+10 for, give me 10 decimal points,
+
+1107
+00:47:55,510 --> 00:47:58,140
+and then still floating point
+value, and, as an aside,
+
+1108
+00:47:58,140 --> 00:48:01,550
+what is this backslash n
+apparently we keep using?
+
+1109
+00:48:01,550 --> 00:48:03,450
+It turns out it's a
+symbol for a new line.
+
+1110
+00:48:03,450 --> 00:48:05,970
+It's the very explicit way
+of saying to the computer,
+
+1111
+00:48:05,970 --> 00:48:08,759
+move the cursor to the next
+line after you're done.
+
+1112
+00:48:08,759 --> 00:48:10,800
+And we'll see what happens
+when we don't do that.
+
+1113
+00:48:10,800 --> 00:48:12,430
+>> Let me recompile make imprecision.
+
+1114
+00:48:12,430 --> 00:48:15,320
+
+1115
+00:48:15,320 --> 00:48:18,356
+Now dot slash imprecision.
+
+1116
+00:48:18,356 --> 00:48:18,930
+OK.
+
+1117
+00:48:18,930 --> 00:48:19,780
+Still right.
+
+1118
+00:48:19,780 --> 00:48:21,512
+One divided by 10.
+
+1119
+00:48:21,512 --> 00:48:23,220
+Now I'm getting a
+little curious, though.
+
+1120
+00:48:23,220 --> 00:48:27,599
+What if I look 20 decimal
+points out, recompile, rerun,
+
+1121
+00:48:27,599 --> 00:48:29,390
+and as an aside for
+speed, you can also use
+
+1122
+00:48:29,390 --> 00:48:31,800
+your up and down arrows to
+scroll through your history,
+
+1123
+00:48:31,800 --> 00:48:35,476
+so you don't have to keep
+retyping these commands, enter.
+
+1124
+00:48:35,476 --> 00:48:36,910
+Huh.
+
+1125
+00:48:36,910 --> 00:48:39,220
+I did not learn that in grade school.
+
+1126
+00:48:39,220 --> 00:48:43,260
+All right, so let me
+see like 29 places out.
+
+1127
+00:48:43,260 --> 00:48:44,300
+Maybe it's just a fluke.
+
+1128
+00:48:44,300 --> 00:48:46,907
+Maybe my computer is acting weird.
+
+1129
+00:48:46,907 --> 00:48:47,990
+That's not a thing, right?
+
+1130
+00:48:47,990 --> 00:48:50,300
+It's doing something deterministically.
+
+1131
+00:48:50,300 --> 00:48:53,410
+So make imprecision.
+
+1132
+00:48:53,410 --> 00:48:54,890
+OK, that's messed up.
+
+1133
+00:48:54,890 --> 00:48:57,620
+So what is going on?
+
+1134
+00:48:57,620 --> 00:49:00,160
+>> So apparently your
+teacher has been lying
+
+1135
+00:49:00,160 --> 00:49:03,900
+to you all of this time for
+reasons that we'll see before long.
+
+1136
+00:49:03,900 --> 00:49:05,569
+But let's end with one other program.
+
+1137
+00:49:05,569 --> 00:49:07,860
+This is a little programs
+someone wrote some years ago,
+
+1138
+00:49:07,860 --> 00:49:08,990
+and it's actually part of a contest.
+
+1139
+00:49:08,990 --> 00:49:11,198
+No one actually writes code
+like this, and if you do,
+
+1140
+00:49:11,198 --> 00:49:12,880
+this is stylistically a problem.
+
+1141
+00:49:12,880 --> 00:49:14,660
+But people do this for bragging rights.
+
+1142
+00:49:14,660 --> 00:49:17,260
+To write the most confusing
+looking program that
+
+1143
+00:49:17,260 --> 00:49:19,110
+nonetheless does something interesting.
+
+1144
+00:49:19,110 --> 00:49:23,930
+And the note I thought we'd leave on
+today, before Colton plays us out here,
+
+1145
+00:49:23,930 --> 00:49:27,840
+is to run this program,
+which, even in just using
+
+1146
+00:49:27,840 --> 00:49:31,450
+C in this text-based
+environment, gives us this.
+
+1147
+00:49:31,450 --> 00:49:32,264
+Dammit.
+
+1148
+00:49:32,264 --> 00:49:34,930
+>> [LAUGHTER]
+
+1149
+00:49:34,930 --> 00:49:36,800
+>> Stand by.
+
+1150
+00:49:36,800 --> 00:49:39,340
+[INAUDIBLE] c dash l m.
+
+1151
+00:49:39,340 --> 00:49:42,885
+You're going to see the magical
+incantation that we'll see before long.
+
+1152
+00:49:42,885 --> 00:49:45,780
+[INAUDIBLE] All right.
+
+1153
+00:49:45,780 --> 00:49:51,592
+And now you can even
+do things like this.
+
+1154
+00:49:51,592 --> 00:49:52,340
+That's it.
+
+1155
+00:49:52,340 --> 00:49:56,410
+For CS50 we, will see you on Friday.
+
+1156
+00:49:56,410 --> 00:49:58,910
+>> [MUSIC PLAYING]
+
+1157
+00:49:58,910 --> 00:52:38,390
+
+1158
+00:52:38,390 --> 00:52:41,440
+>> [APPLAUSE]
+
+1159
+00:52:41,440 --> 00:52:42,812

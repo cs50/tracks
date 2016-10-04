@@ -1,0 +1,881 @@
+1
+00:00:00,000 --> 00:00:04,884
+
+2
+00:00:04,884 --> 00:00:08,050
+DOUG LLOYD: In this video we're going
+to talk about the Transmission Control
+
+3
+00:00:08,050 --> 00:00:10,440
+Protocol, TCP.
+
+4
+00:00:10,440 --> 00:00:13,290
+If you haven't watched the
+video on internet protocol, IP,
+
+5
+00:00:13,290 --> 00:00:15,290
+you may wish to do so
+before watching this video
+
+6
+00:00:15,290 --> 00:00:18,680
+because the two are pretty interrelated.
+
+7
+00:00:18,680 --> 00:00:21,100
+>> So, the internet protocol,
+again, a quick summary,
+
+8
+00:00:21,100 --> 00:00:22,930
+that's the protocol
+that moves information
+
+9
+00:00:22,930 --> 00:00:28,210
+from a sending machine to a receiving
+machine through the network.
+
+10
+00:00:28,210 --> 00:00:29,720
+>> So what's TCP?
+
+11
+00:00:29,720 --> 00:00:33,310
+While just moving from a sending
+machine to receiving machine,
+
+12
+00:00:33,310 --> 00:00:35,120
+isn't the full story.
+
+13
+00:00:35,120 --> 00:00:38,040
+We also know that our program,
+our computers, for example,
+
+14
+00:00:38,040 --> 00:00:41,000
+are running multiple programs,
+and have multiple services
+
+15
+00:00:41,000 --> 00:00:45,140
+running on those machines.
+
+16
+00:00:45,140 --> 00:00:51,750
+And so, if we want to get a packet,
+or information to a specific program,
+
+17
+00:00:51,750 --> 00:00:54,590
+on a specific machine,
+we need more information
+
+18
+00:00:54,590 --> 00:00:59,490
+than just what IP allows us to get
+information from point A to point B.
+
+19
+00:00:59,490 --> 00:01:02,390
+>> So, TCP can be thought of
+as directing the packet
+
+20
+00:01:02,390 --> 00:01:07,590
+to the correct program, or the correct
+service, on the receiving machine.
+
+21
+00:01:07,590 --> 00:01:11,810
+And so it's important to, as you might
+expect, know where it's supposed to go,
+
+22
+00:01:11,810 --> 00:01:14,550
+and what the packet is
+for at the same time.
+
+23
+00:01:14,550 --> 00:01:18,370
+And so, frequently, when you talk about
+transmission control protocol, TCP,
+
+24
+00:01:18,370 --> 00:01:23,900
+you really often hear it in the
+context, TCP slash IP, or just TCP/IP.
+
+25
+00:01:23,900 --> 00:01:27,639
+These two protocols are so
+interrelated that, they're basically
+
+26
+00:01:27,639 --> 00:01:28,680
+treated as a single unit.
+
+27
+00:01:28,680 --> 00:01:31,630
+But they are two separate protocols
+that do two separate things.
+
+28
+00:01:31,630 --> 00:01:36,690
+>> Again, IP is responsible for getting
+it from one machine to another.
+
+29
+00:01:36,690 --> 00:01:41,250
+And TCP is responsible for
+getting it to the correct program,
+
+30
+00:01:41,250 --> 00:01:43,490
+or the correct service on a machine.
+
+31
+00:01:43,490 --> 00:01:45,500
+And it does something
+else that IP doesn't do,
+
+32
+00:01:45,500 --> 00:01:48,600
+which is guarantee delivery.
+
+33
+00:01:48,600 --> 00:01:55,060
+>> So, if we now couple a machine's IP
+address with the so-called port number,
+
+34
+00:01:55,060 --> 00:01:58,750
+and a port number is how a specific
+service, or utility, or program,
+
+35
+00:01:58,750 --> 00:02:00,350
+is identified on a machine.
+
+36
+00:02:00,350 --> 00:02:03,920
+If we now have an IP
+address plus a port number,
+
+37
+00:02:03,920 --> 00:02:07,240
+now we can uniquely identify
+a particular service
+
+38
+00:02:07,240 --> 00:02:09,479
+running on a particular machine.
+
+39
+00:02:09,479 --> 00:02:11,920
+>> So that's why TCP and IP are
+so frequently interrelated,
+
+40
+00:02:11,920 --> 00:02:14,170
+because that port number
+on its own doesn't really
+
+41
+00:02:14,170 --> 00:02:17,670
+mean anything if you need a
+port number, and the machine
+
+42
+00:02:17,670 --> 00:02:19,566
+that you're talking about.
+
+43
+00:02:19,566 --> 00:02:24,060
+What machine is supposed to be using
+this particular port, for example.
+
+44
+00:02:24,060 --> 00:02:28,350
+>> The other thing that TCP does, as
+I said, is it guarantees delivery.
+
+45
+00:02:28,350 --> 00:02:30,810
+So, in addition to
+specifying the port number,
+
+46
+00:02:30,810 --> 00:02:34,640
+it also indicates how many
+packets, the internet protocol, IP,
+
+47
+00:02:34,640 --> 00:02:36,110
+has split the data into.
+
+48
+00:02:36,110 --> 00:02:41,200
+And it orders those packets so they
+can be reconstructed on the receiving
+
+49
+00:02:41,200 --> 00:02:45,820
+machine, even if they received-- in a
+different order than they were sent.
+
+50
+00:02:45,820 --> 00:02:48,460
+Which can happen because IP
+is a connectionless protocol,
+
+51
+00:02:48,460 --> 00:02:52,610
+and so different packets can take
+different paths through the system.
+
+52
+00:02:52,610 --> 00:02:53,660
+
+53
+00:02:53,660 --> 00:02:55,865
+>> Some of these port numbers
+are very commonly used,
+
+54
+00:02:55,865 --> 00:02:57,990
+and they've been standardized
+across all computers,
+
+55
+00:02:57,990 --> 00:03:00,500
+like, pretty much every
+computer manufacturer now.
+
+56
+00:03:00,500 --> 00:03:03,612
+So something called FTP,
+the file transfer protocol,
+
+57
+00:03:03,612 --> 00:03:05,820
+which is used to transmit
+files, as you might expect,
+
+58
+00:03:05,820 --> 00:03:10,060
+from one machine to another,
+that uses port 21 conventionally.
+
+59
+00:03:10,060 --> 00:03:13,000
+Email, SMTP, uses port 25.
+
+60
+00:03:13,000 --> 00:03:16,070
+DNS, the domain name system, which we
+talked about in our internet primer
+
+61
+00:03:16,070 --> 00:03:17,976
+video, uses port 53.
+
+62
+00:03:17,976 --> 00:03:20,100
+If you're ever browsing
+the web, you're pretty much
+
+63
+00:03:20,100 --> 00:03:23,440
+always using port 80, unless
+you're browsing the web securely,
+
+64
+00:03:23,440 --> 00:03:26,060
+secure web browsing, using port 443.
+
+65
+00:03:26,060 --> 00:03:28,610
+
+66
+00:03:28,610 --> 00:03:30,790
+>> So what's this TCP/IP process?
+
+67
+00:03:30,790 --> 00:03:33,730
+What's happening with both
+of these protocols together?
+
+68
+00:03:33,730 --> 00:03:35,520
+Well, let's talk about it.
+
+69
+00:03:35,520 --> 00:03:39,420
+When a program wants to send data,
+TCP helps break it into chunks,
+
+70
+00:03:39,420 --> 00:03:42,700
+and communicates those packets to
+the computer's networked software.
+
+71
+00:03:42,700 --> 00:03:45,850
+So it takes the data and it
+wraps information around it
+
+72
+00:03:45,850 --> 00:03:48,700
+that indicates what port
+is supposed to go to,
+
+73
+00:03:48,700 --> 00:03:52,500
+and what order that
+packet is out of all.
+
+74
+00:03:52,500 --> 00:03:56,940
+So make packet one of 10, two
+of 10, three of 10, and so on.
+
+75
+00:03:56,940 --> 00:04:01,750
+>> IP gets those data chunks that
+have been wrapped with TCP,
+
+76
+00:04:01,750 --> 00:04:06,447
+and wraps more information about
+where the packet is supposed to go.
+
+77
+00:04:06,447 --> 00:04:08,780
+We might call this the IP
+layers surrounding the packet.
+
+78
+00:04:08,780 --> 00:04:11,210
+So, it's sort of, like,
+one of those nesting dolls.
+
+79
+00:04:11,210 --> 00:04:14,780
+We have the data in the
+middle, and then TCP on top of,
+
+80
+00:04:14,780 --> 00:04:17,920
+telling it where the
+data inside of TCP is
+
+81
+00:04:17,920 --> 00:04:22,150
+supposed to go, to what port
+or what service on a machine.
+
+82
+00:04:22,150 --> 00:04:25,110
+Around that is the IP layer.
+
+83
+00:04:25,110 --> 00:04:29,230
+What IP address, what machine,
+is actually getting this.
+
+84
+00:04:29,230 --> 00:04:32,070
+>> So then, that packet that's been
+wrapped with all those layers,
+
+85
+00:04:32,070 --> 00:04:35,250
+is sent through internet protocol
+through the system of routers, getting
+
+86
+00:04:35,250 --> 00:04:39,960
+from point A to point B. When the
+receiving machine, or device, gets
+
+87
+00:04:39,960 --> 00:04:42,790
+it, it looks at the IP
+layer, it says, yup that's
+
+88
+00:04:42,790 --> 00:04:45,260
+my IP address, so it takes
+off, sort of cracks the egg,
+
+89
+00:04:45,260 --> 00:04:47,380
+and takes off the IP layer.
+
+90
+00:04:47,380 --> 00:04:49,530
+Then it sees that there's
+a TCP layer, and it says,
+
+91
+00:04:49,530 --> 00:04:52,720
+OK, looks like this is
+going to port x, or port y.
+
+92
+00:04:52,720 --> 00:04:55,842
+And apparently it's
+packet number eight of 15.
+
+93
+00:04:55,842 --> 00:04:56,800
+So that's good to know.
+
+94
+00:04:56,800 --> 00:05:01,240
+So then it can take that information,
+take off the TCP layer now,
+
+95
+00:05:01,240 --> 00:05:04,410
+knowing that it's for port x,
+and it's packet number eight,
+
+96
+00:05:04,410 --> 00:05:06,270
+and get at the data inside.
+
+97
+00:05:06,270 --> 00:05:09,460
+And it can prepare the data to
+be organized in the correct way.
+
+98
+00:05:09,460 --> 00:05:11,449
+And once all of the
+data is received, TCP
+
+99
+00:05:11,449 --> 00:05:13,990
+can hand it off to the correct
+service, and say, here you go.
+
+100
+00:05:13,990 --> 00:05:16,107
+Here's the data that you received.
+
+101
+00:05:16,107 --> 00:05:17,940
+That process might look
+something like this.
+
+102
+00:05:17,940 --> 00:05:21,392
+So let's send an email from
+a sender to a receiver.
+
+103
+00:05:21,392 --> 00:05:23,100
+And let's say this
+email is pretty small,
+
+104
+00:05:23,100 --> 00:05:25,975
+so we only need to break it into
+four packets, and we'll call them A,
+
+105
+00:05:25,975 --> 00:05:29,460
+B, C, and D. Well, we want to move
+that first packet what happens?
+
+106
+00:05:29,460 --> 00:05:34,491
+Well, we take that chunk of data,
+the data that is part of packet A,
+
+107
+00:05:34,491 --> 00:05:38,500
+and around that we're going
+to wrap it with a TCP layer.
+
+108
+00:05:38,500 --> 00:05:41,670
+Emails, you may recall,
+are sent via port 25,
+
+109
+00:05:41,670 --> 00:05:46,181
+and we have four chunks of data,
+here, that we're going to be using,
+
+110
+00:05:46,181 --> 00:05:47,430
+and this is the first of them.
+
+111
+00:05:47,430 --> 00:05:50,013
+So maybe our TCP layer contains
+information about, well, we're
+
+112
+00:05:50,013 --> 00:05:56,060
+going to port 25, and this
+is packet number one of four.
+
+113
+00:05:56,060 --> 00:05:59,280
+>> Around that, so now we have all that
+information bundled up together,
+
+114
+00:05:59,280 --> 00:06:03,000
+we're going to say where we want it
+to go, what machine, what IP address
+
+115
+00:06:03,000 --> 00:06:04,910
+is supposed to get this packet.
+
+116
+00:06:04,910 --> 00:06:06,604
+And that's part of the IP layer.
+
+117
+00:06:06,604 --> 00:06:08,770
+And there's other information
+in there as well, such
+
+118
+00:06:08,770 --> 00:06:11,300
+as the return address in
+case something goes wrong,
+
+119
+00:06:11,300 --> 00:06:14,390
+it knows where to send
+information back, and so on.
+
+120
+00:06:14,390 --> 00:06:16,475
+>> But the IP layer goes
+around all of that.
+
+121
+00:06:16,475 --> 00:06:19,860
+That entire thing is bundled
+together, as one big unit,
+
+122
+00:06:19,860 --> 00:06:22,080
+and sent through an IP transfer.
+
+123
+00:06:22,080 --> 00:06:26,180
+So it gets routed through the router
+network, using internet protocol.
+
+124
+00:06:26,180 --> 00:06:28,700
+And the receiver receives
+the entire thing.
+
+125
+00:06:28,700 --> 00:06:31,910
+And then it can start to
+deconstruct what's happening here.
+
+126
+00:06:31,910 --> 00:06:36,030
+It looks at the IP layer, the
+outside layer of this data,
+
+127
+00:06:36,030 --> 00:06:38,560
+and says, yep, that's my IP
+address so we can discard that.
+
+128
+00:06:38,560 --> 00:06:40,685
+I can, kind of, ignore it,
+doesn't need it anymore,
+
+129
+00:06:40,685 --> 00:06:42,480
+and it can look one level deeper.
+
+130
+00:06:42,480 --> 00:06:47,590
+It sees that, OK, this is data that
+is intended to be received on port 25.
+
+131
+00:06:47,590 --> 00:06:50,560
+It's apparently the first part of four.
+
+132
+00:06:50,560 --> 00:06:54,260
+So, I'm going to keep that in
+mind, and look at the data,
+
+133
+00:06:54,260 --> 00:06:57,349
+and slot it roughly where
+I think it's going to go.
+
+134
+00:06:57,349 --> 00:07:00,140
+Now, because of the internet protocol
+it's not necessarily the case
+
+135
+00:07:00,140 --> 00:07:03,442
+that the next packet the
+receiver gets, is packet two.
+
+136
+00:07:03,442 --> 00:07:05,150
+In fact, the next
+thing the receiver gets
+
+137
+00:07:05,150 --> 00:07:08,230
+might be packet number
+three because these packets
+
+138
+00:07:08,230 --> 00:07:11,777
+took different paths because of
+different traffic on the network.
+
+139
+00:07:11,777 --> 00:07:14,360
+And so, I'm not going to go
+through the diagram of building it
+
+140
+00:07:14,360 --> 00:07:17,560
+up again, but packet three
+moves, gets stripped away
+
+141
+00:07:17,560 --> 00:07:20,410
+of all of its layers, the
+IP layer, the TCP layer,
+
+142
+00:07:20,410 --> 00:07:22,420
+and the data gets put in the right spot.
+
+143
+00:07:22,420 --> 00:07:25,200
+And then, let's say it
+receives packet four.
+
+144
+00:07:25,200 --> 00:07:29,290
+>> Now let's say, that's it, it
+doesn't get any more data.
+
+145
+00:07:29,290 --> 00:07:30,300
+What is it going to do?
+
+146
+00:07:30,300 --> 00:07:32,110
+IP doesn't do anything for us.
+
+147
+00:07:32,110 --> 00:07:33,260
+But TCP does.
+
+148
+00:07:33,260 --> 00:07:38,250
+TCP knows, well, I've received one of
+four, three of four, and four of four.
+
+149
+00:07:38,250 --> 00:07:41,100
+I'm not getting any more data.
+
+150
+00:07:41,100 --> 00:07:43,770
+So something has gone wrong.
+
+151
+00:07:43,770 --> 00:07:45,050
+But I can guarantee delivery.
+
+152
+00:07:45,050 --> 00:07:49,300
+I know that packet
+number two is missing.
+
+153
+00:07:49,300 --> 00:07:52,470
+And so TCP can now make a request,
+sort of, in the reverse direction.
+
+154
+00:07:52,470 --> 00:07:55,170
+Bundling up its request
+in much the same way,
+
+155
+00:07:55,170 --> 00:07:57,230
+and sending it via IP,
+which, I know, could
+
+156
+00:07:57,230 --> 00:08:00,880
+lead to some sort of infinite loop of
+everybody dropping packets on the way.
+
+157
+00:08:00,880 --> 00:08:05,580
+>> But suffice it to say that TCP
+says, I'm missing a packet.
+
+158
+00:08:05,580 --> 00:08:08,670
+I need to send information
+back to the sender.
+
+159
+00:08:08,670 --> 00:08:12,025
+Fortunately the sender's IP address is,
+sort of, bundled up in the IP layer.
+
+160
+00:08:12,025 --> 00:08:15,780
+It's part of-- it's the return
+address on the envelope.
+
+161
+00:08:15,780 --> 00:08:18,800
+And say, I'm missing packet number
+two, can you please resend it.
+
+162
+00:08:18,800 --> 00:08:20,550
+When the sender receives
+that information,
+
+163
+00:08:20,550 --> 00:08:22,599
+it doesn't have to send
+the entire email again.
+
+164
+00:08:22,599 --> 00:08:25,390
+It only needs to send that individual
+piece of it that was missing,
+
+165
+00:08:25,390 --> 00:08:27,590
+so we could send packet number two.
+
+166
+00:08:27,590 --> 00:08:32,610
+And when it gets it, now TCP says,
+I have all four pieces of data
+
+167
+00:08:32,610 --> 00:08:34,100
+that I need.
+
+168
+00:08:34,100 --> 00:08:39,590
+So, I can assemble them together, and
+take this entire block of information
+
+169
+00:08:39,590 --> 00:08:44,169
+and pass it along to port 25, where
+it will be interpreted as an email.
+
+170
+00:08:44,169 --> 00:08:47,010
+And that-- in this way we've
+now send an email from sender
+
+171
+00:08:47,010 --> 00:08:49,273
+to receiver using TCP/IP.
+
+172
+00:08:49,273 --> 00:08:51,430
+
+173
+00:08:51,430 --> 00:08:54,180
+So, as I said, if at any point
+along the way something went wrong,
+
+174
+00:08:54,180 --> 00:08:56,600
+TCP can deal with it.
+
+175
+00:08:56,600 --> 00:09:00,010
+It can make a request that the
+information gets sent back to it.
+
+176
+00:09:00,010 --> 00:09:01,840
+And it can reconstruct the message.
+
+177
+00:09:01,840 --> 00:09:05,090
+And once it's reconstructed the message
+from all the packets it's received,
+
+178
+00:09:05,090 --> 00:09:10,350
+then it can organize them and
+deliver them to the correct service.
+
+179
+00:09:10,350 --> 00:09:11,990
+>> So that's TCP in a nutshell.
+
+180
+00:09:11,990 --> 00:09:14,550
+That's how we guarantee
+delivery of information.
+
+181
+00:09:14,550 --> 00:09:16,540
+Remember the TCP
+frequently works with IP,
+
+182
+00:09:16,540 --> 00:09:18,990
+so these two protocols
+really do go hand in hand.
+
+183
+00:09:18,990 --> 00:09:22,160
+We discussed them in several videos
+here because they do different things,
+
+184
+00:09:22,160 --> 00:09:26,190
+but they're so interrelated, they
+you'll usually use them together.
+
+185
+00:09:26,190 --> 00:09:27,150
+>> I'm Doug Lloyd.
+
+186
+00:09:27,150 --> 00:09:29,160
+This is CS50.
+
+187
+00:09:29,160 --> 00:09:31,233

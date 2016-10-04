@@ -1,0 +1,9889 @@
+1
+00:00:00,000 --> 00:00:02,964
+
+2
+00:00:02,964 --> 00:00:05,434
+>> [MUSIC PLAYING]
+
+3
+00:00:05,434 --> 00:00:11,825
+
+4
+00:00:11,825 --> 00:00:12,700
+HANNAH: Hi, everyone.
+
+5
+00:00:12,700 --> 00:00:15,866
+Thank you guys so much for coming out
+in the disgusting weather for quiz one
+
+6
+00:00:15,866 --> 00:00:16,910
+review session.
+
+7
+00:00:16,910 --> 00:00:20,020
+As you guys know, quiz
+one is this Wednesday.
+
+8
+00:00:20,020 --> 00:00:22,209
+So we're going to go
+through a bunch of topics.
+
+9
+00:00:22,209 --> 00:00:24,000
+DAVIN: Hey, can I say
+something real quick?
+
+10
+00:00:24,000 --> 00:00:25,215
+HANNAH: Yeah, Davin's going
+to say something real quick.
+
+11
+00:00:25,215 --> 00:00:25,780
+DAVIN: Sorry.
+
+12
+00:00:25,780 --> 00:00:29,490
+Just real quick, if you have questions
+about the quiz, you can go online.
+
+13
+00:00:29,490 --> 00:00:32,420
+Go to 2014 quiz one, about the quiz.
+
+14
+00:00:32,420 --> 00:00:34,680
+It's got logistics about
+where to go, when to go.
+
+15
+00:00:34,680 --> 00:00:38,100
+If you're simultaneously enrolled, we're
+going to have a makeup quiz at 5:30.
+
+16
+00:00:38,100 --> 00:00:40,350
+Or if you sent me an issue,
+you have some other issue.
+
+17
+00:00:40,350 --> 00:00:42,640
+But 5:30 is the make-up
+time on Wednesday.
+
+18
+00:00:42,640 --> 00:00:44,540
+But if you have questions,
+general questions,
+
+19
+00:00:44,540 --> 00:00:45,748
+online has all the logistics.
+
+20
+00:00:45,748 --> 00:00:47,690
+So check there first.
+
+21
+00:00:47,690 --> 00:00:49,070
+>> HANNAH: Awesome.
+
+22
+00:00:49,070 --> 00:00:53,030
+So here's the big list of topics
+that we're going to go through today.
+
+23
+00:00:53,030 --> 00:00:57,390
+I'm going to cover all of the C
+stuff, which is that first column.
+
+24
+00:00:57,390 --> 00:01:00,710
+So the C stuff that we
+covered after quiz zero.
+
+25
+00:01:00,710 --> 00:01:05,459
+Starting with a linked list,
+which includes pointers.
+
+26
+00:01:05,459 --> 00:01:07,668
+>> All right, so we saw this
+in the last review session,
+
+27
+00:01:07,668 --> 00:01:10,000
+so I'm going to go through
+this is a little bit quicker.
+
+28
+00:01:10,000 --> 00:01:13,500
+Just raise your hand if you want me to
+slow down or address something further.
+
+29
+00:01:13,500 --> 00:01:17,150
+But we use linked lists because
+we started in C with arrays.
+
+30
+00:01:17,150 --> 00:01:20,920
+And arrays are great, but the
+problem is they have a fixed size.
+
+31
+00:01:20,920 --> 00:01:24,925
+Linked lists allow us to create
+dynamically sized data structures.
+
+32
+00:01:24,925 --> 00:01:28,520
+
+33
+00:01:28,520 --> 00:01:32,320
+>> And we have our basic operations,
+insert, delete, and search.
+
+34
+00:01:32,320 --> 00:01:36,780
+And we can do insert in
+worst case constant time
+
+35
+00:01:36,780 --> 00:01:39,140
+if we just put it at the very beginning.
+
+36
+00:01:39,140 --> 00:01:45,220
+Delete and search, worst
+case big oh of n time.
+
+37
+00:01:45,220 --> 00:01:47,140
+So again, just to flip
+through these pictures,
+
+38
+00:01:47,140 --> 00:01:50,860
+I know we saw these last time, but we
+want to keep track of our linked list
+
+39
+00:01:50,860 --> 00:01:53,440
+by keeping track of the
+head of our linked list.
+
+40
+00:01:53,440 --> 00:01:55,580
+Because we know that
+each one of our nodes
+
+41
+00:01:55,580 --> 00:01:58,610
+is just going to point to the
+next node in our linked list.
+
+42
+00:01:58,610 --> 00:02:00,460
+>> So that's how we keep track.
+
+43
+00:02:00,460 --> 00:02:02,910
+Even though these aren't
+continuous pieces of memory,
+
+44
+00:02:02,910 --> 00:02:07,410
+we can find them by just
+following the different arrows.
+
+45
+00:02:07,410 --> 00:02:09,800
+Here is our structure
+for a linked list node.
+
+46
+00:02:09,800 --> 00:02:11,440
+We saw this last time.
+
+47
+00:02:11,440 --> 00:02:13,080
+We have our struct node.
+
+48
+00:02:13,080 --> 00:02:14,340
+And it has two properties.
+
+49
+00:02:14,340 --> 00:02:17,020
+Number one, the actual
+value we want to store.
+
+50
+00:02:17,020 --> 00:02:18,290
+In this case, it's an integer.
+
+51
+00:02:18,290 --> 00:02:21,100
+It could be a string, it could
+be a char, whatever you want.
+
+52
+00:02:21,100 --> 00:02:24,710
+And then, we have to keep track of
+the next node in our linked list.
+
+53
+00:02:24,710 --> 00:02:29,797
+So that's going to be a
+pointer to the next node.
+
+54
+00:02:29,797 --> 00:02:31,880
+If you were just doing
+search, like I said before,
+
+55
+00:02:31,880 --> 00:02:34,900
+you'd have to follow your arrows down.
+
+56
+00:02:34,900 --> 00:02:40,720
+Insertion, you would keep track
+of where the rest of your list is.
+
+57
+00:02:40,720 --> 00:02:44,150
+And you want to redirect the head
+to point to our new element, which
+
+58
+00:02:44,150 --> 00:02:46,640
+in this case is one,
+and then one will point
+
+59
+00:02:46,640 --> 00:02:49,480
+to the remainder of the linked list.
+
+60
+00:02:49,480 --> 00:02:52,996
+So again, I know this is a little
+bit of a repeat from quiz zero.
+
+61
+00:02:52,996 --> 00:02:55,370
+So we have to be very careful
+about the order in which we
+
+62
+00:02:55,370 --> 00:03:00,390
+do these pointings so we don't
+lose track of the back of the list.
+
+63
+00:03:00,390 --> 00:03:04,122
+OK, any questions with
+just singly linked lists?
+
+64
+00:03:04,122 --> 00:03:06,060
+Awesome, OK, cool.
+
+65
+00:03:06,060 --> 00:03:09,410
+>> So now, we're going to go onto something
+just slightly more complicated,
+
+66
+00:03:09,410 --> 00:03:10,920
+doubly linked lists.
+
+67
+00:03:10,920 --> 00:03:13,680
+So in addition to keeping
+track of the next node,
+
+68
+00:03:13,680 --> 00:03:16,220
+we also want to keep track
+of the previous node.
+
+69
+00:03:16,220 --> 00:03:19,580
+And this allows us to, if we're
+at some point in our linked list,
+
+70
+00:03:19,580 --> 00:03:23,110
+not only go forwards, but
+also iterate backwards.
+
+71
+00:03:23,110 --> 00:03:25,220
+Because as we saw in
+a singly linked list,
+
+72
+00:03:25,220 --> 00:03:27,980
+if we were at some node, and
+all of a sudden, we decided,
+
+73
+00:03:27,980 --> 00:03:30,160
+actually, I want to go to
+the node right before me,
+
+74
+00:03:30,160 --> 00:03:32,034
+you'd have to go all
+the way back to the head
+
+75
+00:03:32,034 --> 00:03:35,710
+and iterate through until you found
+the node you were looking for.
+
+76
+00:03:35,710 --> 00:03:37,680
+>> So this makes things
+slightly easier as we're
+
+77
+00:03:37,680 --> 00:03:39,670
+trying to iterate
+through our linked list.
+
+78
+00:03:39,670 --> 00:03:47,870
+But it requires us to keep track of one
+more pointer, so one more node star.
+
+79
+00:03:47,870 --> 00:03:50,830
+All right, so here comes the fun part.
+
+80
+00:03:50,830 --> 00:03:55,600
+We're going to practice implementing
+remove for doubly linked lists.
+
+81
+00:03:55,600 --> 00:03:58,660
+So this is something that's
+totally fair game for the quiz.
+
+82
+00:03:58,660 --> 00:04:00,750
+It showed up on past quizzes.
+
+83
+00:04:00,750 --> 00:04:04,220
+So definitely be prepared
+to code a little bit in C.
+
+84
+00:04:04,220 --> 00:04:07,900
+Don't forget that with all
+this fun PHP and JavaScript,
+
+85
+00:04:07,900 --> 00:04:10,560
+we still have to remember
+to do C. So brush up on that
+
+86
+00:04:10,560 --> 00:04:12,146
+if you're feeling rusty.
+
+87
+00:04:12,146 --> 00:04:14,580
+>> All right, let's see if we can do this.
+
+88
+00:04:14,580 --> 00:04:16,312
+OK, cool.
+
+89
+00:04:16,312 --> 00:04:18,600
+So we're going to try
+to edit right in here,
+
+90
+00:04:18,600 --> 00:04:20,707
+and hopefully this goes as planned.
+
+91
+00:04:20,707 --> 00:04:23,915
+All right, does anyone want to give me
+a suggestion as to how I should start?
+
+92
+00:04:23,915 --> 00:04:27,030
+The only assumption I'm
+making is that I already
+
+93
+00:04:27,030 --> 00:04:30,180
+have a structure defined, the
+one I showed on the last page,
+
+94
+00:04:30,180 --> 00:04:31,420
+on the last slide.
+
+95
+00:04:31,420 --> 00:04:39,250
+And I'm storing the head of my linked
+list in some pointer called list.
+
+96
+00:04:39,250 --> 00:04:42,190
+Does anyone want to get me started?
+
+97
+00:04:42,190 --> 00:04:45,410
+>> AUDIENCE: Can you create a new
+node to call through the list?
+
+98
+00:04:45,410 --> 00:04:46,410
+>> HANNAH: Awesome, so
+we're going to create
+
+99
+00:04:46,410 --> 00:04:47,951
+a new node to crawl through the list.
+
+100
+00:04:47,951 --> 00:04:48,570
+I like that.
+
+101
+00:04:48,570 --> 00:04:50,799
+I'll just call it pointer if that's OK.
+
+102
+00:04:50,799 --> 00:04:52,340
+And where should it originally start?
+
+103
+00:04:52,340 --> 00:04:57,280
+
+104
+00:04:57,280 --> 00:04:59,840
+>> AUDIENCE: Probably at
+the head of the list.
+
+105
+00:04:59,840 --> 00:05:00,590
+HANNAH: Beautiful.
+
+106
+00:05:00,590 --> 00:05:03,670
+We want to start at the head, which
+I said is going to be stored in list.
+
+107
+00:05:03,670 --> 00:05:04,170
+Awesome.
+
+108
+00:05:04,170 --> 00:05:05,220
+So far, so good.
+
+109
+00:05:05,220 --> 00:05:08,260
+And now, our goal is to
+iterate through the list
+
+110
+00:05:08,260 --> 00:05:12,870
+until we find the node with
+value n that we want to delete.
+
+111
+00:05:12,870 --> 00:05:13,540
+OK?
+
+112
+00:05:13,540 --> 00:05:15,910
+>> So now is the part where
+we want to iterate through.
+
+113
+00:05:15,910 --> 00:05:19,488
+Can anyone suggest a
+way to iterate through?
+
+114
+00:05:19,488 --> 00:05:20,979
+>> AUDIENCE: A loop.
+
+115
+00:05:20,979 --> 00:05:21,840
+>> HANNAH: A loop.
+
+116
+00:05:21,840 --> 00:05:22,620
+I love it.
+
+117
+00:05:22,620 --> 00:05:25,550
+Specifically, we can try a while loop.
+
+118
+00:05:25,550 --> 00:05:30,919
+OK, and we know that we've reached
+the end of our list when what?
+
+119
+00:05:30,919 --> 00:05:32,210
+AUDIENCE: When pointer is null.
+
+120
+00:05:32,210 --> 00:05:33,418
+HANNAH: When pointer is null.
+
+121
+00:05:33,418 --> 00:05:34,320
+Beautiful, I love it.
+
+122
+00:05:34,320 --> 00:05:35,110
+OK, cool.
+
+123
+00:05:35,110 --> 00:05:39,300
+
+124
+00:05:39,300 --> 00:05:43,190
+So sorry if my bounding brace is
+kind of falling off the screen.
+
+125
+00:05:43,190 --> 00:05:44,090
+We brought it back.
+
+126
+00:05:44,090 --> 00:05:46,610
+OK, cool.
+
+127
+00:05:46,610 --> 00:05:48,690
+What's next?
+
+128
+00:05:48,690 --> 00:05:51,950
+>> So we know we want to delete
+the node that has value n.
+
+129
+00:05:51,950 --> 00:05:56,340
+So let's find the case where
+we actually find our node.
+
+130
+00:05:56,340 --> 00:05:57,840
+So how would I check that?
+
+131
+00:05:57,840 --> 00:06:02,210
+I'd just say if pointer, and then if I
+want to get the value out of pointer,
+
+132
+00:06:02,210 --> 00:06:08,940
+I just do arrow n,
+equals n, the parameter
+
+133
+00:06:08,940 --> 00:06:14,490
+that we gave to this function, the
+node that we want to actually delete.
+
+134
+00:06:14,490 --> 00:06:17,090
+Any questions up until here?
+
+135
+00:06:17,090 --> 00:06:18,360
+All right.
+
+136
+00:06:18,360 --> 00:06:24,140
+OK, so now let's draw a quick picture
+on the board in order to visualize this.
+
+137
+00:06:24,140 --> 00:06:30,710
+>> So let's say there's our lovely node.
+
+138
+00:06:30,710 --> 00:06:34,480
+And it has a value, I'll just say four.
+
+139
+00:06:34,480 --> 00:06:40,340
+And it points to the next
+node in our linked list.
+
+140
+00:06:40,340 --> 00:06:42,220
+And there's nothing before it.
+
+141
+00:06:42,220 --> 00:06:45,800
+So we have our previous
+pointing to nothing.
+
+142
+00:06:45,800 --> 00:06:48,110
+In this case, we point backwards.
+
+143
+00:06:48,110 --> 00:06:50,960
+OK, just setting up my
+linked list over here.
+
+144
+00:06:50,960 --> 00:06:53,630
+And we have a list that points
+to this structure to begin with.
+
+145
+00:06:53,630 --> 00:06:57,220
+
+146
+00:06:57,220 --> 00:07:00,485
+I'll draw one more for
+the sake of completeness.
+
+147
+00:07:00,485 --> 00:07:04,209
+
+148
+00:07:04,209 --> 00:07:06,117
+OK.
+
+149
+00:07:06,117 --> 00:07:07,480
+I'll point this forward.
+
+150
+00:07:07,480 --> 00:07:09,550
+And I'll point that one back.
+
+151
+00:07:09,550 --> 00:07:10,360
+Oops, sorry.
+
+152
+00:07:10,360 --> 00:07:12,710
+Yeah, got this backwards.
+
+153
+00:07:12,710 --> 00:07:15,548
+
+154
+00:07:15,548 --> 00:07:16,967
+Do it again.
+
+155
+00:07:16,967 --> 00:07:18,330
+OK, there we go.
+
+156
+00:07:18,330 --> 00:07:19,910
+All right, got it.
+
+157
+00:07:19,910 --> 00:07:21,780
+OK, here's our picture.
+
+158
+00:07:21,780 --> 00:07:24,860
+>> OK, so we want to consider two cases.
+
+159
+00:07:24,860 --> 00:07:27,330
+The first case is if the
+node we want to delete
+
+160
+00:07:27,330 --> 00:07:29,420
+is at the very start of our list.
+
+161
+00:07:29,420 --> 00:07:34,070
+And then, the second case that we want
+to consider is if it's anywhere else.
+
+162
+00:07:34,070 --> 00:07:37,660
+I understand that this a totally
+messy drawing with all my erasing,
+
+163
+00:07:37,660 --> 00:07:40,400
+but hopefully we'll try to
+make this clear with some code.
+
+164
+00:07:40,400 --> 00:07:45,450
+>> OK, so let's cover the case
+where we found our node,
+
+165
+00:07:45,450 --> 00:07:48,900
+and it's at the very
+start of our linked list.
+
+166
+00:07:48,900 --> 00:07:50,810
+Anyone give me a
+suggestion here as to what
+
+167
+00:07:50,810 --> 00:07:54,684
+I should do to actually remove our node?
+
+168
+00:07:54,684 --> 00:07:55,970
+It's a little tricky.
+
+169
+00:07:55,970 --> 00:07:56,470
+OK?
+
+170
+00:07:56,470 --> 00:07:59,628
+>> AUDIENCE: You have to take the
+node that would be before it
+
+171
+00:07:59,628 --> 00:08:01,794
+and make it point to the
+one that would be after it,
+
+172
+00:08:01,794 --> 00:08:03,004
+and take the node that
+would be after it and make
+
+173
+00:08:03,004 --> 00:08:04,554
+it point to the node before it.
+
+174
+00:08:04,554 --> 00:08:05,220
+HANNAH: Exactly.
+
+175
+00:08:05,220 --> 00:08:10,640
+OK, so this is the case
+where-- we have two cases.
+
+176
+00:08:10,640 --> 00:08:14,100
+We have the case where the
+node that we're looking for
+
+177
+00:08:14,100 --> 00:08:18,270
+is the front of the list.
+
+178
+00:08:18,270 --> 00:08:23,110
+OK, and then the case that you
+described is otherwise, right?
+
+179
+00:08:23,110 --> 00:08:24,500
+It's somewhere else in the list.
+
+180
+00:08:24,500 --> 00:08:27,460
+
+181
+00:08:27,460 --> 00:08:32,840
+So you said, we need to
+look at the node previous,
+
+182
+00:08:32,840 --> 00:08:36,500
+and make the previous node
+point to the next node.
+
+183
+00:08:36,500 --> 00:08:40,510
+So let's say we're
+trying to take out five
+
+184
+00:08:40,510 --> 00:08:43,059
+in my very messy drawing over here.
+
+185
+00:08:43,059 --> 00:08:47,530
+We want to make sure that
+four now points to six.
+
+186
+00:08:47,530 --> 00:08:49,590
+Four's next points to six.
+
+187
+00:08:49,590 --> 00:08:52,150
+And six's previous points to four.
+
+188
+00:08:52,150 --> 00:08:53,960
+That's our goal here, right?
+
+189
+00:08:53,960 --> 00:08:56,150
+This is what I think you
+just said over there.
+
+190
+00:08:56,150 --> 00:08:58,450
+>> OK, so let's get that first piece.
+
+191
+00:08:58,450 --> 00:09:02,300
+Let's do the have the
+previous pointer previous.
+
+192
+00:09:02,300 --> 00:09:06,550
+
+193
+00:09:06,550 --> 00:09:09,690
+So four's next should point to what?
+
+194
+00:09:09,690 --> 00:09:13,210
+
+195
+00:09:13,210 --> 00:09:14,900
+Exactly, in this case, six.
+
+196
+00:09:14,900 --> 00:09:18,470
+So we should say pointer, next.
+
+197
+00:09:18,470 --> 00:09:20,600
+OK?
+
+198
+00:09:20,600 --> 00:09:21,150
+All right.
+
+199
+00:09:21,150 --> 00:09:24,870
+So let's get rid of this ugly picture
+and try to draw a slightly nicer one.
+
+200
+00:09:24,870 --> 00:09:29,040
+
+201
+00:09:29,040 --> 00:09:31,172
+We have our list head here.
+
+202
+00:09:31,172 --> 00:09:36,440
+
+203
+00:09:36,440 --> 00:09:42,740
+And that points to the first node in
+our linked list, which we said is four.
+
+204
+00:09:42,740 --> 00:09:45,620
+Here's our second node, five.
+
+205
+00:09:45,620 --> 00:09:47,307
+And our third node, six.
+
+206
+00:09:47,307 --> 00:09:50,265
+Just trying to draw the exact same
+picture, just a little more cleanly.
+
+207
+00:09:50,265 --> 00:09:52,780
+
+208
+00:09:52,780 --> 00:09:56,280
+OK, so four's next
+originally points to five.
+
+209
+00:09:56,280 --> 00:09:58,620
+Five's next points to six.
+
+210
+00:09:58,620 --> 00:10:00,170
+Six's previous points to five.
+
+211
+00:10:00,170 --> 00:10:02,470
+And five's previous points to four.
+
+212
+00:10:02,470 --> 00:10:03,360
+So much nicer!
+
+213
+00:10:03,360 --> 00:10:04,530
+OK, cool.
+
+214
+00:10:04,530 --> 00:10:07,770
+>> So now, what we did just
+here, this line of code,
+
+215
+00:10:07,770 --> 00:10:12,680
+which says pointer previous
+next, so what does that mean?
+
+216
+00:10:12,680 --> 00:10:17,540
+That means if we're looking at
+five, go to the previous node,
+
+217
+00:10:17,540 --> 00:10:21,970
+and it's next should now
+point to five's next.
+
+218
+00:10:21,970 --> 00:10:27,840
+So essentially, what that's doing
+is that's erasing this arrow
+
+219
+00:10:27,840 --> 00:10:29,640
+and making it skip right over five.
+
+220
+00:10:29,640 --> 00:10:31,360
+Is that clear?
+
+221
+00:10:31,360 --> 00:10:33,200
+I know that can be a little bit sketchy.
+
+222
+00:10:33,200 --> 00:10:34,480
+I see some head nods.
+
+223
+00:10:34,480 --> 00:10:35,390
+That's good.
+
+224
+00:10:35,390 --> 00:10:36,670
+OK, cool.
+
+225
+00:10:36,670 --> 00:10:39,590
+Now, what's the next step?
+
+226
+00:10:39,590 --> 00:10:42,060
+>> I've reset the next.
+
+227
+00:10:42,060 --> 00:10:45,297
+Now, which other arrow
+do I need to change?
+
+228
+00:10:45,297 --> 00:10:46,130
+This one right here.
+
+229
+00:10:46,130 --> 00:10:47,560
+Six's previous.
+
+230
+00:10:47,560 --> 00:10:50,620
+We don't want six's previous
+to point to five anymore.
+
+231
+00:10:50,620 --> 00:10:54,580
+We want it to point to four.
+
+232
+00:10:54,580 --> 00:10:56,190
+Does that picture make sense?
+
+233
+00:10:56,190 --> 00:10:58,370
+So now we can actually take five out.
+
+234
+00:10:58,370 --> 00:10:59,370
+So let's get that piece.
+
+235
+00:10:59,370 --> 00:11:03,390
+
+236
+00:11:03,390 --> 00:11:11,180
+What should I do before I
+reset six's previous to four?
+
+237
+00:11:11,180 --> 00:11:14,360
+Any ideas there?
+
+238
+00:11:14,360 --> 00:11:17,369
+>> AUDIENCE: Free the node between
+them by setting it to null?
+
+239
+00:11:17,369 --> 00:11:17,910
+HANNAH: Cool.
+
+240
+00:11:17,910 --> 00:11:21,100
+Definitely, our end goal is
+going to be to free the node.
+
+241
+00:11:21,100 --> 00:11:22,490
+So we can do that right here.
+
+242
+00:11:22,490 --> 00:11:23,540
+Free pointer.
+
+243
+00:11:23,540 --> 00:11:24,810
+Absolutely.
+
+244
+00:11:24,810 --> 00:11:29,160
+But even before that,
+let's just-- our goal right
+
+245
+00:11:29,160 --> 00:11:38,730
+here is to set pointer next
+previous equal to pointer previous.
+
+246
+00:11:38,730 --> 00:11:40,760
+I know this is getting covered up.
+
+247
+00:11:40,760 --> 00:11:45,440
+OK, let's take-- cool.
+
+248
+00:11:45,440 --> 00:11:46,990
+Can everyone see this bottom line?
+
+249
+00:11:46,990 --> 00:11:47,840
+Or is it super tiny?
+
+250
+00:11:47,840 --> 00:11:50,430
+
+251
+00:11:50,430 --> 00:11:54,300
+>> So before we execute
+this line here, we want
+
+252
+00:11:54,300 --> 00:11:58,375
+to make sure that
+pointer next is not null.
+
+253
+00:11:58,375 --> 00:12:00,500
+Because if pointer next is
+null, what kind of error
+
+254
+00:12:00,500 --> 00:12:02,727
+will I get when I try to
+reference a null pointer?
+
+255
+00:12:02,727 --> 00:12:03,560
+AUDIENCE: Seg fault.
+
+256
+00:12:03,560 --> 00:12:05,660
+HANNAH: A seg fault, beautiful.
+
+257
+00:12:05,660 --> 00:12:09,690
+OK, so if that's not
+null, then we can reset.
+
+258
+00:12:09,690 --> 00:12:14,420
+And we have six point again to four.
+
+259
+00:12:14,420 --> 00:12:17,440
+Questions up until this point?
+
+260
+00:12:17,440 --> 00:12:17,940
+Yes?
+
+261
+00:12:17,940 --> 00:12:19,814
+>> AUDIENCE: In your first
+if statement, did you
+
+262
+00:12:19,814 --> 00:12:23,817
+mean to have the arrow
+next, or [INAUDIBLE]?
+
+263
+00:12:23,817 --> 00:12:25,150
+HANNAH: I meant pointer arrow n.
+
+264
+00:12:25,150 --> 00:12:30,270
+So basically, what I'm trying to do
+is say, the current node that I'm
+
+265
+00:12:30,270 --> 00:12:34,100
+iterating over, the current node that
+I'm looking at, I'm storing in pointer.
+
+266
+00:12:34,100 --> 00:12:37,630
+And I want to know pointer's
+value, which in this case is n.
+
+267
+00:12:37,630 --> 00:12:39,500
+And I want to see, is
+the node I'm looking
+
+268
+00:12:39,500 --> 00:12:42,790
+for the node I'm aiming to delete?
+
+269
+00:12:42,790 --> 00:12:47,657
+So that's why we have here pointer n.
+
+270
+00:12:47,657 --> 00:12:49,857
+>> AUDIENCE: So the arrow going
+to n, you set the value
+
+271
+00:12:49,857 --> 00:12:52,058
+and store it in a node called n?
+
+272
+00:12:52,058 --> 00:12:55,410
+
+273
+00:12:55,410 --> 00:12:58,820
+>> HANNAH: So it's like if I am
+going through this linked list
+
+274
+00:12:58,820 --> 00:13:00,310
+and pointing to five.
+
+275
+00:13:00,310 --> 00:13:03,600
+If I want to get that value, if
+I want to get that number, 5,
+
+276
+00:13:03,600 --> 00:13:06,400
+I have to do pointer arrow n.
+
+277
+00:13:06,400 --> 00:13:06,900
+Cool?
+
+278
+00:13:06,900 --> 00:13:07,900
+Yeah.
+
+279
+00:13:07,900 --> 00:13:11,200
+>> AUDIENCE: Is n the name of the variable?
+
+280
+00:13:11,200 --> 00:13:11,700
+HANNAH: Yes.
+
+281
+00:13:11,700 --> 00:13:14,870
+So if we flip back one
+slide, n is the name
+
+282
+00:13:14,870 --> 00:13:18,660
+of the value inside of the
+node in our linked list.
+
+283
+00:13:18,660 --> 00:13:21,510
+And I know it can get a little
+bit confusing because we also
+
+284
+00:13:21,510 --> 00:13:24,680
+are calling the thing
+that we want to delete n.
+
+285
+00:13:24,680 --> 00:13:26,717
+So that's where that
+one line comes from.
+
+286
+00:13:26,717 --> 00:13:27,671
+Yeah?
+
+287
+00:13:27,671 --> 00:13:31,010
+>> AUDIENCE: What do you have
+[INAUDIBLE] how they work?
+
+288
+00:13:31,010 --> 00:13:33,872
+
+289
+00:13:33,872 --> 00:13:35,780
+A pointer [INAUDIBLE]?
+
+290
+00:13:35,780 --> 00:13:37,520
+>> HANNAH: Sure.
+
+291
+00:13:37,520 --> 00:13:40,027
+Are you talking about-- which line?
+
+292
+00:13:40,027 --> 00:13:41,526
+AUDIENCE: The last line [INAUDIBLE].
+
+293
+00:13:41,526 --> 00:13:44,280
+
+294
+00:13:44,280 --> 00:13:45,250
+>> HANNAH: Sure, OK.
+
+295
+00:13:45,250 --> 00:13:48,540
+So let's look at the picture in
+order to try to explain this.
+
+296
+00:13:48,540 --> 00:13:51,030
+I'm sorry, for the
+camera, the question was
+
+297
+00:13:51,030 --> 00:13:54,580
+can we explain pointer
+arrow next pointer previous.
+
+298
+00:13:54,580 --> 00:14:01,510
+OK, so let's say we're at five
+and our goal is to delete five.
+
+299
+00:14:01,510 --> 00:14:07,240
+So pointer next, which of these
+three nodes does that give us?
+
+300
+00:14:07,240 --> 00:14:10,840
+That brings us to the sixth node, right?
+
+301
+00:14:10,840 --> 00:14:16,490
+>> OK, so now we're asking
+for the six's previous.
+
+302
+00:14:16,490 --> 00:14:17,060
+OK?
+
+303
+00:14:17,060 --> 00:14:20,210
+And we're resetting this
+to be equal to four,
+
+304
+00:14:20,210 --> 00:14:23,214
+which happened to be five's previous.
+
+305
+00:14:23,214 --> 00:14:25,180
+I know, it's super
+hard to keep track of.
+
+306
+00:14:25,180 --> 00:14:29,286
+I really recommend you draw pictures
+if you get a question like this.
+
+307
+00:14:29,286 --> 00:14:30,242
+Yes?
+
+308
+00:14:30,242 --> 00:14:32,617
+>> AUDIENCE: Is the reason that
+we don't have a [INAUDIBLE]?
+
+309
+00:14:32,617 --> 00:14:37,430
+
+310
+00:14:37,430 --> 00:14:38,570
+>> HANNAH: Exactly.
+
+311
+00:14:38,570 --> 00:14:44,800
+So the question was, why do
+we not need to check here?
+
+312
+00:14:44,800 --> 00:14:48,160
+Why don't we need to check that
+pointer previous is not equal to null?
+
+313
+00:14:48,160 --> 00:14:50,070
+And it's because we've
+already separated out
+
+314
+00:14:50,070 --> 00:14:52,490
+the case if the pointer's
+at the very beginning.
+
+315
+00:14:52,490 --> 00:14:54,060
+Very good question.
+
+316
+00:14:54,060 --> 00:14:56,880
+Anything else on this?
+
+317
+00:14:56,880 --> 00:14:57,380
+OK, cool.
+
+318
+00:14:57,380 --> 00:14:58,360
+So let's finish it up.
+
+319
+00:14:58,360 --> 00:14:59,890
+We're almost there.
+
+320
+00:14:59,890 --> 00:15:01,310
+>> So what if it is at the head?
+
+321
+00:15:01,310 --> 00:15:03,360
+What if instead of
+trying to delete five,
+
+322
+00:15:03,360 --> 00:15:06,240
+we actually wanted to delete four?
+
+323
+00:15:06,240 --> 00:15:07,270
+What would I have to do?
+
+324
+00:15:07,270 --> 00:15:09,610
+Well, I want to reset my head to what?
+
+325
+00:15:09,610 --> 00:15:14,288
+
+326
+00:15:14,288 --> 00:15:15,585
+Shout it out?
+
+327
+00:15:15,585 --> 00:15:16,710
+AUDIENCE: The one after it.
+
+328
+00:15:16,710 --> 00:15:17,460
+HANNAH: Beautiful.
+
+329
+00:15:17,460 --> 00:15:26,430
+OK, so we want list to be pointing
+to whatever our pointer next node is.
+
+330
+00:15:26,430 --> 00:15:29,040
+Good.
+
+331
+00:15:29,040 --> 00:15:30,810
+And just for completeness's
+sake, we would
+
+332
+00:15:30,810 --> 00:15:35,590
+want to check that as long as our list
+is not null, as long as our list is not
+
+333
+00:15:35,590 --> 00:15:42,730
+empty, then we want to set
+our previous equal to null.
+
+334
+00:15:42,730 --> 00:15:46,960
+
+335
+00:15:46,960 --> 00:15:50,230
+Question so far?
+
+336
+00:15:50,230 --> 00:15:53,205
+One step away from--?
+
+337
+00:15:53,205 --> 00:15:55,530
+>> AUDIENCE: Would it be if
+list is not equal to null?
+
+338
+00:15:55,530 --> 00:15:56,950
+>> HANNAH: Yes, you're totally right.
+
+339
+00:15:56,950 --> 00:15:58,130
+I'm so sorry.
+
+340
+00:15:58,130 --> 00:16:00,040
+Is list is not equal to null.
+
+341
+00:16:00,040 --> 00:16:01,915
+Awesome.
+
+342
+00:16:01,915 --> 00:16:04,245
+Trying to bring this all on the screen.
+
+343
+00:16:04,245 --> 00:16:06,870
+It's kind of falling off.
+
+344
+00:16:06,870 --> 00:16:07,730
+Sorry, guys.
+
+345
+00:16:07,730 --> 00:16:11,874
+And last but not least, all
+we have to do is return.
+
+346
+00:16:11,874 --> 00:16:12,840
+OK.
+
+347
+00:16:12,840 --> 00:16:15,400
+That was a lot crammed
+in really quickly.
+
+348
+00:16:15,400 --> 00:16:16,800
+Take a second to look this over.
+
+349
+00:16:16,800 --> 00:16:18,216
+Tell me if you have any questions.
+
+350
+00:16:18,216 --> 00:16:20,232
+
+351
+00:16:20,232 --> 00:16:20,732
+Yeah?
+
+352
+00:16:20,732 --> 00:16:26,940
+>> AUDIENCE: If list is at the
+head, then-- wait, nevermind.
+
+353
+00:16:26,940 --> 00:16:27,700
+>> HANNAH: OK, good.
+
+354
+00:16:27,700 --> 00:16:30,987
+So this is if list is at the head,
+we remove it to whatever we inserted.
+
+355
+00:16:30,987 --> 00:16:31,486
+Yeah?
+
+356
+00:16:31,486 --> 00:16:33,777
+>> AUDIENCE: Can you explain
+the first if statement again?
+
+357
+00:16:33,777 --> 00:16:36,149
+If the pointer to n is equal to n?
+
+358
+00:16:36,149 --> 00:16:36,690
+HANNAH: Sure.
+
+359
+00:16:36,690 --> 00:16:42,780
+So our goal of this whole function is
+to delete the node that has value n.
+
+360
+00:16:42,780 --> 00:16:47,460
+So if we find, as we're
+iterating through our list,
+
+361
+00:16:47,460 --> 00:16:51,770
+the node with value n, that's
+the one we want to delete.
+
+362
+00:16:51,770 --> 00:16:57,286
+So all of the deleting happens
+inside of that big if statement.
+
+363
+00:16:57,286 --> 00:16:58,593
+Does that makes sense?
+
+364
+00:16:58,593 --> 00:16:59,480
+Cool.
+
+365
+00:16:59,480 --> 00:16:59,990
+Yeah?
+
+366
+00:16:59,990 --> 00:17:02,864
+>> AUDIENCE: Maybe you just can't see
+it, but don't you also need a line
+
+367
+00:17:02,864 --> 00:17:06,024
+for scrolling through the list?
+
+368
+00:17:06,024 --> 00:17:06,690
+HANNAH: Awesome.
+
+369
+00:17:06,690 --> 00:17:10,896
+Let's bring this up a little bit, and
+we'll throw that right in the bottom.
+
+370
+00:17:10,896 --> 00:17:13,282
+
+371
+00:17:13,282 --> 00:17:15,490
+Maybe the board would've
+been a slightly better idea.
+
+372
+00:17:15,490 --> 00:17:17,829
+So how would I move pointer forward?
+
+373
+00:17:17,829 --> 00:17:20,184
+>> AUDIENCE: Pointer
+equals pointer plus one.
+
+374
+00:17:20,184 --> 00:17:21,599
+>> HANNAH: Beautiful.
+
+375
+00:17:21,599 --> 00:17:25,050
+So that allows us to
+continue iterating through.
+
+376
+00:17:25,050 --> 00:17:26,251
+OK.
+
+377
+00:17:26,251 --> 00:17:27,750
+AUDIENCE: Wouldn't there be an else?
+
+378
+00:17:27,750 --> 00:17:29,028
+HANNAH: One more time?
+
+379
+00:17:29,028 --> 00:17:32,444
+AUDIENCE: Wouldn't there be
+an else after the big old if
+
+380
+00:17:32,444 --> 00:17:35,519
+statement [INAUDIBLE]?
+
+381
+00:17:35,519 --> 00:17:36,310
+HANNAH: Which part?
+
+382
+00:17:36,310 --> 00:17:38,350
+I'm sorry.
+
+383
+00:17:38,350 --> 00:17:41,800
+>> AUDIENCE: The traversal,
+shouldn't there be an else?
+
+384
+00:17:41,800 --> 00:17:43,550
+HANNAH: You absolutely
+could have an else.
+
+385
+00:17:43,550 --> 00:17:46,930
+Because I have a return right
+there, you don't need an else.
+
+386
+00:17:46,930 --> 00:17:48,760
+But yeah, good question.
+
+387
+00:17:48,760 --> 00:17:50,170
+OK, yes?
+
+388
+00:17:50,170 --> 00:17:52,878
+AUDIENCE: Can we think of pointer
+that is moving through the list
+
+389
+00:17:52,878 --> 00:17:56,610
+as taking on the value
+of each node in the list?
+
+390
+00:17:56,610 --> 00:18:00,650
+Or should we think of it as
+sort of external to the list?
+
+391
+00:18:00,650 --> 00:18:02,350
+>> HANNAH: Either one is fine, I think.
+
+392
+00:18:02,350 --> 00:18:05,880
+The way I imagine it is
+I say, OK, I am pointer.
+
+393
+00:18:05,880 --> 00:18:06,520
+And this is me.
+
+394
+00:18:06,520 --> 00:18:07,150
+This is my hand.
+
+395
+00:18:07,150 --> 00:18:09,960
+I'm going to point to the different
+things that I want to iterate through.
+
+396
+00:18:09,960 --> 00:18:12,270
+First, I'm going to point
+to the head of the list.
+
+397
+00:18:12,270 --> 00:18:14,144
+And that tells me I'm
+going to point to four.
+
+398
+00:18:14,144 --> 00:18:18,060
+And so me, being external to the list,
+I can point to each of these elements.
+
+399
+00:18:18,060 --> 00:18:19,520
+So I think of myself as pointer.
+
+400
+00:18:19,520 --> 00:18:21,645
+AUDIENCE: So when you delete
+one of those elements,
+
+401
+00:18:21,645 --> 00:18:23,404
+you delete yourself, so to speak.
+
+402
+00:18:23,404 --> 00:18:24,070
+HANNAH: Exactly.
+
+403
+00:18:24,070 --> 00:18:25,920
+So you delete the thing
+you're pointing to.
+
+404
+00:18:25,920 --> 00:18:28,340
+So in the example that
+we saw where we're
+
+405
+00:18:28,340 --> 00:18:31,670
+trying to delete five,
+when I'm pointing to five,
+
+406
+00:18:31,670 --> 00:18:34,200
+I want to delete the
+thing I'm pointing to.
+
+407
+00:18:34,200 --> 00:18:35,870
+Exactly right.
+
+408
+00:18:35,870 --> 00:18:36,577
+Yes?
+
+409
+00:18:36,577 --> 00:18:39,410
+AUDIENCE: Have we taken care of the
+case where n is not in the list?
+
+410
+00:18:39,410 --> 00:18:40,460
+HANNAH: If n is not in the list?
+
+411
+00:18:40,460 --> 00:18:43,501
+All that's going to happen is you're
+going to iterate through and iterate
+
+412
+00:18:43,501 --> 00:18:47,616
+through, and then, you're going
+to get to pointer being null,
+
+413
+00:18:47,616 --> 00:18:48,990
+and then you're going to be done.
+
+414
+00:18:48,990 --> 00:18:50,812
+>> AUDIENCE: So do we have
+to return anything?
+
+415
+00:18:50,812 --> 00:18:51,520
+HANNAH: We could.
+
+416
+00:18:51,520 --> 00:18:54,500
+The way that if defined this
+function, I just say that it returns
+
+417
+00:18:54,500 --> 00:18:55,770
+void regardless.
+
+418
+00:18:55,770 --> 00:18:58,360
+But you could have something
+like returning an integer,
+
+419
+00:18:58,360 --> 00:19:00,920
+and have it return
+negative 1 if it fails.
+
+420
+00:19:00,920 --> 00:19:03,070
+Something like that.
+
+421
+00:19:03,070 --> 00:19:04,494
+Questions with-- yes?
+
+422
+00:19:04,494 --> 00:19:05,410
+AUDIENCE: [INAUDIBLE]?
+
+423
+00:19:05,410 --> 00:19:05,993
+HANNAH: Sorry?
+
+424
+00:19:05,993 --> 00:19:07,419
+AUDIENCE: [INAUDIBLE]?
+
+425
+00:19:07,419 --> 00:19:07,960
+HANNAH: Sure.
+
+426
+00:19:07,960 --> 00:19:11,730
+So that's the actual-- once we've
+done all this work of moving
+
+427
+00:19:11,730 --> 00:19:16,530
+all these arrows around, our whole
+goal was to get rid of the node
+
+428
+00:19:16,530 --> 00:19:18,230
+that we're looking for.
+
+429
+00:19:18,230 --> 00:19:21,610
+So in this case, freeing
+pointer, if I'm pointing to five,
+
+430
+00:19:21,610 --> 00:19:24,670
+it's like erasing this middle node.
+
+431
+00:19:24,670 --> 00:19:27,250
+That's the free pointer part.
+
+432
+00:19:27,250 --> 00:19:29,090
+That make sense?
+
+433
+00:19:29,090 --> 00:19:31,390
+>> AUDIENCE: So even thought
+you didn't [INAUDIBLE]?
+
+434
+00:19:31,390 --> 00:19:36,060
+>> HANNAH: So we assumed at the beginning
+we had some list that was already--
+
+435
+00:19:36,060 --> 00:19:37,220
+they had put this together.
+
+436
+00:19:37,220 --> 00:19:39,761
+So in order to construct this
+list, they must've [INAUDIBLE].
+
+437
+00:19:39,761 --> 00:19:42,190
+
+438
+00:19:42,190 --> 00:19:42,750
+Cool.
+
+439
+00:19:42,750 --> 00:19:44,490
+Anything else with this?
+
+440
+00:19:44,490 --> 00:19:46,386
+Yes?
+
+441
+00:19:46,386 --> 00:19:49,204
+>> AUDIENCE: What if the list
+doesn't equal the null line?
+
+442
+00:19:49,204 --> 00:19:49,704
+[INAUDIBLE]?
+
+443
+00:19:49,704 --> 00:19:52,289
+
+444
+00:19:52,289 --> 00:19:53,080
+HANNAH: Right here?
+
+445
+00:19:53,080 --> 00:19:53,840
+AUDIENCE: Yeah.
+
+446
+00:19:53,840 --> 00:19:57,370
+HANNAH: OK, all I'm doing
+is I'm just making sure
+
+447
+00:19:57,370 --> 00:20:03,250
+that before I try to dereference list,
+before I try to access the previous,
+
+448
+00:20:03,250 --> 00:20:07,210
+I want to make sure that it's not
+null so I don't get a seg fault.
+
+449
+00:20:07,210 --> 00:20:08,400
+Cool.
+
+450
+00:20:08,400 --> 00:20:10,820
+>> OK, I know this was quite
+a lot to get through.
+
+451
+00:20:10,820 --> 00:20:14,950
+So this slide will be
+made available to you.
+
+452
+00:20:14,950 --> 00:20:17,341
+So you can go through it in more detail.
+
+453
+00:20:17,341 --> 00:20:17,841
+Yes?
+
+454
+00:20:17,841 --> 00:20:19,749
+>> AUDIENCE: Why does the list [INAUDIBLE]?
+
+455
+00:20:19,749 --> 00:20:24,129
+
+456
+00:20:24,129 --> 00:20:24,670
+HANNAH: Sure.
+
+457
+00:20:24,670 --> 00:20:27,390
+So list really points to
+this element right here,
+
+458
+00:20:27,390 --> 00:20:29,200
+the first element in the list.
+
+459
+00:20:29,200 --> 00:20:30,748
+So it can't have a previous.
+
+460
+00:20:30,748 --> 00:20:31,736
+Yes?
+
+461
+00:20:31,736 --> 00:20:35,194
+>> AUDIENCE: Does the pointer point
+to the same address in memory?
+
+462
+00:20:35,194 --> 00:20:38,404
+Does it point to the same
+address in memory as the node
+
+463
+00:20:38,404 --> 00:20:40,640
+that it's pointing to?
+
+464
+00:20:40,640 --> 00:20:43,865
+>> HANNAH: Yes, it points
+to this node in memory.
+
+465
+00:20:43,865 --> 00:20:47,190
+>> AUDIENCE: Right, so
+when you [INAUDIBLE]?
+
+466
+00:20:47,190 --> 00:20:50,580
+>> HANNAH: In a sense, yes.
+
+467
+00:20:50,580 --> 00:20:51,280
+OK.
+
+468
+00:20:51,280 --> 00:20:52,997
+All right, let's move along with this.
+
+469
+00:20:52,997 --> 00:20:55,330
+And if you have more questions,
+stick around at the end,
+
+470
+00:20:55,330 --> 00:20:57,130
+and we can go through it again.
+
+471
+00:20:57,130 --> 00:20:58,120
+OK, cool.
+
+472
+00:20:58,120 --> 00:21:00,490
+Now, we get to move on
+to hash tables, tries,
+
+473
+00:21:00,490 --> 00:21:04,940
+and trees, which you got super
+familiar with in p-set five, speller.
+
+474
+00:21:04,940 --> 00:21:11,020
+>> So hash table is just an
+array with singly linked lists
+
+475
+00:21:11,020 --> 00:21:14,050
+or doubly linked lists coming off of it.
+
+476
+00:21:14,050 --> 00:21:16,380
+So we have some sort
+of associative array.
+
+477
+00:21:16,380 --> 00:21:21,280
+And how we know which of these
+arrays buckets to get into,
+
+478
+00:21:21,280 --> 00:21:24,137
+we use a hash function.
+
+479
+00:21:24,137 --> 00:21:26,470
+So in this case, can anyone
+guess what the hash function
+
+480
+00:21:26,470 --> 00:21:28,636
+would be just based on some
+of the input and output?
+
+481
+00:21:28,636 --> 00:21:31,392
+
+482
+00:21:31,392 --> 00:21:33,194
+>> AUDIENCE: Letter number of the alphabet.
+
+483
+00:21:33,194 --> 00:21:33,860
+HANNAH: Exactly.
+
+484
+00:21:33,860 --> 00:21:36,160
+It just puts them in alphabetical order.
+
+485
+00:21:36,160 --> 00:21:39,280
+Everything that starts with an
+A is put into the first bucket.
+
+486
+00:21:39,280 --> 00:21:43,340
+Everything with a B is put into the
+second bucket, so on, and so forth.
+
+487
+00:21:43,340 --> 00:21:45,620
+Awesome, OK.
+
+488
+00:21:45,620 --> 00:21:48,980
+And a hash function is any
+function that takes in a word
+
+489
+00:21:48,980 --> 00:21:51,910
+and will tell you what
+bucket it belongs in.
+
+490
+00:21:51,910 --> 00:21:55,150
+So which entry in our
+array it belongs in.
+
+491
+00:21:55,150 --> 00:21:58,080
+>> So every time I give my
+hash function a word,
+
+492
+00:21:58,080 --> 00:22:00,660
+it should tell me the same
+place every single time.
+
+493
+00:22:00,660 --> 00:22:03,270
+So if we use the hash function
+from the previous slide
+
+494
+00:22:03,270 --> 00:22:05,950
+where we're sorting by the
+first letter of the alphabet,
+
+495
+00:22:05,950 --> 00:22:08,230
+every time I give my
+hash function "apple,"
+
+496
+00:22:08,230 --> 00:22:10,180
+it should always give me back 0.
+
+497
+00:22:10,180 --> 00:22:12,890
+So if I have an apple
+to put in my hash table,
+
+498
+00:22:12,890 --> 00:22:17,700
+if I give "apple" to my hash function,
+it should say, go put it in bucket 0.
+
+499
+00:22:17,700 --> 00:22:19,980
+If I'm looking for an
+apple in my hash table
+
+500
+00:22:19,980 --> 00:22:24,340
+and I say, where might apple
+live, you ask your hash function.
+
+501
+00:22:24,340 --> 00:22:26,900
+And it says, go to bucket 0.
+
+502
+00:22:26,900 --> 00:22:29,150
+All right?
+
+503
+00:22:29,150 --> 00:22:32,660
+Questions with hash functions?
+
+504
+00:22:32,660 --> 00:22:34,570
+Awesome.
+
+505
+00:22:34,570 --> 00:22:37,320
+>> Here is a slightly more
+detailed explanation
+
+506
+00:22:37,320 --> 00:22:39,570
+of what a hash function might look like.
+
+507
+00:22:39,570 --> 00:22:42,230
+
+508
+00:22:42,230 --> 00:22:42,960
+All right.
+
+509
+00:22:42,960 --> 00:22:45,960
+Now, the problem with hash
+functions is in an ideal world,
+
+510
+00:22:45,960 --> 00:22:48,870
+we would only have one
+thing in each bucket.
+
+511
+00:22:48,870 --> 00:22:50,900
+But in reality, there's
+not only one word
+
+512
+00:22:50,900 --> 00:22:54,280
+that starts with A. There's not
+only one word that starts with B. So
+
+513
+00:22:54,280 --> 00:22:56,960
+in this case, if we
+suddenly get "berry,"
+
+514
+00:22:56,960 --> 00:22:58,710
+and we want to put it
+into our hash table,
+
+515
+00:22:58,710 --> 00:23:03,640
+and we see, oh, no, banana is
+already there, what are we gonna do?
+
+516
+00:23:03,640 --> 00:23:05,900
+>> Well, we have two options.
+
+517
+00:23:05,900 --> 00:23:07,990
+The first option is
+linear probing, which
+
+518
+00:23:07,990 --> 00:23:11,100
+just means go find
+the next empty bucket.
+
+519
+00:23:11,100 --> 00:23:14,100
+Go find the next empty array entry.
+
+520
+00:23:14,100 --> 00:23:15,750
+And just put "berry" there.
+
+521
+00:23:15,750 --> 00:23:18,880
+So I know it's supposed to
+go with banana in bucket one.
+
+522
+00:23:18,880 --> 00:23:22,155
+But just put it in bucket three,
+because bucket three is empty.
+
+523
+00:23:22,155 --> 00:23:24,806
+
+524
+00:23:24,806 --> 00:23:26,680
+Another option is probably
+what you implement
+
+525
+00:23:26,680 --> 00:23:29,220
+in your p-set, where you
+had separate chaining.
+
+526
+00:23:29,220 --> 00:23:33,990
+So each of your buckets,
+each of your array elements,
+
+527
+00:23:33,990 --> 00:23:38,410
+not only holds one words, but actually
+holds a pointer to a list of words.
+
+528
+00:23:38,410 --> 00:23:41,880
+So that if you had
+banana in your hash table
+
+529
+00:23:41,880 --> 00:23:44,740
+and you suddenly wanted
+to add berry, no problem.
+
+530
+00:23:44,740 --> 00:23:51,110
+Just add berry on to the end, or to
+the beginning, of your linked list.
+
+531
+00:23:51,110 --> 00:23:54,040
+OK, awesome.
+
+532
+00:23:54,040 --> 00:23:58,490
+Questions with hash
+tables before we go on?
+
+533
+00:23:58,490 --> 00:23:59,850
+>> All right.
+
+534
+00:23:59,850 --> 00:24:01,070
+Trees and tries.
+
+535
+00:24:01,070 --> 00:24:07,980
+OK, so this was another option
+for implementing dictionary.
+
+536
+00:24:07,980 --> 00:24:09,100
+You could have made a try.
+
+537
+00:24:09,100 --> 00:24:13,420
+So it's a special kind of tree that
+behaves like a multi-level hash table.
+
+538
+00:24:13,420 --> 00:24:16,862
+So you'll see the picture
+where you have an array that
+
+539
+00:24:16,862 --> 00:24:19,320
+points to a bunch of arrays
+that point to a bunch of arrays
+
+540
+00:24:19,320 --> 00:24:20,390
+that point to a bunch of arrays.
+
+541
+00:24:20,390 --> 00:24:23,140
+And we'll see exactly what that
+would look like on a future slide.
+
+542
+00:24:23,140 --> 00:24:26,070
+And more generally, a tree
+is just any data structure
+
+543
+00:24:26,070 --> 00:24:29,710
+in which the data is
+organized in some hierarchy.
+
+544
+00:24:29,710 --> 00:24:32,610
+So where we saw we have
+some sort of understanding
+
+545
+00:24:32,610 --> 00:24:36,130
+of a top level, a next level,
+a next level, a next level.
+
+546
+00:24:36,130 --> 00:24:39,690
+So this is probably most clear
+with some specific examples.
+
+547
+00:24:39,690 --> 00:24:40,880
+So here's our tree.
+
+548
+00:24:40,880 --> 00:24:42,970
+You can see that it
+has particular levels
+
+549
+00:24:42,970 --> 00:24:45,480
+that we start with that root node, one.
+
+550
+00:24:45,480 --> 00:24:47,640
+And we can go down through our tree.
+
+551
+00:24:47,640 --> 00:24:50,730
+
+552
+00:24:50,730 --> 00:24:53,910
+>> A binary tree is a
+particular type of tree.
+
+553
+00:24:53,910 --> 00:24:56,770
+And the only specification
+for a binary tree
+
+554
+00:24:56,770 --> 00:25:01,130
+is that each node has
+at most two leaves.
+
+555
+00:25:01,130 --> 00:25:03,960
+So you're not going to see any
+of these nodes have three or four
+
+556
+00:25:03,960 --> 00:25:06,880
+or some other number of leaves.
+
+557
+00:25:06,880 --> 00:25:11,310
+And then even more specific
+is a binary search tree
+
+558
+00:25:11,310 --> 00:25:18,010
+where every node to the left of the
+node is going to have a value smaller.
+
+559
+00:25:18,010 --> 00:25:21,180
+And every value to the
+right is going to be bigger.
+
+560
+00:25:21,180 --> 00:25:26,900
+So if you see 44 is at our root,
+to the left, 11, 22, and 33
+
+561
+00:25:26,900 --> 00:25:28,940
+are all less than our root.
+
+562
+00:25:28,940 --> 00:25:33,890
+And on the right are all
+numbers bigger-- 66, 55, and 77.
+
+563
+00:25:33,890 --> 00:25:37,380
+And this property holds true
+at every level of the tree.
+
+564
+00:25:37,380 --> 00:25:42,690
+>> So when we go down to
+22, 11, and 33, still 11
+
+565
+00:25:42,690 --> 00:25:46,950
+is smaller than 22 and
+33 is bigger than 22.
+
+566
+00:25:46,950 --> 00:25:50,160
+And this makes it easier to search
+because if we're looking for a number,
+
+567
+00:25:50,160 --> 00:25:53,877
+we know exactly which
+branch to follow down.
+
+568
+00:25:53,877 --> 00:25:56,210
+So this should remind you a
+little bit of binary search.
+
+569
+00:25:56,210 --> 00:25:56,967
+Yeah?
+
+570
+00:25:56,967 --> 00:25:58,835
+>> AUDIENCE: So when you're
+describing binary,
+
+571
+00:25:58,835 --> 00:26:00,587
+you said it has at most two leaves?
+
+572
+00:26:00,587 --> 00:26:01,170
+HANNAH: Mm-hm.
+
+573
+00:26:01,170 --> 00:26:02,580
+AUDIENCE: Could it have less?
+
+574
+00:26:02,580 --> 00:26:03,121
+HANNAH: Yeah.
+
+575
+00:26:03,121 --> 00:26:06,720
+So let's say, for example, you
+didn't have an even number of things
+
+576
+00:26:06,720 --> 00:26:11,791
+and you couldn't fill up all your
+leaves, it's fine if one has one.
+
+577
+00:26:11,791 --> 00:26:12,290
+OK?
+
+578
+00:26:12,290 --> 00:26:12,789
+Awesome.
+
+579
+00:26:12,789 --> 00:26:15,930
+Any other questions on trees?
+
+580
+00:26:15,930 --> 00:26:16,670
+OK.
+
+581
+00:26:16,670 --> 00:26:20,110
+>> Back to our tries as I was talking
+about a little bit earlier,
+
+582
+00:26:20,110 --> 00:26:23,900
+how we have these multi-level arrays.
+
+583
+00:26:23,900 --> 00:26:26,280
+So in this case, we start at the top.
+
+584
+00:26:26,280 --> 00:26:29,030
+And we can follow any given word down.
+
+585
+00:26:29,030 --> 00:26:30,780
+So let's say we wanted
+to look for Turing.
+
+586
+00:26:30,780 --> 00:26:34,380
+We start at T, follow it down
+to an array that contains U,
+
+587
+00:26:34,380 --> 00:26:37,350
+and follow it down until we
+reach this little delta which
+
+588
+00:26:37,350 --> 00:26:39,060
+tells us, yes, you found a word.
+
+589
+00:26:39,060 --> 00:26:43,200
+
+590
+00:26:43,200 --> 00:26:44,120
+Clear on tries?
+
+591
+00:26:44,120 --> 00:26:48,138
+Anything to go over there?
+
+592
+00:26:48,138 --> 00:26:48,908
+Yes?
+
+593
+00:26:48,908 --> 00:26:51,866
+AUDIENCE: Does the symbol of delta
+have to occupy space within the try?
+
+594
+00:26:51,866 --> 00:26:54,532
+HANNAH: Yeah, so it doesn't
+necessarily even need to be a delta.
+
+595
+00:26:54,532 --> 00:26:57,760
+But we need some way to
+tell our computer-- sorry,
+
+596
+00:26:57,760 --> 00:27:01,130
+so that we know that TUR is not a word.
+
+597
+00:27:01,130 --> 00:27:04,180
+Because let's say we didn't have
+this concept of a delta, this concept
+
+598
+00:27:04,180 --> 00:27:09,850
+of congratulations, you found a word,
+it would go through and iterate T-U-R,
+
+599
+00:27:09,850 --> 00:27:11,300
+and then say, awesome, I found it!
+
+600
+00:27:11,300 --> 00:27:12,670
+It must be a word.
+
+601
+00:27:12,670 --> 00:27:13,720
+But it's really not.
+
+602
+00:27:13,720 --> 00:27:15,310
+We want whole Turing to be a word.
+
+603
+00:27:15,310 --> 00:27:17,760
+So we must have something at the
+end that says, congratulations,
+
+604
+00:27:17,760 --> 00:27:19,051
+you've found a legitimate word.
+
+605
+00:27:19,051 --> 00:27:21,680
+AUDIENCE: So if you had like
+26 letters in the alphabet,
+
+606
+00:27:21,680 --> 00:27:24,560
+would you actually have
+27 keys in your try?
+
+607
+00:27:24,560 --> 00:27:26,010
+>> HANNAH: Awesome, yeah.
+
+608
+00:27:26,010 --> 00:27:28,210
+So actually, I think that
+will be on the next slide.
+
+609
+00:27:28,210 --> 00:27:29,440
+Ta-da!
+
+610
+00:27:29,440 --> 00:27:32,880
+Where if you have a
+node in your try, you're
+
+611
+00:27:32,880 --> 00:27:35,800
+going to have 27 children instead of 26.
+
+612
+00:27:35,800 --> 00:27:39,010
+
+613
+00:27:39,010 --> 00:27:40,050
+Any questions with that?
+
+614
+00:27:40,050 --> 00:27:40,550
+Yeah?
+
+615
+00:27:40,550 --> 00:27:44,569
+AUDIENCE: Why do tries take up so
+much space [INAUDIBLE] as you go?
+
+616
+00:27:44,569 --> 00:27:47,629
+Why is it considered to be [INAUDIBLE]?
+
+617
+00:27:47,629 --> 00:27:48,170
+HANNAH: Sure.
+
+618
+00:27:48,170 --> 00:27:48,790
+Let's go back.
+
+619
+00:27:48,790 --> 00:27:52,350
+The question is, why
+are tries so much bigger
+
+620
+00:27:52,350 --> 00:27:54,620
+than something like a hash table.
+
+621
+00:27:54,620 --> 00:27:57,790
+So for each of these levels,
+even if they're not drawn here,
+
+622
+00:27:57,790 --> 00:28:01,250
+you have to have all 26 characters.
+
+623
+00:28:01,250 --> 00:28:04,420
+And the reason that you can't
+say, oh, but like for Turing, I
+
+624
+00:28:04,420 --> 00:28:07,570
+don't need to have any of those
+same things on the level of U. Well,
+
+625
+00:28:07,570 --> 00:28:11,390
+if suddenly you wanted to add
+something that was like T-H,
+
+626
+00:28:11,390 --> 00:28:14,800
+you'd need to have the
+capability of adding that word.
+
+627
+00:28:14,800 --> 00:28:17,330
+So for every single letter,
+you're going to have
+
+628
+00:28:17,330 --> 00:28:19,730
+to have a bunch of
+arrays coming off of it.
+
+629
+00:28:19,730 --> 00:28:24,060
+So you can see how it'd get
+really big, really fast.
+
+630
+00:28:24,060 --> 00:28:26,560
+Any other questions?
+
+631
+00:28:26,560 --> 00:28:28,980
+All right.
+
+632
+00:28:28,980 --> 00:28:29,832
+Yeah?
+
+633
+00:28:29,832 --> 00:28:33,210
+>> AUDIENCE: When are tries
+faster than hash tables?
+
+634
+00:28:33,210 --> 00:28:36,280
+>> HANNAH: When are tries
+faster than hash tables?
+
+635
+00:28:36,280 --> 00:28:39,120
+So if you had a really
+bad hash function.
+
+636
+00:28:39,120 --> 00:28:41,840
+So let's say I was like,
+here's your hash function.
+
+637
+00:28:41,840 --> 00:28:43,660
+No matter what word
+you give me, I'm always
+
+638
+00:28:43,660 --> 00:28:47,740
+going to put it in array entry 0.
+
+639
+00:28:47,740 --> 00:28:52,000
+And so we end up with just putting
+everything in one big long linked list.
+
+640
+00:28:52,000 --> 00:28:58,740
+And so a lookup time would take at worst
+n if it's at the very end of our list.
+
+641
+00:28:58,740 --> 00:29:03,150
+With the try, we just have to iterate
+through the letters in the word.
+
+642
+00:29:03,150 --> 00:29:07,080
+So even if we added a bunch
+more words to our try,
+
+643
+00:29:07,080 --> 00:29:09,620
+it wouldn't take us any longer
+to find a particular word.
+
+644
+00:29:09,620 --> 00:29:11,750
+>> All we have to do is, for
+example, in this case,
+
+645
+00:29:11,750 --> 00:29:17,170
+let's say we're looking for zoom,
+we would just have to iterate over
+
+646
+00:29:17,170 --> 00:29:19,840
+Z-O-O-M, four letters.
+
+647
+00:29:19,840 --> 00:29:22,250
+So that's just the
+length of the word zoom.
+
+648
+00:29:22,250 --> 00:29:25,400
+It doesn't matter how many
+more words we put in this try.
+
+649
+00:29:25,400 --> 00:29:30,225
+We can always get it
+in those four steps.
+
+650
+00:29:30,225 --> 00:29:31,215
+Awesome.
+
+651
+00:29:31,215 --> 00:29:32,205
+Yes?
+
+652
+00:29:32,205 --> 00:29:34,185
+>> AUDIENCE: So [INAUDIBLE]
+is an array, right?
+
+653
+00:29:34,185 --> 00:29:35,322
+>> HANNAH: Mm-hm.
+
+654
+00:29:35,322 --> 00:29:37,155
+AUDIENCE: If you're
+looking for [INAUDIBLE],
+
+655
+00:29:37,155 --> 00:29:40,929
+would you have to go through
+your array to find [INAUDIBLE]?
+
+656
+00:29:40,929 --> 00:29:41,470
+HANNAH: Sure.
+
+657
+00:29:41,470 --> 00:29:44,000
+AUDIENCE: Doesn't that take more time?
+
+658
+00:29:44,000 --> 00:29:46,370
+HANNAH: If I'm going to
+say that my array is always
+
+659
+00:29:46,370 --> 00:29:49,250
+going to be A, B, C, D,
+E, F, G, blah blah blah,
+
+660
+00:29:49,250 --> 00:29:51,630
+so if I always know it's
+in the same exact order,
+
+661
+00:29:51,630 --> 00:29:53,880
+if I always know it's
+in alphabetical order,
+
+662
+00:29:53,880 --> 00:29:57,860
+I can just say O is number
+so and so in the alphabet.
+
+663
+00:29:57,860 --> 00:29:59,620
+Just jump to that place.
+
+664
+00:29:59,620 --> 00:30:01,860
+Because remember, with
+arrays, we can access
+
+665
+00:30:01,860 --> 00:30:06,590
+any element of that array in constant
+time if we know where we're looking.
+
+666
+00:30:06,590 --> 00:30:09,080
+
+667
+00:30:09,080 --> 00:30:09,580
+Yeah?
+
+668
+00:30:09,580 --> 00:30:12,005
+>> AUDIENCE: On the previous
+slide [INAUDIBLE] 27,
+
+669
+00:30:12,005 --> 00:30:14,430
+but 26 for the first one.
+
+670
+00:30:14,430 --> 00:30:15,400
+>> HANNAH: Sorry?
+
+671
+00:30:15,400 --> 00:30:18,800
+>> AUDIENCE: Isn't the first
+one 0, so wouldn't it be 26?
+
+672
+00:30:18,800 --> 00:30:24,900
+>> HANNAH: Sure, so when we say 27, that's
+going to give us indices 0 through 26.
+
+673
+00:30:24,900 --> 00:30:28,220
+But if you actually count
+those out, it's going to be 27.
+
+674
+00:30:28,220 --> 00:30:30,007
+Good question.
+
+675
+00:30:30,007 --> 00:30:30,590
+Anything else?
+
+676
+00:30:30,590 --> 00:30:31,200
+Yeah?
+
+677
+00:30:31,200 --> 00:30:34,420
+>> AUDIENCE: So are tries
+slower than hash tables?
+
+678
+00:30:34,420 --> 00:30:37,920
+>> HANNAH: Tries are going to be, in
+theory, faster than hash tables
+
+679
+00:30:37,920 --> 00:30:39,760
+but take up more memory.
+
+680
+00:30:39,760 --> 00:30:40,534
+Yeah?
+
+681
+00:30:40,534 --> 00:30:41,450
+AUDIENCE: [INAUDIBLE]?
+
+682
+00:30:41,450 --> 00:30:45,770
+
+683
+00:30:45,770 --> 00:30:47,484
+>> HANNAH: I'm sorry, I didn't hear you.
+
+684
+00:30:47,484 --> 00:30:48,400
+AUDIENCE: [INAUDIBLE].
+
+685
+00:30:48,400 --> 00:30:51,250
+
+686
+00:30:51,250 --> 00:30:54,100
+0 to 25 gives you 26.
+
+687
+00:30:54,100 --> 00:30:56,958
+>> HANNAH: 0 to 25 would
+give you 26, right.
+
+688
+00:30:56,958 --> 00:30:58,457
+>> AUDIENCE: And then [INAUDIBLE].
+
+689
+00:30:58,457 --> 00:30:59,040
+HANNAH: Right.
+
+690
+00:30:59,040 --> 00:31:04,760
+So the number we're specifying is
+the number of things in our array.
+
+691
+00:31:04,760 --> 00:31:07,260
+So if we have 27, it's
+going to give us 0
+
+692
+00:31:07,260 --> 00:31:10,620
+through 26, which will give
+us room for, in this case,
+
+693
+00:31:10,620 --> 00:31:12,770
+I'm not including an apostrophe.
+
+694
+00:31:12,770 --> 00:31:17,040
+So we're getting 0 through 25 are
+the first 26 letters of the alphabet,
+
+695
+00:31:17,040 --> 00:31:18,990
+or all 26 letters of the alphabet.
+
+696
+00:31:18,990 --> 00:31:21,190
+And then that last
+thing, at entry 26, is
+
+697
+00:31:21,190 --> 00:31:24,598
+going to be the check
+mark, or the delta.
+
+698
+00:31:24,598 --> 00:31:26,960
+Anything else?
+
+699
+00:31:26,960 --> 00:31:29,130
+Awesome.
+
+700
+00:31:29,130 --> 00:31:30,020
+Lost my space.
+
+701
+00:31:30,020 --> 00:31:31,020
+OK, cool.
+
+702
+00:31:31,020 --> 00:31:33,240
+>> So we already touched upon this.
+
+703
+00:31:33,240 --> 00:31:37,430
+But the big trade off
+between tries and hash tables
+
+704
+00:31:37,430 --> 00:31:39,720
+is that tries provide, in
+theory, constant look up
+
+705
+00:31:39,720 --> 00:31:42,890
+times but use a whole lot of memory.
+
+706
+00:31:42,890 --> 00:31:46,495
+All right, now we have slightly
+less complicated structures,
+
+707
+00:31:46,495 --> 00:31:49,640
+and we'll be done with C,
+and we'll move right along.
+
+708
+00:31:49,640 --> 00:31:51,930
+>> So stacks, we saw this
+in lecture where you
+
+709
+00:31:51,930 --> 00:31:55,020
+have something like a
+stack of trays where
+
+710
+00:31:55,020 --> 00:31:57,330
+the last thing you put
+on the stack is going
+
+711
+00:31:57,330 --> 00:31:59,500
+to be the first thing you take off.
+
+712
+00:31:59,500 --> 00:32:02,880
+So that's what really defines a stack
+is that the last thing you put on
+
+713
+00:32:02,880 --> 00:32:06,080
+is going to be the first
+thing you take off.
+
+714
+00:32:06,080 --> 00:32:09,279
+And the terminology that we use
+if we're going to put something,
+
+715
+00:32:09,279 --> 00:32:12,070
+if we're going to add something to
+our stack, we call that pushing.
+
+716
+00:32:12,070 --> 00:32:14,970
+And if we take something
+off, we call it popping.
+
+717
+00:32:14,970 --> 00:32:17,080
+And if we're going to
+implement a stack, we
+
+718
+00:32:17,080 --> 00:32:20,660
+need to be sure to keep track of
+both the size and the capacity.
+
+719
+00:32:20,660 --> 00:32:24,940
+So the total number of elements we can
+hold and the current number of elements
+
+720
+00:32:24,940 --> 00:32:27,880
+that we are holding.
+
+721
+00:32:27,880 --> 00:32:29,885
+>> And very similarly, we have queues.
+
+722
+00:32:29,885 --> 00:32:34,510
+And the only difference
+is instead of with stacks,
+
+723
+00:32:34,510 --> 00:32:37,630
+we said the last thing we put on
+is the first thing we take off.
+
+724
+00:32:37,630 --> 00:32:40,940
+So with queues, the
+first thing we put in
+
+725
+00:32:40,940 --> 00:32:43,129
+is going to be the
+first thing we take out.
+
+726
+00:32:43,129 --> 00:32:45,420
+So this is like if you're
+actually lining up at a store
+
+727
+00:32:45,420 --> 00:32:48,140
+and you're being helped,
+then the first person in line
+
+728
+00:32:48,140 --> 00:32:50,880
+should be the first person to be helped.
+
+729
+00:32:50,880 --> 00:32:52,220
+So that would be a queue.
+
+730
+00:32:52,220 --> 00:32:55,880
+>> So we need to keep track of the
+size, capacity, and head since we're
+
+731
+00:32:55,880 --> 00:33:01,130
+going to take everyone off the front
+of the list instead of the back.
+
+732
+00:33:01,130 --> 00:33:03,480
+Questions on that?
+
+733
+00:33:03,480 --> 00:33:06,330
+Any C questions that are bothering you?
+
+734
+00:33:06,330 --> 00:33:09,590
+Data structures, any of that fun stuff?
+
+735
+00:33:09,590 --> 00:33:10,530
+All right, cool.
+
+736
+00:33:10,530 --> 00:33:14,120
+So I'll hand it over to Alison to
+jump into some more programming.
+
+737
+00:33:14,120 --> 00:33:15,965
+>> ALISON: Oh, we'll see.
+
+738
+00:33:15,965 --> 00:33:17,370
+We'll see how well I do here.
+
+739
+00:33:17,370 --> 00:33:21,410
+OK, I'm going to try and fly
+through this stuff, guys.
+
+740
+00:33:21,410 --> 00:33:24,540
+Hannah went very in
+depth on all her things.
+
+741
+00:33:24,540 --> 00:33:26,900
+I'm going to try to give
+you a quick blast overview
+
+742
+00:33:26,900 --> 00:33:31,290
+so that we can get to Davin with all
+the fun JavaScript and security things
+
+743
+00:33:31,290 --> 00:33:33,380
+that maybe you actually
+want to hear more about.
+
+744
+00:33:33,380 --> 00:33:36,600
+>> OK, as Hannah said, if
+you have any questions,
+
+745
+00:33:36,600 --> 00:33:39,170
+I'm going too fast, please, let me know.
+
+746
+00:33:39,170 --> 00:33:42,114
+I will answer questions as necessary.
+
+747
+00:33:42,114 --> 00:33:45,280
+So to start, we're going to start with
+probably one of the very first things
+
+748
+00:33:45,280 --> 00:33:48,730
+you learned with web
+programming, permissions.
+
+749
+00:33:48,730 --> 00:33:52,720
+So chmod, you guys should've been
+masters at this with all the web
+
+750
+00:33:52,720 --> 00:33:54,870
+programming that you've
+been doing lately.
+
+751
+00:33:54,870 --> 00:33:57,320
+It's basically just a command
+that changes the permissions
+
+752
+00:33:57,320 --> 00:34:00,779
+or the access permissions
+of our file system objects.
+
+753
+00:34:00,779 --> 00:34:02,570
+Of course, to actually
+see these, if you're
+
+754
+00:34:02,570 --> 00:34:04,910
+having any trouble with these
+during your problem sets,
+
+755
+00:34:04,910 --> 00:34:11,460
+you may have used ls -l, which is long,
+to get the view kind of like this,
+
+756
+00:34:11,460 --> 00:34:14,209
+where you actually see all
+the permissions for a file.
+
+757
+00:34:14,209 --> 00:34:16,850
+
+758
+00:34:16,850 --> 00:34:20,732
+>> And really, we're just going to go
+through pretty quickly just pretty
+
+759
+00:34:20,732 --> 00:34:21,940
+much what each of these mean.
+
+760
+00:34:21,940 --> 00:34:24,481
+So we have d right here, which
+just stands for the directory.
+
+761
+00:34:24,481 --> 00:34:26,790
+
+762
+00:34:26,790 --> 00:34:31,739
+Obviously right here, we see rwx, which
+is readable, writeable, and executable.
+
+763
+00:34:31,739 --> 00:34:37,090
+These could also be represented as bits,
+which we'll get into on the next page.
+
+764
+00:34:37,090 --> 00:34:40,699
+So each triad that we saw
+here, so it's three triads.
+
+765
+00:34:40,699 --> 00:34:48,120
+We have rwx, r nothing x and r
+nothing x for this first file.
+
+766
+00:34:48,120 --> 00:34:49,690
+It's this general structure.
+
+767
+00:34:49,690 --> 00:34:50,940
+>> So we have some directory.
+
+768
+00:34:50,940 --> 00:34:53,999
+We have some user group
+with these permissions.
+
+769
+00:34:53,999 --> 00:34:57,040
+Some group that has these permissions,
+and a world that has a permission.
+
+770
+00:34:57,040 --> 00:34:59,420
+You can think of these as a triad.
+
+771
+00:34:59,420 --> 00:35:01,130
+You can think of these as three bits.
+
+772
+00:35:01,130 --> 00:35:04,060
+So they can hold values
+anywhere from 0 up
+
+773
+00:35:04,060 --> 00:35:07,350
+to 7, which is why sometimes
+we had you do chmod
+
+774
+00:35:07,350 --> 00:35:17,510
+600 instead of chmod rw whatever.
+
+775
+00:35:17,510 --> 00:35:19,170
+We'll get into an example there.
+
+776
+00:35:19,170 --> 00:35:24,260
+But basically, you can think
+of these as either just rwx,
+
+777
+00:35:24,260 --> 00:35:28,520
+or you can think of them as some
+number where this first one here
+
+778
+00:35:28,520 --> 00:35:31,480
+represents a number between
+0 and 7, this second one
+
+779
+00:35:31,480 --> 00:35:33,970
+represents a number between
+0 and 7, and the third one
+
+780
+00:35:33,970 --> 00:35:38,245
+represents a number between 0 and 7, OK?
+
+781
+00:35:38,245 --> 00:35:42,700
+>> r has a value of 4. w
+has a value of 2, and x
+
+782
+00:35:42,700 --> 00:35:49,230
+has a value of 1, which is why this
+permission here would be chmod 700.
+
+783
+00:35:49,230 --> 00:35:53,520
+Because in this case here, it says we
+have the first bit there is flipped on.
+
+784
+00:35:53,520 --> 00:35:55,380
+So we have 4 for read.
+
+785
+00:35:55,380 --> 00:35:58,730
+The second bit is flipped on for
+w, which is 2, so now we have 6.
+
+786
+00:35:58,730 --> 00:36:02,070
+And the third bit is flipped on
+for x, which is 1, so we get seven.
+
+787
+00:36:02,070 --> 00:36:04,820
+And of course, our group
+and our world are each 0.
+
+788
+00:36:04,820 --> 00:36:07,770
+So this is also the
+equivalent of chmod 700.
+
+789
+00:36:07,770 --> 00:36:12,081
+And I would definitely try to
+understand the mapping between those.
+
+790
+00:36:12,081 --> 00:36:14,080
+I'm not sure if it has
+come up on a quiz before,
+
+791
+00:36:14,080 --> 00:36:18,590
+but it would be a
+question that I might ask.
+
+792
+00:36:18,590 --> 00:36:22,110
+>> Just a little bit going even
+further into chmod here, here
+
+793
+00:36:22,110 --> 00:36:27,730
+is the very general
+structure of a chmod call.
+
+794
+00:36:27,730 --> 00:36:29,500
+So of course, we have chmod here.
+
+795
+00:36:29,500 --> 00:36:34,410
+References, what this refers to is
+who are we giving these permissions to
+
+796
+00:36:34,410 --> 00:36:36,570
+or who are we taking these
+permissions away from.
+
+797
+00:36:36,570 --> 00:36:44,330
+So we have a here in the permissions,
+like we've given you chmod a plus x,
+
+798
+00:36:44,330 --> 00:36:45,440
+as we'll see soon.
+
+799
+00:36:45,440 --> 00:36:48,460
+a just means give these specific
+permissions to everyone.
+
+800
+00:36:48,460 --> 00:36:49,600
+Give them to all.
+
+801
+00:36:49,600 --> 00:36:55,370
+So you could very well have u plus x
+or g plus x or o plus x or multiple
+
+802
+00:36:55,370 --> 00:36:55,870
+thereof.
+
+803
+00:36:55,870 --> 00:36:59,280
+So that first part is always
+going to be references.
+
+804
+00:36:59,280 --> 00:37:03,220
+Who are we giving these permissions to,
+or who are we taking them away from?
+
+805
+00:37:03,220 --> 00:37:04,850
+>> The second one is the operator.
+
+806
+00:37:04,850 --> 00:37:07,350
+So you guys have mostly dealt with plus.
+
+807
+00:37:07,350 --> 00:37:12,140
+This gives permissions to
+whoever you're giving them,
+
+808
+00:37:12,140 --> 00:37:14,840
+whereas minus, logically, removes them.
+
+809
+00:37:14,840 --> 00:37:16,880
+So nothing too terrible there.
+
+810
+00:37:16,880 --> 00:37:23,060
+And then modes is what we talked about
+with reading, writing, or executing.
+
+811
+00:37:23,060 --> 00:37:29,070
+So a plus x means give executable
+permissions to everyone.
+
+812
+00:37:29,070 --> 00:37:33,430
+And then, of course, on which
+specific file or directory.
+
+813
+00:37:33,430 --> 00:37:33,980
+OK?
+
+814
+00:37:33,980 --> 00:37:36,010
+Everyone good with chmod?
+
+815
+00:37:36,010 --> 00:37:37,850
+Not too bad?
+
+816
+00:37:37,850 --> 00:37:42,417
+>> OK, so HTML, any of you are
+old enough to-- MySpace age?
+
+817
+00:37:42,417 --> 00:37:44,750
+I sent this to my section,
+and literally half the people
+
+818
+00:37:44,750 --> 00:37:45,790
+looked at me like I was crazy.
+
+819
+00:37:45,790 --> 00:37:47,498
+And I was like, guys,
+we're not that old.
+
+820
+00:37:47,498 --> 00:37:48,910
+Come on.
+
+821
+00:37:48,910 --> 00:37:53,360
+So HyperText Markup Language,
+it's honestly just a way for you
+
+822
+00:37:53,360 --> 00:37:57,990
+to display certain things on the web.
+
+823
+00:37:57,990 --> 00:37:59,210
+So it's a markup language.
+
+824
+00:37:59,210 --> 00:38:00,640
+It's not a scripting language.
+
+825
+00:38:00,640 --> 00:38:02,160
+There's no logic in it.
+
+826
+00:38:02,160 --> 00:38:05,710
+It is simply to change the
+way something is displayed.
+
+827
+00:38:05,710 --> 00:38:07,670
+OK, so that's an important
+distinction to make.
+
+828
+00:38:07,670 --> 00:38:12,030
+It's considered a markup language,
+not a scripting language.
+
+829
+00:38:12,030 --> 00:38:15,100
+>> So here we have our HTML tags.
+
+830
+00:38:15,100 --> 00:38:20,390
+On this slide are probably most of the
+ones that you should be familiar with
+
+831
+00:38:20,390 --> 00:38:22,390
+and be really comfortable with.
+
+832
+00:38:22,390 --> 00:38:25,700
+So obviously, we have
+our HTML tag, which
+
+833
+00:38:25,700 --> 00:38:29,930
+designates that everything in
+between these two will be HTML.
+
+834
+00:38:29,930 --> 00:38:33,070
+We have some link, which
+obviously will give you
+
+835
+00:38:33,070 --> 00:38:34,990
+a link to an external web page.
+
+836
+00:38:34,990 --> 00:38:37,520
+Some title, within our head here.
+
+837
+00:38:37,520 --> 00:38:40,020
+And we have our body with
+h1, which is a header,
+
+838
+00:38:40,020 --> 00:38:42,260
+so it'll make it nice
+and bold and bigger.
+
+839
+00:38:42,260 --> 00:38:46,040
+And then, we have some
+p, which is a paragraph.
+
+840
+00:38:46,040 --> 00:38:49,000
+You should probably know
+and be familiar with things
+
+841
+00:38:49,000 --> 00:38:54,030
+like how you insert an image, are
+there any other header classes?
+
+842
+00:38:54,030 --> 00:38:57,240
+I would definitely be
+comfortable with div.
+
+843
+00:38:57,240 --> 00:39:00,840
+So these have the majority of tags
+that you should be familiar with.
+
+844
+00:39:00,840 --> 00:39:04,370
+But of course, as with everything in
+CS 50, the list is not exhaustive.
+
+845
+00:39:04,370 --> 00:39:08,200
+So make sure you brush up on that.
+
+846
+00:39:08,200 --> 00:39:13,260
+>> CSS, so CSS, if any of you watch
+my seminar from two weeks ago,
+
+847
+00:39:13,260 --> 00:39:16,250
+is really just a way
+to style your web page?
+
+848
+00:39:16,250 --> 00:39:18,950
+OK, so we have some markup language.
+
+849
+00:39:18,950 --> 00:39:23,220
+HTML, that takes care of just the text
+and where it might be on the page.
+
+850
+00:39:23,220 --> 00:39:25,760
+But CSS is really what makes it pretty.
+
+851
+00:39:25,760 --> 00:39:30,690
+You could have these in your HTML
+files, but as we will talk about later,
+
+852
+00:39:30,690 --> 00:39:32,660
+I'm pretty sure it might
+be the next slide, it
+
+853
+00:39:32,660 --> 00:39:35,620
+is common practice, and actually
+practice that we really encourage,
+
+854
+00:39:35,620 --> 00:39:40,670
+for you to keep them separated when we
+talk about MVC and that whole paradigm.
+
+855
+00:39:40,670 --> 00:39:42,490
+That's really what this feeds into.
+
+856
+00:39:42,490 --> 00:39:46,110
+>> So CSS is just a way to
+make things look pretty.
+
+857
+00:39:46,110 --> 00:39:50,500
+The things here, like
+body and #title and .info,
+
+858
+00:39:50,500 --> 00:39:54,340
+these are called selectors and what
+they do is they select specific things
+
+859
+00:39:54,340 --> 00:39:59,260
+within your HTML file
+and apply whatever style,
+
+860
+00:39:59,260 --> 00:40:04,090
+whatever sort of things that you want,
+to that specific element of your web
+
+861
+00:40:04,090 --> 00:40:04,590
+page.
+
+862
+00:40:04,590 --> 00:40:08,820
+So here, we have a
+background color and a color
+
+863
+00:40:08,820 --> 00:40:12,450
+and a font family that's being
+applied to whatever is in the body.
+
+864
+00:40:12,450 --> 00:40:15,530
+So if we looked back here, it
+wouldn't apply to the title.
+
+865
+00:40:15,530 --> 00:40:22,340
+It would only apply to what is
+in these body selectors, OK?
+
+866
+00:40:22,340 --> 00:40:25,250
+>> With title here, this is
+going to be the same thing,
+
+867
+00:40:25,250 --> 00:40:28,410
+the color of the text
+being blue is only going
+
+868
+00:40:28,410 --> 00:40:33,870
+to affect what is within
+the title selectors.
+
+869
+00:40:33,870 --> 00:40:36,580
+As well as info here,
+the text will be pink,
+
+870
+00:40:36,580 --> 00:40:38,600
+whatever's info, which is right here.
+
+871
+00:40:38,600 --> 00:40:40,860
+So the only thing that
+would be pink on this page
+
+872
+00:40:40,860 --> 00:40:44,100
+is date, Monday, November 17, 2014.
+
+873
+00:40:44,100 --> 00:40:48,770
+OK, so CSS is just a way to
+have more control over-- yes?
+
+874
+00:40:48,770 --> 00:40:51,850
+>> AUDIENCE: Why do you have
+to use the hash with title?
+
+875
+00:40:51,850 --> 00:40:55,170
+>> HANNAH: Next slide, promise!
+
+876
+00:40:55,170 --> 00:40:56,810
+We'll get there.
+
+877
+00:40:56,810 --> 00:40:59,830
+So this is why we have to use hash.
+
+878
+00:40:59,830 --> 00:41:03,429
+So selectors take on three main
+forms that we talk to you guys about.
+
+879
+00:41:03,429 --> 00:41:05,595
+I fyou want to learn more,
+there's plenty out there.
+
+880
+00:41:05,595 --> 00:41:07,540
+There's great CSS documentation.
+
+881
+00:41:07,540 --> 00:41:12,680
+There's a tag name, which has to do
+with just your normal tags in HTML.
+
+882
+00:41:12,680 --> 00:41:17,210
+So h1, p, div, h2,
+those sorts of things.
+
+883
+00:41:17,210 --> 00:41:20,320
+And we can just name those as is.
+
+884
+00:41:20,320 --> 00:41:22,650
+So as we see here with
+body, it's a normal tag.
+
+885
+00:41:22,650 --> 00:41:26,660
+So we can just put body when
+we're talking in our CSS file.
+
+886
+00:41:26,660 --> 00:41:29,730
+>> With title, the whole reason we
+have this hash is we have what's
+
+887
+00:41:29,730 --> 00:41:31,010
+considered an ID.
+
+888
+00:41:31,010 --> 00:41:35,400
+So an ID should always be
+unique within your HTML page
+
+889
+00:41:35,400 --> 00:41:37,930
+so that when you are
+referring to it, you
+
+890
+00:41:37,930 --> 00:41:41,990
+know that you're only referring
+to one specific thing.
+
+891
+00:41:41,990 --> 00:41:46,270
+So in this case here, with our
+h1 here, CS 50 review session,
+
+892
+00:41:46,270 --> 00:41:47,810
+we have an id of title.
+
+893
+00:41:47,810 --> 00:41:54,280
+So in order to just refer to that
+piece of our HTML, we do a hash title.
+
+894
+00:41:54,280 --> 00:41:58,080
+Just by convention, IDs are designated
+with a hash in front of them.
+
+895
+00:41:58,080 --> 00:42:01,650
+In the same way, we see
+info here is a class.
+
+896
+00:42:01,650 --> 00:42:06,070
+And so class with CSS is
+designated as a dot class
+
+897
+00:42:06,070 --> 00:42:08,895
+or dot whatever that class is.
+
+898
+00:42:08,895 --> 00:42:10,850
+So in this case here, it's info.
+
+899
+00:42:10,850 --> 00:42:13,090
+>> So I take it back.
+
+900
+00:42:13,090 --> 00:42:16,200
+Both of these would be
+pink for our CSS here
+
+901
+00:42:16,200 --> 00:42:18,430
+because they both have a class of info.
+
+902
+00:42:18,430 --> 00:42:23,070
+And in our CSS file, we have designated
+that anything with a class of info
+
+903
+00:42:23,070 --> 00:42:24,120
+shall be pink.
+
+904
+00:42:24,120 --> 00:42:25,968
+Does that make sense?
+
+905
+00:42:25,968 --> 00:42:27,435
+Yes?
+
+906
+00:42:27,435 --> 00:42:30,731
+>> AUDIENCE: If you were to make
+everything in the body white,
+
+907
+00:42:30,731 --> 00:42:32,814
+and then you try to make
+something inside it blue,
+
+908
+00:42:32,814 --> 00:42:34,770
+would that cause problems?
+
+909
+00:42:34,770 --> 00:42:37,310
+>> HANNAH: So CSS is
+cascading style sheets.
+
+910
+00:42:37,310 --> 00:42:40,730
+So whatever is toward the
+bottom will take precedence.
+
+911
+00:42:40,730 --> 00:42:44,080
+So if you do something with body,
+and you make everything white,
+
+912
+00:42:44,080 --> 00:42:49,300
+and then later on you change the title
+or you change the text within body,
+
+913
+00:42:49,300 --> 00:42:50,560
+it overwrites that.
+
+914
+00:42:50,560 --> 00:42:55,360
+So anything toward the
+bottom will take precedence.
+
+915
+00:42:55,360 --> 00:42:56,730
+Yes?
+
+916
+00:42:56,730 --> 00:42:59,627
+>> AUDIENCE: And IDs are unique,
+but classes can be more?
+
+917
+00:42:59,627 --> 00:43:00,210
+HANNAH: Right.
+
+918
+00:43:00,210 --> 00:43:06,320
+So IDs should be unique, and classes can
+refer to as many things as you'd like.
+
+919
+00:43:06,320 --> 00:43:07,580
+Any other questions?
+
+920
+00:43:07,580 --> 00:43:09,800
+Yes.
+
+921
+00:43:09,800 --> 00:43:11,210
+>> AUDIENCE: [INAUDIBLE].
+
+922
+00:43:11,210 --> 00:43:13,509
+I'm wondering whether
+that makes a difference.
+
+923
+00:43:13,509 --> 00:43:15,217
+HANNAH: I'm sorry,
+what was the question?
+
+924
+00:43:15,217 --> 00:43:18,960
+AUDIENCE: There's small
+"f" and capital "F."
+
+925
+00:43:18,960 --> 00:43:21,440
+HANNAH: So the difference
+between small "f" and capital "F"
+
+926
+00:43:21,440 --> 00:43:22,606
+shouldn't make a difference.
+
+927
+00:43:22,606 --> 00:43:26,330
+So "f" will be 15 either way.
+
+928
+00:43:26,330 --> 00:43:28,130
+Cool, anything else?
+
+929
+00:43:28,130 --> 00:43:29,930
+Everyone good, CSS?
+
+930
+00:43:29,930 --> 00:43:30,850
+Yes?
+
+931
+00:43:30,850 --> 00:43:31,790
+>> AUDIENCE: Sorry.
+
+932
+00:43:31,790 --> 00:43:35,550
+Can you have a class and an ID?
+
+933
+00:43:35,550 --> 00:43:38,030
+>> HANNAH: Yes, you can.
+
+934
+00:43:38,030 --> 00:43:40,420
+Things can have both a class and an ID.
+
+935
+00:43:40,420 --> 00:43:44,670
+And I highly recommend
+testing these on your own.
+
+936
+00:43:44,670 --> 00:43:50,480
+CSS you will learn best just by making
+something, very simple web page,
+
+937
+00:43:50,480 --> 00:43:53,440
+drawing up some CSS, and just
+seeing how they interact.
+
+938
+00:43:53,440 --> 00:43:56,970
+And you'll gain a very good,
+intuitive sense for how it works.
+
+939
+00:43:56,970 --> 00:43:58,810
+>> OK, everyone good with CSS?
+
+940
+00:43:58,810 --> 00:44:01,280
+You're all going to make
+beautiful websites with CSS now.
+
+941
+00:44:01,280 --> 00:44:05,460
+OK, best practices, just
+things to keep in mind, things
+
+942
+00:44:05,460 --> 00:44:09,810
+that-- this is why we dock
+you for designer and whatnot.
+
+943
+00:44:09,810 --> 00:44:11,820
+So close all your HTML tags.
+
+944
+00:44:11,820 --> 00:44:14,840
+So if you have an open body,
+there should be a close body.
+
+945
+00:44:14,840 --> 00:44:18,180
+If you have an open paragraph,
+there should be a close paragraph.
+
+946
+00:44:18,180 --> 00:44:19,555
+Check to see your page validates.
+
+947
+00:44:19,555 --> 00:44:23,330
+You guys should be very familiar
+with this from p-set seven
+
+948
+00:44:23,330 --> 00:44:26,350
+with CS 50 finance
+with the W3 validator.
+
+949
+00:44:26,350 --> 00:44:28,340
+And as I said before,
+one of our big paradigms
+
+950
+00:44:28,340 --> 00:44:33,780
+is separating your style with CSS
+from your markup, which is HTML.
+
+951
+00:44:33,780 --> 00:44:36,900
+And then, of course, we have
+this great XKCD down here.
+
+952
+00:44:36,900 --> 00:44:38,280
+Yay, comic relief!
+
+953
+00:44:38,280 --> 00:44:41,340
+>> OK, TCP/IP.
+
+954
+00:44:41,340 --> 00:44:44,650
+Between these and HTTP,
+basically they're both protocols.
+
+955
+00:44:44,650 --> 00:44:46,810
+So you could just think
+of them as a set of rules
+
+956
+00:44:46,810 --> 00:44:50,110
+that govern how things
+move across the internet.
+
+957
+00:44:50,110 --> 00:44:53,410
+So transmission control
+protocol, or internet protocol,
+
+958
+00:44:53,410 --> 00:44:57,280
+is just a way to make sure
+that data gets where it's going
+
+959
+00:44:57,280 --> 00:45:00,030
+and that we know if
+we're ever missing data.
+
+960
+00:45:00,030 --> 00:45:03,520
+So if you guys think back to lecture
+a couple weeks ago with David
+
+961
+00:45:03,520 --> 00:45:06,980
+where we had four envelopes, they
+were all numbered like one of four,
+
+962
+00:45:06,980 --> 00:45:11,300
+two of four, three of four, four of
+four, this is just a set of rules.
+
+963
+00:45:11,300 --> 00:45:13,830
+We said, OK, whenever we're
+sending more than one packet,
+
+964
+00:45:13,830 --> 00:45:16,610
+we are going to number
+it with what number it is
+
+965
+00:45:16,610 --> 00:45:19,040
+and how many total that
+the user should get.
+
+966
+00:45:19,040 --> 00:45:22,540
+>> And this is just telling whoever
+is receiving the data whether they
+
+967
+00:45:22,540 --> 00:45:26,120
+have gotten everything or if
+something got lost along the way.
+
+968
+00:45:26,120 --> 00:45:28,840
+And they need to ask for it again.
+
+969
+00:45:28,840 --> 00:45:31,140
+This is really just a set of rules.
+
+970
+00:45:31,140 --> 00:45:33,650
+That's how you can think of it, OK?
+
+971
+00:45:33,650 --> 00:45:37,700
+And also, it specifies the port, which
+you guys can-- I know during lecture,
+
+972
+00:45:37,700 --> 00:45:39,170
+they had a whole list of ports.
+
+973
+00:45:39,170 --> 00:45:41,630
+But we don't have them here right now.
+
+974
+00:45:41,630 --> 00:45:45,290
+>> So hypertext transfer protocol
+is, again, it's another protocol.
+
+975
+00:45:45,290 --> 00:45:48,630
+So it's another set of rules
+that govern, in this case,
+
+976
+00:45:48,630 --> 00:45:51,130
+how hypertext is transferred.
+
+977
+00:45:51,130 --> 00:45:54,340
+So it just allows browsers
+to speak to web servers.
+
+978
+00:45:54,340 --> 00:45:56,910
+And as we said here, it's
+like human handshaking.
+
+979
+00:45:56,910 --> 00:46:00,480
+It's just a way to govern
+how the web server is
+
+980
+00:46:00,480 --> 00:46:02,690
+going to interact with your browser.
+
+981
+00:46:02,690 --> 00:46:05,660
+And we have just a couple of examples.
+
+982
+00:46:05,660 --> 00:46:09,100
+We have some requests here
+where GET is the method.
+
+983
+00:46:09,100 --> 00:46:13,760
+We have HTTP 1.1, which is
+protocol version for us.
+
+984
+00:46:13,760 --> 00:46:17,230
+And then, the host, which is what
+we're actually trying to access.
+
+985
+00:46:17,230 --> 00:46:21,800
+And then, as you see here, we
+get some response with this 200
+
+986
+00:46:21,800 --> 00:46:25,032
+OK as our HTTP response code.
+
+987
+00:46:25,032 --> 00:46:27,240
+We have a big list I'm going
+to pull up in one second
+
+988
+00:46:27,240 --> 00:46:29,430
+that you guys should be familiar with.
+
+989
+00:46:29,430 --> 00:46:35,750
+And we have this content type text/HTML,
+which just says what type of data
+
+990
+00:46:35,750 --> 00:46:39,990
+are we receiving from the server, OK?
+
+991
+00:46:39,990 --> 00:46:44,230
+This host and this content type
+are part of the HTTP headers.
+
+992
+00:46:44,230 --> 00:46:49,610
+You can have as few or as little as
+necessary for the context of what
+
+993
+00:46:49,610 --> 00:46:50,580
+you're dealing with.
+
+994
+00:46:50,580 --> 00:46:53,371
+Sometimes you'll have a lot of
+information coming from your server.
+
+995
+00:46:53,371 --> 00:46:56,040
+Maybe they're requesting a lot
+of information from the user.
+
+996
+00:46:56,040 --> 00:46:57,600
+It varies depending on the context.
+
+997
+00:46:57,600 --> 00:47:01,144
+If you look at CS 50 Study,
+there's a lot more on that.
+
+998
+00:47:01,144 --> 00:47:03,060
+But we have a lot to get
+through, so I'm going
+
+999
+00:47:03,060 --> 00:47:05,760
+to go right ahead if
+that's OK with you guys?
+
+1000
+00:47:05,760 --> 00:47:07,960
+Cool.
+
+1001
+00:47:07,960 --> 00:47:08,460
+Hold on.
+
+1002
+00:47:08,460 --> 00:47:11,182
+I definitely have that
+whole list of-- huh!
+
+1003
+00:47:11,182 --> 00:47:13,140
+I don't know why this is
+all the way over here.
+
+1004
+00:47:13,140 --> 00:47:15,660
+I thought I literally moved
+it while I was sitting--
+
+1005
+00:47:15,660 --> 00:47:16,540
+>> DAVIN: Do you want to teach it?
+
+1006
+00:47:16,540 --> 00:47:17,420
+Or do you want me to teach it?
+
+1007
+00:47:17,420 --> 00:47:20,010
+>> AUDIENCE: I thought we could
+just show them to start with.
+
+1008
+00:47:20,010 --> 00:47:22,210
+I mean, you can go into
+them further, but I
+
+1009
+00:47:22,210 --> 00:47:26,030
+thought it made more sense since I
+was just talking about HTTP statuses.
+
+1010
+00:47:26,030 --> 00:47:28,200
+So here's the whole list.
+
+1011
+00:47:28,200 --> 00:47:31,730
+I guess what's going to happen is
+Davin is going to go into them later.
+
+1012
+00:47:31,730 --> 00:47:35,330
+But there's a whole list, a
+preview of the taste to come.
+
+1013
+00:47:35,330 --> 00:47:41,640
+OK, we're going to blow-- this is going
+to be a PHP crash course like no other.
+
+1014
+00:47:41,640 --> 00:47:44,874
+>> So PHP, hypertext preprocessor,
+it's a recursive backronym,
+
+1015
+00:47:44,874 --> 00:47:46,540
+which means it was named something else.
+
+1016
+00:47:46,540 --> 00:47:49,050
+And then they were like, this
+doesn't really make sense.
+
+1017
+00:47:49,050 --> 00:47:52,210
+So they just named it--
+and it was an acronym,
+
+1018
+00:47:52,210 --> 00:47:54,840
+so they just made it PHP
+hypertext preprocessor, which
+
+1019
+00:47:54,840 --> 00:47:55,980
+just makes no sense.
+
+1020
+00:47:55,980 --> 00:47:57,714
+Fun story.
+
+1021
+00:47:57,714 --> 00:47:58,880
+It's a programming language.
+
+1022
+00:47:58,880 --> 00:48:02,360
+So as much as I emphasize that
+HTML is not a programming language,
+
+1023
+00:48:02,360 --> 00:48:05,350
+it's a markup language, PHP
+is a programming language.
+
+1024
+00:48:05,350 --> 00:48:07,422
+How you know this is
+because there is logic.
+
+1025
+00:48:07,422 --> 00:48:08,380
+There are conditionals.
+
+1026
+00:48:08,380 --> 00:48:12,750
+We have variables, whereas we
+have none of those things in HTML.
+
+1027
+00:48:12,750 --> 00:48:16,960
+>> All right, then we have this little
+bit here that's like a taste of PHP.
+
+1028
+00:48:16,960 --> 00:48:20,510
+So basics, variable names
+start with a dollar sign.
+
+1029
+00:48:20,510 --> 00:48:21,500
+Lots of people like it.
+
+1030
+00:48:21,500 --> 00:48:22,371
+Reminds of us money.
+
+1031
+00:48:22,371 --> 00:48:22,995
+It's all great.
+
+1032
+00:48:22,995 --> 00:48:25,280
+We all want PHP.
+
+1033
+00:48:25,280 --> 00:48:28,020
+So we don't specify a
+variable's type anymore.
+
+1034
+00:48:28,020 --> 00:48:29,995
+It is determined at run time.
+
+1035
+00:48:29,995 --> 00:48:32,710
+
+1036
+00:48:32,710 --> 00:48:35,890
+The interpreter will be like,
+oh, we'll just run through,
+
+1037
+00:48:35,890 --> 00:48:39,565
+and according to the context,
+we'll see what types of types
+
+1038
+00:48:39,565 --> 00:48:41,560
+these variables need to have.
+
+1039
+00:48:41,560 --> 00:48:42,815
+There's no main function.
+
+1040
+00:48:42,815 --> 00:48:43,690
+Things will just run.
+
+1041
+00:48:43,690 --> 00:48:47,851
+You guys with your import in your
+last p-set, you'll notice this.
+
+1042
+00:48:47,851 --> 00:48:49,350
+There wasn't really a main function.
+
+1043
+00:48:49,350 --> 00:48:52,070
+You just wrote what
+you wanted to happen.
+
+1044
+00:48:52,070 --> 00:48:53,280
+And it just kind of happened.
+
+1045
+00:48:53,280 --> 00:48:56,760
+So that's PHP for you.
+
+1046
+00:48:56,760 --> 00:48:59,180
+>> Arrays are very similar.
+
+1047
+00:48:59,180 --> 00:49:01,270
+We still have this bracket.
+
+1048
+00:49:01,270 --> 00:49:05,940
+Here, we have some variable
+called arr, and it's equal
+
+1049
+00:49:05,940 --> 00:49:08,540
+to-- we have our normal
+bracket notation.
+
+1050
+00:49:08,540 --> 00:49:10,630
+And we have some key value.
+
+1051
+00:49:10,630 --> 00:49:14,630
+And the big difference
+between C and PHP arrays
+
+1052
+00:49:14,630 --> 00:49:19,330
+is that we can have this associate--
+we can associate values to keys.
+
+1053
+00:49:19,330 --> 00:49:22,440
+So instead of just having
+an array that is indexed
+
+1054
+00:49:22,440 --> 00:49:26,630
+by the number or the position
+of that element in the array,
+
+1055
+00:49:26,630 --> 00:49:29,060
+we can actually associate it with a key.
+
+1056
+00:49:29,060 --> 00:49:36,700
+Where we can say, OK, I want whatever
+value is associated with fruit.
+
+1057
+00:49:36,700 --> 00:49:39,280
+And maybe we have fruit went to banana.
+
+1058
+00:49:39,280 --> 00:49:41,760
+So it'd return banana to us.
+
+1059
+00:49:41,760 --> 00:49:44,100
+>> But basically, the most
+powerful thing about this
+
+1060
+00:49:44,100 --> 00:49:47,960
+is that if you guys remember the
+demo from lecture where we basically
+
+1061
+00:49:47,960 --> 00:49:53,050
+rewrote speller in PHP, and it
+was-- lookup was really just like,
+
+1062
+00:49:53,050 --> 00:49:55,007
+does this key exist?
+
+1063
+00:49:55,007 --> 00:49:56,590
+That's really kind of the power of it.
+
+1064
+00:49:56,590 --> 00:49:58,560
+You don't need to iterate
+through your array.
+
+1065
+00:49:58,560 --> 00:50:00,311
+You don't need to know
+what space it's in.
+
+1066
+00:50:00,311 --> 00:50:01,976
+It could be at the end or the beginning.
+
+1067
+00:50:01,976 --> 00:50:04,790
+As long as you know the key
+that's associated with the value,
+
+1068
+00:50:04,790 --> 00:50:09,740
+PHP can just spit that value
+right back out at you, OK?
+
+1069
+00:50:09,740 --> 00:50:12,960
+>> And then, we also just
+have just because we
+
+1070
+00:50:12,960 --> 00:50:16,750
+can have key value pairs
+doesn't mean you have to.
+
+1071
+00:50:16,750 --> 00:50:19,180
+You can also just create
+a normal array like here,
+
+1072
+00:50:19,180 --> 00:50:21,540
+at the bottom, where it's
+just one, two, three, four.
+
+1073
+00:50:21,540 --> 00:50:22,510
+Those are our values.
+
+1074
+00:50:22,510 --> 00:50:25,320
+And in fact, their keys are the indices.
+
+1075
+00:50:25,320 --> 00:50:26,830
+So the key for one would be zero.
+
+1076
+00:50:26,830 --> 00:50:28,610
+The key for two would be one.
+
+1077
+00:50:28,610 --> 00:50:31,910
+So on and so forth, unless
+you explicitly assign a key,
+
+1078
+00:50:31,910 --> 00:50:34,630
+you could assume that the
+value is just their index.
+
+1079
+00:50:34,630 --> 00:50:37,290
+Does that make sense to everyone?
+
+1080
+00:50:37,290 --> 00:50:38,070
+No questions?
+
+1081
+00:50:38,070 --> 00:50:38,930
+Awesome.
+
+1082
+00:50:38,930 --> 00:50:44,420
+>> OK, foreach is a way to
+iterate through your arrays.
+
+1083
+00:50:44,420 --> 00:50:47,490
+So we have something here,
+just the general structure.
+
+1084
+00:50:47,490 --> 00:50:51,020
+So foreach, the name of
+our array, as whatever
+
+1085
+00:50:51,020 --> 00:50:53,930
+you want to call each
+element in your array,
+
+1086
+00:50:53,930 --> 00:50:57,270
+and we can do something with
+that element or with that value.
+
+1087
+00:50:57,270 --> 00:50:58,680
+So we have an example here.
+
+1088
+00:50:58,680 --> 00:51:05,770
+We have an associative
+array with these two entries
+
+1089
+00:51:05,770 --> 00:51:10,080
+with bar being associated with foo
+and qux being associated with baz.
+
+1090
+00:51:10,080 --> 00:51:12,180
+So keys are foo and baz.
+
+1091
+00:51:12,180 --> 00:51:13,650
+Values are bar and qux.
+
+1092
+00:51:13,650 --> 00:51:18,560
+So foreach, we have our array
+here, as the key value pair.
+
+1093
+00:51:18,560 --> 00:51:21,560
+This allows us to access
+both the key and value.
+
+1094
+00:51:21,560 --> 00:51:23,680
+Maybe you just want the
+value, in which case
+
+1095
+00:51:23,680 --> 00:51:27,640
+you could just do like arr
+as $value, and then you
+
+1096
+00:51:27,640 --> 00:51:30,640
+are just accessing the value
+as you iterate through.
+
+1097
+00:51:30,640 --> 00:51:32,600
+But maybe, for some
+reason, you want the key,
+
+1098
+00:51:32,600 --> 00:51:35,460
+which is why I chose
+this example instead.
+
+1099
+00:51:35,460 --> 00:51:40,240
+So you can actually manipulate
+key and value in this case.
+
+1100
+00:51:40,240 --> 00:51:41,070
+OK?
+
+1101
+00:51:41,070 --> 00:51:41,905
+Question?
+
+1102
+00:51:41,905 --> 00:51:44,279
+>> AUDIENCE: If you wanted to
+just manipulate the key, would
+
+1103
+00:51:44,279 --> 00:51:45,910
+you have to do foreach--
+
+1104
+00:51:45,910 --> 00:51:47,360
+>> ALISON: Right.
+
+1105
+00:51:47,360 --> 00:51:50,560
+So if you wanted to
+manipulate just the key,
+
+1106
+00:51:50,560 --> 00:51:53,680
+you would still need this
+syntax because if you just
+
+1107
+00:51:53,680 --> 00:51:56,930
+have arr as something,
+as one thing, it's
+
+1108
+00:51:56,930 --> 00:52:00,070
+going to assume you want
+the value, not the key.
+
+1109
+00:52:00,070 --> 00:52:06,780
+So if you ever just have just like
+arr as, maybe this is like $element,
+
+1110
+00:52:06,780 --> 00:52:11,670
+it's going to assume that you're asking
+for just the value at each point.
+
+1111
+00:52:11,670 --> 00:52:13,879
+If you explicitly want to
+do something with the key,
+
+1112
+00:52:13,879 --> 00:52:16,170
+even if you're not going to
+do anything with the value,
+
+1113
+00:52:16,170 --> 00:52:18,430
+you need this structure
+that we have here
+
+1114
+00:52:18,430 --> 00:52:22,330
+where you're explicitly asking
+for both the key and the value.
+
+1115
+00:52:22,330 --> 00:52:24,170
+Great question.
+
+1116
+00:52:24,170 --> 00:52:25,940
+Anything else?
+
+1117
+00:52:25,940 --> 00:52:27,490
+Cool.
+
+1118
+00:52:27,490 --> 00:52:29,911
+>> All right, PHP and HTML.
+
+1119
+00:52:29,911 --> 00:52:31,410
+Oh, we're back to p-set seven again.
+
+1120
+00:52:31,410 --> 00:52:35,380
+So this should look a little familiar.
+
+1121
+00:52:35,380 --> 00:52:41,760
+So this is some simple HTML form
+that has some input name of hello.
+
+1122
+00:52:41,760 --> 00:52:43,820
+And we see we have our method of GET.
+
+1123
+00:52:43,820 --> 00:52:47,430
+And if we remember from our p-set,
+when this form is submitted,
+
+1124
+00:52:47,430 --> 00:52:58,130
+it sends an array called $_GET that has
+all of these inputs or variables from
+
+1125
+00:52:58,130 --> 00:53:00,490
+the form that should be
+manipulated in our PHP.
+
+1126
+00:53:00,490 --> 00:53:03,320
+So in this case, the user
+would put in their name.
+
+1127
+00:53:03,320 --> 00:53:04,370
+They submit it.
+
+1128
+00:53:04,370 --> 00:53:07,810
+And we see that we get some array here.
+
+1129
+00:53:07,810 --> 00:53:09,080
+We have our GET array.
+
+1130
+00:53:09,080 --> 00:53:11,510
+And we are accessing the name.
+
+1131
+00:53:11,510 --> 00:53:15,070
+>> So that says, OK, give me the
+value that's associated with name,
+
+1132
+00:53:15,070 --> 00:53:16,550
+name being the key here.
+
+1133
+00:53:16,550 --> 00:53:21,400
+And that maps directly to what
+we said our input name is.
+
+1134
+00:53:21,400 --> 00:53:28,960
+So this was giving you the key to what
+is going to be in your array here.
+
+1135
+00:53:28,960 --> 00:53:31,220
+Does that make sense to everyone?
+
+1136
+00:53:31,220 --> 00:53:32,070
+Yes?
+
+1137
+00:53:32,070 --> 00:53:36,240
+>> AUDIENCE: Does the name in GET refer
+to the purple line in [INAUDIBLE]?
+
+1138
+00:53:36,240 --> 00:53:37,740
+>> ALISON: It refers to this here.
+
+1139
+00:53:37,740 --> 00:53:43,840
+So this field right here,
+it refers to this name here.
+
+1140
+00:53:43,840 --> 00:53:47,800
+So this could have been named
+like phone number, or whatever.
+
+1141
+00:53:47,800 --> 00:53:51,790
+This name actually says, what
+are you calling this field?
+
+1142
+00:53:51,790 --> 00:53:53,600
+How are you going to
+refer to this field?
+
+1143
+00:53:53,600 --> 00:53:57,670
+And this name is actually like, we're
+saying this field is called name.
+
+1144
+00:53:57,670 --> 00:53:59,224
+That's how we're going to access it.
+
+1145
+00:53:59,224 --> 00:54:02,070
+>> AUDIENCE: So is it like,
+input name equals Bob, and--
+
+1146
+00:54:02,070 --> 00:54:04,380
+>> ALISON: Right, then you
+would get Bob down there.
+
+1147
+00:54:04,380 --> 00:54:06,090
+Exactly.
+
+1148
+00:54:06,090 --> 00:54:07,800
+Everyone cool?
+
+1149
+00:54:07,800 --> 00:54:10,990
+All right, so GET versus POST,
+these are the two main ways
+
+1150
+00:54:10,990 --> 00:54:14,880
+that we pass data in an HTTP request.
+
+1151
+00:54:14,880 --> 00:54:17,370
+You guys should have seen
+both of these hopefully.
+
+1152
+00:54:17,370 --> 00:54:20,940
+So with GET, the information
+is passed through the URL.
+
+1153
+00:54:20,940 --> 00:54:23,490
+So if you ever do Google
+searches, YouTube, you'll
+
+1154
+00:54:23,490 --> 00:54:25,130
+probably notice some question mark.
+
+1155
+00:54:25,130 --> 00:54:28,230
+And then, all the words
+that you just put in there.
+
+1156
+00:54:28,230 --> 00:54:31,410
+And POST passes the data
+in the HTTP message body.
+
+1157
+00:54:31,410 --> 00:54:36,922
+So unlike GET, you kind of consider
+that the data is hidden from the user.
+
+1158
+00:54:36,922 --> 00:54:38,630
+But what's really
+important to understand
+
+1159
+00:54:38,630 --> 00:54:44,040
+is that this is still
+just as insecure as GET.
+
+1160
+00:54:44,040 --> 00:54:48,780
+The analogy I like to use is if
+you have your bank account number
+
+1161
+00:54:48,780 --> 00:54:52,795
+and you write it on the outside of
+an envelope, that's pretty unsafe.
+
+1162
+00:54:52,795 --> 00:54:55,920
+If you were to write it on a piece of
+paper and put it inside the envelope,
+
+1163
+00:54:55,920 --> 00:54:58,850
+it's still really unsafe because
+all you have to do is open that up
+
+1164
+00:54:58,850 --> 00:55:03,480
+and look at the actual contents
+of the message to see that.
+
+1165
+00:55:03,480 --> 00:55:08,310
+So this is "hidden," and people like to
+think it's secure, but it's really not.
+
+1166
+00:55:08,310 --> 00:55:11,000
+And I'm sure Davin will
+get into that more, maybe.
+
+1167
+00:55:11,000 --> 00:55:12,850
+But it's an important
+distinction to make
+
+1168
+00:55:12,850 --> 00:55:15,820
+and something really good to understand.
+
+1169
+00:55:15,820 --> 00:55:19,220
+>> OK, SQL, Structured Query Language.
+
+1170
+00:55:19,220 --> 00:55:22,220
+All the stuff that
+we've seen so recently!
+
+1171
+00:55:22,220 --> 00:55:25,400
+So it's basically just designed,
+obviously, for managing data.
+
+1172
+00:55:25,400 --> 00:55:30,560
+You guys had a lot of experience with
+this in your tables with PHP MyAdmin.
+
+1173
+00:55:30,560 --> 00:55:34,100
+And there are four common queries
+that we want you guys to know.
+
+1174
+00:55:34,100 --> 00:55:37,304
+So there's update, insert,
+select, and delete.
+
+1175
+00:55:37,304 --> 00:55:38,970
+So make sure you know those really well.
+
+1176
+00:55:38,970 --> 00:55:40,960
+We're going to go
+through them really fast.
+
+1177
+00:55:40,960 --> 00:55:44,340
+>> So update, really, as what
+you might think it does,
+
+1178
+00:55:44,340 --> 00:55:46,740
+it just updates data in your database.
+
+1179
+00:55:46,740 --> 00:55:48,750
+So we have some example here.
+
+1180
+00:55:48,750 --> 00:55:53,310
+This is the general
+structure of an update query.
+
+1181
+00:55:53,310 --> 00:55:56,150
+So we update the table
+that we're talking about.
+
+1182
+00:55:56,150 --> 00:56:00,520
+And we want to set certain
+values, certain columns
+
+1183
+00:56:00,520 --> 00:56:02,600
+equal to specific values.
+
+1184
+00:56:02,600 --> 00:56:07,500
+So this just updates the table, changing
+values in all rows in this case.
+
+1185
+00:56:07,500 --> 00:56:13,690
+So in this one down here, an actual
+example, we have insert-- sorry.
+
+1186
+00:56:13,690 --> 00:56:17,630
+That slide advanced
+without me realizing it.
+
+1187
+00:56:17,630 --> 00:56:22,230
+>> So this updates table set col1 equal
+to val1 where house equals "Currier."
+
+1188
+00:56:22,230 --> 00:56:25,300
+What this one does is
+it only changes, it only
+
+1189
+00:56:25,300 --> 00:56:28,130
+updates these values in specific places.
+
+1190
+00:56:28,130 --> 00:56:32,300
+So in this first one, it changes these
+values for everything in your table,
+
+1191
+00:56:32,300 --> 00:56:32,860
+OK?
+
+1192
+00:56:32,860 --> 00:56:35,820
+It's going to change this
+column for every single entry,
+
+1193
+00:56:35,820 --> 00:56:37,020
+for every single row.
+
+1194
+00:56:37,020 --> 00:56:40,840
+But this where, you could
+think of it as a qualifier.
+
+1195
+00:56:40,840 --> 00:56:44,020
+So it's only going to change
+it in very specific places.
+
+1196
+00:56:44,020 --> 00:56:47,840
+So in p-set seven, when you
+maybe updated the amount of cash
+
+1197
+00:56:47,840 --> 00:56:53,050
+that your user had, you probably had
+some where ID equals session ID, right?
+
+1198
+00:56:53,050 --> 00:56:55,280
+>> Because you didn't want to
+change the amount of cash
+
+1199
+00:56:55,280 --> 00:56:57,630
+for every person who
+was using your website.
+
+1200
+00:56:57,630 --> 00:57:00,480
+You wanted to change it for one
+specific person, that person being
+
+1201
+00:57:00,480 --> 00:57:02,410
+whoever was using it at that time.
+
+1202
+00:57:02,410 --> 00:57:04,320
+Right?
+
+1203
+00:57:04,320 --> 00:57:07,510
+OK, so insert, insert
+certain values into tables.
+
+1204
+00:57:07,510 --> 00:57:11,650
+This is like when you're
+creating a brand new user.
+
+1205
+00:57:11,650 --> 00:57:14,240
+The general structure here
+is insert into whatever table
+
+1206
+00:57:14,240 --> 00:57:15,680
+we're talking about.
+
+1207
+00:57:15,680 --> 00:57:18,910
+Values, being the values that
+we actually want to insert.
+
+1208
+00:57:18,910 --> 00:57:23,060
+OK, so as we see here, we
+have insert into table.
+
+1209
+00:57:23,060 --> 00:57:27,790
+This is specific columns with
+their corresponded values.
+
+1210
+00:57:27,790 --> 00:57:29,940
+So this says, insert
+a new row containing
+
+1211
+00:57:29,940 --> 00:57:33,660
+values val1 and val2 under
+these specific columns.
+
+1212
+00:57:33,660 --> 00:57:39,240
+>> So maybe you only want to fill
+out half the things in this row.
+
+1213
+00:57:39,240 --> 00:57:41,150
+That's what this part here lets you do.
+
+1214
+00:57:41,150 --> 00:57:43,280
+It lets you actually
+determine which part.
+
+1215
+00:57:43,280 --> 00:57:44,244
+Yes?
+
+1216
+00:57:44,244 --> 00:57:52,150
+>> AUDIENCE: Can you only [INAUDIBLE]
+cells in the row [INAUDIBLE]?
+
+1217
+00:57:52,150 --> 00:57:55,000
+>> ALISON: If you only fill in
+certain parts of your row,
+
+1218
+00:57:55,000 --> 00:57:57,480
+the rest of those cells are just empty.
+
+1219
+00:57:57,480 --> 00:58:02,730
+
+1220
+00:58:02,730 --> 00:58:05,660
+As long as you allow them to
+be empty, it's not a problem.
+
+1221
+00:58:05,660 --> 00:58:09,570
+If you try to access them, it's
+going to return some empty element.
+
+1222
+00:58:09,570 --> 00:58:13,850
+But it is important to know
+that in certain tables,
+
+1223
+00:58:13,850 --> 00:58:16,690
+they have to be allowed to be null.
+
+1224
+00:58:16,690 --> 00:58:18,890
+You may have run into a
+problem during your p-set
+
+1225
+00:58:18,890 --> 00:58:21,320
+because we didn't let any
+of your values be null.
+
+1226
+00:58:21,320 --> 00:58:26,110
+But you can specify an
+optional value in your table.
+
+1227
+00:58:26,110 --> 00:58:29,640
+>> OK, select, so this is
+just a way of getting
+
+1228
+00:58:29,640 --> 00:58:33,790
+specific data from a table at
+some identifier that you want.
+
+1229
+00:58:33,790 --> 00:58:37,990
+So select star from table where
+col equals something just means,
+
+1230
+00:58:37,990 --> 00:58:43,820
+give me all the data associated
+where this specific column is true.
+
+1231
+00:58:43,820 --> 00:58:49,020
+So the star in this case will
+return the entire row to you, OK?
+
+1232
+00:58:49,020 --> 00:58:54,880
+>> And then, in this case, select star from
+table just gives you the entire table.
+
+1233
+00:58:54,880 --> 00:58:58,940
+And then, delete obviously, it just
+deletes the row from the table.
+
+1234
+00:58:58,940 --> 00:59:01,320
+So delete from table,
+whatever table we're
+
+1235
+00:59:01,320 --> 00:59:06,830
+referencing, where some specific
+identifier or some condition is true.
+
+1236
+00:59:06,830 --> 00:59:07,720
+Yes?
+
+1237
+00:59:07,720 --> 00:59:08,700
+>> AUDIENCE: Question.
+
+1238
+00:59:08,700 --> 00:59:10,699
+Why are you using double
+quotes, and whether you
+
+1239
+00:59:10,699 --> 00:59:13,600
+do double quotes or single
+quotes, does it make a difference?
+
+1240
+00:59:13,600 --> 00:59:18,235
+>> ALISON: Double quotes or single quotes
+doesn't make a difference in SQL.
+
+1241
+00:59:18,235 --> 00:59:19,610
+I thought I saw another question.
+
+1242
+00:59:19,610 --> 00:59:20,814
+Yes?
+
+1243
+00:59:20,814 --> 00:59:25,070
+>> AUDIENCE: Doesn't it affect what
+gets escaped from the query?
+
+1244
+00:59:25,070 --> 00:59:27,945
+>> ALISON: Rob?
+
+1245
+00:59:27,945 --> 00:59:31,410
+>> ROB: What do you mean by
+escaped from the query?
+
+1246
+00:59:31,410 --> 00:59:36,870
+>> AUDIENCE: If someone has a
+single query in the form of--
+
+1247
+00:59:36,870 --> 00:59:39,862
+>> ROB: If someone were to
+put a single quote in,
+
+1248
+00:59:39,862 --> 00:59:43,560
+then as long as you're sanitizing
+your input, then it doesn't matter.
+
+1249
+00:59:43,560 --> 00:59:46,205
+But if you're using a single
+quote and you are incorrectly
+
+1250
+00:59:46,205 --> 00:59:47,914
+escaping your inputs,
+then yes, they need
+
+1251
+00:59:47,914 --> 00:59:51,079
+to put a single quote in order to break
+your code. if you use double quotes,
+
+1252
+00:59:51,079 --> 00:59:53,580
+they need to put a double
+quote to break your code.
+
+1253
+00:59:53,580 --> 00:59:56,163
+But as long as you escape things
+correctly, it doesn't matter.
+
+1254
+00:59:56,163 --> 00:59:59,220
+It's just going to be translated
+to the correct symbol anyway.
+
+1255
+00:59:59,220 --> 01:00:02,332
+>> AUDIENCE: What does escape mean?
+
+1256
+01:00:02,332 --> 01:00:04,040
+ALISON: Well, like
+sanitizing and escape.
+
+1257
+01:00:04,040 --> 01:00:06,810
+
+1258
+01:00:06,810 --> 01:00:13,820
+The exam that we have, the great XKCD
+comic that they pull up where you have,
+
+1259
+01:00:13,820 --> 01:00:15,629
+oh--
+
+1260
+01:00:15,629 --> 01:00:16,670
+ROB: It's the last slide.
+
+1261
+01:00:16,670 --> 01:00:18,500
+ALISON: It's the last slide, really?
+
+1262
+01:00:18,500 --> 01:00:20,200
+Oh my god.
+
+1263
+01:00:20,200 --> 01:00:21,780
+There we go, perfect.
+
+1264
+01:00:21,780 --> 01:00:27,900
+OK, so basically, you can inject
+something into this SQL query
+
+1265
+01:00:27,900 --> 01:00:30,560
+where it breaks your
+code, or as David showed
+
+1266
+01:00:30,560 --> 01:00:38,460
+in class, if we have some single
+quote 1 equals 1 and if in our code,
+
+1267
+01:00:38,460 --> 01:00:41,230
+we just directly copy that in, and
+we have an ending single quote,
+
+1268
+01:00:41,230 --> 01:00:44,740
+what happens is we get
+some expression that
+
+1269
+01:00:44,740 --> 01:00:48,680
+evaluates to true that will
+let someone enter our database
+
+1270
+01:00:48,680 --> 01:00:51,720
+and get data that we
+don't want them to get.
+
+1271
+01:00:51,720 --> 01:00:54,240
+So sanitizing the inputs
+just means making sure
+
+1272
+01:00:54,240 --> 01:00:57,680
+that we are escaping these
+characters and designating them
+
+1273
+01:00:57,680 --> 01:01:01,720
+as chars and not things
+that should be allowed
+
+1274
+01:01:01,720 --> 01:01:04,990
+to be taken literally
+as our SQL statement.
+
+1275
+01:01:04,990 --> 01:01:09,980
+>> So the big thing that we said
+that you guys should be using
+
+1276
+01:01:09,980 --> 01:01:13,650
+were HTML special chars,
+which is something
+
+1277
+01:01:13,650 --> 01:01:15,730
+that you might want to take a look at.
+
+1278
+01:01:15,730 --> 01:01:17,240
+OK, delete.
+
+1279
+01:01:17,240 --> 01:01:19,450
+Data types, this will all be online.
+
+1280
+01:01:19,450 --> 01:01:23,510
+Since we have 15 minutes left, I'm
+just going to go right through this.
+
+1281
+01:01:23,510 --> 01:01:28,500
+PHP and SQL, basically this is
+just we had a query function that
+
+1282
+01:01:28,500 --> 01:01:31,520
+helped protect against
+these malicious attacks.
+
+1283
+01:01:31,520 --> 01:01:33,970
+So whenever you use
+query, we were making sure
+
+1284
+01:01:33,970 --> 01:01:36,560
+that things were sanitized and whatnot.
+
+1285
+01:01:36,560 --> 01:01:41,070
+>> MVC is just a design paradigm,
+so model, view, controller.
+
+1286
+01:01:41,070 --> 01:01:44,200
+It's just a way to keep things
+nice and split up in the same way
+
+1287
+01:01:44,200 --> 01:01:47,100
+that we tend to factor
+out code into functions.
+
+1288
+01:01:47,100 --> 01:01:53,390
+This is just a web design framework
+that allows you to do the same thing.
+
+1289
+01:01:53,390 --> 01:01:54,760
+I'm going to skip this.
+
+1290
+01:01:54,760 --> 01:01:58,530
+>> This is something that I
+would be super comfy with.
+
+1291
+01:01:58,530 --> 01:02:01,132
+It's a great little table there.
+
+1292
+01:02:01,132 --> 01:02:03,090
+It gives you the function
+example of the model.
+
+1293
+01:02:03,090 --> 01:02:05,473
+I'm just going through this because I
+really want Davin to be able to talk.
+
+1294
+01:02:05,473 --> 01:02:07,140
+If you have any questions,
+please feel free.
+
+1295
+01:02:07,140 --> 01:02:07,931
+I'll be here after.
+
+1296
+01:02:07,931 --> 01:02:10,360
+Just come talk to me.
+
+1297
+01:02:10,360 --> 01:02:13,380
+With that, we have HTTP statuses.
+
+1298
+01:02:13,380 --> 01:02:16,270
+And Davin's going to blow
+through this in 15 minutes.
+
+1299
+01:02:16,270 --> 01:02:17,560
+This is going to be great.
+
+1300
+01:02:17,560 --> 01:02:18,893
+>> DAVIN: OK.
+
+1301
+01:02:18,893 --> 01:02:20,312
+Uh, your mic?
+
+1302
+01:02:20,312 --> 01:02:22,210
+Yeah.
+
+1303
+01:02:22,210 --> 01:02:23,336
+Sorry.
+
+1304
+01:02:23,336 --> 01:02:24,460
+ALISON: Way to be prepared.
+
+1305
+01:02:24,460 --> 01:02:25,335
+DAVIN: No, I'm ready.
+
+1306
+01:02:25,335 --> 01:02:25,860
+I'm ready.
+
+1307
+01:02:25,860 --> 01:02:28,790
+Let's do this.
+
+1308
+01:02:28,790 --> 01:02:29,290
+It's ready.
+
+1309
+01:02:29,290 --> 01:02:30,041
+OK.
+
+1310
+01:02:30,041 --> 01:02:30,540
+Sorry.
+
+1311
+01:02:30,540 --> 01:02:31,664
+I spilled coffee on myself.
+
+1312
+01:02:31,664 --> 01:02:36,037
+
+1313
+01:02:36,037 --> 01:02:38,210
+I don't know if I'm more
+upset that I look silly,
+
+1314
+01:02:38,210 --> 01:02:40,600
+or that I don't have coffee anymore.
+
+1315
+01:02:40,600 --> 01:02:44,480
+Anyway, just a quick announcement
+about the sheet you guys have.
+
+1316
+01:02:44,480 --> 01:02:47,994
+So this sheet you guys have is not
+the official what's on the quiz.
+
+1317
+01:02:47,994 --> 01:02:49,660
+This is the official what's on the quiz.
+
+1318
+01:02:49,660 --> 01:02:52,520
+Also, on the website, we tell
+you, OK, this will be on the quiz.
+
+1319
+01:02:52,520 --> 01:02:55,020
+So in the little cheat sheet
+you have, not official.
+
+1320
+01:02:55,020 --> 01:02:56,690
+And there are mistakes on it.
+
+1321
+01:02:56,690 --> 01:03:01,490
+So best not to just blindly use it.
+
+1322
+01:03:01,490 --> 01:03:04,390
+So yeah, that's that.
+
+1323
+01:03:04,390 --> 01:03:05,980
+So let's get into this real quick.
+
+1324
+01:03:05,980 --> 01:03:07,420
+>> So HTTP statuses.
+
+1325
+01:03:07,420 --> 01:03:10,430
+So what happens when the
+website, everything is all right.
+
+1326
+01:03:10,430 --> 01:03:11,144
+Everything's OK.
+
+1327
+01:03:11,144 --> 01:03:13,310
+Everything comes back to
+you the way you want it to.
+
+1328
+01:03:13,310 --> 01:03:15,370
+You get a 200 OK.
+
+1329
+01:03:15,370 --> 01:03:19,250
+301, where have we seen that 301 before?
+
+1330
+01:03:19,250 --> 01:03:20,890
+Wait, what's up?
+
+1331
+01:03:20,890 --> 01:03:23,250
+Sorry.
+
+1332
+01:03:23,250 --> 01:03:24,980
+We saw i tin lecture during security.
+
+1333
+01:03:24,980 --> 01:03:30,690
+So during security, so if David typed in
+http and then tried to go to cs50.net,
+
+1334
+01:03:30,690 --> 01:03:31,940
+you're going to see 301 moved.
+
+1335
+01:03:31,940 --> 01:03:32,440
+Why?
+
+1336
+01:03:32,440 --> 01:03:35,570
+Because it's going to redirect
+you automatically to our HTTPS.
+
+1337
+01:03:35,570 --> 01:03:38,649
+>> So 301 moved, just it's
+basically a redirection.
+
+1338
+01:03:38,649 --> 01:03:40,190
+And you can think about it like this.
+
+1339
+01:03:40,190 --> 01:03:43,790
+Any of the statuses that start with 2's,
+those are like, OK, everything's OK.
+
+1340
+01:03:43,790 --> 01:03:46,530
+Any of the statuses that start
+with 3, those are redirection.
+
+1341
+01:03:46,530 --> 01:03:49,571
+Statuses that start with 4, that means
+there's some kind of client error.
+
+1342
+01:03:49,571 --> 01:03:52,440
+Statuses that start with 5,
+that's some kind of server error.
+
+1343
+01:03:52,440 --> 01:03:54,680
+So you kind of break up
+the statuses like that.
+
+1344
+01:03:54,680 --> 01:03:59,120
+So 304 not not modified, so in your
+server.c p-sets, so let's say you
+
+1345
+01:03:59,120 --> 01:04:00,600
+loaded cat.html.
+
+1346
+01:04:00,600 --> 01:04:03,360
+Everything comes back,
+you get 200s, OK, great.
+
+1347
+01:04:03,360 --> 01:04:04,540
+>> Let's say you refreshed it.
+
+1348
+01:04:04,540 --> 01:04:07,310
+Well, inside that
+cat.html, you have a JPEG.
+
+1349
+01:04:07,310 --> 01:04:09,520
+Well, that JPEG isn't
+going to get reloaded.
+
+1350
+01:04:09,520 --> 01:04:12,140
+You're not going to post another
+GET request to the server,
+
+1351
+01:04:12,140 --> 01:04:13,980
+and then get all that information back.
+
+1352
+01:04:13,980 --> 01:04:17,560
+It's going to just be-- that image is
+going to be cached on your machine.
+
+1353
+01:04:17,560 --> 01:04:19,540
+And so that image will be a 304.
+
+1354
+01:04:19,540 --> 01:04:20,720
+So it's not been modified.
+
+1355
+01:04:20,720 --> 01:04:24,600
+If you then close out, clear
+cookies, and then refresh
+
+1356
+01:04:24,600 --> 01:04:27,490
+and try to load that page
+again, you're going to see 200s.
+
+1357
+01:04:27,490 --> 01:04:28,910
+You're not going to see that 304.
+
+1358
+01:04:28,910 --> 01:04:32,340
+>> 400, bad request, real
+quick, like if you
+
+1359
+01:04:32,340 --> 01:04:34,880
+were going to send a
+JSON object to the server
+
+1360
+01:04:34,880 --> 01:04:38,090
+and your JSON object was incorrect,
+you'll see something like that.
+
+1361
+01:04:38,090 --> 01:04:39,000
+403, forbidden.
+
+1362
+01:04:39,000 --> 01:04:40,330
+When would you see a forbidden?
+
+1363
+01:04:40,330 --> 01:04:41,394
+Probably Probably?
+
+1364
+01:04:41,394 --> 01:04:42,060
+AUDIENCE: Chmod.
+
+1365
+01:04:42,060 --> 01:04:42,950
+DAVIN: Chmod, yeah.
+
+1366
+01:04:42,950 --> 01:04:44,730
+So you haven't set
+permissions correctly.
+
+1367
+01:04:44,730 --> 01:04:45,577
+404, not found.
+
+1368
+01:04:45,577 --> 01:04:46,410
+It's just not there.
+
+1369
+01:04:46,410 --> 01:04:48,670
+So if you type in the wrong URL.
+
+1370
+01:04:48,670 --> 01:04:53,500
+500, internal server error, the server
+probably wasn't configured correctly.
+
+1371
+01:04:53,500 --> 01:04:56,260
+Something not on your end, but
+something on the server side.
+
+1372
+01:04:56,260 --> 01:04:57,240
+And 503?
+
+1373
+01:04:57,240 --> 01:04:59,502
+A lot of people saw
+503s in the last p-set.
+
+1374
+01:04:59,502 --> 01:05:00,460
+When would that happen?
+
+1375
+01:05:00,460 --> 01:05:04,180
+
+1376
+01:05:04,180 --> 01:05:05,660
+I heard whispers.
+
+1377
+01:05:05,660 --> 01:05:07,767
+>> AUDIENCE: When Google
+decides you're a robot.
+
+1378
+01:05:07,767 --> 01:05:10,350
+DAVIN: Yeah, when Google decides
+you're a robot, you get 503s.
+
+1379
+01:05:10,350 --> 01:05:11,560
+So that's an overload.
+
+1380
+01:05:11,560 --> 01:05:14,620
+If you've requested from the server
+too much, it's usually temporary.
+
+1381
+01:05:14,620 --> 01:05:15,560
+And most of you noticed it.
+
+1382
+01:05:15,560 --> 01:05:16,185
+So you saw 503.
+
+1383
+01:05:16,185 --> 01:05:19,282
+You might have taken a little
+break, then the 503s went away,
+
+1384
+01:05:19,282 --> 01:05:20,490
+and everything was all right.
+
+1385
+01:05:20,490 --> 01:05:26,640
+>> GABE: Real quick, when do you guys get
+500 in probably this last problem set?
+
+1386
+01:05:26,640 --> 01:05:27,954
+Yes?
+
+1387
+01:05:27,954 --> 01:05:30,906
+>> AUDIENCE: Usually if the
+server has a file misplaced
+
+1388
+01:05:30,906 --> 01:05:34,650
+or [INAUDIBLE] their
+machine [INAUDIBLE].
+
+1389
+01:05:34,650 --> 01:05:38,870
+>> GABE: So it might be a configuration
+issue in your PHP on your server.
+
+1390
+01:05:38,870 --> 01:05:42,250
+But it might be just something
+like a semicolon that your forgot.
+
+1391
+01:05:42,250 --> 01:05:44,130
+If you're typing PHP,
+some incorrect syntax
+
+1392
+01:05:44,130 --> 01:05:46,000
+might get you something like that.
+
+1393
+01:05:46,000 --> 01:05:46,960
+OK?
+
+1394
+01:05:46,960 --> 01:05:48,610
+>> DAVIN: Cool.
+
+1395
+01:05:48,610 --> 01:05:51,180
+Do you want me to do just up until AJAX?
+
+1396
+01:05:51,180 --> 01:05:52,950
+>> GABE: [INAUDIBLE].
+
+1397
+01:05:52,950 --> 01:05:53,450
+DAVIN: OK.
+
+1398
+01:05:53,450 --> 01:05:54,230
+So what's the DOM?
+
+1399
+01:05:54,230 --> 01:05:55,290
+What does DOM stand for?
+
+1400
+01:05:55,290 --> 01:05:56,990
+>> AUDIENCE: Document object model.
+
+1401
+01:05:56,990 --> 01:05:57,490
+DAVIN: Nice.
+
+1402
+01:05:57,490 --> 01:06:00,775
+And why do we like it?
+
+1403
+01:06:00,775 --> 01:06:02,670
+Awesome.
+
+1404
+01:06:02,670 --> 01:06:06,651
+Right, so it just allows us to access
+the HTML, access our page very quickly.
+
+1405
+01:06:06,651 --> 01:06:07,150
+Why?
+
+1406
+01:06:07,150 --> 01:06:09,980
+Because we're treating our
+page, treating our HTML tags,
+
+1407
+01:06:09,980 --> 01:06:11,730
+treating everything
+as if they're objects.
+
+1408
+01:06:11,730 --> 01:06:13,710
+If we're treating them like they're
+objects, then what can we do?
+
+1409
+01:06:13,710 --> 01:06:15,210
+Well, we can call functions on them.
+
+1410
+01:06:15,210 --> 01:06:16,460
+And this is important why?
+
+1411
+01:06:16,460 --> 01:06:19,200
+Well, because we're going to use
+JavaScript to update our HTML,
+
+1412
+01:06:19,200 --> 01:06:20,500
+update these objects.
+
+1413
+01:06:20,500 --> 01:06:23,869
+So if we treat them like objects,
+we can then call functions on them.
+
+1414
+01:06:23,869 --> 01:06:26,660
+I'm going to get into this a little
+more when I go into JavaScript,
+
+1415
+01:06:26,660 --> 01:06:30,510
+but you've all seen like
+document.getElementByID.
+
+1416
+01:06:30,510 --> 01:06:32,870
+So document is your
+element, get element by ID,
+
+1417
+01:06:32,870 --> 01:06:35,087
+so you're going to look
+for some ID in an HTML tag.
+
+1418
+01:06:35,087 --> 01:06:36,920
+And then, you can do
+something else to that.
+
+1419
+01:06:36,920 --> 01:06:40,089
+For example, like document.body,
+then you can append child.
+
+1420
+01:06:40,089 --> 01:06:41,630
+So you're going to find the document.
+
+1421
+01:06:41,630 --> 01:06:42,340
+You have the document.
+
+1422
+01:06:42,340 --> 01:06:43,629
+You're going to find the body.
+
+1423
+01:06:43,629 --> 01:06:44,420
+You found the body.
+
+1424
+01:06:44,420 --> 01:06:46,545
+And then, you're going to
+call some function on it.
+
+1425
+01:06:46,545 --> 01:06:50,312
+So append child, and you can append
+some HTML onto the end inside your body.
+
+1426
+01:06:50,312 --> 01:06:52,520
+So basically, you're just
+treating it like an object.
+
+1427
+01:06:52,520 --> 01:06:54,515
+You're treating HTML
+tags like an object.
+
+1428
+01:06:54,515 --> 01:06:57,071
+And it makes it very easy
+and quick to go through them.
+
+1429
+01:06:57,071 --> 01:06:59,070
+But it also allows you
+to call functions on them
+
+1430
+01:06:59,070 --> 01:07:04,410
+so you can manipulate
+and change the elements.
+
+1431
+01:07:04,410 --> 01:07:10,162
+>> GABE: Given this, why is JavaScript such
+a nice language to interact with HTML?
+
+1432
+01:07:10,162 --> 01:07:12,870
+Odds are, when people were choosing
+the language for the browser,
+
+1433
+01:07:12,870 --> 01:07:14,990
+for client side,
+JavaScript is really nice,
+
+1434
+01:07:14,990 --> 01:07:16,765
+it's really good at handling objects.
+
+1435
+01:07:16,765 --> 01:07:20,620
+And the objects are kind of like
+the objects that appear in the HTML,
+
+1436
+01:07:20,620 --> 01:07:23,940
+so it's very easy for JavaScript
+to do that kind of handling.
+
+1437
+01:07:23,940 --> 01:07:24,440
+DAVIN: Nice.
+
+1438
+01:07:24,440 --> 01:07:25,670
+So here's just an example.
+
+1439
+01:07:25,670 --> 01:07:29,020
+So I think on last year's quiz,
+or maybe two years ago, we
+
+1440
+01:07:29,020 --> 01:07:30,840
+asked you to create a tree.
+
+1441
+01:07:30,840 --> 01:07:32,660
+So this is exactly what you'd do.
+
+1442
+01:07:32,660 --> 01:07:34,255
+So you start out with document.
+
+1443
+01:07:34,255 --> 01:07:36,130
+And then you basically
+just look at the tags.
+
+1444
+01:07:36,130 --> 01:07:38,100
+So if you look, we
+start with an HTML tag.
+
+1445
+01:07:38,100 --> 01:07:41,660
+And then, you get clues about how to
+do this based upon the indentation.
+
+1446
+01:07:41,660 --> 01:07:43,870
+So head kind of branches off.
+
+1447
+01:07:43,870 --> 01:07:46,242
+Inside head, we have
+another tag for title.
+
+1448
+01:07:46,242 --> 01:07:47,450
+So then, we have a title tag.
+
+1449
+01:07:47,450 --> 01:07:49,760
+And inside that, we have some string.
+
+1450
+01:07:49,760 --> 01:07:52,210
+And so we represent
+a string in a circle.
+
+1451
+01:07:52,210 --> 01:07:54,010
+And all the tags are in squares.
+
+1452
+01:07:54,010 --> 01:07:56,270
+>> And if you look, if we
+think of this as a tree,
+
+1453
+01:07:56,270 --> 01:07:58,730
+and let's say that HTML is
+a parent, then head and body
+
+1454
+01:07:58,730 --> 01:07:59,772
+are going to be siblings.
+
+1455
+01:07:59,772 --> 01:08:01,813
+They're both going to be
+children of that parent.
+
+1456
+01:08:01,813 --> 01:08:03,620
+So because they're
+both siblings, they're
+
+1457
+01:08:03,620 --> 01:08:06,590
+going to be kind of next to
+each other in our tree model.
+
+1458
+01:08:06,590 --> 01:08:08,590
+And then, you basically
+do the exact same thing.
+
+1459
+01:08:08,590 --> 01:08:13,512
+So not difficult, but we have asked
+questions like this before on the quiz.
+
+1460
+01:08:13,512 --> 01:08:15,220
+GABE: Does anybody
+have questions so far?
+
+1461
+01:08:15,220 --> 01:08:16,357
+Is it good?
+
+1462
+01:08:16,357 --> 01:08:16,856
+DAVIN: Cool.
+
+1463
+01:08:16,856 --> 01:08:19,630
+
+1464
+01:08:19,630 --> 01:08:21,600
+JavaScript, OK, the good stuff.
+
+1465
+01:08:21,600 --> 01:08:24,069
+So JavaScript, what is JavaScript?
+
+1466
+01:08:24,069 --> 01:08:28,370
+Well, JavaScript is-- it's
+complicated, but these
+
+1467
+01:08:28,370 --> 01:08:30,727
+are some of the highlights
+that you should keep in mind.
+
+1468
+01:08:30,727 --> 01:08:31,810
+First, it's loosely typed.
+
+1469
+01:08:31,810 --> 01:08:33,529
+What does that mean?
+
+1470
+01:08:33,529 --> 01:08:35,596
+So PHP was-- yeah, what's up?
+
+1471
+01:08:35,596 --> 01:08:39,854
+>> AUDIENCE: You don't have to explicitly
+state what type of variable it is.
+
+1472
+01:08:39,854 --> 01:08:40,479
+DAVIN: Perfect.
+
+1473
+01:08:40,479 --> 01:08:43,270
+So he said you don't have to
+explicitly state the type of variable.
+
+1474
+01:08:43,270 --> 01:08:44,160
+That's exactly right.
+
+1475
+01:08:44,160 --> 01:08:49,700
+So in C, if I had int i equals 50,
+then in PHP, it's just like this, $i,
+
+1476
+01:08:49,700 --> 01:08:50,550
+equals 50.
+
+1477
+01:08:50,550 --> 01:08:54,319
+Then in JavaScript,
+what would the call be?
+
+1478
+01:08:54,319 --> 01:08:55,260
+Var, right?
+
+1479
+01:08:55,260 --> 01:08:56,566
+It'd be like var i equals 50.
+
+1480
+01:08:56,566 --> 01:08:58,649
+But you don't have to be
+like, OK, this is an int.
+
+1481
+01:08:58,649 --> 01:09:00,350
+OK, this is a string.
+
+1482
+01:09:00,350 --> 01:09:01,731
+No need to do that.
+
+1483
+01:09:01,731 --> 01:09:02,939
+It's an interpreted language.
+
+1484
+01:09:02,939 --> 01:09:04,904
+So what does that mean?
+
+1485
+01:09:04,904 --> 01:09:06,340
+>> AUDIENCE: Not compiled.
+
+1486
+01:09:06,340 --> 01:09:10,470
+>> DAVIN: What does not compiled mean?
+
+1487
+01:09:10,470 --> 01:09:11,392
+Yeah?
+
+1488
+01:09:11,392 --> 01:09:15,336
+>> AUDIENCE: You don't have
+to restructure the code
+
+1489
+01:09:15,336 --> 01:09:18,294
+to get it ready for
+the computer to run it.
+
+1490
+01:09:18,294 --> 01:09:23,144
+It's just taken at the time of
+execution and the computer [INAUDIBLE].
+
+1491
+01:09:23,144 --> 01:09:25,560
+DAVIN: Yeah, so it's going to
+pass through an interpreter.
+
+1492
+01:09:25,560 --> 01:09:26,750
+But you're exactly right.
+
+1493
+01:09:26,750 --> 01:09:28,319
+So you're never going
+to compile it, right?
+
+1494
+01:09:28,319 --> 01:09:30,399
+When you were doing your
+PHP and JavaScript code,
+
+1495
+01:09:30,399 --> 01:09:31,365
+you never called compile.
+
+1496
+01:09:31,365 --> 01:09:33,779
+You never called something like
+make or anything like that.
+
+1497
+01:09:33,779 --> 01:09:34,800
+That's because it's interpreted.
+
+1498
+01:09:34,800 --> 01:09:37,319
+So every time it goes through browser,
+it goes through an interpreter.
+
+1499
+01:09:37,319 --> 01:09:40,370
+And that's going to interpret it
+just in real time right away for you.
+
+1500
+01:09:40,370 --> 01:09:43,770
+So what are some positives and negatives
+to having an interpreted language
+
+1501
+01:09:43,770 --> 01:09:45,258
+and having a compiled language?
+
+1502
+01:09:45,258 --> 01:09:48,240
+
+1503
+01:09:48,240 --> 01:09:50,540
+So compiling-- yeah, what's up?
+
+1504
+01:09:50,540 --> 01:09:52,444
+>> AUDIENCE: Interpreted is slower.
+
+1505
+01:09:52,444 --> 01:09:53,319
+DAVIN: In what sense?
+
+1506
+01:09:53,319 --> 01:09:57,167
+
+1507
+01:09:57,167 --> 01:09:59,091
+>> AUDIENCE: After you
+compile, you don't have
+
+1508
+01:09:59,091 --> 01:10:04,400
+to do any extra steps to execute
+it, whereas this [INAUDIBLE].
+
+1509
+01:10:04,400 --> 01:10:05,570
+>> DAVIN: Right, perfect.
+
+1510
+01:10:05,570 --> 01:10:08,386
+So what you said is
+basically that compiling,
+
+1511
+01:10:08,386 --> 01:10:10,760
+when you compile, you have a
+lot of upfront costs, right?
+
+1512
+01:10:10,760 --> 01:10:11,760
+You're going to compile it.
+
+1513
+01:10:11,760 --> 01:10:13,750
+But after you compile it, the
+compiler's going to optimize it.
+
+1514
+01:10:13,750 --> 01:10:14,840
+It's going to be fast.
+
+1515
+01:10:14,840 --> 01:10:16,170
+It's going to basically
+be as fast as it can be.
+
+1516
+01:10:16,170 --> 01:10:18,830
+With interpreting, you never
+have that upfront cost.
+
+1517
+01:10:18,830 --> 01:10:22,260
+Rather, it's going to be slightly slower
+every single time you interpret it.
+
+1518
+01:10:22,260 --> 01:10:24,940
+And you're going to have to
+interpret it every single time.
+
+1519
+01:10:24,940 --> 01:10:27,114
+So instead of having this
+one time cost, now you're
+
+1520
+01:10:27,114 --> 01:10:29,530
+going to have to interpret it
+every time the page renders.
+
+1521
+01:10:29,530 --> 01:10:31,890
+>> So interpreters are good because
+you don't have to compile it,
+
+1522
+01:10:31,890 --> 01:10:33,980
+but they're bad in that every
+time the page loads, it's
+
+1523
+01:10:33,980 --> 01:10:35,771
+going to have to
+interpret this JavaScript.
+
+1524
+01:10:35,771 --> 01:10:40,520
+And it's going to run slightly slower
+than if you were to compile it.
+
+1525
+01:10:40,520 --> 01:10:43,044
+Allows you to communicate-- oh, wait.
+
+1526
+01:10:43,044 --> 01:10:44,960
+Used to manipulate the
+content and appearance.
+
+1527
+01:10:44,960 --> 01:10:46,043
+We just talked about that.
+
+1528
+01:10:46,043 --> 01:10:47,250
+It uses the DOM.
+
+1529
+01:10:47,250 --> 01:10:49,930
+AJAX, we'll get into
+AJAX in a little bit.
+
+1530
+01:10:49,930 --> 01:10:51,520
+And then, it's client side.
+
+1531
+01:10:51,520 --> 01:10:53,110
+So PHP is server side.
+
+1532
+01:10:53,110 --> 01:10:54,360
+JavaScript is client side.
+
+1533
+01:10:54,360 --> 01:10:57,780
+What are positive to that?
+
+1534
+01:10:57,780 --> 01:10:58,280
+It says it.
+
+1535
+01:10:58,280 --> 01:11:01,480
+
+1536
+01:11:01,480 --> 01:11:02,780
+It's faster, right?
+
+1537
+01:11:02,780 --> 01:11:05,282
+Because you don't have to-- it's faster.
+
+1538
+01:11:05,282 --> 01:11:07,490
+You don't have to communicate
+with some other device.
+
+1539
+01:11:07,490 --> 01:11:08,790
+If you're just on your
+client, you're never
+
+1540
+01:11:08,790 --> 01:11:11,280
+going to have to go and
+see what's on the server
+
+1541
+01:11:11,280 --> 01:11:13,150
+and then report back
+or something like that.
+
+1542
+01:11:13,150 --> 01:11:15,410
+So client side tends to
+be a little bit faster.
+
+1543
+01:11:15,410 --> 01:11:17,910
+>> GABE: Yeah, but this
+does not mean PHP is
+
+1544
+01:11:17,910 --> 01:11:20,440
+faster than JavaScript
+or anything of the like.
+
+1545
+01:11:20,440 --> 01:11:23,270
+They run kind of in the same
+speed because they're both
+
+1546
+01:11:23,270 --> 01:11:24,490
+interpreted languages.
+
+1547
+01:11:24,490 --> 01:11:26,680
+The thing that's slow
+here is the request.
+
+1548
+01:11:26,680 --> 01:11:28,870
+So you're actually going
+all the way over to Brazil
+
+1549
+01:11:28,870 --> 01:11:31,460
+to get some information
+that lives there.
+
+1550
+01:11:31,460 --> 01:11:34,590
+But PHP and JavaScript, they
+kind of run in the same speed.
+
+1551
+01:11:34,590 --> 01:11:37,930
+It's not that one is
+faster than the other.
+
+1552
+01:11:37,930 --> 01:11:40,600
+This, also, trick question here.
+
+1553
+01:11:40,600 --> 01:11:47,338
+So JavaScript never becomes
+machine code, true or false?
+
+1554
+01:11:47,338 --> 01:11:48,590
+>> AUDIENCE: False.
+
+1555
+01:11:48,590 --> 01:11:49,090
+GABE: False.
+
+1556
+01:11:49,090 --> 01:11:51,298
+It has to become machine
+code because machine code is
+
+1557
+01:11:51,298 --> 01:11:53,210
+the only thing the machine understands.
+
+1558
+01:11:53,210 --> 01:11:55,800
+Even though it's not compiled,
+it still becomes machine code
+
+1559
+01:11:55,800 --> 01:11:59,120
+because the interpreter is just
+a program that goes line by line
+
+1560
+01:11:59,120 --> 01:12:02,170
+and transforms that line into
+something the computer understands.
+
+1561
+01:12:02,170 --> 01:12:02,825
+OK?
+
+1562
+01:12:02,825 --> 01:12:03,325
+Cool.
+
+1563
+01:12:03,325 --> 01:12:08,530
+
+1564
+01:12:08,530 --> 01:12:12,890
+>> DAVIN: Here is just a very basic
+hello world JavaScript program.
+
+1565
+01:12:12,890 --> 01:12:15,590
+So I don't know if-- you've seen this.
+
+1566
+01:12:15,590 --> 01:12:17,630
+But you just have HTML here.
+
+1567
+01:12:17,630 --> 01:12:21,020
+And instead of actually putting
+the JavaScript in the script tags,
+
+1568
+01:12:21,020 --> 01:12:22,810
+so you'd normally put it in head.
+
+1569
+01:12:22,810 --> 01:12:24,030
+You have script tags.
+
+1570
+01:12:24,030 --> 01:12:24,870
+You drop it there.
+
+1571
+01:12:24,870 --> 01:12:28,350
+All we've done here is we've linked in--
+so we've linked in a JavaScript file
+
+1572
+01:12:28,350 --> 01:12:29,137
+like this.
+
+1573
+01:12:29,137 --> 01:12:30,470
+And you've all done this, right?
+
+1574
+01:12:30,470 --> 01:12:34,740
+So when you were using jQuery and
+underscore.js in the last p-set,
+
+1575
+01:12:34,740 --> 01:12:38,700
+you don't have tons of code up in
+your script tags, up in your head.
+
+1576
+01:12:38,700 --> 01:12:41,415
+You could do that, but instead
+you're just linking it in.
+
+1577
+01:12:41,415 --> 01:12:43,540
+And you're linking it in
+just like you do with CSS.
+
+1578
+01:12:43,540 --> 01:12:50,186
+So it just makes it easier to read so
+your code isn't like 1,000 lines long
+
+1579
+01:12:50,186 --> 01:12:52,310
+with tons of functions that
+you might not be using.
+
+1580
+01:12:52,310 --> 01:12:53,518
+>> Instead, you just link it in.
+
+1581
+01:12:53,518 --> 01:12:55,050
+It compartmentalizes it.
+
+1582
+01:12:55,050 --> 01:13:00,110
+It's like writing some header file, and
+then including that header file in C.
+
+1583
+01:13:00,110 --> 01:13:01,620
+Think of it just like this.
+
+1584
+01:13:01,620 --> 01:13:02,680
+So what does this do?
+
+1585
+01:13:02,680 --> 01:13:04,560
+Well, this is going to run.
+
+1586
+01:13:04,560 --> 01:13:05,410
+It's going to alert.
+
+1587
+01:13:05,410 --> 01:13:08,020
+So you're going to get a little
+pop up called hello world.
+
+1588
+01:13:08,020 --> 01:13:11,420
+Quick question, just sanity check,
+so you see here in the body,
+
+1589
+01:13:11,420 --> 01:13:13,160
+say body, HTML here.
+
+1590
+01:13:13,160 --> 01:13:14,080
+What comes first?
+
+1591
+01:13:14,080 --> 01:13:16,864
+Do I see body, HTML here,
+or do I see the alert first?
+
+1592
+01:13:16,864 --> 01:13:19,828
+
+1593
+01:13:19,828 --> 01:13:20,820
+>> AUDIENCE: Alert.
+
+1594
+01:13:20,820 --> 01:13:21,470
+>> DAVIN: Right.
+
+1595
+01:13:21,470 --> 01:13:22,110
+He says alert.
+
+1596
+01:13:22,110 --> 01:13:22,610
+Why?
+
+1597
+01:13:22,610 --> 01:13:24,470
+>> AUDIENCE: Because you
+go from top to bottom.
+
+1598
+01:13:24,470 --> 01:13:25,600
+>> DAVIN: Yes.
+
+1599
+01:13:25,600 --> 01:13:26,100
+Perfect.
+
+1600
+01:13:26,100 --> 01:13:29,207
+So he says, you go from top to
+bottom, which is absolutely correct.
+
+1601
+01:13:29,207 --> 01:13:30,790
+You're going to go from top to bottom.
+
+1602
+01:13:30,790 --> 01:13:34,790
+And in JavaScript, jQuery, you have a
+function that's like onload, or ready,
+
+1603
+01:13:34,790 --> 01:13:38,030
+and that says, OK, wait until
+all of this HTML has loaded.
+
+1604
+01:13:38,030 --> 01:13:39,580
+And then, call the JavaScript.
+
+1605
+01:13:39,580 --> 01:13:42,190
+Because we don't have that here, the
+very first thing that's going to happen
+
+1606
+01:13:42,190 --> 01:13:43,920
+is it's going to go from top to bottom.
+
+1607
+01:13:43,920 --> 01:13:46,310
+It's going to hit that JS
+call, it's going to alert.
+
+1608
+01:13:46,310 --> 01:13:49,510
+After that you click OK,
+that alert goes away.
+
+1609
+01:13:49,510 --> 01:13:53,600
+Then it's going to show
+you the body HTML here.
+
+1610
+01:13:53,600 --> 01:13:54,590
+Nice.
+
+1611
+01:13:54,590 --> 01:14:00,880
+>> OK, so just real quick, writing
+in JavaScript is super quick.
+
+1612
+01:14:00,880 --> 01:14:02,710
+In order to declare
+a variable, var name.
+
+1613
+01:14:02,710 --> 01:14:07,070
+So in C, you have int i, you have
+to declare what kind of type it is.
+
+1614
+01:14:07,070 --> 01:14:08,040
+PHP, $.
+
+1615
+01:14:08,040 --> 01:14:08,755
+JavaScript, var.
+
+1616
+01:14:08,755 --> 01:14:09,630
+We talked about this.
+
+1617
+01:14:09,630 --> 01:14:11,020
+All right, let's go.
+
+1618
+01:14:11,020 --> 01:14:12,510
+>> Loops, same thing.
+
+1619
+01:14:12,510 --> 01:14:14,230
+Same thing.
+
+1620
+01:14:14,230 --> 01:14:18,165
+Function declarations, so
+just like you've seen in C.
+
+1621
+01:14:18,165 --> 01:14:21,290
+The only thing different is so when
+you get to other programming languages,
+
+1622
+01:14:21,290 --> 01:14:24,780
+like when you take 51 next semester
+and you're doing with OCAML,
+
+1623
+01:14:24,780 --> 01:14:26,690
+you can deal with anonymous functions.
+
+1624
+01:14:26,690 --> 01:14:28,240
+So that's exactly what you have here.
+
+1625
+01:14:28,240 --> 01:14:31,560
+So you want to put in sum,
+some kind of sum value.
+
+1626
+01:14:31,560 --> 01:14:33,870
+But you might only be doing it one time.
+
+1627
+01:14:33,870 --> 01:14:37,310
+So you don't want to call it function
+sum, give it a function declaration.
+
+1628
+01:14:37,310 --> 01:14:39,830
+Instead, you just use it
+as an anonymous function.
+
+1629
+01:14:39,830 --> 01:14:42,469
+And you've seen this a lot.
+
+1630
+01:14:42,469 --> 01:14:44,510
+You'll see an example of
+this in a couple slides.
+
+1631
+01:14:44,510 --> 01:14:45,597
+Yeah, we'll see.
+
+1632
+01:14:45,597 --> 01:14:46,430
+GABE: Good question.
+
+1633
+01:14:46,430 --> 01:14:50,660
+When might you want to use
+an anonymous function here?
+
+1634
+01:14:50,660 --> 01:14:54,111
+Basically, when you want something,
+like an event, to happen.
+
+1635
+01:14:54,111 --> 01:14:55,860
+So when the mouse is
+clicked, for example,
+
+1636
+01:14:55,860 --> 01:14:57,790
+you want some function to be called.
+
+1637
+01:14:57,790 --> 01:15:00,570
+So you pass to the event
+handler, you pass to the event,
+
+1638
+01:15:00,570 --> 01:15:02,870
+kind of, the function that
+you want to be called.
+
+1639
+01:15:02,870 --> 01:15:04,710
+And what you're passing
+is like, at the end
+
+1640
+01:15:04,710 --> 01:15:08,757
+of the day, just a pointer to
+that instruction, to the function.
+
+1641
+01:15:08,757 --> 01:15:11,090
+So it's not like you're passing
+the entire code, just as
+
+1642
+01:15:11,090 --> 01:15:12,173
+a pointer to the function.
+
+1643
+01:15:12,173 --> 01:15:17,871
+And then, when somebody clicks the
+mouse, then that function gets called.
+
+1644
+01:15:17,871 --> 01:15:22,340
+>> DAVIN: Arrays, so you
+have an array declaration.
+
+1645
+01:15:22,340 --> 01:15:23,990
+Then, an array to put things in.
+
+1646
+01:15:23,990 --> 01:15:25,769
+Real quick, what will this print out?
+
+1647
+01:15:25,769 --> 01:15:27,060
+What will the third element be?
+
+1648
+01:15:27,060 --> 01:15:31,470
+
+1649
+01:15:31,470 --> 01:15:32,450
+>> AUDIENCE: "JS".
+
+1650
+01:15:32,450 --> 01:15:33,940
+>> DAVIN: Right, it would be "JS."
+
+1651
+01:15:33,940 --> 01:15:35,760
+Wait, go back.
+
+1652
+01:15:35,760 --> 01:15:37,100
+What is the length?
+
+1653
+01:15:37,100 --> 01:15:38,117
+>> AUDIENCE: Three.
+
+1654
+01:15:38,117 --> 01:15:38,950
+DAVIN: Three, right?
+
+1655
+01:15:38,950 --> 01:15:40,210
+Exactly what you think.
+
+1656
+01:15:40,210 --> 01:15:42,072
+OK, now go.
+
+1657
+01:15:42,072 --> 01:15:43,530
+Arrays, you can add things to them.
+
+1658
+01:15:43,530 --> 01:15:45,395
+So you can go beyond
+their initial bounds.
+
+1659
+01:15:45,395 --> 01:15:46,740
+Just something to keep in mind.
+
+1660
+01:15:46,740 --> 01:15:49,760
+PHP, JavaScript, they're a little
+bit more forgiving in terms of things
+
+1661
+01:15:49,760 --> 01:15:50,570
+like that.
+
+1662
+01:15:50,570 --> 01:15:54,260
+Objects, very much like
+structs in C, very much
+
+1663
+01:15:54,260 --> 01:15:56,590
+like associative arrays in PHP.
+
+1664
+01:15:56,590 --> 01:15:58,720
+You've all had experience with this.
+
+1665
+01:15:58,720 --> 01:16:01,880
+So JSON, when you're passing JSON
+back and forth in p-set eight,
+
+1666
+01:16:01,880 --> 01:16:03,260
+that's your object.
+
+1667
+01:16:03,260 --> 01:16:06,290
+>> So yeah, example, real quick example.
+
+1668
+01:16:06,290 --> 01:16:07,880
+Here is an object.
+
+1669
+01:16:07,880 --> 01:16:12,700
+The way you reference this
+object, so just real quick,
+
+1670
+01:16:12,700 --> 01:16:18,630
+let's say I wanted to find
+out, OK, what is the course?
+
+1671
+01:16:18,630 --> 01:16:20,681
+And so the object name here is CS50.
+
+1672
+01:16:20,681 --> 01:16:23,180
+And then if I had an associative
+array, how would I do that?
+
+1673
+01:16:23,180 --> 01:16:24,580
+I'll be using a key, right?
+
+1674
+01:16:24,580 --> 01:16:26,030
+So I have the name of the array.
+
+1675
+01:16:26,030 --> 01:16:30,160
+I have bracket, quotes, key,
+end quotes, end bracket,
+
+1676
+01:16:30,160 --> 01:16:33,610
+and that will reference that
+element inside my associative array.
+
+1677
+01:16:33,610 --> 01:16:37,646
+How do I referenced
+course inside my object?
+
+1678
+01:16:37,646 --> 01:16:39,170
+Anybody know?
+
+1679
+01:16:39,170 --> 01:16:40,622
+>> AUDIENCE: [INAUDIBLE].
+
+1680
+01:16:40,622 --> 01:16:41,784
+>> DAVIN: What's up?
+
+1681
+01:16:41,784 --> 01:16:42,700
+AUDIENCE: CS50.course.
+
+1682
+01:16:42,700 --> 01:16:43,510
+DAVIN: Right, yeah.
+
+1683
+01:16:43,510 --> 01:16:45,320
+So CS50.course.
+
+1684
+01:16:45,320 --> 01:16:48,770
+So the way you reference things
+inside a JSON object is with a dot.
+
+1685
+01:16:48,770 --> 01:16:53,114
+>> AUDIENCE: You can also use array syntax.
+
+1686
+01:16:53,114 --> 01:16:54,050
+>> DAVIN: OK, fine.
+
+1687
+01:16:54,050 --> 01:16:57,544
+>> GABE: You can also use CS50 bracket,
+string, like quotation marks.
+
+1688
+01:16:57,544 --> 01:16:59,210
+AUDIENCE: I think it's identical to PHP.
+
+1689
+01:16:59,210 --> 01:17:00,293
+GABE: It's the same thing.
+
+1690
+01:17:00,293 --> 01:17:02,487
+DAVIN: Fine!
+
+1691
+01:17:02,487 --> 01:17:03,945
+But you will see this other places.
+
+1692
+01:17:03,945 --> 01:17:08,990
+
+1693
+01:17:08,990 --> 01:17:10,480
+Yeah, so keep going.
+
+1694
+01:17:10,480 --> 01:17:13,330
+This is what I just said.
+
+1695
+01:17:13,330 --> 01:17:17,840
+So into a JavaScript jQuery example.
+
+1696
+01:17:17,840 --> 01:17:19,440
+So this is my DOM, right?
+
+1697
+01:17:19,440 --> 01:17:22,290
+
+1698
+01:17:22,290 --> 01:17:25,410
+Real quick, so I have a
+head, hello world, body.
+
+1699
+01:17:25,410 --> 01:17:26,160
+I have a button.
+
+1700
+01:17:26,160 --> 01:17:27,870
+It says "push me," so I want to push it.
+
+1701
+01:17:27,870 --> 01:17:29,745
+And I want to do something
+when it's clicked.
+
+1702
+01:17:29,745 --> 01:17:31,220
+Right, next.
+
+1703
+01:17:31,220 --> 01:17:34,630
+>> Right, so this is my JavaScript.
+
+1704
+01:17:34,630 --> 01:17:37,790
+So jQuery is just an easier
+way to write JavaScript.
+
+1705
+01:17:37,790 --> 01:17:40,920
+So this, and what I'm going to show
+you next, is going to be jQuery,
+
+1706
+01:17:40,920 --> 01:17:41,930
+are identical.
+
+1707
+01:17:41,930 --> 01:17:43,990
+So they will do the same things.
+
+1708
+01:17:43,990 --> 01:17:45,974
+Just jQuery tends to be a little easier.
+
+1709
+01:17:45,974 --> 01:17:47,140
+People tend to like it more.
+
+1710
+01:17:47,140 --> 01:17:48,390
+It has a lot of functionality.
+
+1711
+01:17:48,390 --> 01:17:49,830
+So people tend to use jQuery.
+
+1712
+01:17:49,830 --> 01:17:53,270
+You all used jQuery in the last p-set.
+
+1713
+01:17:53,270 --> 01:17:54,270
+So what will this do?
+
+1714
+01:17:54,270 --> 01:17:56,580
+What will this JavaScript-- so
+this is just plain JavaScript.
+
+1715
+01:17:56,580 --> 01:17:57,430
+What will this do?
+
+1716
+01:17:57,430 --> 01:18:00,600
+
+1717
+01:18:00,600 --> 01:18:03,450
+What will it do?
+
+1718
+01:18:03,450 --> 01:18:04,890
+>> So first, you see window onload.
+
+1719
+01:18:04,890 --> 01:18:05,390
+Right?
+
+1720
+01:18:05,390 --> 01:18:06,640
+So we didn't see that before.
+
+1721
+01:18:06,640 --> 01:18:09,380
+So this is going to wait
+until the entire window loads.
+
+1722
+01:18:09,380 --> 01:18:12,770
+So it's going to wait until
+the HTML, all the images load
+
+1723
+01:18:12,770 --> 01:18:13,770
+before it does anything.
+
+1724
+01:18:13,770 --> 01:18:16,050
+So let's say our DOM has loaded.
+
+1725
+01:18:16,050 --> 01:18:17,270
+Everything's there.
+
+1726
+01:18:17,270 --> 01:18:19,080
+Then what's going to happen?
+
+1727
+01:18:19,080 --> 01:18:19,922
+Yeah?
+
+1728
+01:18:19,922 --> 01:18:22,880
+>> AUDIENCE: Button appears.
+
+1729
+01:18:22,880 --> 01:18:25,201
+>> DAVIN: The button's already there.
+
+1730
+01:18:25,201 --> 01:18:26,700
+Yeah, so the button's already there.
+
+1731
+01:18:26,700 --> 01:18:31,190
+But this is going to say,
+OK, if I click the button,
+
+1732
+01:18:31,190 --> 01:18:33,650
+so the button's already
+there, like that HTML tag.
+
+1733
+01:18:33,650 --> 01:18:35,980
+Wait, go back real quick.
+
+1734
+01:18:35,980 --> 01:18:39,470
+This tag right right here is
+going to be a button already.
+
+1735
+01:18:39,470 --> 01:18:40,810
+There's already a button.
+
+1736
+01:18:40,810 --> 01:18:44,120
+But then, the JavaScript
+tag, right here,
+
+1737
+01:18:44,120 --> 01:18:46,160
+it says, OK, I want
+to get element by ID,
+
+1738
+01:18:46,160 --> 01:18:50,300
+so search button just says, OK, I want
+to map this variable to that button.
+
+1739
+01:18:50,300 --> 01:18:53,120
+So that variable is just an
+easier way to access that button.
+
+1740
+01:18:53,120 --> 01:18:57,300
+And I say, OK, if I click that
+button, so if I click that element,
+
+1741
+01:18:57,300 --> 01:18:59,560
+and this element refers to
+the button, if I click it,
+
+1742
+01:18:59,560 --> 01:19:00,875
+then I want to call a function.
+
+1743
+01:19:00,875 --> 01:19:03,500
+Here is one of those anonymous
+functions we were talking about.
+
+1744
+01:19:03,500 --> 01:19:04,840
+>> Just call some function.
+
+1745
+01:19:04,840 --> 01:19:08,840
+Inside that function, basically
+something we've seen a lot, alert.
+
+1746
+01:19:08,840 --> 01:19:10,477
+You click the search button.
+
+1747
+01:19:10,477 --> 01:19:12,060
+It's going to basically have a button.
+
+1748
+01:19:12,060 --> 01:19:13,040
+You click it.
+
+1749
+01:19:13,040 --> 01:19:14,040
+You get that alert.
+
+1750
+01:19:14,040 --> 01:19:14,850
+X out.
+
+1751
+01:19:14,850 --> 01:19:15,754
+That's it.
+
+1752
+01:19:15,754 --> 01:19:16,254
+Yeah?
+
+1753
+01:19:16,254 --> 01:19:21,980
+>> AUDIENCE: So if you put the script
+[INAUDIBLE], script tag in your HTML?
+
+1754
+01:19:21,980 --> 01:19:24,300
+>> DAVIN: You can put the script
+tag straight in the head
+
+1755
+01:19:24,300 --> 01:19:30,667
+because you have this onload.
+
+1756
+01:19:30,667 --> 01:19:32,000
+It's also that you have a click.
+
+1757
+01:19:32,000 --> 01:19:34,166
+So it's going to wait until
+you click for something.
+
+1758
+01:19:34,166 --> 01:19:37,470
+But onload is just to be safe, to make
+sure everything loads into your HTML
+
+1759
+01:19:37,470 --> 01:19:38,170
+beforehand.
+
+1760
+01:19:38,170 --> 01:19:39,247
+Yeah?
+
+1761
+01:19:39,247 --> 01:19:40,330
+You want to say something?
+
+1762
+01:19:40,330 --> 01:19:41,080
+>> GABE: [INAUDIBLE].
+
+1763
+01:19:41,080 --> 01:19:42,485
+DAVIN: Yeah.
+
+1764
+01:19:42,485 --> 01:19:45,426
+>> AUDIENCE: So onload avoids
+defining the variable search button
+
+1765
+01:19:45,426 --> 01:19:49,930
+by just saying document.getElementByID
+search button dot [INAUDIBLE].
+
+1766
+01:19:49,930 --> 01:19:52,320
+>> DAVIN: Definitely, but then
+your string just gets huge.
+
+1767
+01:19:52,320 --> 01:19:55,553
+Exactly, so this is just to
+make it easier for you, yeah.
+
+1768
+01:19:55,553 --> 01:19:56,053
+Yes?
+
+1769
+01:19:56,053 --> 01:19:57,886
+>> AUDIENCE: Where did we
+create window.onload?
+
+1770
+01:19:57,886 --> 01:19:58,951
+Or document.ready?
+
+1771
+01:19:58,951 --> 01:20:00,590
+>> DAVIN: Yes, there is.
+
+1772
+01:20:00,590 --> 01:20:02,094
+Yes, there is, I checked.
+
+1773
+01:20:02,094 --> 01:20:03,710
+>> GABE: Not for them to care about.
+
+1774
+01:20:03,710 --> 01:20:06,970
+>> DAVIN: OK, so I'm going
+to tell you anyway.
+
+1775
+01:20:06,970 --> 01:20:11,005
+So basically, just in general, so
+window.onload waits until your DOM, all
+
+1776
+01:20:11,005 --> 01:20:12,180
+your HTML, loads.
+
+1777
+01:20:12,180 --> 01:20:13,513
+It waits until your images load.
+
+1778
+01:20:13,513 --> 01:20:14,930
+It waits until everything loads.
+
+1779
+01:20:14,930 --> 01:20:18,410
+document.ready, it just
+waits until your DOM loads.
+
+1780
+01:20:18,410 --> 01:20:22,190
+Once the HTML is all there, once
+your DOM is there, starts running.
+
+1781
+01:20:22,190 --> 01:20:23,400
+That's the only difference.
+
+1782
+01:20:23,400 --> 01:20:24,700
+>> GABE: Quick sanity check here.
+
+1783
+01:20:24,700 --> 01:20:29,060
+So this can be seen kind of
+like a line of code, right?
+
+1784
+01:20:29,060 --> 01:20:33,600
+Because it's window.onload
+equals a bunch of stuff.
+
+1785
+01:20:33,600 --> 01:20:39,030
+When JavaScript reads this, true or
+false, the function gets executed.
+
+1786
+01:20:39,030 --> 01:20:40,020
+False.
+
+1787
+01:20:40,020 --> 01:20:40,920
+OK?
+
+1788
+01:20:40,920 --> 01:20:44,470
+What happens here, you're just passing
+this function as an anonymous functions
+
+1789
+01:20:44,470 --> 01:20:45,300
+to window.onload.
+
+1790
+01:20:45,300 --> 01:20:48,480
+And then when is it going
+to actually get executed?
+
+1791
+01:20:48,480 --> 01:20:49,600
+When the window loads.
+
+1792
+01:20:49,600 --> 01:20:50,420
+That's an event.
+
+1793
+01:20:50,420 --> 01:20:52,460
+So that's jus t thing we're
+talking about earlier, right?
+
+1794
+01:20:52,460 --> 01:20:54,580
+So when the event happens,
+the function happens.
+
+1795
+01:20:54,580 --> 01:20:55,746
+Same thing with the onclick.
+
+1796
+01:20:55,746 --> 01:20:59,510
+
+1797
+01:20:59,510 --> 01:21:03,130
+>> DAVIN: OK, so somebody took
+away the document.ready.
+
+1798
+01:21:03,130 --> 01:21:04,698
+But this will be the exact same--
+
+1799
+01:21:04,698 --> 01:21:06,864
+AUDIENCE: The dollar sign,
+that is a document.ready.
+
+1800
+01:21:06,864 --> 01:21:07,710
+That's a shortcut.
+
+1801
+01:21:07,710 --> 01:21:08,501
+>> DAVIN: Oh, that is?
+
+1802
+01:21:08,501 --> 01:21:10,880
+
+1803
+01:21:10,880 --> 01:21:15,500
+OK, so this means
+document.ready, shortcut.
+
+1804
+01:21:15,500 --> 01:21:19,660
+But this is the same as window.onload
+except for that little difference
+
+1805
+01:21:19,660 --> 01:21:20,680
+I told you about.
+
+1806
+01:21:20,680 --> 01:21:21,870
+And this is jQuery.
+
+1807
+01:21:21,870 --> 01:21:25,190
+So this is the exact same
+thing-- this is JavaScript.
+
+1808
+01:21:25,190 --> 01:21:29,500
+This is just-- some people think of it
+as a more light weight, sleek version
+
+1809
+01:21:29,500 --> 01:21:32,370
+that has lots of functionality
+that you'll probably be using.
+
+1810
+01:21:32,370 --> 01:21:34,500
+So this does the exact same thing.
+
+1811
+01:21:34,500 --> 01:21:37,110
+>> So things to kind of point out.
+
+1812
+01:21:37,110 --> 01:21:40,364
+So in the other example, we
+had document.getElementByID,
+
+1813
+01:21:40,364 --> 01:21:42,280
+so we had this long
+string that's going to get
+
+1814
+01:21:42,280 --> 01:21:44,290
+the element by whatever ID it has.
+
+1815
+01:21:44,290 --> 01:21:46,470
+That's replaced by this call right here.
+
+1816
+01:21:46,470 --> 01:21:50,860
+So you see the dollar sign,
+then you see quote, hashtag.
+
+1817
+01:21:50,860 --> 01:21:52,370
+Hashtag is always a selector.
+
+1818
+01:21:52,370 --> 01:21:54,730
+It says, OK, this has to do with an ID.
+
+1819
+01:21:54,730 --> 01:21:56,120
+What's the selector for a class?
+
+1820
+01:21:56,120 --> 01:21:57,190
+>> AUDIENCE: Dot.
+
+1821
+01:21:57,190 --> 01:21:57,960
+>> DAVIN: Dot, right.
+
+1822
+01:21:57,960 --> 01:22:01,950
+If you're just going to
+select a tag, what is it?
+
+1823
+01:22:01,950 --> 01:22:03,310
+It's just the tag, exactly.
+
+1824
+01:22:03,310 --> 01:22:05,560
+And you could use that here, as well.
+
+1825
+01:22:05,560 --> 01:22:08,560
+>> GABE: And by tag, we mean like
+div, for example, or head.
+
+1826
+01:22:08,560 --> 01:22:11,500
+>> DAVIN: Or body or p or
+anything like that, yeah.
+
+1827
+01:22:11,500 --> 01:22:14,390
+So here, OK, instead of saying
+document.getElementByID,
+
+1828
+01:22:14,390 --> 01:22:16,500
+this is just the exact same thing.
+
+1829
+01:22:16,500 --> 01:22:17,990
+Just in jQuery, it's shorter.
+
+1830
+01:22:17,990 --> 01:22:19,860
+So it's simpler.
+
+1831
+01:22:19,860 --> 01:22:23,420
+So then, no more onclick, just click.
+
+1832
+01:22:23,420 --> 01:22:26,320
+jQuery function, call this function.
+
+1833
+01:22:26,320 --> 01:22:27,580
+Alert is the exact same.
+
+1834
+01:22:27,580 --> 01:22:29,452
+So it's a little bit
+smaller, or little bit
+
+1835
+01:22:29,452 --> 01:22:32,410
+shorter, a little bit-- people think
+it's a little easier to write out,
+
+1836
+01:22:32,410 --> 01:22:34,600
+a little bit easier to understand.
+
+1837
+01:22:34,600 --> 01:22:35,640
+But this is jQuery.
+
+1838
+01:22:35,640 --> 01:22:37,887
+A lot of people get a little
+bit confused and worried
+
+1839
+01:22:37,887 --> 01:22:40,220
+and they think, OK, jQuery
+is different than JavaScript.
+
+1840
+01:22:40,220 --> 01:22:42,136
+I have to remember these
+two different things.
+
+1841
+01:22:42,136 --> 01:22:42,740
+It's not.
+
+1842
+01:22:42,740 --> 01:22:45,315
+I mean, it's different syntax.
+
+1843
+01:22:45,315 --> 01:22:46,970
+But jQuery is JavaScript.
+
+1844
+01:22:46,970 --> 01:22:50,050
+It's just a seemingly
+better version that
+
+1845
+01:22:50,050 --> 01:22:51,967
+might be easier to
+understand that people use.
+
+1846
+01:22:51,967 --> 01:22:53,716
+GABE: Yeah, to be
+honest, that dollar sign
+
+1847
+01:22:53,716 --> 01:22:57,240
+that you see in jQuery, that's just the
+name of a function that jQuery defines.
+
+1848
+01:22:57,240 --> 01:22:58,614
+It doesn't have anything special.
+
+1849
+01:22:58,614 --> 01:23:03,140
+Is It's just the name of a function,
+just like you could define dollar sign.
+
+1850
+01:23:03,140 --> 01:23:05,670
+>> DAVIN: Yeah, so talked about this.
+
+1851
+01:23:05,670 --> 01:23:06,680
+Some useful things.
+
+1852
+01:23:06,680 --> 01:23:10,414
+I was looking back at the old quizzes.
+
+1853
+01:23:10,414 --> 01:23:13,080
+In the past couple quizzes, they've
+had to use things like this.
+
+1854
+01:23:13,080 --> 01:23:15,230
+So document.ready, so
+make sure everything's
+
+1855
+01:23:15,230 --> 01:23:17,410
+loaded before you start doing things.
+
+1856
+01:23:17,410 --> 01:23:20,120
+Select an ID, or select
+a class, it'd just
+
+1857
+01:23:20,120 --> 01:23:24,020
+be quote dot some class, end quote.
+
+1858
+01:23:24,020 --> 01:23:26,580
+Submit, so if you're
+submitting a form and call
+
+1859
+01:23:26,580 --> 01:23:28,830
+this function after the form submits.
+
+1860
+01:23:28,830 --> 01:23:34,210
+Value, so let's say I had a form
+submission, like a user name, an email,
+
+1861
+01:23:34,210 --> 01:23:34,950
+whatever.
+
+1862
+01:23:34,950 --> 01:23:36,010
+I had a text box.
+
+1863
+01:23:36,010 --> 01:23:37,670
+So I'm typing into that text box.
+
+1864
+01:23:37,670 --> 01:23:42,170
+Well, if you want to get the value
+out of that text box, you use dot val.
+
+1865
+01:23:42,170 --> 01:23:44,050
+And then, down here,
+dot HTML is the same
+
+1866
+01:23:44,050 --> 01:23:47,710
+is like document dot
+getElementByID dot innerHTML.
+
+1867
+01:23:47,710 --> 01:23:50,890
+So that's going to return
+you the HTML from that ID.
+
+1868
+01:23:50,890 --> 01:23:55,080
+Here, you just use some
+ID or whatever dot HTML.
+
+1869
+01:23:55,080 --> 01:23:56,930
+That'll get the HTML from that element.
+
+1870
+01:23:56,930 --> 01:24:00,130
+If you wanted to then change that
+HTML, you can pass it something.
+
+1871
+01:24:00,130 --> 01:24:05,600
+So you'd be like dot HTML, and then
+inside, quotes, new HTML or something.
+
+1872
+01:24:05,600 --> 01:24:07,490
+>> GABE: OK, so AJAX.
+
+1873
+01:24:07,490 --> 01:24:10,347
+I really like to understand
+AJAX really well.
+
+1874
+01:24:10,347 --> 01:24:12,430
+So I want you guys to
+understand AJAX really well.
+
+1875
+01:24:12,430 --> 01:24:14,221
+Because if you do,
+you're pretty much going
+
+1876
+01:24:14,221 --> 01:24:16,810
+to understand everything that
+has to do with HTTP, PHP,
+
+1877
+01:24:16,810 --> 01:24:21,080
+JavaScript because it all
+comes together in AJAX.
+
+1878
+01:24:21,080 --> 01:24:25,130
+AJAX is not a language.
+
+1879
+01:24:25,130 --> 01:24:27,000
+AJAX is a technique.
+
+1880
+01:24:27,000 --> 01:24:31,690
+And it uses lots of different tools.
+
+1881
+01:24:31,690 --> 01:24:35,090
+AJAX stands for
+asynchronous JavaScript XML.
+
+1882
+01:24:35,090 --> 01:24:36,730
+So the method, the language, the data.
+
+1883
+01:24:36,730 --> 01:24:40,610
+>> So the main language that we use
+in AJAX to trigger everything
+
+1884
+01:24:40,610 --> 01:24:42,830
+and to handle everything
+later on is JavaScript.
+
+1885
+01:24:42,830 --> 01:24:45,160
+That's why it relates
+very close to JavaScript.
+
+1886
+01:24:45,160 --> 01:24:49,810
+And then asynchronous is
+because we don't do it
+
+1887
+01:24:49,810 --> 01:24:51,980
+all at once when we're loading the page.
+
+1888
+01:24:51,980 --> 01:24:57,190
+This is the thing that we can
+do things kind of in parallel.
+
+1889
+01:24:57,190 --> 01:24:59,725
+The main idea behind
+AJAX is that you want
+
+1890
+01:24:59,725 --> 01:25:02,170
+it to get some specific information.
+
+1891
+01:25:02,170 --> 01:25:06,450
+For example, when you're typing new
+user name when you register a user name,
+
+1892
+01:25:06,450 --> 01:25:08,520
+my user name is abc123.
+
+1893
+01:25:08,520 --> 01:25:11,671
+And then, at the end of the
+form, you have to click Submit.
+
+1894
+01:25:11,671 --> 01:25:14,420
+And it had to go to the server,
+and then check if in the database,
+
+1895
+01:25:14,420 --> 01:25:15,594
+abc123 is already there.
+
+1896
+01:25:15,594 --> 01:25:18,510
+And if it's already there, it says,
+user name already in the database.
+
+1897
+01:25:18,510 --> 01:25:21,010
+And they, you have to fill
+out the entire form again.
+
+1898
+01:25:21,010 --> 01:25:23,110
+And it was really, really bad.
+
+1899
+01:25:23,110 --> 01:25:25,440
+>> And then people say,
+OK, why can't we just
+
+1900
+01:25:25,440 --> 01:25:29,560
+do a small HTTP request to just check
+to see if this user is in the database
+
+1901
+01:25:29,560 --> 01:25:32,080
+before the user had to
+submit the entire form?
+
+1902
+01:25:32,080 --> 01:25:36,350
+So for example, when the
+user finishes typing abc123,
+
+1903
+01:25:36,350 --> 01:25:39,660
+let's just go to the server a little
+bit and just get a true or false
+
+1904
+01:25:39,660 --> 01:25:43,080
+from the server to see if
+that's a valid user name or not.
+
+1905
+01:25:43,080 --> 01:25:49,250
+OK, so that's one of the main
+uses of AJAX nowadays still.
+
+1906
+01:25:49,250 --> 01:25:52,130
+>> DAVIN: So real quick, in
+an Ajax call in jQuery,
+
+1907
+01:25:52,130 --> 01:25:54,770
+you could signify that you
+want it to be synchronous.
+
+1908
+01:25:54,770 --> 01:25:56,330
+You shouldn't do this.
+
+1909
+01:25:56,330 --> 01:25:57,640
+But you can do that.
+
+1910
+01:25:57,640 --> 01:25:59,277
+And if you did that, what would happen?
+
+1911
+01:25:59,277 --> 01:26:01,610
+Well, for example, when you're
+getting news or whatever,
+
+1912
+01:26:01,610 --> 01:26:05,464
+your browser is just going to wait
+until that entire call is complete
+
+1913
+01:26:05,464 --> 01:26:08,130
+instead of letting you do other
+things right after you click it.
+
+1914
+01:26:08,130 --> 01:26:14,560
+
+1915
+01:26:14,560 --> 01:26:17,115
+>> GABE: It's not passing anymore.
+
+1916
+01:26:17,115 --> 01:26:19,681
+Oh my god.
+
+1917
+01:26:19,681 --> 01:26:20,180
+Sorry!
+
+1918
+01:26:20,180 --> 01:26:22,810
+
+1919
+01:26:22,810 --> 01:26:23,601
+Yup.
+
+1920
+01:26:23,601 --> 01:26:25,350
+"In the past, the
+client needed to request
+
+1921
+01:26:25,350 --> 01:26:26,840
+the entire content of a website."
+
+1922
+01:26:26,840 --> 01:26:28,210
+That's what I said.
+
+1923
+01:26:28,210 --> 01:26:30,070
+It allows us to send
+additional GET or POST
+
+1924
+01:26:30,070 --> 01:26:32,140
+requests without having
+to reload our browser.
+
+1925
+01:26:32,140 --> 01:26:34,806
+So at the end of the day, we're
+actually making an HTTP requests
+
+1926
+01:26:34,806 --> 01:26:35,740
+here using JavaScript.
+
+1927
+01:26:35,740 --> 01:26:39,700
+Because before, we only used JavaScript
+to change the HTML that already came.
+
+1928
+01:26:39,700 --> 01:26:43,110
+And now, we can use it to interface
+with the web servers as well.
+
+1929
+01:26:43,110 --> 01:26:46,140
+The way this happens
+is we have the client.
+
+1930
+01:26:46,140 --> 01:26:47,340
+Davin is a client.
+
+1931
+01:26:47,340 --> 01:26:50,797
+And he has all the JavaScript
+running because HTML is dumb.
+
+1932
+01:26:50,797 --> 01:26:51,630
+JavaScript is smart.
+
+1933
+01:26:51,630 --> 01:26:54,690
+So davin Davin has his smart
+part and his dumb part.
+
+1934
+01:26:54,690 --> 01:26:57,590
+He's going to use his smart part now.
+
+1935
+01:26:57,590 --> 01:27:00,860
+He's going to use JavaScript
+to request, for example,
+
+1936
+01:27:00,860 --> 01:27:04,340
+whether abc123 is in
+the database or not.
+
+1937
+01:27:04,340 --> 01:27:08,450
+>> So Davin, please, you just
+send me an HTTP request.
+
+1938
+01:27:08,450 --> 01:27:09,197
+Thank you.
+
+1939
+01:27:09,197 --> 01:27:10,530
+So he just sent an HTTP request.
+
+1940
+01:27:10,530 --> 01:27:11,270
+You see that?
+
+1941
+01:27:11,270 --> 01:27:14,700
+And that's just the same way
+that any HTTP request is sent.
+
+1942
+01:27:14,700 --> 01:27:16,830
+The browser, Google
+Chrome or something, is
+
+1943
+01:27:16,830 --> 01:27:19,570
+going to see that Davin's
+trying to send an HTTP request,
+
+1944
+01:27:19,570 --> 01:27:20,930
+going to help hm a little bit.
+
+1945
+01:27:20,930 --> 01:27:23,950
+And that's going to go
+all the way to the server.
+
+1946
+01:27:23,950 --> 01:27:27,370
+Now, the server is going to have
+PHP here, or any other language.
+
+1947
+01:27:27,370 --> 01:27:29,990
+Just like in a normal HTTP request.
+
+1948
+01:27:29,990 --> 01:27:31,950
+It's pretty much a normal HTTP request.
+
+1949
+01:27:31,950 --> 01:27:33,658
+>> And then, the server
+is going to say, OK,
+
+1950
+01:27:33,658 --> 01:27:37,270
+Davin wants me to check whether
+this abc123 is in the database.
+
+1951
+01:27:37,270 --> 01:27:38,310
+Go talk to the model.
+
+1952
+01:27:38,310 --> 01:27:41,310
+The model says it's not.
+abc123 is a good user name.
+
+1953
+01:27:41,310 --> 01:27:47,940
+And then, the web server is going to
+use PHP to render some form of file.
+
+1954
+01:27:47,940 --> 01:27:52,280
+It could be literally just a file
+that contains "yes" in it, or "no,
+
+1955
+01:27:52,280 --> 01:27:53,315
+or something like that.
+
+1956
+01:27:53,315 --> 01:27:54,190
+It could be any file.
+
+1957
+01:27:54,190 --> 01:27:57,080
+>> It could be like I'm going to
+send Davin a picture of a duck
+
+1958
+01:27:57,080 --> 01:28:01,200
+if it's in the database and
+send a picture of a hamster
+
+1959
+01:28:01,200 --> 01:28:02,420
+if it's not in the database.
+
+1960
+01:28:02,420 --> 01:28:04,294
+That would be kind of
+dumb, but it will work.
+
+1961
+01:28:04,294 --> 01:28:07,030
+OK, so I send a duck to Davin.
+
+1962
+01:28:07,030 --> 01:28:08,150
+Davin got a duck.
+
+1963
+01:28:08,150 --> 01:28:13,330
+And now, who is going
+to handle the duck?
+
+1964
+01:28:13,330 --> 01:28:16,390
+Davin's smart part again,
+so JavaScript, right?
+
+1965
+01:28:16,390 --> 01:28:18,620
+JavaScript sent the
+request, and JavaScript
+
+1966
+01:28:18,620 --> 01:28:22,300
+is going to receive the request
+and interpret it in some form.
+
+1967
+01:28:22,300 --> 01:28:26,630
+>> And in this sense, it's going to
+say, OK, if duck then I'm good.
+
+1968
+01:28:26,630 --> 01:28:30,770
+If hamster, then I'm going
+to say, no, user name already
+
+1969
+01:28:30,770 --> 01:28:31,970
+exists in the database.
+
+1970
+01:28:31,970 --> 01:28:33,845
+But usually, you're not
+going to send a duck.
+
+1971
+01:28:33,845 --> 01:28:36,740
+You're going to send
+something slightly smarter.
+
+1972
+01:28:36,740 --> 01:28:40,320
+And what we use is XML.
+
+1973
+01:28:40,320 --> 01:28:42,690
+And more recently, we use JSON.
+
+1974
+01:28:42,690 --> 01:28:45,629
+JSON is just JavaScript
+Object Notation, which
+
+1975
+01:28:45,629 --> 01:28:47,670
+is basically you get an
+entire JavaScript object.
+
+1976
+01:28:47,670 --> 01:28:50,820
+And you put it in a file, just like
+that CS50 object that you guys saw.
+
+1977
+01:28:50,820 --> 01:28:53,090
+You put it in a file, and
+you send it over to Davin.
+
+1978
+01:28:53,090 --> 01:28:55,850
+>> So in this case, I would
+make a JavaScript object
+
+1979
+01:28:55,850 --> 01:28:59,570
+and just say, user exists, yes.
+
+1980
+01:28:59,570 --> 01:29:01,630
+Or user exists, no.
+
+1981
+01:29:01,630 --> 01:29:02,810
+And send it back to him.
+
+1982
+01:29:02,810 --> 01:29:03,830
+And why JSON?
+
+1983
+01:29:03,830 --> 01:29:07,330
+Because the person
+who's receiving this is
+
+1984
+01:29:07,330 --> 01:29:10,030
+going to use JavaScript
+to handle the response.
+
+1985
+01:29:10,030 --> 01:29:14,970
+And JavaScript works so well because
+it's called JavaScript Object Notation.
+
+1986
+01:29:14,970 --> 01:29:15,470
+Right?
+
+1987
+01:29:15,470 --> 01:29:19,660
+So he can just call a function and get
+this nice object from the response.
+
+1988
+01:29:19,660 --> 01:29:22,890
+And then, he's going to know whether
+that user is in the database or not.
+
+1989
+01:29:22,890 --> 01:29:25,230
+>> So you see, all of it coming
+together in the web server,
+
+1990
+01:29:25,230 --> 01:29:28,450
+and then there's one HTTP to request
+and one HTTP response and everything.
+
+1991
+01:29:28,450 --> 01:29:30,600
+So make sure you guys
+understand this AJAX call
+
+1992
+01:29:30,600 --> 01:29:37,260
+because it helps you understand all
+of the concepts we're talking about.
+
+1993
+01:29:37,260 --> 01:29:40,260
+>> So here's an example
+of AJAX with jQuery.
+
+1994
+01:29:40,260 --> 01:29:42,130
+And here, we do with get JSON.
+
+1995
+01:29:42,130 --> 01:29:45,660
+So we're not trying to get an
+image of a cat here, or a duck.
+
+1996
+01:29:45,660 --> 01:29:48,110
+We're trying to get a JSON file.
+
+1997
+01:29:48,110 --> 01:29:51,184
+And then we wait until
+it's done, dot done.
+
+1998
+01:29:51,184 --> 01:29:52,850
+That means I'm waiting for the response.
+
+1999
+01:29:52,850 --> 01:29:54,180
+It might take a little while.
+
+2000
+01:29:54,180 --> 01:29:56,360
+Then, you see a little loading.
+
+2001
+01:29:56,360 --> 01:29:59,340
+If you want to do that in your website.
+
+2002
+01:29:59,340 --> 01:30:01,440
+So dot done, and then what
+happens when it's done?
+
+2003
+01:30:01,440 --> 01:30:04,040
+You pass in an anonymous
+function, just like we saw before.
+
+2004
+01:30:04,040 --> 01:30:07,800
+Because done is an event, just
+like clicking a mouse or whatever,
+
+2005
+01:30:07,800 --> 01:30:08,710
+for jQuery.
+
+2006
+01:30:08,710 --> 01:30:13,710
+So you pass in this function with
+data, text, status, and jqXHR.
+
+2007
+01:30:13,710 --> 01:30:15,790
+And basically, that's
+just some variables
+
+2008
+01:30:15,790 --> 01:30:22,160
+that you can use later on to have
+the status of the HTTP request,
+
+2009
+01:30:22,160 --> 01:30:24,470
+the data that it's going
+to send back to you.
+
+2010
+01:30:24,470 --> 01:30:28,740
+So then you can later on interpret it
+and do something meaningful with it.
+
+2011
+01:30:28,740 --> 01:30:30,240
+And if it fails, when might it fail?
+
+2012
+01:30:30,240 --> 01:30:33,780
+Well, when the HTTP request gives
+you a 500 or something like that.
+
+2013
+01:30:33,780 --> 01:30:37,420
+Then, it's going to tell you the
+status, what kind of failure that was,
+
+2014
+01:30:37,420 --> 01:30:38,420
+and all sorts of things.
+
+2015
+01:30:38,420 --> 01:30:40,630
+You have to make sure
+to handle both cases,
+
+2016
+01:30:40,630 --> 01:30:42,770
+otherwise the program goes crazy.
+
+2017
+01:30:42,770 --> 01:30:45,820
+>> DAVIN: So yeah, this is exactly
+what you saw on your last p-set.
+
+2018
+01:30:45,820 --> 01:30:49,720
+The actual AJAX call is in the get JSON.
+
+2019
+01:30:49,720 --> 01:30:50,587
+That is the call.
+
+2020
+01:30:50,587 --> 01:30:52,920
+And then, dot done is like
+it checks if it's successful.
+
+2021
+01:30:52,920 --> 01:30:55,620
+If it is successful, you want
+to do something with the data.
+
+2022
+01:30:55,620 --> 01:30:59,290
+You get back from that
+JSON request data.
+
+2023
+01:30:59,290 --> 01:31:00,600
+That is what you get back.
+
+2024
+01:31:00,600 --> 01:31:04,470
+So if you remember from your p-set,
+a lot of you were like data bracket i
+
+2025
+01:31:04,470 --> 01:31:06,302
+or whatever, dot link or title.
+
+2026
+01:31:06,302 --> 01:31:08,260
+Whatever's coming back
+from that JSON, whatever
+
+2027
+01:31:08,260 --> 01:31:11,020
+the fields are in that JSON object,
+that's what you're getting back.
+
+2028
+01:31:11,020 --> 01:31:12,394
+Data is what you're getting back.
+
+2029
+01:31:12,394 --> 01:31:15,510
+Text status, just something that
+lets you know what happened.
+
+2030
+01:31:15,510 --> 01:31:20,570
+And then, the jqXHR, that's just
+the jQuery XML HTTP request.
+
+2031
+01:31:20,570 --> 01:31:21,990
+That's just like an object.
+
+2032
+01:31:21,990 --> 01:31:23,932
+And then fail, just like Gabe said.
+
+2033
+01:31:23,932 --> 01:31:27,140
+GABE: In our little example of abc123
+just to check if that's in the database
+
+2034
+01:31:27,140 --> 01:31:32,260
+or not, the data would be something you
+would do, if data dot user name exists,
+
+2035
+01:31:32,260 --> 01:31:37,720
+which is what your PHP generated for
+you, if data dot user name exists, then
+
+2036
+01:31:37,720 --> 01:31:40,880
+I'm going to alert, user
+name already exists.
+
+2037
+01:31:40,880 --> 01:31:44,300
+Else, I'm just going to let the
+user proceed filling out the form.
+
+2038
+01:31:44,300 --> 01:31:47,860
+
+2039
+01:31:47,860 --> 01:31:50,820
+OK, security, cool.
+
+2040
+01:31:50,820 --> 01:31:52,060
+>> DAVIN: Want me to?
+
+2041
+01:31:52,060 --> 01:31:54,500
+>> GABE: I like this one.
+
+2042
+01:31:54,500 --> 01:31:57,680
+So something that looks familiar.
+
+2043
+01:31:57,680 --> 01:31:59,750
+We're almost done.
+
+2044
+01:31:59,750 --> 01:32:02,670
+So this is just the example
+you guys saw in class.
+
+2045
+01:32:02,670 --> 01:32:04,860
+You were using argv1 here.
+
+2046
+01:32:04,860 --> 01:32:06,460
+That's like a command line argument.
+
+2047
+01:32:06,460 --> 01:32:09,270
+And we're mem copying that
+into a buffer of size 12.
+
+2048
+01:32:09,270 --> 01:32:12,560
+What's the problem here?
+
+2049
+01:32:12,560 --> 01:32:13,660
+Buffer overflow!
+
+2050
+01:32:13,660 --> 01:32:15,400
+Because we have a buffer of size 12.
+
+2051
+01:32:15,400 --> 01:32:18,400
+argv1 might have a size of two billion.
+
+2052
+01:32:18,400 --> 01:32:19,960
+We don't do any boundary checking.
+
+2053
+01:32:19,960 --> 01:32:24,970
+So we might copy a lot of memory.
+
+2054
+01:32:24,970 --> 01:32:28,630
+And we'll be particularly
+bad about this.
+
+2055
+01:32:28,630 --> 01:32:32,600
+What could we do that's
+very, very mean in this case?
+
+2056
+01:32:32,600 --> 01:32:33,278
+Yes?
+
+2057
+01:32:33,278 --> 01:32:36,528
+AUDIENCE: Part of the two billion things
+contains executable code that returns
+
+2058
+01:32:36,528 --> 01:32:38,127
+[INAUDIBLE].
+
+2059
+01:32:38,127 --> 01:32:38,710
+GABE: Exactly.
+
+2060
+01:32:38,710 --> 01:32:41,110
+So that's the kind of
+thing that people use
+
+2061
+01:32:41,110 --> 01:32:43,344
+to jailbreak an iPhone, for example.
+
+2062
+01:32:43,344 --> 01:32:44,260
+So that kind of thing.
+
+2063
+01:32:44,260 --> 01:32:48,610
+Because you can just make the device
+execute any code that you like.
+
+2064
+01:32:48,610 --> 01:32:50,247
+The fix, so the fix is easy.
+
+2065
+01:32:50,247 --> 01:32:51,330
+Just check for the bounds.
+
+2066
+01:32:51,330 --> 01:32:53,455
+You check for null because
+we always check for null
+
+2067
+01:32:53,455 --> 01:32:54,940
+when we're dealing with strings.
+
+2068
+01:32:54,940 --> 01:32:57,840
+And then, you take the
+string length before.
+
+2069
+01:32:57,840 --> 01:33:00,150
+And if the string
+length is a valid string
+
+2070
+01:33:00,150 --> 01:33:03,700
+length, which is within 0
+and 12, then we're good.
+
+2071
+01:33:03,700 --> 01:33:07,144
+>> DAVIN: If you don't check for
+null, real quick, what will happen?
+
+2072
+01:33:07,144 --> 01:33:07,810
+It'll seg fault.
+
+2073
+01:33:07,810 --> 01:33:10,850
+Why will it seg fault?
+
+2074
+01:33:10,850 --> 01:33:12,510
+Because you're calling strlen on null.
+
+2075
+01:33:12,510 --> 01:33:13,010
+GABE: Yeah.
+
+2076
+01:33:13,010 --> 01:33:16,490
+
+2077
+01:33:16,490 --> 01:33:19,630
+True or false, using one
+password is a good idea.
+
+2078
+01:33:19,630 --> 01:33:20,430
+>> AUDIENCE: False.
+
+2079
+01:33:20,430 --> 01:33:21,150
+>> GABE: False.
+
+2080
+01:33:21,150 --> 01:33:23,870
+Use many passwords, and big, long ones.
+
+2081
+01:33:23,870 --> 01:33:26,050
+Padlock icons ensure security.
+
+2082
+01:33:26,050 --> 01:33:27,080
+>> AUDIENCE: False.
+
+2083
+01:33:27,080 --> 01:33:27,749
+>> GABE: False.
+
+2084
+01:33:27,749 --> 01:33:28,790
+It doesn't mean anything.
+
+2085
+01:33:28,790 --> 01:33:30,480
+It's just an icon.
+
+2086
+01:33:30,480 --> 01:33:32,824
+SSL protects against a
+man in the middle attack.
+
+2087
+01:33:32,824 --> 01:33:33,490
+AUDIENCE: False.
+
+2088
+01:33:33,490 --> 01:33:34,110
+GABE: False.
+
+2089
+01:33:34,110 --> 01:33:35,355
+OK, so all those are false.
+
+2090
+01:33:35,355 --> 01:33:38,324
+
+2091
+01:33:38,324 --> 01:33:39,490
+Nice.
+
+2092
+01:33:39,490 --> 01:33:40,220
+[INAUDIBLE]
+
+2093
+01:33:40,220 --> 01:33:42,500
+Want to talk about this?
+
+2094
+01:33:42,500 --> 01:33:43,259
+Your turn.
+
+2095
+01:33:43,259 --> 01:33:45,050
+DAVIN: Types of attacks,
+man in the middle.
+
+2096
+01:33:45,050 --> 01:33:47,134
+What's a man in the middle attack?
+
+2097
+01:33:47,134 --> 01:33:48,050
+AUDIENCE: [INAUDIBLE].
+
+2098
+01:33:48,050 --> 01:33:51,437
+
+2099
+01:33:51,437 --> 01:33:54,020
+DAVIN: If you send an HTTP
+request, they could do this, right?
+
+2100
+01:33:54,020 --> 01:33:57,890
+But if you're sending HTTPS, they
+probably won't be able to do this.
+
+2101
+01:33:57,890 --> 01:33:59,952
+There's lots of points
+along your connection.
+
+2102
+01:33:59,952 --> 01:34:00,660
+You have routers.
+
+2103
+01:34:00,660 --> 01:34:01,746
+You have DNS servers.
+
+2104
+01:34:01,746 --> 01:34:04,120
+If someone is able to physically
+see what you're sending,
+
+2105
+01:34:04,120 --> 01:34:06,140
+so someone is able to
+actually get between you,
+
+2106
+01:34:06,140 --> 01:34:08,840
+the client, and the server, and is
+able to see what you're sending,
+
+2107
+01:34:08,840 --> 01:34:10,298
+this is a man in the middle attack.
+
+2108
+01:34:10,298 --> 01:34:14,287
+So to see what you're trying to get from
+the server, or is able to see-- worse,
+
+2109
+01:34:14,287 --> 01:34:16,620
+you might be able to see
+cookies or something like that.
+
+2110
+01:34:16,620 --> 01:34:19,290
+>> So for example, if
+you're not using SSL, he
+
+2111
+01:34:19,290 --> 01:34:21,900
+might be able to see
+your session ID cookies.
+
+2112
+01:34:21,900 --> 01:34:25,460
+And this is called session hijacking
+because he sees your ID cookies,
+
+2113
+01:34:25,460 --> 01:34:28,317
+and then he's able to go to that
+website and pretend to be you.
+
+2114
+01:34:28,317 --> 01:34:31,150
+Because just like in PHP, remember
+when we logged in, what do we do?
+
+2115
+01:34:31,150 --> 01:34:33,340
+We set session ID equal to ID.
+
+2116
+01:34:33,340 --> 01:34:34,810
+So that identifies you.
+
+2117
+01:34:34,810 --> 01:34:38,300
+That's why you can see your portfolio
+and not everybody else's portfolio.
+
+2118
+01:34:38,300 --> 01:34:42,320
+>> Well, if I'm able to get that cookie,
+then I can log onto that page.
+
+2119
+01:34:42,320 --> 01:34:45,380
+And then, I can just see your stuff
+and start buying and selling stuff.
+
+2120
+01:34:45,380 --> 01:34:46,800
+So that's session hijacking.
+
+2121
+01:34:46,800 --> 01:34:50,810
+But you shouldn't be able to-- so you
+can use the man in the middle attack
+
+2122
+01:34:50,810 --> 01:34:52,290
+even if they're using SSL.
+
+2123
+01:34:52,290 --> 01:34:53,520
+But you shouldn't be able to.
+
+2124
+01:34:53,520 --> 01:34:56,580
+If they are using SSL,
+you can't session hijack.
+
+2125
+01:34:56,580 --> 01:34:58,927
+Why?
+
+2126
+01:34:58,927 --> 01:35:01,135
+Because it's all encrypted,
+right? if it's encrypted,
+
+2127
+01:35:01,135 --> 01:35:03,509
+and I'm still a man in the
+middle, I still get your data.
+
+2128
+01:35:03,509 --> 01:35:04,279
+That's fine.
+
+2129
+01:35:04,279 --> 01:35:05,070
+But it's encrypted.
+
+2130
+01:35:05,070 --> 01:35:07,750
+So I can't really use it.
+
+2131
+01:35:07,750 --> 01:35:09,840
+So that's two.
+
+2132
+01:35:09,840 --> 01:35:11,544
+>> Real quick, cross site request forgery.
+
+2133
+01:35:11,544 --> 01:35:13,960
+That's just if there's a link
+and that link does something
+
+2134
+01:35:13,960 --> 01:35:14,890
+that you don't think it should do.
+
+2135
+01:35:14,890 --> 01:35:18,150
+So for example, if the link was
+going to buy stocks or sell stocks,
+
+2136
+01:35:18,150 --> 01:35:19,360
+and you didn't know that.
+
+2137
+01:35:19,360 --> 01:35:22,040
+You clicked on the link,
+sent a request, bought
+
+2138
+01:35:22,040 --> 01:35:24,240
+or sold something that
+you didn't mean to do.
+
+2139
+01:35:24,240 --> 01:35:25,120
+That's that.
+
+2140
+01:35:25,120 --> 01:35:30,720
+>> Cross site scripting, so here,
+you're passing in via variable q,
+
+2141
+01:35:30,720 --> 01:35:33,510
+instead of passing in some kind
+of value, maybe q is like a name.
+
+2142
+01:35:33,510 --> 01:35:36,560
+So instead of passing q equals
+Davin or something like that,
+
+2143
+01:35:36,560 --> 01:35:38,740
+if you don't use HTML
+special chars, if you
+
+2144
+01:35:38,740 --> 01:35:43,100
+don't escape this to make sure it's
+OK, then I could pass in instead,
+
+2145
+01:35:43,100 --> 01:35:46,910
+let's say in here I'm saying
+print or something like that,
+
+2146
+01:35:46,910 --> 01:35:51,070
+then I could pass in here a script call.
+
+2147
+01:35:51,070 --> 01:35:53,140
+>> So then, instead of
+just getting a variable,
+
+2148
+01:35:53,140 --> 01:35:54,960
+I would then execute this script call.
+
+2149
+01:35:54,960 --> 01:35:57,065
+So inside that script
+call, what does it do?
+
+2150
+01:35:57,065 --> 01:36:00,190
+Document dot location, that's going to
+change the location of the document.
+
+2151
+01:36:00,190 --> 01:36:02,290
+So I'm going to redirect
+to somewhere else.
+
+2152
+01:36:02,290 --> 01:36:08,170
+It's called bad guy in
+this example, very good.
+
+2153
+01:36:08,170 --> 01:36:10,536
+Couldn't think of the word.
+
+2154
+01:36:10,536 --> 01:36:12,410
+And then, what's even
+worse is that I'm going
+
+2155
+01:36:12,410 --> 01:36:16,832
+to then set cookie, which is some
+variable I have in this website.
+
+2156
+01:36:16,832 --> 01:36:19,040
+I'm going to set it equal
+to the document dot cookie.
+
+2157
+01:36:19,040 --> 01:36:20,660
+Therefore, I'm going
+to steal your cookie.
+
+2158
+01:36:20,660 --> 01:36:22,951
+And I'm going to redirect
+some information to a website
+
+2159
+01:36:22,951 --> 01:36:25,120
+that you shouldn't be accessing.
+
+2160
+01:36:25,120 --> 01:36:29,250
+And this all happens because you're
+not escaping what you've seen.
+
+2161
+01:36:29,250 --> 01:36:29,910
+Yeah?
+
+2162
+01:36:29,910 --> 01:36:32,160
+>> AUDIENCE: So just to
+make that clear, it's
+
+2163
+01:36:32,160 --> 01:36:37,550
+vulnerable.com that
+is vulnerable to this.
+
+2164
+01:36:37,550 --> 01:36:39,300
+So that link can appear
+on any given page.
+
+2165
+01:36:39,300 --> 01:36:42,200
+Someone clicks on it,
+goes to vulnerable.com.
+
+2166
+01:36:42,200 --> 01:36:43,700
+You have a cookie to vulnerable.com.
+
+2167
+01:36:43,700 --> 01:36:46,670
+Let's say Facebook is
+vulnerable, so facebook.com.
+
+2168
+01:36:46,670 --> 01:36:48,310
+You have your Facebook cookie.
+
+2169
+01:36:48,310 --> 01:36:50,925
+What this is doing, you're
+going to facebook.com,
+
+2170
+01:36:50,925 --> 01:36:53,990
+it's immediately redirecting
+you to badguy.com,
+
+2171
+01:36:53,990 --> 01:36:57,182
+but including your cookie information.
+
+2172
+01:36:57,182 --> 01:36:59,310
+So it's a quick redirect,
+but your Facebook cookie
+
+2173
+01:36:59,310 --> 01:37:02,572
+is included with that redirect,
+and that's how they [INAUDIBLE].
+
+2174
+01:37:02,572 --> 01:37:04,280
+GABE: Yeah, there's
+some very mean things
+
+2175
+01:37:04,280 --> 01:37:06,070
+that people can do if there's this.
+
+2176
+01:37:06,070 --> 01:37:09,190
+For example, if Facebook allowed
+everybody to change your user name,
+
+2177
+01:37:09,190 --> 01:37:11,680
+and they didn't do any
+sanity checks, so you
+
+2178
+01:37:11,680 --> 01:37:16,810
+could insert a JavaScript thing that
+changes your image to a hamster.
+
+2179
+01:37:16,810 --> 01:37:22,590
+And that inserts the same JavaScript
+into everybody who views your page.
+
+2180
+01:37:22,590 --> 01:37:26,400
+So everybody who views your page
+has the same thing in the user name.
+
+2181
+01:37:26,400 --> 01:37:30,104
+And because it's a virus,
+it spreads exponentially.
+
+2182
+01:37:30,104 --> 01:37:32,270
+DAVIN: We'll skip the last
+one, and then we're done.
+
+2183
+01:37:32,270 --> 01:37:34,120
+So this is just another example.
+
+2184
+01:37:34,120 --> 01:37:36,120
+So this is they're not
+escaping their SQL table.
+
+2185
+01:37:36,120 --> 01:37:37,090
+So you can drop it.
+
+2186
+01:37:37,090 --> 01:37:38,805
+So you want to escape things.
+
+2187
+01:37:38,805 --> 01:37:44,010
+That was the previous example
+with the cross site scripting.
+
+2188
+01:37:44,010 --> 01:37:45,430
+Sorry we ran a little bit late.
+
+2189
+01:37:45,430 --> 01:37:46,870
+Tomorrow, sorry!
+
+2190
+01:37:46,870 --> 01:37:48,560
+Tomorrow, we have office hours.
+
+2191
+01:37:48,560 --> 01:37:50,870
+So office hours in Cabbot 8:00 to 11:00.
+
+2192
+01:37:50,870 --> 01:37:55,240
+The office hours are
+strictly for quiz questions.
+
+2193
+01:37:55,240 --> 01:37:56,587

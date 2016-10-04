@@ -1,0 +1,5086 @@
+1
+00:00:00,000 --> 00:00:00,499
+
+2
+00:00:00,499 --> 00:00:11,261
+[MUSIC PLAYING]
+
+3
+00:00:11,261 --> 00:00:12,640
+>> DAVID J. MALAN: All right.
+
+4
+00:00:12,640 --> 00:00:14,525
+This is CS50.
+
+5
+00:00:14,525 --> 00:00:16,009
+And this is the start of week 5.
+
+6
+00:00:16,009 --> 00:00:18,050
+And as you may have noticed,
+some of the material
+
+7
+00:00:18,050 --> 00:00:21,050
+is getting a little more
+complex, the little denser.
+
+8
+00:00:21,050 --> 00:00:24,560
+>> And it's very easy, especially if
+you've been in the habit for some time,
+
+9
+00:00:24,560 --> 00:00:28,600
+to be trying to scribble down most
+anything we do, we're saying in class.
+
+10
+00:00:28,600 --> 00:00:31,626
+But realize, that is not perhaps
+the ideal pedagogical approach
+
+11
+00:00:31,626 --> 00:00:34,250
+to learning this kind of material,
+and material more generally.
+
+12
+00:00:34,250 --> 00:00:37,250
+And so we are pleased to
+announce that CS50's own Gheng
+
+13
+00:00:37,250 --> 00:00:39,780
+Gong has begun to prepare
+a canonical set of notes
+
+14
+00:00:39,780 --> 00:00:42,100
+for the course, the hope of
+which is that, one, these
+
+15
+00:00:42,100 --> 00:00:44,030
+not only serve as a
+reference and a resource
+
+16
+00:00:44,030 --> 00:00:47,410
+for reviewing material and going
+back through material that might have
+
+17
+00:00:47,410 --> 00:00:51,230
+escaped you the first time around, but
+also so that your heads can be more
+
+18
+00:00:51,230 --> 00:00:53,740
+up than down, when it
+comes time to lecture,
+
+19
+00:00:53,740 --> 00:00:56,960
+so that you might engage
+more thoughtfully, as
+
+20
+00:00:56,960 --> 00:00:59,170
+opposed to more scribbly.
+
+21
+00:00:59,170 --> 00:01:02,510
+>> With that said, what you'll find on
+the website is such documents as this.
+
+22
+00:01:02,510 --> 00:01:04,660
+And notice, at top left, there's
+not only a table of contents,
+
+23
+00:01:04,660 --> 00:01:06,920
+but also time codes that
+will immediately jump you
+
+24
+00:01:06,920 --> 00:01:09,077
+to the appropriate part
+in the video online.
+
+25
+00:01:09,077 --> 00:01:11,410
+And what Chang here has done
+is, essentially, documented
+
+26
+00:01:11,410 --> 00:01:13,340
+what happened in this
+particular lecture.
+
+27
+00:01:13,340 --> 00:01:16,370
+And many of the lectures are
+already online now with this URL.
+
+28
+00:01:16,370 --> 00:01:20,110
+And we'll continue to post the remainder
+of those by the end of this week,
+
+29
+00:01:20,110 --> 00:01:22,380
+so do take advantage of that resource.
+
+30
+00:01:22,380 --> 00:01:25,740
+>> So without further ado,
+we started to peel back
+
+31
+00:01:25,740 --> 00:01:28,180
+the layer that has been
+string for some time.
+
+32
+00:01:28,180 --> 00:01:30,670
+And what did we say a string
+actually is last week?
+
+33
+00:01:30,670 --> 00:01:31,720
+
+34
+00:01:31,720 --> 00:01:32,900
+So char star.
+
+35
+00:01:32,900 --> 00:01:34,900
+And char star, well, what
+did that really mean?
+
+36
+00:01:34,900 --> 00:01:37,150
+Well, all this time, if we've
+been calling a function,
+
+37
+00:01:37,150 --> 00:01:40,450
+like getString, and storing
+the so-called return
+
+38
+00:01:40,450 --> 00:01:42,910
+value of getString in a
+variable-- it's called
+
+39
+00:01:42,910 --> 00:01:47,721
+s type string-- we've been writing
+the line of code up there above.
+
+40
+00:01:47,721 --> 00:01:49,970
+And it's only when I see my
+handwriting magnified here
+
+41
+00:01:49,970 --> 00:01:51,930
+do I realize just how atrocious this is.
+
+42
+00:01:51,930 --> 00:01:54,180
+>> However, let's assume that,
+on the right-hand side
+
+43
+00:01:54,180 --> 00:01:57,070
+is, nonetheless, a reasonable
+depiction of what's
+
+44
+00:01:57,070 --> 00:01:58,880
+been going on all this
+time with getString.
+
+45
+00:01:58,880 --> 00:02:00,380
+getString, of course, gets a string.
+
+46
+00:02:00,380 --> 00:02:01,691
+But what does that really mean?
+
+47
+00:02:01,691 --> 00:02:04,190
+It means it gets a chunk of
+memory from the operating system
+
+48
+00:02:04,190 --> 00:02:06,040
+by calling a function, called malloc.
+
+49
+00:02:06,040 --> 00:02:07,390
+But more on that later.
+
+50
+00:02:07,390 --> 00:02:09,139
+And then it populates
+that chunk of memory
+
+51
+00:02:09,139 --> 00:02:11,764
+with the letters the user has
+typed in, followed by, of course,
+
+52
+00:02:11,764 --> 00:02:14,800
+a null character, or backslash
+zero at the very end.
+
+53
+00:02:14,800 --> 00:02:18,280
+>> Meanwhile, on the left-hand side
+of this story, all this time,
+
+54
+00:02:18,280 --> 00:02:20,850
+we've been declaring a variable, like s.
+
+55
+00:02:20,850 --> 00:02:24,770
+And that variable is what now
+will start calling a pointer.
+
+56
+00:02:24,770 --> 00:02:29,190
+It's not a box inside of which
+we put the string, Daven, per se,
+
+57
+00:02:29,190 --> 00:02:32,550
+but rather we put in that square
+box on the left what exactly?
+
+58
+00:02:32,550 --> 00:02:34,890
+
+59
+00:02:34,890 --> 00:02:35,390
+Yeah?
+
+60
+00:02:35,390 --> 00:02:37,118
+>> AUDIENCE: The address of
+where it's located in memory.
+
+61
+00:02:37,118 --> 00:02:38,118
+>> DAVID J. MALAN: Exactly.
+
+62
+00:02:38,118 --> 00:02:40,690
+The address of where Daven
+is located in memory.
+
+63
+00:02:40,690 --> 00:02:44,650
+And not where all of Daven is located,
+per se, but specifically the address
+
+64
+00:02:44,650 --> 00:02:45,150
+of what?
+
+65
+00:02:45,150 --> 00:02:46,311
+
+66
+00:02:46,311 --> 00:02:46,810
+Yeah?
+
+67
+00:02:46,810 --> 00:02:47,460
+>> AUDIENCE: First character.
+
+68
+00:02:47,460 --> 00:02:50,209
+>> DAVID J. MALAN: The first character
+in Daven, which, in this case,
+
+69
+00:02:50,209 --> 00:02:53,820
+I proposed was arbitrarily
+and unrealistically 1, Ox1,
+
+70
+00:02:53,820 --> 00:02:55,910
+which just means the
+hexadecimal number of 1.
+
+71
+00:02:55,910 --> 00:02:57,993
+But it's probably going
+to be a much bigger number
+
+72
+00:02:57,993 --> 00:03:01,260
+that we might draw
+with a 0x as a prefix,
+
+73
+00:03:01,260 --> 00:03:02,806
+representing a hexadecimal character.
+
+74
+00:03:02,806 --> 00:03:05,930
+And because we don't need to know where
+the rest of the characters of Daven
+
+75
+00:03:05,930 --> 00:03:09,860
+are, because of what simple design
+decision that was made many years ago?
+
+76
+00:03:09,860 --> 00:03:10,548
+Yeah?
+
+77
+00:03:10,548 --> 00:03:11,651
+>> AUDIENCE: Backslash 0.
+
+78
+00:03:11,651 --> 00:03:12,900
+DAVID J. MALAN: Yeah, exactly.
+
+79
+00:03:12,900 --> 00:03:18,100
+The backslash 0 allows you, albeit in
+linear time, to traverse the string,
+
+80
+00:03:18,100 --> 00:03:20,400
+walk from left to right,
+with a for loop, or a while
+
+81
+00:03:20,400 --> 00:03:22,608
+loop, or something like
+that, and determine, oh, here
+
+82
+00:03:22,608 --> 00:03:24,751
+is the end of this particular string.
+
+83
+00:03:24,751 --> 00:03:27,000
+So with just the address at
+the beginning of a string,
+
+84
+00:03:27,000 --> 00:03:30,290
+we can access the entirety of
+it, because all this while,
+
+85
+00:03:30,290 --> 00:03:32,030
+a string has just been a char star.
+
+86
+00:03:32,030 --> 00:03:36,370
+>> So it's certainly fine to continue using
+the CS50 library and this abstraction,
+
+87
+00:03:36,370 --> 00:03:38,440
+so to speak, but we'll
+begin to see exactly
+
+88
+00:03:38,440 --> 00:03:41,230
+what's been going on
+underneath this whole time.
+
+89
+00:03:41,230 --> 00:03:45,260
+So you may recall this example,
+too, from last time, compare 0,
+
+90
+00:03:45,260 --> 00:03:47,300
+which didn't actually compare.
+
+91
+00:03:47,300 --> 00:03:49,070
+But we began to solve this.
+
+92
+00:03:49,070 --> 00:03:52,020
+>> But as perhaps a refresher,
+might I interest someone
+
+93
+00:03:52,020 --> 00:03:54,261
+in a pink elephant today,
+also made by Chang?
+
+94
+00:03:54,261 --> 00:03:55,760
+How about you in front? [INAUDIBLE].
+
+95
+00:03:55,760 --> 00:03:56,660
+Come on up.
+
+96
+00:03:56,660 --> 00:03:58,740
+>> And in the meantime,
+as you come up, let's
+
+97
+00:03:58,740 --> 00:04:01,670
+consider for just a moment what
+this code was actually doing.
+
+98
+00:04:01,670 --> 00:04:04,917
+It's declaring two variables up
+top, s and t, and calling getString.
+
+99
+00:04:04,917 --> 00:04:08,250
+This isn't a very user-friendly program,
+because it doesn't tell you what to do.
+
+100
+00:04:08,250 --> 00:04:10,541
+But let's just assume we're
+focusing on the juicy part.
+
+101
+00:04:10,541 --> 00:04:14,470
+And then we do, if s equals
+equals t, it should say printf,
+
+102
+00:04:14,470 --> 00:04:16,170
+you typed the same thing.
+
+103
+00:04:16,170 --> 00:04:16,670
+Hello.
+
+104
+00:04:16,670 --> 00:04:17,050
+What's your name?
+
+105
+00:04:17,050 --> 00:04:17,779
+>> JANELLE: Janelle.
+
+106
+00:04:17,779 --> 00:04:19,529
+DAVID J. MALAN: Janelle,
+nice to meet you.
+
+107
+00:04:19,529 --> 00:04:21,800
+So your challenge at
+hand for this elephant
+
+108
+00:04:21,800 --> 00:04:25,230
+is to first draw us a picture of what's
+being represented in those first two
+
+109
+00:04:25,230 --> 00:04:25,970
+lines.
+
+110
+00:04:25,970 --> 00:04:28,139
+So s and t might be
+represented how on the screen?
+
+111
+00:04:28,139 --> 00:04:30,680
+And you can just draw it with
+your finger on this big screen.
+
+112
+00:04:30,680 --> 00:04:31,780
+
+113
+00:04:31,780 --> 00:04:34,510
+>> So there's two halves to
+each side of that equation.
+
+114
+00:04:34,510 --> 00:04:37,760
+So there's s on the left, and
+then getString on the right.
+
+115
+00:04:37,760 --> 00:04:40,540
+And then there's t on the left,
+and then getString on the right.
+
+116
+00:04:40,540 --> 00:04:42,630
+So how might we begin
+drawing a picture that
+
+117
+00:04:42,630 --> 00:04:46,340
+represents what's going on
+here in memory, would you say?
+
+118
+00:04:46,340 --> 00:04:49,150
+And let me let you explain
+what you're doing as you go.
+
+119
+00:04:49,150 --> 00:04:49,820
+>> JANELLE: OK.
+
+120
+00:04:49,820 --> 00:04:58,890
+Well, first, it would be asking
+you to get the input string.
+
+121
+00:04:58,890 --> 00:05:00,439
+And it would store-- oh, sorry.
+
+122
+00:05:00,439 --> 00:05:01,230
+DAVID J. MALAN: OK.
+
+123
+00:05:01,230 --> 00:05:01,730
+Good.
+
+124
+00:05:01,730 --> 00:05:03,330
+And this is called what?
+
+125
+00:05:03,330 --> 00:05:03,950
+Oh, OK.
+
+126
+00:05:03,950 --> 00:05:04,450
+Keep going.
+
+127
+00:05:04,450 --> 00:05:05,575
+I didn't mean to interrupt.
+
+128
+00:05:05,575 --> 00:05:07,060
+JANELLE: Sorry.
+
+129
+00:05:07,060 --> 00:05:14,237
+So it would input it into
+the address of-- not sure.
+
+130
+00:05:14,237 --> 00:05:17,320
+I can't exactly remember the number,
+but I believe it was starting with 0.
+
+131
+00:05:17,320 --> 00:05:18,420
+>> DAVID J. MALAN: That's all right,
+because I made the numbers up,
+
+132
+00:05:18,420 --> 00:05:19,650
+so there's no right answer.
+
+133
+00:05:19,650 --> 00:05:22,105
+>> JANELLE: Starting with the 0 arc.
+
+134
+00:05:22,105 --> 00:05:24,000
+>> DAVID J. MALAN: OK, so element 0.
+
+135
+00:05:24,000 --> 00:05:24,765
+Sure.
+
+136
+00:05:24,765 --> 00:05:28,295
+>> JANELLE: And then if was
+like just a two-letter--
+
+137
+00:05:28,295 --> 00:05:30,496
+>> DAVID J. MALAN: OK, back to you.
+
+138
+00:05:30,496 --> 00:05:33,629
+>> JANELLE: So element 0, and
+then element 1 or element 2.
+
+139
+00:05:33,629 --> 00:05:36,670
+DAVID J. MALAN: And which piece of
+the picture are you drawing right now?
+
+140
+00:05:36,670 --> 00:05:37,690
+The call to getString?
+
+141
+00:05:37,690 --> 00:05:38,830
+Or the declaration of s?
+
+142
+00:05:38,830 --> 00:05:42,890
+>> JANELLE: The declaration
+of s, I believe.
+
+143
+00:05:42,890 --> 00:05:45,980
+Oh, the getString, because it would
+be inputted into each [? area. ?]
+
+144
+00:05:45,980 --> 00:05:46,510
+>> DAVID J. MALAN: Good.
+
+145
+00:05:46,510 --> 00:05:47,051
+Exactly.
+
+146
+00:05:47,051 --> 00:05:49,300
+Even though this effectively
+returns an array, recall,
+
+147
+00:05:49,300 --> 00:05:53,300
+when we get back a string, we can
+index into that string using 01 and 2.
+
+148
+00:05:53,300 --> 00:05:56,180
+Technically, these are probably
+represented by individual addresses,
+
+149
+00:05:56,180 --> 00:05:57,100
+but that's fine.
+
+150
+00:05:57,100 --> 00:06:00,170
+>> So suppose, if I can just fast
+forward to where we left off
+
+151
+00:06:00,170 --> 00:06:04,320
+last time, if one of
+the strings was g a b e,
+
+152
+00:06:04,320 --> 00:06:10,337
+backslash 0, thereby representing gabe's
+input, how might we represent s now?
+
+153
+00:06:10,337 --> 00:06:12,670
+If this is the memory that's
+been returned by getString?
+
+154
+00:06:12,670 --> 00:06:14,415
+
+155
+00:06:14,415 --> 00:06:17,610
+>> JANELLE: Would it be
+represented by an arc?
+
+156
+00:06:17,610 --> 00:06:18,750
+>> DAVID J. MALAN: By an arc?
+
+157
+00:06:18,750 --> 00:06:19,130
+Well, no.
+
+158
+00:06:19,130 --> 00:06:21,171
+Let's just say, pictorially,
+let me just go ahead
+
+159
+00:06:21,171 --> 00:06:25,710
+and propose that, if this is s, this
+is the return value of getString.
+
+160
+00:06:25,710 --> 00:06:29,482
+And you've drawn this as 0, 1, 2, which
+is perfectly reasonable, because we
+
+161
+00:06:29,482 --> 00:06:30,940
+can index into the string, as such.
+
+162
+00:06:30,940 --> 00:06:33,340
+But just to be consistent with
+last time, let me go ahead
+
+163
+00:06:33,340 --> 00:06:37,310
+and arbitrarily propose that this
+is address 1, this is address 2,
+
+164
+00:06:37,310 --> 00:06:39,597
+this is address 3, and so forth.
+
+165
+00:06:39,597 --> 00:06:41,430
+And so, just to be super
+clear, what's going
+
+166
+00:06:41,430 --> 00:06:44,580
+to go in s as a result of that
+first line of code, would you say?
+
+167
+00:06:44,580 --> 00:06:45,420
+>> JANELLE: Address 1?
+
+168
+00:06:45,420 --> 00:06:46,420
+>> DAVID J. MALAN: Exactly.
+
+169
+00:06:46,420 --> 00:06:47,190
+So address 0x1.
+
+170
+00:06:47,190 --> 00:06:48,220
+
+171
+00:06:48,220 --> 00:06:51,230
+And meanwhile, let me go ahead and
+duplicate much of what you've done
+
+172
+00:06:51,230 --> 00:06:52,740
+and add my own t here.
+
+173
+00:06:52,740 --> 00:06:56,340
+If I were to type in gabe
+again, a second time,
+
+174
+00:06:56,340 --> 00:07:01,530
+when prompted with getString, where,
+of course, is gabe going to go?
+
+175
+00:07:01,530 --> 00:07:02,280
+Well, presumably--
+
+176
+00:07:02,280 --> 00:07:04,935
+
+177
+00:07:04,935 --> 00:07:05,975
+>> JANELLE: Like on here?
+
+178
+00:07:05,975 --> 00:07:06,850
+DAVID J. MALAN: Yeah.
+
+179
+00:07:06,850 --> 00:07:08,516
+JANELLE: Or it's also in the same boxes?
+
+180
+00:07:08,516 --> 00:07:11,940
+DAVID J. MALAN: Let me propose, yeah,
+exactly, so in these additional boxes.
+
+181
+00:07:11,940 --> 00:07:15,230
+But what's key now is that, even
+though I've drawn these pretty close
+
+182
+00:07:15,230 --> 00:07:18,650
+together-- 0x1, this
+is 0x2-- in reality,
+
+183
+00:07:18,650 --> 00:07:25,750
+this now might be address 0x10,
+for instance, and 0x11, and 0x12,
+
+184
+00:07:25,750 --> 00:07:26,870
+and so forth.
+
+185
+00:07:26,870 --> 00:07:29,955
+And so, if that's the case,
+what's going to end up here in t?
+
+186
+00:07:29,955 --> 00:07:30,830
+>> JANELLE: 0x10?
+
+187
+00:07:30,830 --> 00:07:31,830
+DAVID J. MALAN: Exactly.
+
+188
+00:07:31,830 --> 00:07:33,180
+So 0x10.
+
+189
+00:07:33,180 --> 00:07:34,570
+And so now, final question.
+
+190
+00:07:34,570 --> 00:07:37,510
+You have, by far, had to work the
+hardest for an elephant thus far.
+
+191
+00:07:37,510 --> 00:07:42,650
+By now, if I pull up the code
+again, when I do, in line three,
+
+192
+00:07:42,650 --> 00:07:47,630
+if s equals equals t, what am I actually
+comparing that we've drawn here?
+
+193
+00:07:47,630 --> 00:07:49,271
+>> JANELLE: The two addresses?
+
+194
+00:07:49,271 --> 00:07:50,270
+DAVID J. MALAN: Exactly.
+
+195
+00:07:50,270 --> 00:07:53,350
+So I'm saying is s equal equal to t?
+
+196
+00:07:53,350 --> 00:07:56,210
+In other words, is 1 equal equal to 10?
+
+197
+00:07:56,210 --> 00:07:59,710
+And of course, the
+obvious answer now is, no.
+
+198
+00:07:59,710 --> 00:08:02,920
+And so this program is ultimately
+going to print what, would you say?
+
+199
+00:08:02,920 --> 00:08:05,770
+
+200
+00:08:05,770 --> 00:08:08,405
+>> JANELLE: Would it be,
+you typed the same thing?
+
+201
+00:08:08,405 --> 00:08:11,446
+>> DAVID J. MALAN: So if
+s is 1 and t is 10?
+
+202
+00:08:11,446 --> 00:08:13,320
+>> JANELLE: You typed different things.
+
+203
+00:08:13,320 --> 00:08:13,570
+>> DAVID J. MALAN: Exactly.
+
+204
+00:08:13,570 --> 00:08:14,480
+You typed different things.
+
+205
+00:08:14,480 --> 00:08:14,850
+All right.
+
+206
+00:08:14,850 --> 00:08:16,714
+So a round of applause,
+if we could, here.
+
+207
+00:08:16,714 --> 00:08:17,214
+[APPLAUSE]
+
+208
+00:08:17,214 --> 00:08:17,708
+That was painful.
+
+209
+00:08:17,708 --> 00:08:18,208
+I know.
+
+210
+00:08:18,208 --> 00:08:19,684
+Nicely done.
+
+211
+00:08:19,684 --> 00:08:24,690
+So now let's see if we can't
+tease apart what the fix was.
+
+212
+00:08:24,690 --> 00:08:28,040
+And of course, when we fixed this--
+which I'll now represent in green--
+
+213
+00:08:28,040 --> 00:08:29,690
+we did a couple of enhancements here.
+
+214
+00:08:29,690 --> 00:08:32,409
+First, just as a sanity
+check, I'm first checking
+
+215
+00:08:32,409 --> 00:08:35,110
+if s equals null and t equals null.
+
+216
+00:08:35,110 --> 00:08:39,440
+And just to be clear, when might
+s or t be null in code like this?
+
+217
+00:08:39,440 --> 00:08:43,140
+
+218
+00:08:43,140 --> 00:08:44,490
+When might s or t be null.
+
+219
+00:08:44,490 --> 00:08:44,990
+Yeah?
+
+220
+00:08:44,990 --> 00:08:45,990
+>> AUDIENCE: [INAUDIBLE].
+
+221
+00:08:45,990 --> 00:08:49,490
+
+222
+00:08:49,490 --> 00:08:50,510
+>> DAVID J. MALAN: Exactly.
+
+223
+00:08:50,510 --> 00:08:52,840
+If the string that the user
+typed in is way too long
+
+224
+00:08:52,840 --> 00:08:56,140
+to fit into memory, or some
+weird corner case like that,
+
+225
+00:08:56,140 --> 00:08:59,010
+getString, as we'll see, literally
+today, in its documentation,
+
+226
+00:08:59,010 --> 00:09:02,330
+says it will return null as
+a special sentinel value,
+
+227
+00:09:02,330 --> 00:09:05,417
+or just sort of a special symbol
+that means something went wrong.
+
+228
+00:09:05,417 --> 00:09:07,500
+So we want to check for
+that, because it turns out
+
+229
+00:09:07,500 --> 00:09:09,720
+that null is a very dangerous value.
+
+230
+00:09:09,720 --> 00:09:14,250
+>> Often, if you try to do something with
+null involving a function-- passing it
+
+231
+00:09:14,250 --> 00:09:17,470
+as input, for instance-- that function
+might very will crash and, with it,
+
+232
+00:09:17,470 --> 00:09:19,090
+take down your whole program.
+
+233
+00:09:19,090 --> 00:09:22,570
+So this third line now is just a sanity
+check, error checking, if you will.
+
+234
+00:09:22,570 --> 00:09:25,450
+That's a good habit now for
+us to get into any time we
+
+235
+00:09:25,450 --> 00:09:28,050
+try to use a value that
+could, potentially, be null.
+
+236
+00:09:28,050 --> 00:09:32,000
+>> Now, in the fourth line here,
+"if strcmp(s, t)," well,
+
+237
+00:09:32,000 --> 00:09:33,180
+what's that referring to?
+
+238
+00:09:33,180 --> 00:09:36,750
+Well, we said this was a very succinctly
+named function for string comparison.
+
+239
+00:09:36,750 --> 00:09:40,370
+And its purpose in life is to compare
+its first argument against it second,
+
+240
+00:09:40,370 --> 00:09:44,640
+but not in terms of their addresses,
+as we did unintentionally a moment
+
+241
+00:09:44,640 --> 00:09:48,270
+ago with the red code, but
+rather to compare those two
+
+242
+00:09:48,270 --> 00:09:53,210
+strings in the humanly intuitive
+way by comparing this, against this,
+
+243
+00:09:53,210 --> 00:09:56,690
+against this, against this, and
+then stopping if and when one
+
+244
+00:09:56,690 --> 00:09:59,590
+or both of my fingers
+hits a backslash 0.
+
+245
+00:09:59,590 --> 00:10:04,530
+So someone years ago implemented strcmp
+to implement for us the functionality
+
+246
+00:10:04,530 --> 00:10:08,890
+that we hoped we would have gotten
+by just comparing two simple values.
+
+247
+00:10:08,890 --> 00:10:14,929
+>> Now frankly, I keep drawing
+all of these various numbers.
+
+248
+00:10:14,929 --> 00:10:17,470
+But the reality is, I've been
+making these up the whole time.
+
+249
+00:10:17,470 --> 00:10:19,580
+And so let me just go ahead
+and scribble these out
+
+250
+00:10:19,580 --> 00:10:23,100
+to make a point that, at the end
+of the day and moving forward,
+
+251
+00:10:23,100 --> 00:10:30,160
+we're not really going to care about
+what addresses things are actually
+
+252
+00:10:30,160 --> 00:10:30,790
+in memory.
+
+253
+00:10:30,790 --> 00:10:34,320
+So I'm not going to draw these
+kinds of numbers so much anymore,
+
+254
+00:10:34,320 --> 00:10:38,970
+I'm just an abstract this away a
+little more friendly with just arrows.
+
+255
+00:10:38,970 --> 00:10:42,060
+>> In other words, if s is a pointer,
+well, let's just draw it, literally,
+
+256
+00:10:42,060 --> 00:10:45,430
+as a pointer, an arrow pointing
+from itself to something else,
+
+257
+00:10:45,430 --> 00:10:48,280
+and not worry too much more about
+the minutia of these addresses
+
+258
+00:10:48,280 --> 00:10:49,910
+which, again, I made up anyway.
+
+259
+00:10:49,910 --> 00:10:52,680
+But we'll see those addresses,
+sometimes, when debugging code.
+
+260
+00:10:52,680 --> 00:10:56,450
+>> Now meanwhile, this program
+up here fixes, of course,
+
+261
+00:10:56,450 --> 00:10:58,720
+that problem by comparing
+those two strings.
+
+262
+00:10:58,720 --> 00:11:00,260
+But we ran into another problem.
+
+263
+00:11:00,260 --> 00:11:03,180
+This was from the copy
+program last time,
+
+264
+00:11:03,180 --> 00:11:06,880
+whereby, I was trying to capitalize
+just the first character in a string.
+
+265
+00:11:06,880 --> 00:11:09,620
+But what was the symptom
+we saw last time when
+
+266
+00:11:09,620 --> 00:11:14,150
+a user typed in a value, like
+gabe in lowercase, for s,
+
+267
+00:11:14,150 --> 00:11:19,310
+then we assigned s into t,
+as in the third line there,
+
+268
+00:11:19,310 --> 00:11:22,900
+and then I tried to
+capitalize t bracket 0?
+
+269
+00:11:22,900 --> 00:11:25,950
+What was the effect of
+changing t bracket 0 here?
+
+270
+00:11:25,950 --> 00:11:27,150
+>> AUDIENCE: It changed s.
+
+271
+00:11:27,150 --> 00:11:29,360
+>> DAVID J. MALAN: Yeah,
+I changed s, as well.
+
+272
+00:11:29,360 --> 00:11:31,050
+Because what was really going on?
+
+273
+00:11:31,050 --> 00:11:34,130
+Well, let me see if I can clean
+up this picture, as follows.
+
+274
+00:11:34,130 --> 00:11:41,390
+>> If s is, again, the word g,
+a, b, e, backslash, 0, and s
+
+275
+00:11:41,390 --> 00:11:44,084
+we'll continue drawing as a box
+here, but no more addresses.
+
+276
+00:11:44,084 --> 00:11:45,250
+Let's stop making things up.
+
+277
+00:11:45,250 --> 00:11:47,510
+Let's just draw a picture
+to simplify the world.
+
+278
+00:11:47,510 --> 00:11:52,640
+>> When I declare t with string t,
+that creates that chunk of memory.
+
+279
+00:11:52,640 --> 00:11:55,850
+Square happens to be 32
+bits in most computers.
+
+280
+00:11:55,850 --> 00:11:59,530
+In fact, if you've ever heard of a
+computer having a 32-bit architecture,
+
+281
+00:11:59,530 --> 00:12:03,000
+really fancy-speak, that just
+means it uses 32-bit addresses.
+
+282
+00:12:03,000 --> 00:12:05,370
+And as a technical aside,
+if you've ever wondered
+
+283
+00:12:05,370 --> 00:12:09,630
+why older computers, if you actually
+tried to soup them up with lots of RAM,
+
+284
+00:12:09,630 --> 00:12:12,360
+could only have a maximum
+of four gigabytes of RAM,
+
+285
+00:12:12,360 --> 00:12:14,860
+well that's because, literally,
+your old computer could only
+
+286
+00:12:14,860 --> 00:12:17,250
+count as high as 4
+billion, 4 billion bytes,
+
+287
+00:12:17,250 --> 00:12:20,590
+because it was using 32-bit
+numbers for addresses.
+
+288
+00:12:20,590 --> 00:12:23,260
+>> But in any case, in this
+example, story's much simpler.
+
+289
+00:12:23,260 --> 00:12:27,250
+t is just another pointer, or
+really a char star, aka string.
+
+290
+00:12:27,250 --> 00:12:30,860
+And how do I want to update this picture
+now with that second line of code,
+
+291
+00:12:30,860 --> 00:12:31,950
+after the dot, dot, dot?
+
+292
+00:12:31,950 --> 00:12:35,845
+When I do string t equals s semicolon,
+how does this picture change?
+
+293
+00:12:35,845 --> 00:12:37,500
+
+294
+00:12:37,500 --> 00:12:38,000
+Yeah?
+
+295
+00:12:38,000 --> 00:12:38,916
+>> AUDIENCE: [INAUDIBLE].
+
+296
+00:12:38,916 --> 00:12:41,087
+
+297
+00:12:41,087 --> 00:12:42,020
+>> DAVID J. MALAN: Yeah.
+
+298
+00:12:42,020 --> 00:12:42,600
+Exactly.
+
+299
+00:12:42,600 --> 00:12:45,620
+I just put an arrow from the
+t box to the same address,
+
+300
+00:12:45,620 --> 00:12:47,570
+the same first letter in gave.
+
+301
+00:12:47,570 --> 00:12:50,850
+Or technically, if this
+guy were still at 0x1,
+
+302
+00:12:50,850 --> 00:12:53,052
+it's as though I had
+0x1 here and 0x1 here.
+
+303
+00:12:53,052 --> 00:12:54,760
+But again, who cares
+about the addresses?
+
+304
+00:12:54,760 --> 00:12:56,345
+It's just the idea that now matters.
+
+305
+00:12:56,345 --> 00:12:57,720
+So this is what's happening here.
+
+306
+00:12:57,720 --> 00:13:02,690
+So of course, if you do t bracket
+0, which is array notation,
+
+307
+00:13:02,690 --> 00:13:05,650
+of course-- and frankly, it looks
+like there's an array over here,
+
+308
+00:13:05,650 --> 00:13:07,340
+but now there's this weird thing.
+
+309
+00:13:07,340 --> 00:13:11,160
+Know that the programming language,
+C, offers you this feature,
+
+310
+00:13:11,160 --> 00:13:14,650
+whereby, even if t is a
+pointer, or s is a pointer,
+
+311
+00:13:14,650 --> 00:13:18,050
+you can still use that familiar,
+comfortable square bracket
+
+312
+00:13:18,050 --> 00:13:22,520
+notation to go to the first element,
+or the second element, or any element
+
+313
+00:13:22,520 --> 00:13:26,130
+that that pointer is pointing
+to because, presumably, it
+
+314
+00:13:26,130 --> 00:13:29,410
+is, as in this case,
+pointing at some array.
+
+315
+00:13:29,410 --> 00:13:30,340
+>> So how do we fix this?
+
+316
+00:13:30,340 --> 00:13:33,660
+Frankly, this is where it got a
+little overwhelming at first glance.
+
+317
+00:13:33,660 --> 00:13:35,340
+But here is a new and improved version.
+
+318
+00:13:35,340 --> 00:13:37,460
+>> So first, I'm getting
+rid of the CS50 library,
+
+319
+00:13:37,460 --> 00:13:41,170
+just to expose that s is indeed
+a char star, just a synonym.
+
+320
+00:13:41,170 --> 00:13:43,540
+And t is also a char star.
+
+321
+00:13:43,540 --> 00:13:48,290
+But what is going on on the
+right-hand side of that line
+
+322
+00:13:48,290 --> 00:13:49,970
+where t is assigned a value?
+
+323
+00:13:49,970 --> 00:13:50,790
+>> What is malloc?
+
+324
+00:13:50,790 --> 00:13:51,630
+What it's strlen?
+
+325
+00:13:51,630 --> 00:13:52,547
+What is sizeof(char)?
+
+326
+00:13:52,547 --> 00:13:54,380
+Why the heck does this
+line look so complex?
+
+327
+00:13:54,380 --> 00:13:55,713
+What's it doing at a high level?
+
+328
+00:13:55,713 --> 00:13:56,482
+
+329
+00:13:56,482 --> 00:13:57,440
+What's it storing in t?
+
+330
+00:13:57,440 --> 00:13:58,646
+Yeah?
+
+331
+00:13:58,646 --> 00:14:01,104
+AUDIENCE: It's allocating a
+certain amount of memory space.
+
+332
+00:14:01,104 --> 00:14:03,032
+It's to store, I guess,
+letters [INAUDIBLE].
+
+333
+00:14:03,032 --> 00:14:04,032
+>> DAVID J. MALAN: Perfect.
+
+334
+00:14:04,032 --> 00:14:04,540
+Perfect.
+
+335
+00:14:04,540 --> 00:14:06,650
+It's allocating a certain
+amount of memory space
+
+336
+00:14:06,650 --> 00:14:08,940
+to store, presumably, future letters.
+
+337
+00:14:08,940 --> 00:14:11,310
+And in particular, malloc
+is therefore returning what?
+
+338
+00:14:11,310 --> 00:14:13,114
+
+339
+00:14:13,114 --> 00:14:14,851
+>> AUDIENCE: Returning the [INAUDIBLE]?
+
+340
+00:14:14,851 --> 00:14:15,850
+DAVID J. MALAN: Exactly.
+
+341
+00:14:15,850 --> 00:14:18,850
+Returning the address of that memory,
+which is a fancy way of saying,
+
+342
+00:14:18,850 --> 00:14:21,640
+returns the address of the
+first byte of that memory.
+
+343
+00:14:21,640 --> 00:14:25,460
+The onus is on me to remember
+how much memory I actually
+
+344
+00:14:25,460 --> 00:14:27,140
+allocated or asked malloc for.
+
+345
+00:14:27,140 --> 00:14:28,384
+>> Now how much is that?
+
+346
+00:14:28,384 --> 00:14:30,550
+Well, even though there's
+a lot of parentheses here,
+
+347
+00:14:30,550 --> 00:14:32,970
+malloc takes just a single argument.
+
+348
+00:14:32,970 --> 00:14:37,250
+And I'm specifying strlen of s, so give
+me as many bytes as there are in s,
+
+349
+00:14:37,250 --> 00:14:37,800
+but add one.
+
+350
+00:14:37,800 --> 00:14:38,300
+Why?
+
+351
+00:14:38,300 --> 00:14:39,030
+
+352
+00:14:39,030 --> 00:14:39,530
+Yeah?
+
+353
+00:14:39,530 --> 00:14:40,840
+>> AUDIENCE: The backslash 0.
+
+354
+00:14:40,840 --> 00:14:41,840
+DAVID J. MALAN: Exactly.
+
+355
+00:14:41,840 --> 00:14:43,423
+We've got to do a little housekeeping.
+
+356
+00:14:43,423 --> 00:14:45,970
+So because there's a backslash
+0, we'd better remember that.
+
+357
+00:14:45,970 --> 00:14:47,310
+Otherwise, we're going
+to create a string that
+
+358
+00:14:47,310 --> 00:14:49,170
+doesn't have that special terminator.
+
+359
+00:14:49,170 --> 00:14:52,640
+>> Meanwhile, just to be super
+anal, I have sizeof(char),
+
+360
+00:14:52,640 --> 00:14:55,730
+just in case someone runs my
+code not on the CS50 appliance,
+
+361
+00:14:55,730 --> 00:14:58,220
+but maybe a different computer
+altogether where chars
+
+362
+00:14:58,220 --> 00:15:01,470
+are one byte, by convention, but two
+bytes, or something bigger than that.
+
+363
+00:15:01,470 --> 00:15:04,490
+It's just to be super,
+super averse to errors.
+
+364
+00:15:04,490 --> 00:15:06,940
+Even though, in reality, it's
+most likely going to be a 1.
+
+365
+00:15:06,940 --> 00:15:11,490
+>> Now, meanwhile, I go ahead and copy the
+string, t bracket i equals t bracket s.
+
+366
+00:15:11,490 --> 00:15:14,962
+And I will defer to last week's
+source code to see what's going on.
+
+367
+00:15:14,962 --> 00:15:17,670
+But the key takeaway, and the
+reason I put the code now in green,
+
+368
+00:15:17,670 --> 00:15:22,520
+is because that very last line,
+t bracket 0 equals toupper,
+
+369
+00:15:22,520 --> 00:15:25,230
+has the effect of
+capitalizing which string?
+
+370
+00:15:25,230 --> 00:15:26,960
+t and/or s?
+
+371
+00:15:26,960 --> 00:15:29,280
+
+372
+00:15:29,280 --> 00:15:30,580
+That last line of code.
+
+373
+00:15:30,580 --> 00:15:32,930
+
+374
+00:15:32,930 --> 00:15:35,560
+>> Just t, because what's
+happened this time,
+
+375
+00:15:35,560 --> 00:15:41,500
+if I slightly undo that last step,
+what's happened is, when I call malloc,
+
+376
+00:15:41,500 --> 00:15:45,380
+I essentially get a chunk of memory
+that is the same size as the original,
+
+377
+00:15:45,380 --> 00:15:47,020
+because that's the arithmetic I did.
+
+378
+00:15:47,020 --> 00:15:50,920
+I'm storing in t the address
+of that chunk of memory.
+
+379
+00:15:50,920 --> 00:15:53,370
+Even though this looks nice
+and pretty, nice and blank,
+
+380
+00:15:53,370 --> 00:15:56,882
+the reality is there's, what we'll
+keep calling, garbage values in here.
+
+381
+00:15:56,882 --> 00:15:59,340
+That chunk of memory might very
+well have been used before,
+
+382
+00:15:59,340 --> 00:16:00,940
+a few seconds, a few minutes ago.
+
+383
+00:16:00,940 --> 00:16:04,410
+So there could absolutely be numbers
+or letters there, just by accident.
+
+384
+00:16:04,410 --> 00:16:08,580
+But they're not valid, until I
+myself populate this chunk of memory
+
+385
+00:16:08,580 --> 00:16:12,510
+with actual chars, as I
+do in that for loop there.
+
+386
+00:16:12,510 --> 00:16:13,180
+All right?
+
+387
+00:16:13,180 --> 00:16:16,180
+>> So now, the climax of
+these three examples
+
+388
+00:16:16,180 --> 00:16:20,730
+that were seemingly broken last time,
+this Swap example, this function
+
+389
+00:16:20,730 --> 00:16:23,670
+worked in the sense
+that it swapped a and b.
+
+390
+00:16:23,670 --> 00:16:25,620
+But it didn't work in what other sense?
+
+391
+00:16:25,620 --> 00:16:27,616
+
+392
+00:16:27,616 --> 00:16:28,614
+Yeah?
+
+393
+00:16:28,614 --> 00:16:29,612
+>> AUDIENCE: [INAUDIBLE].
+
+394
+00:16:29,612 --> 00:16:35,600
+
+395
+00:16:35,600 --> 00:16:36,700
+>> DAVID J. MALAN: Exactly.
+
+396
+00:16:36,700 --> 00:16:39,530
+If I were to call this function
+from another-- for instance,
+
+397
+00:16:39,530 --> 00:16:42,870
+from a function like main, where
+I have a variable, x and y, as I
+
+398
+00:16:42,870 --> 00:16:46,160
+did last week, same code,
+and I pass in x and y
+
+399
+00:16:46,160 --> 00:16:49,860
+to Swap, and then call Swap-- this,
+of course, is the correct version
+
+400
+00:16:49,860 --> 00:16:52,220
+is what we're about to
+see-- it did not work.
+
+401
+00:16:52,220 --> 00:16:53,770
+So what is the fix?
+
+402
+00:16:53,770 --> 00:16:56,850
+>> Well, so just to be
+clear, let me go ahead
+
+403
+00:16:56,850 --> 00:17:05,450
+and-- give me one second here, and see
+if I can show you the last one, which
+
+404
+00:17:05,450 --> 00:17:12,464
+will be in-- let's see if I can find
+this real fast-- OK, [INAUDIBLE].
+
+405
+00:17:12,464 --> 00:17:18,440
+
+406
+00:17:18,440 --> 00:17:19,240
+OK, there it is.
+
+407
+00:17:19,240 --> 00:17:21,000
+So ignore the commands I'm just typing.
+
+408
+00:17:21,000 --> 00:17:23,780
+I want it to retrieve at
+the last minute an example
+
+409
+00:17:23,780 --> 00:17:27,960
+from last time, which
+is now called no Swap.
+
+410
+00:17:27,960 --> 00:17:30,200
+>> So no Swap is where
+we left off last time,
+
+411
+00:17:30,200 --> 00:17:32,930
+whereby, I initialized
+x to 1 and y to 2.
+
+412
+00:17:32,930 --> 00:17:35,840
+I then call Swap, passing in 1 and 2.
+
+413
+00:17:35,840 --> 00:17:37,930
+And then this function
+worked in some sense,
+
+414
+00:17:37,930 --> 00:17:40,750
+but it had no permanent
+effect on x and y.
+
+415
+00:17:40,750 --> 00:17:45,430
+So the question at hand is, how now
+do we actually fix this problem?
+
+416
+00:17:45,430 --> 00:17:47,820
+What is the solution at hand?
+
+417
+00:17:47,820 --> 00:17:53,150
+>> Well, in swap.c, which is new today,
+notice a couple of differences.
+
+418
+00:17:53,150 --> 00:17:54,700
+x and y are the same.
+
+419
+00:17:54,700 --> 00:17:57,250
+But what is clearly
+different about line 25?
+
+420
+00:17:57,250 --> 00:17:58,880
+
+421
+00:17:58,880 --> 00:18:01,715
+What's new there, if you remember
+what it looked like a second ago?
+
+422
+00:18:01,715 --> 00:18:02,565
+>> AUDIENCE: [INAUDIBLE].
+
+423
+00:18:02,565 --> 00:18:03,440
+>> DAVID J. MALAN: Yeah.
+
+424
+00:18:03,440 --> 00:18:06,680
+So the ampersands are a new piece
+of syntax not only in this program,
+
+425
+00:18:06,680 --> 00:18:08,560
+but also more generally in CS50.
+
+426
+00:18:08,560 --> 00:18:10,680
+To date, I don't think
+we've seen any examples
+
+427
+00:18:10,680 --> 00:18:14,070
+or really talked about them in any
+detail, other than, maybe, preemptively
+
+428
+00:18:14,070 --> 00:18:16,467
+in section, an ampersand like this.
+
+429
+00:18:16,467 --> 00:18:19,300
+Well, it turns out ampersand is one
+of the last pieces of new syntax
+
+430
+00:18:19,300 --> 00:18:20,174
+we're going to learn.
+
+431
+00:18:20,174 --> 00:18:23,500
+All it means is the
+address of some variable.
+
+432
+00:18:23,500 --> 00:18:25,070
+At what address does x live?
+
+433
+00:18:25,070 --> 00:18:26,510
+But what address does y live?
+
+434
+00:18:26,510 --> 00:18:28,700
+Because if the
+fundamental problem before
+
+435
+00:18:28,700 --> 00:18:32,970
+was that x and y were being passed
+as copies, what we really want to do
+
+436
+00:18:32,970 --> 00:18:38,780
+is provide Swap with like a treasure
+map that leads to where x and y actually
+
+437
+00:18:38,780 --> 00:18:41,910
+are in RAM, so that
+Swap can follow that map
+
+438
+00:18:41,910 --> 00:18:47,760
+and go to wherever x or y marks the spot
+and change the actual values 1 and 2
+
+439
+00:18:47,760 --> 00:18:48,270
+there.
+
+440
+00:18:48,270 --> 00:18:50,710
+>> So Swap needs to change slightly too.
+
+441
+00:18:50,710 --> 00:18:53,760
+And at first glance, this might
+seem a little similar to char star.
+
+442
+00:18:53,760 --> 00:18:54,850
+And indeed it is.
+
+443
+00:18:54,850 --> 00:18:59,635
+So a is a pointer to what type of data,
+based on this highlighted portion?
+
+444
+00:18:59,635 --> 00:19:00,810
+
+445
+00:19:00,810 --> 00:19:01,620
+So it's an int.
+
+446
+00:19:01,620 --> 00:19:04,880
+>> So a is no longer an int,
+it's the address of an int.
+
+447
+00:19:04,880 --> 00:19:07,910
+And similarly, b is now going
+to be the address of an int.
+
+448
+00:19:07,910 --> 00:19:12,470
+So when I now call Swap from Main,
+I'm not going to give Swap 1 and 2.
+
+449
+00:19:12,470 --> 00:19:15,540
+I'm going to give it like
+Ox-something and Ox-something,
+
+450
+00:19:15,540 --> 00:19:19,820
+two addresses that will lead
+Swap to their actual locations
+
+451
+00:19:19,820 --> 00:19:21,310
+in my computer's memory.
+
+452
+00:19:21,310 --> 00:19:25,580
+>> So now, my remaining implementation
+needs to change a tad.
+
+453
+00:19:25,580 --> 00:19:28,650
+What's obviously different now
+in these three lines of code?
+
+454
+00:19:28,650 --> 00:19:31,350
+There's these damn stars all
+over the place, all right?
+
+455
+00:19:31,350 --> 00:19:33,014
+So what's going on here?
+
+456
+00:19:33,014 --> 00:19:33,514
+Yeah?
+
+457
+00:19:33,514 --> 00:19:35,055
+>> AUDIENCE: It's obviously [INAUDIBLE].
+
+458
+00:19:35,055 --> 00:19:36,832
+
+459
+00:19:36,832 --> 00:19:37,990
+>> DAVID J. MALAN: Exactly.
+
+460
+00:19:37,990 --> 00:19:41,560
+So in this context-- and this was not
+the best design decision, admittedly,
+
+461
+00:19:41,560 --> 00:19:42,530
+years ago.
+
+462
+00:19:42,530 --> 00:19:45,110
+In this context, where
+you just have a star,
+
+463
+00:19:45,110 --> 00:19:48,240
+and you don't have a data type,
+like int, immediately to the left,
+
+464
+00:19:48,240 --> 00:19:53,146
+instead you have an equal sign, clearly,
+in this context, when you say star a,
+
+465
+00:19:53,146 --> 00:19:56,980
+that means go to the
+address that's in a.
+
+466
+00:19:56,980 --> 00:19:58,870
+Follow the treasure map, so to speak.
+
+467
+00:19:58,870 --> 00:20:01,720
+>> And meanwhile, in line 37,
+it means the same thing.
+
+468
+00:20:01,720 --> 00:20:05,460
+Go to the address a, and put what there?
+
+469
+00:20:05,460 --> 00:20:09,520
+Whatever is at the
+location that b specifies.
+
+470
+00:20:09,520 --> 00:20:10,980
+In other words, go to b.
+
+471
+00:20:10,980 --> 00:20:12,130
+Get that value.
+
+472
+00:20:12,130 --> 00:20:15,620
+Go to a and, per the equal
+sign, the assignment operator,
+
+473
+00:20:15,620 --> 00:20:17,010
+put that value there.
+
+474
+00:20:17,010 --> 00:20:19,272
+>> Similarly, int temp is just an int.
+
+475
+00:20:19,272 --> 00:20:20,730
+Nothing needs to change about temp.
+
+476
+00:20:20,730 --> 00:20:24,810
+It's just a spare glass from Annenberg
+for some milk or orange juice.
+
+477
+00:20:24,810 --> 00:20:27,630
+But I do need to say, go to b.
+
+478
+00:20:27,630 --> 00:20:31,449
+Go to that destination and
+put the value in temp there.
+
+479
+00:20:31,449 --> 00:20:32,490
+So what's happening then?
+
+480
+00:20:32,490 --> 00:20:36,540
+When I actually call Swap this time, if
+this first tray here represents Main,
+
+481
+00:20:36,540 --> 00:20:42,270
+this second tray represents Swap, when
+I pass ampersand x and ampersand y
+
+482
+00:20:42,270 --> 00:20:47,150
+from Main to Swap, just to be clear,
+what is this stack frame receiving?
+
+483
+00:20:47,150 --> 00:20:48,700
+
+484
+00:20:48,700 --> 00:20:49,200
+Yeah?
+
+485
+00:20:49,200 --> 00:20:50,180
+>> AUDIENCE: [INAUDIBLE].
+
+486
+00:20:50,180 --> 00:20:51,180
+DAVID J. MALAN: Exactly.
+
+487
+00:20:51,180 --> 00:20:53,129
+The address of x and the address of y.
+
+488
+00:20:53,129 --> 00:20:55,170
+And you can think of these
+like postal addresses.
+
+489
+00:20:55,170 --> 00:20:58,772
+33 Oxford Street and 35
+Oxford Street, and you
+
+490
+00:20:58,772 --> 00:21:01,230
+want to move the two buildings
+that are at those locations.
+
+491
+00:21:01,230 --> 00:21:04,680
+>> It's sort of a ridiculous idea,
+but that's all we mean by address.
+
+492
+00:21:04,680 --> 00:21:07,000
+Where in the world can
+you find those two ints?
+
+493
+00:21:07,000 --> 00:21:09,470
+Where in the world can you
+find those two buildings?
+
+494
+00:21:09,470 --> 00:21:15,170
+So if finally, after all this time I
+go into today's source code and compile
+
+495
+00:21:15,170 --> 00:21:22,110
+Swap and run ./swap, finally, for the
+first time do we actually see that
+
+496
+00:21:22,110 --> 00:21:25,330
+my values have indeed
+been swapped successfully.
+
+497
+00:21:25,330 --> 00:21:30,860
+And now, we can even take
+note of this in, say, gdb.
+
+498
+00:21:30,860 --> 00:21:32,740
+>> So let me go into the same file.
+
+499
+00:21:32,740 --> 00:21:35,010
+Let me go ahead and run gdb of ./swap.
+
+500
+00:21:35,010 --> 00:21:36,590
+
+501
+00:21:36,590 --> 00:21:40,547
+And now, in Swap, I'm going to go
+ahead and set a break point in Main.
+
+502
+00:21:40,547 --> 00:21:42,630
+And now I'm going to go
+ahead and run the program.
+
+503
+00:21:42,630 --> 00:21:45,810
+And now we see my code
+paused at that line.
+
+504
+00:21:45,810 --> 00:21:48,330
+>> If I go ahead and print
+x, what should I see here?
+
+505
+00:21:48,330 --> 00:21:49,314
+
+506
+00:21:49,314 --> 00:21:49,980
+It's a question.
+
+507
+00:21:49,980 --> 00:21:51,030
+
+508
+00:21:51,030 --> 00:21:51,530
+Say again?
+
+509
+00:21:51,530 --> 00:21:52,295
+>> AUDIENCE: [INAUDIBLE].
+
+510
+00:21:52,295 --> 00:21:53,910
+>> DAVID J. MALAN: So
+random numbers, maybe.
+
+511
+00:21:53,910 --> 00:21:56,010
+Maybe I get lucky, and it's
+nice and simple, like 0.
+
+512
+00:21:56,010 --> 00:21:57,230
+But maybe it's some random number.
+
+513
+00:21:57,230 --> 00:21:58,090
+In this case, I got lucky.
+
+514
+00:21:58,090 --> 00:21:59,030
+It just happens to be 0.
+
+515
+00:21:59,030 --> 00:22:00,780
+But it is indeed luck,
+because not until I
+
+516
+00:22:00,780 --> 00:22:06,280
+type next and then print x has that
+line of code, line 19, been executed.
+
+517
+00:22:06,280 --> 00:22:10,942
+>> Meanwhile, if I type next again, and
+now print out y, I'm going to see 2.
+
+518
+00:22:10,942 --> 00:22:13,900
+Now, if I type next, it's going to
+get a little confusing, because now,
+
+519
+00:22:13,900 --> 00:22:17,250
+the printf is going to appear on
+the screen, as it did. x is 1.
+
+520
+00:22:17,250 --> 00:22:18,606
+>> Let's do this again.
+
+521
+00:22:18,606 --> 00:22:20,480
+And now, here's where
+things get interesting.
+
+522
+00:22:20,480 --> 00:22:21,580
+
+523
+00:22:21,580 --> 00:22:26,580
+Before I call Swap or even step
+into it, let's take a little peek.
+
+524
+00:22:26,580 --> 00:22:28,980
+x is, again, 1.
+
+525
+00:22:28,980 --> 00:22:33,240
+Y is, of course, quick sanity
+check, 2, so not hard there.
+
+526
+00:22:33,240 --> 00:22:35,740
+But what is ampersand x?
+
+527
+00:22:35,740 --> 00:22:36,760
+
+528
+00:22:36,760 --> 00:22:39,350
+Answer, it's kind of funky looking.
+
+529
+00:22:39,350 --> 00:22:43,500
+But the int star in parentheses is just
+gdp's way of saying this is an address.
+
+530
+00:22:43,500 --> 00:22:48,290
+It's not an int, it's a pointer to an
+int, or otherwise known as an address.
+
+531
+00:22:48,290 --> 00:22:49,742
+>> What is this crazy thing?
+
+532
+00:22:49,742 --> 00:22:51,825
+We've never seen something
+quite like that before.
+
+533
+00:22:51,825 --> 00:22:53,650
+
+534
+00:22:53,650 --> 00:22:58,120
+So this is the address in my computer's
+memory of where x happens to live.
+
+535
+00:22:58,120 --> 00:22:59,040
+It's Ox-something.
+
+536
+00:22:59,040 --> 00:23:01,290
+And this is, frankly, why
+I've started drawing arrows,
+
+537
+00:23:01,290 --> 00:23:03,340
+instead of numbers,
+because who really cares
+
+538
+00:23:03,340 --> 00:23:06,890
+that your int is at a particular
+address that's that big.
+
+539
+00:23:06,890 --> 00:23:12,160
+But bffff0c4, these are all
+indeed hexadecimal digits,
+
+540
+00:23:12,160 --> 00:23:13,720
+which are 0 through f.
+
+541
+00:23:13,720 --> 00:23:16,590
+>> So we're not going to dwell too
+long on what those things are.
+
+542
+00:23:16,590 --> 00:23:19,400
+But if I print out y,
+of course, I see 2.
+
+543
+00:23:19,400 --> 00:23:22,440
+But ampersand y, I see this address.
+
+544
+00:23:22,440 --> 00:23:26,527
+And notice, for the curious,
+how far apart are x and y?
+
+545
+00:23:26,527 --> 00:23:27,985
+You can ignore most of the address.
+
+546
+00:23:27,985 --> 00:23:29,330
+
+547
+00:23:29,330 --> 00:23:29,920
+Four bytes.
+
+548
+00:23:29,920 --> 00:23:33,510
+And that's consistent with our
+earlier claim that how big is an int?
+
+549
+00:23:33,510 --> 00:23:34,130
+Four bytes.
+
+550
+00:23:34,130 --> 00:23:37,420
+So it looks like everything's lining up
+nicely, as you might hope, in memory.
+
+551
+00:23:37,420 --> 00:23:40,010
+>> So now, let's just fast forward
+to the end of this story.
+
+552
+00:23:40,010 --> 00:23:43,290
+Let's go ahead and type step,
+to dive into the Swap function.
+
+553
+00:23:43,290 --> 00:23:46,880
+Now notice, if I type a, it's
+identical to the address of x.
+
+554
+00:23:46,880 --> 00:23:52,130
+If I type b, it's identical
+to the address of y.
+
+555
+00:23:52,130 --> 00:23:57,020
+So what should I see if I
+say, go to the address a?
+
+556
+00:23:57,020 --> 00:23:58,120
+So print star a.
+
+557
+00:23:58,120 --> 00:24:00,130
+So star means go there, in this context.
+
+558
+00:24:00,130 --> 00:24:02,730
+Ampersand means what's the address of.
+
+559
+00:24:02,730 --> 00:24:05,000
+So star a means 1.
+
+560
+00:24:05,000 --> 00:24:09,590
+And print star b gives me 2.
+
+561
+00:24:09,590 --> 00:24:15,750
+>> And let me assume, for the moment,
+that at least the code that
+
+562
+00:24:15,750 --> 00:24:18,950
+proceeds to execute now can be
+reasoned through in that way.
+
+563
+00:24:18,950 --> 00:24:21,150
+But we'll revisit this idea before long.
+
+564
+00:24:21,150 --> 00:24:23,850
+So this version of Swap
+is now correct and allows
+
+565
+00:24:23,850 --> 00:24:26,650
+us to swap this particular data type.
+
+566
+00:24:26,650 --> 00:24:29,120
+>> So any questions then on Swap?
+
+567
+00:24:29,120 --> 00:24:29,890
+On star?
+
+568
+00:24:29,890 --> 00:24:30,690
+On address of?
+
+569
+00:24:30,690 --> 00:24:33,270
+And you'll see, with
+problem set 4, sort of,
+
+570
+00:24:33,270 --> 00:24:37,310
+but problem set 5, definitely, how these
+things are useful and get much more
+
+571
+00:24:37,310 --> 00:24:39,584
+comfortable with them, as a result.
+
+572
+00:24:39,584 --> 00:24:40,430
+Anything at all?
+
+573
+00:24:40,430 --> 00:24:40,930
+All right.
+
+574
+00:24:40,930 --> 00:24:44,350
+So malloc is, again, this function
+that just allocates memory, memory
+
+575
+00:24:44,350 --> 00:24:45,330
+allocation.
+
+576
+00:24:45,330 --> 00:24:47,024
+And why is this useful?
+
+577
+00:24:47,024 --> 00:24:48,940
+Well, all this time,
+you've been using malloc.
+
+578
+00:24:48,940 --> 00:24:52,230
+If you consider now how
+getString works, presumably, it's
+
+579
+00:24:52,230 --> 00:24:56,140
+been asking someone for a chunk of
+memory, anytime the user types a string
+
+580
+00:24:56,140 --> 00:24:59,040
+in, because we certainly
+didn't know, as CS50 staff,
+
+581
+00:24:59,040 --> 00:25:02,710
+how big those strings that humans
+are going to type might be.
+
+582
+00:25:02,710 --> 00:25:07,910
+>> So let's, for the first time, start to
+peel back how the CS50 library works,
+
+583
+00:25:07,910 --> 00:25:10,990
+by way of a couple of examples
+that will lead us there.
+
+584
+00:25:10,990 --> 00:25:15,300
+So if I open up gedit
+and open up scanf 0,
+
+585
+00:25:15,300 --> 00:25:17,055
+we're going to see the following code.
+
+586
+00:25:17,055 --> 00:25:18,720
+
+587
+00:25:18,720 --> 00:25:23,530
+Scanf 0, available on the website for
+today, has relatively few lines of code
+
+588
+00:25:23,530 --> 00:25:25,351
+here, 14 through 20.
+
+589
+00:25:25,351 --> 00:25:26,600
+And let's see what it's doing.
+
+590
+00:25:26,600 --> 00:25:28,920
+It declares an int, called x.
+
+591
+00:25:28,920 --> 00:25:30,850
+It says something like, number please.
+
+592
+00:25:30,850 --> 00:25:33,940
+And now it says, scanf %i, &x.
+
+593
+00:25:33,940 --> 00:25:35,620
+So there's a bunch of new stuff there.
+
+594
+00:25:35,620 --> 00:25:38,420
+>> But scanf, you can kind of think
+of as the opposite of printf.
+
+595
+00:25:38,420 --> 00:25:40,090
+printf, of course, prints to the screen.
+
+596
+00:25:40,090 --> 00:25:44,410
+scanf sort of scans from the user's
+keyboard something he or she has typed.
+
+597
+00:25:44,410 --> 00:25:46,550
+>> %i is just like printf.
+
+598
+00:25:46,550 --> 00:25:49,410
+This means expect the
+user to type an int.
+
+599
+00:25:49,410 --> 00:25:52,820
+And now, why do you think I
+might be passing scanf &x?
+
+600
+00:25:52,820 --> 00:25:54,030
+
+601
+00:25:54,030 --> 00:25:57,770
+If the purpose in life of scanf
+is to get something from the user,
+
+602
+00:25:57,770 --> 00:26:02,480
+what is the meaning of
+passing it, &x, now?
+
+603
+00:26:02,480 --> 00:26:02,980
+Yeah?
+
+604
+00:26:02,980 --> 00:26:03,896
+>> AUDIENCE: [INAUDIBLE].
+
+605
+00:26:03,896 --> 00:26:05,540
+
+606
+00:26:05,540 --> 00:26:06,540
+DAVID J. MALAN: Exactly.
+
+607
+00:26:06,540 --> 00:26:12,900
+Whatever I, the human, type in, my input
+is going to be saved at that location.
+
+608
+00:26:12,900 --> 00:26:17,660
+It's not sufficient, recall, to just
+pass in x, because we've seen already,
+
+609
+00:26:17,660 --> 00:26:21,630
+any time you pass just a raw variable,
+like an int, to some other function,
+
+610
+00:26:21,630 --> 00:26:25,640
+sure, it can change that
+variable, but not permanently.
+
+611
+00:26:25,640 --> 00:26:27,360
+It can't have an effect on Main.
+
+612
+00:26:27,360 --> 00:26:29,420
+It can only change its own local copy.
+
+613
+00:26:29,420 --> 00:26:32,560
+But if, instead, you don't
+give me the actual int,
+
+614
+00:26:32,560 --> 00:26:36,640
+but you give me directions to
+that int, I now, being scanf,
+
+615
+00:26:36,640 --> 00:26:41,050
+surely, I can follow that
+address and put a number there
+
+616
+00:26:41,050 --> 00:26:43,280
+so you have access to it as well.
+
+617
+00:26:43,280 --> 00:26:45,120
+>> So when I run this program, let's see.
+
+618
+00:26:45,120 --> 00:26:49,660
+Make scanf 0 dot slash, scanf 0.
+
+619
+00:26:49,660 --> 00:26:54,030
+And if I now type a number
+like 50, thanks for the 50.
+
+620
+00:26:54,030 --> 00:26:58,150
+If I now type a number like
+negative 1, for the negative 1.
+
+621
+00:26:58,150 --> 00:27:04,200
+I now type a number like 1.5, hm.
+
+622
+00:27:04,200 --> 00:27:06,030
+Why did my program ignore me?
+
+623
+00:27:06,030 --> 00:27:07,300
+
+624
+00:27:07,300 --> 00:27:09,880
+Well, because simply, I told
+it to expect an int only.
+
+625
+00:27:09,880 --> 00:27:10,380
+All right.
+
+626
+00:27:10,380 --> 00:27:11,630
+So that's one version of this.
+
+627
+00:27:11,630 --> 00:27:16,600
+Let's take things up a notch and
+propose that this is not good.
+
+628
+00:27:16,600 --> 00:27:20,530
+And herein lies a very simple example
+of how we can start writing code
+
+629
+00:27:20,530 --> 00:27:24,450
+that other people can exploit or
+compromise by doing bad things.
+
+630
+00:27:24,450 --> 00:27:28,336
+So line 16, so similar
+in spirit to before,
+
+631
+00:27:28,336 --> 00:27:29,960
+but I'm not declaring it int this time.
+
+632
+00:27:29,960 --> 00:27:32,970
+I'm declaring it char star, aka string.
+
+633
+00:27:32,970 --> 00:27:35,190
+>> But what does that really mean?
+
+634
+00:27:35,190 --> 00:27:38,790
+So if I don't specify an address-- and
+I'm calling it arbitrarily, buffer,
+
+635
+00:27:38,790 --> 00:27:43,370
+but I could call it s, to be simple--
+and then I do this, explain to me,
+
+636
+00:27:43,370 --> 00:27:48,630
+if you could, based on the previous
+logic, what is scanf doing in line 18,
+
+637
+00:27:48,630 --> 00:27:55,000
+if pass %s and buffer,
+which is an address?
+
+638
+00:27:55,000 --> 00:27:58,210
+What is scanf, if you apply the
+exact same logic as version 0,
+
+639
+00:27:58,210 --> 00:28:00,640
+going to try to do here, when
+the user types something in?
+
+640
+00:28:00,640 --> 00:28:02,630
+
+641
+00:28:02,630 --> 00:28:03,409
+Yeah?
+
+642
+00:28:03,409 --> 00:28:04,407
+>> AUDIENCE: [INAUDIBLE].
+
+643
+00:28:04,407 --> 00:28:07,401
+
+644
+00:28:07,401 --> 00:28:08,890
+>> DAVID J. MALAN: Exactly.
+
+645
+00:28:08,890 --> 00:28:11,577
+Scanf, by the logic earlier,
+is going to take the string
+
+646
+00:28:11,577 --> 00:28:13,410
+that the human typed
+in-- it's now a string,
+
+647
+00:28:13,410 --> 00:28:15,790
+it's not a number, presumably,
+if he or she cooperates--
+
+648
+00:28:15,790 --> 00:28:19,310
+and it's going to try to put that
+string in memory at whatever address
+
+649
+00:28:19,310 --> 00:28:20,340
+buffer specifies.
+
+650
+00:28:20,340 --> 00:28:23,870
+And this is great, because buffer
+is indeed meant to be an address.
+
+651
+00:28:23,870 --> 00:28:30,470
+>> But I claim this program is buggy in a
+very serious way, because what value is
+
+652
+00:28:30,470 --> 00:28:31,330
+buffer by default?
+
+653
+00:28:31,330 --> 00:28:33,380
+
+654
+00:28:33,380 --> 00:28:34,790
+What have I initialized into?
+
+655
+00:28:34,790 --> 00:28:35,770
+What chunk of memory?
+
+656
+00:28:35,770 --> 00:28:37,480
+
+657
+00:28:37,480 --> 00:28:38,620
+I haven't, right?
+
+658
+00:28:38,620 --> 00:28:42,265
+>> So even though I've allocated a
+char star that's no longer called s,
+
+659
+00:28:42,265 --> 00:28:48,030
+it's instead called, buffer-- so
+let's draw the variable's name
+
+660
+00:28:48,030 --> 00:28:53,380
+now as buffer-- if I haven't
+called getString or malloc here,
+
+661
+00:28:53,380 --> 00:28:56,030
+that effectively means that
+buffer is just some garbage value.
+
+662
+00:28:56,030 --> 00:28:57,030
+>> Now what does that mean?
+
+663
+00:28:57,030 --> 00:29:00,220
+It means that I have told scanf
+to expect a string from the user.
+
+664
+00:29:00,220 --> 00:29:01,300
+And you know what?
+
+665
+00:29:01,300 --> 00:29:03,883
+Whatever this thing is pointing
+to-- and I draw question mark,
+
+666
+00:29:03,883 --> 00:29:07,060
+but in reality, it's going to be
+something like Ox1, 2, 3, right?
+
+667
+00:29:07,060 --> 00:29:10,730
+It's some bogus value that just
+happens to be there from before.
+
+668
+00:29:10,730 --> 00:29:13,440
+So put another way, it's
+as though buffer is just
+
+669
+00:29:13,440 --> 00:29:16,180
+pointing to something in memory.
+
+670
+00:29:16,180 --> 00:29:17,610
+I have no idea what.
+
+671
+00:29:17,610 --> 00:29:24,130
+>> So if I type in gabe now, it's going
+to try to put g-a-b-e /0 there.
+
+672
+00:29:24,130 --> 00:29:25,530
+But who knows what that is?
+
+673
+00:29:25,530 --> 00:29:27,480
+And in the past, any
+time we've tried to touch
+
+674
+00:29:27,480 --> 00:29:29,770
+memory that doesn't belong
+to us, what has happened?
+
+675
+00:29:29,770 --> 00:29:31,020
+
+676
+00:29:31,020 --> 00:29:32,870
+Or almost every time.
+
+677
+00:29:32,870 --> 00:29:34,310
+Segmentation fault, right?
+
+678
+00:29:34,310 --> 00:29:37,829
+>> This arrow, I have no idea where it's
+pointing. it's just some random value.
+
+679
+00:29:37,829 --> 00:29:40,370
+And of course, if you interpret
+a random value as an address,
+
+680
+00:29:40,370 --> 00:29:42,610
+you're going to go to
+some random destination.
+
+681
+00:29:42,610 --> 00:29:46,810
+So gabe might indeed crash
+my program in this case here.
+
+682
+00:29:46,810 --> 00:29:50,600
+>> So what can we do that's almost as bad?
+
+683
+00:29:50,600 --> 00:29:52,660
+Consider this third and
+final example of scanf.
+
+684
+00:29:52,660 --> 00:29:53,890
+
+685
+00:29:53,890 --> 00:29:56,870
+This version is better in what sense?
+
+686
+00:29:56,870 --> 00:29:57,990
+
+687
+00:29:57,990 --> 00:30:01,400
+If you are comfortable with the
+previous problem, this is better.
+
+688
+00:30:01,400 --> 00:30:02,250
+Why?
+
+689
+00:30:02,250 --> 00:30:03,250
+>> AUDIENCE: [INAUDIBLE].
+
+690
+00:30:03,250 --> 00:30:06,235
+
+691
+00:30:06,235 --> 00:30:07,110
+DAVID J. MALAN: Good.
+
+692
+00:30:07,110 --> 00:30:09,970
+So this case of line 16
+is better, in the sense
+
+693
+00:30:09,970 --> 00:30:12,030
+that we're explicitly
+allocating some memory.
+
+694
+00:30:12,030 --> 00:30:14,190
+We're not using malloc,
+we're using the week 2
+
+695
+00:30:14,190 --> 00:30:16,060
+approach of just declaring an array.
+
+696
+00:30:16,060 --> 00:30:18,130
+And we've said before that a string
+is just an array of characters,
+
+697
+00:30:18,130 --> 00:30:19,690
+so this is totally legitimate.
+
+698
+00:30:19,690 --> 00:30:22,910
+But it's, of course, as
+you note, fixed size, 16.
+
+699
+00:30:22,910 --> 00:30:25,440
+>> So this program is
+totally safe, if I type
+
+700
+00:30:25,440 --> 00:30:29,760
+in one character strings, two character
+strings, 15 character strings.
+
+701
+00:30:29,760 --> 00:30:34,970
+But as soon as I start typing 16,
+17, 18, 1,000 character strings,
+
+702
+00:30:34,970 --> 00:30:37,390
+where is that string going to end up?
+
+703
+00:30:37,390 --> 00:30:39,570
+It's going to end up partly here.
+
+704
+00:30:39,570 --> 00:30:42,820
+But then who knows what else
+is beyond the boundaries
+
+705
+00:30:42,820 --> 00:30:44,270
+of this particular array?
+
+706
+00:30:44,270 --> 00:30:48,015
+>> It's as though I've
+declared 16 boxes here.
+
+707
+00:30:48,015 --> 00:30:49,300
+
+708
+00:30:49,300 --> 00:30:52,690
+So rather than draw out all 16, we'll
+just pretend that I've drawn 16.
+
+709
+00:30:52,690 --> 00:30:56,540
+But if I then try to read a string
+that's much longer, like 50 characters,
+
+710
+00:30:56,540 --> 00:31:01,270
+I'm going to start putting
+a, b, c, d, x, y, z.
+
+711
+00:31:01,270 --> 00:31:04,916
+And this is presumably
+some other memory segment
+
+712
+00:31:04,916 --> 00:31:06,790
+that, again, might cause
+my program to crash,
+
+713
+00:31:06,790 --> 00:31:10,600
+because I've not asked for
+anything more than just 16 bytes.
+
+714
+00:31:10,600 --> 00:31:12,260
+>> So who cares?
+
+715
+00:31:12,260 --> 00:31:13,880
+Well, here's the CS50 library.
+
+716
+00:31:13,880 --> 00:31:17,220
+And most of this is just
+like instructions up top.
+
+717
+00:31:17,220 --> 00:31:21,670
+The CS50 library, all this time,
+has had this line in line 52.
+
+718
+00:31:21,670 --> 00:31:23,680
+We've seen typedef, or
+you will see typedef
+
+719
+00:31:23,680 --> 00:31:27,930
+in pset 4, which just creates a
+synonym whereby char star can be more
+
+720
+00:31:27,930 --> 00:31:29,290
+simply referred to as string.
+
+721
+00:31:29,290 --> 00:31:31,540
+So this is one of the
+few training wheels
+
+722
+00:31:31,540 --> 00:31:34,120
+we've used secretly underneath the hood.
+
+723
+00:31:34,120 --> 00:31:36,490
+>> Meanwhile, here's the function, getchar.
+
+724
+00:31:36,490 --> 00:31:38,190
+Now apparently, there's no body to it.
+
+725
+00:31:38,190 --> 00:31:40,273
+And in fact, if I keep
+scrolling, I don't actually
+
+726
+00:31:40,273 --> 00:31:42,080
+see any implementations
+of these functions.
+
+727
+00:31:42,080 --> 00:31:43,140
+
+728
+00:31:43,140 --> 00:31:45,516
+As a sanity check, why is that?
+
+729
+00:31:45,516 --> 00:31:46,795
+>> AUDIENCE: [INAUDIBLE].
+
+730
+00:31:46,795 --> 00:31:47,670
+DAVID J. MALAN: Yeah.
+
+731
+00:31:47,670 --> 00:31:48,950
+So this is the header file.
+
+732
+00:31:48,950 --> 00:31:52,520
+And header files contain prototypes,
+plus some other stuff, it seems,
+
+733
+00:31:52,520 --> 00:31:53,780
+like typedefs.
+
+734
+00:31:53,780 --> 00:31:56,910
+But in CS50.c, which we've
+never given you outright,
+
+735
+00:31:56,910 --> 00:32:02,100
+but has been in the CS50 appliance all
+this time, deep inside of its folders,
+
+736
+00:32:02,100 --> 00:32:04,990
+notice that there's a whole
+bunch of functions in here.
+
+737
+00:32:04,990 --> 00:32:06,720
+>> In fact, let's scroll down.
+
+738
+00:32:06,720 --> 00:32:08,810
+Let's ignore most of them, for now.
+
+739
+00:32:08,810 --> 00:32:12,670
+But scroll down to getInt
+and see how getInt works.
+
+740
+00:32:12,670 --> 00:32:13,890
+So here is getInt.
+
+741
+00:32:13,890 --> 00:32:17,727
+And if you ever really cared how get
+int works, here is its documentation.
+
+742
+00:32:17,727 --> 00:32:19,560
+And among the things
+it says is it tells you
+
+743
+00:32:19,560 --> 00:32:21,340
+what the ranges of values it can return.
+
+744
+00:32:21,340 --> 00:32:24,400
+It's essentially negative 2 billion
+to positive 2 billion, give or take.
+
+745
+00:32:24,400 --> 00:32:26,420
+>> And it turns out, all this
+time, even though we've never
+
+746
+00:32:26,420 --> 00:32:28,570
+had you check for it,
+if something goes wrong,
+
+747
+00:32:28,570 --> 00:32:30,680
+it turns out that all
+this time, getInt has
+
+748
+00:32:30,680 --> 00:32:33,600
+been returning a special
+constant, not null,
+
+749
+00:32:33,600 --> 00:32:36,760
+but rather int_max, which is
+just a programmer's convention.
+
+750
+00:32:36,760 --> 00:32:38,846
+It means here is a special value.
+
+751
+00:32:38,846 --> 00:32:41,470
+Make sure to check for this, just
+in case something goes wrong.
+
+752
+00:32:41,470 --> 00:32:43,261
+But we've never bothered
+with that to date,
+
+753
+00:32:43,261 --> 00:32:45,200
+because again, this
+is meant to simplify.
+
+754
+00:32:45,200 --> 00:32:46,950
+>> But how does getInt get implemented?
+
+755
+00:32:46,950 --> 00:32:48,450
+Well, one, it takes no arguments.
+
+756
+00:32:48,450 --> 00:32:49,390
+We know that.
+
+757
+00:32:49,390 --> 00:32:50,820
+It returns an int.
+
+758
+00:32:50,820 --> 00:32:51,950
+We know that.
+
+759
+00:32:51,950 --> 00:32:54,460
+So how does it work underneath the hood?
+
+760
+00:32:54,460 --> 00:32:58,290
+>> So there's apparently an infinite
+loop, at least the appearance of one.
+
+761
+00:32:58,290 --> 00:33:00,290
+Notice that we're using getString.
+
+762
+00:33:00,290 --> 00:33:04,000
+So that's interesting. getInt
+calls our own function, getString.
+
+763
+00:33:04,000 --> 00:33:05,645
+And now why might this be the case?
+
+764
+00:33:05,645 --> 00:33:07,400
+
+765
+00:33:07,400 --> 00:33:09,842
+Why am I being defensive
+here in line 165?
+
+766
+00:33:09,842 --> 00:33:11,390
+
+767
+00:33:11,390 --> 00:33:15,639
+What could happen in line
+164, just to be clear?
+
+768
+00:33:15,639 --> 00:33:16,930
+It's the same answer as before.
+
+769
+00:33:16,930 --> 00:33:18,660
+
+770
+00:33:18,660 --> 00:33:20,089
+Might just be out of memory.
+
+771
+00:33:20,089 --> 00:33:23,130
+Something goes wrong with getString,
+we've got to be able to handle that.
+
+772
+00:33:23,130 --> 00:33:27,070
+And the reason I don't return null is
+that, technically, null is a pointer.
+
+773
+00:33:27,070 --> 00:33:29,120
+getInt has to return an int.
+
+774
+00:33:29,120 --> 00:33:31,060
+So I've arbitrarily
+decided, essentially,
+
+775
+00:33:31,060 --> 00:33:34,600
+that 2 billion, give or take, is going
+to be a special value that I can never
+
+776
+00:33:34,600 --> 00:33:35,970
+actually get from the user.
+
+777
+00:33:35,970 --> 00:33:39,930
+It's just the one value I'm going
+to waste to represent an error code.
+
+778
+00:33:39,930 --> 00:33:41,540
+>> So now, things get a little fancy.
+
+779
+00:33:41,540 --> 00:33:44,670
+And it's not quite the same function
+as before, but it's very similar.
+
+780
+00:33:44,670 --> 00:33:50,120
+So notice, I declare here, in line
+172, both an int n and a char c.
+
+781
+00:33:50,120 --> 00:33:53,600
+And then I use this funky line,
+sscanf, which it turns out
+
+782
+00:33:53,600 --> 00:33:55,990
+doesn't scan a string from the keyboard.
+
+783
+00:33:55,990 --> 00:33:59,226
+It stands an existing string that
+the user has already typed in.
+
+784
+00:33:59,226 --> 00:34:02,100
+So I already called getString, which
+means I have a string in memory.
+
+785
+00:34:02,100 --> 00:34:05,020
+sscanf is what you'd
+call a parsing function.
+
+786
+00:34:05,020 --> 00:34:07,760
+It looks at the string I've
+typed in, character by character,
+
+787
+00:34:07,760 --> 00:34:09,250
+and does something useful.
+
+788
+00:34:09,250 --> 00:34:10,969
+That string is stored in line.
+
+789
+00:34:10,969 --> 00:34:13,560
+And I know that only by going
+back up here and saying, oh, OK,
+
+790
+00:34:13,560 --> 00:34:15,143
+I called it not s this time, but line.
+
+791
+00:34:15,143 --> 00:34:15,989
+
+792
+00:34:15,989 --> 00:34:18,080
+>> And now this is a little different.
+
+793
+00:34:18,080 --> 00:34:22,480
+But this effectively means, for reasons
+we'll somewhat wave our hands at today,
+
+794
+00:34:22,480 --> 00:34:26,070
+that we are checking to
+see if the user typed in
+
+795
+00:34:26,070 --> 00:34:29,909
+and int and maybe another character.
+
+796
+00:34:29,909 --> 00:34:33,610
+If the user typed in an int, it's
+going to be stored in n, because I'm
+
+797
+00:34:33,610 --> 00:34:36,739
+passing this by address, the
+new trick we've seen today.
+
+798
+00:34:36,739 --> 00:34:41,570
+If the user also typed
+in like 123x, that x
+
+799
+00:34:41,570 --> 00:34:45,060
+is going to end up a
+letter in character c.
+
+800
+00:34:45,060 --> 00:34:48,739
+>> Now it turns out that sscanf
+will tell me, intelligently,
+
+801
+00:34:48,739 --> 00:34:54,750
+how many variables was sscanf
+successfully able to fill.
+
+802
+00:34:54,750 --> 00:34:58,770
+So by this logic, if the function
+I'm implementing is getInt,
+
+803
+00:34:58,770 --> 00:35:00,900
+but I'm checking,
+potentially, for the user
+
+804
+00:35:00,900 --> 00:35:04,190
+to have typed in an int
+followed by something else,
+
+805
+00:35:04,190 --> 00:35:08,580
+what do I want sscanf's
+return value truly to be?
+
+806
+00:35:08,580 --> 00:35:10,950
+If the purpose is to get
+just an int from the user?
+
+807
+00:35:10,950 --> 00:35:13,980
+
+808
+00:35:13,980 --> 00:35:19,300
+>> So if sscanf returns
+2, what does that mean?
+
+809
+00:35:19,300 --> 00:35:21,660
+The user typed in
+something like, literally,
+
+810
+00:35:21,660 --> 00:35:24,770
+123x, which is just nonsense.
+
+811
+00:35:24,770 --> 00:35:27,490
+It's an error condition, and
+I want to check for that.
+
+812
+00:35:27,490 --> 00:35:32,960
+>> So if the user types this in, by
+this logic, what does sscanf return,
+
+813
+00:35:32,960 --> 00:35:33,740
+would you say?
+
+814
+00:35:33,740 --> 00:35:35,070
+
+815
+00:35:35,070 --> 00:35:39,130
+So it's going to return 2, because
+the 123 is going to go in here,
+
+816
+00:35:39,130 --> 00:35:41,580
+and the x is going to end up in here.
+
+817
+00:35:41,580 --> 00:35:43,970
+But I don't want the x to get filled.
+
+818
+00:35:43,970 --> 00:35:48,580
+I want to sscanf to only succeed in
+filling the first of its variables.
+
+819
+00:35:48,580 --> 00:35:52,490
+And so that's why I
+want sscanf to return 1.
+
+820
+00:35:52,490 --> 00:35:55,750
+>> And if this is a bit over the head
+for the moment, that's totally fine.
+
+821
+00:35:55,750 --> 00:36:00,030
+Realize though, that one of the
+values of getInt and getString
+
+822
+00:36:00,030 --> 00:36:03,630
+is that we're doing a heck of a
+lot of error checking like this so
+
+823
+00:36:03,630 --> 00:36:07,130
+that, to date, you can pretty much
+type anything at your keyboard,
+
+824
+00:36:07,130 --> 00:36:08,490
+and we will catch it.
+
+825
+00:36:08,490 --> 00:36:10,592
+And we certainly, the
+staff, will definitely not
+
+826
+00:36:10,592 --> 00:36:13,300
+be the source of a bug in your
+program, because we're defensively
+
+827
+00:36:13,300 --> 00:36:16,270
+checking for all of the stupid
+things that a user might do,
+
+828
+00:36:16,270 --> 00:36:18,900
+like typing a string, when
+you really wanted int.
+
+829
+00:36:18,900 --> 00:36:21,350
+So for now-- we'll come
+back to this before long--
+
+830
+00:36:21,350 --> 00:36:23,710
+but all this time,
+getString and getInt have
+
+831
+00:36:23,710 --> 00:36:29,950
+been underneath the hood using this
+basic idea of addresses of memory.
+
+832
+00:36:29,950 --> 00:36:32,580
+>> So now, let's make things a
+little more user-friendly.
+
+833
+00:36:32,580 --> 00:36:38,740
+As you may recall, from Binky last
+time-- if my mouse will cooperate-- so
+
+834
+00:36:38,740 --> 00:36:42,560
+we had this code, which
+frankly, is fairly nonsensical.
+
+835
+00:36:42,560 --> 00:36:45,330
+This code achieves nothing
+useful, but it was the example
+
+836
+00:36:45,330 --> 00:36:48,330
+that professor Parlante
+used in order to represent
+
+837
+00:36:48,330 --> 00:36:51,840
+what was going on in a
+program involving memory.
+
+838
+00:36:51,840 --> 00:36:54,850
+>> So let's retell this
+story super briefly.
+
+839
+00:36:54,850 --> 00:36:58,720
+These first two lines, in
+English, do what, would you say?
+
+840
+00:36:58,720 --> 00:37:01,230
+
+841
+00:37:01,230 --> 00:37:05,430
+Just in reasonably human, but
+slightly technical terms, take a stab.
+
+842
+00:37:05,430 --> 00:37:06,346
+AUDIENCE: [INAUDIBLE].
+
+843
+00:37:06,346 --> 00:37:07,705
+
+844
+00:37:07,705 --> 00:37:11,080
+>> DAVID J. MALAN: OK, you're establishing
+addresses for your x and y variables.
+
+845
+00:37:11,080 --> 00:37:15,520
+Not quite, because x and y are not
+variables in the traditional sense.
+
+846
+00:37:15,520 --> 00:37:18,054
+x and y are addresses
+or will store address.
+
+847
+00:37:18,054 --> 00:37:19,220
+So let's try this once more.
+
+848
+00:37:19,220 --> 00:37:21,010
+Not a bad start, though.
+
+849
+00:37:21,010 --> 00:37:21,510
+Yeah?
+
+850
+00:37:21,510 --> 00:37:22,426
+>> AUDIENCE: [INAUDIBLE].
+
+851
+00:37:22,426 --> 00:37:23,966
+
+852
+00:37:23,966 --> 00:37:24,840
+DAVID J. MALAN: Good.
+
+853
+00:37:24,840 --> 00:37:26,173
+I think that's a little cleaner.
+
+854
+00:37:26,173 --> 00:37:28,630
+Declaring two pointers, two integers.
+
+855
+00:37:28,630 --> 00:37:30,150
+And we're calling them x and y.
+
+856
+00:37:30,150 --> 00:37:32,790
+Or if we were to draw
+this as a picture, again,
+
+857
+00:37:32,790 --> 00:37:36,410
+recall quite simply that all
+we're doing with that first line
+
+858
+00:37:36,410 --> 00:37:39,690
+is drawing a box like this,
+with some garbage value in it,
+
+859
+00:37:39,690 --> 00:37:41,920
+and calling it x, and then
+another box like this,
+
+860
+00:37:41,920 --> 00:37:43,880
+with some garbage value
+in it, calling it y.
+
+861
+00:37:43,880 --> 00:37:45,810
+We've declared two
+pointers that ultimately
+
+862
+00:37:45,810 --> 00:37:47,860
+will store the address of an int.
+
+863
+00:37:47,860 --> 00:37:49,170
+So that's all there.
+
+864
+00:37:49,170 --> 00:37:53,290
+>> So when Binky did this, the
+clay just looked like this.
+
+865
+00:37:53,290 --> 00:37:55,350
+And Nick just kind of
+wrapped up the arrows,
+
+866
+00:37:55,350 --> 00:37:57,590
+as though they're not pointing anywhere
+in particular, because they're just
+
+867
+00:37:57,590 --> 00:37:58,250
+garbage values.
+
+868
+00:37:58,250 --> 00:38:01,670
+They're not explicitly initialized
+anywhere in particular.
+
+869
+00:38:01,670 --> 00:38:03,980
+>> Now the next line of
+code, recall, was this.
+
+870
+00:38:03,980 --> 00:38:07,510
+So in reasonably user-friendly,
+but somewhat technical English,
+
+871
+00:38:07,510 --> 00:38:09,790
+what is this line of code doing?
+
+872
+00:38:09,790 --> 00:38:10,391
+Yeah?
+
+873
+00:38:10,391 --> 00:38:11,333
+>> AUDIENCE: [INAUDIBLE].
+
+874
+00:38:11,333 --> 00:38:12,746
+
+875
+00:38:12,746 --> 00:38:13,950
+>> DAVID J. MALAN: Perfect.
+
+876
+00:38:13,950 --> 00:38:17,016
+It's allocating the chunk of the
+memory that's the size of an int.
+
+877
+00:38:17,016 --> 00:38:18,140
+And that's half the answer.
+
+878
+00:38:18,140 --> 00:38:20,056
+You answered the right
+half of the expression.
+
+879
+00:38:20,056 --> 00:38:22,473
+What is happening on the
+left-hand side of the equal sign?
+
+880
+00:38:22,473 --> 00:38:22,972
+Yeah?
+
+881
+00:38:22,972 --> 00:38:24,814
+AUDIENCE: And assigns
+it to the variable x?
+
+882
+00:38:24,814 --> 00:38:27,690
+>> DAVID J. MALAN: And assigns
+it to the variable x.
+
+883
+00:38:27,690 --> 00:38:31,650
+So to recap, right-hand side allocates
+enough memory to store an int.
+
+884
+00:38:31,650 --> 00:38:34,150
+But malloc specifically
+returns the address
+
+885
+00:38:34,150 --> 00:38:37,270
+of that chunk of memory, which you've
+just proposed gets stored in x.
+
+886
+00:38:37,270 --> 00:38:42,560
+>> So what Nick did last time with Binky is
+he dragged that pointer out, the clay,
+
+887
+00:38:42,560 --> 00:38:46,820
+to point now at a white chunk of memory
+that is equal to the size of an int.
+
+888
+00:38:46,820 --> 00:38:49,360
+And indeed, that's meant
+to represent four bytes.
+
+889
+00:38:49,360 --> 00:38:55,310
+>> Now, the next line of code
+did this, star x gets 42.
+
+890
+00:38:55,310 --> 00:38:58,530
+So 42 is straightforward on the
+right-hand side, meaning of life.
+
+891
+00:38:58,530 --> 00:39:00,500
+Left-hand side, star x means what?
+
+892
+00:39:00,500 --> 00:39:01,600
+
+893
+00:39:01,600 --> 00:39:03,280
+That too might have gone-- that's OK.
+
+894
+00:39:03,280 --> 00:39:04,220
+OK.
+
+895
+00:39:04,220 --> 00:39:06,875
+>> AUDIENCE: Basically,
+go to the [INAUDIBLE]
+
+896
+00:39:06,875 --> 00:39:07,750
+DAVID J. MALAN: Good.
+
+897
+00:39:07,750 --> 00:39:08,760
+AUDIENCE: [INAUDIBLE].
+
+898
+00:39:08,760 --> 00:39:09,760
+DAVID J. MALAN: Exactly.
+
+899
+00:39:09,760 --> 00:39:11,979
+Left-hand side means go to x.
+
+900
+00:39:11,979 --> 00:39:12,520
+x is address.
+
+901
+00:39:12,520 --> 00:39:15,520
+It's like 33 Oxford Street, or Ox1.
+
+902
+00:39:15,520 --> 00:39:18,690
+And star x means go to that
+address and put what there?
+
+903
+00:39:18,690 --> 00:39:19,520
+42.
+
+904
+00:39:19,520 --> 00:39:21,290
+>> So indeed, that's exactly what Nick did.
+
+905
+00:39:21,290 --> 00:39:23,740
+He started with by,
+essentially, mentally
+
+906
+00:39:23,740 --> 00:39:26,270
+pointing a finger at
+x, following the arrow
+
+907
+00:39:26,270 --> 00:39:30,670
+to the white box on the right-hand
+side, and putting the number 42 there.
+
+908
+00:39:30,670 --> 00:39:34,120
+But then things got a
+little dangerous, right?
+
+909
+00:39:34,120 --> 00:39:35,860
+Binky's about to lose his head.
+
+910
+00:39:35,860 --> 00:39:39,465
+>> Star y equals 13, bad luck, means what?
+
+911
+00:39:39,465 --> 00:39:43,620
+So star y means go to the address in y.
+
+912
+00:39:43,620 --> 00:39:45,630
+But what is the address in y?
+
+913
+00:39:45,630 --> 00:39:47,899
+
+914
+00:39:47,899 --> 00:39:49,440
+All right, it's garbage value, right?
+
+915
+00:39:49,440 --> 00:39:50,800
+I drew it as a question mark.
+
+916
+00:39:50,800 --> 00:39:54,850
+Nick drew it as a curled up arrow.
+
+917
+00:39:54,850 --> 00:39:59,600
+And as soon as you try to
+do star y, saying go there,
+
+918
+00:39:59,600 --> 00:40:03,872
+but there is not a legitimate
+address, it's some bogus location,
+
+919
+00:40:03,872 --> 00:40:05,080
+the program's going to crash.
+
+920
+00:40:05,080 --> 00:40:08,580
+And Binky's head is going
+to fly off here, as it did.
+
+921
+00:40:08,580 --> 00:40:12,130
+>> So in the end, this program
+was just flat out flaw.
+
+922
+00:40:12,130 --> 00:40:13,540
+It was a buggy program.
+
+923
+00:40:13,540 --> 00:40:14,760
+And it needed to be fixed.
+
+924
+00:40:14,760 --> 00:40:18,260
+And the only way, really, to fix it
+would be, for instance, this line,
+
+925
+00:40:18,260 --> 00:40:21,010
+which we didn't even get to, because
+the program crashed too soon.
+
+926
+00:40:21,010 --> 00:40:26,170
+But if we were to fix this, what
+effect does doing y equal x have?
+
+927
+00:40:26,170 --> 00:40:30,010
+Well, it essentially points y at
+whatever value x is pointing at.
+
+928
+00:40:30,010 --> 00:40:32,430
+>> So in Nick's story,
+or Binky's story, both
+
+929
+00:40:32,430 --> 00:40:34,640
+x and y were pointing at
+the white chunk of memory,
+
+930
+00:40:34,640 --> 00:40:38,300
+so that, finally, when you
+do star y equals 13 again,
+
+931
+00:40:38,300 --> 00:40:43,080
+you end up putting 13 in
+the appropriate location.
+
+932
+00:40:43,080 --> 00:40:47,640
+So all of these lines are perfectly
+legitimate, except for this one,
+
+933
+00:40:47,640 --> 00:40:51,730
+when it happened before you
+actually assigned y some value.
+
+934
+00:40:51,730 --> 00:40:54,290
+>> Now thankfully, you don't
+have to reason through all
+
+935
+00:40:54,290 --> 00:40:56,560
+of these kinds of issues on your own.
+
+936
+00:40:56,560 --> 00:40:59,310
+Let me go ahead and open
+up a terminal window here
+
+937
+00:40:59,310 --> 00:41:03,050
+and open up, for just a moment,
+a super short program that
+
+938
+00:41:03,050 --> 00:41:04,360
+also is sort of pointless.
+
+939
+00:41:04,360 --> 00:41:05,152
+It's ugly.
+
+940
+00:41:05,152 --> 00:41:06,610
+It doesn't achieve anything useful.
+
+941
+00:41:06,610 --> 00:41:10,180
+But it does demonstrate issues
+of memory, so let's take a look.
+
+942
+00:41:10,180 --> 00:41:11,830
+>> Main, super simple.
+
+943
+00:41:11,830 --> 00:41:14,830
+It apparently calls a function,
+f, and then returns 0.
+
+944
+00:41:14,830 --> 00:41:16,310
+It's kind of hard to mess this up.
+
+945
+00:41:16,310 --> 00:41:18,540
+So Main is pretty good, so far.
+
+946
+00:41:18,540 --> 00:41:20,100
+>> So f is problematic.
+
+947
+00:41:20,100 --> 00:41:22,120
+And just didn't put much
+effort into naming it
+
+948
+00:41:22,120 --> 00:41:23,990
+here, to keep the focus on the code.
+
+949
+00:41:23,990 --> 00:41:25,740
+f has two lines.
+
+950
+00:41:25,740 --> 00:41:27,610
+And let's see what's now going on.
+
+951
+00:41:27,610 --> 00:41:29,840
+So on the one hand
+here-- and let me make
+
+952
+00:41:29,840 --> 00:41:32,680
+this consistent with the previous
+example-- on the one hand,
+
+953
+00:41:32,680 --> 00:41:35,830
+the left-hand side is
+doing what, in English?
+
+954
+00:41:35,830 --> 00:41:36,493
+It is--
+
+955
+00:41:36,493 --> 00:41:37,701
+AUDIENCE: Creating a pointer.
+
+956
+00:41:37,701 --> 00:41:40,830
+DAVID J. MALAN: Creating a pointer
+to an int and calling it x.
+
+957
+00:41:40,830 --> 00:41:43,789
+So it's creating one of those boxes
+I keep drawing on the touch screen.
+
+958
+00:41:43,789 --> 00:41:45,913
+And now, on the right-hand
+side, malloc, of course,
+
+959
+00:41:45,913 --> 00:41:47,420
+is allocating a chunk of memory.
+
+960
+00:41:47,420 --> 00:41:49,989
+And just to be clear, how
+much memory is it apparently
+
+961
+00:41:49,989 --> 00:41:52,030
+allocating, if you just
+kind of do the math here?
+
+962
+00:41:52,030 --> 00:41:53,200
+
+963
+00:41:53,200 --> 00:41:54,040
+>> So it's 40 bytes.
+
+964
+00:41:54,040 --> 00:41:57,400
+And I know that only because I know an
+int, on the CS50 appliance, at least,
+
+965
+00:41:57,400 --> 00:41:58,060
+is four bytes.
+
+966
+00:41:58,060 --> 00:41:59,610
+So 10 times 4 is 40.
+
+967
+00:41:59,610 --> 00:42:04,924
+So this is storing an x, the address
+of the first out of 40 ints that
+
+968
+00:42:04,924 --> 00:42:07,340
+have been allocated space back,
+to back, to back, to back.
+
+969
+00:42:07,340 --> 00:42:08,470
+>> And that's what's key about malloc.
+
+970
+00:42:08,470 --> 00:42:11,261
+It doesn't take a little memory
+here, a little here, a little here.
+
+971
+00:42:11,261 --> 00:42:14,220
+It gives you one chunk of memory,
+contiguously, from the operating
+
+972
+00:42:14,220 --> 00:42:15,240
+system.
+
+973
+00:42:15,240 --> 00:42:18,500
+>> Now what about this,
+x bracket 10 equals 0?
+
+974
+00:42:18,500 --> 00:42:19,470
+Arbitrary line of code.
+
+975
+00:42:19,470 --> 00:42:21,100
+It doesn't achieve anything useful.
+
+976
+00:42:21,100 --> 00:42:26,128
+But it is interesting,
+because x bracket 10--?
+
+977
+00:42:26,128 --> 00:42:26,628
+Yeah?
+
+978
+00:42:26,628 --> 00:42:27,912
+>> AUDIENCE: [INAUDIBLE]?
+
+979
+00:42:27,912 --> 00:42:30,500
+>> DAVID J. MALAN: x bracket
+10 doesn't have to be null.
+
+980
+00:42:30,500 --> 00:42:35,070
+The null detail only comes into play
+with strings, at the end of a string.
+
+981
+00:42:35,070 --> 00:42:36,700
+But a good thought.
+
+982
+00:42:36,700 --> 00:42:39,615
+>> How big is this array, even
+though I've allocated 40 bytes?
+
+983
+00:42:39,615 --> 00:42:42,560
+
+984
+00:42:42,560 --> 00:42:43,690
+It's 0 through nine, right?
+
+985
+00:42:43,690 --> 00:42:45,120
+It's 10 ints, total.
+
+986
+00:42:45,120 --> 00:42:48,790
+40 bytes, but 10 ints,
+indexed 0 through 0.
+
+987
+00:42:48,790 --> 00:42:50,930
+>> So what is that x bracket 10?
+
+988
+00:42:50,930 --> 00:42:53,090
+It's actually some
+unknown garbage value.
+
+989
+00:42:53,090 --> 00:42:54,780
+It's memory that doesn't belong to me.
+
+990
+00:42:54,780 --> 00:42:59,650
+I should not be touching that
+byte number 41, 42, 43, 44.
+
+991
+00:42:59,650 --> 00:43:01,420
+I'm going slightly too far.
+
+992
+00:43:01,420 --> 00:43:04,490
+>> And indeed, if I run this
+program, it might very well crash.
+
+993
+00:43:04,490 --> 00:43:05,790
+But sometimes, we'll get lucky.
+
+994
+00:43:05,790 --> 00:43:07,706
+And so just to demonstrate
+this-- and frankly,
+
+995
+00:43:07,706 --> 00:43:11,000
+you never know before you
+do it-- let's run this.
+
+996
+00:43:11,000 --> 00:43:12,480
+It didn't actually crash.
+
+997
+00:43:12,480 --> 00:43:15,032
+>> But if I change this, for
+instance, to be like 1,000,
+
+998
+00:43:15,032 --> 00:43:16,740
+to make this really
+deliberate, let's see
+
+999
+00:43:16,740 --> 00:43:18,710
+if we can get it to crash this time.
+
+1000
+00:43:18,710 --> 00:43:20,070
+OK, it didn't crash.
+
+1001
+00:43:20,070 --> 00:43:22,600
+How about 100,000?
+
+1002
+00:43:22,600 --> 00:43:25,000
+Let's remake it, and now rerun it.
+
+1003
+00:43:25,000 --> 00:43:25,500
+OK.
+
+1004
+00:43:25,500 --> 00:43:25,960
+Phew.
+
+1005
+00:43:25,960 --> 00:43:26,460
+All right.
+
+1006
+00:43:26,460 --> 00:43:29,090
+So apparently, again, these
+segments of memory, so to speak,
+
+1007
+00:43:29,090 --> 00:43:32,660
+are reasonably big, so we can
+get lucky again and again.
+
+1008
+00:43:32,660 --> 00:43:36,510
+But eventually, once you get ridiculous
+and really go far out on the screen,
+
+1009
+00:43:36,510 --> 00:43:39,120
+you touch memory that really,
+really doesn't belong to you.
+
+1010
+00:43:39,120 --> 00:43:40,870
+>> But frankly, these
+kinds of bugs are going
+
+1011
+00:43:40,870 --> 00:43:43,020
+to be harder and harder
+to figure out on your own.
+
+1012
+00:43:43,020 --> 00:43:47,880
+But thankfully, as programmers, we have
+tools that allow us to do this for us.
+
+1013
+00:43:47,880 --> 00:43:50,140
+So this is, perhaps, one
+of the ugliest programs,
+
+1014
+00:43:50,140 --> 00:43:52,060
+even uglier than gdb's output.
+
+1015
+00:43:52,060 --> 00:43:55,670
+But it always has a line or
+two that are super useful.
+
+1016
+00:43:55,670 --> 00:44:00,310
+>> Valgrind is a program that helps
+you not debug a program, per se,
+
+1017
+00:44:00,310 --> 00:44:03,500
+but find memory-related
+problems, specifically.
+
+1018
+00:44:03,500 --> 00:44:07,590
+It will automatically run your code for
+you and look for at least two things.
+
+1019
+00:44:07,590 --> 00:44:10,680
+One, did you do something
+accidental like touch memory
+
+1020
+00:44:10,680 --> 00:44:11,980
+that didn't belong to you?
+
+1021
+00:44:11,980 --> 00:44:13,590
+It will help you find those cases.
+
+1022
+00:44:13,590 --> 00:44:15,710
+>> And two, it will help
+you find something called
+
+1023
+00:44:15,710 --> 00:44:19,270
+memory leaks, which we have
+completely ignored, naively,
+
+1024
+00:44:19,270 --> 00:44:21,380
+for some time and blissfully.
+
+1025
+00:44:21,380 --> 00:44:23,140
+But it turns out, all
+this time, whenever
+
+1026
+00:44:23,140 --> 00:44:26,620
+you've called getString in
+so many of our programs,
+
+1027
+00:44:26,620 --> 00:44:28,930
+you're asking the operating
+system for memory,
+
+1028
+00:44:28,930 --> 00:44:32,070
+but you have any recollection
+of ever giving it
+
+1029
+00:44:32,070 --> 00:44:36,169
+back, doing unalloc, or
+free, as it's called.
+
+1030
+00:44:36,169 --> 00:44:37,960
+No, because we've never
+asked you to do so.
+
+1031
+00:44:37,960 --> 00:44:41,250
+>> But all this time, the programs
+you've been writing in C
+
+1032
+00:44:41,250 --> 00:44:43,800
+have been leaking memory,
+asking the operating
+
+1033
+00:44:43,800 --> 00:44:46,190
+system for more and more
+memory for strings and whatnot,
+
+1034
+00:44:46,190 --> 00:44:47,870
+but never handing it back.
+
+1035
+00:44:47,870 --> 00:44:50,080
+And now this is a bit
+of a oversimplification,
+
+1036
+00:44:50,080 --> 00:44:53,550
+but if you've ever run your Mac or
+your PC for quite some time, opening
+
+1037
+00:44:53,550 --> 00:44:55,790
+lots of programs,
+maybe closing programs,
+
+1038
+00:44:55,790 --> 00:44:57,795
+and even though your
+computer hasn't crashed,
+
+1039
+00:44:57,795 --> 00:45:01,690
+it's getting so much slower,
+as though it's really
+
+1040
+00:45:01,690 --> 00:45:04,290
+using a lot of memory or
+resources, even though,
+
+1041
+00:45:04,290 --> 00:45:06,070
+if you're not even
+touching the keyboard,
+
+1042
+00:45:06,070 --> 00:45:10,430
+that could be-- but not always-- could
+be that the programs you're running
+
+1043
+00:45:10,430 --> 00:45:11,920
+have themselves memory leaks.
+
+1044
+00:45:11,920 --> 00:45:15,645
+And they keep asking the OS for more and
+more memory, but forgetting about it,
+
+1045
+00:45:15,645 --> 00:45:18,470
+not actually using it, but
+therefore taking memory away
+
+1046
+00:45:18,470 --> 00:45:20,500
+from other programs that might want it.
+
+1047
+00:45:20,500 --> 00:45:23,940
+So that's a common explanation.
+
+1048
+00:45:23,940 --> 00:45:25,940
+Now here's where Valgrind's
+output is completely
+
+1049
+00:45:25,940 --> 00:45:29,290
+atrocious to those less
+and more comfortable alike.
+
+1050
+00:45:29,290 --> 00:45:32,690
+But the interesting
+stuff is right up here.
+
+1051
+00:45:32,690 --> 00:45:37,060
+It is telling me an invalid write of
+size four happens in this program,
+
+1052
+00:45:37,060 --> 00:45:40,640
+in particular, at line 21 of memory.c.
+
+1053
+00:45:40,640 --> 00:45:45,450
+>> If I go to line 21, hm, there indeed
+is an invalid write of size four.
+
+1054
+00:45:45,450 --> 00:45:46,250
+Why size four?
+
+1055
+00:45:46,250 --> 00:45:49,500
+Well, this number-- and it
+could be anything-- is an int.
+
+1056
+00:45:49,500 --> 00:45:50,450
+So it's four bytes.
+
+1057
+00:45:50,450 --> 00:45:52,550
+So I'm putting four bytes
+where they don't belong.
+
+1058
+00:45:52,550 --> 00:45:55,080
+That's what Valgrind
+is actually telling me.
+
+1059
+00:45:55,080 --> 00:45:57,600
+Moreover, it will also
+tell me, as we'll see,
+
+1060
+00:45:57,600 --> 00:46:01,490
+as you run this in a future pset, if and
+when you've leaked memory, which indeed
+
+1061
+00:46:01,490 --> 00:46:05,300
+I have, because I've called
+malloc, but I haven't actually
+
+1062
+00:46:05,300 --> 00:46:08,010
+called, in this case, free,
+which we'll eventually see
+
+1063
+00:46:08,010 --> 00:46:09,830
+is the opposite of malloc.
+
+1064
+00:46:09,830 --> 00:46:10,860
+
+1065
+00:46:10,860 --> 00:46:12,930
+>> So now, I think, a final example.
+
+1066
+00:46:12,930 --> 00:46:14,050
+
+1067
+00:46:14,050 --> 00:46:16,690
+So this one's a little more
+arcane, but it's perhaps
+
+1068
+00:46:16,690 --> 00:46:19,180
+the biggest reason to
+be careful with memory,
+
+1069
+00:46:19,180 --> 00:46:24,490
+and the reason that many programs
+and/or web servers, even to this day,
+
+1070
+00:46:24,490 --> 00:46:28,200
+are taken over by bad guys somewhere
+on the internet who are somehow
+
+1071
+00:46:28,200 --> 00:46:33,390
+sending bogus packets to your server
+trying to compromise your accounts,
+
+1072
+00:46:33,390 --> 00:46:36,420
+or take your data, or just
+generally take over a machine.
+
+1073
+00:46:36,420 --> 00:46:38,910
+Buffer overflow, as the
+name suggests, means
+
+1074
+00:46:38,910 --> 00:46:40,740
+overflowing not an int, but a buffer.
+
+1075
+00:46:40,740 --> 00:46:43,490
+And a buffer is just a fancy way
+of saying it's a bunch of memory.
+
+1076
+00:46:43,490 --> 00:46:46,710
+>> And indeed, I called a string
+before buffer, instead of s.
+
+1077
+00:46:46,710 --> 00:46:49,234
+Because if it's a buffer,
+like in the YouTube sense,
+
+1078
+00:46:49,234 --> 00:46:52,400
+or any time you're watching a video,
+you might have seen the word buffering,
+
+1079
+00:46:52,400 --> 00:46:53,040
+dot, dot, dot.
+
+1080
+00:46:53,040 --> 00:46:54,240
+It's incredibly annoying.
+
+1081
+00:46:54,240 --> 00:46:55,990
+And that just means
+that your video player
+
+1082
+00:46:55,990 --> 00:46:58,710
+is trying to download lots
+of bytes, lots of bytes
+
+1083
+00:46:58,710 --> 00:47:00,170
+from a video from the internet.
+
+1084
+00:47:00,170 --> 00:47:02,920
+But it's slow, so it's trying
+to download a bunch of them
+
+1085
+00:47:02,920 --> 00:47:06,430
+to fill a buffer, a container, so that
+you have enough bytes that it can then
+
+1086
+00:47:06,430 --> 00:47:09,174
+show you the video,
+without pausing constantly.
+
+1087
+00:47:09,174 --> 00:47:11,340
+But it turns out, you can
+have a buffer to this big.
+
+1088
+00:47:11,340 --> 00:47:15,710
+But try to put this much data in
+it, and very bad things can happen.
+
+1089
+00:47:15,710 --> 00:47:22,780
+So for instance, let's look at
+this final teaser of an example.
+
+1090
+00:47:22,780 --> 00:47:24,720
+This is another program
+that, at first glance,
+
+1091
+00:47:24,720 --> 00:47:26,540
+doesn't do anything super useful.
+
+1092
+00:47:26,540 --> 00:47:29,590
+It's got a Main function
+that calls that function, f.
+
+1093
+00:47:29,590 --> 00:47:36,640
+And that function, f, up here, has
+a char array, called c, of size 12.
+
+1094
+00:47:36,640 --> 00:47:39,340
+And then it's using this
+new function called strncpy.
+
+1095
+00:47:39,340 --> 00:47:40,430
+
+1096
+00:47:40,430 --> 00:47:45,190
+>> It turns out that, with this simple,
+simple line of code, just two lines,
+
+1097
+00:47:45,190 --> 00:47:49,130
+we have made my entire program,
+and therefore, my entire computer,
+
+1098
+00:47:49,130 --> 00:47:54,000
+and my user account, and my hard
+drive potentially vulnerable to anyone
+
+1099
+00:47:54,000 --> 00:47:58,170
+who knows and is good enough to run
+this program with a certain command line
+
+1100
+00:47:58,170 --> 00:47:58,900
+argument.
+
+1101
+00:47:58,900 --> 00:48:03,400
+In other words, if this bad guy
+puts inside of argvargv[1] by typing
+
+1102
+00:48:03,400 --> 00:48:08,750
+at the keyboard a very specially crafted
+string, not abc, 123, but essentially,
+
+1103
+00:48:08,750 --> 00:48:15,180
+binary symbols that represent executable
+code, a program that he or she wrote,
+
+1104
+00:48:15,180 --> 00:48:19,190
+with this simple program, which is
+representative of thousands of programs
+
+1105
+00:48:19,190 --> 00:48:23,610
+that are similarly vulnerable, daresay,
+he or she can ultimately delete all
+
+1106
+00:48:23,610 --> 00:48:26,680
+the files on my hard drive, get a
+blinking prompt so that he or she can
+
+1107
+00:48:26,680 --> 00:48:30,170
+type commands on their own,
+email all files to myself.
+
+1108
+00:48:30,170 --> 00:48:34,660
+Anything that I can do, he
+or she can do with this code.
+
+1109
+00:48:34,660 --> 00:48:36,575
+>> We won't quite solve this yet.
+
+1110
+00:48:36,575 --> 00:48:38,700
+And in fact, it's going to
+involve a little picture
+
+1111
+00:48:38,700 --> 00:48:41,470
+like this, which we'll soon come
+to understand all the better.
+
+1112
+00:48:41,470 --> 00:48:44,480
+But for today, let's end on
+what's, hopefully, a slightly more
+
+1113
+00:48:44,480 --> 00:48:48,360
+understandable XKCD joke,
+until we resume next time.
+
+1114
+00:48:48,360 --> 00:48:51,100
+
+1115
+00:48:51,100 --> 00:48:51,600
+All right.
+
+1116
+00:48:51,600 --> 00:48:53,446
+See you on Wednesday.
+
+1117
+00:48:53,446 --> 00:48:54,754
+>> [MUSIC PLAYING]
+
+1118
+00:48:54,754 --> 00:48:57,790
+>> SPEAKER: And now, deep
+thoughts, by Daven Farnham.
+
+1119
+00:48:57,790 --> 00:49:00,890
+
+1120
+00:49:00,890 --> 00:49:04,770
+Memory is like jumping into a pile of
+golden leaves on a Sunday afternoon.
+
+1121
+00:49:04,770 --> 00:49:09,000
+Wind blowing, tossing your
+hair-- oh, I miss the days when--
+
+1122
+00:49:09,000 --> 00:49:11,100
+
+1123
+00:49:11,100 --> 00:49:12,650
+>> [LAUGHTER]
+
+1124
+00:49:12,650 --> 00:49:13,750

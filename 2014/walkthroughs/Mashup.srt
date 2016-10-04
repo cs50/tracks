@@ -1,0 +1,2088 @@
+1
+00:00:00,000 --> 00:00:03,388
+>> [MUSIC PLAYING]
+
+2
+00:00:03,388 --> 00:00:09,196
+
+3
+00:00:09,196 --> 00:00:10,180
+>> DAVID J. MALAN: Hello.
+
+4
+00:00:10,180 --> 00:00:12,600
+Let's take a walk through
+Problem Set 8 Mashup,
+
+5
+00:00:12,600 --> 00:00:15,880
+which is going to challenge you to
+draw upon elements for Google Maps
+
+6
+00:00:15,880 --> 00:00:20,905
+with elements from Google News and mash
+them together into a web applet that
+
+7
+00:00:20,905 --> 00:00:24,150
+allows a user to search
+a map for news local
+
+8
+00:00:24,150 --> 00:00:26,780
+to specific towns,
+cities, and zip codes.
+
+9
+00:00:26,780 --> 00:00:31,040
+To do this, we're going to
+integrate some HTML, CSS, PHP, SQL,
+
+10
+00:00:31,040 --> 00:00:34,390
+JavaScript, and a technique
+generally known as AJAX in order
+
+11
+00:00:34,390 --> 00:00:36,850
+to create this immersive
+user experience.
+
+12
+00:00:36,850 --> 00:00:38,920
+>> Let's first for Google Maps itself.
+
+13
+00:00:38,920 --> 00:00:41,220
+This, of course, is perhaps
+a familiar interface.
+
+14
+00:00:41,220 --> 00:00:45,070
+But it turns out that Google Maps
+also provides an API-- application
+
+15
+00:00:45,070 --> 00:00:48,360
+programming interface-- via which
+you can take elements of Google Maps
+
+16
+00:00:48,360 --> 00:00:50,740
+and integrate them into
+your own applications.
+
+17
+00:00:50,740 --> 00:00:52,650
+Indeed, throughout this
+process, you're going
+
+18
+00:00:52,650 --> 00:00:55,140
+to find a couple of URLs
+particularly helpful that
+
+19
+00:00:55,140 --> 00:00:57,820
+are mentioned in the
+specification for Problem Set 8,
+
+20
+00:00:57,820 --> 00:01:00,980
+specifically this Getting Started
+Guide or the Developer's Guide
+
+21
+00:01:00,980 --> 00:01:07,640
+for Google Maps API Version 3 as well
+as the Google Maps JavaScript API
+
+22
+00:01:07,640 --> 00:01:10,260
+v3 reference, which is a
+bit more arcane to read
+
+23
+00:01:10,260 --> 00:01:14,600
+but actually has all of the lower level
+details about what functions or methods
+
+24
+00:01:14,600 --> 00:01:18,220
+and objects and properties and
+events actually come with the API,
+
+25
+00:01:18,220 --> 00:01:20,720
+very similar in spirit
+to [INAUDIBLE] pages.
+
+26
+00:01:20,720 --> 00:01:23,480
+>> Now if we take a look
+at Google News, you'll
+
+27
+00:01:23,480 --> 00:01:25,370
+perhaps see a familiar interface here.
+
+28
+00:01:25,370 --> 00:01:29,350
+But it turns out you can also search
+Google News for specific geographies
+
+29
+00:01:29,350 --> 00:01:32,000
+via an HTTP parameter called geo.
+
+30
+00:01:32,000 --> 00:01:35,100
+In fact, if I zoom in
+up here, you'll see that
+
+31
+00:01:35,100 --> 00:01:41,672
+I'm at
+news.google.com/news/section?geo=02138.
+
+32
+00:01:41,672 --> 00:01:43,630
+And, indeed, if I zoom
+out, you'll see that I'm
+
+33
+00:01:43,630 --> 00:01:47,090
+looking at a page with a whole bunch of
+views about Cambridge, Massachusetts.
+
+34
+00:01:47,090 --> 00:01:50,620
+>> Meanwhile, if I actually change the
+URL not to be a zip code like this,
+
+35
+00:01:50,620 --> 00:01:55,580
+but something a little messier
+like Cambridge, +Massachusetts,
+
+36
+00:01:55,580 --> 00:02:00,740
+where the plus is the way you encode a
+space character in a URL and hit Enter,
+
+37
+00:02:00,740 --> 00:02:02,907
+you'll see that I actually
+see almost the same news.
+
+38
+00:02:02,907 --> 00:02:05,489
+Perhaps it's a little bit different
+because Cambridge actually
+
+39
+00:02:05,489 --> 00:02:06,910
+has multiple zip codes.
+
+40
+00:02:06,910 --> 00:02:09,410
+Now how would I know that and,
+in fact, how could I somehow
+
+41
+00:02:09,410 --> 00:02:12,940
+tie cities and towns
+to zip codes in case I
+
+42
+00:02:12,940 --> 00:02:15,064
+want to allow the user
+to look up either?
+
+43
+00:02:15,064 --> 00:02:17,480
+Well, it turns out that there's
+a website out there called
+
+44
+00:02:17,480 --> 00:02:20,060
+geonames.org which is
+an initiative to have
+
+45
+00:02:20,060 --> 00:02:23,760
+a freely available database of all
+sorts of geographic information,
+
+46
+00:02:23,760 --> 00:02:27,040
+not only for the US, but also
+for other countries as well.
+
+47
+00:02:27,040 --> 00:02:30,430
+In fact, if I go to this URL here, which
+is also mentioned in the problem set
+
+48
+00:02:30,430 --> 00:02:34,510
+specification, you'll see it three
+listing of a whole bunch of zip files
+
+49
+00:02:34,510 --> 00:02:36,400
+any of which can be downloaded by you.
+
+50
+00:02:36,400 --> 00:02:39,900
+In fact, for this problem set
+you're going to download us.zip.
+
+51
+00:02:39,900 --> 00:02:43,790
+Now within this file, is a whole
+bunch of data in text format.
+
+52
+00:02:43,790 --> 00:02:47,760
+The files is very similar to a
+CSV-- Comma Separated Values file--
+
+53
+00:02:47,760 --> 00:02:51,294
+but it actually uses
+tabs to demarcate fields.
+
+54
+00:02:51,294 --> 00:02:53,710
+Now, meanwhile, if you look
+here at what I've highlighted,
+
+55
+00:02:53,710 --> 00:02:56,459
+the fields in this file are going
+to be things like country codes,
+
+56
+00:02:56,459 --> 00:02:58,980
+postal codes, place names,
+and then, in some form
+
+57
+00:02:58,980 --> 00:03:04,230
+or other, states and counties,
+communities, and more.
+
+58
+00:03:04,230 --> 00:03:06,630
+In fact, I've already
+downloaded this file in advance.
+
+59
+00:03:06,630 --> 00:03:09,750
+Let me go ahead and open it here--
+us.text-- and, indeed, you'll
+
+60
+00:03:09,750 --> 00:03:16,660
+see if I scroll down to line 16,792
+you'll see a few records for Cambridge,
+
+61
+00:03:16,660 --> 00:03:19,120
+Massachusetts and its various zip codes.
+
+62
+00:03:19,120 --> 00:03:22,150
+What you also see there is the county,
+some numbers that I don't really
+
+63
+00:03:22,150 --> 00:03:24,500
+understand, but also all
+the way on the right,
+
+64
+00:03:24,500 --> 00:03:27,170
+some GPS coordinates--
+latitude and longitude.
+
+65
+00:03:27,170 --> 00:03:30,440
+This is great because one of
+the features of Google Maps API
+
+66
+00:03:30,440 --> 00:03:33,670
+is the ability to detect
+where you are geographically
+
+67
+00:03:33,670 --> 00:03:36,850
+in terms of GPS coordinates.
+
+68
+00:03:36,850 --> 00:03:40,210
+>> Now let's begin to figure out how to
+start tying these things together.
+
+69
+00:03:40,210 --> 00:03:42,900
+We've given you a whole
+bunch of distribution code,
+
+70
+00:03:42,900 --> 00:03:44,970
+as well as MySQL database.
+
+71
+00:03:44,970 --> 00:03:49,100
+In fact, if I pull a phpMyAdmin having
+already imported, as you soon will,
+
+72
+00:03:49,100 --> 00:03:54,800
+pset8.SQL, you'll see a MySQL table that
+looks like this, an ID field, country
+
+73
+00:03:54,800 --> 00:03:57,400
+code, postal code, place name and more.
+
+74
+00:03:57,400 --> 00:04:00,490
+The types of all of those
+columns I derived simply
+
+75
+00:04:00,490 --> 00:04:03,870
+by reading the readme.text
+file here that specified
+
+76
+00:04:03,870 --> 00:04:07,330
+whether a field is an integer,
+or varchar or the like.
+
+77
+00:04:07,330 --> 00:04:10,510
+>> So we've created that table for
+you and given you the SQL commands
+
+78
+00:04:10,510 --> 00:04:12,770
+to execute to create that
+table in your own database,
+
+79
+00:04:12,770 --> 00:04:15,290
+but there's actually no data in it yet.
+
+80
+00:04:15,290 --> 00:04:19,600
+Rather, you're going to have to
+download us.zip or any country's zip
+
+81
+00:04:19,600 --> 00:04:21,500
+file from that URL there.
+
+82
+00:04:21,500 --> 00:04:24,940
+And then you're going to have to write
+a command line script in PHP that's
+
+83
+00:04:24,940 --> 00:04:28,420
+going to open up that text
+file, iterate over its lines,
+
+84
+00:04:28,420 --> 00:04:31,180
+and then for each of
+those lines do an insert
+
+85
+00:04:31,180 --> 00:04:34,940
+into that places table
+in your MySQL database.
+
+86
+00:04:34,940 --> 00:04:37,880
+So at the end of this process, you'll
+have run that script ultimately
+
+87
+00:04:37,880 --> 00:04:39,610
+just once in theory.
+
+88
+00:04:39,610 --> 00:04:41,780
+In reality you'll probably
+run it a bunch of times
+
+89
+00:04:41,780 --> 00:04:45,460
+while trying to fix various bugs.
+
+90
+00:04:45,460 --> 00:04:48,440
+>> Ultimately, you're going to have a
+really big database with thousands
+
+91
+00:04:48,440 --> 00:04:50,139
+and thousands of geographic rows.
+
+92
+00:04:50,139 --> 00:04:52,930
+Then you're going to put that import
+script aside once it's working
+
+93
+00:04:52,930 --> 00:04:55,140
+and your database is nice
+and correct, and then
+
+94
+00:04:55,140 --> 00:04:58,880
+you're going to move on to actually
+implementing the mashup itself.
+
+95
+00:04:58,880 --> 00:05:01,670
+The mashup is going to look
+a little something like this.
+
+96
+00:05:01,670 --> 00:05:05,165
+At mashup.cs50.net, we
+have a staff solution
+
+97
+00:05:05,165 --> 00:05:06,990
+that looks a little something like this.
+
+98
+00:05:06,990 --> 00:05:11,070
+Indeed, if I click on this newspaper
+icon for Cambridge, Massachusetts,
+
+99
+00:05:11,070 --> 00:05:13,300
+you'll see a spinning
+icon briefly and then
+
+100
+00:05:13,300 --> 00:05:16,370
+an ordered list, a
+bulleted list of articles
+
+101
+00:05:16,370 --> 00:05:18,280
+related to Cambridge, Massachusetts.
+
+102
+00:05:18,280 --> 00:05:20,352
+If I click on Charlestown,
+Massachusetts,
+
+103
+00:05:20,352 --> 00:05:21,685
+I'll see the same for that town.
+
+104
+00:05:21,685 --> 00:05:24,174
+And If I click on
+Watertown, Massachusetts,
+
+105
+00:05:24,174 --> 00:05:26,090
+there might not be any
+news of from Watertown,
+
+106
+00:05:26,090 --> 00:05:28,630
+so you'll see something
+like slow news day.
+
+107
+00:05:28,630 --> 00:05:32,140
+>> Now, meanwhile, at top left are
+some familiar Google Maps controls
+
+108
+00:05:32,140 --> 00:05:34,980
+to let you zoom out, pan
+up, down, left, and right,
+
+109
+00:05:34,980 --> 00:05:37,360
+but also a search box that we put there.
+
+110
+00:05:37,360 --> 00:05:40,910
+So if I search for, frankly,
+the only other zip code I know,
+
+111
+00:05:40,910 --> 00:05:45,020
+90210, we'll actually see
+Beverly Hills, California.
+
+112
+00:05:45,020 --> 00:05:48,550
+When clicked it leads me to
+California and a whole bunch
+
+113
+00:05:48,550 --> 00:05:50,369
+of news about Beverly Hills.
+
+114
+00:05:50,369 --> 00:05:51,910
+Now notice, too, what happened there.
+
+115
+00:05:51,910 --> 00:05:57,040
+If I this time search for 02138 or even
+Cambridge comma Massachusetts or some
+
+116
+00:05:57,040 --> 00:06:00,300
+variant thereof, you get a
+little autocomplete dropdown.
+
+117
+00:06:00,300 --> 00:06:03,840
+Now this is using a plugin
+for a library called jQuery,
+
+118
+00:06:03,840 --> 00:06:05,732
+and that plugin is called typeahead.
+
+119
+00:06:05,732 --> 00:06:07,440
+We simply read through
+the documentation,
+
+120
+00:06:07,440 --> 00:06:13,150
+downloaded the .js file integrated
+into the distribution code so that you
+
+121
+00:06:13,150 --> 00:06:16,900
+ultimately can write the code that
+fills that dropdown menu with the auto
+
+122
+00:06:16,900 --> 00:06:19,350
+selections or the auto suggestions.
+
+123
+00:06:19,350 --> 00:06:23,820
+>> Now the distribution code, though, that
+you received doesn't do nearly as much.
+
+124
+00:06:23,820 --> 00:06:26,860
+You get the Google Map embedded, and
+you get the controls the top left,
+
+125
+00:06:26,860 --> 00:06:28,240
+and you get the search box.
+
+126
+00:06:28,240 --> 00:06:32,760
+But if I type something like
+02138, no places are found yet.
+
+127
+00:06:32,760 --> 00:06:34,730
+So that's going to be
+one of our goals here.
+
+128
+00:06:34,730 --> 00:06:37,430
+Moreover, if you take a step
+back and look at the map itself,
+
+129
+00:06:37,430 --> 00:06:38,950
+there's no news whatsoever.
+
+130
+00:06:38,950 --> 00:06:41,780
+Even if I click and
+drag, no markers actually
+
+131
+00:06:41,780 --> 00:06:45,560
+appear for news because that
+challenge is left for you as well.
+
+132
+00:06:45,560 --> 00:06:48,490
+>> Let's take a look then
+at the distribution code.
+
+133
+00:06:48,490 --> 00:06:51,460
+Once you've downloaded
+pset8.zip and unzipped it
+
+134
+00:06:51,460 --> 00:06:54,430
+into your vhost directory
+in the CS50 Appliance,
+
+135
+00:06:54,430 --> 00:06:56,550
+you'll see these
+directories here inside.
+
+136
+00:06:56,550 --> 00:07:00,200
+Bin-- which generally stands for
+binary for executable programs--
+
+137
+00:07:00,200 --> 00:07:04,870
+includes, as in pset7, some PHP
+files that other files include,
+
+138
+00:07:04,870 --> 00:07:06,710
+then public, which is
+the files that need
+
+139
+00:07:06,710 --> 00:07:09,369
+to be publicly accessible
+to a user with a browser.
+
+140
+00:07:09,369 --> 00:07:11,410
+Let's take a look in the
+bin directory, and we'll
+
+141
+00:07:11,410 --> 00:07:13,890
+see that there's a file
+there already called Import.
+
+142
+00:07:13,890 --> 00:07:17,591
+If we open this with gedit, we'll see
+that, unfortunately, there's not much
+
+143
+00:07:17,591 --> 00:07:18,090
+there.
+
+144
+00:07:18,090 --> 00:07:20,250
+All that is there, though,
+is a shebang at top
+
+145
+00:07:20,250 --> 00:07:23,410
+which specifies which
+interpreter-- in this case PHP--
+
+146
+00:07:23,410 --> 00:07:25,759
+should be used to actually
+execute this file.
+
+147
+00:07:25,759 --> 00:07:27,550
+But then where it says
+TODO is where you're
+
+148
+00:07:27,550 --> 00:07:31,130
+going to need to write some code
+that probably requires the config
+
+149
+00:07:31,130 --> 00:07:35,820
+file that's in the includes directory
+as we've done before with PHP files.
+
+150
+00:07:35,820 --> 00:07:38,180
+And then you're going to
+have to somehow open up
+
+151
+00:07:38,180 --> 00:07:41,920
+us.text which you presumably
+have unzipped already.
+
+152
+00:07:41,920 --> 00:07:44,690
+Then you're going to have to
+iterate over the lines in that file,
+
+153
+00:07:44,690 --> 00:07:47,800
+perhaps using some of the functions
+suggested in the specification.
+
+154
+00:07:47,800 --> 00:07:51,390
+Then insert each of those
+lines into MySQL database
+
+155
+00:07:51,390 --> 00:07:54,940
+by using the query function, which
+we've again provided you with--
+
+156
+00:07:54,940 --> 00:07:58,010
+or at least a variant
+thereof in functions.php,
+
+157
+00:07:58,010 --> 00:07:59,560
+which we'll see in just a moment.
+
+158
+00:07:59,560 --> 00:08:04,430
+>> Now let's close import and go back to
+our directory and this time go into
+
+159
+00:08:04,430 --> 00:08:05,300
+includes.
+
+160
+00:08:05,300 --> 00:08:09,210
+And if I do ls there, you'll see
+three files quite like Problem Set 7.
+
+161
+00:08:09,210 --> 00:08:13,760
+And let's take a quick look,
+for instance, at config.php.
+
+162
+00:08:13,760 --> 00:08:16,730
+In there, is fewer lines
+than before, and it
+
+163
+00:08:16,730 --> 00:08:20,712
+seems this file includes
+constants.php and functions.php.
+
+164
+00:08:20,712 --> 00:08:23,670
+We're using a slightly different
+technique this time around to actually
+
+165
+00:08:23,670 --> 00:08:30,910
+specify that these files are relative
+to the current directory __ DIR__
+
+166
+00:08:30,910 --> 00:08:35,280
+represents whatever directory this
+file, config.php, is itself in.
+
+167
+00:08:35,280 --> 00:08:37,600
+So this is a more
+explicit way of specifying
+
+168
+00:08:37,600 --> 00:08:40,100
+what other files you want to require.
+
+169
+00:08:40,100 --> 00:08:44,020
+>> Now if I close this file and
+open up constants.php instead,
+
+170
+00:08:44,020 --> 00:08:47,430
+you'll see a file very reminiscent
+to Problem Set 7's as well, albeit
+
+171
+00:08:47,430 --> 00:08:50,050
+with a different database called pset8.
+
+172
+00:08:50,050 --> 00:08:54,020
+Finally, in functions.php,
+we'll see just one function
+
+173
+00:08:54,020 --> 00:08:55,942
+this time called query.
+
+174
+00:08:55,942 --> 00:08:59,150
+This is almost the same except we handle
+errors this time around a little bit
+
+175
+00:08:59,150 --> 00:09:02,860
+differently, but it's usage is
+the same as in problem set seven.
+
+176
+00:09:02,860 --> 00:09:08,090
+>> Now let's go back into our pset8
+directory, go into public, and in there
+
+177
+00:09:08,090 --> 00:09:14,420
+if I do ls, you'll see this--
+articles.php, index.html, search.php,
+
+178
+00:09:14,420 --> 00:09:16,940
+and update.php-- all files.
+
+179
+00:09:16,940 --> 00:09:22,010
+And then the css fonts, img, and
+js directory quite like pset7.
+
+180
+00:09:22,010 --> 00:09:24,660
+>> Let's take a look at
+index.html, which is
+
+181
+00:09:24,660 --> 00:09:27,290
+going to be really the
+entry point to the smashup.
+
+182
+00:09:27,290 --> 00:09:31,820
+Now in index.html, you'll see a whole
+bunch of link elements in the head,
+
+183
+00:09:31,820 --> 00:09:36,540
+specifically, for bootstrap for our own
+CSS followed by a whole bunch of script
+
+184
+00:09:36,540 --> 00:09:41,520
+tags for things like the maps, API
+itself, a special marker with label
+
+185
+00:09:41,520 --> 00:09:44,950
+utility that we mentioned in the
+specification is available to you,
+
+186
+00:09:44,950 --> 00:09:48,420
+jQuery itself, bootstrap
+itself, and another library
+
+187
+00:09:48,420 --> 00:09:50,990
+called underscore which
+we talk about in the spec.
+
+188
+00:09:50,990 --> 00:09:57,031
+Underscore.js like jquery.js
+is a JavaScript library
+
+189
+00:09:57,031 --> 00:10:00,280
+that has a whole bunch of functionality
+that a lot of people in the world wish
+
+190
+00:10:00,280 --> 00:10:02,020
+existed in JavaScript itself.
+
+191
+00:10:02,020 --> 00:10:04,560
+So all of these are
+actually quite popular.
+
+192
+00:10:04,560 --> 00:10:07,140
+We've also mentioned typeahead
+which is the library that
+
+193
+00:10:07,140 --> 00:10:11,180
+does that autocomplete dropdown and
+finally a link to our own JavaScript.
+
+194
+00:10:11,180 --> 00:10:13,880
+>> Meanwhile, and perhaps
+thankfully, this mashup
+
+195
+00:10:13,880 --> 00:10:17,550
+is driven by relatively little
+HTML down here at the bottom.
+
+196
+00:10:17,550 --> 00:10:22,330
+Notice that we've specified a div in
+our body of class-container fluid.
+
+197
+00:10:22,330 --> 00:10:24,610
+This, per bootstrap's
+documentation, just
+
+198
+00:10:24,610 --> 00:10:29,840
+means that this div is going to fill the
+viewport or the browser's window fully.
+
+199
+00:10:29,840 --> 00:10:33,020
+>> Meanwhile, below that we have a div
+that's opened and immediately closed
+
+200
+00:10:33,020 --> 00:10:34,790
+with the unique ID of map canvas.
+
+201
+00:10:34,790 --> 00:10:37,400
+This now is from Google
+Maps documentation
+
+202
+00:10:37,400 --> 00:10:42,490
+for its API, whereby I simply need to
+have an empty div into which to inject,
+
+203
+00:10:42,490 --> 00:10:44,470
+ultimately, an actual Google Maps.
+
+204
+00:10:44,470 --> 00:10:46,310
+But more on that in just a bit.
+
+205
+00:10:46,310 --> 00:10:48,850
+>> Finally, there's a form
+inside of here which
+
+206
+00:10:48,850 --> 00:10:52,930
+implements the text box up top left
+in our interface for searching.
+
+207
+00:10:52,930 --> 00:10:54,730
+Notice that we've used
+a bit of bootstrap
+
+208
+00:10:54,730 --> 00:10:57,670
+here too-- things like
+form-inline and form-group.
+
+209
+00:10:57,670 --> 00:11:00,080
+We've given the former
+unique ID of form.
+
+210
+00:11:00,080 --> 00:11:04,510
+And then, ultimately, I actually have
+an input type, which is pretty familiar,
+
+211
+00:11:04,510 --> 00:11:06,440
+whose ID is q.
+
+212
+00:11:06,440 --> 00:11:07,230
+Just a convention.
+
+213
+00:11:07,230 --> 00:11:09,234
+Q for query-- could have
+been called anything.
+
+214
+00:11:09,234 --> 00:11:11,400
+And then the placeholder,
+meanwhile, is city, state,
+
+215
+00:11:11,400 --> 00:11:16,200
+and postal code which you might recall
+seeing in our mashup demo earlier.
+
+216
+00:11:16,200 --> 00:11:17,980
+Let's close this file.
+
+217
+00:11:17,980 --> 00:11:24,460
+>> Now take a look at the PHP files that
+await and then the JavaScript files.
+
+218
+00:11:24,460 --> 00:11:27,700
+In our PHP files, we've
+already implemented for you,
+
+219
+00:11:27,700 --> 00:11:29,960
+for instance, updates.
+
+220
+00:11:29,960 --> 00:11:35,060
+Update.php-- we won't spend a huge
+amount of time on here-- in a nutshell
+
+221
+00:11:35,060 --> 00:11:38,400
+is the file that our
+JavaScript code is going
+
+222
+00:11:38,400 --> 00:11:41,610
+to contact via AJAX that
+asynchronous technique that's
+
+223
+00:11:41,610 --> 00:11:45,980
+built into JavaScript these days that's
+going to allow us to ask update.php
+
+224
+00:11:45,980 --> 00:11:47,410
+for more information.
+
+225
+00:11:47,410 --> 00:11:50,045
+>> Specifically, anytime
+the user drags the map
+
+226
+00:11:50,045 --> 00:11:53,310
+or performs a search that jumps
+the user to another location,
+
+227
+00:11:53,310 --> 00:11:55,250
+our JavaScript code,
+as we'll soon see, is
+
+228
+00:11:55,250 --> 00:11:59,610
+going to call update.php
+and ask for 10 or so markers
+
+229
+00:11:59,610 --> 00:12:02,630
+within the viewport based
+on the GPS coordinates
+
+230
+00:12:02,630 --> 00:12:06,510
+of the top and bottom
+corners of that map.
+
+231
+00:12:06,510 --> 00:12:10,520
+We can then repopulate the map now that
+the user has moved the screen in order
+
+232
+00:12:10,520 --> 00:12:14,210
+to see 10 probably new
+markers for different towns.
+
+233
+00:12:14,210 --> 00:12:18,340
+Meanwhile, this file is ultimately
+going to execute a SQL query
+
+234
+00:12:18,340 --> 00:12:21,680
+against our database
+table called places which
+
+235
+00:12:21,680 --> 00:12:26,380
+is going to return those
+10 or fewer locations.
+
+236
+00:12:26,380 --> 00:12:32,620
+>> Meanwhile, in articles.php, is another
+file we've written in its entirety.
+
+237
+00:12:32,620 --> 00:12:35,820
+It is very similar in spirit to
+Problem Set 7's LOOKUP function,
+
+238
+00:12:35,820 --> 00:12:39,450
+which contacted Yahoo Finance for you.
+
+239
+00:12:39,450 --> 00:12:43,710
+This file contacts Google News
+for you, ultimately grabbing
+
+240
+00:12:43,710 --> 00:12:46,050
+a machine-readable
+version-- in something
+
+241
+00:12:46,050 --> 00:12:49,720
+called RSS format-- of the news
+for Cambridge or Beverly Hills
+
+242
+00:12:49,720 --> 00:12:52,880
+or whatever town you've searched
+for based on that geoparameter.
+
+243
+00:12:52,880 --> 00:12:57,250
+We parse that RSS, which is just a
+type of markup language called XML,
+
+244
+00:12:57,250 --> 00:13:00,740
+and then we actually
+return it to your browser
+
+245
+00:13:00,740 --> 00:13:03,570
+and to your JavaScript code,
+specifically, in a format called
+
+246
+00:13:03,570 --> 00:13:06,097
+JSON, JavaScript Object Notation.
+
+247
+00:13:06,097 --> 00:13:08,180
+Now you'll see in the
+specification-- we point you
+
+248
+00:13:08,180 --> 00:13:10,720
+at how you can actually see
+some of the JSON coming back--
+
+249
+00:13:10,720 --> 00:13:15,210
+that this functionality ultimately
+lets you populate those popup menus so
+
+250
+00:13:15,210 --> 00:13:16,960
+that when you click
+on a marker in the map
+
+251
+00:13:16,960 --> 00:13:19,430
+you actually see a whole bunch
+of bullets, each of which
+
+252
+00:13:19,430 --> 00:13:21,020
+links to an article.
+
+253
+00:13:21,020 --> 00:13:25,000
+>> Now let's take a look at one last
+PHP file which, fortunately, doesn't
+
+254
+00:13:25,000 --> 00:13:27,970
+have much going on--
+just a pretty big TODO.
+
+255
+00:13:27,970 --> 00:13:32,170
+Right now this file declares
+an array called places.
+
+256
+00:13:32,170 --> 00:13:35,980
+And then ultimately prints
+that array in JSON format--
+
+257
+00:13:35,980 --> 00:13:38,720
+pretty-printing it just so that
+things are easier to debug.
+
+258
+00:13:38,720 --> 00:13:41,480
+Unfortunately, in the
+middle there is this TODO,
+
+259
+00:13:41,480 --> 00:13:46,890
+which calls for you to search the
+database for places matching a geo HTTP
+
+260
+00:13:46,890 --> 00:13:47,490
+parameter.
+
+261
+00:13:47,490 --> 00:13:49,865
+>> And, indeed, this is going to
+be one of your challenges--
+
+262
+00:13:49,865 --> 00:13:54,240
+to implement this functionality here
+so that when you contact this file with
+
+263
+00:13:54,240 --> 00:14:00,610
+a URL like search. php?geo= something,
+your code will ultimately return a JSON
+
+264
+00:14:00,610 --> 00:14:05,020
+array of all of the places in your
+database table that match that input.
+
+265
+00:14:05,020 --> 00:14:08,960
+So if the user types in Cambridge,
+your file here search.php
+
+266
+00:14:08,960 --> 00:14:12,680
+should ultimately return a JSON array
+for all of the matches for Cambridge,
+
+267
+00:14:12,680 --> 00:14:16,990
+which might be in Massachusetts
+but could be even anywhere else.
+
+268
+00:14:16,990 --> 00:14:21,040
+>> Lastly, let's take a look at two
+files that are static ultimately--
+
+269
+00:14:21,040 --> 00:14:23,680
+your CSS file and your JavaScript file.
+
+270
+00:14:23,680 --> 00:14:26,779
+If I go into our CSS directory,
+there's a whole bunch of files there,
+
+271
+00:14:26,779 --> 00:14:28,070
+but most of them are libraries.
+
+272
+00:14:28,070 --> 00:14:31,530
+I'm going to take a look,
+specifically, at styles.css,
+
+273
+00:14:31,530 --> 00:14:35,440
+which is our own global CSS that's
+going to stylize this whole mashup.
+
+274
+00:14:35,440 --> 00:14:38,840
+I'll leave it to you to read through
+the comments herein, but, in a nutshell,
+
+275
+00:14:38,840 --> 00:14:43,490
+this is the CSS that ensures that our
+mashup, by default out of the box,
+
+276
+00:14:43,490 --> 00:14:46,950
+looks exactly the way we want it--
+with the map filling the view port
+
+277
+00:14:46,950 --> 00:14:49,720
+and with the search
+box up at the top left.
+
+278
+00:14:49,720 --> 00:14:52,870
+We've also taken the liberty of
+stylizing that typeahead dropdown
+
+279
+00:14:52,870 --> 00:14:55,170
+menu a little bit as well.
+
+280
+00:14:55,170 --> 00:14:58,030
+>> The most important file
+perhaps for this problem set
+
+281
+00:14:58,030 --> 00:15:01,070
+is this last one, scripts.js.
+
+282
+00:15:01,070 --> 00:15:03,800
+Inside of your JS directory
+is even more files.
+
+283
+00:15:03,800 --> 00:15:08,090
+All of them are library files
+except for this one, scripts.js.
+
+284
+00:15:08,090 --> 00:15:11,460
+If we open this up, let's take our
+final tour through the functions that
+
+285
+00:15:11,460 --> 00:15:13,820
+are built into this file
+for you and call attention
+
+286
+00:15:13,820 --> 00:15:16,200
+to the TODOs that lie ahead.
+
+287
+00:15:16,200 --> 00:15:19,110
+>> At the top of this file,
+are three global variables.
+
+288
+00:15:19,110 --> 00:15:22,910
+One for a map, which is going to
+be a reference to our Google map.
+
+289
+00:15:22,910 --> 00:15:25,510
+You can think of it
+sort of as a pointer.
+
+290
+00:15:25,510 --> 00:15:27,710
+Meanwhile, we have
+another global variable
+
+291
+00:15:27,710 --> 00:15:31,500
+called info, which appears to be
+storing the return value of a call
+
+292
+00:15:31,500 --> 00:15:34,170
+to new google.maps.InfoWindow.
+
+293
+00:15:34,170 --> 00:15:37,835
+JavaScript supports objects which
+are very similar in spirit to Struts.
+
+294
+00:15:37,835 --> 00:15:40,250
+And what this line for
+our purposes is doing
+
+295
+00:15:40,250 --> 00:15:42,820
+is creating a new info
+window in memory and then
+
+296
+00:15:42,820 --> 00:15:46,330
+keeping around a reference
+thereto in a variable called Info.
+
+297
+00:15:46,330 --> 00:15:48,330
+And in between those,
+meanwhile, is what appears
+
+298
+00:15:48,330 --> 00:15:51,060
+to be an empty JavaScript
+array called markers.
+
+299
+00:15:51,060 --> 00:15:55,392
+All of those newspaper icons, or you
+might choose another icon altogether,
+
+300
+00:15:55,392 --> 00:15:57,350
+are going to be stored
+ultimately in this array
+
+301
+00:15:57,350 --> 00:16:01,570
+so that we can very easily add to
+the map and remove them from the map.
+
+302
+00:16:01,570 --> 00:16:03,990
+>> Now let's scroll down
+a little bit and whiz
+
+303
+00:16:03,990 --> 00:16:07,690
+through the code that's going to be
+executed as soon as the DOM or document
+
+304
+00:16:07,690 --> 00:16:10,480
+object model or the
+page itself is ready.
+
+305
+00:16:10,480 --> 00:16:12,942
+Recall that this syntax
+here simply specifies
+
+306
+00:16:12,942 --> 00:16:14,900
+that the following code
+should be executed only
+
+307
+00:16:14,900 --> 00:16:17,840
+when the browser has finished
+loading everything else.
+
+308
+00:16:17,840 --> 00:16:19,750
+>> We first declare a
+whole bunch of styles,
+
+309
+00:16:19,750 --> 00:16:22,410
+which end up stylizing
+the map as per the spec.
+
+310
+00:16:22,410 --> 00:16:24,790
+We then declare a
+whole bunch of options,
+
+311
+00:16:24,790 --> 00:16:28,630
+which further customize the Google
+map that we're about to embed.
+
+312
+00:16:28,630 --> 00:16:32,090
+We then use a bit of jQuery code,
+which is explained in a bit more detail
+
+313
+00:16:32,090 --> 00:16:35,000
+in the spec, to grab
+that element, map-canvas
+
+314
+00:16:35,000 --> 00:16:36,980
+that we so uniquely identified.
+
+315
+00:16:36,980 --> 00:16:40,640
+And then this line here is
+what seems to magically give us
+
+316
+00:16:40,640 --> 00:16:43,560
+a Google map inside of
+our own application,
+
+317
+00:16:43,560 --> 00:16:47,020
+storing a reference thereto
+in that variable called map.
+
+318
+00:16:47,020 --> 00:16:50,550
+>> Finally, down here we register
+what's called a listener.
+
+319
+00:16:50,550 --> 00:16:54,690
+Think back-- way, way
+back-- to week zero in CS50
+
+320
+00:16:54,690 --> 00:16:57,430
+when we looked at Scratch and
+its support through a walk
+
+321
+00:16:57,430 --> 00:16:59,935
+through for things called
+events and broadcasts.
+
+322
+00:16:59,935 --> 00:17:01,810
+You might not have used
+it yourself, but it's
+
+323
+00:17:01,810 --> 00:17:03,900
+a mechanism whereby a
+browser in this case
+
+324
+00:17:03,900 --> 00:17:07,940
+can get our attention when it's
+ready to actually execute some code.
+
+325
+00:17:07,940 --> 00:17:12,170
+In this case, it's going to listen
+to the map for an event called idle.
+
+326
+00:17:12,170 --> 00:17:14,930
+This means that the browser has
+finished loading the Google map.
+
+327
+00:17:14,930 --> 00:17:18,380
+At this point a function called
+configure should ultimately
+
+328
+00:17:18,380 --> 00:17:19,339
+be executed.
+
+329
+00:17:19,339 --> 00:17:22,510
+That function, configure,
+we'll see, is written by us.
+
+330
+00:17:22,510 --> 00:17:24,550
+>> Now down here is a function
+that, unfortunately,
+
+331
+00:17:24,550 --> 00:17:25,871
+is just a TODO add marker.
+
+332
+00:17:25,871 --> 00:17:28,620
+Per the spec. you're going to need
+to write the code that actually
+
+333
+00:17:28,620 --> 00:17:32,840
+adds a marker-- whether it looks
+like a newspaper, or a thumb tack,
+
+334
+00:17:32,840 --> 00:17:35,360
+or something else-- to the Google map.
+
+335
+00:17:35,360 --> 00:17:37,720
+Here now is that function
+called configure.
+
+336
+00:17:37,720 --> 00:17:40,390
+I'll leave it to you to read
+through this in more detail,
+
+337
+00:17:40,390 --> 00:17:42,600
+but realize that we add
+a bunch more Listeners
+
+338
+00:17:42,600 --> 00:17:46,620
+so that we can execute code when the
+user clicks on and drags the map.
+
+339
+00:17:46,620 --> 00:17:50,730
+We also have code in here that
+initializes that typeahead plugin
+
+340
+00:17:50,730 --> 00:17:53,120
+so that the dropdown
+menu actually works.
+
+341
+00:17:53,120 --> 00:17:55,690
+>> But let's focus on just a
+couple of places herein.
+
+342
+00:17:55,690 --> 00:17:57,590
+Specifically, this to do here.
+
+343
+00:17:57,590 --> 00:18:00,410
+I'll defer to the online
+documentation and the specification
+
+344
+00:18:00,410 --> 00:18:02,530
+for how to fill in this TODO.
+
+345
+00:18:02,530 --> 00:18:05,890
+But in a nutshell, this library
+typeahead allows you to pass
+
+346
+00:18:05,890 --> 00:18:09,790
+in what's generally known as a template,
+which has some variable placeholders
+
+347
+00:18:09,790 --> 00:18:13,690
+very similar in spirit to printf's %.*s.
+
+348
+00:18:13,690 --> 00:18:16,030
+But in this case, the
+template per the spec
+
+349
+00:18:16,030 --> 00:18:18,760
+allows you to specify
+what variables you want
+
+350
+00:18:18,760 --> 00:18:24,880
+to inject from data that's come
+back from something like the PHP
+
+351
+00:18:24,880 --> 00:18:29,810
+files that you've written
+that are emitting JSON output.
+
+352
+00:18:29,810 --> 00:18:35,170
+>> Now down here realize that we are
+listening for typeahead selections
+
+353
+00:18:35,170 --> 00:18:38,050
+when the user actually conducts
+a search and selects a value.
+
+354
+00:18:38,050 --> 00:18:40,270
+This is how we're actually
+going to listen for that
+
+355
+00:18:40,270 --> 00:18:42,250
+and execute some code as a result.
+
+356
+00:18:42,250 --> 00:18:45,300
+Then we continue to configure
+the mashup just a little bit.
+
+357
+00:18:45,300 --> 00:18:48,000
+And, ultimately, we call
+this function update.
+
+358
+00:18:48,000 --> 00:18:49,640
+It updates the markers on the screen.
+
+359
+00:18:49,640 --> 00:18:51,529
+More on that in just a moment.
+
+360
+00:18:51,529 --> 00:18:53,570
+Meanwhile, there's a few
+small functions in here.
+
+361
+00:18:53,570 --> 00:18:56,820
+One of which is hideInfo which
+simply closes the InfoWindow.
+
+362
+00:18:56,820 --> 00:19:00,020
+Another function here, which ultimately
+won't be too long, remove markers.
+
+363
+00:19:00,020 --> 00:19:03,580
+That's going to undo whatever
+your add marker function does.
+
+364
+00:19:03,580 --> 00:19:04,960
+And then down here is search.
+
+365
+00:19:04,960 --> 00:19:08,610
+And this one is interesting because we
+have written the JavaScript code that's
+
+366
+00:19:08,610 --> 00:19:13,490
+going to talk to search.php on the
+server and get back some response.
+
+367
+00:19:13,490 --> 00:19:16,110
+>> You, of course, will still
+need to implement search.php,
+
+368
+00:19:16,110 --> 00:19:18,310
+but we've implemented the
+JavaScript code that's
+
+369
+00:19:18,310 --> 00:19:22,480
+going to handle actually performing
+searches from that text box.
+
+370
+00:19:22,480 --> 00:19:25,340
+In particular, notice
+that this function here,
+
+371
+00:19:25,340 --> 00:19:29,160
+search, does call search.php
+by a method called
+
+372
+00:19:29,160 --> 00:19:31,072
+get JSON, which we saw in lecture.
+
+373
+00:19:31,072 --> 00:19:32,780
+And the syntax here
+is a little different
+
+374
+00:19:32,780 --> 00:19:37,110
+from lecture in that we're using
+jQuery so-called promise interface.
+
+375
+00:19:37,110 --> 00:19:38,479
+More on that in the spec.
+
+376
+00:19:38,479 --> 00:19:40,520
+This simply means for our
+purposes now that there
+
+377
+00:19:40,520 --> 00:19:43,870
+are two special functions we
+need to call with dot notation
+
+378
+00:19:43,870 --> 00:19:46,230
+here immediately after calling get JSON.
+
+379
+00:19:46,230 --> 00:19:47,510
+One is called done.
+
+380
+00:19:47,510 --> 00:19:49,870
+One is called fail.
+
+381
+00:19:49,870 --> 00:19:51,790
+You can think of these
+as the success handler
+
+382
+00:19:51,790 --> 00:19:54,960
+and the failure handler just
+in case something goes wrong.
+
+383
+00:19:54,960 --> 00:19:57,760
+>> Now let's look at the last
+couple of functions in this file.
+
+384
+00:19:57,760 --> 00:20:00,180
+Down here is a function
+called showInfo, which
+
+385
+00:20:00,180 --> 00:20:03,090
+shows info in one of those
+little info windows that
+
+386
+00:20:03,090 --> 00:20:05,380
+pops up when the user clicks a marker.
+
+387
+00:20:05,380 --> 00:20:08,470
+Down here further is
+that update function
+
+388
+00:20:08,470 --> 00:20:10,510
+that we have implemented for you.
+
+389
+00:20:10,510 --> 00:20:15,250
+It determines the bounds of the map.
+
+390
+00:20:15,250 --> 00:20:19,360
+What are the GPS coordinates of its
+northeast and southwest corners here.
+
+391
+00:20:19,360 --> 00:20:22,780
+We've prepared some HDP parameters
+here and then passed them ultimately
+
+392
+00:20:22,780 --> 00:20:26,160
+to update.php, which we've
+also implemented for you.
+
+393
+00:20:26,160 --> 00:20:31,390
+That ultimately gets back some JSON
+from the file called update.php
+
+394
+00:20:31,390 --> 00:20:34,050
+and then removes any
+markers on the screen
+
+395
+00:20:34,050 --> 00:20:36,650
+and then iterates over
+the data that's come back
+
+396
+00:20:36,650 --> 00:20:40,350
+from update.php, which
+again is just a JSON array.
+
+397
+00:20:40,350 --> 00:20:45,130
+And then it ultimately adds a marker for
+each of those places, handling failure
+
+398
+00:20:45,130 --> 00:20:47,750
+or errors which might very well happen.
+
+399
+00:20:47,750 --> 00:20:51,550
+>> Now just to give you a taste of how you
+might go about debugging this project,
+
+400
+00:20:51,550 --> 00:20:55,420
+realize that I've opened in
+advance this tab here to this URL,
+
+401
+00:20:55,420 --> 00:21:01,320
+pset8/articles.php?geo=02138.
+
+402
+00:21:01,320 --> 00:21:04,050
+Now, again, articles about
+PHP we implemented for you
+
+403
+00:21:04,050 --> 00:21:06,320
+so this isn't so much
+what you'll be using
+
+404
+00:21:06,320 --> 00:21:08,190
+to debug, but rather the technique.
+
+405
+00:21:08,190 --> 00:21:10,590
+Notice that I've searched for
+Cambridge's zip code here,
+
+406
+00:21:10,590 --> 00:21:15,260
+and I've gotten back, indeed, a JSON
+array of JSON objects inside of which
+
+407
+00:21:15,260 --> 00:21:17,640
+are two keys-- link and title.
+
+408
+00:21:17,640 --> 00:21:19,860
+>> So this functionality
+works already for you.
+
+409
+00:21:19,860 --> 00:21:24,330
+But this technique of manually going
+to a URL like this for something like
+
+410
+00:21:24,330 --> 00:21:31,710
+search.php?geo=cambridge or 02138 or
+whatever the user has typed in should
+
+411
+00:21:31,710 --> 00:21:35,770
+prove invaluable as you, yourself, try
+to figure out exactly whether or why
+
+412
+00:21:35,770 --> 00:21:38,510
+search.php is working or not.
+
+413
+00:21:38,510 --> 00:21:41,720
+>> Ultimately then, you have
+a few TODOs ahead of you.
+
+414
+00:21:41,720 --> 00:21:44,250
+You're going to first implements
+that import script that
+
+415
+00:21:44,250 --> 00:21:46,520
+reads in us.text into your database.
+
+416
+00:21:46,520 --> 00:21:48,760
+You're then going to need
+to implement search.php
+
+417
+00:21:48,760 --> 00:21:51,320
+so that it behaves exactly as specified.
+
+418
+00:21:51,320 --> 00:21:54,170
+You're then going to want
+to focus on scripts.js
+
+419
+00:21:54,170 --> 00:21:57,520
+and ultimately implements
+those couple of TODOs,
+
+420
+00:21:57,520 --> 00:21:59,950
+including for configure
+and that template,
+
+421
+00:21:59,950 --> 00:22:03,220
+add markers, remove markers, and
+then last, but not least, one
+
+422
+00:22:03,220 --> 00:22:04,330
+personal touch.
+
+423
+00:22:04,330 --> 00:22:07,477
+>> Once you have your mashup working
+quite like ours, the goal at hand
+
+424
+00:22:07,477 --> 00:22:09,560
+is for you to add a personal
+touch to your mashup,
+
+425
+00:22:09,560 --> 00:22:11,290
+whether it's aesthetic or functional.
+
+426
+00:22:11,290 --> 00:22:13,950
+Take the mashup ever so
+slightly to the next level.
+
+427
+00:22:13,950 --> 00:22:18,330
+So long as you push yourself beyond
+your familiarity with the spec itself
+
+428
+00:22:18,330 --> 00:22:20,840
+and pick up one technique
+new, even if it's just
+
+429
+00:22:20,840 --> 00:22:25,610
+something aesthetic like changing the
+layout of the map that you're using,
+
+430
+00:22:25,610 --> 00:22:28,070
+the scope that we expect
+will be satisfied.
+
+431
+00:22:28,070 --> 00:22:30,260
+That then is Problem Set 8 Mashup.
+
+432
+00:22:30,260 --> 00:22:33,070
+Stay tuned for more in the
+specification and best of luck
+
+433
+00:22:33,070 --> 00:22:36,400
+tackling this, your last
+CS50 problem set ever.
+
+434
+00:22:36,400 --> 00:22:39,750
+>> [MUSIC PLAYING]
+
+435
+00:22:39,750 --> 00:22:43,542

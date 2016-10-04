@@ -1,0 +1,4567 @@
+1
+00:00:00,000 --> 00:00:05,180
+
+2
+00:00:05,180 --> 00:00:05,930
+CONNOR HARRIS: Hi.
+
+3
+00:00:05,930 --> 00:00:06,820
+I'm Connor Harris.
+
+4
+00:00:06,820 --> 00:00:09,729
+I'm a CS50 CA at Harvard.
+
+5
+00:00:09,729 --> 00:00:11,270
+STEPHEN KREWSON: I'm Stephen Krewson.
+
+6
+00:00:11,270 --> 00:00:12,582
+I'm a TF for CS50 at Yale.
+
+7
+00:00:12,582 --> 00:00:15,790
+CONNOR HARRIS: And we're going to talk
+about some technologies that you might
+
+8
+00:00:15,790 --> 00:00:18,880
+want to use if you're interested
+in doing a final project or really
+
+9
+00:00:18,880 --> 00:00:20,920
+anything with music.
+
+10
+00:00:20,920 --> 00:00:24,400
+We're going to be focusing on first a
+programming language called Haskell.
+
+11
+00:00:24,400 --> 00:00:26,280
+It's a functional
+language, so the paradigm
+
+12
+00:00:26,280 --> 00:00:29,620
+is very different from C or PHP
+or other imperative languages
+
+13
+00:00:29,620 --> 00:00:33,450
+that you've used already, and especially
+on a library written in Haskell
+
+14
+00:00:33,450 --> 00:00:40,240
+called Euterpea, which can help people
+with writing music functionally,
+
+15
+00:00:40,240 --> 00:00:40,780
+basically.
+
+16
+00:00:40,780 --> 00:00:43,400
+And Stephen will walk you
+through a great example of that.
+
+17
+00:00:43,400 --> 00:00:46,423
+>> After this, I'll introduce you to
+something called LillyPond, which
+
+18
+00:00:46,423 --> 00:00:48,370
+is a technology for typesetting music.
+
+19
+00:00:48,370 --> 00:00:50,830
+It's sort of like LaTeX
+for music if any of you
+
+20
+00:00:50,830 --> 00:00:57,530
+have used LaTeX for math classes or
+other P set classes or what have you.
+
+21
+00:00:57,530 --> 00:01:00,440
+And so I'll give you, again,
+some simple examples of that
+
+22
+00:01:00,440 --> 00:01:03,640
+and point you in the general
+direction of some better resources.
+
+23
+00:01:03,640 --> 00:01:04,319
+>> STEPHEN KREWSON: In
+addition, we thought it
+
+24
+00:01:04,319 --> 00:01:06,720
+would be cool to set up
+a little bit of hints
+
+25
+00:01:06,720 --> 00:01:10,780
+toward a pipeline between
+Euterpea-generated MIDI files
+
+26
+00:01:10,780 --> 00:01:13,910
+in LillyPond, so we provide
+some instruction on scripts
+
+27
+00:01:13,910 --> 00:01:16,310
+to do that that are
+provided with LillyPond
+
+28
+00:01:16,310 --> 00:01:19,160
+just to keep it open source
+and get a pipeline going.
+
+29
+00:01:19,160 --> 00:01:20,910
+CONNOR HARRIS: Again,
+we should emphasize,
+
+30
+00:01:20,910 --> 00:01:23,100
+these two technologies, you
+don't have to use them together.
+
+31
+00:01:23,100 --> 00:01:25,370
+They're not designed to work
+together, though they do very nicely.
+
+32
+00:01:25,370 --> 00:01:26,362
+>> STEPHEN KREWSON: Right.
+
+33
+00:01:26,362 --> 00:01:30,116
+And totally free.
+
+34
+00:01:30,116 --> 00:01:32,240
+CONNOR HARRIS: So
+acknowledgements, just read that.
+
+35
+00:01:32,240 --> 00:01:33,406
+STEPHEN KREWSON: Duly noted.
+
+36
+00:01:33,406 --> 00:01:36,360
+Thanks to those folks.
+
+37
+00:01:36,360 --> 00:01:39,180
+This I'll linger on just for a moment.
+
+38
+00:01:39,180 --> 00:01:41,560
+The installation process
+is a little bit tricky.
+
+39
+00:01:41,560 --> 00:01:45,420
+We have a read me on the GitHub
+that you can take a look at.
+
+40
+00:01:45,420 --> 00:01:47,840
+Just email me if you have any questions.
+
+41
+00:01:47,840 --> 00:01:52,829
+But we'll run this under the assumption
+that this is working for everybody.
+
+42
+00:01:52,829 --> 00:01:55,620
+CONNOR HARRIS: And if you can't
+get LillyPond to work, no big deal.
+
+43
+00:01:55,620 --> 00:02:00,139
+There's no live compilation that
+will be involved, at least on my end.
+
+44
+00:02:00,139 --> 00:02:02,930
+STEPHEN KREWSON: Haskell and
+LillyPond should both have installers.
+
+45
+00:02:02,930 --> 00:02:08,497
+Euterpea is downloaded as a
+package, so on and so forth.
+
+46
+00:02:08,497 --> 00:02:10,080
+So we're talking about computer music.
+
+47
+00:02:10,080 --> 00:02:12,990
+And this is just a
+very 50,000-foot view.
+
+48
+00:02:12,990 --> 00:02:15,700
+There's a few different aspects of it.
+
+49
+00:02:15,700 --> 00:02:18,120
+And this is rough and is
+going to obscure some detail.
+
+50
+00:02:18,120 --> 00:02:22,090
+But we could think of something
+like algorithmic composition,
+
+51
+00:02:22,090 --> 00:02:24,920
+using algorithms,
+using code, to generate
+
+52
+00:02:24,920 --> 00:02:30,280
+some type of-- maybe a self-similar
+sequence of notes, or maybe notes
+
+53
+00:02:30,280 --> 00:02:33,330
+under some constraint.
+
+54
+00:02:33,330 --> 00:02:35,350
+And then those could be
+performed or interpreted
+
+55
+00:02:35,350 --> 00:02:38,390
+with analog instruments
+or anything like that.
+
+56
+00:02:38,390 --> 00:02:42,010
+But the composition was
+done algorithmically.
+
+57
+00:02:42,010 --> 00:02:45,120
+>> But of course, maybe the area of
+computer music or digital music
+
+58
+00:02:45,120 --> 00:02:48,870
+we're more familiar with is digital
+sound synthesis or digital sampling
+
+59
+00:02:48,870 --> 00:02:51,160
+and digital recording.
+
+60
+00:02:51,160 --> 00:02:55,650
+A lot of digital instruments are
+done through digital sampling.
+
+61
+00:02:55,650 --> 00:03:00,110
+In fact, we'll be using one of those in
+the form of a sound font library later.
+
+62
+00:03:00,110 --> 00:03:02,850
+>> But there's also something called
+digital synthesis that came out
+
+63
+00:03:02,850 --> 00:03:08,650
+of the late '70s and into the '80s with
+Yamaha and John Chowning at Stanford
+
+64
+00:03:08,650 --> 00:03:11,990
+doing FM synthesis or
+Frequency Modulation synthesis,
+
+65
+00:03:11,990 --> 00:03:15,100
+where you had a carrier
+signal and a modulating signal
+
+66
+00:03:15,100 --> 00:03:18,270
+both in the audio spectrum.
+
+67
+00:03:18,270 --> 00:03:22,570
+But what we're focused on
+today is something called MIDI,
+
+68
+00:03:22,570 --> 00:03:25,040
+and of course, algorithmic composition.
+
+69
+00:03:25,040 --> 00:03:30,940
+>> We're not going to make instruments, but
+we're instead going to make some music,
+
+70
+00:03:30,940 --> 00:03:33,940
+and then that will get interpreted
+by some instruments that
+
+71
+00:03:33,940 --> 00:03:38,300
+are conformant to the
+general MIDI standard.
+
+72
+00:03:38,300 --> 00:03:40,830
+So what's MIDI?
+
+73
+00:03:40,830 --> 00:03:45,550
+I'm not going to get too deep into it,
+but MIDI is data transfer protocol.
+
+74
+00:03:45,550 --> 00:03:49,250
+It's a kind of a guide across
+different companies and industries
+
+75
+00:03:49,250 --> 00:03:52,250
+for organizing sounds or patches.
+
+76
+00:03:52,250 --> 00:03:54,170
+So we'll see that
+there's a MIDI standard
+
+77
+00:03:54,170 --> 00:03:57,500
+for all the different percussion
+sounds and MIDI recommendations
+
+78
+00:03:57,500 --> 00:04:01,360
+for all the different types of synth or
+different types of all the instrument
+
+79
+00:04:01,360 --> 00:04:03,650
+groups in an orchestra, say.
+
+80
+00:04:03,650 --> 00:04:08,916
+>> You're probably familiar with
+0 through 127 MIDI messages.
+
+81
+00:04:08,916 --> 00:04:12,920
+A MIDI signal is typically
+one bit indicating
+
+82
+00:04:12,920 --> 00:04:16,130
+whether it's a data or a
+status packet, and then there's
+
+83
+00:04:16,130 --> 00:04:18,589
+seven bits of a signal.
+
+84
+00:04:18,589 --> 00:04:21,430
+And these can control
+everything from volume
+
+85
+00:04:21,430 --> 00:04:25,330
+to the action or pressure
+on a particular key
+
+86
+00:04:25,330 --> 00:04:29,400
+if you're performing with a MIDI
+controller as well as, of course,
+
+87
+00:04:29,400 --> 00:04:31,250
+notes.
+
+88
+00:04:31,250 --> 00:04:33,450
+And of course, MIDI has
+been extremely useful,
+
+89
+00:04:33,450 --> 00:04:37,550
+because it's a way to wire
+together or daisy chain
+
+90
+00:04:37,550 --> 00:04:41,570
+a bunch of MIDI hardware devices.
+
+91
+00:04:41,570 --> 00:04:44,050
+I have seven or eight back at my house.
+
+92
+00:04:44,050 --> 00:04:46,610
+It gets really complicated,
+but it's really powerful.
+
+93
+00:04:46,610 --> 00:04:47,460
+And it's really old.
+
+94
+00:04:47,460 --> 00:04:51,117
+It's from the early '80s, and
+it's really nice and small.
+
+95
+00:04:51,117 --> 00:04:51,950
+CONNOR HARRIS: Yeah.
+
+96
+00:04:51,950 --> 00:04:54,230
+All the classic Nintendo
+video games would probably
+
+97
+00:04:54,230 --> 00:04:56,088
+have MIDI files for music, for example.
+
+98
+00:04:56,088 --> 00:04:59,550
+
+99
+00:04:59,550 --> 00:05:01,740
+>> STEPHEN KREWSON: Here's an
+example of general MIDI,
+
+100
+00:05:01,740 --> 00:05:06,520
+showing MIDI as a kind
+of general protocol.
+
+101
+00:05:06,520 --> 00:05:13,280
+And I think we can think of the
+difference between the specification
+
+102
+00:05:13,280 --> 00:05:17,830
+that there should be something like
+these instrument sounds and the actual
+
+103
+00:05:17,830 --> 00:05:21,740
+realization of those instruments sounds
+in a sound font or a particular MIDI
+
+104
+00:05:21,740 --> 00:05:25,740
+synthesizer as being the difference
+between maybe a typeface-- which says,
+
+105
+00:05:25,740 --> 00:05:30,350
+in general, this is the design of
+this particular way to represent
+
+106
+00:05:30,350 --> 00:05:35,907
+characters-- and a particular font
+that has a specific size and timbre,
+
+107
+00:05:35,907 --> 00:05:37,240
+and there's realization of the--
+
+108
+00:05:37,240 --> 00:05:39,156
+>> CONNOR HARRIS: Maybe a
+better comparison would
+
+109
+00:05:39,156 --> 00:05:43,430
+be the Unicode standard says-- it gives
+a number to every character, and really
+
+110
+00:05:43,430 --> 00:05:46,830
+every language in the world, or
+a vast set of scripts of language
+
+111
+00:05:46,830 --> 00:05:51,310
+in the world, and then those are
+rendered into something graphical
+
+112
+00:05:51,310 --> 00:05:53,710
+by various font packages.
+
+113
+00:05:53,710 --> 00:05:56,630
+And obviously, you can think of
+MIDI as the Unicode of sound.
+
+114
+00:05:56,630 --> 00:06:03,250
+And it's just a list of-- a big stream
+of events and instruments and whatnot,
+
+115
+00:06:03,250 --> 00:06:06,090
+and you have to have a separate
+program, like a typeface,
+
+116
+00:06:06,090 --> 00:06:08,537
+to render that into
+something that's audible.
+
+117
+00:06:08,537 --> 00:06:12,360
+
+118
+00:06:12,360 --> 00:06:13,780
+>> STEPHEN KREWSON: So why Haskell?
+
+119
+00:06:13,780 --> 00:06:19,110
+Haskell is a functional programming
+language, very advanced,
+
+120
+00:06:19,110 --> 00:06:22,770
+very different from C,
+very different from PHP.
+
+121
+00:06:22,770 --> 00:06:28,120
+And we're going to see that there's an
+ease of function composition in Haskell
+
+122
+00:06:28,120 --> 00:06:37,640
+that will allow us to breeze through
+composing or typing up, transcribing,
+
+123
+00:06:37,640 --> 00:06:42,160
+something like Frere Jacques,
+this simple song that
+
+124
+00:06:42,160 --> 00:06:46,815
+has a lot of parts in it that
+are self-similar or repeating.
+
+125
+00:06:46,815 --> 00:06:49,740
+
+126
+00:06:49,740 --> 00:06:53,250
+So this will be some of
+the motivation for why
+
+127
+00:06:53,250 --> 00:06:59,400
+we're using Haskell, in which
+functions are first class citizens.
+
+128
+00:06:59,400 --> 00:07:01,120
+>> And I wanted to extend
+this a little bit.
+
+129
+00:07:01,120 --> 00:07:08,800
+It's a little bit easy to
+notate Frere Jacques in Haskell.
+
+130
+00:07:08,800 --> 00:07:12,100
+But what if we wanted to
+add a drum part to it?
+
+131
+00:07:12,100 --> 00:07:17,320
+What if we wanted to try to make
+something like a Roland 808 or 909 drum
+
+132
+00:07:17,320 --> 00:07:20,970
+machine where you have
+about 16 different steps?
+
+133
+00:07:20,970 --> 00:07:24,590
+Usually these are
+thought of as 16th notes.
+
+134
+00:07:24,590 --> 00:07:28,640
+And you can control the global
+tempo, and you can pick out
+
+135
+00:07:28,640 --> 00:07:34,620
+a bunch of different percussion parts
+of bass drum, a clap, different snares,
+
+136
+00:07:34,620 --> 00:07:37,540
+open and closed high hats
+on these sort of channels,
+
+137
+00:07:37,540 --> 00:07:41,600
+and then you can EQ or
+adjust their volume.
+
+138
+00:07:41,600 --> 00:07:45,290
+>> And we'll see a nice way in
+Haskell of representing this step
+
+139
+00:07:45,290 --> 00:07:48,810
+sequencer with all the
+various cool things in Haskell
+
+140
+00:07:48,810 --> 00:07:53,100
+we can do with generating
+lists and filtering over lists,
+
+141
+00:07:53,100 --> 00:07:56,060
+mapping over lists, mapping
+functions over lists.
+
+142
+00:07:56,060 --> 00:07:59,530
+
+143
+00:07:59,530 --> 00:08:00,760
+And a quick apology.
+
+144
+00:08:00,760 --> 00:08:05,300
+This is a very cursory
+and overly quick sketch
+
+145
+00:08:05,300 --> 00:08:07,620
+of some of the aspects
+of Haskell and Euterpea,
+
+146
+00:08:07,620 --> 00:08:11,760
+which is a domain-specific
+embedded language written
+
+147
+00:08:11,760 --> 00:08:14,970
+in Haskell for musical types.
+
+148
+00:08:14,970 --> 00:08:17,350
+So please do check out the code online.
+
+149
+00:08:17,350 --> 00:08:22,404
+Fire up GHCI, which is the Glasgow
+Haskell Compiler Interpreter.
+
+150
+00:08:22,404 --> 00:08:24,320
+And I'll be doing some
+of this in a little bit
+
+151
+00:08:24,320 --> 00:08:25,880
+so you can see how it's done.
+
+152
+00:08:25,880 --> 00:08:31,021
+>> And this allows you to load in with
+the-- the syntax is colon and then
+
+153
+00:08:31,021 --> 00:08:31,520
+the command.
+
+154
+00:08:31,520 --> 00:08:33,510
+You can load in files.
+
+155
+00:08:33,510 --> 00:08:36,840
+You can use browse on those files
+to see all the functions that
+
+156
+00:08:36,840 --> 00:08:39,169
+exist in a particular module.
+
+157
+00:08:39,169 --> 00:08:43,850
+And then as we'll see, types and type
+classes are so important in Haskell,
+
+158
+00:08:43,850 --> 00:08:48,850
+so you can always check-- especially
+if you're working in a new DSCL
+
+159
+00:08:48,850 --> 00:08:51,600
+like this, what is a music type?
+
+160
+00:08:51,600 --> 00:08:55,114
+I know about the way numeric
+types work in Haskell,
+
+161
+00:08:55,114 --> 00:08:56,530
+but I don't know much about music.
+
+162
+00:08:56,530 --> 00:09:01,280
+But you can explore the way they're
+defined by using this t or type command
+
+163
+00:09:01,280 --> 00:09:04,577
+and then calling in a particular
+function or a data object.
+
+164
+00:09:04,577 --> 00:09:05,410
+CONNOR HARRIS: Yeah.
+
+165
+00:09:05,410 --> 00:09:09,820
+If you thought C and Clang
+was hardass about types,
+
+166
+00:09:09,820 --> 00:09:11,230
+you have no idea about Haskell.
+
+167
+00:09:11,230 --> 00:09:14,230
+The good thing about Haskell is that
+if you can get your code to compile
+
+168
+00:09:14,230 --> 00:09:16,790
+and if Haskell type checks,
+it's probably right,
+
+169
+00:09:16,790 --> 00:09:18,675
+because the type system is so strict.
+
+170
+00:09:18,675 --> 00:09:20,090
+>> STEPHEN KREWSON: Yeah.
+
+171
+00:09:20,090 --> 00:09:21,980
+So I just want to go
+through-- and again,
+
+172
+00:09:21,980 --> 00:09:27,160
+this is not doing it justice-- a few of
+the features of Haskell that, at least
+
+173
+00:09:27,160 --> 00:09:31,780
+to its creators-- and it was created
+in the late 1980s by a bunch of people,
+
+174
+00:09:31,780 --> 00:09:34,610
+a committee of about 20
+people-- thought were important.
+
+175
+00:09:34,610 --> 00:09:36,850
+And the first thing they
+listed in a paper that
+
+176
+00:09:36,850 --> 00:09:41,890
+described the genesis of Haskell
+over the first 20 years or so
+
+177
+00:09:41,890 --> 00:09:43,390
+was that it was lazy.
+
+178
+00:09:43,390 --> 00:09:44,990
+So what does this mean?
+
+179
+00:09:44,990 --> 00:09:49,860
+>> Well, it means when we have some kind
+of expression, we need to evaluate it.
+
+180
+00:09:49,860 --> 00:09:54,390
+And Haskell does this in a call
+by need way or a non-strict way.
+
+181
+00:09:54,390 --> 00:09:57,250
+That is, if we have a bunch of
+components of our expression,
+
+182
+00:09:57,250 --> 00:10:00,660
+we try to delay the evaluation
+of those subcomponents
+
+183
+00:10:00,660 --> 00:10:05,300
+until the absolute last minute--
+that is until we actually need them.
+
+184
+00:10:05,300 --> 00:10:08,480
+>> So this means-- which is
+really cool, especially
+
+185
+00:10:08,480 --> 00:10:13,200
+if we're thinking about the abstraction
+of a musical step sequencer.
+
+186
+00:10:13,200 --> 00:10:16,740
+You turn it on, and you start
+running a step sequence--
+
+187
+00:10:16,740 --> 00:10:20,010
+if you ever worked with a drum
+machine-- and it just goes forever.
+
+188
+00:10:20,010 --> 00:10:24,650
+So it would be really nice if we
+could emulate that in Haskell.
+
+189
+00:10:24,650 --> 00:10:31,040
+And we can do it with infinite
+values, in particular infinite lists.
+
+190
+00:10:31,040 --> 00:10:35,860
+It's very easy to type an
+infinite list in Haskell.
+
+191
+00:10:35,860 --> 00:10:39,230
+You could just use the syntax down
+here, where you see 1 through 3,
+
+192
+00:10:39,230 --> 00:10:42,440
+remove the 3 1 dot dot, and
+that is an infinite list
+
+193
+00:10:42,440 --> 00:10:46,960
+of all the natural numbers extending
+on as far as you can imagine.
+
+194
+00:10:46,960 --> 00:10:49,925
+>> I want to introduce a
+concept of folds right away.
+
+195
+00:10:49,925 --> 00:10:51,800
+And again, the purpose
+of this seminar is not
+
+196
+00:10:51,800 --> 00:10:55,770
+to learn about folds in Haskell
+or higher order functions.
+
+197
+00:10:55,770 --> 00:10:59,640
+But I just want to introduce it to
+give an accurate sense of how weird
+
+198
+00:10:59,640 --> 00:11:03,700
+Haskell is and how powerful it is.
+
+199
+00:11:03,700 --> 00:11:08,000
+And in particular, we're going to be--
+when we do our different drum parts,
+
+200
+00:11:08,000 --> 00:11:12,790
+we're going to be manipulating lists of
+numbers, folding them onto each other.
+
+201
+00:11:12,790 --> 00:11:17,290
+And to do that, we'll
+be using maps and folds.
+
+202
+00:11:17,290 --> 00:11:21,770
+>> There's a right associative
+fold, which is this one right
+
+203
+00:11:21,770 --> 00:11:26,990
+here-- 1 minus the quantity, 2
+minus the quantity, 3 minus 0.
+
+204
+00:11:26,990 --> 00:11:29,170
+And the syntax for a
+fold, you give a fold
+
+205
+00:11:29,170 --> 00:11:34,680
+a base value and then an operation--
+in this case, addition or subtraction.
+
+206
+00:11:34,680 --> 00:11:36,280
+I've shown both cases.
+
+207
+00:11:36,280 --> 00:11:41,760
+And then there's an accumulator that
+accumulates over the entire list,
+
+208
+00:11:41,760 --> 00:11:46,330
+applying that operator plus or
+minus, and then accumulating it.
+
+209
+00:11:46,330 --> 00:11:52,680
+So this will be the-- if it was called
+with fold r plus of 0, starting with 0,
+
+210
+00:11:52,680 --> 00:11:54,720
+we would then sum all
+the numbers in that list.
+
+211
+00:11:54,720 --> 00:11:57,134
+And that's a list from 1 to 3.
+
+212
+00:11:57,134 --> 00:12:00,050
+CONNOR HARRIS: So to put it another
+way, fold r takes three arguments.
+
+213
+00:12:00,050 --> 00:12:02,540
+There's a function that
+itself takes two arguments,
+
+214
+00:12:02,540 --> 00:12:05,400
+then there's a starter value,
+and there's a list of values.
+
+215
+00:12:05,400 --> 00:12:08,570
+And what you do is you take
+starter value, first value,
+
+216
+00:12:08,570 --> 00:12:09,850
+put them into the function.
+
+217
+00:12:09,850 --> 00:12:11,607
+What do you get out,
+take that, feed that
+
+218
+00:12:11,607 --> 00:12:13,940
+into the function of the
+second value, what you get out,
+
+219
+00:12:13,940 --> 00:12:16,690
+take that, feed that into the
+function of the third value.
+
+220
+00:12:16,690 --> 00:12:18,740
+And then if you go down
+this whole list this way,
+
+221
+00:12:18,740 --> 00:12:22,970
+you're going to get eventually
+some singular value that's
+
+222
+00:12:22,970 --> 00:12:25,720
+of the same type of what you started
+out with and of the same type
+
+223
+00:12:25,720 --> 00:12:29,147
+as things in the list, and then
+that's the return result of fold R.
+
+224
+00:12:29,147 --> 00:12:31,980
+STEPHEN KREWSON: So in particular,
+these are higher order functions,
+
+225
+00:12:31,980 --> 00:12:34,460
+because they're taking another
+function as one of the arguments.
+
+226
+00:12:34,460 --> 00:12:34,770
+>> CONNOR HARRIS: Yeah.
+
+227
+00:12:34,770 --> 00:12:37,820
+If you've used certain other
+languages-- I know R, [INAUDIBLE]
+
+228
+00:12:37,820 --> 00:12:41,510
+language has this, called Reduce.
+
+229
+00:12:41,510 --> 00:12:45,460
+You might have similar functions
+in other languages, just called
+
+230
+00:12:45,460 --> 00:12:48,160
+different things.
+
+231
+00:12:48,160 --> 00:12:50,680
+>> STEPHEN KREWSON: And
+what's nice about fold R
+
+232
+00:12:50,680 --> 00:12:53,880
+in this instance is that fold
+R can work with infinite lists.
+
+233
+00:12:53,880 --> 00:12:59,490
+So in this bottom, this P5
+is generating the notes that
+
+234
+00:12:59,490 --> 00:13:03,120
+are turned on in the step sequencer for
+some drum part, the fifth drum part,
+
+235
+00:13:03,120 --> 00:13:05,480
+and maybe it's a conga
+drum or something.
+
+236
+00:13:05,480 --> 00:13:09,719
+And this is a deliberately
+obtuse way of writing this,
+
+237
+00:13:09,719 --> 00:13:11,510
+but it's fun, because
+it demonstrates a lot
+
+238
+00:13:11,510 --> 00:13:14,460
+of things about Haskell and Euterpea.
+
+239
+00:13:14,460 --> 00:13:20,650
+>> So fold R of this colon-- colon is
+just an operator that pushes things
+
+240
+00:13:20,650 --> 00:13:25,700
+together on a list-- called on an empty
+list, which is just the empty brackets.
+
+241
+00:13:25,700 --> 00:13:28,250
+And I'm calling that
+on this infinite list.
+
+242
+00:13:28,250 --> 00:13:31,570
+This is actually two lists
+added together down here.
+
+243
+00:13:31,570 --> 00:13:37,150
+The list 1 comma 6 dot
+dot is 1, 6, 11, 16.
+
+244
+00:13:37,150 --> 00:13:39,750
+So Haskell-- in just
+a few characters, you
+
+245
+00:13:39,750 --> 00:13:42,420
+can generate the entire
+sequence of numbers
+
+246
+00:13:42,420 --> 00:13:46,240
+that are five numbers apart
+stretching on into infinity.
+
+247
+00:13:46,240 --> 00:13:49,860
+And I prepend to that
+this shorter little list--
+
+248
+00:13:49,860 --> 00:13:54,370
+3, 8, 21-- just to show you
+how you can concatenate lists.
+
+249
+00:13:54,370 --> 00:13:55,790
+>> And then I've folded on itself.
+
+250
+00:13:55,790 --> 00:14:01,510
+And this ends up just being a kind of
+identity operation, but it's infinite.
+
+251
+00:14:01,510 --> 00:14:06,070
+And fold R can do that, because it
+lazily evaluates, as in the above.
+
+252
+00:14:06,070 --> 00:14:10,582
+If we have a 1 and a 2 and 3, we can
+just bracket off the entire rest of it.
+
+253
+00:14:10,582 --> 00:14:12,290
+That won't work for
+minus or plus, but it
+
+254
+00:14:12,290 --> 00:14:17,760
+will work for this colon
+identity operation on the list.
+
+255
+00:14:17,760 --> 00:14:24,620
+>> So how do we practically use that if we
+have an infinitely long list of things?
+
+256
+00:14:24,620 --> 00:14:26,500
+Well, Haskell provides
+a lot of functions--
+
+257
+00:14:26,500 --> 00:14:29,450
+and look more into these in
+your own time-- such as take
+
+258
+00:14:29,450 --> 00:14:32,200
+which says, OK, we're
+generating this infinite list,
+
+259
+00:14:32,200 --> 00:14:35,950
+but we're just going to take some
+number of it And in this case--
+
+260
+00:14:35,950 --> 00:14:38,410
+we'll see this later in
+our drum machine code--
+
+261
+00:14:38,410 --> 00:14:43,740
+GM is just some kind of global
+variable for the number of steps
+
+262
+00:14:43,740 --> 00:14:44,610
+in the sequencer.
+
+263
+00:14:44,610 --> 00:14:47,630
+On the roll-in machines I
+showed you, that's typically 16,
+
+264
+00:14:47,630 --> 00:14:51,475
+but I have implemented it with 32.
+
+265
+00:14:51,475 --> 00:14:54,470
+It doesn't really matter.
+
+266
+00:14:54,470 --> 00:15:00,230
+>> Haskell is also pure, so it has strong
+static typing that Connor alluded to.
+
+267
+00:15:00,230 --> 00:15:03,220
+So functions are
+mathematical in the sense--
+
+268
+00:15:03,220 --> 00:15:06,600
+they're more mathematical
+that they're guaranteed
+
+269
+00:15:06,600 --> 00:15:11,530
+to not access or change any kind of
+variable or perform input or output.
+
+270
+00:15:11,530 --> 00:15:14,420
+So if you have a function,
+it's deterministic.
+
+271
+00:15:14,420 --> 00:15:17,400
+It will always return the same
+value in the state of the program
+
+272
+00:15:17,400 --> 00:15:19,310
+or remain the same.
+
+273
+00:15:19,310 --> 00:15:22,940
+There are, of course, monadic exceptions
+to this, but that's beyond our scope.
+
+274
+00:15:22,940 --> 00:15:23,900
+>> CONNOR HARRIS: Yeah.
+
+275
+00:15:23,900 --> 00:15:26,946
+What this means, though, is there
+are a few important [INAUDIBLE]
+
+276
+00:15:26,946 --> 00:15:27,820
+consequences of this.
+
+277
+00:15:27,820 --> 00:15:30,940
+One is that it's very easy to
+parallelize Haskell programs.
+
+278
+00:15:30,940 --> 00:15:32,773
+Because if you have,
+say, a function of that
+
+279
+00:15:32,773 --> 00:15:36,064
+needs to operate on a million values, if
+you know that the function will always
+
+280
+00:15:36,064 --> 00:15:39,280
+give out the same value if
+you feed at a certain value--
+
+281
+00:15:39,280 --> 00:15:43,055
+if you're [INAUDIBLE] f of 1, f of
+2, then f of 3 or whatnot-- f of 1
+
+282
+00:15:43,055 --> 00:15:45,180
+is not going to write out
+to a file or do something
+
+283
+00:15:45,180 --> 00:15:46,850
+that will alter the value of f2.
+
+284
+00:15:46,850 --> 00:15:50,220
+You can just split up this function to a
+million different machines or a million
+
+285
+00:15:50,220 --> 00:15:54,720
+different threads or whatever,
+get all the responses back,
+
+286
+00:15:54,720 --> 00:15:56,900
+get all the return values
+back, and then that's it.
+
+287
+00:15:56,900 --> 00:15:59,780
+So very easy to parallelize things.
+
+288
+00:15:59,780 --> 00:16:03,140
+>> The downside is that input
+and output especially
+
+289
+00:16:03,140 --> 00:16:05,720
+fit into the type system
+in very complicated ways.
+
+290
+00:16:05,720 --> 00:16:09,010
+We won't go into that right now, but I
+encourage you to look at some resources
+
+291
+00:16:09,010 --> 00:16:11,175
+online if you want to learn about that.
+
+292
+00:16:11,175 --> 00:16:13,960
+
+293
+00:16:13,960 --> 00:16:16,550
+>> STEPHEN KREWSON: So
+type classes-- and this
+
+294
+00:16:16,550 --> 00:16:21,610
+was-- classes of types
+were invented to solve
+
+295
+00:16:21,610 --> 00:16:24,160
+a problem of operator overloading.
+
+296
+00:16:24,160 --> 00:16:27,590
+So we wanted to have equality
+between different types of things.
+
+297
+00:16:27,590 --> 00:16:31,040
+Of course, we could think of--
+equality between numeric types
+
+298
+00:16:31,040 --> 00:16:34,720
+is very easy to think about, but
+what about equality between lists?
+
+299
+00:16:34,720 --> 00:16:37,610
+What about equality between
+tree leg data structures?
+
+300
+00:16:37,610 --> 00:16:43,130
+And this is all possible in
+Haskell because of type classes.
+
+301
+00:16:43,130 --> 00:16:48,000
+>> So if you define a certain data type--
+and here, these are musical pitches.
+
+302
+00:16:48,000 --> 00:16:50,960
+We're finally getting
+to some computer music.
+
+303
+00:16:50,960 --> 00:16:57,420
+So we have C, C sharp,
+and so on and so forth.
+
+304
+00:16:57,420 --> 00:17:01,080
+They belong to a bunch of
+different type classes.
+
+305
+00:17:01,080 --> 00:17:03,510
+EQ-- they belong to the EQ type class.
+
+306
+00:17:03,510 --> 00:17:06,780
+That means they support
+equality operations.
+
+307
+00:17:06,780 --> 00:17:12,650
+So you can evaluate whether one
+sequence of musical primitives
+
+308
+00:17:12,650 --> 00:17:15,400
+is the same as a different one.
+
+309
+00:17:15,400 --> 00:17:17,280
+>> They belong to the ordinal class.
+
+310
+00:17:17,280 --> 00:17:19,479
+That means there's an ordering to these.
+
+311
+00:17:19,479 --> 00:17:27,670
+D comes after C. C sharp
+comes after C as well.
+
+312
+00:17:27,670 --> 00:17:29,840
+They belong to the class
+show, which means they can
+
+313
+00:17:29,840 --> 00:17:33,000
+be printed to a console or terminal.
+
+314
+00:17:33,000 --> 00:17:36,090
+They belong to the
+class enumerated, which
+
+315
+00:17:36,090 --> 00:17:39,770
+means that even though
+these are characters,
+
+316
+00:17:39,770 --> 00:17:45,340
+they have an underlying numeric
+representation starting at 0
+
+317
+00:17:45,340 --> 00:17:48,960
+and going off through however
+many things are here, 20 or so,
+
+318
+00:17:48,960 --> 00:17:51,770
+or 30 or 40, maybe.
+
+319
+00:17:51,770 --> 00:17:54,259
+>> CONNOR HARRIS: And when
+we have a data type
+
+320
+00:17:54,259 --> 00:17:57,050
+that derives-- with that keyword
+"deriving--" a certain type class,
+
+321
+00:17:57,050 --> 00:18:01,160
+it means that the compiler will try
+to construct something automatically.
+
+322
+00:18:01,160 --> 00:18:05,120
+So maybe you'll want to
+define a quality differently.
+
+323
+00:18:05,120 --> 00:18:09,450
+You'll want to define C sharp
+as equal to D flat, for example.
+
+324
+00:18:09,450 --> 00:18:11,560
+With this construction
+here, I don't think C sharp
+
+325
+00:18:11,560 --> 00:18:14,940
+and D flat will be equal, because
+the compiler will automatically
+
+326
+00:18:14,940 --> 00:18:19,670
+say every different possible value
+is distinct from every other.
+
+327
+00:18:19,670 --> 00:18:22,930
+>> So it is possible to override
+the default implementations
+
+328
+00:18:22,930 --> 00:18:25,730
+of these types of classes.
+
+329
+00:18:25,730 --> 00:18:28,640
+Again, look at the reference if
+you want to learn about that.
+
+330
+00:18:28,640 --> 00:18:31,767
+
+331
+00:18:31,767 --> 00:18:33,600
+STEPHEN KREWSON: And
+here, actually, this'll
+
+332
+00:18:33,600 --> 00:18:36,930
+be helpful for when we code later.
+
+333
+00:18:36,930 --> 00:18:42,150
+We see some of the infix operators
+for sequential composition,
+
+334
+00:18:42,150 --> 00:18:46,570
+parallel composition, and so
+forth, these pluses and equal signs
+
+335
+00:18:46,570 --> 00:18:48,620
+surrounded by colons.
+
+336
+00:18:48,620 --> 00:18:53,330
+That means we can play these different
+musical primitives one after the other.
+
+337
+00:18:53,330 --> 00:18:54,590
+That's sequential composition.
+
+338
+00:18:54,590 --> 00:18:57,170
+>> Or we can play them in
+parallel at the same time.
+
+339
+00:18:57,170 --> 00:19:05,100
+So I can have a musical value,
+and then this equals and colons,
+
+340
+00:19:05,100 --> 00:19:09,669
+infix parallel composition operator,
+and play them as a kind of chord.
+
+341
+00:19:09,669 --> 00:19:11,460
+And we're going to use
+this when we combine
+
+342
+00:19:11,460 --> 00:19:15,080
+our drum part with our
+little Frere Jacques song
+
+343
+00:19:15,080 --> 00:19:19,460
+to play these two sequences of
+musical values at the same time.
+
+344
+00:19:19,460 --> 00:19:24,520
+
+345
+00:19:24,520 --> 00:19:29,250
+>> Currying is-- Curry was last
+name of Haskell Curry, who
+
+346
+00:19:29,250 --> 00:19:31,850
+the Haskell image is named after.
+
+347
+00:19:31,850 --> 00:19:34,330
+And this allows us a
+nice elegance when we're
+
+348
+00:19:34,330 --> 00:19:36,880
+writing all these different
+functions or filters that we're
+
+349
+00:19:36,880 --> 00:19:39,330
+going to be mapping over our lists.
+
+350
+00:19:39,330 --> 00:19:42,810
+A function of two
+arguments-- f of x and y--
+
+351
+00:19:42,810 --> 00:19:46,630
+can be represented as
+f of x applied to y.
+
+352
+00:19:46,630 --> 00:19:49,800
+So it's a function of
+one argument that returns
+
+353
+00:19:49,800 --> 00:19:51,240
+another function of one argument.
+
+354
+00:19:51,240 --> 00:19:56,962
+So this means we can map a
+function f of x over list of y's.
+
+355
+00:19:56,962 --> 00:19:58,920
+CONNOR HARRIS: Want to
+give an example of this?
+
+356
+00:19:58,920 --> 00:19:59,836
+STEPHEN KREWSON: Yeah.
+
+357
+00:19:59,836 --> 00:20:05,390
+I have an example right here from
+some of the things we will write.
+
+358
+00:20:05,390 --> 00:20:10,500
+So replicate 2-- well,
+replicate will take
+
+359
+00:20:10,500 --> 00:20:13,040
+one value, which is how many
+times to replicate something,
+
+360
+00:20:13,040 --> 00:20:16,690
+and then it will take a value--
+usually a list or something.
+
+361
+00:20:16,690 --> 00:20:23,450
+So here, we're mapping
+replicate 2 over another list.
+
+362
+00:20:23,450 --> 00:20:27,440
+>> So if we map replicate 2,
+if we replicate 2 apply
+
+363
+00:20:27,440 --> 00:20:31,890
+to the first element of this list-- and
+these are lists of musical phrases--
+
+364
+00:20:31,890 --> 00:20:37,650
+will produce two of "you sleeping--"
+so are you sleeping, are you sleeping.
+
+365
+00:20:37,650 --> 00:20:40,040
+So now we have two.
+
+366
+00:20:40,040 --> 00:20:42,570
+But replicate takes two
+arguments, but because we're
+
+367
+00:20:42,570 --> 00:20:47,100
+currying and then mapping,
+we can represent replicate 2
+
+368
+00:20:47,100 --> 00:20:52,310
+as having been returned as a function of
+one argument-- just replicating twice.
+
+369
+00:20:52,310 --> 00:20:57,010
+And then we're applying that to each
+element of this list of phrases.
+
+370
+00:20:57,010 --> 00:21:01,900
+>> And concat is a Haskell
+operation for flattening a list.
+
+371
+00:21:01,900 --> 00:21:04,400
+Because replicate 2 will
+produce a list of lists.
+
+372
+00:21:04,400 --> 00:21:06,660
+And this is this intermediate form here.
+
+373
+00:21:06,660 --> 00:21:10,365
+And so then we can concat
+or flatten that out twice.
+
+374
+00:21:10,365 --> 00:21:12,240
+CONNOR HARRIS: A simpler
+example of currying,
+
+375
+00:21:12,240 --> 00:21:15,323
+if you'd like-- imagine f is just a
+multiplication function that takes two
+
+376
+00:21:15,323 --> 00:21:16,840
+arguments and returns their product.
+
+377
+00:21:16,840 --> 00:21:19,320
+So if you have an f 4 5, it's 20.
+
+378
+00:21:19,320 --> 00:21:22,670
+But you can think of this as
+also-- you have a function f 4
+
+379
+00:21:22,670 --> 00:21:25,560
+that takes an argument and returns
+four times this argument-- just
+
+380
+00:21:25,560 --> 00:21:27,870
+partial application which
+just one argument 4.
+
+381
+00:21:27,870 --> 00:21:31,182
+And if you feed f of 4
+5, that will give you 20.
+
+382
+00:21:31,182 --> 00:21:32,890
+And that's a simpler
+example of currying.
+
+383
+00:21:32,890 --> 00:21:34,473
+It's usually one of the textbook ones.
+
+384
+00:21:34,473 --> 00:21:38,860
+
+385
+00:21:38,860 --> 00:21:42,110
+>> STEPHEN KREWSON: Lambda
+expressions or anonymous functions
+
+386
+00:21:42,110 --> 00:21:47,330
+are another Haskell hallmark.
+
+387
+00:21:47,330 --> 00:21:51,242
+So if we need to whip up a
+little function life replicate,
+
+388
+00:21:51,242 --> 00:21:52,950
+but say it's not in
+the standard library,
+
+389
+00:21:52,950 --> 00:21:56,150
+we can use a syntax
+similar to the following.
+
+390
+00:21:56,150 --> 00:21:58,730
+And we'll breeze over this.
+
+391
+00:21:58,730 --> 00:22:02,160
+One thing you'll see a lot of in the
+drum machine is we're making calls
+
+392
+00:22:02,160 --> 00:22:05,790
+to something called
+filter, which like before,
+
+393
+00:22:05,790 --> 00:22:08,185
+is a mapping of a function
+over a list, but it's
+
+394
+00:22:08,185 --> 00:22:10,260
+a mapping of a Boolean function.
+
+395
+00:22:10,260 --> 00:22:13,390
+>> So we have here an example
+of a an anonymously
+
+396
+00:22:13,390 --> 00:22:19,150
+defined Boolean function that
+just takes a couple values.
+
+397
+00:22:19,150 --> 00:22:22,990
+This is not strictly speaking
+an anonymous function.
+
+398
+00:22:22,990 --> 00:22:25,850
+But it's define with
+that syntax for brevity,
+
+399
+00:22:25,850 --> 00:22:28,007
+and this just takes x module n--
+
+400
+00:22:28,007 --> 00:22:28,840
+CONNOR HARRIS: Yeah.
+
+401
+00:22:28,840 --> 00:22:31,330
+So f is a function of
+two arguments n and p
+
+402
+00:22:31,330 --> 00:22:35,440
+that returns a function that is itself
+a function of one argument, namely x.
+
+403
+00:22:35,440 --> 00:22:38,815
+
+404
+00:22:38,815 --> 00:22:40,690
+STEPHEN KREWSON: I
+mentioned infix operators.
+
+405
+00:22:40,690 --> 00:22:42,642
+What are infix operators?
+
+406
+00:22:42,642 --> 00:22:45,710
+Well, infix operators are the
+normal way we represent operations,
+
+407
+00:22:45,710 --> 00:22:49,910
+say, in mathematics-- 2 plus
+2 instead of the operator plus
+
+408
+00:22:49,910 --> 00:22:51,202
+and then two arguments 2 and 2.
+
+409
+00:22:51,202 --> 00:22:53,701
+CONNOR HARRIS: It's called
+reverse polish notation, which is
+
+410
+00:22:53,701 --> 00:22:55,330
+a term I doubt any of you would know.
+
+411
+00:22:55,330 --> 00:22:56,288
+>> STEPHEN KREWSON: Right.
+
+412
+00:22:56,288 --> 00:22:58,290
+Reverse polish or prefix notation.
+
+413
+00:22:58,290 --> 00:23:01,412
+But Haskell decided to
+use infix operators.
+
+414
+00:23:01,412 --> 00:23:03,120
+So these are some of
+the custom ones that
+
+415
+00:23:03,120 --> 00:23:07,770
+are defined for the
+Euterpea DSCL in Haskell.
+
+416
+00:23:07,770 --> 00:23:10,730
+So this was sequential composition.
+
+417
+00:23:10,730 --> 00:23:16,340
+This was parallel composition, and this
+was truncating parallel composition.
+
+418
+00:23:16,340 --> 00:23:18,710
+And we'll need that
+with our drum machine,
+
+419
+00:23:18,710 --> 00:23:22,640
+because we'll use the last
+operator in that little tuple there
+
+420
+00:23:22,640 --> 00:23:26,330
+to play the drum machine along
+with our Frere Jacques song.
+
+421
+00:23:26,330 --> 00:23:28,650
+And our drum machine is
+going to be infinite.
+
+422
+00:23:28,650 --> 00:23:30,920
+It just plays forever.
+
+423
+00:23:30,920 --> 00:23:32,692
+But the Frere Jacques song is not.
+
+424
+00:23:32,692 --> 00:23:33,510
+It's not that long.
+
+425
+00:23:33,510 --> 00:23:36,610
+It's only a few bars.
+
+426
+00:23:36,610 --> 00:23:43,030
+So we need to stop the drum machine as
+soon as the shorter musical value comes
+
+427
+00:23:43,030 --> 00:23:43,700
+to an end.
+
+428
+00:23:43,700 --> 00:23:46,980
+And that infixed operator
+is super helpful with that.
+
+429
+00:23:46,980 --> 00:23:50,090
+>> And infix notation like
+this is kind of nice,
+
+430
+00:23:50,090 --> 00:23:57,095
+because say you have a function like
+quote, which gives the integer division
+
+431
+00:23:57,095 --> 00:24:01,010
+of x by something else--
+sorry, that should be a and b.
+
+432
+00:24:01,010 --> 00:24:04,740
+You could write it as a quote of b.
+
+433
+00:24:04,740 --> 00:24:09,670
+So if you put-- element is
+another example of this.
+
+434
+00:24:09,670 --> 00:24:14,730
+x element in some list, if you put
+it in Backticks, you can use it.
+
+435
+00:24:14,730 --> 00:24:20,400
+Even though it's not a symbol
+like plus or minus or times,
+
+436
+00:24:20,400 --> 00:24:24,630
+you can use the name of a
+function like that in Backticks
+
+437
+00:24:24,630 --> 00:24:27,045
+as infix operator, which is pretty cool.
+
+438
+00:24:27,045 --> 00:24:29,670
+CONNOR HARRIS: Again, this is
+all just syntactic sugar, really.
+
+439
+00:24:29,670 --> 00:24:32,310
+It doesn't affect the core of language.
+
+440
+00:24:32,310 --> 00:24:37,440
+>> STEPHEN KREWSON: So we see here for the
+last phrase of our Frere Jacques song,
+
+441
+00:24:37,440 --> 00:24:45,740
+I played some little chords or
+thirds using the parallel composition
+
+442
+00:24:45,740 --> 00:24:46,240
+operator.
+
+443
+00:24:46,240 --> 00:24:50,680
+
+444
+00:24:50,680 --> 00:24:54,950
+This is another way of saying some
+of what we've just been saying.
+
+445
+00:24:54,950 --> 00:24:59,986
+So you can map functions
+of one argument over lists.
+
+446
+00:24:59,986 --> 00:25:02,860
+CONNOR HARRIS: Again, references
+for Haskell-- introductory textbooks
+
+447
+00:25:02,860 --> 00:25:04,680
+will have all of this in it.
+
+448
+00:25:04,680 --> 00:25:07,790
+>> STEPHEN KREWSON: So here's a pretty
+key line of the step sequencer
+
+449
+00:25:07,790 --> 00:25:12,820
+we'll take a look at using
+a list comprehension.
+
+450
+00:25:12,820 --> 00:25:17,810
+And we see here is that element
+in fixed operator in back quotes.
+
+451
+00:25:17,810 --> 00:25:23,030
+So if x is an element of the list of
+x's, then we'll call up perc functions.
+
+452
+00:25:23,030 --> 00:25:25,100
+So perc is just a percussion function.
+
+453
+00:25:25,100 --> 00:25:30,200
+It takes some value p that's
+part of the bounded set of all
+
+454
+00:25:30,200 --> 00:25:35,310
+the different percussion sounds
+that we saw in a previous slide,
+
+455
+00:25:35,310 --> 00:25:38,840
+and then it gives that
+duration of a quarter note.
+
+456
+00:25:38,840 --> 00:25:43,190
+Else it gives it a QNR, and QNR
+is just a quarter note rest.
+
+457
+00:25:43,190 --> 00:25:44,970
+>> So this is building up something nice.
+
+458
+00:25:44,970 --> 00:25:52,110
+We have a list of elements, and
+we'll loop over some list from one
+
+459
+00:25:52,110 --> 00:25:54,540
+to the max value of our step sequencer.
+
+460
+00:25:54,540 --> 00:25:58,290
+And when we're at a particular i in
+that list of one to the max value,
+
+461
+00:25:58,290 --> 00:26:02,970
+if that i is a member of this
+set created in this function,
+
+462
+00:26:02,970 --> 00:26:06,040
+well, then we turn it
+into a percussion note.
+
+463
+00:26:06,040 --> 00:26:10,960
+Otherwise, we just play a rest, which
+is to say, we just remain silent.
+
+464
+00:26:10,960 --> 00:26:16,050
+And we can see here that in
+this list comprehension syntax,
+
+465
+00:26:16,050 --> 00:26:20,030
+x is populated by this
+list constructed one
+
+466
+00:26:20,030 --> 00:26:22,462
+to the global size of the sequencer.
+
+467
+00:26:22,462 --> 00:26:23,295
+CONNOR HARRIS: Yeah.
+
+468
+00:26:23,295 --> 00:26:26,340
+The basic syntax for
+list comprehensions is
+
+469
+00:26:26,340 --> 00:26:30,810
+bracket, value involving
+some variables, bar,
+
+470
+00:26:30,810 --> 00:26:34,260
+possible values of the variables
+themselves, closed bracket.
+
+471
+00:26:34,260 --> 00:26:38,545
+And if you've done set builder notation
+in any sort of mathematics class,
+
+472
+00:26:38,545 --> 00:26:45,999
+you might have set 2n such
+that n is in or n is in z.
+
+473
+00:26:45,999 --> 00:26:48,290
+Similar thing-- this notation
+is meant to be suggestive
+
+474
+00:26:48,290 --> 00:26:49,630
+of that mathematical notation.
+
+475
+00:26:49,630 --> 00:26:51,880
+STEPHEN KREWSON: And you can
+apply multiple predicates
+
+476
+00:26:51,880 --> 00:26:56,250
+and multiple filters in a list
+comprehension, which is quite nice.
+
+477
+00:26:56,250 --> 00:27:01,800
+Algebraic types-- we
+won't linger long here.
+
+478
+00:27:01,800 --> 00:27:04,840
+There's not a good notion in
+Haskell or a good, obvious notion
+
+479
+00:27:04,840 --> 00:27:10,720
+of how to take, say, a default
+parameter to a function or something.
+
+480
+00:27:10,720 --> 00:27:13,370
+In Python, this is quite easy.
+
+481
+00:27:13,370 --> 00:27:18,460
+You can just say with equals on
+the declaration of the function,
+
+482
+00:27:18,460 --> 00:27:21,420
+a default value in
+case none is supplied.
+
+483
+00:27:21,420 --> 00:27:27,010
+>> In Haskell, you could maybe
+use maybe the maybe type,
+
+484
+00:27:27,010 --> 00:27:32,190
+which takes either nothing
+or a value of type just a.
+
+485
+00:27:32,190 --> 00:27:38,630
+So we exploit this in the drum machine
+to allow us to give optional volume
+
+486
+00:27:38,630 --> 00:27:40,730
+parameters to each of the drum parts.
+
+487
+00:27:40,730 --> 00:27:46,160
+
+488
+00:27:46,160 --> 00:27:54,680
+So that gives us a way of having EQ
+or a volume on a particular channel.
+
+489
+00:27:54,680 --> 00:27:56,440
+>> CONNOR HARRIS: In
+other Haskell examples,
+
+490
+00:27:56,440 --> 00:28:00,450
+you might see maybe used for
+functions that might fail.
+
+491
+00:28:00,450 --> 00:28:03,470
+This is a common one.
+
+492
+00:28:03,470 --> 00:28:07,010
+>> STEPHEN KREWSON: And you can supply
+some sort of error message as a default.
+
+493
+00:28:07,010 --> 00:28:11,020
+And that's particularly handy when
+you're doing the I/O in Haskell.
+
+494
+00:28:11,020 --> 00:28:12,044
+That can be tricks.
+
+495
+00:28:12,044 --> 00:28:13,960
+CONNOR HARRIS: Or for a
+similar example, think
+
+496
+00:28:13,960 --> 00:28:17,460
+of a function that involves division
+of a parameter that might be 0.
+
+497
+00:28:17,460 --> 00:28:20,020
+And that function could
+return maybe whatever.
+
+498
+00:28:20,020 --> 00:28:22,802
+So if there's no division by 0,
+it will return just whatever.
+
+499
+00:28:22,802 --> 00:28:25,010
+And if there is division by
+0, it will return nothing
+
+500
+00:28:25,010 --> 00:28:26,910
+as a way of signaling the error.
+
+501
+00:28:26,910 --> 00:28:30,330
+Because one consequence of
+Haskell's very strict typing
+
+502
+00:28:30,330 --> 00:28:34,100
+is that there's no real--
+exceptions are awkward, basically,
+
+503
+00:28:34,100 --> 00:28:36,160
+error handling is awkward.
+
+504
+00:28:36,160 --> 00:28:39,440
+And this is one very
+common way of doing it.
+
+505
+00:28:39,440 --> 00:28:42,990
+>> STEPHEN KREWSON: So now we get
+to another mind-bending thing
+
+506
+00:28:42,990 --> 00:28:49,160
+about Haskell, which is pattern
+matching and function definitions.
+
+507
+00:28:49,160 --> 00:28:53,390
+I showed you in the last slide the
+declaration of the step sequence
+
+508
+00:28:53,390 --> 00:28:58,170
+function, which took a maybe value,
+then an int, then a list of ints,
+
+509
+00:28:58,170 --> 00:29:03,850
+then returns a sequence of
+music values there annotated
+
+510
+00:29:03,850 --> 00:29:05,375
+with both pitch and volume.
+
+511
+00:29:05,375 --> 00:29:08,030
+
+512
+00:29:08,030 --> 00:29:11,820
+>> So those three arguments can be
+pattern matched in the following way.
+
+513
+00:29:11,820 --> 00:29:16,660
+And we always want to be sure to
+do a base case or exit case first.
+
+514
+00:29:16,660 --> 00:29:19,690
+And these underscores
+can just be interpreted
+
+515
+00:29:19,690 --> 00:29:22,340
+to mean any value that's there.
+
+516
+00:29:22,340 --> 00:29:26,580
+So if we get a call to step sequence
+with some value, some other value,
+
+517
+00:29:26,580 --> 00:29:32,210
+and then the empty list, what we want
+to return is just silence, a rest 0.
+
+518
+00:29:32,210 --> 00:29:35,110
+>> And instead of that
+being an empty list or 0,
+
+519
+00:29:35,110 --> 00:29:38,150
+it's a rest 0, because we're
+dealing with the music type,
+
+520
+00:29:38,150 --> 00:29:43,230
+and the empty list of the music
+type is just a rest of no duration.
+
+521
+00:29:43,230 --> 00:29:45,680
+It's no music.
+
+522
+00:29:45,680 --> 00:29:51,460
+And then we see if we get a step
+sequence with a v for volume argument,
+
+523
+00:29:51,460 --> 00:29:57,290
+p for precaution instrument
+argument, and then a list of x's.
+
+524
+00:29:57,290 --> 00:29:58,360
+>> Then we do some stuff.
+
+525
+00:29:58,360 --> 00:30:01,290
+In particular, we apply
+this list comprehension,
+
+526
+00:30:01,290 --> 00:30:05,700
+and we perform some
+operations on the maybe value
+
+527
+00:30:05,700 --> 00:30:10,050
+to turn it into a numeric value so that
+it could be then enumerated and used
+
+528
+00:30:10,050 --> 00:30:12,300
+to select the instrument.
+
+529
+00:30:12,300 --> 00:30:16,730
+Again, this is a little
+bit deliberately inconcise
+
+530
+00:30:16,730 --> 00:30:20,580
+just to show all the weird things
+you can do in Haskell as you
+
+531
+00:30:20,580 --> 00:30:23,170
+take a look at it on your own time.
+
+532
+00:30:23,170 --> 00:30:23,802
+>> All right.
+
+533
+00:30:23,802 --> 00:30:26,010
+So we're finally getting to
+do what we set out to do,
+
+534
+00:30:26,010 --> 00:30:28,820
+which is make some computer music.
+
+535
+00:30:28,820 --> 00:30:32,250
+So we're going to try to
+make the Frere Jacques song.
+
+536
+00:30:32,250 --> 00:30:35,220
+So there are how many
+phrases in Frere Jacques?
+
+537
+00:30:35,220 --> 00:30:38,790
+
+538
+00:30:38,790 --> 00:30:39,680
+Four.
+
+539
+00:30:39,680 --> 00:30:40,460
+Great.
+
+540
+00:30:40,460 --> 00:30:42,490
+And what's nice is that
+they're all repeated
+
+541
+00:30:42,490 --> 00:30:46,990
+the same amount of times, which is two.
+
+542
+00:30:46,990 --> 00:30:50,730
+>> So we have four phrases
+each repeated two times.
+
+543
+00:30:50,730 --> 00:30:53,590
+And in particular, they're in a round.
+
+544
+00:30:53,590 --> 00:30:55,340
+And there are many,
+many ways to implement
+
+545
+00:30:55,340 --> 00:30:57,520
+a round that could be fun to do.
+
+546
+00:30:57,520 --> 00:31:00,260
+I've done it in a
+pretty simple way here,
+
+547
+00:31:00,260 --> 00:31:05,760
+which is just to construct-- the line
+function takes a list of music values
+
+548
+00:31:05,760 --> 00:31:10,390
+and turns it into sequential composition
+by applying that sequential composition
+
+549
+00:31:10,390 --> 00:31:13,000
+operator.
+
+550
+00:31:13,000 --> 00:31:19,540
+>> And then I delay the different parts
+by making them begin with a rest.
+
+551
+00:31:19,540 --> 00:31:22,770
+So I start with a rest of two measures,
+and then a rest of four measures,
+
+552
+00:31:22,770 --> 00:31:26,160
+and then a rest of six
+measures, and then the round
+
+553
+00:31:26,160 --> 00:31:32,290
+works, as we all know this song.
+
+554
+00:31:32,290 --> 00:31:37,180
+We see two annotations or
+modifications of the music values
+
+555
+00:31:37,180 --> 00:31:43,150
+that are contained in this sequential
+arrangement of music elements.
+
+556
+00:31:43,150 --> 00:31:44,810
+We have an add volume.
+
+557
+00:31:44,810 --> 00:31:48,960
+This is a function to annotate
+music with a particular volume.
+
+558
+00:31:48,960 --> 00:31:51,320
+This is a good example
+of a MIDI signal running
+
+559
+00:31:51,320 --> 00:31:57,510
+from 0 to 127, the seven bits of
+information that can be carried.
+
+560
+00:31:57,510 --> 00:32:00,650
+>> And then-- we saw it very
+briefly, but the general MIDI
+
+561
+00:32:00,650 --> 00:32:02,310
+list of all the different instruments.
+
+562
+00:32:02,310 --> 00:32:04,450
+And there's not a whole lot of them.
+
+563
+00:32:04,450 --> 00:32:11,230
+If you use a digital audio workstation,
+like Ableton Live or Pro Tools,
+
+564
+00:32:11,230 --> 00:32:17,560
+there's an incredibly wider range
+of synthesizers and VST instruments.
+
+565
+00:32:17,560 --> 00:32:21,510
+But the MIDI standard only
+has a few, or several dozen.
+
+566
+00:32:21,510 --> 00:32:22,799
+And some of them are funny.
+
+567
+00:32:22,799 --> 00:32:25,840
+I thought it would be fun if we played
+the instrument the MIDI instrument
+
+568
+00:32:25,840 --> 00:32:30,550
+helicopter, and then the
+next way through the round,
+
+569
+00:32:30,550 --> 00:32:37,980
+we did a pad synth, and then of
+this corny lead square wave synth,
+
+570
+00:32:37,980 --> 00:32:44,240
+and then voice ooze, which are a
+little bit indistinct on my bad MIDI
+
+571
+00:32:44,240 --> 00:32:46,410
+synthesizer, but they OK.
+
+572
+00:32:46,410 --> 00:32:50,030
+>> And then we see this let
+and in syntax from Haskell,
+
+573
+00:32:50,030 --> 00:32:54,030
+and then we're playing
+all these parts together
+
+574
+00:32:54,030 --> 00:32:56,265
+with the parallel composition operator.
+
+575
+00:32:56,265 --> 00:33:00,260
+
+576
+00:33:00,260 --> 00:33:02,296
+And we could probably show some of this.
+
+577
+00:33:02,296 --> 00:33:07,674
+
+578
+00:33:07,674 --> 00:33:08,340
+Here's the code.
+
+579
+00:33:08,340 --> 00:33:14,960
+And you can see in C, there'd be a
+lot of throat clearing and setting
+
+580
+00:33:14,960 --> 00:33:19,760
+the table code before you
+could make music like this.
+
+581
+00:33:19,760 --> 00:33:22,080
+Or any other programming
+language, you'd probably
+
+582
+00:33:22,080 --> 00:33:27,210
+have to interact with some sort of
+library or API and set everything up,
+
+583
+00:33:27,210 --> 00:33:28,725
+and then you'd have to clean up.
+
+584
+00:33:28,725 --> 00:33:33,810
+But here in Haskell is, I think, once
+you get the hang of it, incredibly
+
+585
+00:33:33,810 --> 00:33:35,770
+readable and very expressive.
+
+586
+00:33:35,770 --> 00:33:38,930
+
+587
+00:33:38,930 --> 00:33:43,240
+So there is the implementation
+of Frere Jacques.
+
+588
+00:33:43,240 --> 00:33:43,740
+All right.
+
+589
+00:33:43,740 --> 00:33:47,557
+Now we want to add percussion,
+and this is a little bit messier.
+
+590
+00:33:47,557 --> 00:33:49,015
+So let's take a look at the slides.
+
+591
+00:33:49,015 --> 00:33:56,880
+
+592
+00:33:56,880 --> 00:34:00,540
+So the big idea is to make
+a bunch of lists or parts.
+
+593
+00:34:00,540 --> 00:34:04,140
+On those roll-in machines, there
+were typically about maybe eight
+
+594
+00:34:04,140 --> 00:34:08,670
+to 10 rhythm or percussion parts.
+
+595
+00:34:08,670 --> 00:34:10,159
+And then use a bunch of techniques.
+
+596
+00:34:10,159 --> 00:34:14,889
+And we've talked about these-- using
+folds, filters, lambda functions,
+
+597
+00:34:14,889 --> 00:34:19,429
+mapped over lists to generate values
+in some range 1 to r, r is 16,
+
+598
+00:34:19,429 --> 00:34:20,699
+or 32 steps in the sequencer.
+
+599
+00:34:20,699 --> 00:34:23,810
+
+600
+00:34:23,810 --> 00:34:29,920
+>> And then if there's a value in that list
+as we're running through the sequencer,
+
+601
+00:34:29,920 --> 00:34:34,190
+running through it over and
+over, it turns on that note,
+
+602
+00:34:34,190 --> 00:34:36,060
+and that sample gets triggered.
+
+603
+00:34:36,060 --> 00:34:42,810
+
+604
+00:34:42,810 --> 00:34:47,110
+Here are all the different weird ways
+I came up with to generate notes.
+
+605
+00:34:47,110 --> 00:34:48,940
+Try it on your own semi sum.
+
+606
+00:34:48,940 --> 00:34:50,360
+It'll sound cool.
+
+607
+00:34:50,360 --> 00:34:53,066
+
+608
+00:34:53,066 --> 00:34:54,690
+Time permitting, we'll go through this.
+
+609
+00:34:54,690 --> 00:34:59,200
+But for right now, I guess
+we should demo what we have.
+
+610
+00:34:59,200 --> 00:35:01,380
+Let's hope this goes OK.
+
+611
+00:35:01,380 --> 00:35:02,670
+>> So this is GHCI.
+
+612
+00:35:02,670 --> 00:35:06,580
+
+613
+00:35:06,580 --> 00:35:09,121
+And we'll load a file
+I have called song.lhs,
+
+614
+00:35:09,121 --> 00:35:10,620
+which is the file I just showed you.
+
+615
+00:35:10,620 --> 00:35:11,470
+OK, great.
+
+616
+00:35:11,470 --> 00:35:15,010
+As Connor said earlier, it
+compiled, it type checked,
+
+617
+00:35:15,010 --> 00:35:18,380
+so I can breathe a lot easier.
+
+618
+00:35:18,380 --> 00:35:20,010
+It's not going to blow up on me.
+
+619
+00:35:20,010 --> 00:35:22,720
+>> I did want to show you something useful.
+
+620
+00:35:22,720 --> 00:35:25,900
+You can see that a
+module loaded called 50.
+
+621
+00:35:25,900 --> 00:35:28,240
+You can browse that module.
+
+622
+00:35:28,240 --> 00:35:32,092
+And this is so nice
+about doing-- maybe what
+
+623
+00:35:32,092 --> 00:35:34,550
+you're doing in Haskell is not
+called software development,
+
+624
+00:35:34,550 --> 00:35:36,980
+but you can do a lot of
+fun stuff on your own.
+
+625
+00:35:36,980 --> 00:35:42,410
+And the workflow is really nice as
+compared to a lot of other languages,
+
+626
+00:35:42,410 --> 00:35:45,872
+because you can see in a really
+readable way what's going on.
+
+627
+00:35:45,872 --> 00:35:47,830
+So we see that we have
+all these phrases, which
+
+628
+00:35:47,830 --> 00:35:53,760
+are lists of music pitches, and then we
+build these up into something larger,
+
+629
+00:35:53,760 --> 00:35:55,220
+which is a music song.
+
+630
+00:35:55,220 --> 00:35:58,450
+It's a musical unit.
+
+631
+00:35:58,450 --> 00:36:05,545
+And then we can play this all
+with a function called play music.
+
+632
+00:36:05,545 --> 00:36:09,040
+You can see that down here.
+
+633
+00:36:09,040 --> 00:36:11,310
+Which is just play.
+
+634
+00:36:11,310 --> 00:36:15,040
+>> I should say-- I didn't talk about
+this dollar sign that's everywhere.
+
+635
+00:36:15,040 --> 00:36:17,980
+Dollar sign is another infix operator.
+
+636
+00:36:17,980 --> 00:36:22,500
+But it has the lowest precedence
+of any operator, which effectively
+
+637
+00:36:22,500 --> 00:36:24,960
+means that everything on
+the left of the dollar sign
+
+638
+00:36:24,960 --> 00:36:28,460
+and the right of the dollar sign,
+we're going to get evaluated before it.
+
+639
+00:36:28,460 --> 00:36:31,430
+So it's sort of like another
+way of adding parenthesis.
+
+640
+00:36:31,430 --> 00:36:33,980
+
+641
+00:36:33,980 --> 00:36:36,220
+>> CONNOR HARRIS: It's basically
+function composition.
+
+642
+00:36:36,220 --> 00:36:40,026
+And it ensures that you don't have-- if
+you have functions either side or infix
+
+643
+00:36:40,026 --> 00:36:42,900
+operators on either side, they won't
+associate across it and give you
+
+644
+00:36:42,900 --> 00:36:46,030
+unexpected results.
+
+645
+00:36:46,030 --> 00:36:49,790
+>> STEPHEN KREWSON: So we can--
+using that, we can call.
+
+646
+00:36:49,790 --> 00:36:51,415
+First, we'll play it without the drums.
+
+647
+00:36:51,415 --> 00:37:00,330
+
+648
+00:37:00,330 --> 00:37:03,170
+That's the helicopter,
+the MIDI helicopter.
+
+649
+00:37:03,170 --> 00:37:05,495
+>> [MUSIC PLAYING]
+
+650
+00:37:05,495 --> 00:37:08,525
+
+651
+00:37:08,525 --> 00:37:09,525
+There's the square wave.
+
+652
+00:37:09,525 --> 00:37:24,520
+
+653
+00:37:24,520 --> 00:37:25,490
+The voice ooze.
+
+654
+00:37:25,490 --> 00:37:27,630
+And you can really go wild with this.
+
+655
+00:37:27,630 --> 00:37:30,872
+I picked a pretty simple one,
+because I knew I shouldn't bite off
+
+656
+00:37:30,872 --> 00:37:31,830
+more than I could chew.
+
+657
+00:37:31,830 --> 00:37:36,460
+Just keep it pretty simple
+to show the main ideas.
+
+658
+00:37:36,460 --> 00:37:39,952
+But then I was like, we've
+got to add some drums to this.
+
+659
+00:37:39,952 --> 00:37:41,910
+Just because this is a
+little bit impenetrable,
+
+660
+00:37:41,910 --> 00:37:45,790
+and I didn't use the
+name of the drum parts,
+
+661
+00:37:45,790 --> 00:37:49,490
+I mapped them-- because they're
+part of that enumerated class,
+
+662
+00:37:49,490 --> 00:37:51,500
+I mapped them to ints.
+
+663
+00:37:51,500 --> 00:37:53,120
+One is like a bass drum.
+
+664
+00:37:53,120 --> 00:37:54,370
+Zero is as well.
+
+665
+00:37:54,370 --> 00:37:56,000
+Seven is a high hat.
+
+666
+00:37:56,000 --> 00:38:00,920
+And down in here where the
+functions get a little more random,
+
+667
+00:38:00,920 --> 00:38:02,100
+these are like conga drums.
+
+668
+00:38:02,100 --> 00:38:08,360
+>> So if you think about-- maybe a
+fun way to implement a drum machine
+
+669
+00:38:08,360 --> 00:38:12,830
+is to use very orderly
+patterns on your bass drum.
+
+670
+00:38:12,830 --> 00:38:17,640
+So for instance, on filtering over the
+list with everything that gives back
+
+671
+00:38:17,640 --> 00:38:20,590
+a 1 when it's taken module 04.
+
+672
+00:38:20,590 --> 00:38:27,190
+So I get 1, 5, 9, 13, 17-- so this
+is the first beat of every measure.
+
+673
+00:38:27,190 --> 00:38:32,860
+>> And then this is the same
+thing shifted over two steps.
+
+674
+00:38:32,860 --> 00:38:33,850
+So that's the offbeat.
+
+675
+00:38:33,850 --> 00:38:37,480
+So this would be
+something like a high hat.
+
+676
+00:38:37,480 --> 00:38:39,640
+And then again, down here,
+it's a little random,
+
+677
+00:38:39,640 --> 00:38:41,080
+because we're doing conga drums.
+
+678
+00:38:41,080 --> 00:38:44,180
+And I have some maracas down here, too.
+
+679
+00:38:44,180 --> 00:38:50,280
+>> So I could call play drum machine,
+but it would go on forever,
+
+680
+00:38:50,280 --> 00:38:53,700
+and it might start grabbing up
+all the memory in my system.
+
+681
+00:38:53,700 --> 00:38:57,090
+So I'll call this function
+play music, which as we'll see,
+
+682
+00:38:57,090 --> 00:39:02,020
+use the truncating parallel composition
+to play our little Frere Jacques song
+
+683
+00:39:02,020 --> 00:39:04,200
+along with this weird drum machine.
+
+684
+00:39:04,200 --> 00:39:06,190
+So let's take a look.
+
+685
+00:39:06,190 --> 00:39:10,920
+And please do improve on my
+arrangement of all the drum parts.
+
+686
+00:39:10,920 --> 00:39:13,375
+Not my specialty, but I
+had a lot of fun doing it.
+
+687
+00:39:13,375 --> 00:39:17,678
+
+688
+00:39:17,678 --> 00:39:20,654
+>> [MUSIC PLAYING]
+
+689
+00:39:20,654 --> 00:39:52,260
+
+690
+00:39:52,260 --> 00:39:56,980
+>> So of course, this is all
+a little bit not as fun
+
+691
+00:39:56,980 --> 00:40:01,100
+if we can't convert it
+to a score so maybe it
+
+692
+00:40:01,100 --> 00:40:04,650
+could be interpreted
+by a human performer.
+
+693
+00:40:04,650 --> 00:40:06,535
+So I won't run it here.
+
+694
+00:40:06,535 --> 00:40:07,910
+I've already generated the files.
+
+695
+00:40:07,910 --> 00:40:10,280
+You can see that there's a
+dot LilyPond file-- and this
+
+696
+00:40:10,280 --> 00:40:14,500
+will be my segue over to
+Connor-- and a dot MIDI file,
+
+697
+00:40:14,500 --> 00:40:18,610
+and a dot PDF file, which is what
+LilyPond will ultimately generate.
+
+698
+00:40:18,610 --> 00:40:23,770
+>> But these are those scripts, and I'll
+just run them with their help options.
+
+699
+00:40:23,770 --> 00:40:28,090
+If you get these up and running with
+Euterpea, you can generate a MIDI file.
+
+700
+00:40:28,090 --> 00:40:31,160
+And then from the MIDI file
+with this MIDI 2LY program,
+
+701
+00:40:31,160 --> 00:40:34,930
+you can generate a Lily
+Pond file, and then you
+
+702
+00:40:34,930 --> 00:40:37,974
+can generate a PDF of the score.
+
+703
+00:40:37,974 --> 00:40:39,390
+And we should take a look at this.
+
+704
+00:40:39,390 --> 00:40:52,599
+
+705
+00:40:52,599 --> 00:40:55,140
+So Connor will probably show
+you how to annotate this better,
+
+706
+00:40:55,140 --> 00:41:02,570
+but this is Frere Jacques as
+generated by me in Euterpea.
+
+707
+00:41:02,570 --> 00:41:07,300
+It's just in C. I should have figured
+out what the hack it's actually in.
+
+708
+00:41:07,300 --> 00:41:11,090
+But that is the pipeline for
+how you do that with that.
+
+709
+00:41:11,090 --> 00:41:12,950
+Let's talk more about LilyPond.
+
+710
+00:41:12,950 --> 00:41:15,780
+>> CONNOR HARRIS: OK Let's see.
+
+711
+00:41:15,780 --> 00:41:19,480
+
+712
+00:41:19,480 --> 00:41:21,419
+Did you mention Learn You Haskell?
+
+713
+00:41:21,419 --> 00:41:22,460
+STEPHEN KREWSON: Oh yeah.
+
+714
+00:41:22,460 --> 00:41:23,480
+Check out Learn You Haskell.
+
+715
+00:41:23,480 --> 00:41:24,410
+It's in the resources.
+
+716
+00:41:24,410 --> 00:41:26,830
+That's how I started
+learning, and it's great.
+
+717
+00:41:26,830 --> 00:41:27,580
+Not dumb learning.
+
+718
+00:41:27,580 --> 00:41:28,829
+>> CONNOR HARRIS: So it's online.
+
+719
+00:41:28,829 --> 00:41:34,760
+So a guy named [INAUDIBLE]
+learnyouahaskell.com, no spaces.
+
+720
+00:41:34,760 --> 00:41:37,065
+Grammar is sick.
+
+721
+00:41:37,065 --> 00:41:38,690
+STEPHEN KREWSON: It's illustrated, too.
+
+722
+00:41:38,690 --> 00:41:39,440
+CONNOR HARRIS: So what is LilyPond?
+
+723
+00:41:39,440 --> 00:41:42,480
+It's a declarative programming
+language for music typesetting.
+
+724
+00:41:42,480 --> 00:41:45,480
+So declarative-- you can
+think of things like HTML,
+
+725
+00:41:45,480 --> 00:41:50,900
+where you're not saying-- HTML
+doesn't say how web browsers should
+
+726
+00:41:50,900 --> 00:41:52,180
+render pages step by step.
+
+727
+00:41:52,180 --> 00:41:54,096
+It's just saying this
+is a textual description
+
+728
+00:41:54,096 --> 00:41:56,100
+of what you want the page to look like.
+
+729
+00:41:56,100 --> 00:41:59,310
+>> And then it's also a program
+that compiles this language,
+
+730
+00:41:59,310 --> 00:42:02,300
+or it read its in and then actually
+does the typesetting for you,
+
+731
+00:42:02,300 --> 00:42:05,570
+and it spits out these
+wonderful looking PDF scores.
+
+732
+00:42:05,570 --> 00:42:08,250
+You can also get PNG format or whatever.
+
+733
+00:42:08,250 --> 00:42:10,300
+A good way to think
+of this is by analogy
+
+734
+00:42:10,300 --> 00:42:16,620
+is that LaTeX is sort of like LillyPond,
+but for just ordinary typesetting.
+
+735
+00:42:16,620 --> 00:42:20,360
+So instead of-- it's not
+WYSIWYG, What You See
+
+736
+00:42:20,360 --> 00:42:22,960
+Is What You Get, like, say
+Finale is, or Sibelius,
+
+737
+00:42:22,960 --> 00:42:27,430
+or Microsoft Word, where you can type in
+real time and draft things in real time
+
+738
+00:42:27,430 --> 00:42:31,340
+and see changes instantaneously.
+
+739
+00:42:31,340 --> 00:42:32,140
+>> It is text based.
+
+740
+00:42:32,140 --> 00:42:35,290
+You have to compile your
+scores using a separate program
+
+741
+00:42:35,290 --> 00:42:37,090
+and get out PDFs later.
+
+742
+00:42:37,090 --> 00:42:43,320
+This is a bit less
+convenient for use if you're
+
+743
+00:42:43,320 --> 00:42:46,520
+trying to write directly
+into a score and you're
+
+744
+00:42:46,520 --> 00:42:48,620
+trying to compose on the computer.
+
+745
+00:42:48,620 --> 00:42:50,830
+But there are a lot
+of advantages for it.
+
+746
+00:42:50,830 --> 00:42:56,110
+One, it does look a lot nicer,
+because LillyPond can actually
+
+747
+00:42:56,110 --> 00:42:58,210
+take the time to do
+layout decisions properly,
+
+748
+00:42:58,210 --> 00:43:02,380
+unlike Sibelius or Finale, which have
+to make compromised algorithms so
+
+749
+00:43:02,380 --> 00:43:05,020
+that they can display
+things in real time.
+
+750
+00:43:05,020 --> 00:43:07,660
+>> So why is LilyPond--
+computer graphics is hard.
+
+751
+00:43:07,660 --> 00:43:10,535
+If you're doing anything with music
+and you want to write out scores,
+
+752
+00:43:10,535 --> 00:43:13,900
+you don't want to write
+out everything by yourself
+
+753
+00:43:13,900 --> 00:43:19,040
+starting with how to draw
+staffs and how to draw notepads.
+
+754
+00:43:19,040 --> 00:43:21,020
+It's very difficult.
+It's been done before.
+
+755
+00:43:21,020 --> 00:43:22,170
+You're fine.
+
+756
+00:43:22,170 --> 00:43:26,200
+>> If you want to use Finale or Sibelius,
+the file formats for those things
+
+757
+00:43:26,200 --> 00:43:30,180
+are very complicated, and you can't
+really use them programmatically.
+
+758
+00:43:30,180 --> 00:43:35,020
+You can open up Sibelius with Finale
+and go to File, Export as PDF yourself,
+
+759
+00:43:35,020 --> 00:43:37,600
+but you can't really
+call that from a script.
+
+760
+00:43:37,600 --> 00:43:40,440
+LillyPond, you can call
+from those scripts.
+
+761
+00:43:40,440 --> 00:43:44,397
+You could easily iterate
+LillyPond with LaTeX.
+
+762
+00:43:44,397 --> 00:43:47,230
+I won't have that much time to go
+into these technologies right now,
+
+763
+00:43:47,230 --> 00:43:48,321
+but they exist.
+
+764
+00:43:48,321 --> 00:43:50,070
+If you want to look
+into a LillyPond book,
+
+765
+00:43:50,070 --> 00:43:53,760
+it's a program that comes with
+your LillyPond distribution,
+
+766
+00:43:53,760 --> 00:43:57,030
+and it's for iterating
+LillyPond fragments into LaTeX
+
+767
+00:43:57,030 --> 00:44:00,340
+if you want to do something
+like a big musicology document
+
+768
+00:44:00,340 --> 00:44:02,289
+with examples, for example.
+
+769
+00:44:02,289 --> 00:44:04,580
+And it's a good skill for
+life if you're doing anything
+
+770
+00:44:04,580 --> 00:44:05,770
+with music, not just CS50.
+
+771
+00:44:05,770 --> 00:44:09,320
+I've used LillyPond for all
+of my composition projects
+
+772
+00:44:09,320 --> 00:44:11,880
+since I was basically a
+senior in high school.
+
+773
+00:44:11,880 --> 00:44:13,455
+>> So here are some simple examples.
+
+774
+00:44:13,455 --> 00:44:17,490
+
+775
+00:44:17,490 --> 00:44:21,060
+This is basically representative
+of the level of difficulty
+
+776
+00:44:21,060 --> 00:44:23,481
+that most people would
+face it they were trying
+
+777
+00:44:23,481 --> 00:44:24,980
+to use LilyPond for simple projects.
+
+778
+00:44:24,980 --> 00:44:29,519
+This first one is the beginning
+to a chorale prelude by Bach.
+
+779
+00:44:29,519 --> 00:44:31,810
+This bottom one is an excerpt
+from one of my own works,
+
+780
+00:44:31,810 --> 00:44:34,650
+and it's just there to show
+you things like [INAUDIBLE]
+
+781
+00:44:34,650 --> 00:44:38,550
+putting multiple lines in the same
+staff, how lyric undersetting works.
+
+782
+00:44:38,550 --> 00:44:41,350
+
+783
+00:44:41,350 --> 00:44:46,110
+Lyric underlays are a thing that's very
+easy to use LilyPond for choral music.
+
+784
+00:44:46,110 --> 00:44:48,814
+>> And so then there's some more
+complicated examples here.
+
+785
+00:44:48,814 --> 00:44:50,980
+All these are done in
+LilyPond and they're feasible.
+
+786
+00:44:50,980 --> 00:44:55,280
+This first excerpt is from
+[INAUDIBLE] by [INAUDIBLE].
+
+787
+00:44:55,280 --> 00:44:58,860
+And this [INAUDIBLE] from
+a piece for solo bass
+
+788
+00:44:58,860 --> 00:45:03,550
+flute by [INAUDIBLE],
+who is a longtime-- who
+
+789
+00:45:03,550 --> 00:45:07,101
+was a longtime member of the
+music department here, I think.
+
+790
+00:45:07,101 --> 00:45:08,600
+I'm not sure where he's gone off to.
+
+791
+00:45:08,600 --> 00:45:12,410
+But he was the adviser of the Harvard
+Composers Association for a long time.
+
+792
+00:45:12,410 --> 00:45:13,530
+Wonderful man.
+
+793
+00:45:13,530 --> 00:45:16,920
+And he writes some music that has very
+complicated notation that LillyPond
+
+794
+00:45:16,920 --> 00:45:20,500
+can nonetheless handle very nicely.
+
+795
+00:45:20,500 --> 00:45:26,030
+>> So just to give you a sense of what
+this thing's capabilities are-- so
+
+796
+00:45:26,030 --> 00:45:28,960
+the internals of LillyPond
+are very complicated.
+
+797
+00:45:28,960 --> 00:45:31,060
+And you can use it for
+a long time, including
+
+798
+00:45:31,060 --> 00:45:32,520
+for some pretty complicated
+things, without really
+
+799
+00:45:32,520 --> 00:45:34,060
+having to know a lot about them.
+
+800
+00:45:34,060 --> 00:45:38,720
+But the basic idea is that on the
+lowest level, the atoms of LillyPonds
+
+801
+00:45:38,720 --> 00:45:39,970
+are the notes.
+
+802
+00:45:39,970 --> 00:45:42,761
+The notes contain a
+context called voices.
+
+803
+00:45:42,761 --> 00:45:44,510
+So the voice context
+basically corresponds
+
+804
+00:45:44,510 --> 00:45:47,410
+to a single line of polyphony.
+
+805
+00:45:47,410 --> 00:45:49,410
+And then context can be
+contained hierarchically
+
+806
+00:45:49,410 --> 00:45:53,590
+in higher level ones that
+represent staffs on the score
+
+807
+00:45:53,590 --> 00:45:56,750
+or larger groupings like
+piano staffs or choir staffs,
+
+808
+00:45:56,750 --> 00:45:58,990
+and then eventually
+entire score contexts.
+
+809
+00:45:58,990 --> 00:46:02,260
+And you can actually encompass
+multiple scores in a book.
+
+810
+00:46:02,260 --> 00:46:05,770
+>> And every context has a
+number of attached engravers.
+
+811
+00:46:05,770 --> 00:46:08,340
+If you look through the
+contents of a context
+
+812
+00:46:08,340 --> 00:46:14,410
+and print a certain symbol or a
+certain class of symbols as necessary.
+
+813
+00:46:14,410 --> 00:46:17,840
+So to every voice context,
+there's [INAUDIBLE] notes
+
+814
+00:46:17,840 --> 00:46:24,270
+engraver that is basically a function or
+an object that writes out all the note
+
+815
+00:46:24,270 --> 00:46:26,290
+heads on the right parts of a page.
+
+816
+00:46:26,290 --> 00:46:29,510
+Then there's a cleft engraver, which
+writes out clefts on the staff.
+
+817
+00:46:29,510 --> 00:46:31,517
+Then there's a metronome
+mark engraver that
+
+818
+00:46:31,517 --> 00:46:33,100
+writes out metronome marks in a score.
+
+819
+00:46:33,100 --> 00:46:36,410
+And all these fit pretty
+well into the hierarchy.
+
+820
+00:46:36,410 --> 00:46:39,500
+And it's very, very, very
+customizable, which you need
+
+821
+00:46:39,500 --> 00:46:42,880
+if you want to get things like that.
+
+822
+00:46:42,880 --> 00:46:45,730
+>> So all the contexts have a
+lot of different attributes
+
+823
+00:46:45,730 --> 00:46:52,410
+that you can modify for everything
+from the spacing to various font
+
+824
+00:46:52,410 --> 00:46:54,942
+selection to sizes of things.
+
+825
+00:46:54,942 --> 00:46:56,900
+If you want to do even
+more complicated things,
+
+826
+00:46:56,900 --> 00:46:59,210
+there's an embedded scripting language.
+
+827
+00:46:59,210 --> 00:47:01,820
+They use scheme, which
+is dialect of LISP.
+
+828
+00:47:01,820 --> 00:47:04,960
+These probably don't
+mean anything to you.
+
+829
+00:47:04,960 --> 00:47:06,900
+But basically, a scheme
+another functional
+
+830
+00:47:06,900 --> 00:47:09,500
+programming language, more or less.
+
+831
+00:47:09,500 --> 00:47:10,800
+>> STEPHEN KREWSON: The tie-in.
+
+832
+00:47:10,800 --> 00:47:12,690
+>> CONNOR HARRIS: Yeah.
+
+833
+00:47:12,690 --> 00:47:15,390
+It's a good tie-in, I suppose.
+
+834
+00:47:15,390 --> 00:47:20,150
+And it's used as a teaching language,
+actually, down Mass Ave. At MIT.
+
+835
+00:47:20,150 --> 00:47:26,590
+And it's very handy for LillyPond
+for various technical reasons.
+
+836
+00:47:26,590 --> 00:47:30,317
+>> And so if you want to make simple
+tweaks dependent on conditionals,
+
+837
+00:47:30,317 --> 00:47:32,900
+for example-- there's certain
+condition of a score that's met,
+
+838
+00:47:32,900 --> 00:47:36,495
+make alterations to the
+layout or whatnot-- then
+
+839
+00:47:36,495 --> 00:47:37,620
+those facilities are there.
+
+840
+00:47:37,620 --> 00:47:38,667
+They're complicated.
+
+841
+00:47:38,667 --> 00:47:40,250
+So here's a pretty simple code sample.
+
+842
+00:47:40,250 --> 00:47:43,810
+It's five lines.
+
+843
+00:47:43,810 --> 00:47:46,120
+Basically, I'm defining two staffs.
+
+844
+00:47:46,120 --> 00:47:46,904
+It's in 3/4.
+
+845
+00:47:46,904 --> 00:47:48,695
+The first staff has an
+attached tempo mark,
+
+846
+00:47:48,695 --> 00:47:51,110
+but that's actually going
+to go on to the whole score,
+
+847
+00:47:51,110 --> 00:47:54,960
+because tempo marks
+are on the score level.
+
+848
+00:47:54,960 --> 00:47:59,044
+The metronome mark engraver
+is attached to score context.
+
+849
+00:47:59,044 --> 00:48:01,460
+There are different keys,
+because the [INAUDIBLE] engraver
+
+850
+00:48:01,460 --> 00:48:02,710
+is attached the staffs.
+
+851
+00:48:02,710 --> 00:48:04,441
+You can actually do is.
+
+852
+00:48:04,441 --> 00:48:06,190
+The sample I wrote is
+actually in C major,
+
+853
+00:48:06,190 --> 00:48:07,990
+but it's just to
+demonstrate you can have
+
+854
+00:48:07,990 --> 00:48:09,570
+different keys in different staffs.
+
+855
+00:48:09,570 --> 00:48:15,710
+And the basic syntax is you write
+note names with E, F, G, whatever.
+
+856
+00:48:15,710 --> 00:48:18,910
+If you want to do accidentals,
+you suffix IS or ES.
+
+857
+00:48:18,910 --> 00:48:22,640
+This is from Dutch
+musicological conventions.
+
+858
+00:48:22,640 --> 00:48:28,290
+>> And to do octave leaps, you have to use
+these tick marks, comma or apostrophe.
+
+859
+00:48:28,290 --> 00:48:30,580
+The relative just means
+whatever you have a note,
+
+860
+00:48:30,580 --> 00:48:34,080
+it will automatically be plaec in the
+octave closest to the previous one.
+
+861
+00:48:34,080 --> 00:48:37,624
+And if you want to jump more than
+a fifth-- say a fifth or more--
+
+862
+00:48:37,624 --> 00:48:39,165
+then you have to use the [INAUDIBLE].
+
+863
+00:48:39,165 --> 00:48:42,580
+But otherwise, you don't have to
+specify the octave of every single note.
+
+864
+00:48:42,580 --> 00:48:46,130
+>> And relative C, prime, and
+C, you just specify middle C
+
+865
+00:48:46,130 --> 00:48:48,630
+and base C, especially first notes.
+
+866
+00:48:48,630 --> 00:48:55,020
+Then you have these staffs that organize
+these two voices or samples of music,
+
+867
+00:48:55,020 --> 00:48:56,730
+and you have a score.
+
+868
+00:48:56,730 --> 00:48:58,440
+And that looks like this.
+
+869
+00:48:58,440 --> 00:49:01,780
+
+870
+00:49:01,780 --> 00:49:05,380
+>> If you want to take the time to
+copy that sample of LillyPond
+
+871
+00:49:05,380 --> 00:49:07,530
+code on the previous
+slide down here, and you
+
+872
+00:49:07,530 --> 00:49:09,030
+can write it for LillyPond yourself.
+
+873
+00:49:09,030 --> 00:49:11,280
+I know we've got something
+that looks a lot like this.
+
+874
+00:49:11,280 --> 00:49:17,236
+
+875
+00:49:17,236 --> 00:49:19,610
+So there's another technology
+called Music XML maintained
+
+876
+00:49:19,610 --> 00:49:22,030
+by completely different people.
+
+877
+00:49:22,030 --> 00:49:28,150
+XML is a textual data structure-- I
+shouldn't say data structure-- say
+
+878
+00:49:28,150 --> 00:49:29,580
+metaphor map sort of.
+
+879
+00:49:29,580 --> 00:49:33,800
+And it's designed to hold
+hierarchical data very well.
+
+880
+00:49:33,800 --> 00:49:37,050
+HTML, for example, is a type of XML.
+
+881
+00:49:37,050 --> 00:49:41,090
+And you can tell XML because they
+had all the angle brackets and angle
+
+882
+00:49:41,090 --> 00:49:44,700
+bracket slash marks
+that show data fields.
+
+883
+00:49:44,700 --> 00:49:47,390
+>> I don't have a code
+example from Music XML.
+
+884
+00:49:47,390 --> 00:49:50,450
+You can find it yourself.
+
+885
+00:49:50,450 --> 00:49:53,735
+Basically, the reason you might want
+to use XML as the intermediate stage
+
+886
+00:49:53,735 --> 00:49:55,980
+is, first of all, it's
+an interchange format
+
+887
+00:49:55,980 --> 00:50:02,301
+for basically every-- I shouldn't say
+every, but a lot of different score
+
+888
+00:50:02,301 --> 00:50:02,800
+writers.
+
+889
+00:50:02,800 --> 00:50:04,966
+So if you write in Music
+XML, not only can LillyPond
+
+890
+00:50:04,966 --> 00:50:08,080
+read it with the help of this auxilary
+program called Music XML to LY,
+
+891
+00:50:08,080 --> 00:50:11,360
+but also Finale can read
+it, Sibelius can read it.
+
+892
+00:50:11,360 --> 00:50:14,770
+Depending on how your internal object
+hierarchy works for representing music,
+
+893
+00:50:14,770 --> 00:50:18,820
+it might be easier to write out
+to Music XML than to LillyPond
+
+894
+00:50:18,820 --> 00:50:22,410
+and just rely on Music XML
+to LY to do the conversion.
+
+895
+00:50:22,410 --> 00:50:24,282
+>> I don't think [INAUDIBLE] has Music XML.
+
+896
+00:50:24,282 --> 00:50:25,490
+STEPHEN KREWSON: It does not.
+
+897
+00:50:25,490 --> 00:50:26,340
+Someone is working on it, though.
+
+898
+00:50:26,340 --> 00:50:27,090
+>> CONNOR HARRIS: OK.
+
+899
+00:50:27,090 --> 00:50:31,040
+Euterpea does not have a
+Music XML output function yet.
+
+900
+00:50:31,040 --> 00:50:35,340
+If you want a final project idea,
+maybe get in touch with guys
+
+901
+00:50:35,340 --> 00:50:38,620
+that Stephen knows, and
+they could use your help.
+
+902
+00:50:38,620 --> 00:50:40,992
+>> STEPHEN KREWSON: I would love that.
+
+903
+00:50:40,992 --> 00:50:43,450
+CONNOR HARRIS: Also, basically,
+every programming languages
+
+904
+00:50:43,450 --> 00:50:46,610
+that's worth its salt
+already has an XML library,
+
+905
+00:50:46,610 --> 00:50:51,030
+so you can internally convert all
+of your music into some object
+
+906
+00:50:51,030 --> 00:50:54,120
+that the XML library can write
+out that would require fewer
+
+907
+00:50:54,120 --> 00:50:57,470
+alterations to your internal structure
+for whatever music objects you
+
+908
+00:50:57,470 --> 00:51:00,310
+want to write than writing it
+directly in LillyPond would.
+
+909
+00:51:00,310 --> 00:51:04,380
+Then just print it out with XML with
+the XML libraries in your language,
+
+910
+00:51:04,380 --> 00:51:07,260
+which will guarantee that it's
+syntactically correct and everything,
+
+911
+00:51:07,260 --> 00:51:08,720
+and then convert it to LillyPond.
+
+912
+00:51:08,720 --> 00:51:11,060
+So technology you might want to
+look into if you're doing something
+
+913
+00:51:11,060 --> 00:51:11,650
+like this.
+
+914
+00:51:11,650 --> 00:51:14,490
+
+915
+00:51:14,490 --> 00:51:16,370
+>> [INAUDIBLE], another
+auxilarry technology.
+
+916
+00:51:16,370 --> 00:51:21,700
+This is basically Tech Works
+or Tech Studio for LillyPond.
+
+917
+00:51:21,700 --> 00:51:25,380
+So it offers help with
+syntax, with templates
+
+918
+00:51:25,380 --> 00:51:28,770
+for various common
+combinations of instruments.
+
+919
+00:51:28,770 --> 00:51:32,780
+It allows split screen viewing so
+you can have your code in one window
+
+920
+00:51:32,780 --> 00:51:37,350
+and PDF in another window and
+click on places in the PDF
+
+921
+00:51:37,350 --> 00:51:40,650
+to jump to the relevant
+spots in your source code.
+
+922
+00:51:40,650 --> 00:51:45,330
+This is more useful if you're actually
+writing LillyPond files yourself
+
+923
+00:51:45,330 --> 00:51:47,400
+than if you're generating
+them programmatically.
+
+924
+00:51:47,400 --> 00:51:51,230
+But again, it's
+something useful to have.
+
+925
+00:51:51,230 --> 00:51:51,970
+>> Great.
+
+926
+00:51:51,970 --> 00:51:55,860
+Another resources-- I'll just
+go through this very quickly.
+
+927
+00:51:55,860 --> 00:52:01,270
+LillyPond manuals-- LillyPond has
+excellent documentation on its website.
+
+928
+00:52:01,270 --> 00:52:02,270
+They have a tutorial.
+
+929
+00:52:02,270 --> 00:52:03,478
+They have a syntax reference.
+
+930
+00:52:03,478 --> 00:52:07,010
+They have hundreds of snippets
+for various small things
+
+931
+00:52:07,010 --> 00:52:09,930
+yo might need do to demonstrate
+various capabilities.
+
+932
+00:52:09,930 --> 00:52:12,250
+If you want to use
+the scripting language
+
+933
+00:52:12,250 --> 00:52:14,740
+or make more extensive
+customizations, then there's
+
+934
+00:52:14,740 --> 00:52:16,730
+internals reference at that URL.
+
+935
+00:52:16,730 --> 00:52:21,950
+If you want to use Music XML, there's
+that URL, musicxml.com/tutorial.
+
+936
+00:52:21,950 --> 00:52:27,960
+>> And then if you need to learn scheme
+because you actually want to use
+
+937
+00:52:27,960 --> 00:52:30,960
+the scripting facilities in LillyPond,
+then there's a [INAUDIBLE] called
+
+938
+00:52:30,960 --> 00:52:32,918
+Structured Interpretation
+of Computer Programs,
+
+939
+00:52:32,918 --> 00:52:35,820
+which is not only the second
+greatest CS textbook ever written--
+
+940
+00:52:35,820 --> 00:52:39,770
+find me afterwards if you want to know
+what I think the greatest one is--
+
+941
+00:52:39,770 --> 00:52:43,580
+but it's also a very good
+introduction to the language proper .
+
+942
+00:52:43,580 --> 00:52:46,630
+You won't need more than
+the first few sections.
+
+943
+00:52:46,630 --> 00:52:47,827
+>> And that's it.
+
+944
+00:52:47,827 --> 00:52:48,410
+Any questions?
+
+945
+00:52:48,410 --> 00:52:54,068
+
+946
+00:52:54,068 --> 00:52:57,972
+>> STUDENT: Where can I download
+your generated Frere Jacques
+
+947
+00:52:57,972 --> 00:53:01,050
+so I can put it on my iPod?
+
+948
+00:53:01,050 --> 00:53:07,574
+>> STEPHEN KREWSON: Well, you can write
+out to some wav file in Euterpea.
+
+949
+00:53:07,574 --> 00:53:08,490
+And you have the code.
+
+950
+00:53:08,490 --> 00:53:10,000
+It's on GitHub.
+
+951
+00:53:10,000 --> 00:53:15,590
+Make your own variations of
+Frere Jacques by CS50 hive mind.
+
+952
+00:53:15,590 --> 00:53:17,095
+It would be great.
+
+953
+00:53:17,095 --> 00:53:18,220
+CONNOR HARRIS: Anyone else?
+
+954
+00:53:18,220 --> 00:53:20,261
+STEPHEN KREWSON: We need
+a better bass drum, too.
+
+955
+00:53:20,261 --> 00:53:21,935
+It's really bad.
+
+956
+00:53:21,935 --> 00:53:26,565
+>> STUDENT: Euterpea has not only
+the composition side, but signal--
+
+957
+00:53:26,565 --> 00:53:27,440
+STEPHEN KREWSON: Yes.
+
+958
+00:53:27,440 --> 00:53:30,100
+In fact, the work I
+did in Euterpea when I
+
+959
+00:53:30,100 --> 00:53:33,450
+took this-- there's a
+graduate course at Yale that
+
+960
+00:53:33,450 --> 00:53:35,900
+uses it-- was on sound synthesis.
+
+961
+00:53:35,900 --> 00:53:39,810
+So there's a really
+nice way using arrows
+
+962
+00:53:39,810 --> 00:53:46,150
+and some of the notation we saw of
+composing together signal functions.
+
+963
+00:53:46,150 --> 00:53:50,610
+In particular, the bass for most
+of them is just a simple sine wave.
+
+964
+00:53:50,610 --> 00:53:54,240
+But if you start composing those
+in weird programmatic ways,
+
+965
+00:53:54,240 --> 00:54:00,010
+you can get crazy sound
+effects, like weird cascades.
+
+966
+00:54:00,010 --> 00:54:04,640
+You can create very gritty
+sounds with a lot of modulation.
+
+967
+00:54:04,640 --> 00:54:07,730
+>> I did a project on granular
+synthesis, which is
+
+968
+00:54:07,730 --> 00:54:12,290
+somewhere in between FM and sampling.
+
+969
+00:54:12,290 --> 00:54:15,230
+You take very small,
+little samples, and then
+
+970
+00:54:15,230 --> 00:54:20,440
+combine them with some sort of
+modulator and build up a richer sound.
+
+971
+00:54:20,440 --> 00:54:24,900
+We also did physical modeling, so
+trying to think about the physics
+
+972
+00:54:24,900 --> 00:54:29,410
+and psychoacoustics of something like
+a trumpet, and thinking about the way
+
+973
+00:54:29,410 --> 00:54:32,320
+the sound is bouncing off
+the bell of the trumpet
+
+974
+00:54:32,320 --> 00:54:35,200
+and the acoustics of
+the room and modeling
+
+975
+00:54:35,200 --> 00:54:40,195
+that with the basic oscillators.
+
+976
+00:54:40,195 --> 00:54:47,690
+
+977
+00:54:47,690 --> 00:54:48,940
+CONNOR HARRIS: Thanks so much.
+
+978
+00:54:48,940 --> 00:54:50,140
+Thanks for coming.
+
+979
+00:54:50,140 --> 00:54:52,400
+And I'm always willing to
+take questions by email--
+
+980
+00:54:52,400 --> 00:54:55,020
+connorharris@college.harvard.edu.
+
+981
+00:54:55,020 --> 00:54:57,020
+>> STEPHEN KREWSON: Yeah.
+stephen.krewson@yale.edu.
+
+982
+00:54:57,020 --> 00:54:58,810
+
+983
+00:54:58,810 --> 00:55:00,360
+Cool.
+
+984
+00:55:00,360 --> 00:55:01,667

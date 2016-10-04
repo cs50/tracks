@@ -1,0 +1,397 @@
+1
+00:00:00,000 --> 00:00:00,160
+
+2
+00:00:00,160 --> 00:00:02,660
+>> SPEAKER 1: All right, let's take a
+look at how the staff solution actually
+
+3
+00:00:02,660 --> 00:00:04,760
+operates, so that you
+get a sense, first off
+
+4
+00:00:04,760 --> 00:00:06,930
+how the web server's supposed
+to run, and how you can actually
+
+5
+00:00:06,930 --> 00:00:08,480
+get it running on your own computer.
+
+6
+00:00:08,480 --> 00:00:09,350
+So picture it here.
+
+7
+00:00:09,350 --> 00:00:13,640
+I've already installed in CS50 ID
+pset6 dot zip, per the specification.
+
+8
+00:00:13,640 --> 00:00:16,197
+I've unzipped it, and I've
+CDed into my pset6 directory.
+
+9
+00:00:16,197 --> 00:00:18,780
+One of the first things you're
+going to want to do, especially
+
+10
+00:00:18,780 --> 00:00:22,010
+if you've been using a CS50 IDE to play
+along with recent lectures, wherein
+
+11
+00:00:22,010 --> 00:00:25,640
+we've been using PHP in
+CS50 IDE, specifically,
+
+12
+00:00:25,640 --> 00:00:29,050
+using that web server called Apache,
+whereby you can start and stop it
+
+13
+00:00:29,050 --> 00:00:30,910
+with that command, Apache 50.
+
+14
+00:00:30,910 --> 00:00:34,160
+First, go ahead and
+type "Apache 50 stop"
+
+15
+00:00:34,160 --> 00:00:37,370
+just to make sure that if you were
+following along in recent days,
+
+16
+00:00:37,370 --> 00:00:40,090
+and you turned on Apache, you're
+turning it off in this way
+
+17
+00:00:40,090 --> 00:00:41,360
+by stopping the server.
+
+18
+00:00:41,360 --> 00:00:44,110
+Now, what I'm going to do is exactly
+what the spec tells me to do.
+
+19
+00:00:44,110 --> 00:00:49,770
+I'm going to go to tilda CS50 slash
+pset6 slash server, and just hit Enter.
+
+20
+00:00:49,770 --> 00:00:52,840
+You'll notice that I'm yelled at
+with some usage information, whereby
+
+21
+00:00:52,840 --> 00:00:54,960
+I should be running
+the program as server
+
+22
+00:00:54,960 --> 00:00:58,230
+with an optional dash p and then a
+port number, which you can actually
+
+23
+00:00:58,230 --> 00:01:00,720
+leave blank because by
+default, per the spec,
+
+24
+00:01:00,720 --> 00:01:04,010
+the web server is going to
+assume that you want port 8080.
+
+25
+00:01:04,010 --> 00:01:07,560
+Meanwhile, you might recall that
+port 8080 is not really standard,
+
+26
+00:01:07,560 --> 00:01:09,380
+rather port 80 is the
+number we've talked
+
+27
+00:01:09,380 --> 00:01:11,440
+about being the default for HTTP.
+
+28
+00:01:11,440 --> 00:01:14,870
+Well, turns out that CS50 IDE
+is simply configured in a way,
+
+29
+00:01:14,870 --> 00:01:18,730
+such that when you with a browser try
+to visit port 80 from the outside world,
+
+30
+00:01:18,730 --> 00:01:22,210
+it's going to sort of magically
+port forward, or redirect itself,
+
+31
+00:01:22,210 --> 00:01:25,200
+to port 8080 inside
+of your server itself.
+
+32
+00:01:25,200 --> 00:01:29,330
+>> So the last thing here is the command
+line argument, the path to route.
+
+33
+00:01:29,330 --> 00:01:31,590
+And by that I just
+mean, what folder do I
+
+34
+00:01:31,590 --> 00:01:34,820
+want to tell the server
+to use to serve up files?
+
+35
+00:01:34,820 --> 00:01:39,030
+In other words, if the user visits
+slash, what should he or she see?
+
+36
+00:01:39,030 --> 00:01:41,030
+Well, let's go ahead and
+run exactly that again,
+
+37
+00:01:41,030 --> 00:01:43,940
+this time specifying that I
+want the root of my web server
+
+38
+00:01:43,940 --> 00:01:48,210
+to be the public directory, that comes
+with problem set six distribution code.
+
+39
+00:01:48,210 --> 00:01:50,620
+When I hit Enter, you'll see
+in yellow here, a reminder
+
+40
+00:01:50,620 --> 00:01:52,260
+as to what folder I'm actually using.
+
+41
+00:01:52,260 --> 00:01:55,870
+In this case, it's a long string,
+"home ubuntu workspace pset6 public."
+
+42
+00:01:55,870 --> 00:01:57,500
+And that last word is what's key.
+
+43
+00:01:57,500 --> 00:02:01,180
+And then lastly, apparently, my
+server's now listening on port 8080.
+
+44
+00:02:01,180 --> 00:02:05,860
+>> What I'm next going to do is recall that
+in CS50 ID in the top right hand corner
+
+45
+00:02:05,860 --> 00:02:09,440
+of your screen, you're going to see
+a URL that is ide50-username.cs50.io.
+
+46
+00:02:09,440 --> 00:02:12,860
+
+47
+00:02:12,860 --> 00:02:15,080
+And indeed, if you click
+that, you'll be whisked away
+
+48
+00:02:15,080 --> 00:02:17,090
+to another browser tab,
+that, in this case,
+
+49
+00:02:17,090 --> 00:02:20,830
+is going to show me the contents
+of my web servers roots.
+
+50
+00:02:20,830 --> 00:02:24,770
+In other words, the files you see here,
+cat dot HTML, cat dot JPEG, favicon dot
+
+51
+00:02:24,770 --> 00:02:27,690
+ico, hello dot HTML,
+hello dot php, and test,
+
+52
+00:02:27,690 --> 00:02:29,800
+are all of the same
+contents that you would see
+
+53
+00:02:29,800 --> 00:02:32,560
+with LS inside of my public directory.
+
+54
+00:02:32,560 --> 00:02:36,790
+And what's nice is that if I go
+ahead and click now on cat dot HTML,
+
+55
+00:02:36,790 --> 00:02:38,710
+I see cat dot HTML.
+
+56
+00:02:38,710 --> 00:02:42,660
+And if I click on cat dot
+JPEG, or hello dot HTML,
+
+57
+00:02:42,660 --> 00:02:46,650
+or even type in my name David,
+and then click "say hello,"
+
+58
+00:02:46,650 --> 00:02:49,420
+you'll see that all of the
+files work because the staff
+
+59
+00:02:49,420 --> 00:02:52,820
+solution, of course, installed
+in CS50 ID is fully functional.
+
+60
+00:02:52,820 --> 00:02:57,090
+So it works exactly as your own
+solution should ultimately work.
+
+61
+00:02:57,090 --> 00:03:00,990
+>> Meanwhile, if we go back to my terminal
+window, where I ran the server command,
+
+62
+00:03:00,990 --> 00:03:03,410
+notice what the console has been saying.
+
+63
+00:03:03,410 --> 00:03:07,890
+I see here that the first request that
+I received was literally get slash cat
+
+64
+00:03:07,890 --> 00:03:10,260
+dot HTML, HTTP version 1.1.
+
+65
+00:03:10,260 --> 00:03:12,600
+And then, in green what
+the staff solution has done
+
+66
+00:03:12,600 --> 00:03:14,580
+is it's showing me the
+first line of output
+
+67
+00:03:14,580 --> 00:03:16,340
+that the web server is responding with.
+
+68
+00:03:16,340 --> 00:03:18,300
+In other words, we've
+already written the code
+
+69
+00:03:18,300 --> 00:03:21,530
+that opens up that virtual envelope,
+containing that get request.
+
+70
+00:03:21,530 --> 00:03:23,980
+And then we respond to the
+user but, simultaneously,
+
+71
+00:03:23,980 --> 00:03:28,780
+print to the output screen
+here HTTP 1.1, 200 OK
+
+72
+00:03:28,780 --> 00:03:31,900
+to confirm what we're putting in
+the return envelope, so to speak,
+
+73
+00:03:31,900 --> 00:03:33,540
+that we're sending back to the user.
+
+74
+00:03:33,540 --> 00:03:36,200
+>> And so what's going on here is
+that in the terminal window,
+
+75
+00:03:36,200 --> 00:03:38,510
+we're running the web
+server, and, therefore, it's
+
+76
+00:03:38,510 --> 00:03:42,480
+listening for HTTP
+requests on TCP port 8080.
+
+77
+00:03:42,480 --> 00:03:44,960
+Meanwhile, in my web browser,
+as I click through each
+
+78
+00:03:44,960 --> 00:03:48,480
+of those files, or even input my
+name David, and then click Submit,
+
+79
+00:03:48,480 --> 00:03:51,827
+that is my browser
+talking to the web server.
+
+80
+00:03:51,827 --> 00:03:54,410
+And what the web server's doing,
+then, in that terminal window
+
+81
+00:03:54,410 --> 00:03:56,370
+is showing me exactly
+the first line that's
+
+82
+00:03:56,370 --> 00:03:58,540
+been received in a virtual
+envelope and exactly
+
+83
+00:03:58,540 --> 00:04:02,870
+the first line that's being
+responded with to that web client.

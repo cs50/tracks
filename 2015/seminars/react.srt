@@ -1,0 +1,4521 @@
+1
+00:00:00,000 --> 00:00:02,910
+>> [MUSIC PLAYING]
+
+2
+00:00:02,910 --> 00:00:04,850
+
+3
+00:00:04,850 --> 00:00:07,275
+>> NEEL MEHTA: Here it goes.
+
+4
+00:00:07,275 --> 00:00:11,070
+>> Well, everyone, welcome to web
+apps of the future with React.
+
+5
+00:00:11,070 --> 00:00:11,870
+This is CS50.
+
+6
+00:00:11,870 --> 00:00:12,930
+My name is Neel.
+
+7
+00:00:12,930 --> 00:00:17,689
+I'm a TA for CS50 and a sophomore
+at Harvard College and a very, very
+
+8
+00:00:17,689 --> 00:00:18,730
+passionate web developer.
+
+9
+00:00:18,730 --> 00:00:20,730
+So I'm very exciting to
+be talking to you today,
+
+10
+00:00:20,730 --> 00:00:24,550
+whether you're here or at home
+watching, about React, which is, again
+
+11
+00:00:24,550 --> 00:00:27,270
+as I said, the future of web apps.
+
+12
+00:00:27,270 --> 00:00:29,055
+>> So React is a web framework.
+
+13
+00:00:29,055 --> 00:00:30,930
+And as I've been telling
+to some people here,
+
+14
+00:00:30,930 --> 00:00:33,400
+a framework is just a
+set of tools you can use
+
+15
+00:00:33,400 --> 00:00:35,770
+to structure and build your web app.
+
+16
+00:00:35,770 --> 00:00:39,010
+And web apps are, again, websites
+that are interactive like Facebook,
+
+17
+00:00:39,010 --> 00:00:42,330
+Twitter.com, Instagram.com, whatever.
+
+18
+00:00:42,330 --> 00:00:45,590
+>> So Facebook is a web framework
+that was developed by Facebook
+
+19
+00:00:45,590 --> 00:00:48,060
+a couple years back-- React is.
+
+20
+00:00:48,060 --> 00:00:50,830
+It's since been used in
+Facebook on their mobile apps
+
+21
+00:00:50,830 --> 00:00:52,460
+and the web app, Instagram.
+
+22
+00:00:52,460 --> 00:00:56,350
+Khan Academy is another
+prominent early adopter of React.
+
+23
+00:00:56,350 --> 00:00:58,630
+>> It's really been getting
+extremely popular.
+
+24
+00:00:58,630 --> 00:01:03,420
+If you ever use things like Angular or
+Backbone, this is of the same family,
+
+25
+00:01:03,420 --> 00:01:05,830
+but it has since far
+outstrip their popularity.
+
+26
+00:01:05,830 --> 00:01:06,890
+It's the hot new thing.
+
+27
+00:01:06,890 --> 00:01:09,590
+It's really, really huge.
+
+28
+00:01:09,590 --> 00:01:13,470
+>> And so React is good not just as a
+web framework for building interfaces.
+
+29
+00:01:13,470 --> 00:01:16,020
+It's good for building web interfaces.
+
+30
+00:01:16,020 --> 00:01:18,350
+There's also a thing
+called React Native which
+
+31
+00:01:18,350 --> 00:01:22,200
+lets you build interfaces
+for Android and iOS
+
+32
+00:01:22,200 --> 00:01:26,390
+and maybe other platforms in the future
+using just the same JavaScript code.
+
+33
+00:01:26,390 --> 00:01:31,130
+You could use the exact same
+JavaScript code to render websites,
+
+34
+00:01:31,130 --> 00:01:33,040
+to render Android apps and iOS apps.
+
+35
+00:01:33,040 --> 00:01:35,000
+>> It's a very, very exciting time.
+
+36
+00:01:35,000 --> 00:01:37,070
+It's a really, really cool opportunity.
+
+37
+00:01:37,070 --> 00:01:42,020
+It's really a universal web
+interface development tool,
+
+38
+00:01:42,020 --> 00:01:44,420
+so it's a very, very
+important thing to know.
+
+39
+00:01:44,420 --> 00:01:46,949
+And, as I was telling people
+before, this, I think,
+
+40
+00:01:46,949 --> 00:01:48,990
+is going to change how we
+build web apps forever.
+
+41
+00:01:48,990 --> 00:01:55,820
+So it's maybe a bit hyperbole, but I
+think it's a pretty good thing to know.
+
+42
+00:01:55,820 --> 00:01:57,580
+>> OK, so what is React?
+
+43
+00:01:57,580 --> 00:02:01,020
+React is a framework you can
+use for building interfaces.
+
+44
+00:02:01,020 --> 00:02:03,240
+An interface is, again,
+a web page, right?
+
+45
+00:02:03,240 --> 00:02:06,340
+So here's Instagram.com, uses React.
+
+46
+00:02:06,340 --> 00:02:08,740
+>> React is built on the
+idea of components.
+
+47
+00:02:08,740 --> 00:02:11,900
+A component is a HTML
+element on steroids,
+
+48
+00:02:11,900 --> 00:02:14,470
+so an HTML element is like a button.
+
+49
+00:02:14,470 --> 00:02:15,250
+It's a paragraph.
+
+50
+00:02:15,250 --> 00:02:17,500
+It's a header, right?
+
+51
+00:02:17,500 --> 00:02:22,740
+And Instagram will use these, but it
+will also use components of React.
+
+52
+00:02:22,740 --> 00:02:25,740
+>> React components are
+souped-up HTML elements
+
+53
+00:02:25,740 --> 00:02:28,100
+that have their own behavior
+contained within them.
+
+54
+00:02:28,100 --> 00:02:31,800
+So, as an example, we could have
+a time element, a time component,
+
+55
+00:02:31,800 --> 00:02:34,095
+which will contain like
+the time stamp, you know,
+
+56
+00:02:34,095 --> 00:02:37,170
+a profile component which
+will contain the profile image
+
+57
+00:02:37,170 --> 00:02:38,820
+and the name of the person.
+
+58
+00:02:38,820 --> 00:02:42,930
+It can have a like counter, which
+can count like the number of likes,
+
+59
+00:02:42,930 --> 00:02:45,610
+and if you click on it, it'll
+increase the number of likes.
+
+60
+00:02:45,610 --> 00:02:48,200
+A component is just a
+bunch of HTML code that
+
+61
+00:02:48,200 --> 00:02:50,520
+has some functionality
+wrapped inside of it.
+
+62
+00:02:50,520 --> 00:02:53,770
+So it's like a HTML element
+on steroids, as I said before.
+
+63
+00:02:53,770 --> 00:02:56,270
+You can take these components,
+and you can put them together
+
+64
+00:02:56,270 --> 00:02:59,060
+to make new components, in
+this case, a post component,
+
+65
+00:02:59,060 --> 00:03:00,505
+which contains all this stuff.
+
+66
+00:03:00,505 --> 00:03:04,050
+It would contain Time, Profile,
+LikeCounter, maybe the comment
+
+67
+00:03:04,050 --> 00:03:06,100
+and maybe the image itself.
+
+68
+00:03:06,100 --> 00:03:10,810
+And so web apps are just built by taking
+components and putting them together.
+
+69
+00:03:10,810 --> 00:03:15,620
+An Instagram feed is nothing more than
+a bunch of posts one after another,
+
+70
+00:03:15,620 --> 00:03:19,032
+each post contains like the Time,
+Profile, LikeCounter, and so on.
+
+71
+00:03:19,032 --> 00:03:20,490
+It's kind of like building a house.
+
+72
+00:03:20,490 --> 00:03:22,660
+You don't build the
+house from the top down.
+
+73
+00:03:22,660 --> 00:03:24,960
+You take components-- you
+take like the bathroom.
+
+74
+00:03:24,960 --> 00:03:28,320
+You take the bedroom-- you stick them
+together, and you have a new component.
+
+75
+00:03:28,320 --> 00:03:29,760
+You have a new part of the house.
+
+76
+00:03:29,760 --> 00:03:32,860
+>> So React is all built around
+this idea of components that
+
+77
+00:03:32,860 --> 00:03:36,600
+are interactive, that are declarative.
+
+78
+00:03:36,600 --> 00:03:39,650
+Like you just say what a
+profile is, and it renders it.
+
+79
+00:03:39,650 --> 00:03:40,600
+They are composable.
+
+80
+00:03:40,600 --> 00:03:43,880
+You can take a time and a profile, put
+them together, make something better.
+
+81
+00:03:43,880 --> 00:03:47,770
+And they're reusable, so if you
+have the source code for a post,
+
+82
+00:03:47,770 --> 00:03:49,440
+you could embed that anywhere.
+
+83
+00:03:49,440 --> 00:03:53,160
+>> You can embed an Instagram
+thing on your own website.
+
+84
+00:03:53,160 --> 00:03:56,830
+You can embed in Facebook, for example,
+as long as it uses React as well.
+
+85
+00:03:56,830 --> 00:04:00,360
+So components are really, really, really
+powerful building blocks of the web
+
+86
+00:04:00,360 --> 00:04:04,180
+that can be used anywhere and put
+together to make new building blocks.
+
+87
+00:04:04,180 --> 00:04:07,159
+That's the very, very
+high level overview.
+
+88
+00:04:07,159 --> 00:04:09,200
+So, again, if you have
+any questions at any point
+
+89
+00:04:09,200 --> 00:04:14,470
+about the philosophy of reactor, the
+coding, to stop me, and let me know.
+
+90
+00:04:14,470 --> 00:04:18,420
+>> OK, so react is cool because it
+has a different way of looking
+
+91
+00:04:18,420 --> 00:04:19,870
+at how you build web apps.
+
+92
+00:04:19,870 --> 00:04:23,620
+You've probably heard of MVC, a
+model you control in CS50 or whatever
+
+93
+00:04:23,620 --> 00:04:25,940
+other probing classes you use.
+
+94
+00:04:25,940 --> 00:04:29,000
+And most frameworks are
+built around the idea of MVC.
+
+95
+00:04:29,000 --> 00:04:30,410
+React is not.
+
+96
+00:04:30,410 --> 00:04:32,980
+React is built around the idea
+of unidirectional data flow
+
+97
+00:04:32,980 --> 00:04:36,510
+as seen by this chart or graphic here.
+
+98
+00:04:36,510 --> 00:04:38,260
+>> Basically, you have a data source.
+
+99
+00:04:38,260 --> 00:04:42,380
+And the data source will decide
+how to lay out certain components.
+
+100
+00:04:42,380 --> 00:04:45,452
+And the components will
+then, when they change,
+
+101
+00:04:45,452 --> 00:04:47,160
+they will tell the
+data source to change.
+
+102
+00:04:47,160 --> 00:04:49,350
+>> To use the Instagram
+example, you might have
+
+103
+00:04:49,350 --> 00:04:52,050
+a list of post objects like
+in a database or something.
+
+104
+00:04:52,050 --> 00:04:53,310
+That the data.
+
+105
+00:04:53,310 --> 00:04:57,600
+And then our post components
+will take that data,
+
+106
+00:04:57,600 --> 00:05:01,830
+and use that data to render
+a thing on the screen.
+
+107
+00:05:01,830 --> 00:05:04,300
+That's what the arrow
+from data to component is,
+
+108
+00:05:04,300 --> 00:05:07,930
+and then that same data is used
+to render a bunch of components.
+
+109
+00:05:07,930 --> 00:05:10,290
+>> In Facebook Messenger, for
+example, which is React,
+
+110
+00:05:10,290 --> 00:05:13,410
+you might have a list of
+messages as your data source.
+
+111
+00:05:13,410 --> 00:05:15,927
+And that would render not
+only the list of messages
+
+112
+00:05:15,927 --> 00:05:17,510
+but also the list of friends you have.
+
+113
+00:05:17,510 --> 00:05:19,200
+You have the unread count.
+
+114
+00:05:19,200 --> 00:05:23,330
+Maybe also render the Facebook thing
+that's at the bottom of Facebook.com.
+
+115
+00:05:23,330 --> 00:05:25,610
+The same data is a
+single source of truth
+
+116
+00:05:25,610 --> 00:05:28,290
+and that causes a lot of
+components to be rendered.
+
+117
+00:05:28,290 --> 00:05:30,290
+And whenever one of those
+components is changed,
+
+118
+00:05:30,290 --> 00:05:32,320
+it goes back and
+changes the data source.
+
+119
+00:05:32,320 --> 00:05:33,460
+>> You send a message, right?
+
+120
+00:05:33,460 --> 00:05:34,780
+That changes the data source.
+
+121
+00:05:34,780 --> 00:05:39,490
+You read your messages,
+so you set unread to 0.
+
+122
+00:05:39,490 --> 00:05:41,136
+That changes the data source.
+
+123
+00:05:41,136 --> 00:05:44,010
+And notice that all of these of one
+arrow going back to the same data
+
+124
+00:05:44,010 --> 00:05:47,662
+source, so you know,
+given a certain data set,
+
+125
+00:05:47,662 --> 00:05:49,870
+you know exactly what the
+page is going to look like.
+
+126
+00:05:49,870 --> 00:05:50,700
+It's deterministic.
+
+127
+00:05:50,700 --> 00:05:53,451
+You know, given certain data, what
+the page is going to look like.
+
+128
+00:05:53,451 --> 00:05:56,158
+You can predict how it's going to
+behave and how things are going
+
+129
+00:05:56,158 --> 00:05:57,650
+to work when they're put together.
+
+130
+00:05:57,650 --> 00:06:00,410
+>> And if I had a million components
+here, it would behave the same, right?
+
+131
+00:06:00,410 --> 00:06:02,290
+You wouldn't have any
+weird interconnections.
+
+132
+00:06:02,290 --> 00:06:04,120
+One data rendered a million components.
+
+133
+00:06:04,120 --> 00:06:06,879
+A million components could
+go back and edit the data.
+
+134
+00:06:06,879 --> 00:06:07,920
+And so this is very nice.
+
+135
+00:06:07,920 --> 00:06:10,870
+We're building composable,
+easily scalable web apps.
+
+136
+00:06:10,870 --> 00:06:13,150
+>> You have one data source,
+the source of truth.
+
+137
+00:06:13,150 --> 00:06:15,790
+That tells your components
+how to lay out the page,
+
+138
+00:06:15,790 --> 00:06:18,190
+and the components will
+handle interaction.
+
+139
+00:06:18,190 --> 00:06:20,150
+And if they want to change
+things, just go back
+
+140
+00:06:20,150 --> 00:06:21,750
+and tell the data source to change.
+
+141
+00:06:21,750 --> 00:06:22,850
+Make sense?
+
+142
+00:06:22,850 --> 00:06:26,010
+So React is all about understanding
+how to build a component
+
+143
+00:06:26,010 --> 00:06:29,540
+and how to make your component
+interact with the outside world.
+
+144
+00:06:29,540 --> 00:06:31,850
+>> Making the component interact
+with the outside world
+
+145
+00:06:31,850 --> 00:06:34,490
+uses another technology
+called Flux, which
+
+146
+00:06:34,490 --> 00:06:36,872
+is a framework that is
+added on top of React.
+
+147
+00:06:36,872 --> 00:06:38,330
+We're not going to talk about that.
+
+148
+00:06:38,330 --> 00:06:42,990
+We're going to talk more about, given
+data, how can you render a component?
+
+149
+00:06:42,990 --> 00:06:47,010
+>> And so React is really cool because you
+can use it with any back end you want.
+
+150
+00:06:47,010 --> 00:06:50,480
+If you have like a Python back end,
+if your Python can spit out some data,
+
+151
+00:06:50,480 --> 00:06:51,610
+React can render it.
+
+152
+00:06:51,610 --> 00:06:54,700
+If you are no JS outputs
+of data, React renders it.
+
+153
+00:06:54,700 --> 00:06:56,890
+Ruby rails up with
+data, React renders it.
+
+154
+00:06:56,890 --> 00:07:01,860
+>> So React is basically a web
+view-- a front end with components
+
+155
+00:07:01,860 --> 00:07:03,910
+for any data source whatsoever.
+
+156
+00:07:03,910 --> 00:07:07,145
+And so going from data source to
+react components is pretty easy.
+
+157
+00:07:07,145 --> 00:07:08,770
+Going the other way is a little harder.
+
+158
+00:07:08,770 --> 00:07:10,462
+That uses Flux as I mentioned before.
+
+159
+00:07:10,462 --> 00:07:11,420
+We won't get into that.
+
+160
+00:07:11,420 --> 00:07:13,740
+We'll focus more on the
+data-to-component side.
+
+161
+00:07:13,740 --> 00:07:15,880
+This way you can make
+cool, fun web apps.
+
+162
+00:07:15,880 --> 00:07:19,870
+It won't affect the outside world
+for now, but that's another story.
+
+163
+00:07:19,870 --> 00:07:22,210
+>> OK, so if you were here
+for my last seminar
+
+164
+00:07:22,210 --> 00:07:26,610
+you'll know that all of the code for
+today's talk is going to be at this URL
+
+165
+00:07:26,610 --> 00:07:29,320
+here, sorry, this URL here.
+
+166
+00:07:29,320 --> 00:07:32,730
+And basically we're going to go
+through four steps, maybe five,
+
+167
+00:07:32,730 --> 00:07:33,510
+probably not five.
+
+168
+00:07:33,510 --> 00:07:37,300
+We'll move through four steps
+of building a sample React app.
+
+169
+00:07:37,300 --> 00:07:39,550
+And so all the source code
+for every step of the way
+
+170
+00:07:39,550 --> 00:07:42,216
+is going to be right here, so if
+you're following along at home,
+
+171
+00:07:42,216 --> 00:07:43,991
+feel free to peruse this code.
+
+172
+00:07:43,991 --> 00:07:46,740
+If you're following along here,
+we'll be showing it on the screen,
+
+173
+00:07:46,740 --> 00:07:47,739
+so don't worry about it.
+
+174
+00:07:47,739 --> 00:07:50,930
+But if you're at home, feel
+free to visit this website.
+
+175
+00:07:50,930 --> 00:07:56,400
+And, Yeah, you should be able to get
+all the code you'd ever need here.
+
+176
+00:07:56,400 --> 00:08:01,380
+So it's a good cheat sheet as well
+for your future adventures with React.
+
+177
+00:08:01,380 --> 00:08:04,490
+Cool, so if everyone who's here,
+and even if you're at home,
+
+178
+00:08:04,490 --> 00:08:11,580
+pull up this website, is.gd/cs50react,
+no capital, no underscore, no nothing.
+
+179
+00:08:11,580 --> 00:08:15,849
+>> You'll see a page that looks
+a little bit like this.
+
+180
+00:08:15,849 --> 00:08:17,140
+This is a thing called CodePen.
+
+181
+00:08:17,140 --> 00:08:20,030
+CodePen is a collaborative
+coding environment
+
+182
+00:08:20,030 --> 00:08:23,364
+with which I can write code here, and
+it'll be automatically sent to you.
+
+183
+00:08:23,364 --> 00:08:24,780
+And to this way, I can write code.
+
+184
+00:08:24,780 --> 00:08:26,920
+I can run code here.
+
+185
+00:08:26,920 --> 00:08:33,470
+>> For example-- and if it reloads-- see,
+I'm running JavaScript code on the page
+
+186
+00:08:33,470 --> 00:08:36,390
+right here, and it'll
+automatically render a web page
+
+187
+00:08:36,390 --> 00:08:37,980
+with this JavaScript code.
+
+188
+00:08:37,980 --> 00:08:40,039
+And so this is a way
+for us to try out code
+
+189
+00:08:40,039 --> 00:08:43,089
+really quick without having to use
+our ID or use our local machine
+
+190
+00:08:43,089 --> 00:08:44,290
+or whatever.
+
+191
+00:08:44,290 --> 00:08:47,670
+It's a very quick way for you to mockup
+and test out different kinds of code.
+
+192
+00:08:47,670 --> 00:08:50,560
+>> So I'm going to be taking
+example code, putting it here.
+
+193
+00:08:50,560 --> 00:08:52,374
+We're going to be working through it.
+
+194
+00:08:52,374 --> 00:08:54,540
+And if you're at home, you
+can pull this up as well.
+
+195
+00:08:54,540 --> 00:08:57,530
+And I've already installed
+React here, so you can just
+
+196
+00:08:57,530 --> 00:09:00,770
+write your own code here, and
+try it as your own playground.
+
+197
+00:09:00,770 --> 00:09:04,940
+>> Yeah, if everyone to
+open up this link here.
+
+198
+00:09:04,940 --> 00:09:08,080
+Please give me a thumbs
+up once you have it open.
+
+199
+00:09:08,080 --> 00:09:10,960
+
+200
+00:09:10,960 --> 00:09:13,770
+Cool, cool cool.
+
+201
+00:09:13,770 --> 00:09:16,914
+There's nothing here for now, but
+we will change that very soon.
+
+202
+00:09:16,914 --> 00:09:21,250
+>> OK, so React is a JavaScript
+library, and as such,
+
+203
+00:09:21,250 --> 00:09:24,480
+requires knowledge of JavaScript,
+which is the web programming language.
+
+204
+00:09:24,480 --> 00:09:27,660
+And it's being used for other things
+now too but primarily the web develop
+
+205
+00:09:27,660 --> 00:09:32,040
+language, so if you are unfamiliar with
+that, read a site called JSforCats.com.
+
+206
+00:09:32,040 --> 00:09:32,700
+It's wonderful.
+
+207
+00:09:32,700 --> 00:09:34,240
+You can learn JavaScript
+in half an hour.
+
+208
+00:09:34,240 --> 00:09:34,990
+It's incredible.
+
+209
+00:09:34,990 --> 00:09:36,420
+>> So give it a read.
+
+210
+00:09:36,420 --> 00:09:39,960
+We also is a lot of HTML here because
+we're designing web pages of course.
+
+211
+00:09:39,960 --> 00:09:43,890
+So if you're unfamiliar with
+HTML, check out HTMLdog.com.
+
+212
+00:09:43,890 --> 00:09:46,520
+I think learning React is a
+million times easier if you already
+
+213
+00:09:46,520 --> 00:09:47,892
+know the building blocks.
+
+214
+00:09:47,892 --> 00:09:50,600
+If you have the components, it's
+easy to make a bigger component.
+
+215
+00:09:50,600 --> 00:09:51,860
+That's React language for you.
+
+216
+00:09:51,860 --> 00:09:54,270
+>> So go ahead and give
+these things a read.
+
+217
+00:09:54,270 --> 00:09:55,070
+Pause this video.
+
+218
+00:09:55,070 --> 00:09:57,440
+Give it a read if you are
+at home if you are not
+
+219
+00:09:57,440 --> 00:10:00,794
+familiar with HTML or JavaScript
+
+220
+00:10:00,794 --> 00:10:02,960
+OK, so what we're going to
+do is we're going to make
+
+221
+00:10:02,960 --> 00:10:06,470
+a very basic flashcard app using React.
+
+222
+00:10:06,470 --> 00:10:08,210
+We're going to have a flashcard.
+
+223
+00:10:08,210 --> 00:10:09,880
+You can flip the card back and forth.
+
+224
+00:10:09,880 --> 00:10:12,399
+And we'll also have a list of
+all the cards that we have,
+
+225
+00:10:12,399 --> 00:10:14,190
+and if we're feeling
+ambitious, we might be
+
+226
+00:10:14,190 --> 00:10:17,060
+able to switch between
+cars by clicking on them.
+
+227
+00:10:17,060 --> 00:10:20,360
+>> But this is, of your bare
+bones, a very simple React app.
+
+228
+00:10:20,360 --> 00:10:22,560
+And so this is actually
+not trivial to implement,
+
+229
+00:10:22,560 --> 00:10:26,030
+but we're going to show that, if you do
+this, it's very, very easy to extend it
+
+230
+00:10:26,030 --> 00:10:27,680
+if other people help you with it.
+
+231
+00:10:27,680 --> 00:10:33,750
+So we're going to go through four steps
+starting from scratch to build this.
+
+232
+00:10:33,750 --> 00:10:36,740
+>> OK, so the four steps, we'll
+start off with the first step.
+
+233
+00:10:36,740 --> 00:10:39,790
+The first step is going to be
+building your first component.
+
+234
+00:10:39,790 --> 00:10:44,830
+As I said before, a component in React
+is just an HTML element on steroids.
+
+235
+00:10:44,830 --> 00:10:49,660
+It specifies the HTML
+and some behavior, and it
+
+236
+00:10:49,660 --> 00:10:52,600
+will specify how people
+can interact with it how
+
+237
+00:10:52,600 --> 00:10:54,270
+it would have internal state.
+
+238
+00:10:54,270 --> 00:10:57,630
+Like a button will know like how many
+times it's been clicked for example,
+
+239
+00:10:57,630 --> 00:11:01,010
+and it will know how to lay itself out.
+
+240
+00:11:01,010 --> 00:11:04,430
+>> So let's go ahead and build our
+first component using JavaScript.
+
+241
+00:11:04,430 --> 00:11:09,711
+So if the syntax looks weird,
+that's because it kind of is.
+
+242
+00:11:09,711 --> 00:11:11,710
+So, again, we're going
+to make a variable called
+
+243
+00:11:11,710 --> 00:11:14,580
+app using the keyword let,
+which makes a variable,
+
+244
+00:11:14,580 --> 00:11:18,210
+let App equal React.createClass.
+
+245
+00:11:18,210 --> 00:11:22,609
+>> React is a library and has
+the create class function.
+
+246
+00:11:22,609 --> 00:11:24,400
+And this function is
+a bit of code that you
+
+247
+00:11:24,400 --> 00:11:29,090
+can use to create a new
+type of React component.
+
+248
+00:11:29,090 --> 00:11:32,780
+And so React.createClass
+makes a component,
+
+249
+00:11:32,780 --> 00:11:35,270
+and this component will
+be able to do stuff.
+
+250
+00:11:35,270 --> 00:11:40,460
+The main thing it can do is render
+something, render as a function.
+
+251
+00:11:40,460 --> 00:11:44,500
+>> Again, if this index is not obvious to
+you, I recommend you go on JS for cats
+
+252
+00:11:44,500 --> 00:11:45,682
+and check it out.
+
+253
+00:11:45,682 --> 00:11:47,710
+Is that zoomed in well enough?
+
+254
+00:11:47,710 --> 00:11:48,490
+Cool.
+
+255
+00:11:48,490 --> 00:11:50,670
+>> So every component needs
+to have a render function.
+
+256
+00:11:50,670 --> 00:11:53,010
+The render function says,
+what do I print on the screen?
+
+257
+00:11:53,010 --> 00:11:54,760
+But the component is
+useless if it doesn't
+
+258
+00:11:54,760 --> 00:11:58,060
+know what to print on the screen, so
+you need to have a render function.
+
+259
+00:11:58,060 --> 00:12:01,904
+>> So in the render thing, you
+just need to return some HTML.
+
+260
+00:12:01,904 --> 00:12:03,820
+And what's cool is that
+there's a thing called
+
+261
+00:12:03,820 --> 00:12:08,660
+JSX, which is a extension of
+JavaScript that is used by react.
+
+262
+00:12:08,660 --> 00:12:11,845
+It let's you write HTML inside
+of your JavaScript, which
+
+263
+00:12:11,845 --> 00:12:13,970
+sounds kind of weird when
+you first think about it,
+
+264
+00:12:13,970 --> 00:12:15,553
+but it makes a lot of sense afterward.
+
+265
+00:12:15,553 --> 00:12:17,430
+So we can do this.
+
+266
+00:12:17,430 --> 00:12:21,360
+If you're familiar with HTML, I know
+we have a div with a general purpose
+
+267
+00:12:21,360 --> 00:12:22,790
+container for stuff.
+
+268
+00:12:22,790 --> 00:12:26,380
+We can return a div, and inside
+this div, we can put stuff.
+
+269
+00:12:26,380 --> 00:12:32,390
+>> So let's say we want to render just
+a straight-up flashcard for now.
+
+270
+00:12:32,390 --> 00:12:34,890
+The flashcard, I would say,
+will have a question and answer.
+
+271
+00:12:34,890 --> 00:12:37,530
+So inside this div, let's
+print out a paragraph
+
+272
+00:12:37,530 --> 00:12:42,155
+that says question-- What is the
+ultimate answer to life, the universe?
+
+273
+00:12:42,155 --> 00:12:47,640
+
+274
+00:12:47,640 --> 00:12:50,345
+And then the answer is
+going to be, of course, 42.
+
+275
+00:12:50,345 --> 00:12:56,880
+
+276
+00:12:56,880 --> 00:12:59,730
+>> That didn't come up well at all.
+
+277
+00:12:59,730 --> 00:13:04,164
+Yeah, so basically you can really
+write HTML inside your JavaScript.
+
+278
+00:13:04,164 --> 00:13:06,330
+And this is going to be
+printed out into the screen.
+
+279
+00:13:06,330 --> 00:13:08,250
+So let's try it out.
+
+280
+00:13:08,250 --> 00:13:09,520
+>> So we have our component.
+
+281
+00:13:09,520 --> 00:13:12,210
+We need to tell React to put
+the component on the screen
+
+282
+00:13:12,210 --> 00:13:18,990
+so React.render, so notice that we
+treat app like any other element.
+
+283
+00:13:18,990 --> 00:13:21,010
+We write it as it was an HTML element.
+
+284
+00:13:21,010 --> 00:13:25,100
+Like instead of saying like img
+for image or p for paragraph,
+
+285
+00:13:25,100 --> 00:13:28,120
+you write App, so App is
+treated like an HTML element.
+
+286
+00:13:28,120 --> 00:13:30,380
+As I said before, it's
+an element on steroids.
+
+287
+00:13:30,380 --> 00:13:32,870
+>> So you render App, and you
+give it a place to put it.
+
+288
+00:13:32,870 --> 00:13:37,170
+And this is how you can
+tell it where to put it.
+
+289
+00:13:37,170 --> 00:13:46,200
+I have created a simple div on the
+page called with an ID of page,
+
+290
+00:13:46,200 --> 00:13:48,300
+and that's where the
+element's going to go.
+
+291
+00:13:48,300 --> 00:13:49,841
+>> And we're not going to run with HTML.
+
+292
+00:13:49,841 --> 00:13:53,145
+Basically this is going to get
+put inside of this page element
+
+293
+00:13:53,145 --> 00:13:54,270
+that we have on the screen.
+
+294
+00:13:54,270 --> 00:13:59,210
+So it runs this code, and it draws this
+thing on the screen, so here we are.
+
+295
+00:13:59,210 --> 00:14:01,770
+We have made our first React component.
+
+296
+00:14:01,770 --> 00:14:08,000
+>> So just as a recap, we gently made
+a new type of component, right?
+
+297
+00:14:08,000 --> 00:14:10,145
+That's what the React.createClass.
+
+298
+00:14:10,145 --> 00:14:12,680
+And in that component, we
+told it what it should do.
+
+299
+00:14:12,680 --> 00:14:15,590
+Whenever this component is to
+be printed onto the screen,
+
+300
+00:14:15,590 --> 00:14:19,300
+it will print out the div with
+the two paragraphs inside of it.
+
+301
+00:14:19,300 --> 00:14:24,460
+>> And what we did, we made a new app
+using the angle bracket app notation.
+
+302
+00:14:24,460 --> 00:14:27,160
+We told it to put it
+inside the page element.
+
+303
+00:14:27,160 --> 00:14:29,867
+And so what I did, it created
+a new app from that template.
+
+304
+00:14:29,867 --> 00:14:31,200
+And then I told it to render it.
+
+305
+00:14:31,200 --> 00:14:33,680
+So it said, OK, app,
+what should I print out?
+
+306
+00:14:33,680 --> 00:14:36,970
+App says, go print out a div
+with two paragraphs inside of it.
+
+307
+00:14:36,970 --> 00:14:40,420
+And voila, there's our div with
+two paragraphs inside of it.
+
+308
+00:14:40,420 --> 00:14:43,180
+Make sense so far?
+
+309
+00:14:43,180 --> 00:14:46,690
+>> So, again, the whole challenge of React
+is just knowing how to make components.
+
+310
+00:14:46,690 --> 00:14:48,500
+How to make the
+components work together.
+
+311
+00:14:48,500 --> 00:14:51,780
+Now that we've made our first
+component, let's go back
+
+312
+00:14:51,780 --> 00:14:54,284
+and make components customizable.
+
+313
+00:14:54,284 --> 00:14:56,700
+So you know how in HTML you
+can give your buttons classes?
+
+314
+00:14:56,700 --> 00:14:59,146
+You can give your anchors the href.
+
+315
+00:14:59,146 --> 00:15:00,770
+You can give your inputs a type, right?
+
+316
+00:15:00,770 --> 00:15:04,740
+You can give more custom
+properties to all of your elements
+
+317
+00:15:04,740 --> 00:15:06,490
+to make it more interesting.
+
+318
+00:15:06,490 --> 00:15:09,030
+And we actually can do
+the exact same thing.
+
+319
+00:15:09,030 --> 00:15:17,500
+>> So let's say we want our
+app to go render any card.
+
+320
+00:15:17,500 --> 00:15:19,630
+Right now we just
+rendered a hardcoded card.
+
+321
+00:15:19,630 --> 00:15:22,530
+We know there's only one
+card it can do, so we're
+
+322
+00:15:22,530 --> 00:15:25,960
+going to try and change this now so
+that we can just give it some card.
+
+323
+00:15:25,960 --> 00:15:27,410
+It'll print out the card.
+
+324
+00:15:27,410 --> 00:15:29,380
+>> You ought to try and make your
+components a very general purpose.
+
+325
+00:15:29,380 --> 00:15:31,654
+So this way I could email
+this my friend and be like,
+
+326
+00:15:31,654 --> 00:15:33,820
+whatever flashcard you have,
+just feed it into here,
+
+327
+00:15:33,820 --> 00:15:35,290
+and it'll do it by itself.
+
+328
+00:15:35,290 --> 00:15:37,650
+You can put other
+things in your own app.
+
+329
+00:15:37,650 --> 00:15:40,600
+>> But first, let's break this
+up into two components,
+
+330
+00:15:40,600 --> 00:15:44,500
+but we want to separate the card
+printing part from the actual app part.
+
+331
+00:15:44,500 --> 00:15:46,660
+So what we can do is we
+can change this from App
+
+332
+00:15:46,660 --> 00:15:51,300
+to CardView, just a
+new name for the app,
+
+333
+00:15:51,300 --> 00:15:54,450
+and we can make a new
+component called App,
+
+334
+00:15:54,450 --> 00:15:56,336
+not to be confused with the old App.
+
+335
+00:15:56,336 --> 00:16:00,730
+We've got the createClass,
+and like in HTML,
+
+336
+00:16:00,730 --> 00:16:03,590
+you can nest React components
+inside of each other.
+
+337
+00:16:03,590 --> 00:16:16,430
+>> So in this render function,
+function return CardView,
+
+338
+00:16:16,430 --> 00:16:18,234
+and this is the exact same thing.
+
+339
+00:16:18,234 --> 00:16:19,400
+See why it's the same thing?
+
+340
+00:16:19,400 --> 00:16:22,590
+Instead of rendering just the app that
+has the div and pairing inside of it,
+
+341
+00:16:22,590 --> 00:16:26,194
+the app renders the CardView, and the
+CardView renders the div and paragraph.
+
+342
+00:16:26,194 --> 00:16:29,110
+So this is our first example of
+nesting elements inside of each other.
+
+343
+00:16:29,110 --> 00:16:32,177
+Does that make sense?
+
+344
+00:16:32,177 --> 00:16:33,760
+So, again, we have a CardView element.
+
+345
+00:16:33,760 --> 00:16:37,250
+We have app elements
+that it's bigger than.
+
+346
+00:16:37,250 --> 00:16:40,990
+>> OK, so we want our CardView-- if you
+give a good CardView a certain card,
+
+347
+00:16:40,990 --> 00:16:43,370
+it'll print out for you, right?
+
+348
+00:16:43,370 --> 00:16:48,050
+So first, we need to make a card,
+so let's make a card object.
+
+349
+00:16:48,050 --> 00:17:02,930
+So let my card equal--
+if you're all familiar,
+
+350
+00:17:02,930 --> 00:17:05,260
+this is just the notation-making
+object in JavaScript.
+
+351
+00:17:05,260 --> 00:17:09,280
+It's kind of like a struct
+in C, so we made a card,
+
+352
+00:17:09,280 --> 00:17:15,920
+and so now we can pass this card as
+a property or as an attribute in HTML
+
+353
+00:17:15,920 --> 00:17:17,290
+terminology to our app.
+
+354
+00:17:17,290 --> 00:17:20,210
+So we can do this, App
+card equals myCard.
+
+355
+00:17:20,210 --> 00:17:23,200
+>> You know how in input, you do
+input type equals text or button
+
+356
+00:17:23,200 --> 00:17:25,240
+class equals btn for bootstrap,?
+
+357
+00:17:25,240 --> 00:17:29,500
+Same idea, App card equals--
+you've got to put braces here--
+
+358
+00:17:29,500 --> 00:17:33,830
+App card equals myCard, so this
+says we have this card object.
+
+359
+00:17:33,830 --> 00:17:39,149
+I'm going to pass it as a
+property to the app component.
+
+360
+00:17:39,149 --> 00:17:41,440
+And this app component will
+be able to access it and do
+
+361
+00:17:41,440 --> 00:17:43,580
+interesting stuff with it.
+
+362
+00:17:43,580 --> 00:17:47,650
+>> So our app is going to be
+given a card, so for now,
+
+363
+00:17:47,650 --> 00:17:49,980
+let's have the app just give
+the card to the CardView
+
+364
+00:17:49,980 --> 00:17:53,110
+itself because like the app is not
+going to know what to do with it,
+
+365
+00:17:53,110 --> 00:17:54,850
+so we'll just give it to the CardView.
+
+366
+00:17:54,850 --> 00:18:00,050
+So we'll pass it the
+same way, card equals,
+
+367
+00:18:00,050 --> 00:18:05,426
+and so each component can access the
+things that has been given to it.
+
+368
+00:18:05,426 --> 00:18:07,800
+They can access the properties
+that have been given to it
+
+369
+00:18:07,800 --> 00:18:09,470
+using this syntax, this.props.card.
+
+370
+00:18:09,470 --> 00:18:12,010
+
+371
+00:18:12,010 --> 00:18:14,920
+>> So what happens here is
+you have the myCard object.
+
+372
+00:18:14,920 --> 00:18:18,250
+You pass it into the app
+using App card equals myCard.
+
+373
+00:18:18,250 --> 00:18:21,420
+That card object is given to your app.
+
+374
+00:18:21,420 --> 00:18:24,400
+The app can access it
+as this.props.card.
+
+375
+00:18:24,400 --> 00:18:28,780
+It's kind of like an image
+knows what it's source is.
+
+376
+00:18:28,780 --> 00:18:31,972
+>> This app knows what it's card
+is, and it can do stuff with it.
+
+377
+00:18:31,972 --> 00:18:32,930
+It can do computations.
+
+378
+00:18:32,930 --> 00:18:35,290
+It can make decisions based off of it.
+
+379
+00:18:35,290 --> 00:18:39,950
+>> For now, I was going to pass
+this.props.card onto the CardView.
+
+380
+00:18:39,950 --> 00:18:43,420
+Make sense so far?
+
+381
+00:18:43,420 --> 00:18:45,210
+It'll make more sense now.
+
+382
+00:18:45,210 --> 00:18:46,990
+>> OK, so now we're at CardView.
+
+383
+00:18:46,990 --> 00:18:51,719
+Our CardView, given the card, should
+print out its question and answer.
+
+384
+00:18:51,719 --> 00:18:54,510
+Right now we just printed out some
+hardcoded questions and answers.
+
+385
+00:18:54,510 --> 00:18:57,720
+We need to figure out-- we need
+to ask the card that they gave us
+
+386
+00:18:57,720 --> 00:19:01,360
+what is the question and answer, and
+then print this out into the screen.
+
+387
+00:19:01,360 --> 00:19:02,470
+>> So we can do this here.
+
+388
+00:19:02,470 --> 00:19:06,135
+In render begin-- first do equals.
+
+389
+00:19:06,135 --> 00:19:08,710
+
+390
+00:19:08,710 --> 00:19:13,050
+So what we're doing here is we know that
+the cards are given us to a property,
+
+391
+00:19:13,050 --> 00:19:13,580
+right?
+
+392
+00:19:13,580 --> 00:19:15,930
+It's given to us as an input.
+
+393
+00:19:15,930 --> 00:19:19,440
+Like it's almost like
+arguments to a function.
+
+394
+00:19:19,440 --> 00:19:22,810
+The card is an argument
+almost to this CardView.
+
+395
+00:19:22,810 --> 00:19:25,239
+>> We'll extract that, and put
+it into the variable question.
+
+396
+00:19:25,239 --> 00:19:27,280
+Make sure the answer went
+to the variable answer.
+
+397
+00:19:27,280 --> 00:19:31,130
+Prompts that card to answer.
+
+398
+00:19:31,130 --> 00:19:35,072
+And now that we have these,
+instead of printing out that text,
+
+399
+00:19:35,072 --> 00:19:37,030
+we're going to print out
+whatever they gave us.
+
+400
+00:19:37,030 --> 00:19:43,580
+>> So this stuff-- so we're going
+to put out Question Answer.
+
+401
+00:19:43,580 --> 00:19:46,380
+Let's see if this works.
+
+402
+00:19:46,380 --> 00:19:52,800
+Cool, so let's step through it
+one more time just to be sure.
+
+403
+00:19:52,800 --> 00:20:00,470
+>> So my card is card object, and we
+are giving that card to the app.
+
+404
+00:20:00,470 --> 00:20:04,790
+And the app is going to take the
+card and give it to the CardView.
+
+405
+00:20:04,790 --> 00:20:09,190
+And this CardView says, if you
+give me any flashcard object,
+
+406
+00:20:09,190 --> 00:20:11,920
+I'll print out its question
+and its answer, right?
+
+407
+00:20:11,920 --> 00:20:14,590
+>> So what I could do is I can
+send this code, the first
+
+408
+00:20:14,590 --> 00:20:16,580
+like 10 lines of my code, to my friend.
+
+409
+00:20:16,580 --> 00:20:18,820
+He could embed it in
+his own application.
+
+410
+00:20:18,820 --> 00:20:27,200
+And as long as he did the same thing,
+like CardView card equals this,
+
+411
+00:20:27,200 --> 00:20:30,580
+as long as he created the CardView
+and gave it the right information,
+
+412
+00:20:30,580 --> 00:20:31,987
+he could render his own card.
+
+413
+00:20:31,987 --> 00:20:34,320
+And so this way, it's a really
+cool way for you to build
+
+414
+00:20:34,320 --> 00:20:35,906
+components that use each other, right?
+
+415
+00:20:35,906 --> 00:20:38,280
+This card, I could publish
+this CardView on the internet,
+
+416
+00:20:38,280 --> 00:20:39,790
+and people would be able to use it.
+
+417
+00:20:39,790 --> 00:20:45,070
+So basically, it's like one of the
+standard functions in the C library.
+
+418
+00:20:45,070 --> 00:20:47,280
+>> It is a function where
+someone has written it.
+
+419
+00:20:47,280 --> 00:20:48,419
+You give a certain input.
+
+420
+00:20:48,419 --> 00:20:49,710
+It'll produce a certain output.
+
+421
+00:20:49,710 --> 00:20:50,890
+You don't care how it works internally.
+
+422
+00:20:50,890 --> 00:20:53,790
+As long as you give it the right
+input, it'll make the right output.
+
+423
+00:20:53,790 --> 00:20:57,850
+>> And a component can be
+thought of the same way.
+
+424
+00:20:57,850 --> 00:21:00,280
+This CardView is like
+a library function.
+
+425
+00:21:00,280 --> 00:21:03,400
+If you give it some card
+as a property, it'll
+
+426
+00:21:03,400 --> 00:21:05,095
+print out the contents of that card.
+
+427
+00:21:05,095 --> 00:21:16,820
+Like if I change my card to
+instead be like what is 5 plus 37,
+
+428
+00:21:16,820 --> 00:21:19,210
+it will update accordingly.
+
+429
+00:21:19,210 --> 00:21:21,955
+So just by changing the input,
+it gets a certain output.
+
+430
+00:21:21,955 --> 00:21:24,830
+So you can think of components almost
+as functions in this way, which
+
+431
+00:21:24,830 --> 00:21:25,920
+you can put together.
+
+432
+00:21:25,920 --> 00:21:29,440
+You get input, like this CardView
+as the input, you get output.
+
+433
+00:21:29,440 --> 00:21:31,900
+In this case, output is the HTML.
+
+434
+00:21:31,900 --> 00:21:34,404
+Make sense so far?
+
+435
+00:21:34,404 --> 00:21:36,890
+Cool, so again, properties are
+how you can pass information
+
+436
+00:21:36,890 --> 00:21:40,900
+into and out of components.
+
+437
+00:21:40,900 --> 00:21:42,740
+>> OK, so let's make this
+thing interactive.
+
+438
+00:21:42,740 --> 00:21:44,450
+Right now it's kind of boring.
+
+439
+00:21:44,450 --> 00:21:45,520
+What is [INAUDIBLE]?
+
+440
+00:21:45,520 --> 00:21:48,210
+You can print some out,
+but that's all it can do.
+
+441
+00:21:48,210 --> 00:21:51,550
+>> So let's go back to the
+old question just for now.
+
+442
+00:21:51,550 --> 00:21:54,405
+OK, so right now these components
+are boring because all they do,
+
+443
+00:21:54,405 --> 00:21:55,030
+they get input.
+
+444
+00:21:55,030 --> 00:21:56,100
+They make output, right?
+
+445
+00:21:56,100 --> 00:21:57,049
+That's kind of boring.
+
+446
+00:21:57,049 --> 00:21:59,090
+We want to have our
+components to be able to have
+
+447
+00:21:59,090 --> 00:22:02,150
+some kind of internal state,
+like remember something.
+
+448
+00:22:02,150 --> 00:22:05,320
+>> For a flashcard, for
+example, what kind of state
+
+449
+00:22:05,320 --> 00:22:07,550
+might you want to
+remember for a flashcard?
+
+450
+00:22:07,550 --> 00:22:09,740
+What temporary status
+might you want to remember
+
+451
+00:22:09,740 --> 00:22:12,491
+for a flashcard in a flashcard app?
+
+452
+00:22:12,491 --> 00:22:13,990
+AUDIENCE: Whether it's been flipped?
+
+453
+00:22:13,990 --> 00:22:14,990
+NEEL MEHTA: Yeah, right.
+
+454
+00:22:14,990 --> 00:22:17,665
+So you might want to keep
+track of are you face up or are
+
+455
+00:22:17,665 --> 00:22:19,100
+you face down on the card.
+
+456
+00:22:19,100 --> 00:22:23,420
+On Facebook, for example, you would
+want to remember where in the news feed
+
+457
+00:22:23,420 --> 00:22:25,870
+are you or like who's profile
+are you doing right now.
+
+458
+00:22:25,870 --> 00:22:30,127
+>> On Messenger, like what text you
+type in the input box, right?
+
+459
+00:22:30,127 --> 00:22:31,710
+If you refresh the page, it goes away.
+
+460
+00:22:31,710 --> 00:22:32,793
+But you don't really care.
+
+461
+00:22:32,793 --> 00:22:33,770
+It's just temporary.
+
+462
+00:22:33,770 --> 00:22:34,548
+Yeah?
+
+463
+00:22:34,548 --> 00:22:36,152
+>> AUDIENCE: [INAUDIBLE]
+
+464
+00:22:36,152 --> 00:22:38,360
+NEEL MEHTA: Like a flash
+card, like you can be seeing
+
+465
+00:22:38,360 --> 00:22:40,290
+the question side or the answer side?
+
+466
+00:22:40,290 --> 00:22:41,070
+>> AUDIENCE: OK.
+
+467
+00:22:41,070 --> 00:22:43,270
+>> NEEL MEHTA: Like a
+two-sided flashcard, right?
+
+468
+00:22:43,270 --> 00:22:46,370
+Yeah, so you want to
+have this idea of now
+
+469
+00:22:46,370 --> 00:22:50,370
+I have properties, which is like inputs,
+but state, which is temporary, uh,
+
+470
+00:22:50,370 --> 00:22:51,839
+where you are on the page, right?
+
+471
+00:22:51,839 --> 00:22:54,380
+Again, I said in Facebook
+Messenger, I have like which person
+
+472
+00:22:54,380 --> 00:22:56,550
+you're viewing Facebook
+or who's profile, right?
+
+473
+00:22:56,550 --> 00:22:58,030
+>> This is only temporary.
+
+474
+00:22:58,030 --> 00:23:01,200
+It's important to show the user
+what's going on, but refresh the page.
+
+475
+00:23:01,200 --> 00:23:02,250
+It doesn't really matter.
+
+476
+00:23:02,250 --> 00:23:04,530
+So it's temporary state,
+so we all it state.
+
+477
+00:23:04,530 --> 00:23:06,250
+>> So, again, there's state and props.
+
+478
+00:23:06,250 --> 00:23:09,084
+Props is input given
+from your data source.
+
+479
+00:23:09,084 --> 00:23:10,250
+State is just like defaults.
+
+480
+00:23:10,250 --> 00:23:13,700
+It's just like stuff that
+makes the thing interactive.
+
+481
+00:23:13,700 --> 00:23:17,720
+>> So in our CardView-- let's have
+our CardView-- so it was nice.
+
+482
+00:23:17,720 --> 00:23:21,420
+What we're going to do here, we're going
+to touch CardView and only CardView.
+
+483
+00:23:21,420 --> 00:23:25,105
+And so my friend who got this, they
+wouldn't notice any difference.
+
+484
+00:23:25,105 --> 00:23:27,230
+They wouldn't have to change
+any of their own code,
+
+485
+00:23:27,230 --> 00:23:29,410
+but they'd see their
+CardView got souped up.
+
+486
+00:23:29,410 --> 00:23:31,270
+That's a nice part about components.
+
+487
+00:23:31,270 --> 00:23:35,290
+>> OK, so in our CardView, let's try and
+keep track of whether we're phase up
+
+488
+00:23:35,290 --> 00:23:36,560
+or face down.
+
+489
+00:23:36,560 --> 00:23:40,480
+In React we do this by first
+specifying the initial state.
+
+490
+00:23:40,480 --> 00:23:42,070
+Where does the card begin?
+
+491
+00:23:42,070 --> 00:23:48,480
+>> So be a function called getInitialState
+function, and we return an object.
+
+492
+00:23:48,480 --> 00:23:53,310
+This object contains some state, and
+a state is just a key-value pair.
+
+493
+00:23:53,310 --> 00:23:56,950
+Like in instruct, you have a key and a
+value, you have like name is a string.
+
+494
+00:23:56,950 --> 00:24:01,410
+>> In this case, let's say front is true.
+
+495
+00:24:01,410 --> 00:24:03,760
+This says that we have a state.
+
+496
+00:24:03,760 --> 00:24:06,570
+One component of the state
+is an attribute called front.
+
+497
+00:24:06,570 --> 00:24:09,649
+[INAUDIBLE], so by default,
+we're in the front of the card,
+
+498
+00:24:09,649 --> 00:24:11,440
+and we can change this
+as we flip the card.
+
+499
+00:24:11,440 --> 00:24:13,380
+Make sense?
+
+500
+00:24:13,380 --> 00:24:18,190
+>> OK, so in render, right now, we're
+showing the question and the answer.
+
+501
+00:24:18,190 --> 00:24:20,860
+Now what we should do
+is show the question
+
+502
+00:24:20,860 --> 00:24:24,370
+if we're on the front of the card so
+the answer is for the back of the card.
+
+503
+00:24:24,370 --> 00:24:26,850
+That's why you all make
+the card interactive.
+
+504
+00:24:26,850 --> 00:24:28,100
+So let's try and to this here.
+
+505
+00:24:28,100 --> 00:24:31,600
+
+506
+00:24:31,600 --> 00:24:33,620
+Well, first just make a variable.
+
+507
+00:24:33,620 --> 00:24:37,790
+We can ask now this.state.front.
+
+508
+00:24:37,790 --> 00:24:42,010
+We access state the same we
+access props, so this.state.front.
+
+509
+00:24:42,010 --> 00:24:45,870
+>> If we're front, then text
+is this.props.card.question.
+
+510
+00:24:45,870 --> 00:24:48,777
+
+511
+00:24:48,777 --> 00:24:51,360
+If we're on the front of the
+card, we're going to try and grab
+
+512
+00:24:51,360 --> 00:24:52,485
+the question from the card.
+
+513
+00:24:52,485 --> 00:24:54,782
+
+514
+00:24:54,782 --> 00:24:57,240
+Otherwise, if we're on the back
+of the card, what do we do?
+
+515
+00:24:57,240 --> 00:25:01,830
+
+516
+00:25:01,830 --> 00:25:02,750
+>> AUDIENCE: The answer?
+
+517
+00:25:02,750 --> 00:25:05,041
+>> NEEL MEHTA: Yep, so text
+equals this.props.card.answer.
+
+518
+00:25:05,041 --> 00:25:08,472
+
+519
+00:25:08,472 --> 00:25:10,930
+But if you notice, we're using
+the state to make a decision
+
+520
+00:25:10,930 --> 00:25:14,420
+because now the component
+will look different
+
+521
+00:25:14,420 --> 00:25:16,710
+based off how these interact with it.
+
+522
+00:25:16,710 --> 00:25:20,355
+So instead of printing out this,
+we'll just print out the text.
+
+523
+00:25:20,355 --> 00:25:25,270
+
+524
+00:25:25,270 --> 00:25:28,650
+Cool, so now, as you see,
+we see only the question.
+
+525
+00:25:28,650 --> 00:25:37,720
+And if I change the state here manually
+to front is false we get 42 back.
+
+526
+00:25:37,720 --> 00:25:39,720
+>> So, again, this component
+has its own state.
+
+527
+00:25:39,720 --> 00:25:43,440
+Like a button knows whether
+it's been pressed or not,
+
+528
+00:25:43,440 --> 00:25:46,080
+this thing knows what is on
+the front or on the back.
+
+529
+00:25:46,080 --> 00:25:48,320
+By default, it's on the front.
+
+530
+00:25:48,320 --> 00:25:50,840
+And then if it's on the front,
+we'll print out the question.
+
+531
+00:25:50,840 --> 00:25:53,106
+If it's on the back, we'll
+print out the answer.
+
+532
+00:25:53,106 --> 00:25:54,980
+So, again, the information
+given is the same.
+
+533
+00:25:54,980 --> 00:25:59,090
+It just looks different
+based on how you program it.
+
+534
+00:25:59,090 --> 00:26:02,670
+So, for example, Facebook Messenger,
+even if you get the same data source,
+
+535
+00:26:02,670 --> 00:26:05,170
+it might look different
+because the state is different.
+
+536
+00:26:05,170 --> 00:26:08,421
+You're looking at a
+different person's message.
+
+537
+00:26:08,421 --> 00:26:10,930
+>> OK, so this is all well and
+good, but now what's actually
+
+538
+00:26:10,930 --> 00:26:15,940
+make us able to change, whether
+our card is front or back.
+
+539
+00:26:15,940 --> 00:26:19,010
+We can do this by adding a flip
+button, a button to the card that
+
+540
+00:26:19,010 --> 00:26:22,950
+will flip the card if it's [INAUDIBLE].
+
+541
+00:26:22,950 --> 00:26:31,770
+So let's add a button here, this
+button, and this button will say flip.
+
+542
+00:26:31,770 --> 00:26:35,650
+>> And so right now, it
+doesn't do anything.
+
+543
+00:26:35,650 --> 00:26:37,075
+It just looks nice.
+
+544
+00:26:37,075 --> 00:26:43,650
+What we can do is we can add a click
+handler, onClick equals this.flip,
+
+545
+00:26:43,650 --> 00:26:44,820
+and we'll define flip later.
+
+546
+00:26:44,820 --> 00:26:47,120
+But basically, onClick
+is a function that
+
+547
+00:26:47,120 --> 00:26:48,675
+gets called when the user clicks it.
+
+548
+00:26:48,675 --> 00:26:52,330
+>> So the button will know
+when it's been clicked.
+
+549
+00:26:52,330 --> 00:26:54,750
+Went it's been clicked,
+it will flip the card.
+
+550
+00:26:54,750 --> 00:26:58,382
+It's kind of like your
+pizza delivery guy.
+
+551
+00:26:58,382 --> 00:27:01,590
+You're like, all right, whenever someone
+calls me, I'll deliver pizza, right?
+
+552
+00:27:01,590 --> 00:27:03,420
+>> You register this listener.
+
+553
+00:27:03,420 --> 00:27:04,530
+You listen for an event.
+
+554
+00:27:04,530 --> 00:27:07,657
+You get called, and when the
+event happens, you do something.
+
+555
+00:27:07,657 --> 00:27:08,240
+You get pizza.
+
+556
+00:27:08,240 --> 00:27:11,480
+In this case, when you're
+clicked, you flip the card.
+
+557
+00:27:11,480 --> 00:27:14,560
+>> And so we need to define a
+function that will flip the card,
+
+558
+00:27:14,560 --> 00:27:17,930
+so we'll write that right
+here, flip function.
+
+559
+00:27:17,930 --> 00:27:20,850
+
+560
+00:27:20,850 --> 00:27:23,680
+And so what do you think flip will do?
+
+561
+00:27:23,680 --> 00:27:27,180
+Again this gets called when
+we click the flip button.
+
+562
+00:27:27,180 --> 00:27:29,406
+What should the function flip do?
+
+563
+00:27:29,406 --> 00:27:34,136
+>> AUDIENCE: Change this.state.front
+from true to false, false to true.
+
+564
+00:27:34,136 --> 00:27:38,420
+>> NEEL MEHTA: Yep, so take whatever
+this.front is-- the front state is.
+
+565
+00:27:38,420 --> 00:27:40,930
+Take the front state, if
+it's true, make it false.
+
+566
+00:27:40,930 --> 00:27:42,530
+If it's false, make it true, right?
+
+567
+00:27:42,530 --> 00:27:45,330
+So let's try that.
+
+568
+00:27:45,330 --> 00:27:48,240
+>> You can't change state
+just by doing this.state.
+
+569
+00:27:48,240 --> 00:27:50,380
+You can't do this.
+
+570
+00:27:50,380 --> 00:27:52,030
+You can't do that.
+
+571
+00:27:52,030 --> 00:27:55,810
+You have to use a function
+called this.setState.
+
+572
+00:27:55,810 --> 00:28:03,230
+>> So you can say this.setState front
+colon this where, again, the exclamation
+
+573
+00:28:03,230 --> 00:28:04,330
+point means the opposite.
+
+574
+00:28:04,330 --> 00:28:07,420
+I guess if this. state.front
+is true, it'll turn false.
+
+575
+00:28:07,420 --> 00:28:09,170
+So we'll set the state
+from true to false.
+
+576
+00:28:09,170 --> 00:28:11,430
+If it's false, we'll
+set it false to true.
+
+577
+00:28:11,430 --> 00:28:17,210
+>> Just notice that we set and get slightly
+differently, and so let's try this.
+
+578
+00:28:17,210 --> 00:28:18,675
+Bada bing, look at this.
+
+579
+00:28:18,675 --> 00:28:21,810
+The flip button will now
+switch the front to back state.
+
+580
+00:28:21,810 --> 00:28:24,990
+>> And so here's where you see a
+little bit of the magic of React.
+
+581
+00:28:24,990 --> 00:28:28,420
+Like we never told it it to re-render.
+
+582
+00:28:28,420 --> 00:28:30,910
+We never told it redraw anything.
+
+583
+00:28:30,910 --> 00:28:32,630
+If you're doing this
+without React, you'd
+
+584
+00:28:32,630 --> 00:28:34,588
+have to-- like when the
+flip button is clicked,
+
+585
+00:28:34,588 --> 00:28:37,290
+you'd have to tell it to
+manually re-render, right?
+
+586
+00:28:37,290 --> 00:28:43,050
+>> React is really cool in that if you
+give it a certain state and properties,
+
+587
+00:28:43,050 --> 00:28:45,760
+it will always render
+the exact same thing.
+
+588
+00:28:45,760 --> 00:28:48,690
+And so when we ever we change
+the state and the properties,
+
+589
+00:28:48,690 --> 00:28:50,819
+react just re-renders the whole thing.
+
+590
+00:28:50,819 --> 00:28:52,860
+It knows that there's a
+one-to-one correspondence
+
+591
+00:28:52,860 --> 00:28:57,270
+between state and parameter and HTML.
+
+592
+00:28:57,270 --> 00:29:00,110
+So whenever either of those
+changes by through a set state,
+
+593
+00:29:00,110 --> 00:29:03,750
+it will change how the
+pay is re-rendered.
+
+594
+00:29:03,750 --> 00:29:06,650
+And so basically React is like
+waiting for you to change.
+
+595
+00:29:06,650 --> 00:29:09,870
+>> Whenever it changes something,
+it'll re-render the entire page.
+
+596
+00:29:09,870 --> 00:29:12,480
+And if it sounds inefficient,
+it's because it would be,
+
+597
+00:29:12,480 --> 00:29:15,050
+but react uses a thing
+called a Shadow DOM.
+
+598
+00:29:15,050 --> 00:29:19,950
+Instead of drawing the page directly, it
+keeps the virtual HTML tree in memory.
+
+599
+00:29:19,950 --> 00:29:23,620
+>> You know, HTML is like a tree,
+like a hierarchical data structure.
+
+600
+00:29:23,620 --> 00:29:28,990
+It keeps a fake tree in memory,
+and whenever you update the page,
+
+601
+00:29:28,990 --> 00:29:31,940
+it'll draw another fake
+tree, and it'll calculate
+
+602
+00:29:31,940 --> 00:29:35,120
+what change it needs to make the
+page to make the two trees equal.
+
+603
+00:29:35,120 --> 00:29:38,540
+So basically, it virtually
+re-renders a lot.
+
+604
+00:29:38,540 --> 00:29:41,540
+And then it only like changes the
+page in little tweaks as needed,
+
+605
+00:29:41,540 --> 00:29:44,240
+so it's very, very, very efficient.
+
+606
+00:29:44,240 --> 00:29:46,970
+>> So basically React will
+whenever you change something,
+
+607
+00:29:46,970 --> 00:29:49,010
+it'll re-render the page virtually.
+
+608
+00:29:49,010 --> 00:29:52,830
+It'll figure out what do I need to
+change to make the real page reflect
+
+609
+00:29:52,830 --> 00:29:55,602
+the virtual page, and it'll do that.
+
+610
+00:29:55,602 --> 00:29:56,560
+That's the virtual DOM.
+
+611
+00:29:56,560 --> 00:29:59,350
+It's one of the biggest
+features of React.
+
+612
+00:29:59,350 --> 00:30:00,880
+>> Does that make sense?
+
+613
+00:30:00,880 --> 00:30:01,540
+Any questions?
+
+614
+00:30:01,540 --> 00:30:02,040
+Yeah?
+
+615
+00:30:02,040 --> 00:30:05,568
+
+616
+00:30:05,568 --> 00:30:08,969
+>> AUDIENCE: How does
+compare still to the MVC
+
+617
+00:30:08,969 --> 00:30:10,760
+that we talked about
+before like resources.
+
+618
+00:30:10,760 --> 00:30:13,527
+>> NEEL MEHTA: Yeah, the question
+is how does it compare to MVC?
+
+619
+00:30:13,527 --> 00:30:14,610
+You asked about resources.
+
+620
+00:30:14,610 --> 00:30:16,445
+Well, let's talk about how it functions.
+
+621
+00:30:16,445 --> 00:30:18,190
+>> In MVC, you'd update the model.
+
+622
+00:30:18,190 --> 00:30:20,560
+In this case we'd have a card model.
+
+623
+00:30:20,560 --> 00:30:24,540
+The view would have the
+flip button, and the control
+
+624
+00:30:24,540 --> 00:30:26,310
+would have the flip function.
+
+625
+00:30:26,310 --> 00:30:28,450
+So the view would tell the
+controller to flip flip.
+
+626
+00:30:28,450 --> 00:30:30,370
+Flip would tell the
+model to change, right?
+
+627
+00:30:30,370 --> 00:30:33,915
+>> And so when you do an MVC, you
+listen for the model to change,
+
+628
+00:30:33,915 --> 00:30:37,150
+and you re-render the view accordingly.
+
+629
+00:30:37,150 --> 00:30:39,210
+Or you just have to like
+have the controller.
+
+630
+00:30:39,210 --> 00:30:42,418
+Wait for the model to change, and then
+pick and choose a part of like a thing
+
+631
+00:30:42,418 --> 00:30:44,032
+to change.
+
+632
+00:30:44,032 --> 00:30:45,740
+Here we have one thing,
+but in a big app,
+
+633
+00:30:45,740 --> 00:30:48,510
+you have to like remember what
+the change in every single place,
+
+634
+00:30:48,510 --> 00:30:50,290
+so it's a little annoying.
+
+635
+00:30:50,290 --> 00:30:53,670
+And so React is nice
+because it has a Shadow Dom.
+
+636
+00:30:53,670 --> 00:30:56,040
+It can afford to just
+rewrite the entire thing.
+
+637
+00:30:56,040 --> 00:30:58,680
+You don't have to selectively
+like guess what to update.
+
+638
+00:30:58,680 --> 00:31:02,186
+>> On Facebook if you like
+get a new message, in MVC,
+
+639
+00:31:02,186 --> 00:31:04,060
+you'd have to remember,
+OK, change the things
+
+640
+00:31:04,060 --> 00:31:06,260
+at the top of the
+page, the message icon.
+
+641
+00:31:06,260 --> 00:31:08,290
+Also pop a new window at the bottom.
+
+642
+00:31:08,290 --> 00:31:10,070
+Also make a new thing in that window.
+
+643
+00:31:10,070 --> 00:31:11,060
+Also play a sound.
+
+644
+00:31:11,060 --> 00:31:13,150
+>> That's a lot of stuff
+going out at the same time.
+
+645
+00:31:13,150 --> 00:31:15,320
+And so if you don't
+have a Shadow Dom, you'd
+
+646
+00:31:15,320 --> 00:31:18,740
+have to do that manually because
+you can't get rid of the whole page.
+
+647
+00:31:18,740 --> 00:31:21,430
+You can't afford to, so you have
+to change each thing manually,
+
+648
+00:31:21,430 --> 00:31:23,990
+which is really annoying in MVC.
+
+649
+00:31:23,990 --> 00:31:27,640
+>> So in order to be
+thrifty, they selectively
+
+650
+00:31:27,640 --> 00:31:30,750
+update the page, which is
+efficient, but also annoying.
+
+651
+00:31:30,750 --> 00:31:34,002
+In React, because of the Shadow
+Dom, you get both things for free.
+
+652
+00:31:34,002 --> 00:31:35,710
+It's efficient because
+of the Shadow Dom.
+
+653
+00:31:35,710 --> 00:31:37,210
+The bottleneck is updating the page.
+
+654
+00:31:37,210 --> 00:31:40,292
+It's not doing the tree manipulation.
+
+655
+00:31:40,292 --> 00:31:41,250
+You get the efficiency.
+
+656
+00:31:41,250 --> 00:31:45,420
+You also get the ease of use because
+if you just rewrite the entire page,
+
+657
+00:31:45,420 --> 00:31:48,970
+but you just know, all right, the things
+are going to be on the page somewhere.
+
+658
+00:31:48,970 --> 00:31:51,180
+It might be in a different place, but
+it's going to be on the page, right?
+
+659
+00:31:51,180 --> 00:31:52,860
+So you just re-rendered
+the entire thing virtually,
+
+660
+00:31:52,860 --> 00:31:55,540
+and you might make a couple
+changes to the page itself.
+
+661
+00:31:55,540 --> 00:31:57,850
+>> So, again, in MVC you
+would have to choose
+
+662
+00:31:57,850 --> 00:32:01,840
+between ease of use and efficiency,
+and React, you get both.
+
+663
+00:32:01,840 --> 00:32:04,020
+So it's better.
+
+664
+00:32:04,020 --> 00:32:05,220
+Make sense?
+
+665
+00:32:05,220 --> 00:32:06,676
+Solid.
+
+666
+00:32:06,676 --> 00:32:12,080
+>> OK, so let's see let's talk
+a little bit about step 4,
+
+667
+00:32:12,080 --> 00:32:14,740
+how we can embed components.
+
+668
+00:32:14,740 --> 00:32:16,260
+So we have this right now.
+
+669
+00:32:16,260 --> 00:32:19,420
+We have our cool little button.
+
+670
+00:32:19,420 --> 00:32:23,157
+We can flip it back and
+forth, and that's all it does.
+
+671
+00:32:23,157 --> 00:32:24,990
+Let's say we want to
+have another component.
+
+672
+00:32:24,990 --> 00:32:28,730
+Let's say our flashcard app should
+contain a list of all the cards
+
+673
+00:32:28,730 --> 00:32:31,520
+that you have, so that means we
+should have another component.
+
+674
+00:32:31,520 --> 00:32:32,970
+Well, maybe call it a list view.
+
+675
+00:32:32,970 --> 00:32:36,200
+Let's make a list view that
+coexists with the CardView,
+
+676
+00:32:36,200 --> 00:32:39,680
+and this list view and CardView
+will like work together.
+
+677
+00:32:39,680 --> 00:32:43,190
+And you can combine them
+to make our app for you.
+
+678
+00:32:43,190 --> 00:32:45,160
+>> So first, let's make a
+couple more cards right.
+
+679
+00:32:45,160 --> 00:32:46,370
+Let's say, what cards?
+
+680
+00:32:46,370 --> 00:32:49,619
+
+681
+00:32:49,619 --> 00:32:51,910
+And just so I don't have to
+bore you with typing it in,
+
+682
+00:32:51,910 --> 00:32:53,410
+I'm just going to copy it from here.
+
+683
+00:32:53,410 --> 00:33:01,664
+
+684
+00:33:01,664 --> 00:33:03,580
+And so I'm going to not
+give it just one card.
+
+685
+00:33:03,580 --> 00:33:06,910
+I'm going to give it an array of cards.
+
+686
+00:33:06,910 --> 00:33:10,240
+So first the apps
+going to break for now.
+
+687
+00:33:10,240 --> 00:33:14,717
+All right, so we're going to make
+this able to handle multiple cards.
+
+688
+00:33:14,717 --> 00:33:17,800
+So first, we're going to give it, not
+just one card but an array of cards,
+
+689
+00:33:17,800 --> 00:33:18,700
+like a list of cards.
+
+690
+00:33:18,700 --> 00:33:20,980
+And in this case, we have three of them.
+
+691
+00:33:20,980 --> 00:33:27,280
+>> All right, so so app is
+going to get a list cards,
+
+692
+00:33:27,280 --> 00:33:29,870
+and it's going to decide which
+one to show to the CardView.
+
+693
+00:33:29,870 --> 00:33:33,740
+The CardView can only
+render one card, but the app
+
+694
+00:33:33,740 --> 00:33:37,610
+gets a list of all the cards, right?
+
+695
+00:33:37,610 --> 00:33:40,820
+>> So when you figure out one
+card to give to CardView,
+
+696
+00:33:40,820 --> 00:33:44,660
+how would you guess you might be able
+to make a decision about which card
+
+697
+00:33:44,660 --> 00:33:47,064
+to show?
+
+698
+00:33:47,064 --> 00:33:49,980
+To give you a hint, it's temporarily
+You'll be viewing a certain card.
+
+699
+00:33:49,980 --> 00:33:53,260
+If you refresh the page, you'll
+just go back to the first card.
+
+700
+00:33:53,260 --> 00:33:55,464
+That's OK because it's temporary.
+
+701
+00:33:55,464 --> 00:33:56,630
+What technique might we use?
+
+702
+00:33:56,630 --> 00:34:02,534
+
+703
+00:34:02,534 --> 00:34:08,760
+>> AUDIENCE: You could make a variable
+so just like you had front.
+
+704
+00:34:08,760 --> 00:34:11,989
+Is this true, you could
+have current card equals 1?
+
+705
+00:34:11,989 --> 00:34:14,150
+>> NEEL MEHTA: Yeah, so we
+want to have state, right?
+
+706
+00:34:14,150 --> 00:34:16,080
+You would use state in the
+component to figure out
+
+707
+00:34:16,080 --> 00:34:17,288
+which card do we want to get.
+
+708
+00:34:17,288 --> 00:34:19,290
+Like we have a list of
+all the cards, we'll
+
+709
+00:34:19,290 --> 00:34:21,630
+use state to figure out
+one of the first card,
+
+710
+00:34:21,630 --> 00:34:23,710
+second card, third card, and so on.
+
+711
+00:34:23,710 --> 00:34:28,760
+>> So an app so an app will get a
+have the getInitialState function,
+
+712
+00:34:28,760 --> 00:34:35,020
+getInitialState function return.
+
+713
+00:34:35,020 --> 00:34:39,929
+And we'll just say activeIndex 0.
+
+714
+00:34:39,929 --> 00:34:42,889
+So now our app has it's own state.
+
+715
+00:34:42,889 --> 00:34:47,179
+>> And so now on render, to figure out
+a card, let's just go to the array
+
+716
+00:34:47,179 --> 00:34:49,969
+and grab the thing at that index.
+
+717
+00:34:49,969 --> 00:34:53,580
+Select card equal this.props.cards
+this.state.activeIndex.
+
+718
+00:34:53,580 --> 00:34:56,469
+
+719
+00:34:56,469 --> 00:35:00,162
+So as you see here, the props and
+the state actually work together.
+
+720
+00:35:00,162 --> 00:35:08,990
+So now that we have our activeCard,
+we'll call it activeCard,
+
+721
+00:35:08,990 --> 00:35:10,470
+and let's see if this works.
+
+722
+00:35:10,470 --> 00:35:20,320
+
+723
+00:35:20,320 --> 00:35:20,820
+[INAUDIBLE]
+
+724
+00:35:20,820 --> 00:35:41,504
+
+725
+00:35:41,504 --> 00:35:44,900
+>> Oh, that was a text error.
+
+726
+00:35:44,900 --> 00:35:45,400
+Ah.
+
+727
+00:35:45,400 --> 00:35:51,420
+
+728
+00:35:51,420 --> 00:35:54,840
+>> Cool, yep, so now we were back
+to where we were before, right?
+
+729
+00:35:54,840 --> 00:35:57,100
+Same old program except
+now we can support
+
+730
+00:35:57,100 --> 00:35:59,390
+a list of cards, not just one card.
+
+731
+00:35:59,390 --> 00:36:04,130
+And now, again, if we change the
+activeIndex, we can go from 0 to 1,
+
+732
+00:36:04,130 --> 00:36:07,330
+and now that second card,
+and then we went to 0.
+
+733
+00:36:07,330 --> 00:36:10,390
+So here's a new
+souped-up version of our.
+
+734
+00:36:10,390 --> 00:36:16,000
+>> OK, so now let's have a list view that
+shows all the cards in your program,
+
+735
+00:36:16,000 --> 00:36:19,980
+so we'll make a new
+component called listView.
+
+736
+00:36:19,980 --> 00:36:22,155
+Let listView equals react.createClass.
+
+737
+00:36:22,155 --> 00:36:32,890
+
+738
+00:36:32,890 --> 00:36:38,800
+So we want to render an unordered
+list with a list item for every card.
+
+739
+00:36:38,800 --> 00:36:41,490
+And so we have a bunch of cards.
+
+740
+00:36:41,490 --> 00:36:44,990
+We want one list item
+for every card, right?
+
+741
+00:36:44,990 --> 00:36:47,490
+We could do a for loop or
+something to make a new list item.
+
+742
+00:36:47,490 --> 00:36:50,522
+But the way you do it in
+React, use a thing called map.
+
+743
+00:36:50,522 --> 00:36:57,150
+Map is a tool or a function you use
+that for every item, runs some function,
+
+744
+00:36:57,150 --> 00:36:59,510
+takes return value, and
+gives you that back.
+
+745
+00:36:59,510 --> 00:37:06,310
+>> So as an example, we have the array
+1, 2, 3.map function-- and this
+
+746
+00:37:06,310 --> 00:37:12,120
+is shorthand for a
+function-- x arrow x times x.
+
+747
+00:37:12,120 --> 00:37:16,110
+This says, for every number
+in 1, 2, 3 , take it.
+
+748
+00:37:16,110 --> 00:37:17,800
+Square it, and give it back.
+
+749
+00:37:17,800 --> 00:37:22,090
+So what do you think 1,
+2, 3.map x goes to x times
+
+750
+00:37:22,090 --> 00:37:25,480
+x gives you back given
+that this function is
+
+751
+00:37:25,480 --> 00:37:27,680
+run on every element of that array.
+
+752
+00:37:27,680 --> 00:37:30,837
+
+753
+00:37:30,837 --> 00:37:32,190
+>> AUDIENCE: 1, 4 9?
+
+754
+00:37:32,190 --> 00:37:35,709
+>> NEEL MEHTA: Yep, 1, 4, 9
+because you do 1 times 1.
+
+755
+00:37:35,709 --> 00:37:36,500
+That gives you one.
+
+756
+00:37:36,500 --> 00:37:37,690
+That's the first element.
+
+757
+00:37:37,690 --> 00:37:38,530
+>> 2 times 2 is 4.
+
+758
+00:37:38,530 --> 00:37:39,570
+That's a second element.
+
+759
+00:37:39,570 --> 00:37:40,310
+3 times 3 is 9.
+
+760
+00:37:40,310 --> 00:37:41,540
+That's a third element.
+
+761
+00:37:41,540 --> 00:37:42,640
+Make sense?
+
+762
+00:37:42,640 --> 00:37:45,015
+So map has a technique you
+use in functional programmers,
+
+763
+00:37:45,015 --> 00:37:48,090
+the new style of
+programming to do something
+
+764
+00:37:48,090 --> 00:37:50,500
+to every element in your list.
+
+765
+00:37:50,500 --> 00:37:51,970
+And so this sounds familiar.
+
+766
+00:37:51,970 --> 00:37:53,370
+We have a list of cards.
+
+767
+00:37:53,370 --> 00:37:56,860
+We want to get a list item for every
+one, so we'll just use map here.
+
+768
+00:37:56,860 --> 00:38:00,250
+We'll say, let list equals
+this.props,cards,map.
+
+769
+00:38:00,250 --> 00:38:10,580
+
+770
+00:38:10,580 --> 00:38:15,070
+>> And so given a card, we're
+going to generate a list item
+
+771
+00:38:15,070 --> 00:38:17,580
+with that card's contents side of it.
+
+772
+00:38:17,580 --> 00:38:20,660
+Let's just say we want to give out
+the cards question so card.question.
+
+773
+00:38:20,660 --> 00:38:24,990
+
+774
+00:38:24,990 --> 00:38:30,649
+So this list contains an
+array of LI's or List Items
+
+775
+00:38:30,649 --> 00:38:32,440
+where there's one list
+item for every card,
+
+776
+00:38:32,440 --> 00:38:35,150
+and that contains the cards question.
+
+777
+00:38:35,150 --> 00:38:37,640
+Make sense?
+
+778
+00:38:37,640 --> 00:38:39,450
+>> Cool, so now let's
+actually print that out.
+
+779
+00:38:39,450 --> 00:38:46,521
+So we will return a ul.
+
+780
+00:38:46,521 --> 00:38:49,020
+Inside that unordered list,
+we'll just stick the entire list
+
+781
+00:38:49,020 --> 00:38:49,890
+that they gave us.
+
+782
+00:38:49,890 --> 00:38:52,851
+
+783
+00:38:52,851 --> 00:38:53,350
+Cool.
+
+784
+00:38:53,350 --> 00:38:56,060
+>> All right, so now this
+list view works just find.
+
+785
+00:38:56,060 --> 00:38:59,842
+Any questions about the list view?
+
+786
+00:38:59,842 --> 00:39:01,270
+You have a bunch of cards.
+
+787
+00:39:01,270 --> 00:39:02,800
+You make a list item for every card.
+
+788
+00:39:02,800 --> 00:39:05,466
+And you put them inside an unordered
+list, and you give it back.
+
+789
+00:39:05,466 --> 00:39:09,410
+So now let's act so we embed
+this inside of our app,
+
+790
+00:39:09,410 --> 00:39:14,310
+so we can do this, list view.
+
+791
+00:39:14,310 --> 00:39:17,070
+What argument do we pass to list view?
+
+792
+00:39:17,070 --> 00:39:18,320
+What properties do we give it?
+
+793
+00:39:18,320 --> 00:39:25,111
+
+794
+00:39:25,111 --> 00:39:26,860
+Remember, if you give
+it a bunch of cards,
+
+795
+00:39:26,860 --> 00:39:29,590
+it'll make the list
+view for those cards.
+
+796
+00:39:29,590 --> 00:39:32,267
+So what would we pass
+here as the argument?
+
+797
+00:39:32,267 --> 00:39:33,350
+AUDIENCE: A list of cards?
+
+798
+00:39:33,350 --> 00:39:37,130
+NEEL MEHTA: Yeah, so cards
+equals this.props.cards, right?
+
+799
+00:39:37,130 --> 00:39:39,850
+
+800
+00:39:39,850 --> 00:39:44,370
+And so the only problem
+is that you can only
+
+801
+00:39:44,370 --> 00:39:48,600
+turned one top level element in render,
+so you've got to wrap it in a div.
+
+802
+00:39:48,600 --> 00:39:49,100
+It's weird.
+
+803
+00:39:49,100 --> 00:39:56,190
+
+804
+00:39:56,190 --> 00:39:57,530
+So let's see if that.
+
+805
+00:39:57,530 --> 00:40:09,790
+
+806
+00:40:09,790 --> 00:40:10,560
+Does that work?
+
+807
+00:40:10,560 --> 00:40:29,774
+
+808
+00:40:29,774 --> 00:40:31,030
+>> Yep, there you go.
+
+809
+00:40:31,030 --> 00:40:33,700
+So now we have a list
+of cards at the bottom,
+
+810
+00:40:33,700 --> 00:40:36,180
+and then we have our
+CardView itself on top,
+
+811
+00:40:36,180 --> 00:40:40,486
+and that will flip between
+the two sides of the card.
+
+812
+00:40:40,486 --> 00:40:42,610
+Now does that make sense how I did that?
+
+813
+00:40:42,610 --> 00:40:45,165
+
+814
+00:40:45,165 --> 00:40:46,790
+Yeah, so again, we have two components.
+
+815
+00:40:46,790 --> 00:40:49,666
+The first component prints
+out every card in the list.
+
+816
+00:40:49,666 --> 00:40:50,540
+That's the list view.
+
+817
+00:40:50,540 --> 00:40:54,770
+And the second component
+prints out just that card.
+
+818
+00:40:54,770 --> 00:40:58,840
+If you give it a certain card, it'll
+print out information about that card
+
+819
+00:40:58,840 --> 00:41:01,870
+and let you flip back and forth.
+
+820
+00:41:01,870 --> 00:41:05,850
+>> So if we want, we can try and talk
+about adding some new features to this.
+
+821
+00:41:05,850 --> 00:41:09,482
+Otherwise we can talk a bit more
+about of the velocity of reactor,
+
+822
+00:41:09,482 --> 00:41:11,190
+or we can answer
+questions you might have
+
+823
+00:41:11,190 --> 00:41:15,050
+because these are all of the core parts
+of react that I want to talk about.
+
+824
+00:41:15,050 --> 00:41:16,540
+We can go ahead.
+
+825
+00:41:16,540 --> 00:41:17,590
+We can answer questions.
+
+826
+00:41:17,590 --> 00:41:18,560
+Whatever you want.
+
+827
+00:41:18,560 --> 00:41:21,694
+
+828
+00:41:21,694 --> 00:41:24,205
+>> AUDIENCE: Can you use
+JSX in normal JavaScript?
+
+829
+00:41:24,205 --> 00:41:27,150
+Or is that something that
+came with the [INAUDIBLE]?
+
+830
+00:41:27,150 --> 00:41:30,760
+>> NEEL MEHTA: The question is can
+you use JSX with normal JavaScript?
+
+831
+00:41:30,760 --> 00:41:32,620
+The answer is yes.
+
+832
+00:41:32,620 --> 00:41:41,070
+JSX is just a way of it takes your
+JavaScript that has HTML inside of it,
+
+833
+00:41:41,070 --> 00:41:44,215
+and it compiles into JavaScript that
+does not have HTML inside of it.
+
+834
+00:41:44,215 --> 00:41:47,880
+So notice that-- so notice here.
+
+835
+00:41:47,880 --> 00:41:50,820
+This looks like you have like div
+and you have stuff inside of it.
+
+836
+00:41:50,820 --> 00:41:54,970
+>> That compiles to JavaScript that
+like generates the same thing.
+
+837
+00:41:54,970 --> 00:41:59,590
+I guess what I'm saying is that
+JSX is just a syntactic, like it's
+
+838
+00:41:59,590 --> 00:42:03,530
+a preprocessor for JavaScript much
+like PHP is a preprocessor for HTML.
+
+839
+00:42:03,530 --> 00:42:05,490
+JSC is a preprocessor
+for JavaScript that lets
+
+840
+00:42:05,490 --> 00:42:12,970
+you put HTML inside of your JavaScript.
+
+841
+00:42:12,970 --> 00:42:16,425
+And so if you have the right transformer
+which is a thing called [INAUDIBLE],
+
+842
+00:42:16,425 --> 00:42:17,300
+which will transform.
+
+843
+00:42:17,300 --> 00:42:19,360
+The right preprocessor,
+it'll let you do that.
+
+844
+00:42:19,360 --> 00:42:20,235
+>> AUDIENCE: [INAUDIBLE]
+
+845
+00:42:20,235 --> 00:42:23,026
+NEEL MEHTA: Usually you don't need
+to put HTML inside of JavaScript
+
+846
+00:42:23,026 --> 00:42:24,110
+unless your doing React.
+
+847
+00:42:24,110 --> 00:42:27,146
+But you can do it anyway.
+
+848
+00:42:27,146 --> 00:42:27,645
+Yep?
+
+849
+00:42:27,645 --> 00:42:29,353
+>> AUDIENCE: I think you
+had described React
+
+850
+00:42:29,353 --> 00:42:31,970
+as a functional programing language.
+
+851
+00:42:31,970 --> 00:42:35,646
+We've been learning C in CS50.
+
+852
+00:42:35,646 --> 00:42:38,032
+Is C also a functional language?
+
+853
+00:42:38,032 --> 00:42:39,990
+NEEL MEHTA: So the question
+is about functional
+
+854
+00:42:39,990 --> 00:42:43,010
+versus another thing called
+imperative or procedural programming.
+
+855
+00:42:43,010 --> 00:42:44,820
+There's two kinds of programs popular.
+
+856
+00:42:44,820 --> 00:42:48,550
+One's called procedural, which
+is all about like doing commands,
+
+857
+00:42:48,550 --> 00:42:51,510
+and one is functional, which is all
+about having functions and having
+
+858
+00:42:51,510 --> 00:42:52,930
+input and output of those.
+
+859
+00:42:52,930 --> 00:42:55,930
+React is a functional paradigm.
+
+860
+00:42:55,930 --> 00:42:58,010
+C is a very procedural paradigm.
+
+861
+00:42:58,010 --> 00:43:02,360
+>> And as an example, C for example,
+you don't do this declarative way
+
+862
+00:43:02,360 --> 00:43:04,390
+of making the program, right?
+
+863
+00:43:04,390 --> 00:43:06,826
+You have to say, print this.
+
+864
+00:43:06,826 --> 00:43:07,950
+Change this data structure.
+
+865
+00:43:07,950 --> 00:43:08,530
+Print this.
+
+866
+00:43:08,530 --> 00:43:10,160
+It's all about commands.
+
+867
+00:43:10,160 --> 00:43:12,640
+>> In React, there's not
+that many commands.
+
+868
+00:43:12,640 --> 00:43:15,145
+It's all about having
+components you put together.
+
+869
+00:43:15,145 --> 00:43:16,300
+They're like functions.
+
+870
+00:43:16,300 --> 00:43:26,360
+You have like a function
+called CardView,
+
+871
+00:43:26,360 --> 00:43:28,680
+which is a function
+that has input, output,
+
+872
+00:43:28,680 --> 00:43:30,660
+and so React is all
+about this philosophy
+
+873
+00:43:30,660 --> 00:43:32,700
+us of having-- you have data.
+
+874
+00:43:32,700 --> 00:43:34,910
+You pass it through this
+algorithm, and it'll
+
+875
+00:43:34,910 --> 00:43:36,800
+output HTML that you
+just printed the page,
+
+876
+00:43:36,800 --> 00:43:39,180
+and so you have to
+build it piece by piece.
+
+877
+00:43:39,180 --> 00:43:42,800
+>> So to draw a metaphor to what
+I said before, you know how
+
+878
+00:43:42,800 --> 00:43:47,050
+on Facebook if you get a message,
+and you choose what parts to update,
+
+879
+00:43:47,050 --> 00:43:47,882
+that's procedural.
+
+880
+00:43:47,882 --> 00:43:48,840
+It's imperative, right?
+
+881
+00:43:48,840 --> 00:43:49,806
+OK, I got a message.
+
+882
+00:43:49,806 --> 00:43:50,930
+Let's change account there.
+
+883
+00:43:50,930 --> 00:43:52,110
+>> Let's pop a window here.
+
+884
+00:43:52,110 --> 00:43:52,780
+Let's change account there.
+
+885
+00:43:52,780 --> 00:43:53,700
+Let's draw this here.
+
+886
+00:43:53,700 --> 00:43:55,220
+That's a procedural approach.
+
+887
+00:43:55,220 --> 00:44:00,240
+>> That's what things like Angular,
+Boost, Backbone, other frameworks use.
+
+888
+00:44:00,240 --> 00:44:01,200
+React is functional.
+
+889
+00:44:01,200 --> 00:44:03,324
+It's a very different way
+of thinking about things.
+
+890
+00:44:03,324 --> 00:44:07,950
+It takes this idea of let's have
+functions or algorithms that will you
+
+891
+00:44:07,950 --> 00:44:08,800
+give it data.
+
+892
+00:44:08,800 --> 00:44:11,820
+It'll spit out what it
+should be, and the computer
+
+893
+00:44:11,820 --> 00:44:13,490
+will take care of weighing out.
+
+894
+00:44:13,490 --> 00:44:15,890
+You don't handle it yourself.
+
+895
+00:44:15,890 --> 00:44:18,470
+Does that make a little bit of sense?
+
+896
+00:44:18,470 --> 00:44:18,970
+Yeah?
+
+897
+00:44:18,970 --> 00:44:24,180
+>> AUDIENCE: In a functional language,
+everything happens at once?
+
+898
+00:44:24,180 --> 00:44:26,800
+>> NEEL MEHTA: No, things happen in order.
+
+899
+00:44:26,800 --> 00:44:29,320
+Like here there's still
+order, but it doesn't
+
+900
+00:44:29,320 --> 00:44:32,390
+happen in order of like
+commend, command, command.
+
+901
+00:44:32,390 --> 00:44:36,459
+It happens in order of
+function gives you output.
+
+902
+00:44:36,459 --> 00:44:37,750
+Put that into another function.
+
+903
+00:44:37,750 --> 00:44:39,550
+Put that into another
+function, another function.
+
+904
+00:44:39,550 --> 00:44:41,470
+>> If you do CS51, you'll
+learn functional programs
+
+905
+00:44:41,470 --> 00:44:42,886
+a little out of the scope of this.
+
+906
+00:44:42,886 --> 00:44:45,090
+But basically, what makes
+React cool is not only
+
+907
+00:44:45,090 --> 00:44:46,840
+the one-way data flow
+and the virtual Dom,
+
+908
+00:44:46,840 --> 00:44:48,700
+but also this idea of
+functional programming.
+
+909
+00:44:48,700 --> 00:44:51,720
+And functional programming is very easy
+to compose and make cool stuff out of,
+
+910
+00:44:51,720 --> 00:44:53,844
+and it's very easy to think
+about and reason about.
+
+911
+00:44:53,844 --> 00:44:55,450
+So it's another good draw of React.
+
+912
+00:44:55,450 --> 00:44:58,489
+
+913
+00:44:58,489 --> 00:44:59,280
+Any more questions?
+
+914
+00:44:59,280 --> 00:45:02,650
+
+915
+00:45:02,650 --> 00:45:03,150
+Yeah?
+
+916
+00:45:03,150 --> 00:45:06,840
+>> AUDIENCE: Um, why would you
+use let as opposed to var?
+
+917
+00:45:06,840 --> 00:45:10,450
+>> NEEL MEHTA: So the question is
+why do you use let instead of var?
+
+918
+00:45:10,450 --> 00:45:13,220
+This is a thing called
+ES6 or ECMAScript 6.
+
+919
+00:45:13,220 --> 00:45:15,820
+It's the new version of JavaScript.
+
+920
+00:45:15,820 --> 00:45:19,050
+There's a bunch of technical reasons,
+but let is a better version of var.
+
+921
+00:45:19,050 --> 00:45:20,724
+>> It's how you declare variables.
+
+922
+00:45:20,724 --> 00:45:21,390
+You can use let.
+
+923
+00:45:21,390 --> 00:45:22,140
+You can use var.
+
+924
+00:45:22,140 --> 00:45:23,825
+Let has a bunch of technical
+reasons-- you can look them
+
+925
+00:45:23,825 --> 00:45:25,610
+up later-- for why it's better.
+
+926
+00:45:25,610 --> 00:45:28,780
+Basically, ES6 has some nice
+new syntax, some new features
+
+927
+00:45:28,780 --> 00:45:30,720
+on top of the old JavaScript.
+
+928
+00:45:30,720 --> 00:45:32,782
+>> So we have like five minutes.
+
+929
+00:45:32,782 --> 00:45:34,990
+I just wanted to talk about
+one more thing real fast.
+
+930
+00:45:34,990 --> 00:45:36,450
+If you had any questions,
+let's talk about it after this.
+
+931
+00:45:36,450 --> 00:45:38,366
+But just so this gets
+caught on camera, I just
+
+932
+00:45:38,366 --> 00:45:41,550
+want to talk a bit about how you
+actually use React in your apps.
+
+933
+00:45:41,550 --> 00:45:47,220
+
+934
+00:45:47,220 --> 00:45:58,640
+>> If you go here,
+Facebook.GitHub.IO/react,
+
+935
+00:45:58,640 --> 00:46:03,320
+this is the home page for React, and
+it'll show you how you actually use
+
+936
+00:46:03,320 --> 00:46:05,320
+React in your pages.
+
+937
+00:46:05,320 --> 00:46:08,845
+Basically, it's a little
+complicated trying to install React.
+
+938
+00:46:08,845 --> 00:46:12,300
+It's not as easy as you just drag
+and drop a JavaScript in there.
+
+939
+00:46:12,300 --> 00:46:15,890
+>> You have to have your transformer
+set up, which will, as it did before,
+
+940
+00:46:15,890 --> 00:46:18,120
+turn your JSX into
+the normal JavaScript.
+
+941
+00:46:18,120 --> 00:46:21,030
+You have to thing that'll
+compile you ES6 to normal.
+
+942
+00:46:21,030 --> 00:46:24,720
+JavaScript there's a lot of moving
+parts you have to do, so there's a thing
+
+943
+00:46:24,720 --> 00:46:27,200
+called Yeoman, Yeoman.io.
+
+944
+00:46:27,200 --> 00:46:31,110
+And this is a command line tool that'll
+help you scaffold out your React
+
+945
+00:46:31,110 --> 00:46:32,380
+projects easily.
+
+946
+00:46:32,380 --> 00:46:38,660
+>> So you can read about this
+later, but there are some tools
+
+947
+00:46:38,660 --> 00:46:40,160
+that Yeoman offers.
+
+948
+00:46:40,160 --> 00:46:43,280
+They'll let you create a React
+app with everything built in.
+
+949
+00:46:43,280 --> 00:46:46,030
+Like it'll have built
+in, components built in.
+
+950
+00:46:46,030 --> 00:46:47,880
+It'll have your transformer built in.
+
+951
+00:46:47,880 --> 00:46:50,699
+They have a lot of cool
+stuff built in automatically
+
+952
+00:46:50,699 --> 00:46:52,240
+using these things called generators.
+
+953
+00:46:52,240 --> 00:46:54,620
+>> So read about this if you like.
+
+954
+00:46:54,620 --> 00:46:59,110
+Just go on Yeoman, Y-E-O-M-A-N, and
+you can find generators like these.
+
+955
+00:46:59,110 --> 00:47:01,263
+And with generators like
+these, you just like one
+
+956
+00:47:01,263 --> 00:47:03,010
+is a couple command line commands.
+
+957
+00:47:03,010 --> 00:47:05,530
+It'll scaffold out an
+entire React app for you.
+
+958
+00:47:05,530 --> 00:47:10,470
+It'll get all the manual piping,
+and grunt work done for you,
+
+959
+00:47:10,470 --> 00:47:13,010
+and this is why you just focus
+on just writing in React.
+
+960
+00:47:13,010 --> 00:47:16,739
+>> So basically building a
+React app is nontrivial.
+
+961
+00:47:16,739 --> 00:47:19,530
+It's wired all together, but there
+are tools that'll do it for you.
+
+962
+00:47:19,530 --> 00:47:23,070
+So if you want to make a React
+app, try doing it that way.
+
+963
+00:47:23,070 --> 00:47:26,360
+If you just want to experiment,
+you can try using this CodePen
+
+964
+00:47:26,360 --> 00:47:28,550
+because this CodePen has
+all the react wiring.
+
+965
+00:47:28,550 --> 00:47:30,240
+I've done all the work for you already.
+
+966
+00:47:30,240 --> 00:47:34,610
+>> So if you want to make like a
+production to release React app,
+
+967
+00:47:34,610 --> 00:47:37,220
+try one of these generators.
+
+968
+00:47:37,220 --> 00:47:40,240
+If you just want to play
+around, it's often worth just
+
+969
+00:47:40,240 --> 00:47:44,490
+like try playing around on CodePen here.
+
+970
+00:47:44,490 --> 00:47:45,470
+Sound good?
+
+971
+00:47:45,470 --> 00:47:45,970
+Cool.
+
+972
+00:47:45,970 --> 00:47:47,890
+>> So that's all I have.
+
+973
+00:47:47,890 --> 00:47:52,470
+Again, all the code and examples are
+going to be on this website here.
+
+974
+00:47:52,470 --> 00:47:55,509
+So, again, we didn't talk
+about much syntax of React,
+
+975
+00:47:55,509 --> 00:47:57,550
+but to find all those
+little syntactical details,
+
+976
+00:47:57,550 --> 00:48:00,320
+it's all going to be available
+on this website here.
+
+977
+00:48:00,320 --> 00:48:02,660
+>> So I'd recommend like
+take the first step.
+
+978
+00:48:02,660 --> 00:48:06,277
+Put it into your CodePen.
+
+979
+00:48:06,277 --> 00:48:08,110
+Try working on making
+it to the second step.
+
+980
+00:48:08,110 --> 00:48:11,310
+There's a fourth step, and just
+see where you get from that.
+
+981
+00:48:11,310 --> 00:48:14,840
+>> Any more questions, check
+out that page or email me.
+
+982
+00:48:14,840 --> 00:48:16,490
+That's my email.
+
+983
+00:48:16,490 --> 00:48:19,885
+But I'd love to help you with any
+questions you might have about React.
+
+984
+00:48:19,885 --> 00:48:21,010
+So, yep, that's all I have.
+
+985
+00:48:21,010 --> 00:48:23,410
+Thank you all very much for
+watching or for attending.
+
+986
+00:48:23,410 --> 00:48:26,820
+And I'll take any questions
+you might have after this now.
+
+987
+00:48:26,820 --> 00:48:29,140
+So thank you all for watching.
+
+988
+00:48:29,140 --> 00:48:31,270

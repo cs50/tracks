@@ -1,0 +1,5232 @@
+1
+00:00:00,000 --> 00:00:12,040
+>> [MUSIC PLAYING]
+
+2
+00:00:12,040 --> 00:00:16,460
+>> SPEAKER 1: All right, this is CS50,
+and this is the start of week four,
+
+3
+00:00:16,460 --> 00:00:20,420
+and as you may have heard or
+read, the world has been ending.
+
+4
+00:00:20,420 --> 00:00:23,520
+Going all around the internet
+has been knowledge and awareness
+
+5
+00:00:23,520 --> 00:00:27,100
+of a bug in a program, a
+programming language called Bash.
+
+6
+00:00:27,100 --> 00:00:32,729
+This has been wonderfully branded
+as Shellshock, or the Bash door,
+
+7
+00:00:32,729 --> 00:00:35,485
+but articles like these
+have not been uncommon.
+
+8
+00:00:35,485 --> 00:00:38,807
+And in fact, many of them bring
+back memories of Heartbleed,
+
+9
+00:00:38,807 --> 00:00:41,640
+which you may have noticed in the
+press back this past spring, which
+
+10
+00:00:41,640 --> 00:00:43,980
+was similarly fairly dramatic.
+
+11
+00:00:43,980 --> 00:00:47,110
+Now of those of you here
+today, how many of you have,
+
+12
+00:00:47,110 --> 00:00:50,330
+even if you don't understand what
+it's all about, heard of Shellshock?
+
+13
+00:00:50,330 --> 00:00:51,370
+
+14
+00:00:51,370 --> 00:00:54,245
+All right, and how many of you
+have computers that are vulnerable?
+
+15
+00:00:54,245 --> 00:00:55,680
+
+16
+00:00:55,680 --> 00:01:00,250
+OK, there should be far, far more hands
+up right now, for reasons we shall see.
+
+17
+00:01:00,250 --> 00:01:02,580
+>> Let's take a look at what's
+been going on in the media
+
+18
+00:01:02,580 --> 00:01:05,304
+and then explain it a bit
+here for us technically.
+
+19
+00:01:05,304 --> 00:01:07,670
+
+20
+00:01:07,670 --> 00:01:11,250
+>> SPEAKER 2: Security experts have
+warned that a serious flaw could
+
+21
+00:01:11,250 --> 00:01:15,650
+be about to affect hundreds of
+millions of the world's web users.
+
+22
+00:01:15,650 --> 00:01:20,600
+So what exactly is the bug that's been
+dubbed Shellshock, and what does it do?
+
+23
+00:01:20,600 --> 00:01:23,720
+
+24
+00:01:23,720 --> 00:01:28,910
+Well, Shellshock is also known as the
+Bash bug, the software it exploits.
+
+25
+00:01:28,910 --> 00:01:33,230
+Hackers use the virus to scan vulnerable
+systems running Linux and Unix
+
+26
+00:01:33,230 --> 00:01:36,300
+operating systems and then infect them.
+
+27
+00:01:36,300 --> 00:01:38,730
+Bash is a command line shell.
+
+28
+00:01:38,730 --> 00:01:43,460
+This lets users issue commands to launch
+programs and features within software
+
+29
+00:01:43,460 --> 00:01:45,250
+by typing in text.
+
+30
+00:01:45,250 --> 00:01:49,980
+It's typically used by programmers, and
+shouldn't be open to the wider world,
+
+31
+00:01:49,980 --> 00:01:51,590
+though Shellshock changes that.
+
+32
+00:01:51,590 --> 00:01:54,160
+
+33
+00:01:54,160 --> 00:01:57,910
+>> Well, worringly, some analysts
+warn it could be a bigger threat,
+
+34
+00:01:57,910 --> 00:02:01,580
+because Shellshock allows complete
+control of an infected machine,
+
+35
+00:02:01,580 --> 00:02:06,030
+whereas Heartbleed only allowed
+hackers to spy on computers.
+
+36
+00:02:06,030 --> 00:02:09,130
+It's so serious, it's
+been rated a 10 out of 10
+
+37
+00:02:09,130 --> 00:02:11,900
+for severity by the National
+Vulnerability Database.
+
+38
+00:02:11,900 --> 00:02:15,530
+
+39
+00:02:15,530 --> 00:02:20,015
+2/3 of all web servers are at
+risk, including some Mac computers.
+
+40
+00:02:20,015 --> 00:02:22,760
+
+41
+00:02:22,760 --> 00:02:25,600
+Well, make sure you
+patch your systems now.
+
+42
+00:02:25,600 --> 00:02:29,330
+Anyone hosting a website running
+the affected operating systems
+
+43
+00:02:29,330 --> 00:02:31,800
+should take action as soon as possible.
+
+44
+00:02:31,800 --> 00:02:35,390
+Anyone who can afford it should look
+to their monitoring and web application
+
+45
+00:02:35,390 --> 00:02:37,355
+firewalls to look out for any attacks.
+
+46
+00:02:37,355 --> 00:02:39,979
+
+47
+00:02:39,979 --> 00:02:41,770
+SPEAKER 3: Worst thing
+that could happen is
+
+48
+00:02:41,770 --> 00:02:45,080
+that somebody would write code that
+would automatically go and scan
+
+49
+00:02:45,080 --> 00:02:48,280
+the internet and would affect
+all of these computers.
+
+50
+00:02:48,280 --> 00:02:50,710
+And once they do that, well,
+the worst thing they could do
+
+51
+00:02:50,710 --> 00:02:53,300
+is just delete everything,
+or shut the sites down.
+
+52
+00:02:53,300 --> 00:02:55,360
+So we could see damage
+from that point of view,
+
+53
+00:02:55,360 --> 00:02:58,300
+where we would have malicious people
+who just decide to cause havoc
+
+54
+00:02:58,300 --> 00:03:02,534
+by bringing systems down or deleting
+files, and things like that.
+
+55
+00:03:02,534 --> 00:03:05,200
+SPEAKER 2: Some say this is one
+of the most difficult to measure
+
+56
+00:03:05,200 --> 00:03:08,080
+bugs in years, and it
+may take weeks or even
+
+57
+00:03:08,080 --> 00:03:10,820
+months to determine its ultimate impact.
+
+58
+00:03:10,820 --> 00:03:12,180
+
+59
+00:03:12,180 --> 00:03:15,560
+>> SPEAKER 1: So all of that is true,
+but the funny thing is, almost all
+
+60
+00:03:15,560 --> 00:03:18,330
+of the imagery you just saw,
+except for maybe the keyboard,
+
+61
+00:03:18,330 --> 00:03:20,930
+has nothing to do with
+the bug whatsoever.
+
+62
+00:03:20,930 --> 00:03:23,960
+Servers and wires and so forth,
+it's sort of tangentially related,
+
+63
+00:03:23,960 --> 00:03:27,410
+but at the core it's actually pretty
+familiar what's going on here.
+
+64
+00:03:27,410 --> 00:03:30,050
+In fact, let me go into
+our CS50 appliance.
+
+65
+00:03:30,050 --> 00:03:32,910
+Let me go ahead and maximize
+the terminal window here.
+
+66
+00:03:32,910 --> 00:03:36,020
+And you guys have been using this,
+or the embedded version thereof,
+
+67
+00:03:36,020 --> 00:03:39,460
+in gedit in order to write programs,
+type commands, and so forth,
+
+68
+00:03:39,460 --> 00:03:43,690
+and this is actually, and has
+been for weeks, Bash, B-A-S-H.
+
+69
+00:03:43,690 --> 00:03:46,890
+This is the Bourne-again shell,
+which is just a fancy way of saying,
+
+70
+00:03:46,890 --> 00:03:50,220
+this is a program that has a
+blinking prompt, effectively,
+
+71
+00:03:50,220 --> 00:03:51,970
+that sits there waiting
+for input for you.
+
+72
+00:03:51,970 --> 00:03:53,920
+And it's the command
+line interface via which
+
+73
+00:03:53,920 --> 00:03:57,650
+you guys have been running commands and
+ultimately compiling and then running
+
+74
+00:03:57,650 --> 00:03:58,400
+programs.
+
+75
+00:03:58,400 --> 00:04:01,320
+>> But Bash is also a programming
+language in the following sense.
+
+76
+00:04:01,320 --> 00:04:05,460
+You know that there are commands like
+cd and ls and also clang and others,
+
+77
+00:04:05,460 --> 00:04:09,580
+but you can define your own commands
+by implementing them in Bash.
+
+78
+00:04:09,580 --> 00:04:11,420
+Now we're not going to
+go into great detail
+
+79
+00:04:11,420 --> 00:04:16,089
+as to Bash the programming language, but
+know, for instance, that at the moment,
+
+80
+00:04:16,089 --> 00:04:17,607
+there's no command called "hello."
+
+81
+00:04:17,607 --> 00:04:19,440
+So it can be found in
+one of these packages.
+
+82
+00:04:19,440 --> 00:04:20,856
+It's not installed on my computer.
+
+83
+00:04:20,856 --> 00:04:21,870
+Ask your administrator.
+
+84
+00:04:21,870 --> 00:04:26,030
+But if I want there to be a program
+called "hello" in Bash or at my prompt,
+
+85
+00:04:26,030 --> 00:04:30,810
+I can actually use syntax that's
+quite like C. It's not quite the same,
+
+86
+00:04:30,810 --> 00:04:35,020
+but it looks pretty similar to a
+function, albeit missing some details.
+
+87
+00:04:35,020 --> 00:04:38,090
+Nothing seems to happen,
+but now if I type "hello,"
+
+88
+00:04:38,090 --> 00:04:40,960
+you can actually write a
+program, not in C, not in Java,
+
+89
+00:04:40,960 --> 00:04:44,280
+not in another programming
+language, but in Bash itself.
+
+90
+00:04:44,280 --> 00:04:47,630
+>> Now the key here is that I wrote the
+name I wanted to give this new command,
+
+91
+00:04:47,630 --> 00:04:50,820
+and the parentheses are also
+symbolic of this being a function.
+
+92
+00:04:50,820 --> 00:04:54,010
+As an aside, you can also do fun
+things, and in fact, even on Mac OS,
+
+93
+00:04:54,010 --> 00:04:55,620
+this is a program called Terminal.
+
+94
+00:04:55,620 --> 00:04:58,800
+It comes built into anyone's
+computer that has a Mac in this room,
+
+95
+00:04:58,800 --> 00:05:03,640
+and you can do similar things in Mac
+OS, but you can go more beyond that.
+
+96
+00:05:03,640 --> 00:05:07,110
+And this is a little tangential,
+but it's kind of fun.
+
+97
+00:05:07,110 --> 00:05:09,715
+I was reminded this morning,
+when thinking this through,
+
+98
+00:05:09,715 --> 00:05:13,279
+of a little game I used to play
+with one of CS50's former TFs
+
+99
+00:05:13,279 --> 00:05:16,570
+whereby any time he would walk away from
+his keyboard with his screen unlocked,
+
+100
+00:05:16,570 --> 00:05:23,611
+I would execute a command
+like this-- "say hello."
+
+101
+00:05:23,611 --> 00:05:26,610
+And now any time he came back to his
+keyboard after I cleared the screen
+
+102
+00:05:26,610 --> 00:05:27,985
+and he would sit down,
+try to do some work,
+
+103
+00:05:27,985 --> 00:05:29,250
+list the contents of his directory--
+
+104
+00:05:29,250 --> 00:05:29,510
+>> [AUDIO PLAYBACK]
+
+105
+00:05:29,510 --> 00:05:30,010
+>> -Hello.
+
+106
+00:05:30,010 --> 00:05:31,621
+
+107
+00:05:31,621 --> 00:05:32,120
+Hello.
+
+108
+00:05:32,120 --> 00:05:35,030
+>> SPEAKER 1: So, in fairness,
+it wasn't actually "hello."
+
+109
+00:05:35,030 --> 00:05:36,894
+It was usually something
+more akin to that--
+
+110
+00:05:36,894 --> 00:05:37,560
+[AUDIO PLAYBACK]
+
+111
+00:05:37,560 --> 00:05:37,750
+-Beep.
+
+112
+00:05:37,750 --> 00:05:39,320
+SPEAKER 1: --that I would--
+so his computer would
+
+113
+00:05:39,320 --> 00:05:42,170
+swear at him any time he actually
+sat down at his keyboard.
+
+114
+00:05:42,170 --> 00:05:46,265
+And very quickly he figured out
+not to leave his screen unlocked.
+
+115
+00:05:46,265 --> 00:05:48,730
+But this suggests the sort
+of stupid fun that you
+
+116
+00:05:48,730 --> 00:05:50,210
+can have with something like Bash.
+
+117
+00:05:50,210 --> 00:05:52,770
+But it's a little more
+serious, to be sure, than that.
+
+118
+00:05:52,770 --> 00:05:57,235
+And in fact, this is one of the
+most dangerous and long-lasting bugs
+
+119
+00:05:57,235 --> 00:05:58,860
+that has really hit the world globally.
+
+120
+00:05:58,860 --> 00:06:02,060
+This bug has been around
+for some 20 years,
+
+121
+00:06:02,060 --> 00:06:05,780
+and you'll be struck in just a
+moment by its relative simplicity.
+
+122
+00:06:05,780 --> 00:06:07,990
+>> So this is a representative
+command that if you
+
+123
+00:06:07,990 --> 00:06:10,448
+own a Mac, literally right now
+when you have your lid open,
+
+124
+00:06:10,448 --> 00:06:12,940
+you can try typing into that
+program called Terminal.
+
+125
+00:06:12,940 --> 00:06:15,410
+Terminal is under
+Applications Utilities--
+
+126
+00:06:15,410 --> 00:06:18,790
+for once, Windows users don't have to
+worry about this particular threat--
+
+127
+00:06:18,790 --> 00:06:22,310
+but those of you with Macs can type
+this into a window like I'll do here,
+
+128
+00:06:22,310 --> 00:06:24,210
+and if you do type
+that into this program
+
+129
+00:06:24,210 --> 00:06:28,830
+called Terminal, like I'll do now,
+if you see the word "vulnerable,"
+
+130
+00:06:28,830 --> 00:06:32,200
+your computer is
+vulnerable to exploitation.
+
+131
+00:06:32,200 --> 00:06:33,850
+>> Now what does that actually mean?
+
+132
+00:06:33,850 --> 00:06:35,870
+And this is admittedly
+some pretty crazy syntax,
+
+133
+00:06:35,870 --> 00:06:39,050
+but let's at least draw out
+some of the interesting aspects.
+
+134
+00:06:39,050 --> 00:06:42,567
+So there's some syntax that looks
+a little familiar, at least from C
+
+135
+00:06:42,567 --> 00:06:43,950
+and programming more generally.
+
+136
+00:06:43,950 --> 00:06:47,550
+I see some parentheses,
+semicolons, curly braces, and such,
+
+137
+00:06:47,550 --> 00:06:50,820
+but it turns out that this
+stupid thing here in yellow
+
+138
+00:06:50,820 --> 00:06:53,580
+is essentially a function
+that does nothing.
+
+139
+00:06:53,580 --> 00:06:57,840
+The colon means do nothing, and the
+semicolon means stop doing nothing.
+
+140
+00:06:57,840 --> 00:07:00,250
+So inside of these
+curly braces, the fact
+
+141
+00:07:00,250 --> 00:07:02,440
+that I have an equal
+sign to the left, this
+
+142
+00:07:02,440 --> 00:07:05,500
+is essentially creating
+a command, or a variable,
+
+143
+00:07:05,500 --> 00:07:09,520
+called x, and assigning it
+that yellow bit of code there.
+
+144
+00:07:09,520 --> 00:07:14,040
+That could be something like "echo
+hello" or "say beep" or something
+
+145
+00:07:14,040 --> 00:07:15,120
+akin to that.
+
+146
+00:07:15,120 --> 00:07:17,780
+But notice if your eyes
+wander further to the right,
+
+147
+00:07:17,780 --> 00:07:22,150
+there's more to this line than
+just the end of that semicolon.
+
+148
+00:07:22,150 --> 00:07:25,160
+"Echo vulnerable," and then
+beyond that there's even more.
+
+149
+00:07:25,160 --> 00:07:26,530
+Another semicolon, bash -c:.
+
+150
+00:07:26,530 --> 00:07:28,120
+
+151
+00:07:28,120 --> 00:07:34,050
+>> So long story short,
+this line of code is
+
+152
+00:07:34,050 --> 00:07:36,660
+sufficient for compelling
+a computer that's
+
+153
+00:07:36,660 --> 00:07:39,830
+vulnerable to doing something
+that you want it to do,
+
+154
+00:07:39,830 --> 00:07:44,290
+because there's a bug in Bash whereby
+even though Bash was supposed to stop
+
+155
+00:07:44,290 --> 00:07:48,980
+reading lines of command right
+there after the yellow text,
+
+156
+00:07:48,980 --> 00:07:52,520
+for a 20-plus year old bug,
+Bash has actually been reading
+
+157
+00:07:52,520 --> 00:07:56,780
+beyond that semicolon and pretty
+much doing what it is told.
+
+158
+00:07:56,780 --> 00:07:59,070
+>> So what's the implication
+of that ultimately?
+
+159
+00:07:59,070 --> 00:08:01,340
+I just said "echo hello"
+or "echo vulnerable,"
+
+160
+00:08:01,340 --> 00:08:05,449
+but what if you did something
+actually malicious, like rm -rf *,
+
+161
+00:08:05,449 --> 00:08:07,240
+which you might not
+have ever typed before,
+
+162
+00:08:07,240 --> 00:08:08,920
+and frankly you probably
+shouldn't too soon,
+
+163
+00:08:08,920 --> 00:08:10,700
+because you can do a
+lot of damage with it.
+
+164
+00:08:10,700 --> 00:08:11,210
+Why?
+
+165
+00:08:11,210 --> 00:08:12,990
+rm does what, of course?
+
+166
+00:08:12,990 --> 00:08:14,270
+Removes.
+
+167
+00:08:14,270 --> 00:08:15,930
+* means what?
+
+168
+00:08:15,930 --> 00:08:16,430
+All.
+
+169
+00:08:16,430 --> 00:08:18,180
+So it's a so-called
+wild card, so it means
+
+170
+00:08:18,180 --> 00:08:20,410
+delete everything in
+the current directory.
+
+171
+00:08:20,410 --> 00:08:23,379
+-r happens to mean recursive,
+which means if what you're deleting
+
+172
+00:08:23,379 --> 00:08:26,420
+is a directory, and inside of there
+is other files and other directories,
+
+173
+00:08:26,420 --> 00:08:28,950
+recursively dive into there
+and delete all of that.
+
+174
+00:08:28,950 --> 00:08:31,040
+And -f is the worst of them all.
+
+175
+00:08:31,040 --> 00:08:32,580
+Anyone know what -f means here?
+
+176
+00:08:32,580 --> 00:08:33,690
+
+177
+00:08:33,690 --> 00:08:34,360
+Force.
+
+178
+00:08:34,360 --> 00:08:37,830
+So force means, even
+if this is a bad idea,
+
+179
+00:08:37,830 --> 00:08:40,939
+do it without prompting me
+for further confirmation.
+
+180
+00:08:40,939 --> 00:08:43,230
+So, you know, we laugh at
+this, but frankly, I probably
+
+181
+00:08:43,230 --> 00:08:44,972
+type this multiple times
+a day, because the reality
+
+182
+00:08:44,972 --> 00:08:47,210
+is it's the fastest way to
+delete a whole bunch of stuff.
+
+183
+00:08:47,210 --> 00:08:48,590
+But even I have done some damage.
+
+184
+00:08:48,590 --> 00:08:53,100
+>> But if you were to trick a computer
+into defining some stupid variable
+
+185
+00:08:53,100 --> 00:08:56,810
+or function called x, but then
+tricking the computer into executing
+
+186
+00:08:56,810 --> 00:09:00,030
+beyond the boundaries of that
+function, beyond that semicolon,
+
+187
+00:09:00,030 --> 00:09:04,430
+you could indeed trick a computer
+into executing something like rm -rf
+
+188
+00:09:04,430 --> 00:09:07,810
+or the Email command
+or the Copy command.
+
+189
+00:09:07,810 --> 00:09:11,400
+Anything literally you can do with the
+computer, whether it's deleting files,
+
+190
+00:09:11,400 --> 00:09:15,350
+creating files, spamming someone,
+attacking some server remotely,
+
+191
+00:09:15,350 --> 00:09:17,190
+if you can express it
+with a command, you
+
+192
+00:09:17,190 --> 00:09:19,120
+can trick a computer into doing that.
+
+193
+00:09:19,120 --> 00:09:21,510
+>> Now what's an example of
+how you might do this?
+
+194
+00:09:21,510 --> 00:09:24,300
+Well, there's a lot of computers
+on the internet running Bash.
+
+195
+00:09:24,300 --> 00:09:26,390
+All of us Mac users are among them.
+
+196
+00:09:26,390 --> 00:09:30,390
+A lot of Linux servers are among
+them as well, and Unix servers.
+
+197
+00:09:30,390 --> 00:09:32,630
+Windows again gets
+relatively off the hook
+
+198
+00:09:32,630 --> 00:09:34,590
+unless you've installed
+special software.
+
+199
+00:09:34,590 --> 00:09:37,130
+Now a lot of servers, for
+instance, run web servers,
+
+200
+00:09:37,130 --> 00:09:39,840
+and in fact Linux is perhaps the
+most popular operating system
+
+201
+00:09:39,840 --> 00:09:43,060
+to run on computers on the internet
+that are serving up web pages.
+
+202
+00:09:43,060 --> 00:09:44,910
+Now as we'll see later
+in the semester, when
+
+203
+00:09:44,910 --> 00:09:48,470
+you send a request from
+your browser-- Chrome,
+
+204
+00:09:48,470 --> 00:09:50,790
+Internet Explorer, whatever--
+to a remote server,
+
+205
+00:09:50,790 --> 00:09:53,730
+it turns out that even though
+you just typed www.example.com,
+
+206
+00:09:53,730 --> 00:09:59,590
+your browser is sending a message
+that's a little more arcane, like this.
+
+207
+00:09:59,590 --> 00:10:01,239
+>> But notice a little something strange.
+
+208
+00:10:01,239 --> 00:10:03,030
+The first two lines
+I've never seen before,
+
+209
+00:10:03,030 --> 00:10:04,904
+but they don't look
+particularly threatening.
+
+210
+00:10:04,904 --> 00:10:08,030
+But notice what I've stolen
+for the third line here.
+
+211
+00:10:08,030 --> 00:10:13,390
+If a bad guy were to send a message
+like this from his or her computer
+
+212
+00:10:13,390 --> 00:10:17,270
+to a vulnerable Mac or a
+vulnerable Linux server,
+
+213
+00:10:17,270 --> 00:10:21,580
+the funny thing is that Bash,
+that simple little command prompt,
+
+214
+00:10:21,580 --> 00:10:27,450
+is omnipresent and is often
+used to essentially execute
+
+215
+00:10:27,450 --> 00:10:30,020
+the contents of a
+message that it receives.
+
+216
+00:10:30,020 --> 00:10:33,490
+And by that logic, you can
+trick a web server, therefore,
+
+217
+00:10:33,490 --> 00:10:36,370
+by sending something like
+User-Agent, which usually
+
+218
+00:10:36,370 --> 00:10:38,300
+is supposed to say the
+name of your browser.
+
+219
+00:10:38,300 --> 00:10:42,420
+User-Agent Chrome, User-Agent Internet
+Explorer, User-Agent Firefox, this
+
+220
+00:10:42,420 --> 00:10:44,590
+is just your browser's
+way of identifying itself.
+
+221
+00:10:44,590 --> 00:10:46,605
+But if a bad guy very
+cleverly says, mm-mm, I'm
+
+222
+00:10:46,605 --> 00:10:47,930
+not going to tell you
+what my browser is,
+
+223
+00:10:47,930 --> 00:10:50,888
+I'm instead going to send you this
+cryptic-looking thing with an rm -rf
+
+224
+00:10:50,888 --> 00:10:55,840
+* in it, you can literally trick a
+vulnerable web server on the internet
+
+225
+00:10:55,840 --> 00:10:59,055
+into executing exactly that in
+there for deleting all of the files.
+
+226
+00:10:59,055 --> 00:11:00,930
+And frankly, that's not
+even the worst of it.
+
+227
+00:11:00,930 --> 00:11:01,763
+You can do anything.
+
+228
+00:11:01,763 --> 00:11:04,480
+You could start a distributed
+denial of service attack
+
+229
+00:11:04,480 --> 00:11:07,030
+if you sent this message to
+whole bunches of web servers
+
+230
+00:11:07,030 --> 00:11:10,256
+and then had them all descend, for
+instance, on Harvard.edu servers,
+
+231
+00:11:10,256 --> 00:11:12,130
+and you can sort of bang
+the heck out of them
+
+232
+00:11:12,130 --> 00:11:15,490
+by a network traffic that was
+otherwise triggered by this bad guy.
+
+233
+00:11:15,490 --> 00:11:18,760
+>> So, long story short, almost
+everyone in this room who owns a Mac
+
+234
+00:11:18,760 --> 00:11:20,240
+is vulnerable to this.
+
+235
+00:11:20,240 --> 00:11:24,100
+The silver lining is that unless you're
+running a web server on your laptop,
+
+236
+00:11:24,100 --> 00:11:27,780
+and unless you've actually configured
+it to allow something like SSH into it,
+
+237
+00:11:27,780 --> 00:11:28,670
+you're actually safe.
+
+238
+00:11:28,670 --> 00:11:31,710
+It's vulnerable, but there's no
+one trying to get into your laptop,
+
+239
+00:11:31,710 --> 00:11:33,290
+so you can sort of rest assured.
+
+240
+00:11:33,290 --> 00:11:36,210
+However, Apple will soon
+be updating a fix for this.
+
+241
+00:11:36,210 --> 00:11:39,660
+The world of Linux has already released
+a number of fixes for Fedora and Ubuntu
+
+242
+00:11:39,660 --> 00:11:43,790
+and other versions of Linux, and indeed
+if you run update 50 in the appliance,
+
+243
+00:11:43,790 --> 00:11:45,930
+even that too will be
+updated and corrected.
+
+244
+00:11:45,930 --> 00:11:47,764
+But that too has not
+really been vulnerable,
+
+245
+00:11:47,764 --> 00:11:49,804
+because unless you've
+tinkered with the appliance
+
+246
+00:11:49,804 --> 00:11:52,770
+and made your laptop publicly
+accessible on the internet, which is not
+
+247
+00:11:52,770 --> 00:11:54,910
+by default, you've
+actually been fine because
+
+248
+00:11:54,910 --> 00:11:56,890
+of firewalling and other techniques.
+
+249
+00:11:56,890 --> 00:12:01,000
+>> But it's an extreme example of a bug
+that we've lived for for literally 20
+
+250
+00:12:01,000 --> 00:12:04,050
+years, and who knows if someone
+all this time has known about it?
+
+251
+00:12:04,050 --> 00:12:06,300
+And in fact, this is one of
+the fundamental challenges
+
+252
+00:12:06,300 --> 00:12:08,690
+that we'll see later in the
+semester about security,
+
+253
+00:12:08,690 --> 00:12:13,020
+is that just like in the real world,
+the good guys are at the disadvantage.
+
+254
+00:12:13,020 --> 00:12:16,500
+To keep the bad guys out, we have to
+make sure that every door is locked,
+
+255
+00:12:16,500 --> 00:12:20,340
+that every window is secure, that
+every point of entry into a home
+
+256
+00:12:20,340 --> 00:12:21,980
+is secure to keep the bad guys out.
+
+257
+00:12:21,980 --> 00:12:26,870
+But what does the bad guy have to
+do to actually compromise your home
+
+258
+00:12:26,870 --> 00:12:28,200
+and steal from you?
+
+259
+00:12:28,200 --> 00:12:32,574
+He or she just has to find one unlocked
+door, one broken window, or something
+
+260
+00:12:32,574 --> 00:12:35,240
+along those lines, and it's the
+same thing in computer security.
+
+261
+00:12:35,240 --> 00:12:37,660
+We can write millions of
+lines of programming code
+
+262
+00:12:37,660 --> 00:12:40,570
+and spend hundreds or thousands
+of hours trying to get it correct,
+
+263
+00:12:40,570 --> 00:12:43,370
+but if you make just one
+mistake in correctness,
+
+264
+00:12:43,370 --> 00:12:47,030
+you can put the entire system and
+indeed in this case, the entire internet
+
+265
+00:12:47,030 --> 00:12:48,660
+and world at risk.
+
+266
+00:12:48,660 --> 00:12:51,950
+>> So if you'd like to learn more
+about this, go to this URL here.
+
+267
+00:12:51,950 --> 00:12:54,450
+There's no need for action
+tonight unless you're
+
+268
+00:12:54,450 --> 00:12:57,116
+among those more comfortable that
+have been running your own web
+
+269
+00:12:57,116 --> 00:12:59,810
+server, in which case you should,
+in fact, update your software.
+
+270
+00:12:59,810 --> 00:13:03,244
+>> And this too is the title of
+a speech, and now a paper,
+
+271
+00:13:03,244 --> 00:13:05,410
+that we've linked on the
+course's website for today.
+
+272
+00:13:05,410 --> 00:13:07,600
+It was by a fellow
+named Ken Thompson, who
+
+273
+00:13:07,600 --> 00:13:10,120
+was accepting a very famous
+award in computer science,
+
+274
+00:13:10,120 --> 00:13:13,495
+and he gave this speech some years
+ago, essentially on this same topic.
+
+275
+00:13:13,495 --> 00:13:18,250
+
+276
+00:13:18,250 --> 00:13:20,520
+Asking folks the question,
+should you really
+
+277
+00:13:20,520 --> 00:13:23,480
+trust, ultimately, the
+software you've been given?
+
+278
+00:13:23,480 --> 00:13:26,100
+For instance, we all have
+been writing programs,
+
+279
+00:13:26,100 --> 00:13:27,820
+and we've been compiling
+them with Clang.
+
+280
+00:13:27,820 --> 00:13:31,830
+And to your knowledge, have you written
+any programs for CS50 where there's
+
+281
+00:13:31,830 --> 00:13:35,310
+a back door of sorts, there's a way
+that a bad guy, if running your program,
+
+282
+00:13:35,310 --> 00:13:37,410
+could take over your computer?
+
+283
+00:13:37,410 --> 00:13:38,310
+Probably not, right?
+
+284
+00:13:38,310 --> 00:13:40,180
+Mario, and Greedy, and Credit.
+
+285
+00:13:40,180 --> 00:13:41,680
+These are all pretty small programs.
+
+286
+00:13:41,680 --> 00:13:43,910
+You'd have to be pretty
+bad if you actually
+
+287
+00:13:43,910 --> 00:13:47,310
+made your whole computer vulnerable
+after writing 10 or 20 lines of code,
+
+288
+00:13:47,310 --> 00:13:49,690
+or at least unaware of some
+of the security implications.
+
+289
+00:13:49,690 --> 00:13:52,023
+Now I say that facetiously,
+but we're going to see today
+
+290
+00:13:52,023 --> 00:13:54,600
+and this week it's actually
+really, really easy
+
+291
+00:13:54,600 --> 00:13:57,980
+to be bad and make even
+short programs vulnerable.
+
+292
+00:13:57,980 --> 00:14:02,880
+>> But for now, at least, realize
+that the question being asked here
+
+293
+00:14:02,880 --> 00:14:04,850
+is about Clang in a compiler.
+
+294
+00:14:04,850 --> 00:14:08,360
+Why have we been trusting Clang
+for the past two or three weeks?
+
+295
+00:14:08,360 --> 00:14:12,650
+Who's to say that whoever wrote Clang
+didn't have an "if" condition in there
+
+296
+00:14:12,650 --> 00:14:17,680
+that essentially injected some zeros
+and ones into every program it compiles
+
+297
+00:14:17,680 --> 00:14:21,180
+that would let him or her access
+your computer when you're asleep
+
+298
+00:14:21,180 --> 00:14:23,580
+and your laptop lid is open
+and your computer is running?
+
+299
+00:14:23,580 --> 00:14:24,080
+Right?
+
+300
+00:14:24,080 --> 00:14:28,350
+We have this sort of honor system right
+now where we trust that Clang is legit.
+
+301
+00:14:28,350 --> 00:14:30,000
+You trust that the appliance is legit.
+
+302
+00:14:30,000 --> 00:14:34,430
+You trust that literally every program
+on your Mac or PC is trustworthy.
+
+303
+00:14:34,430 --> 00:14:37,510
+And as this simple bug suggests,
+even if it's not malicious,
+
+304
+00:14:37,510 --> 00:14:40,580
+that's absolutely not
+likely to be the case.
+
+305
+00:14:40,580 --> 00:14:42,350
+>> So you should be scared as hell.
+
+306
+00:14:42,350 --> 00:14:45,560
+Frankly, there's no simple
+solution to this other
+
+307
+00:14:45,560 --> 00:14:48,185
+than a sort of societal awareness
+of the increasing complexity
+
+308
+00:14:48,185 --> 00:14:50,310
+that we're building on top
+of our computer systems,
+
+309
+00:14:50,310 --> 00:14:53,740
+and how increasingly vulnerable
+we might very well be.
+
+310
+00:14:53,740 --> 00:14:55,570
+>> Now with that said, Breakout.
+
+311
+00:14:55,570 --> 00:14:59,889
+So Breakout is problem set three, and
+Breakout is a game from yesteryear
+
+312
+00:14:59,889 --> 00:15:02,180
+that you might recall, but
+for us in problem set three,
+
+313
+00:15:02,180 --> 00:15:04,450
+it allows us to take
+things back up a notch
+
+314
+00:15:04,450 --> 00:15:08,880
+so that when we are writing programs,
+even in a Terminal window like this,
+
+315
+00:15:08,880 --> 00:15:14,670
+we can actually run, ultimately,
+graphical programs not
+
+316
+00:15:14,670 --> 00:15:17,800
+unlike those we had
+access to in Scratch.
+
+317
+00:15:17,800 --> 00:15:20,910
+So this is the staff's
+implementation of Breakout,
+
+318
+00:15:20,910 --> 00:15:23,930
+which is just this brick-breaking
+game, that you move your paddle back
+
+319
+00:15:23,930 --> 00:15:27,590
+and forth, and you hit the ball
+against those colored bricks up top.
+
+320
+00:15:27,590 --> 00:15:30,020
+So this is bringing us
+sort of back to where
+
+321
+00:15:30,020 --> 00:15:33,180
+we were able to be very quickly
+with Scratch, and now with C,
+
+322
+00:15:33,180 --> 00:15:35,800
+implementing our own
+graphical user interfaces.
+
+323
+00:15:35,800 --> 00:15:38,960
+>> But more than that, this
+problem set represents the first
+
+324
+00:15:38,960 --> 00:15:41,000
+in which we're giving
+you a bunch of code.
+
+325
+00:15:41,000 --> 00:15:43,940
+And in fact, I bring explicit
+attention to this, because especially
+
+326
+00:15:43,940 --> 00:15:47,090
+for those less comfortable, this
+problem set, at least at first glance,
+
+327
+00:15:47,090 --> 00:15:49,170
+is going to feel like
+we've taken it up a notch.
+
+328
+00:15:49,170 --> 00:15:51,540
+Because we've given you,
+for some of the search
+
+329
+00:15:51,540 --> 00:15:54,930
+and sorting problems in the pset,
+a bunch of code that we wrote,
+
+330
+00:15:54,930 --> 00:15:56,680
+and a couple of comments
+that say "to do,"
+
+331
+00:15:56,680 --> 00:15:58,221
+where you have to fill in the blanks.
+
+332
+00:15:58,221 --> 00:16:00,020
+So not too scary, but
+it's the first time
+
+333
+00:16:00,020 --> 00:16:03,370
+we're handing you code that you need to
+first read, understand, and then add to
+
+334
+00:16:03,370 --> 00:16:04,290
+and complete it.
+
+335
+00:16:04,290 --> 00:16:05,940
+>> And then with Breakout,
+we're going to do the same,
+
+336
+00:16:05,940 --> 00:16:08,740
+giving you a few dozen more lines
+of code that, frankly, give you
+
+337
+00:16:08,740 --> 00:16:11,490
+a lot of the framework for
+the game but stop short
+
+338
+00:16:11,490 --> 00:16:14,304
+of implementing the bricks
+and the ball and the paddle,
+
+339
+00:16:14,304 --> 00:16:15,970
+but we do implement some other features.
+
+340
+00:16:15,970 --> 00:16:18,280
+And even that at first glance, again,
+especially if less comfortable,
+
+341
+00:16:18,280 --> 00:16:21,480
+might seem particularly daunting and
+you think there's so many new functions
+
+342
+00:16:21,480 --> 00:16:24,070
+you need to wrap your mind
+around, and that's true.
+
+343
+00:16:24,070 --> 00:16:26,281
+But keep in mind, it's
+quite like Scratch.
+
+344
+00:16:26,281 --> 00:16:28,780
+Odds are you didn't use all of
+the puzzle pieces in Scratch.
+
+345
+00:16:28,780 --> 00:16:31,120
+Odds are you didn't care to wrap
+your mind around all of them
+
+346
+00:16:31,120 --> 00:16:33,617
+because all it took was a
+quick glance to understand, oh,
+
+347
+00:16:33,617 --> 00:16:35,450
+that's what I can do
+with that puzzle piece.
+
+348
+00:16:35,450 --> 00:16:38,260
+And indeed, in problem set
+3 spec, we'll point you
+
+349
+00:16:38,260 --> 00:16:41,370
+at the documentation that will
+introduce you to some new functions,
+
+350
+00:16:41,370 --> 00:16:43,570
+and ultimately the programming
+constructs you use.
+
+351
+00:16:43,570 --> 00:16:47,610
+Conditions, loops,
+variables, and functions
+
+352
+00:16:47,610 --> 00:16:50,720
+will be identical to
+what we've seen thus far.
+
+353
+00:16:50,720 --> 00:16:53,560
+>> So indeed, what we'll give
+you is some sample code that
+
+354
+00:16:53,560 --> 00:16:56,110
+lets you create a window
+that looks not unlike this,
+
+355
+00:16:56,110 --> 00:16:59,540
+and ultimately turn it into
+something quite like this.
+
+356
+00:16:59,540 --> 00:17:02,250
+So take advantage of CS50,
+discuss office hours and more,
+
+357
+00:17:02,250 --> 00:17:05,290
+and take comfort in the fact that
+the amount of code you have to write
+
+358
+00:17:05,290 --> 00:17:06,760
+is actually not all that much.
+
+359
+00:17:06,760 --> 00:17:10,359
+The first challenge is just to acclimate
+yourself to some code we've written.
+
+360
+00:17:10,359 --> 00:17:11,450
+
+361
+00:17:11,450 --> 00:17:15,810
+>> Any questions on pset3,
+Shellshock, or otherwise?
+
+362
+00:17:15,810 --> 00:17:19,226
+>> AUDIENCE: It seemed like
+going through with Breakout
+
+363
+00:17:19,226 --> 00:17:22,154
+that the code is almost
+an object-oriented style,
+
+364
+00:17:22,154 --> 00:17:24,675
+but I thought C was an
+object-oriented program.
+
+365
+00:17:24,675 --> 00:17:26,050
+SPEAKER 1: An excellent question.
+
+366
+00:17:26,050 --> 00:17:28,258
+So in looking through the
+distribution code, the code
+
+367
+00:17:28,258 --> 00:17:30,180
+we wrote for pset3,
+for those familiar, it
+
+368
+00:17:30,180 --> 00:17:32,230
+looks like it's a
+little object-oriented.
+
+369
+00:17:32,230 --> 00:17:33,800
+Short answer is, it is.
+
+370
+00:17:33,800 --> 00:17:38,130
+It's an approximation of how you
+might do object-oriented code using
+
+371
+00:17:38,130 --> 00:17:41,850
+a language like C, but it is
+still ultimately procedural.
+
+372
+00:17:41,850 --> 00:17:44,900
+There are no methods inside of
+the variables, as you'll see.
+
+373
+00:17:44,900 --> 00:17:46,180
+But it is reminiscent of that.
+
+374
+00:17:46,180 --> 00:17:48,780
+And we'll see that feature again
+when we get to PHP and JavaScript
+
+375
+00:17:48,780 --> 00:17:49,946
+toward the end the semester.
+
+376
+00:17:49,946 --> 00:17:53,667
+But for now, think of it as
+a hint of what's to come.
+
+377
+00:17:53,667 --> 00:17:54,250
+Good question.
+
+378
+00:17:54,250 --> 00:17:56,051
+
+379
+00:17:56,051 --> 00:17:56,550
+All right.
+
+380
+00:17:56,550 --> 00:17:59,730
+So merge sort was how we
+left things last time.
+
+381
+00:17:59,730 --> 00:18:03,250
+And merge sort was cool in the
+sense that it was so much faster,
+
+382
+00:18:03,250 --> 00:18:07,100
+at least based on the cursory tests
+we did last week, than, say, bubble
+
+383
+00:18:07,100 --> 00:18:08,710
+sort, selection sort, insertion sort.
+
+384
+00:18:08,710 --> 00:18:11,780
+And what was neat too is just
+how succinctly and cleanly
+
+385
+00:18:11,780 --> 00:18:12,810
+you can express it.
+
+386
+00:18:12,810 --> 00:18:15,840
+And what did we say it was an upper
+bound on the running time of merge
+
+387
+00:18:15,840 --> 00:18:16,340
+sort?
+
+388
+00:18:16,340 --> 00:18:17,633
+
+389
+00:18:17,633 --> 00:18:18,495
+Yeah?
+
+390
+00:18:18,495 --> 00:18:19,360
+>> AUDIENCE: n log n?
+
+391
+00:18:19,360 --> 00:18:20,819
+>> SPEAKER 1: n log n, right. n log n.
+
+392
+00:18:20,819 --> 00:18:23,776
+And we'll come back to what that
+really means or where that comes from,
+
+393
+00:18:23,776 --> 00:18:25,570
+but this was better
+than what running time
+
+394
+00:18:25,570 --> 00:18:28,440
+that we saw for bubble
+selection and insertion sort?
+
+395
+00:18:28,440 --> 00:18:30,610
+So n squared. n squared
+is bigger than this,
+
+396
+00:18:30,610 --> 00:18:34,650
+and even if it's not quite obvious,
+know that log n is smaller than n,
+
+397
+00:18:34,650 --> 00:18:36,910
+so if you do n times
+something smaller than n,
+
+398
+00:18:36,910 --> 00:18:38,680
+it's going to be less than n squared.
+
+399
+00:18:38,680 --> 00:18:40,130
+It's a bit of intuition there.
+
+400
+00:18:40,130 --> 00:18:42,190
+But we paid a price for this.
+
+401
+00:18:42,190 --> 00:18:47,000
+It was faster, but a theme that started
+to emerge last week was this tradeoff.
+
+402
+00:18:47,000 --> 00:18:49,804
+I got better performance
+time wise, but what
+
+403
+00:18:49,804 --> 00:18:52,470
+did I have to spend on the other
+hand, in order to achieve that?
+
+404
+00:18:52,470 --> 00:18:53,591
+>> AUDIENCE: Memory.
+
+405
+00:18:53,591 --> 00:18:54,465
+SPEAKER 1: Say again?
+
+406
+00:18:54,465 --> 00:18:55,173
+AUDIENCE: Memory.
+
+407
+00:18:55,173 --> 00:18:57,040
+SPEAKER 1: Memory, or
+space more generally.
+
+408
+00:18:57,040 --> 00:18:59,040
+And it wasn't super
+obvious with our humans,
+
+409
+00:18:59,040 --> 00:19:02,240
+but recall that our volunteers
+were stepping forward and stepping
+
+410
+00:19:02,240 --> 00:19:04,780
+back as though there's an array
+here, and as though there's
+
+411
+00:19:04,780 --> 00:19:07,130
+a second array here that
+they could use, because we
+
+412
+00:19:07,130 --> 00:19:09,080
+needed someplace to merge those folks.
+
+413
+00:19:09,080 --> 00:19:11,480
+We couldn't just swap them in place.
+
+414
+00:19:11,480 --> 00:19:13,800
+So merge sort leverage
+is more space, which
+
+415
+00:19:13,800 --> 00:19:15,620
+we didn't need with
+the other algorithms,
+
+416
+00:19:15,620 --> 00:19:17,410
+but the upside is that it's much faster.
+
+417
+00:19:17,410 --> 00:19:20,780
+And frankly, in the real world space
+these days-- RAM, hard disk space--
+
+418
+00:19:20,780 --> 00:19:25,030
+is relatively cheap, and so that's
+not necessarily a bad thing.
+
+419
+00:19:25,030 --> 00:19:28,320
+>> So let's take a quick look, a little
+more methodically, at what we did
+
+420
+00:19:28,320 --> 00:19:30,220
+and why we said it was n log n.
+
+421
+00:19:30,220 --> 00:19:33,260
+So here are the eight numbers and the
+eight volunteers we had last time.
+
+422
+00:19:33,260 --> 00:19:35,718
+And the first thing that Merge
+Sort told us to do was what?
+
+423
+00:19:35,718 --> 00:19:37,010
+
+424
+00:19:37,010 --> 00:19:38,010
+AUDIENCE: Divide in two.
+
+425
+00:19:38,010 --> 00:19:38,663
+SPEAKER 1: Say again?
+
+426
+00:19:38,663 --> 00:19:39,650
+AUDIENCE: Divide in two.
+
+427
+00:19:39,650 --> 00:19:40,610
+SPEAKER 1: Divide in two, right.
+
+428
+00:19:40,610 --> 00:19:42,818
+This is very reminiscent of
+the phone book, of divide
+
+429
+00:19:42,818 --> 00:19:44,220
+and conquer more generally.
+
+430
+00:19:44,220 --> 00:19:45,640
+So we looked at the left half.
+
+431
+00:19:45,640 --> 00:19:48,700
+And then once we said, sort
+the left half of the elements,
+
+432
+00:19:48,700 --> 00:19:49,690
+what did we next say?
+
+433
+00:19:49,690 --> 00:19:51,210
+
+434
+00:19:51,210 --> 00:19:54,860
+Sort the left half of the left
+half, which allowed us to,
+
+435
+00:19:54,860 --> 00:19:57,570
+after dividing in two,
+focus on four and two.
+
+436
+00:19:57,570 --> 00:20:01,280
+>> How do you sort a list now, in
+yellow, of size two, using Merge Sort?
+
+437
+00:20:01,280 --> 00:20:02,330
+
+438
+00:20:02,330 --> 00:20:04,580
+Well divide it in half,
+and sort the left half.
+
+439
+00:20:04,580 --> 00:20:07,100
+And this was where things
+got a little stupid briefly.
+
+440
+00:20:07,100 --> 00:20:10,720
+How do you sort a list that's of
+size one, like this number four here?
+
+441
+00:20:10,720 --> 00:20:12,330
+
+442
+00:20:12,330 --> 00:20:13,210
+It's sorted.
+
+443
+00:20:13,210 --> 00:20:14,200
+You're done.
+
+444
+00:20:14,200 --> 00:20:17,300
+>> But then how do you sort a list of
+size one when it's the number two?
+
+445
+00:20:17,300 --> 00:20:21,640
+Well, same thing, but now what was the
+third and the key step in Merge Sort?
+
+446
+00:20:21,640 --> 00:20:24,020
+You had to merge the left
+half and the right half.
+
+447
+00:20:24,020 --> 00:20:26,580
+And once we did that, we looked
+at four, we looked at two.
+
+448
+00:20:26,580 --> 00:20:28,750
+We decided all right,
+obviously two comes first,
+
+449
+00:20:28,750 --> 00:20:31,840
+so we put two in its
+place, followed by four.
+
+450
+00:20:31,840 --> 00:20:35,010
+And now you have to kind of rewind,
+and this is sort of characteristic
+
+451
+00:20:35,010 --> 00:20:37,570
+of an algorithm like Merge
+Sort, rewind in memory.
+
+452
+00:20:37,570 --> 00:20:40,240
+What was the next line of the story?
+
+453
+00:20:40,240 --> 00:20:41,780
+What should I be focusing on next?
+
+454
+00:20:41,780 --> 00:20:43,110
+
+455
+00:20:43,110 --> 00:20:47,350
+The right half of the left
+half, Which is six and eight.
+
+456
+00:20:47,350 --> 00:20:50,320
+>> So let me just step through this
+without belaboring the point too much.
+
+457
+00:20:50,320 --> 00:20:53,330
+Six and eight, then six is
+sorted, eight is sorted.
+
+458
+00:20:53,330 --> 00:20:57,190
+Merge them together like that,
+and now the next big step
+
+459
+00:20:57,190 --> 00:21:00,990
+is, of course, sort the right half from
+the very first step of this algorithm.
+
+460
+00:21:00,990 --> 00:21:02,870
+So we focus on one, three, seven, five.
+
+461
+00:21:02,870 --> 00:21:04,540
+We then focus on the left half.
+
+462
+00:21:04,540 --> 00:21:09,400
+The left half of that, the right half of
+that, and then merge in one and three.
+
+463
+00:21:09,400 --> 00:21:13,100
+Then the right half, then left half
+of it, then the right half of it.
+
+464
+00:21:13,100 --> 00:21:15,985
+Merge it in, and now what step remains?
+
+465
+00:21:15,985 --> 00:21:18,040
+
+466
+00:21:18,040 --> 00:21:22,460
+Merge the big left half and the big
+right half, so one goes down there,
+
+467
+00:21:22,460 --> 00:21:27,330
+then two, then three, then four, then
+five, then six, then seven, then eight.
+
+468
+00:21:27,330 --> 00:21:31,990
+>> So now why is this ultimately revealing,
+especially if n and logarithms more
+
+469
+00:21:31,990 --> 00:21:35,487
+generally rather escape you,
+at least in recent memory?
+
+470
+00:21:35,487 --> 00:21:37,070
+Well, notice the height of this thing.
+
+471
+00:21:37,070 --> 00:21:41,230
+We had eight elements, and we
+divided it by two, by two, by two.
+
+472
+00:21:41,230 --> 00:21:44,590
+So log base two of eight gives us three.
+
+473
+00:21:44,590 --> 00:21:45,640
+
+474
+00:21:45,640 --> 00:21:48,540
+And trust me on that if
+a little hazy on that.
+
+475
+00:21:48,540 --> 00:21:54,710
+But log base two of eight is three,
+so we've done three layers of merging.
+
+476
+00:21:54,710 --> 00:21:57,170
+And when we merged
+elements, how many elements
+
+477
+00:21:57,170 --> 00:21:58,950
+did we look at on each of those rows?
+
+478
+00:21:58,950 --> 00:22:00,212
+
+479
+00:22:00,212 --> 00:22:01,437
+A total of n, right?
+
+480
+00:22:01,437 --> 00:22:04,020
+Because to merge the top row,
+even though we did it piecemeal,
+
+481
+00:22:04,020 --> 00:22:05,990
+we ultimately touched every number once.
+
+482
+00:22:05,990 --> 00:22:09,054
+And in the second row, to
+merge those lists of size two,
+
+483
+00:22:09,054 --> 00:22:10,470
+we had to touch each element once.
+
+484
+00:22:10,470 --> 00:22:12,690
+And then here really
+clearly in the last row,
+
+485
+00:22:12,690 --> 00:22:15,430
+we had to touch each of those
+elements once, but only once,
+
+486
+00:22:15,430 --> 00:22:18,400
+so herein lies, then, our n log n.
+
+487
+00:22:18,400 --> 00:22:21,780
+>> And now just to make things a little
+more formal for just a moment, if you
+
+488
+00:22:21,780 --> 00:22:24,260
+were to now analyze this
+at a sort of higher level
+
+489
+00:22:24,260 --> 00:22:28,340
+and try to decide, well how
+might you go about expressing
+
+490
+00:22:28,340 --> 00:22:31,780
+the running time of this algorithm
+just by looking at it and not
+
+491
+00:22:31,780 --> 00:22:33,590
+by using a contrived example?
+
+492
+00:22:33,590 --> 00:22:36,590
+Well, how much time would you say a
+step like this in yellow would take,
+
+493
+00:22:36,590 --> 00:22:37,173
+if n<2 return?
+
+494
+00:22:37,173 --> 00:22:38,840
+
+495
+00:22:38,840 --> 00:22:39,830
+That's a big O of what?
+
+496
+00:22:39,830 --> 00:22:41,450
+
+497
+00:22:41,450 --> 00:22:44,540
+So I'm seeing one, so one step,
+maybe two steps because it's if
+
+498
+00:22:44,540 --> 00:22:47,110
+and then return, but it's
+constant time, right?
+
+499
+00:22:47,110 --> 00:22:49,960
+So we said O(1), and that's
+how I'll express this.
+
+500
+00:22:49,960 --> 00:22:51,480
+T, just be running time.
+
+501
+00:22:51,480 --> 00:22:54,150
+n is the size of the input,
+so T(n), just a fancy way
+
+502
+00:22:54,150 --> 00:22:56,330
+of saying the running
+time given input of size n
+
+503
+00:22:56,330 --> 00:23:00,220
+is going to be on the order
+of constant time, in O(1).
+
+504
+00:23:00,220 --> 00:23:01,970
+>> But otherwise, what about this?
+
+505
+00:23:01,970 --> 00:23:05,660
+How would you express the
+running time of this yellow line?
+
+506
+00:23:05,660 --> 00:23:06,250
+T of what?
+
+507
+00:23:06,250 --> 00:23:09,440
+
+508
+00:23:09,440 --> 00:23:12,665
+You can kind of cheat here and
+answer my question cyclically.
+
+509
+00:23:12,665 --> 00:23:14,770
+
+510
+00:23:14,770 --> 00:23:17,900
+So if the running time in
+general we just say is T(n).
+
+511
+00:23:17,900 --> 00:23:18,950
+
+512
+00:23:18,950 --> 00:23:22,490
+And now you're kind of punting here and
+saying, well, just sort the left half,
+
+513
+00:23:22,490 --> 00:23:23,920
+and then sort the right half.
+
+514
+00:23:23,920 --> 00:23:27,520
+How might we symbolically represent
+the running time of this yellow line?
+
+515
+00:23:27,520 --> 00:23:28,020
+T of what?
+
+516
+00:23:28,020 --> 00:23:29,360
+What's the size of the input?
+
+517
+00:23:29,360 --> 00:23:30,510
+
+518
+00:23:30,510 --> 00:23:31,057
+n over two.
+
+519
+00:23:31,057 --> 00:23:32,140
+Why don't I just say that?
+
+520
+00:23:32,140 --> 00:23:36,449
+And then this is another T(n/2) and then
+again, if I merge two sorted halves,
+
+521
+00:23:36,449 --> 00:23:38,615
+how many elements am I going
+to have to touch total?
+
+522
+00:23:38,615 --> 00:23:39,780
+
+523
+00:23:39,780 --> 00:23:40,320
+n.
+
+524
+00:23:40,320 --> 00:23:42,790
+So I can express this,
+just to be kind of fancy,
+
+525
+00:23:42,790 --> 00:23:44,430
+as the running time in general.
+
+526
+00:23:44,430 --> 00:23:51,140
+T(n) is just the running time of T(n/2),
+plus T(n/2), left half and right half,
+
+527
+00:23:51,140 --> 00:23:55,360
+plus O(n), which is probably n steps,
+but maybe, if I'm using two fingers,
+
+528
+00:23:55,360 --> 00:23:57,960
+it's twice as many
+steps, but it's linear.
+
+529
+00:23:57,960 --> 00:24:00,440
+It's some number of steps
+that's a factor of n,
+
+530
+00:24:00,440 --> 00:24:02,270
+so we might express this as this.
+
+531
+00:24:02,270 --> 00:24:05,550
+And this is where now we'll punt to the
+back of our high school math textbook
+
+532
+00:24:05,550 --> 00:24:10,290
+we're that recurrence ultimately
+ends up equaling this, n times log n,
+
+533
+00:24:10,290 --> 00:24:12,530
+if you actually do out
+the math more formally.
+
+534
+00:24:12,530 --> 00:24:13,950
+>> So that's just two perspectives.
+
+535
+00:24:13,950 --> 00:24:17,500
+One numerically with a
+hard-coded representative example
+
+536
+00:24:17,500 --> 00:24:21,140
+using eight numbers, and a more
+general look at how we got there.
+
+537
+00:24:21,140 --> 00:24:25,670
+But what's really interesting here
+is, again, this notion of cycling.
+
+538
+00:24:25,670 --> 00:24:26,900
+I'm not using for loops.
+
+539
+00:24:26,900 --> 00:24:29,860
+I'm kind of defining
+something in terms of itself,
+
+540
+00:24:29,860 --> 00:24:31,950
+not only with this
+mathematical function,
+
+541
+00:24:31,950 --> 00:24:34,860
+but also in terms of this pseudo code.
+
+542
+00:24:34,860 --> 00:24:38,260
+This pseudo code is recursive
+in that two of its lines
+
+543
+00:24:38,260 --> 00:24:42,310
+is essentially telling it to go
+use itself to solve a smaller
+
+544
+00:24:42,310 --> 00:24:45,400
+problem of smaller size,
+and then again and again
+
+545
+00:24:45,400 --> 00:24:48,820
+and again until we whittle it
+down to this so-called base case.
+
+546
+00:24:48,820 --> 00:24:52,810
+>> So let's actually draw a more compelling
+take-away from this as follows.
+
+547
+00:24:52,810 --> 00:24:58,420
+Let me go into gedit and take a
+look at some of today's source code,
+
+548
+00:24:58,420 --> 00:24:59,930
+in particular this example here.
+
+549
+00:24:59,930 --> 00:25:03,709
+Sigma 0, which apparently adds
+the numbers one through n.
+
+550
+00:25:03,709 --> 00:25:05,750
+So let's see what's familiar
+and unfamiliar here.
+
+551
+00:25:05,750 --> 00:25:08,690
+First we have a couple of
+includes, so nothing new there.
+
+552
+00:25:08,690 --> 00:25:09,190
+Prototype.
+
+553
+00:25:09,190 --> 00:25:11,370
+I'm a little hazy on
+this after few days,
+
+554
+00:25:11,370 --> 00:25:13,790
+but what did we say a
+prototype of a function is?
+
+555
+00:25:13,790 --> 00:25:15,099
+
+556
+00:25:15,099 --> 00:25:16,015
+AUDIENCE: [INAUDIBLE].
+
+557
+00:25:16,015 --> 00:25:16,905
+SPEAKER 1: What's that?
+
+558
+00:25:16,905 --> 00:25:17,800
+AUDIENCE: We announce it.
+
+559
+00:25:17,800 --> 00:25:18,883
+SPEAKER 1: We announce it.
+
+560
+00:25:18,883 --> 00:25:22,290
+So you are teaching Clang, hey,
+not actually implementing this yet,
+
+561
+00:25:22,290 --> 00:25:25,740
+but somewhere in this file, presumably,
+is going to be a function called what?
+
+562
+00:25:25,740 --> 00:25:26,930
+
+563
+00:25:26,930 --> 00:25:27,540
+Sigma.
+
+564
+00:25:27,540 --> 00:25:30,540
+And this is just a promise that
+it's going to look like this.
+
+565
+00:25:30,540 --> 00:25:33,720
+It's going to take an integer as
+input-- and I can be more explicit
+
+566
+00:25:33,720 --> 00:25:36,570
+and say int n --and it's
+going to return an int,
+
+567
+00:25:36,570 --> 00:25:39,900
+but semicolon means, mm, I'll get around
+to implementing this a little later.
+
+568
+00:25:39,900 --> 00:25:40,989
+Again, Clang is dumb.
+
+569
+00:25:40,989 --> 00:25:43,280
+It's only going to know what
+you tell it top to bottom,
+
+570
+00:25:43,280 --> 00:25:45,765
+so we need to at least give
+it a hint of what's to come.
+
+571
+00:25:45,765 --> 00:25:47,330
+>> Now let's look at main here.
+
+572
+00:25:47,330 --> 00:25:50,040
+Let's scroll down here and
+see what main is doing.
+
+573
+00:25:50,040 --> 00:25:53,780
+It's not that long of a function, and
+in fact the construct here is familiar.
+
+574
+00:25:53,780 --> 00:25:57,590
+I declare a variable n, and then
+I pester the user again and again
+
+575
+00:25:57,590 --> 00:26:01,880
+for a positive integer using getInt,
+and only exit out of this loop
+
+576
+00:26:01,880 --> 00:26:03,280
+once the user has complied.
+
+577
+00:26:03,280 --> 00:26:05,670
+Do While, we've used to
+pester the user in that way.
+
+578
+00:26:05,670 --> 00:26:06,670
+Now this is interesting.
+
+579
+00:26:06,670 --> 00:26:08,510
+I declare an int called "answer."
+
+580
+00:26:08,510 --> 00:26:11,420
+I assign it the return value
+of a function called "sigma."
+
+581
+00:26:11,420 --> 00:26:15,200
+I don't know what that does yet, but
+I remember declaring it a moment ago.
+
+582
+00:26:15,200 --> 00:26:18,310
+And then I'm passing in the
+value that the user typed in, n,
+
+583
+00:26:18,310 --> 00:26:20,420
+and then I report the answer.
+
+584
+00:26:20,420 --> 00:26:22,260
+Well let's scroll back
+for just a moment.
+
+585
+00:26:22,260 --> 00:26:28,620
+Let's go ahead into this directory, make
+sigma 0, and actually run this program
+
+586
+00:26:28,620 --> 00:26:30,490
+and see what happens.
+
+587
+00:26:30,490 --> 00:26:35,930
+So if I go ahead and run
+this program, ./sigma-0,
+
+588
+00:26:35,930 --> 00:26:40,139
+and I type in a positive
+integer like two, Sigma,
+
+589
+00:26:40,139 --> 00:26:43,180
+as the Greek symbol implies, is just
+going to add up all the numbers from
+
+590
+00:26:43,180 --> 00:26:44,320
+zero on up to two.
+
+591
+00:26:44,320 --> 00:26:46,560
+So 0 plus 1 plus 2.
+
+592
+00:26:46,560 --> 00:26:48,830
+So this should hopefully give me 3.
+
+593
+00:26:48,830 --> 00:26:49,750
+That's all it's doing.
+
+594
+00:26:49,750 --> 00:26:52,690
+And similarly, if I run this again
+and I give it the number three,
+
+595
+00:26:52,690 --> 00:26:56,721
+that's 3 plus 2, so that's
+5, plus 1 should give me 6.
+
+596
+00:26:56,721 --> 00:26:59,470
+And then if I get really crazy and
+start typing in bigger numbers,
+
+597
+00:26:59,470 --> 00:27:01,290
+it should give me
+bigger and bigger sums.
+
+598
+00:27:01,290 --> 00:27:02,250
+So that's all.
+
+599
+00:27:02,250 --> 00:27:04,010
+>> So what does sigma look like?
+
+600
+00:27:04,010 --> 00:27:05,430
+Well, it's pretty straightforward.
+
+601
+00:27:05,430 --> 00:27:08,940
+It's how we might have implemented
+this for the past couple of weeks.
+
+602
+00:27:08,940 --> 00:27:11,120
+"int" is going to be the return type.
+
+603
+00:27:11,120 --> 00:27:14,330
+Sigma is the name, and it takes
+a variable m instead of n.
+
+604
+00:27:14,330 --> 00:27:15,940
+I'll change that up top.
+
+605
+00:27:15,940 --> 00:27:17,340
+Then this is just a sanity check.
+
+606
+00:27:17,340 --> 00:27:18,430
+
+607
+00:27:18,430 --> 00:27:19,950
+We'll see why in a moment.
+
+608
+00:27:19,950 --> 00:27:24,220
+Now I declare another variable,
+sum, initialize it to zero.
+
+609
+00:27:24,220 --> 00:27:28,140
+Then I have this For loop
+iterating, apparently for clarity,
+
+610
+00:27:28,140 --> 00:27:33,810
+from i=1 on up to an =m, which is
+whatever the user typed in, and then I
+
+611
+00:27:33,810 --> 00:27:35,690
+increment the sum like this.
+
+612
+00:27:35,690 --> 00:27:37,360
+And then return the sum.
+
+613
+00:27:37,360 --> 00:27:38,440
+>> So a couple of questions.
+
+614
+00:27:38,440 --> 00:27:42,370
+One, I claim in my comment that this
+avoids risk of an infinite loop.
+
+615
+00:27:42,370 --> 00:27:45,620
+Why would passing in a negative number
+induce, potentially, an infinite loop?
+
+616
+00:27:45,620 --> 00:27:49,396
+
+617
+00:27:49,396 --> 00:27:51,290
+>> AUDIENCE: You'll never reach m.
+
+618
+00:27:51,290 --> 00:27:52,880
+>> SPEAKER 1: Never reach m.
+
+619
+00:27:52,880 --> 00:27:55,880
+But m is passed in, so let's
+consider a simple example.
+
+620
+00:27:55,880 --> 00:27:58,510
+If m is passed in by the
+user as negative one.
+
+621
+00:27:58,510 --> 00:28:00,059
+Irrespective of main.
+
+622
+00:28:00,059 --> 00:28:01,850
+Main protects us from
+this too, so I'm just
+
+623
+00:28:01,850 --> 00:28:04,680
+being really anal with
+sigma to also make sure
+
+624
+00:28:04,680 --> 00:28:06,540
+that the input can't be negative.
+
+625
+00:28:06,540 --> 00:28:10,130
+So if m is negative,
+something like negative one.
+
+626
+00:28:10,130 --> 00:28:11,930
+What's going to happen?
+
+627
+00:28:11,930 --> 00:28:14,390
+Well, i is going to
+get initialized to one,
+
+628
+00:28:14,390 --> 00:28:19,060
+and then i is going to be
+less than or equal to m?
+
+629
+00:28:19,060 --> 00:28:24,130
+
+630
+00:28:24,130 --> 00:28:24,765
+>> Stand by.
+
+631
+00:28:24,765 --> 00:28:26,930
+
+632
+00:28:26,930 --> 00:28:29,370
+That was-- let's not,
+let's nix this story.
+
+633
+00:28:29,370 --> 00:28:32,780
+I didn't ask that question, because
+the risk that I am alluding to
+
+634
+00:28:32,780 --> 00:28:38,360
+is not going to happen because i is
+always going be greater than-- OK,
+
+635
+00:28:38,360 --> 00:28:39,871
+I retract that question.
+
+636
+00:28:39,871 --> 00:28:40,370
+OK.
+
+637
+00:28:40,370 --> 00:28:42,030
+Let's focus only on this part here.
+
+638
+00:28:42,030 --> 00:28:44,210
+
+639
+00:28:44,210 --> 00:28:48,830
+Why did I declare some
+outside of the loop?
+
+640
+00:28:48,830 --> 00:28:52,010
+Notice on line 49 I've
+declared i inside of the loop,
+
+641
+00:28:52,010 --> 00:28:54,950
+but online 48 I've
+declared some outside.
+
+642
+00:28:54,950 --> 00:28:55,695
+Yeah.
+
+643
+00:28:55,695 --> 00:28:56,611
+AUDIENCE: [INAUDIBLE].
+
+644
+00:28:56,611 --> 00:28:58,734
+
+645
+00:28:58,734 --> 00:28:59,400
+SPEAKER 1: Sure.
+
+646
+00:28:59,400 --> 00:29:03,360
+So first and foremost I certainly don't
+want to declare and initialize sum
+
+647
+00:29:03,360 --> 00:29:06,130
+to zero inside of the
+loop on every iteration,
+
+648
+00:29:06,130 --> 00:29:09,370
+because this would clearly defeat the
+purpose of summing up the numbers.
+
+649
+00:29:09,370 --> 00:29:11,770
+I would keep changing
+the value back to zero.
+
+650
+00:29:11,770 --> 00:29:17,992
+And also, what's another more arcane
+reason for that same design decision?
+
+651
+00:29:17,992 --> 00:29:18,954
+Yeah.
+
+652
+00:29:18,954 --> 00:29:20,279
+>> AUDIENCE: [INAUDIBLE].
+
+653
+00:29:20,279 --> 00:29:21,070
+SPEAKER 1: Exactly.
+
+654
+00:29:21,070 --> 00:29:24,060
+I want to access it outside
+of the loop too on what line?
+
+655
+00:29:24,060 --> 00:29:25,390
+
+656
+00:29:25,390 --> 00:29:26,400
+On 53.
+
+657
+00:29:26,400 --> 00:29:29,910
+And based on our rule of thumb
+from a couple of lectures ago,
+
+658
+00:29:29,910 --> 00:29:33,680
+variables are scoped, really, to the
+curly braces that encompass them.
+
+659
+00:29:33,680 --> 00:29:38,190
+So if I don't declare sum inside
+of these outer curly braces,
+
+660
+00:29:38,190 --> 00:29:40,250
+I can't use it in line 53.
+
+661
+00:29:40,250 --> 00:29:43,160
+Put another way, if I declared
+sum in here, or even within the
+
+662
+00:29:43,160 --> 00:29:45,410
+For loop, I could not access it in 53.
+
+663
+00:29:45,410 --> 00:29:47,150
+The variable would effectively be gone.
+
+664
+00:29:47,150 --> 00:29:48,579
+So a couple of reasons there.
+
+665
+00:29:48,579 --> 00:29:50,370
+But now let's go back
+and see what happens.
+
+666
+00:29:50,370 --> 00:29:51,730
+So sigma gets called.
+
+667
+00:29:51,730 --> 00:29:55,640
+It adds up 1 plus 2, or 1 plus 2
+plus 3, and then returns the value,
+
+668
+00:29:55,640 --> 00:29:59,660
+stores it in answer, and printf here
+is why I'm seeing on the screen.
+
+669
+00:29:59,660 --> 00:30:03,079
+So this is what we'll call an iterative
+approach, where iteration just
+
+670
+00:30:03,079 --> 00:30:03,870
+means using a loop.
+
+671
+00:30:03,870 --> 00:30:06,900
+A For loop, a While loop, a Do While
+loop, just doing something again
+
+672
+00:30:06,900 --> 00:30:08,380
+and again and again.
+
+673
+00:30:08,380 --> 00:30:13,505
+>> But sigma is kind of a neat function in
+that I could implement it differently.
+
+674
+00:30:13,505 --> 00:30:14,620
+
+675
+00:30:14,620 --> 00:30:19,120
+What about this, which
+just to be kind of cool,
+
+676
+00:30:19,120 --> 00:30:21,880
+let me really get rid
+of a lot of distraction
+
+677
+00:30:21,880 --> 00:30:24,380
+because this function
+is really quite simple.
+
+678
+00:30:24,380 --> 00:30:27,780
+Let's whittle it down just
+to its four core lines
+
+679
+00:30:27,780 --> 00:30:30,410
+and get rid of all the
+comments and curly braces.
+
+680
+00:30:30,410 --> 00:30:34,334
+This is kind of a mind-blowing
+alternative implementation.
+
+681
+00:30:34,334 --> 00:30:37,250
+All right, maybe not mind-blowing,
+but it's kind of sexier, all right,
+
+682
+00:30:37,250 --> 00:30:39,920
+to look at this so much more succinctly.
+
+683
+00:30:39,920 --> 00:30:43,120
+With just four lines of code,
+I first have this sanity check.
+
+684
+00:30:43,120 --> 00:30:45,732
+If m is less than or equal to
+zero, sigma makes no sense.
+
+685
+00:30:45,732 --> 00:30:48,190
+It's only supposed to be in
+this case for positive numbers,
+
+686
+00:30:48,190 --> 00:30:50,340
+so I'm just going to
+return zero arbitrarily
+
+687
+00:30:50,340 --> 00:30:53,210
+so that we at least have
+some so-called base case.
+
+688
+00:30:53,210 --> 00:30:54,430
+>> But here's the beauty.
+
+689
+00:30:54,430 --> 00:30:59,930
+The entirety of this idea, adding the
+numbers from 1 to n, or m in this case,
+
+690
+00:30:59,930 --> 00:31:02,630
+can be done by kind of passing the buck.
+
+691
+00:31:02,630 --> 00:31:04,947
+Well, what is the sum of 1 to m?
+
+692
+00:31:04,947 --> 00:31:05,780
+Well, you know what?
+
+693
+00:31:05,780 --> 00:31:11,949
+It's the same as the sum of m
+plus the sum of 1 to m minus 1.
+
+694
+00:31:11,949 --> 00:31:12,740
+Well you know what?
+
+695
+00:31:12,740 --> 00:31:13,940
+What's sigma of m minus 1?
+
+696
+00:31:13,940 --> 00:31:17,860
+Well, if you kind of follow this
+logically, it's the same as m minus 1
+
+697
+00:31:17,860 --> 00:31:21,415
+plus sigma of m minus 2.
+
+698
+00:31:21,415 --> 00:31:22,480
+
+699
+00:31:22,480 --> 00:31:26,012
+So you can kind of just--
+this is like, if you're just
+
+700
+00:31:26,012 --> 00:31:28,220
+trying to annoy a friend
+and they ask you a question,
+
+701
+00:31:28,220 --> 00:31:31,344
+you kind of respond with a question,
+you can kind of keep passing the buck.
+
+702
+00:31:31,344 --> 00:31:34,560
+But what's key is that if you keep
+making the question smaller and smaller
+
+703
+00:31:34,560 --> 00:31:36,910
+and smaller, you're
+not asking what's sigma
+
+704
+00:31:36,910 --> 00:31:39,116
+of n, what's sigma of
+n, what's sigma of n?
+
+705
+00:31:39,116 --> 00:31:40,990
+You're asking what's
+sigma of n, what's sigma
+
+706
+00:31:40,990 --> 00:31:42,839
+of n minus 1, what's sigma of n minus 2?
+
+707
+00:31:42,839 --> 00:31:44,880
+Eventually your question
+is going to become what?
+
+708
+00:31:44,880 --> 00:31:50,250
+What is sigma of one or
+zero, some very small value,
+
+709
+00:31:50,250 --> 00:31:52,220
+and as soon as you
+get that, your friend,
+
+710
+00:31:52,220 --> 00:31:54,350
+you are not going to ask
+the same question again,
+
+711
+00:31:54,350 --> 00:31:55,975
+you're just going to say, oh it's zero.
+
+712
+00:31:55,975 --> 00:31:58,490
+We're done playing this sort
+of stupid cyclical game.
+
+713
+00:31:58,490 --> 00:32:02,950
+>> So recursion is the act in programming
+of a function calling itself.
+
+714
+00:32:02,950 --> 00:32:06,630
+This program, when compiled and run, is
+going to behave exactly the same way,
+
+715
+00:32:06,630 --> 00:32:09,620
+but what's key is that inside
+of a function called sigma,
+
+716
+00:32:09,620 --> 00:32:13,150
+there is a line of code wherein
+we're calling ourselves,
+
+717
+00:32:13,150 --> 00:32:14,980
+which would normally be bad.
+
+718
+00:32:14,980 --> 00:32:21,160
+For instance, what if I first
+compiled this, so make sigma--
+
+719
+00:32:21,160 --> 00:32:22,710
+make sigma 1 ./sigma-1.
+
+720
+00:32:22,710 --> 00:32:25,050
+
+721
+00:32:25,050 --> 00:32:27,690
+Positive integer, please, 50 1275.
+
+722
+00:32:27,690 --> 00:32:30,810
+So what the function seems to
+be, based on one test, correct.
+
+723
+00:32:30,810 --> 00:32:34,917
+But what if I get a little dangerous
+and delete the so-called base case,
+
+724
+00:32:34,917 --> 00:32:37,750
+and just say, well I'm just making
+this more complicated than it is.
+
+725
+00:32:37,750 --> 00:32:42,450
+Let's just compute the sigma
+by taking m and then adding
+
+726
+00:32:42,450 --> 00:32:44,564
+in sigma of m minus one?
+
+727
+00:32:44,564 --> 00:32:45,980
+Well, what's going to happen here?
+
+728
+00:32:45,980 --> 00:32:47,140
+Let's zoom out.
+
+729
+00:32:47,140 --> 00:32:52,920
+Let's recompile the program,
+save it, recompile the program,
+
+730
+00:32:52,920 --> 00:33:00,450
+and then ready ./sigma-1 zooming in,
+enter positive integer please, 50.
+
+731
+00:33:00,450 --> 00:33:02,180
+
+732
+00:33:02,180 --> 00:33:04,430
+How many of you are willing
+to fess up to seeing that?
+
+733
+00:33:04,430 --> 00:33:04,950
+>> OK.
+
+734
+00:33:04,950 --> 00:33:06,690
+So this can happen for
+a number of reasons,
+
+735
+00:33:06,690 --> 00:33:09,148
+and frankly this week we're
+about to give you more of them.
+
+736
+00:33:09,148 --> 00:33:11,780
+But in this case, try
+to reason backwards
+
+737
+00:33:11,780 --> 00:33:14,430
+what might have happened here?
+
+738
+00:33:14,430 --> 00:33:17,400
+Segmentation fault, we said last
+time, refers to a segment of memory.
+
+739
+00:33:17,400 --> 00:33:18,690
+Something bad happened.
+
+740
+00:33:18,690 --> 00:33:21,550
+But what was it
+mechanically that went awry
+
+741
+00:33:21,550 --> 00:33:25,000
+here because of my removal
+of that so-called base case,
+
+742
+00:33:25,000 --> 00:33:26,870
+where I returned a hard-coded value?
+
+743
+00:33:26,870 --> 00:33:28,970
+
+744
+00:33:28,970 --> 00:33:30,460
+What do you think went wrong?
+
+745
+00:33:30,460 --> 00:33:31,219
+Yeah.
+
+746
+00:33:31,219 --> 00:33:32,135
+>> AUDIENCE: [INAUDIBLE].
+
+747
+00:33:32,135 --> 00:33:36,387
+
+748
+00:33:36,387 --> 00:33:36,970
+SPEAKER 1: Ah.
+
+749
+00:33:36,970 --> 00:33:37,550
+Good question.
+
+750
+00:33:37,550 --> 00:33:39,508
+So the size of the number
+that I was summing up
+
+751
+00:33:39,508 --> 00:33:41,920
+got so big that it exceeded
+the size of the memory space.
+
+752
+00:33:41,920 --> 00:33:44,640
+Good idea, but not fundamentally
+going to cause a crash.
+
+753
+00:33:44,640 --> 00:33:48,230
+That might cause integer overflow,
+where the bits just flip over
+
+754
+00:33:48,230 --> 00:33:51,760
+and then we mistake a really big
+number for like a negative number,
+
+755
+00:33:51,760 --> 00:33:53,260
+but that itself won't cause a crash.
+
+756
+00:33:53,260 --> 00:33:55,509
+Because at the end of the
+day an int is still 32 bits.
+
+757
+00:33:55,509 --> 00:33:57,640
+You're not going to
+accidentally steal a 33rd bit.
+
+758
+00:33:57,640 --> 00:33:58,431
+But a good thought.
+
+759
+00:33:58,431 --> 00:33:58,984
+Yeah.
+
+760
+00:33:58,984 --> 00:33:59,900
+>> AUDIENCE: [INAUDIBLE].
+
+761
+00:33:59,900 --> 00:34:00,551
+
+762
+00:34:00,551 --> 00:34:02,300
+SPEAKER 1: The method
+never stops running,
+
+763
+00:34:02,300 --> 00:34:06,658
+and indeed it calls itself again
+and again and again and again
+
+764
+00:34:06,658 --> 00:34:08,449
+and again, and none of
+those functions ever
+
+765
+00:34:08,449 --> 00:34:13,310
+finish because their sole line of
+code calls themself again and again
+
+766
+00:34:13,310 --> 00:34:14,219
+and again.
+
+767
+00:34:14,219 --> 00:34:16,080
+And what's really
+happening here, and now we
+
+768
+00:34:16,080 --> 00:34:18,100
+can kind of draw this pictorially.
+
+769
+00:34:18,100 --> 00:34:20,899
+Let me go over to a
+picture for just a moment.
+
+770
+00:34:20,899 --> 00:34:22,940
+This is a picture, that
+will eventually flesh out
+
+771
+00:34:22,940 --> 00:34:26,336
+in more detail, of what's going on
+inside of your computer's memory.
+
+772
+00:34:26,336 --> 00:34:28,460
+And it turns out that on
+the bottom of this picture
+
+773
+00:34:28,460 --> 00:34:29,709
+is something called the stack.
+
+774
+00:34:29,709 --> 00:34:31,920
+This is a chunk of
+memory, a chunk of RAM,
+
+775
+00:34:31,920 --> 00:34:33,920
+that's just used any time
+a function is called.
+
+776
+00:34:33,920 --> 00:34:36,239
+Any time you, a programmer,
+call a function,
+
+777
+00:34:36,239 --> 00:34:38,860
+the operating system, like
+Mac OS, Windows, or Linux,
+
+778
+00:34:38,860 --> 00:34:41,920
+grabs a bunch of bytes, maybe a
+few kilobytes, maybe few megabytes
+
+779
+00:34:41,920 --> 00:34:44,590
+of memory, hands them
+to you, and then lets
+
+780
+00:34:44,590 --> 00:34:47,650
+you run your function using
+whatever variables you need.
+
+781
+00:34:47,650 --> 00:34:50,699
+And if you then call another
+function and another function,
+
+782
+00:34:50,699 --> 00:34:53,590
+you get another slice of memory
+and another slice of memory.
+
+783
+00:34:53,590 --> 00:34:57,090
+>> And indeed, if these green trays
+from Annenberg represent that memory,
+
+784
+00:34:57,090 --> 00:34:59,870
+here's what happens the first
+time you call function sigma.
+
+785
+00:34:59,870 --> 00:35:04,510
+It's like putting a tray like this
+on what's initially an empty stack.
+
+786
+00:35:04,510 --> 00:35:07,142
+But then if that tray
+calls itself, so to speak,
+
+787
+00:35:07,142 --> 00:35:08,850
+calling another instance
+of sigma, that's
+
+788
+00:35:08,850 --> 00:35:11,640
+like asking the operating system,
+ooh, need a little more memory,
+
+789
+00:35:11,640 --> 00:35:12,520
+give me that.
+
+790
+00:35:12,520 --> 00:35:14,840
+And then it gets piled on on top.
+
+791
+00:35:14,840 --> 00:35:18,030
+But what's key here is that
+the first tray is still there,
+
+792
+00:35:18,030 --> 00:35:20,620
+because he invoked this second tray.
+
+793
+00:35:20,620 --> 00:35:23,500
+Now meanwhile, sigma call sigma,
+that's like asking for more memory.
+
+794
+00:35:23,500 --> 00:35:25,830
+Gets piled on over here.
+
+795
+00:35:25,830 --> 00:35:29,350
+sigma call sigma, that's another
+tray that gets piled on here.
+
+796
+00:35:29,350 --> 00:35:32,942
+And if you keep doing this,
+eventually, kind of map this visual
+
+797
+00:35:32,942 --> 00:35:35,525
+to that chart, what's going to
+happen with the stack of trays?
+
+798
+00:35:35,525 --> 00:35:37,480
+
+799
+00:35:37,480 --> 00:35:41,160
+It is going to exceed the amount
+of memory your computer has.
+
+800
+00:35:41,160 --> 00:35:45,790
+And as soon as this green tray
+exceeds the horizontal line
+
+801
+00:35:45,790 --> 00:35:49,410
+above stack and above that word heap,
+which we'll come back to in the future,
+
+802
+00:35:49,410 --> 00:35:50,410
+that is a bad thing.
+
+803
+00:35:50,410 --> 00:35:52,810
+The heap is a different
+segment of memory,
+
+804
+00:35:52,810 --> 00:35:55,190
+and if you let these
+trays pile and pile on,
+
+805
+00:35:55,190 --> 00:35:57,800
+you're going to exceed
+your own segment of memory,
+
+806
+00:35:57,800 --> 00:36:00,420
+and a program is indeed going to crash.
+
+807
+00:36:00,420 --> 00:36:02,930
+>> Now as an aside, this idea
+of recursion, therefore,
+
+808
+00:36:02,930 --> 00:36:06,500
+can clearly lead to problems, but
+it's not necessarily a bad thing.
+
+809
+00:36:06,500 --> 00:36:08,840
+Because consider, after
+all, how-- and maybe
+
+810
+00:36:08,840 --> 00:36:11,700
+this takes some getting used
+to --how elegant or how simple
+
+811
+00:36:11,700 --> 00:36:14,890
+that implementation of sigma was.
+
+812
+00:36:14,890 --> 00:36:17,440
+And we're not going to use
+recursion all that much in CS50,
+
+813
+00:36:17,440 --> 00:36:20,780
+but in CS51, and really any class
+where you manipulate data structures
+
+814
+00:36:20,780 --> 00:36:23,640
+like trees, or family trees,
+that have some hierarchy,
+
+815
+00:36:23,640 --> 00:36:26,000
+it's super, super useful.
+
+816
+00:36:26,000 --> 00:36:29,750
+Now, as an aside, so that you
+as aspiring computer scientists
+
+817
+00:36:29,750 --> 00:36:33,180
+are familiar with some of Google's
+inside jokes, if you go to Google
+
+818
+00:36:33,180 --> 00:36:36,345
+and you look up what is the
+definition of, say, recursion, enter.
+
+819
+00:36:36,345 --> 00:36:40,208
+
+820
+00:36:40,208 --> 00:36:41,110
+Uh-huh.
+
+821
+00:36:41,110 --> 00:36:42,670
+As an aside, I pulled up a few.
+
+822
+00:36:42,670 --> 00:36:45,470
+This was like 10 minutes of
+procrastination this morning.
+
+823
+00:36:45,470 --> 00:36:52,890
+If you also Google "askew," notice
+by tilting your head slightly--
+
+824
+00:36:52,890 --> 00:36:55,120
+and then this one is perhaps
+most atrocious of all
+
+825
+00:36:55,120 --> 00:36:57,286
+since someone spent like
+their day implementing this
+
+826
+00:36:57,286 --> 00:36:59,880
+some years ago-- come on.
+
+827
+00:36:59,880 --> 00:37:01,140
+
+828
+00:37:01,140 --> 00:37:04,540
+Oh, wait-- that's a bug.
+
+829
+00:37:04,540 --> 00:37:08,410
+
+830
+00:37:08,410 --> 00:37:11,410
+>> So running on one of the
+world's biggest websites
+
+831
+00:37:11,410 --> 00:37:13,510
+are these stupid little Easter eggs.
+
+832
+00:37:13,510 --> 00:37:16,690
+They probably consume a
+nontrivial number of lines of code
+
+833
+00:37:16,690 --> 00:37:19,280
+just so that we can have
+little fun things like that.
+
+834
+00:37:19,280 --> 00:37:22,140
+But at least now you get
+some of those inside jokes.
+
+835
+00:37:22,140 --> 00:37:28,330
+>> Now let's take a look at some of the
+white lies we've been telling of late,
+
+836
+00:37:28,330 --> 00:37:30,707
+and start to peel back
+some layers technically
+
+837
+00:37:30,707 --> 00:37:32,790
+so that you really understand
+what's been going on
+
+838
+00:37:32,790 --> 00:37:34,860
+and you can understand
+some of the threats,
+
+839
+00:37:34,860 --> 00:37:38,060
+like Shellshock, that
+have now started to become
+
+840
+00:37:38,060 --> 00:37:41,110
+on the forefront of everyone's
+attention, at least in the media.
+
+841
+00:37:41,110 --> 00:37:45,810
+So here is a very simple function
+that returns nothing, void.
+
+842
+00:37:45,810 --> 00:37:46,790
+Its name is swap.
+
+843
+00:37:46,790 --> 00:37:50,880
+It takes in two variables
+and it returns nothing.
+
+844
+00:37:50,880 --> 00:37:52,260
+Takes in a and b .
+
+845
+00:37:52,260 --> 00:37:53,337
+So a quick demonstration.
+
+846
+00:37:53,337 --> 00:37:54,170
+We brought these up.
+
+847
+00:37:54,170 --> 00:37:56,100
+We might as well take a little
+break here for just a moment
+
+848
+00:37:56,100 --> 00:37:57,250
+and have a little something to drink.
+
+849
+00:37:57,250 --> 00:38:00,120
+If someone wouldn't mind joining
+me up here for just a moment.
+
+850
+00:38:00,120 --> 00:38:01,830
+How about you in the maroon shirt?
+
+851
+00:38:01,830 --> 00:38:02,335
+Come on up.
+
+852
+00:38:02,335 --> 00:38:04,060
+
+853
+00:38:04,060 --> 00:38:05,260
+Just the one today.
+
+854
+00:38:05,260 --> 00:38:06,251
+Thank you, though.
+
+855
+00:38:06,251 --> 00:38:08,000
+All right, and we have
+coming up who here?
+
+856
+00:38:08,000 --> 00:38:08,660
+What's your name?
+
+857
+00:38:08,660 --> 00:38:09,360
+>> SPEAKER 4: Laura.
+
+858
+00:38:09,360 --> 00:38:09,740
+>> SPEAKER 1: Laura.
+
+859
+00:38:09,740 --> 00:38:10,370
+Come on up.
+
+860
+00:38:10,370 --> 00:38:11,460
+
+861
+00:38:11,460 --> 00:38:13,850
+So Laura, very simple challenge today.
+
+862
+00:38:13,850 --> 00:38:14,704
+
+863
+00:38:14,704 --> 00:38:15,370
+Nice to meet yo.
+
+864
+00:38:15,370 --> 00:38:16,410
+
+865
+00:38:16,410 --> 00:38:16,910
+All right.
+
+866
+00:38:16,910 --> 00:38:21,179
+So we have some milk over here and
+we have some orange juice over here
+
+867
+00:38:21,179 --> 00:38:23,345
+and some cups that we
+borrowed from Annenberg today.
+
+868
+00:38:23,345 --> 00:38:24,178
+>> SPEAKER 4: Borrowed.
+
+869
+00:38:24,178 --> 00:38:27,240
+SPEAKER 1: And going to go ahead
+and give you half a glass of this.
+
+870
+00:38:27,240 --> 00:38:28,250
+
+871
+00:38:28,250 --> 00:38:28,800
+All right.
+
+872
+00:38:28,800 --> 00:38:30,750
+And we'll give you half
+a glass of the milk.
+
+873
+00:38:30,750 --> 00:38:31,905
+
+874
+00:38:31,905 --> 00:38:35,890
+Oh, and just so that you can
+remember what this was like,
+
+875
+00:38:35,890 --> 00:38:38,860
+I remembered to bring
+this up and on today.
+
+876
+00:38:38,860 --> 00:38:42,030
+
+877
+00:38:42,030 --> 00:38:42,530
+Okay.
+
+878
+00:38:42,530 --> 00:38:45,470
+If you wouldn't mind, let's see, we
+can put them over your own glasses
+
+879
+00:38:45,470 --> 00:38:46,560
+if you want.
+
+880
+00:38:46,560 --> 00:38:48,710
+This'll be the world from Laura's eyes.
+
+881
+00:38:48,710 --> 00:38:49,210
+All right.
+
+882
+00:38:49,210 --> 00:38:53,820
+So your goal, given two cups of
+liquid here, milk and orange juice,
+
+883
+00:38:53,820 --> 00:38:58,370
+is swap the two contents so that the
+orange juice goes into the milk cup
+
+884
+00:38:58,370 --> 00:39:00,710
+and the milk goes into
+the orange juice cup.
+
+885
+00:39:00,710 --> 00:39:02,359
+>> SPEAKER 4: Do I get another cup?
+
+886
+00:39:02,359 --> 00:39:05,650
+SPEAKER 1: I'm so glad you asked, though
+it would have been much better footage
+
+887
+00:39:05,650 --> 00:39:06,710
+if you hadn't asked.
+
+888
+00:39:06,710 --> 00:39:10,620
+But yes, we can offer you a third
+cup that's empty, of course.
+
+889
+00:39:10,620 --> 00:39:11,120
+All right.
+
+890
+00:39:11,120 --> 00:39:12,300
+So swap the contents there.
+
+891
+00:39:12,300 --> 00:39:16,100
+
+892
+00:39:16,100 --> 00:39:17,050
+Very nice.
+
+893
+00:39:17,050 --> 00:39:20,390
+
+894
+00:39:20,390 --> 00:39:21,305
+Very good.
+
+895
+00:39:21,305 --> 00:39:23,121
+
+896
+00:39:23,121 --> 00:39:24,745
+You're doing this remarkably carefully.
+
+897
+00:39:24,745 --> 00:39:26,970
+
+898
+00:39:26,970 --> 00:39:28,655
+And step three.
+
+899
+00:39:28,655 --> 00:39:30,390
+
+900
+00:39:30,390 --> 00:39:31,350
+All right.
+
+901
+00:39:31,350 --> 00:39:31,930
+Excellent.
+
+902
+00:39:31,930 --> 00:39:33,930
+A big round of applause
+would be good for Laura.
+
+903
+00:39:33,930 --> 00:39:36,500
+
+904
+00:39:36,500 --> 00:39:37,000
+All right.
+
+905
+00:39:37,000 --> 00:39:40,790
+We have a little parting gift
+for you, but let me take these.
+
+906
+00:39:40,790 --> 00:39:42,620
+Thank you so much.
+
+907
+00:39:42,620 --> 00:39:46,170
+So a simple example, though,
+to demonstrate that if you do
+
+908
+00:39:46,170 --> 00:39:48,300
+want to swap the contents
+of two containers,
+
+909
+00:39:48,300 --> 00:39:52,360
+or let's call them variables,
+you need some temporary storage
+
+910
+00:39:52,360 --> 00:39:56,710
+to stage one of the contents in so
+that you can actually do the swap.
+
+911
+00:39:56,710 --> 00:40:01,790
+So indeed, this source code up here in
+C is representative of exactly that.
+
+912
+00:40:01,790 --> 00:40:06,340
+If the orange juice was a and the milk
+was b, and we wanted to swap the two,
+
+913
+00:40:06,340 --> 00:40:08,990
+you could try something creative
+by pouring one into the other,
+
+914
+00:40:08,990 --> 00:40:11,031
+but that probably wouldn't
+end particularly well.
+
+915
+00:40:11,031 --> 00:40:15,260
+And so we use a third cup, call
+it tmp, T-M-P by convention,
+
+916
+00:40:15,260 --> 00:40:19,370
+and put the contents of the
+OJ in that, then swap one cup,
+
+917
+00:40:19,370 --> 00:40:22,610
+then put the OJ into the
+original cup, thereby
+
+918
+00:40:22,610 --> 00:40:25,320
+achieving, exactly as
+Laura did, the swap.
+
+919
+00:40:25,320 --> 00:40:26,850
+>> So let's do exactly that.
+
+920
+00:40:26,850 --> 00:40:30,110
+Let me go ahead and open
+up an example that's
+
+921
+00:40:30,110 --> 00:40:32,720
+actually called "no
+swap," because this is not
+
+922
+00:40:32,720 --> 00:40:36,180
+as simply done as you might think.
+
+923
+00:40:36,180 --> 00:40:41,190
+So in this program, notice that
+I'm using stdio.h, our old friend.
+
+924
+00:40:41,190 --> 00:40:43,130
+I have the prototype
+for swap up there, which
+
+925
+00:40:43,130 --> 00:40:45,450
+means its implementation's
+probably down below,
+
+926
+00:40:45,450 --> 00:40:48,050
+and let's see what this main
+program's going to do for me.
+
+927
+00:40:48,050 --> 00:40:52,020
+I first declare int x gets
+one, and int y gets two.
+
+928
+00:40:52,020 --> 00:40:54,930
+So think of those as OJ
+and milk, respectively.
+
+929
+00:40:54,930 --> 00:40:57,100
+And then I just have a
+printf saying x is this
+
+930
+00:40:57,100 --> 00:41:00,120
+and y is this, just so I can
+visually see what's going on.
+
+931
+00:41:00,120 --> 00:41:03,810
+Then I have printf claiming
+that I'm swapping the two,
+
+932
+00:41:03,810 --> 00:41:07,100
+and then I print out a
+claim that they're swapped,
+
+933
+00:41:07,100 --> 00:41:09,300
+and I print out x and y again.
+
+934
+00:41:09,300 --> 00:41:13,010
+So down here in swap is
+exactly what Laura did,
+
+935
+00:41:13,010 --> 00:41:16,240
+and exactly what we saw on
+the screen a moment ago.
+
+936
+00:41:16,240 --> 00:41:19,380
+>> So let's go ahead and
+be sorely disappointed.
+
+937
+00:41:19,380 --> 00:41:24,690
+Make no swap, and run no swap,
+zooming in on the output here.
+
+938
+00:41:24,690 --> 00:41:28,320
+Enter x is 1, y is 2, swapping swapped.
+
+939
+00:41:28,320 --> 00:41:32,700
+x is still 1, and y is still 2.
+
+940
+00:41:32,700 --> 00:41:37,630
+So even though, frankly, this looks
+exactly like, albeit more technically,
+
+941
+00:41:37,630 --> 00:41:40,730
+what Laura did, didn't seem to work.
+
+942
+00:41:40,730 --> 00:41:42,130
+So why is that?
+
+943
+00:41:42,130 --> 00:41:46,630
+Well, it turns out that when
+we write a program like this
+
+944
+00:41:46,630 --> 00:41:51,590
+that has both main, highlighted here,
+and then another function, like swap,
+
+945
+00:41:51,590 --> 00:41:54,230
+highlighted here, which
+it calls, the world
+
+946
+00:41:54,230 --> 00:41:57,030
+looks a little something like
+these trays a moment ago.
+
+947
+00:41:57,030 --> 00:42:00,440
+When main first gets called,
+that's like asking operating system
+
+948
+00:42:00,440 --> 00:42:04,030
+for a bit of memory for any local
+variables like x and y that main has,
+
+949
+00:42:04,030 --> 00:42:05,660
+and they end up right there.
+
+950
+00:42:05,660 --> 00:42:10,920
+But if main calls swap, and main
+passes to swap two arguments, a and b,
+
+951
+00:42:10,920 --> 00:42:16,410
+orange juice and milk, it's not like
+handing the orange juice and the milk
+
+952
+00:42:16,410 --> 00:42:17,500
+to Laura.
+
+953
+00:42:17,500 --> 00:42:21,300
+What a computer does, is it
+passes copies of the orange juice
+
+954
+00:42:21,300 --> 00:42:27,110
+and copies of the milk to Laura, so that
+what's ultimately inside of this tray
+
+955
+00:42:27,110 --> 00:42:32,510
+is the value one and two, or OJ
+and milk, but copies thereof,
+
+956
+00:42:32,510 --> 00:42:34,790
+so that at this point
+in the story, there
+
+957
+00:42:34,790 --> 00:42:36,930
+is OJ and milk in each of these trays.
+
+958
+00:42:36,930 --> 00:42:39,260
+There's a one and a two
+in each of these trays,
+
+959
+00:42:39,260 --> 00:42:41,720
+and the swap function is indeed working.
+
+960
+00:42:41,720 --> 00:42:46,090
+It's swapping them inside
+of the second topmost tray,
+
+961
+00:42:46,090 --> 00:42:48,147
+but that swapping has no impact.
+
+962
+00:42:48,147 --> 00:42:49,980
+And based on just some
+basic principle we've
+
+963
+00:42:49,980 --> 00:42:52,970
+talked about before, and indeed
+just a few minutes ago, what
+
+964
+00:42:52,970 --> 00:42:58,770
+might explain why changing
+a and b inside of swap
+
+965
+00:42:58,770 --> 00:43:05,560
+has no effect on x and y, even though
+I passed x and y to the swap function.
+
+966
+00:43:05,560 --> 00:43:08,750
+What's the key word here that
+might simplistically explain?
+
+967
+00:43:08,750 --> 00:43:11,250
+
+968
+00:43:11,250 --> 00:43:12,627
+I think I heard it here?
+
+969
+00:43:12,627 --> 00:43:13,335
+AUDIENCE: Return.
+
+970
+00:43:13,335 --> 00:43:14,085
+SPEAKER 1: Return?
+
+971
+00:43:14,085 --> 00:43:14,590
+Not return.
+
+972
+00:43:14,590 --> 00:43:15,895
+Let's go with one other.
+
+973
+00:43:15,895 --> 00:43:16,395
+What's that?
+
+974
+00:43:16,395 --> 00:43:17,080
+>> AUDIENCE: [INAUDIBLE].
+
+975
+00:43:17,080 --> 00:43:20,000
+>> SPEAKER 1: OK, so return-- we could
+make return work in the story,
+
+976
+00:43:20,000 --> 00:43:21,914
+but there's an even simpler explanation.
+
+977
+00:43:21,914 --> 00:43:22,580
+AUDIENCE: Scope.
+
+978
+00:43:22,580 --> 00:43:23,288
+SPEAKER 1: Scope.
+
+979
+00:43:23,288 --> 00:43:24,300
+I'll take scope.
+
+980
+00:43:24,300 --> 00:43:27,290
+So scope, remember where
+our x and y declared.
+
+981
+00:43:27,290 --> 00:43:30,840
+They're declared inside
+of main right up here.
+
+982
+00:43:30,840 --> 00:43:33,200
+a and b, meanwhile, are
+effectively declared
+
+983
+00:43:33,200 --> 00:43:35,930
+inside of swap, not quite in
+the curly braces but still
+
+984
+00:43:35,930 --> 00:43:37,690
+in the general area of swap.
+
+985
+00:43:37,690 --> 00:43:40,560
+And so indeed, a and b
+only exist within this tray
+
+986
+00:43:40,560 --> 00:43:44,850
+from Annenberg, this
+second chunk of code.
+
+987
+00:43:44,850 --> 00:43:49,500
+So we're indeed changing the copy, but
+that's not really all that helpful.
+
+988
+00:43:49,500 --> 00:43:52,190
+>> So let's take a look at
+this a little lower level.
+
+989
+00:43:52,190 --> 00:43:55,430
+I'm going to go back into
+the Source Directory,
+
+990
+00:43:55,430 --> 00:43:58,330
+and I'm going to first
+zoom in here, and just
+
+991
+00:43:58,330 --> 00:44:02,290
+to confirm that I'm in this
+bigger terminal window,
+
+992
+00:44:02,290 --> 00:44:04,430
+the program's still behaving like that.
+
+993
+00:44:04,430 --> 00:44:06,840
+Suppose now that this
+is not intentional.
+
+994
+00:44:06,840 --> 00:44:10,090
+Clearly I wanted swap to
+work, so it feels like a bug.
+
+995
+00:44:10,090 --> 00:44:12,780
+Now I could start adding a
+lot of printf's to my code,
+
+996
+00:44:12,780 --> 00:44:16,010
+printing out x over here, y over
+here, a over here, b over here.
+
+997
+00:44:16,010 --> 00:44:18,220
+But frankly, that's probably what
+you've been doing for a couple of weeks
+
+998
+00:44:18,220 --> 00:44:20,190
+now, in office hours
+and at home when working
+
+999
+00:44:20,190 --> 00:44:22,150
+on psets trying to find some bugs.
+
+1000
+00:44:22,150 --> 00:44:25,560
+But you'll see, if you haven't already,
+that problem set three introduces you
+
+1001
+00:44:25,560 --> 00:44:31,630
+to a command called GDB,
+where GDB, GNU debugger,
+
+1002
+00:44:31,630 --> 00:44:34,040
+has itself a whole bunch of
+features that can actually
+
+1003
+00:44:34,040 --> 00:44:38,160
+let us understand situations
+like this, but more compellingly,
+
+1004
+00:44:38,160 --> 00:44:39,940
+solve problems and find bugs.
+
+1005
+00:44:39,940 --> 00:44:40,940
+So I'm going to do this.
+
+1006
+00:44:40,940 --> 00:44:44,770
+Instead of ./noswap, I'm instead
+going to run GDB ./noswap.
+
+1007
+00:44:44,770 --> 00:44:47,410
+
+1008
+00:44:47,410 --> 00:44:51,200
+In other words, I'm going to run my
+program not in Bash, our new friend
+
+1009
+00:44:51,200 --> 00:44:51,850
+today.
+
+1010
+00:44:51,850 --> 00:44:53,970
+I'm going to run my
+program noswap inside
+
+1011
+00:44:53,970 --> 00:44:56,900
+of this other program called
+GDB, which is a debugger, which
+
+1012
+00:44:56,900 --> 00:45:01,035
+is a program that's designed to help
+you humans find and remove bugs.
+
+1013
+00:45:01,035 --> 00:45:03,410
+So if I hit Run here, there's
+an atrocious amount of text
+
+1014
+00:45:03,410 --> 00:45:04,868
+that you really never have to read.
+
+1015
+00:45:04,868 --> 00:45:07,290
+It's essentially a distraction
+from the prompt, which
+
+1016
+00:45:07,290 --> 00:45:10,030
+I'm going to hit Control-L
+to get up at the top there.
+
+1017
+00:45:10,030 --> 00:45:11,800
+This is the GDB prompt.
+
+1018
+00:45:11,800 --> 00:45:15,550
+If I want to run this program now,
+as this little cheat sheet on today's
+
+1019
+00:45:15,550 --> 00:45:21,860
+slide suggests, Run is the first
+commands that we meant to introduce.
+
+1020
+00:45:21,860 --> 00:45:25,150
+And I'm just going to type
+run up here inside of GDB,
+
+1021
+00:45:25,150 --> 00:45:26,811
+and indeed it ran my program.
+
+1022
+00:45:26,811 --> 00:45:29,310
+Now there's some additional
+outputs of the screen like this,
+
+1023
+00:45:29,310 --> 00:45:31,910
+but that's GDB just being anal
+and telling us what's going on.
+
+1024
+00:45:31,910 --> 00:45:34,451
+You don't really have to worry
+about these details right now.
+
+1025
+00:45:34,451 --> 00:45:36,890
+But what's really cool about
+GDB, if I do this again--
+
+1026
+00:45:36,890 --> 00:45:42,100
+Control-L clears the screen-- let me go
+ahead and type "break main," thereby,
+
+1027
+00:45:42,100 --> 00:45:45,743
+when I hit Enter, setting what's
+called a break point at noswap.c,
+
+1028
+00:45:45,743 --> 00:45:51,270
+line 16, which is where GDB
+figured out my program actually
+
+1029
+00:45:51,270 --> 00:45:53,070
+is, my function actually is.
+
+1030
+00:45:53,070 --> 00:45:55,070
+This we'll ignore for now
+but that's the address
+
+1031
+00:45:55,070 --> 00:45:57,310
+in memory specifically of this function.
+
+1032
+00:45:57,310 --> 00:46:00,240
+So now when I type run,
+notice what's cool here.
+
+1033
+00:46:00,240 --> 00:46:05,650
+My program breaks at the line I
+told GDB to pause execution at.
+
+1034
+00:46:05,650 --> 00:46:09,850
+So I don't have to now change my code,
+add some printf's, recompile it, rerun
+
+1035
+00:46:09,850 --> 00:46:13,300
+it, change, add some printf's,
+save it, recompile it, run it.
+
+1036
+00:46:13,300 --> 00:46:18,100
+I can just walk through my program
+step by step by step at human speed,
+
+1037
+00:46:18,100 --> 00:46:20,880
+not at Intel-inside kind of speed.
+
+1038
+00:46:20,880 --> 00:46:24,580
+>> So now notice this line
+appears here, and if I go back
+
+1039
+00:46:24,580 --> 00:46:27,800
+to my program in gedit,
+notice that that is actually
+
+1040
+00:46:27,800 --> 00:46:29,280
+the very first line of code.
+
+1041
+00:46:29,280 --> 00:46:31,240
+There's line 16 in gedit.
+
+1042
+00:46:31,240 --> 00:46:34,610
+There's line 16 within GDB, and even
+though this black and white interface
+
+1043
+00:46:34,610 --> 00:46:37,760
+isn't nearly as user
+friendly, this means
+
+1044
+00:46:37,760 --> 00:46:41,680
+that line 16 hasn't been executed
+yet, but it's about to be.
+
+1045
+00:46:41,680 --> 00:46:46,220
+So indeed if I type print
+x, not printf, just print x,
+
+1046
+00:46:46,220 --> 00:46:50,730
+I get some bogus value there of zero,
+because x hasn't been initialized yet.
+
+1047
+00:46:50,730 --> 00:46:54,760
+So I'm going to type next, or, if you
+want to be fancy, just n for next.
+
+1048
+00:46:54,760 --> 00:46:59,090
+But when I type next enter, now
+notice it moves on to line 17.
+
+1049
+00:46:59,090 --> 00:47:02,840
+So logically, if I've executed
+line 16 and I now type print x,
+
+1050
+00:47:02,840 --> 00:47:03,640
+what should I see?
+
+1051
+00:47:03,640 --> 00:47:04,970
+
+1052
+00:47:04,970 --> 00:47:05,520
+One.
+
+1053
+00:47:05,520 --> 00:47:07,820
+>> And now this is admittedly confusing.
+
+1054
+00:47:07,820 --> 00:47:11,260
+$2 is just a fancy way of, if you
+want to refer to that value later,
+
+1055
+00:47:11,260 --> 00:47:12,510
+you can say "dollar sign two."
+
+1056
+00:47:12,510 --> 00:47:13,480
+It's like a back reference.
+
+1057
+00:47:13,480 --> 00:47:14,570
+But for now, just ignore it.
+
+1058
+00:47:14,570 --> 00:47:17,070
+What's interesting is what's
+on the right of the equal sign.
+
+1059
+00:47:17,070 --> 00:47:21,000
+And now if I type next again
+and print y, I should see 2.
+
+1060
+00:47:21,000 --> 00:47:23,870
+I can also now print
+x again, and frankly,
+
+1061
+00:47:23,870 --> 00:47:27,130
+if I'm getting a little confused as to
+where I am, I can type list for list
+
+1062
+00:47:27,130 --> 00:47:30,590
+and just see some context around
+the point I'm actually at.
+
+1063
+00:47:30,590 --> 00:47:35,180
+And now I can type
+next, and there x is 1.
+
+1064
+00:47:35,180 --> 00:47:36,300
+Now I type next.
+
+1065
+00:47:36,300 --> 00:47:37,710
+Oh, y is 2.
+
+1066
+00:47:37,710 --> 00:47:40,750
+And again, it is confusing,
+because GDB's output
+
+1067
+00:47:40,750 --> 00:47:43,044
+is being commingled with my own output.
+
+1068
+00:47:43,044 --> 00:47:45,710
+But if you keep in mind, by
+glancing back and forth at your code
+
+1069
+00:47:45,710 --> 00:47:47,740
+or laying it out side
+by side perhaps, you'll
+
+1070
+00:47:47,740 --> 00:47:51,020
+see that really I'm just
+stepping through my program.
+
+1071
+00:47:51,020 --> 00:47:54,620
+>> But notice what happens next, literally.
+
+1072
+00:47:54,620 --> 00:47:56,380
+Here's line 22.
+
+1073
+00:47:56,380 --> 00:48:01,315
+Let me go over it, thereby moving on
+to 23, and if I print x now, still one.
+
+1074
+00:48:01,315 --> 00:48:03,890
+And if I print y now, still one.
+
+1075
+00:48:03,890 --> 00:48:05,820
+So this is not a useful exercise.
+
+1076
+00:48:05,820 --> 00:48:07,450
+So let's redo this.
+
+1077
+00:48:07,450 --> 00:48:10,069
+Let me go back up to the
+top and type run again.
+
+1078
+00:48:10,069 --> 00:48:12,110
+And it's saying the program
+that's being debugged
+
+1079
+00:48:12,110 --> 00:48:14,109
+has started already,
+started from the beginning.
+
+1080
+00:48:14,109 --> 00:48:15,420
+Yes, let's do this again.
+
+1081
+00:48:15,420 --> 00:48:22,000
+And this time let's do next,
+next, next, next, next,
+
+1082
+00:48:22,000 --> 00:48:24,180
+but now things get interesting.
+
+1083
+00:48:24,180 --> 00:48:27,760
+Now I want to step into
+swap, so I don't type next.
+
+1084
+00:48:27,760 --> 00:48:34,380
+I type step, and now notice it
+has jumped me to noswap.c line 33.
+
+1085
+00:48:34,380 --> 00:48:37,240
+If I go back to gedit, what's line 33?
+
+1086
+00:48:37,240 --> 00:48:40,500
+That's the first actual
+line of code inside of swap.
+
+1087
+00:48:40,500 --> 00:48:44,150
+Which is nice, because now I can
+kind of poke around and get curious
+
+1088
+00:48:44,150 --> 00:48:46,052
+as to what's going on truly in there.
+
+1089
+00:48:46,052 --> 00:48:46,760
+Let me print tmp.
+
+1090
+00:48:46,760 --> 00:48:47,770
+
+1091
+00:48:47,770 --> 00:48:48,800
+Whoa.
+
+1092
+00:48:48,800 --> 00:48:51,438
+Why does tmp have some
+crazy, bogus garbage value?
+
+1093
+00:48:51,438 --> 00:48:54,579
+
+1094
+00:48:54,579 --> 00:48:56,120
+AUDIENCE: It hasn't been initialized.
+
+1095
+00:48:56,120 --> 00:48:57,150
+SPEAKER 1: It hasn't been initialized.
+
+1096
+00:48:57,150 --> 00:49:00,270
+And indeed, when you run a program,
+you're given a whole bunch of memory
+
+1097
+00:49:00,270 --> 00:49:03,392
+by the operating system, but you
+haven't initialized any values,
+
+1098
+00:49:03,392 --> 00:49:05,600
+so whatever bits you're
+seeing here, even though it's
+
+1099
+00:49:05,600 --> 00:49:07,770
+this crazy big negative
+number, just means
+
+1100
+00:49:07,770 --> 00:49:10,750
+that those are the remnants from
+some previous usage of that RAM,
+
+1101
+00:49:10,750 --> 00:49:13,050
+even though I haven't
+myself needed it yet.
+
+1102
+00:49:13,050 --> 00:49:17,086
+So now I'm going to go ahead and type
+next, and if I now type print tmp,
+
+1103
+00:49:17,086 --> 00:49:17,835
+what should I see?
+
+1104
+00:49:17,835 --> 00:49:19,570
+
+1105
+00:49:19,570 --> 00:49:23,360
+Whatever the value of a was,
+a is the first argument, just
+
+1106
+00:49:23,360 --> 00:49:25,550
+like x was the first
+thing being passed in,
+
+1107
+00:49:25,550 --> 00:49:30,450
+so a and x should be the same,
+so print tmp should print me one.
+
+1108
+00:49:30,450 --> 00:49:36,360
+>> So what you'll see in problem set
+three is a tutorial of sorts on GDB,
+
+1109
+00:49:36,360 --> 00:49:40,020
+but realize that this is the beginning
+of a look at a tool that will actually
+
+1110
+00:49:40,020 --> 00:49:42,774
+help you solve problems
+so much more effectively.
+
+1111
+00:49:42,774 --> 00:49:44,690
+What we're ultimately
+going to do on Wednesday
+
+1112
+00:49:44,690 --> 00:49:48,180
+is start to peel back a few layers
+and remove some training wheels.
+
+1113
+00:49:48,180 --> 00:49:50,496
+That thing called string that
+we've used for some time,
+
+1114
+00:49:50,496 --> 00:49:53,370
+we're going to slowly take that away
+from you and start talking about
+
+1115
+00:49:53,370 --> 00:49:55,725
+something more esoterically
+known as char*,
+
+1116
+00:49:55,725 --> 00:49:59,550
+but we're going to do this nice and
+gently at first, even though pointers,
+
+1117
+00:49:59,550 --> 00:50:02,730
+as they're called, can do some
+very bad things if abused,
+
+1118
+00:50:02,730 --> 00:50:06,040
+by looking at a little claymation from
+our friend Nick Parlante from Stanford
+
+1119
+00:50:06,040 --> 00:50:09,670
+University, a professor in computer
+science who put together this preview
+
+1120
+00:50:09,670 --> 00:50:11,075
+of what's to come this Wednesday.
+
+1121
+00:50:11,075 --> 00:50:12,196
+
+1122
+00:50:12,196 --> 00:50:13,400
+>> [VIDEO PLAYBACK]
+
+1123
+00:50:13,400 --> 00:50:13,900
+-Hey, Binky.
+
+1124
+00:50:13,900 --> 00:50:14,930
+
+1125
+00:50:14,930 --> 00:50:15,780
+Wake up.
+
+1126
+00:50:15,780 --> 00:50:17,240
+It's time for pointer fun.
+
+1127
+00:50:17,240 --> 00:50:18,260
+
+1128
+00:50:18,260 --> 00:50:19,350
+>> -What's that?
+
+1129
+00:50:19,350 --> 00:50:21,150
+Learn about pointers?
+
+1130
+00:50:21,150 --> 00:50:22,050
+Oh, goody!
+
+1131
+00:50:22,050 --> 00:50:22,897
+
+1132
+00:50:22,897 --> 00:50:23,730
+[END VIDEO PLAYBACK]
+
+1133
+00:50:23,730 --> 00:50:25,396
+SPEAKER 1: That awaits you on Wednesday.
+
+1134
+00:50:25,396 --> 00:50:26,440
+We'll see you then.
+
+1135
+00:50:26,440 --> 00:50:27,106
+[VIDEO PLAYBACK]
+
+1136
+00:50:27,106 --> 00:50:30,420
+-And now, Deep Thoughts,
+by Daven Farnham.
+
+1137
+00:50:30,420 --> 00:50:33,980
+
+1138
+00:50:33,980 --> 00:50:35,900
+>> -Why are we learning C?
+
+1139
+00:50:35,900 --> 00:50:36,785
+Why not A+?
+
+1140
+00:50:36,785 --> 00:50:38,550
+
+1141
+00:50:38,550 --> 00:50:40,910
+>> [LAUGHTER]
+
+1142
+00:50:40,910 --> 00:50:42,160
+>> [END VIDEO PLAYBACK]

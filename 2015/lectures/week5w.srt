@@ -1,0 +1,5562 @@
+1
+00:00:00,000 --> 00:00:10,900
+
+2
+00:00:10,900 --> 00:00:15,860
+>> SPEAKER 1: All right, so this is
+CS50 This is the end of week five.
+
+3
+00:00:15,860 --> 00:00:19,220
+And recall that last time we
+started looking at the fancier data
+
+4
+00:00:19,220 --> 00:00:22,310
+structures that started to solve
+problems, that started to introduce
+
+5
+00:00:22,310 --> 00:00:25,640
+new problems, but the key to this
+was the sort of threading that we
+
+6
+00:00:25,640 --> 00:00:27,940
+started to do from node to node.
+
+7
+00:00:27,940 --> 00:00:30,085
+So this of course is
+a singly linked list.
+
+8
+00:00:30,085 --> 00:00:31,960
+And by singly linked,
+I mean there's just one
+
+9
+00:00:31,960 --> 00:00:33,380
+thread between each of those nodes.
+
+10
+00:00:33,380 --> 00:00:35,890
+Turns out you can do fancier
+things like doubly linked lists
+
+11
+00:00:35,890 --> 00:00:38,470
+whereby you have an arrow
+going in both directions, which
+
+12
+00:00:38,470 --> 00:00:40,320
+can help with certain efficiencies.
+
+13
+00:00:40,320 --> 00:00:42,000
+But this solved the problem?
+
+14
+00:00:42,000 --> 00:00:43,500
+What problem did this solve?
+
+15
+00:00:43,500 --> 00:00:46,620
+Why did we care on Monday?
+
+16
+00:00:46,620 --> 00:00:49,820
+Why, in theory, did we care on Monday?
+
+17
+00:00:49,820 --> 00:00:50,630
+What does it do?
+
+18
+00:00:50,630 --> 00:00:51,950
+>> AUDIENCE: We can dynamically resize it.
+
+19
+00:00:51,950 --> 00:00:53,740
+>> SPEAKER 1: OK, so we can
+dynamically resize it.
+
+20
+00:00:53,740 --> 00:00:54,710
+Well done both of you.
+
+21
+00:00:54,710 --> 00:00:57,560
+So you can dynamically resize this
+data structure, whereas an array,
+
+22
+00:00:57,560 --> 00:01:00,760
+recall, you have to know a
+priori how much space you want
+
+23
+00:01:00,760 --> 00:01:03,870
+and if you need a little more
+space, you're kind of out of luck.
+
+24
+00:01:03,870 --> 00:01:05,560
+You have to create a whole new array.
+
+25
+00:01:05,560 --> 00:01:07,893
+You have to move all of your
+data from one to the other,
+
+26
+00:01:07,893 --> 00:01:10,600
+eventually free the old array
+if you can, and then proceed.
+
+27
+00:01:10,600 --> 00:01:13,891
+Which just feels very costly and very
+inefficient, and indeed it can be.
+
+28
+00:01:13,891 --> 00:01:14,890
+But this isn't all good.
+
+29
+00:01:14,890 --> 00:01:18,180
+We pay a price, what was one
+of the more obvious prices we
+
+30
+00:01:18,180 --> 00:01:20,550
+pay by using a linked list?
+
+31
+00:01:20,550 --> 00:01:22,825
+>> AUDIENCE: We have to use
+double space for each one.
+
+32
+00:01:22,825 --> 00:01:25,200
+SPEAKER 1: Yeah, so we need
+at least twice as much space.
+
+33
+00:01:25,200 --> 00:01:27,700
+In fact, I realized this picture's
+even a little misleading,
+
+34
+00:01:27,700 --> 00:01:32,200
+because on CS50 IDE in a lot of modern
+computers, a pointer or an address
+
+35
+00:01:32,200 --> 00:01:33,700
+is not in fact four bytes.
+
+36
+00:01:33,700 --> 00:01:36,090
+It's very often these
+days eight bytes, which
+
+37
+00:01:36,090 --> 00:01:38,530
+means the bottom most
+rectangles there in reality
+
+38
+00:01:38,530 --> 00:01:40,900
+are kind of twice as
+big as what I've drawn,
+
+39
+00:01:40,900 --> 00:01:44,409
+which means you're using three times as
+much space as we might have otherwise.
+
+40
+00:01:44,409 --> 00:01:46,700
+Now at the same time, we're
+still talking bytes, right?
+
+41
+00:01:46,700 --> 00:01:49,140
+We're not necessarily talking
+megabytes or gigabytes,
+
+42
+00:01:49,140 --> 00:01:51,000
+unless these data structures get big.
+
+43
+00:01:51,000 --> 00:01:54,510
+>> And so today we start to consider
+how we might explore data
+
+44
+00:01:54,510 --> 00:01:57,310
+more efficiently if in
+fact the data gets bigger.
+
+45
+00:01:57,310 --> 00:02:00,360
+But let's try to canonicalize
+the operations first
+
+46
+00:02:00,360 --> 00:02:02,460
+that you can do on these
+kinds of data structures.
+
+47
+00:02:02,460 --> 00:02:04,790
+So something like a linked
+list generally supports
+
+48
+00:02:04,790 --> 00:02:07,514
+operations like delete,
+insert, and search.
+
+49
+00:02:07,514 --> 00:02:08,639
+And what do I mean by that?
+
+50
+00:02:08,639 --> 00:02:11,222
+That just means that usually,
+if people are using linked list,
+
+51
+00:02:11,222 --> 00:02:14,287
+they or someone else has implemented
+functions like delete, insert,
+
+52
+00:02:14,287 --> 00:02:16,120
+and search, so you can
+actually do something
+
+53
+00:02:16,120 --> 00:02:18,030
+useful with the data structure.
+
+54
+00:02:18,030 --> 00:02:20,760
+So let's take a quick look
+at how we might implement
+
+55
+00:02:20,760 --> 00:02:24,530
+some code for a linked list as follows.
+
+56
+00:02:24,530 --> 00:02:27,885
+>> So this is just some C code,
+not even a complete program
+
+57
+00:02:27,885 --> 00:02:29,260
+that I really quickly whipped up.
+
+58
+00:02:29,260 --> 00:02:32,300
+It's not online in the distribution
+code, because it won't actually run.
+
+59
+00:02:32,300 --> 00:02:33,790
+But notice I've just
+with a comment said,
+
+60
+00:02:33,790 --> 00:02:36,130
+dot dot dot, there's something
+there, dot dot dot, something there.
+
+61
+00:02:36,130 --> 00:02:38,410
+And let's just look at
+what the juicy parts are.
+
+62
+00:02:38,410 --> 00:02:40,790
+So on line three,
+recall that this is now
+
+63
+00:02:40,790 --> 00:02:45,960
+we proposed declaring a node last
+time, one of those rectangular objects.
+
+64
+00:02:45,960 --> 00:02:48,790
+It has an int that we'll call N,
+but we could call it anything,
+
+65
+00:02:48,790 --> 00:02:51,920
+and then a struct node star called next.
+
+66
+00:02:51,920 --> 00:02:55,520
+And just to be clear, that second
+line, on line six, what is that?
+
+67
+00:02:55,520 --> 00:02:57,930
+What is it doing for us?
+
+68
+00:02:57,930 --> 00:03:01,044
+Because it certainly looks more
+cryptic than our usual variables.
+
+69
+00:03:01,044 --> 00:03:02,740
+>> AUDIENCE: It makes it move over one.
+
+70
+00:03:02,740 --> 00:03:04,650
+>> SPEAKER 1: It makes it move over one.
+
+71
+00:03:04,650 --> 00:03:08,580
+And to be more precise,
+it will store the address
+
+72
+00:03:08,580 --> 00:03:11,582
+of the node that's meant to be
+semantically next to it, right?
+
+73
+00:03:11,582 --> 00:03:13,540
+So it's not going to
+necessarily move anything.
+
+74
+00:03:13,540 --> 00:03:15,290
+It's just going to
+store a value, which is
+
+75
+00:03:15,290 --> 00:03:17,170
+going to be the address
+of some other node,
+
+76
+00:03:17,170 --> 00:03:20,810
+and that's why we've said struct
+node star, the star denoting
+
+77
+00:03:20,810 --> 00:03:22,370
+a pointer or an address.
+
+78
+00:03:22,370 --> 00:03:26,390
+OK, so now if you assume that we have
+this N available to us, and let's
+
+79
+00:03:26,390 --> 00:03:29,490
+assume that someone else has
+inserted a whole bunch of integers
+
+80
+00:03:29,490 --> 00:03:30,400
+into a linked list.
+
+81
+00:03:30,400 --> 00:03:35,640
+And that linked list is
+pointed to by some point
+
+82
+00:03:35,640 --> 00:03:39,040
+a variable called list that's
+passed in here as a parameter,
+
+83
+00:03:39,040 --> 00:03:43,120
+how do I go about line
+14 implementing search?
+
+84
+00:03:43,120 --> 00:03:45,990
+In other words, if I am implementing
+function whose purpose in life
+
+85
+00:03:45,990 --> 00:03:48,889
+is to take an int and then the
+beginning of a linked list,
+
+86
+00:03:48,889 --> 00:03:50,430
+that is a pointer to the linked list.
+
+87
+00:03:50,430 --> 00:03:52,992
+Like first, who I think David
+was our volunteer on Monday,
+
+88
+00:03:52,992 --> 00:03:54,700
+he was pointing at
+the whole linked list,
+
+89
+00:03:54,700 --> 00:03:57,820
+it's as though we're passing
+David in as our argument here.
+
+90
+00:03:57,820 --> 00:03:59,990
+How do we go about traversing this list?
+
+91
+00:03:59,990 --> 00:04:04,640
+Well, it turns out that even though
+pointers are relatively new now to us,
+
+92
+00:04:04,640 --> 00:04:07,010
+we can do this relatively
+straightforwardly.
+
+93
+00:04:07,010 --> 00:04:09,500
+>> I'm going to go ahead and
+declare a temporary variable that
+
+94
+00:04:09,500 --> 00:04:12,364
+by convention is just going
+to be called pointer, or PTR,
+
+95
+00:04:12,364 --> 00:04:14,030
+but you could call it anything you want.
+
+96
+00:04:14,030 --> 00:04:16,470
+And I'm going to initialize
+it to the start of the list.
+
+97
+00:04:16,470 --> 00:04:20,050
+So you can kind of think of this
+as me the teacher the other day,
+
+98
+00:04:20,050 --> 00:04:23,580
+kind of pointing at someone
+among our humans as volunteers.
+
+99
+00:04:23,580 --> 00:04:26,470
+So I'm a temporary variable that's
+just pointing at the same thing
+
+100
+00:04:26,470 --> 00:04:31,390
+that our coincidentally named
+volunteer David was also pointing out.
+
+101
+00:04:31,390 --> 00:04:35,440
+Now while pointer is
+not null, because recall
+
+102
+00:04:35,440 --> 00:04:40,350
+that null is some special sentinel value
+the demarcates the end of the list,
+
+103
+00:04:40,350 --> 00:04:44,280
+so while I'm not pointing at the
+ground like our last volunteer
+
+104
+00:04:44,280 --> 00:04:47,190
+was, let's go ahead
+and do the following.
+
+105
+00:04:47,190 --> 00:04:51,820
+If pointer-- and now I kind of want
+to do what we did with the student
+
+106
+00:04:51,820 --> 00:04:57,410
+structure-- if pointer dot next
+equals-- rather, if pointer dot N equals
+
+107
+00:04:57,410 --> 00:05:02,290
+equals the variable N, the
+argument that's been passed in,
+
+108
+00:05:02,290 --> 00:05:05,370
+then I want to go ahead
+and say return true.
+
+109
+00:05:05,370 --> 00:05:11,020
+I have found the number N inside of
+one of the nodes of my linked list.
+
+110
+00:05:11,020 --> 00:05:13,500
+But the dot no longer
+works in this context,
+
+111
+00:05:13,500 --> 00:05:17,260
+because pointer, PTR, is
+indeed a pointer, an address,
+
+112
+00:05:17,260 --> 00:05:20,632
+we actually can wonderfully
+use finally a piece of syntax
+
+113
+00:05:20,632 --> 00:05:22,590
+that kind of makes
+intuitive sense and actually
+
+114
+00:05:22,590 --> 00:05:27,870
+use an arrow here, which means go from
+that address to the integer there in.
+
+115
+00:05:27,870 --> 00:05:30,160
+So it's very similar in
+spirit to the dot operator,
+
+116
+00:05:30,160 --> 00:05:33,860
+but because pointer isn't a pointer
+and not an actual struct itself,
+
+117
+00:05:33,860 --> 00:05:35,380
+we just use the arrow.
+
+118
+00:05:35,380 --> 00:05:40,620
+>> So if the current node that I, the
+temporary variable, am pointing at
+
+119
+00:05:40,620 --> 00:05:43,060
+is not N, what do I want to do?
+
+120
+00:05:43,060 --> 00:05:45,910
+Well, with my human volunteers
+that we had here the other day,
+
+121
+00:05:45,910 --> 00:05:49,710
+if my first human is not the one I
+want, and maybe the second human isn't
+
+122
+00:05:49,710 --> 00:05:52,660
+the one I want, and the third, I
+need to keep physically moving.
+
+123
+00:05:52,660 --> 00:05:54,690
+Like how do I step through a list?
+
+124
+00:05:54,690 --> 00:05:57,470
+When we had an array, you
+just did like I plus plus.
+
+125
+00:05:57,470 --> 00:06:03,660
+But in this case, it suffices to
+do pointer, gets, pointer, next.
+
+126
+00:06:03,660 --> 00:06:07,580
+In other words, the next field
+is like all of the left hands
+
+127
+00:06:07,580 --> 00:06:10,880
+that our human volunteers on Monday
+were using to point at some other node.
+
+128
+00:06:10,880 --> 00:06:12,890
+Those were their next neighbors.
+
+129
+00:06:12,890 --> 00:06:17,060
+>> So if I want to step through this list,
+I can't just do I plus plus anymore,
+
+130
+00:06:17,060 --> 00:06:20,120
+I instead have to say
+I, pointer, is going
+
+131
+00:06:20,120 --> 00:06:24,650
+to equal whatever the next field is,
+the next field is, the next field is,
+
+132
+00:06:24,650 --> 00:06:28,350
+following all of those left hands
+that we had on stage pointing
+
+133
+00:06:28,350 --> 00:06:30,000
+to some subsequent values.
+
+134
+00:06:30,000 --> 00:06:32,590
+And if I get through
+that whole iteration,
+
+135
+00:06:32,590 --> 00:06:39,330
+and finally, I hit null not having
+found N yet, I just return false.
+
+136
+00:06:39,330 --> 00:06:44,100
+So again, all that we're doing here,
+as per the picture a moment ago,
+
+137
+00:06:44,100 --> 00:06:47,840
+is starting by pointing at the
+beginning of the list presumably.
+
+138
+00:06:47,840 --> 00:06:50,970
+And then I check, is the value
+I'm looking for equal to nine?
+
+139
+00:06:50,970 --> 00:06:52,650
+If so, I return true and I'm done.
+
+140
+00:06:52,650 --> 00:06:56,450
+If not, I update my hand,
+AKA pointer, to point
+
+141
+00:06:56,450 --> 00:06:59,540
+at the next arrow's location, and
+then the next arrow's location,
+
+142
+00:06:59,540 --> 00:07:00,480
+and the next.
+
+143
+00:07:00,480 --> 00:07:03,770
+I'm simply walking through this array.
+
+144
+00:07:03,770 --> 00:07:06,010
+>> So again, who cares?
+
+145
+00:07:06,010 --> 00:07:07,861
+Like what is this an ingredient for?
+
+146
+00:07:07,861 --> 00:07:10,360
+Well, recall that we introduced
+the notion of a stack, which
+
+147
+00:07:10,360 --> 00:07:15,400
+is an abstract data type insofar as it's
+not a C thing, it's not a CS50 thing,
+
+148
+00:07:15,400 --> 00:07:19,430
+it's an abstract idea, this idea of
+stacking things on top of one another
+
+149
+00:07:19,430 --> 00:07:21,820
+that can be implemented in
+bunches of different ways.
+
+150
+00:07:21,820 --> 00:07:25,600
+And one way we proposed was with
+an array, or with a linked list.
+
+151
+00:07:25,600 --> 00:07:29,570
+And it turns out that canonically, a
+stack supports at least two operations.
+
+152
+00:07:29,570 --> 00:07:32,320
+And the buzz words are push, to
+push something onto the stack,
+
+153
+00:07:32,320 --> 00:07:34,770
+like a new tray in the
+dining hall, or pop,
+
+154
+00:07:34,770 --> 00:07:39,000
+which means to remove the topmost
+tray from the stack in the dining
+
+155
+00:07:39,000 --> 00:07:41,500
+hall, and then maybe some
+other operations as well.
+
+156
+00:07:41,500 --> 00:07:45,770
+So how might we define the structure
+that we're now calling a stack?
+
+157
+00:07:45,770 --> 00:07:50,020
+>> Well, we have all of the requisite
+syntax at our disposal in C. I say,
+
+158
+00:07:50,020 --> 00:07:53,830
+give me a type definition of
+a struct inside of a stack,
+
+159
+00:07:53,830 --> 00:07:58,030
+I'm going to say is an array, of a
+whole bunch of numbers and then size.
+
+160
+00:07:58,030 --> 00:08:00,930
+So in other words, if I want
+to implement this in code,
+
+161
+00:08:00,930 --> 00:08:03,830
+let me go and just kind of
+draw what this is saying.
+
+162
+00:08:03,830 --> 00:08:06,317
+So this is saying, give me a
+structure that's got an array,
+
+163
+00:08:06,317 --> 00:08:09,400
+and I don't know what capacity is,
+it's apparently some constant that I've
+
+164
+00:08:09,400 --> 00:08:10,858
+defined elsewhere, and that's fine.
+
+165
+00:08:10,858 --> 00:08:15,260
+But suppose it's just one,
+two, three, four, five.
+
+166
+00:08:15,260 --> 00:08:16,700
+So capacity is 5.
+
+167
+00:08:16,700 --> 00:08:21,730
+This element inside of my
+structure will be called numbers.
+
+168
+00:08:21,730 --> 00:08:24,020
+And then I need one
+other variable apparently
+
+169
+00:08:24,020 --> 00:08:27,814
+called size that initially I'm going
+to stipulate is initialized to zero.
+
+170
+00:08:27,814 --> 00:08:29,730
+If there's nothing in
+the stack, size is zero,
+
+171
+00:08:29,730 --> 00:08:31,420
+and it's garbage values in numbers.
+
+172
+00:08:31,420 --> 00:08:33,450
+I have no idea what's in there just yet.
+
+173
+00:08:33,450 --> 00:08:36,059
+>> So if I want to push
+something onto the stack,
+
+174
+00:08:36,059 --> 00:08:40,780
+suppose I call the function push, and
+I say push 50, like the number 50,
+
+175
+00:08:40,780 --> 00:08:44,090
+where would you propose
+I draw it in this array?
+
+176
+00:08:44,090 --> 00:08:47,124
+There's five different possible answers.
+
+177
+00:08:47,124 --> 00:08:48,790
+Where do you want to push the number 50?
+
+178
+00:08:48,790 --> 00:08:51,899
+If the goal here, again, call the
+function push, pass in an argument
+
+179
+00:08:51,899 --> 00:08:52,940
+of 50, where do I put it?
+
+180
+00:08:52,940 --> 00:08:55,680
+
+181
+00:08:55,680 --> 00:08:59,052
+Five possible-- 20% chance
+of guessing correctly.
+
+182
+00:08:59,052 --> 00:08:59,896
+Yes?
+
+183
+00:08:59,896 --> 00:09:00,740
+>> AUDIENCE: Far right.
+
+184
+00:09:00,740 --> 00:09:01,990
+>> SPEAKER 1: Far right.
+
+185
+00:09:01,990 --> 00:09:08,359
+There is now a 25% chance
+of guessing correctly.
+
+186
+00:09:08,359 --> 00:09:09,650
+So that would actually be fine.
+
+187
+00:09:09,650 --> 00:09:12,770
+By convention, I'll say with an array,
+we would generally start at the left,
+
+188
+00:09:12,770 --> 00:09:14,519
+but we could certainly
+start at the right.
+
+189
+00:09:14,519 --> 00:09:17,478
+So the spoiler here would be I'm
+probably going to draw it on the left,
+
+190
+00:09:17,478 --> 00:09:20,060
+just like in a normal array where
+I start going left to right.
+
+191
+00:09:20,060 --> 00:09:21,780
+But if you can flip
+the arithmetic, fine.
+
+192
+00:09:21,780 --> 00:09:23,060
+It's just not conventional.
+
+193
+00:09:23,060 --> 00:09:24,880
+OK, I need to make one
+more change though.
+
+194
+00:09:24,880 --> 00:09:27,710
+Now that I've pushed something
+onto the stack, what's next?
+
+195
+00:09:27,710 --> 00:09:29,400
+>> All right, I have to increment the size.
+
+196
+00:09:29,400 --> 00:09:32,600
+So let me go ahead and just
+update this, which was zero.
+
+197
+00:09:32,600 --> 00:09:35,950
+And instead now, I'm going
+to put in the value one.
+
+198
+00:09:35,950 --> 00:09:39,460
+And now suppose I push another
+number onto the stack, like 51.
+
+199
+00:09:39,460 --> 00:09:42,680
+Well, I have to make one more
+change, which is up to the size two.
+
+200
+00:09:42,680 --> 00:09:46,100
+And then suppose I push one more
+number onto the stack like 61,
+
+201
+00:09:46,100 --> 00:09:52,530
+now I need to update the size one more
+time, and get the value 3 as the size.
+
+202
+00:09:52,530 --> 00:09:54,690
+And now suppose I call pop.
+
+203
+00:09:54,690 --> 00:09:57,250
+Now pop, by convention,
+does not take an argument.
+
+204
+00:09:57,250 --> 00:10:00,430
+With a stack, the whole
+point of the tray metaphor
+
+205
+00:10:00,430 --> 00:10:03,450
+is that you don't have discretion
+to go get that tray, all you can do
+
+206
+00:10:03,450 --> 00:10:06,330
+is pop the topmost one from
+the stack, just because.
+
+207
+00:10:06,330 --> 00:10:08,010
+That's what this data structure does.
+
+208
+00:10:08,010 --> 00:10:12,250
+>> So by that logic if I
+say pop, what comes off?
+
+209
+00:10:12,250 --> 00:10:13,080
+So 61.
+
+210
+00:10:13,080 --> 00:10:15,402
+So what really is the computer
+going to do in memory?
+
+211
+00:10:15,402 --> 00:10:16,610
+What does my code have to do?
+
+212
+00:10:16,610 --> 00:10:20,330
+What would you propose
+we change on the screen?
+
+213
+00:10:20,330 --> 00:10:23,410
+What should change?
+
+214
+00:10:23,410 --> 00:10:24,960
+Sorry?
+
+215
+00:10:24,960 --> 00:10:26,334
+So we get rid of 61.
+
+216
+00:10:26,334 --> 00:10:27,500
+So I can definitely do that.
+
+217
+00:10:27,500 --> 00:10:28,640
+And I can get rid of 61.
+
+218
+00:10:28,640 --> 00:10:30,980
+And then what other
+change needs to happen?
+
+219
+00:10:30,980 --> 00:10:33,160
+Size probably has to go back to two.
+
+220
+00:10:33,160 --> 00:10:34,210
+And so that's fine.
+
+221
+00:10:34,210 --> 00:10:36,690
+But wait a minute, size
+a moment ago was three.
+
+222
+00:10:36,690 --> 00:10:38,240
+Let's just do a quick sanity check.
+
+223
+00:10:38,240 --> 00:10:41,810
+How did we know that we
+wanted to get rid of 61?
+
+224
+00:10:41,810 --> 00:10:42,760
+Because we're popping.
+
+225
+00:10:42,760 --> 00:10:46,450
+And so I have this second property size.
+
+226
+00:10:46,450 --> 00:10:48,470
+>> Wait a minute, I'm
+thinking back to week two
+
+227
+00:10:48,470 --> 00:10:51,660
+when we started talking about
+arrays, where this was location zero,
+
+228
+00:10:51,660 --> 00:10:55,920
+this was location one, this was location
+two, this is location three, four,
+
+229
+00:10:55,920 --> 00:10:58,460
+it looks like the
+relationship between size
+
+230
+00:10:58,460 --> 00:11:02,780
+and the element that I want to remove
+from the array appears to just be what?
+
+231
+00:11:02,780 --> 00:11:05,120
+Size minus one.
+
+232
+00:11:05,120 --> 00:11:07,786
+And so that's how as humans
+we know 61 comes first.
+
+233
+00:11:07,786 --> 00:11:09,160
+How's the computer going to know?
+
+234
+00:11:09,160 --> 00:11:11,701
+When your code, where you probably
+want to do size minus one,
+
+235
+00:11:11,701 --> 00:11:14,950
+so three minus one is two, and that
+means we want to get rid of 61.
+
+236
+00:11:14,950 --> 00:11:18,000
+And then we can indeed update
+the size so that size now
+
+237
+00:11:18,000 --> 00:11:20,300
+goes from three to just two.
+
+238
+00:11:20,300 --> 00:11:24,520
+And just to be pedantic, I'm going
+to propose that I'm done, right?
+
+239
+00:11:24,520 --> 00:11:27,660
+You proposed intuitively
+correctly I should get rid of 61.
+
+240
+00:11:27,660 --> 00:11:30,700
+But haven't I kind of
+sort of gotten rid of 61?
+
+241
+00:11:30,700 --> 00:11:33,790
+I've effectively forgotten
+that it's actually there.
+
+242
+00:11:33,790 --> 00:11:37,680
+And think back to PSET4, if you've read
+the article about forensics, the PDF
+
+243
+00:11:37,680 --> 00:11:40,780
+that we had you guys read, or you
+will read this week for PSET4.
+
+244
+00:11:40,780 --> 00:11:44,300
+Recall that this is actually germane to
+the whole idea of computer forensics.
+
+245
+00:11:44,300 --> 00:11:47,820
+What a computer generally does is
+it just forgets where something is,
+
+246
+00:11:47,820 --> 00:11:51,300
+but it doesn't go in and like
+try to scratch it out or override
+
+247
+00:11:51,300 --> 00:11:54,560
+those bits with zeros and ones
+or some other random pattern
+
+248
+00:11:54,560 --> 00:11:56,690
+unless you yourself do so deliberately.
+
+249
+00:11:56,690 --> 00:11:58,930
+So your intuition was
+right, let's get rid of 61.
+
+250
+00:11:58,930 --> 00:12:00,650
+But in reality, we don't have to bother.
+
+251
+00:12:00,650 --> 00:12:04,040
+We just need to forget that
+it's there by changing our size.
+
+252
+00:12:04,040 --> 00:12:05,662
+>> Now there's a problem with this stack.
+
+253
+00:12:05,662 --> 00:12:07,620
+If I keep pushing things
+onto the stack, what's
+
+254
+00:12:07,620 --> 00:12:11,167
+obviously going to happen
+in just a few moments time?
+
+255
+00:12:11,167 --> 00:12:12,500
+We're going to run out of space.
+
+256
+00:12:12,500 --> 00:12:13,580
+And what do we do?
+
+257
+00:12:13,580 --> 00:12:14,680
+We're kind of screwed.
+
+258
+00:12:14,680 --> 00:12:19,000
+This implementation does not let
+us resize the array, because using
+
+259
+00:12:19,000 --> 00:12:21,240
+this syntax, if you
+think back to week two,
+
+260
+00:12:21,240 --> 00:12:23,520
+once you've declared
+the size of an array,
+
+261
+00:12:23,520 --> 00:12:26,780
+we have not seen a mechanism yet where
+you can change the size of the array.
+
+262
+00:12:26,780 --> 00:12:29,020
+And indeed C does not have that feature.
+
+263
+00:12:29,020 --> 00:12:32,524
+If you say give me five
+Nths, call them numbers,
+
+264
+00:12:32,524 --> 00:12:33,940
+that's all you're going to get it.
+
+265
+00:12:33,940 --> 00:12:38,790
+So we do now as of Monday, have
+the ability to express a solution
+
+266
+00:12:38,790 --> 00:12:42,480
+though, we just need to tweak
+the definition of our stack
+
+267
+00:12:42,480 --> 00:12:46,840
+to not be some hard-coded array,
+but just to store an address.
+
+268
+00:12:46,840 --> 00:12:47,890
+>> Now why is this?
+
+269
+00:12:47,890 --> 00:12:51,690
+Now we just have to be comfortable with
+the fact that when my program runs,
+
+270
+00:12:51,690 --> 00:12:53,730
+I'm presumably going to
+have to ask the human,
+
+271
+00:12:53,730 --> 00:12:55,110
+how many numbers do you want to store?
+
+272
+00:12:55,110 --> 00:12:56,776
+So the input has to come from somewhere.
+
+273
+00:12:56,776 --> 00:12:59,140
+But once I know that
+number, then I can just
+
+274
+00:12:59,140 --> 00:13:02,470
+use what function to give
+me a chunk of memory?
+
+275
+00:13:02,470 --> 00:13:03,580
+I can use malloc.
+
+276
+00:13:03,580 --> 00:13:06,710
+And I can say any number of
+bytes I want back for these Nths.
+
+277
+00:13:06,710 --> 00:13:10,910
+And all I have to store in the numbers
+variable here inside of this struct
+
+278
+00:13:10,910 --> 00:13:13,480
+should be what?
+
+279
+00:13:13,480 --> 00:13:18,440
+What actually goes into the
+numbers in this scenario?
+
+280
+00:13:18,440 --> 00:13:21,300
+Yeah, a pointer to the first
+byte of that chunk of memory,
+
+281
+00:13:21,300 --> 00:13:24,940
+or more specifically, the address
+of the first of those bytes.
+
+282
+00:13:24,940 --> 00:13:27,300
+Doesn't matter if it's one
+byte or a billion bytes,
+
+283
+00:13:27,300 --> 00:13:28,890
+I just need to care about the first.
+
+284
+00:13:28,890 --> 00:13:31,530
+Because what malloc guarantees and
+my operating system guarantees,
+
+285
+00:13:31,530 --> 00:13:34,170
+is that the chunk of memory I
+get, it's going to be contiguous.
+
+286
+00:13:34,170 --> 00:13:35,378
+There's not going to be gaps.
+
+287
+00:13:35,378 --> 00:13:38,576
+So if I've asked for 50
+bytes or 1,000 bytes,
+
+288
+00:13:38,576 --> 00:13:40,450
+they're all going to be
+back to back to back.
+
+289
+00:13:40,450 --> 00:13:44,500
+And so long as I remember how big, how
+much I asked for, all I need to know
+
+290
+00:13:44,500 --> 00:13:46,230
+is the first such address.
+
+291
+00:13:46,230 --> 00:13:48,660
+>> So now we have the ability in code.
+
+292
+00:13:48,660 --> 00:13:51,280
+Albeit, it's going to take us
+more time to write this up,
+
+293
+00:13:51,280 --> 00:13:55,900
+we could now reallocate that memory by
+just storing a different address there
+
+294
+00:13:55,900 --> 00:13:59,060
+if we want a bigger or even
+a smaller chunk of memory.
+
+295
+00:13:59,060 --> 00:14:00,170
+So here to a trade off.
+
+296
+00:14:00,170 --> 00:14:01,360
+Now we get dynamism.
+
+297
+00:14:01,360 --> 00:14:03,350
+We still have
+contiguousness I'm claiming.
+
+298
+00:14:03,350 --> 00:14:05,881
+Because malloc will give us
+a contiguous chunk of memory.
+
+299
+00:14:05,881 --> 00:14:08,630
+But this is going to be a pain in
+the neck for us, the programmer,
+
+300
+00:14:08,630 --> 00:14:09,770
+to actually code up.
+
+301
+00:14:09,770 --> 00:14:10,730
+It's just more work.
+
+302
+00:14:10,730 --> 00:14:13,930
+We need code akin to what I was
+banging out just a moment ago.
+
+303
+00:14:13,930 --> 00:14:16,120
+Very doable, but it adds complexity.
+
+304
+00:14:16,120 --> 00:14:19,520
+And so developer time, programmer
+time is yet another resource
+
+305
+00:14:19,520 --> 00:14:22,520
+that we might need to spend
+some time to get new features.
+
+306
+00:14:22,520 --> 00:14:24,020
+And then of course there is a queue.
+
+307
+00:14:24,020 --> 00:14:26,227
+We won't go into this
+one in much detail.
+
+308
+00:14:26,227 --> 00:14:27,560
+But it's very similar in spirit.
+
+309
+00:14:27,560 --> 00:14:31,220
+I could implement a queue, and
+its corresponding operations,
+
+310
+00:14:31,220 --> 00:14:35,660
+enqueue or dequeue, like add or remove,
+it's just a fancier way of saying it,
+
+311
+00:14:35,660 --> 00:14:38,100
+enqueue or dequeue, as follows.
+
+312
+00:14:38,100 --> 00:14:41,170
+I can just give myself a struct
+that again has a number's array,
+
+313
+00:14:41,170 --> 00:14:44,000
+that again has a size,
+but why do I now need
+
+314
+00:14:44,000 --> 00:14:46,940
+to keep track of the front of a queue?
+
+315
+00:14:46,940 --> 00:14:50,630
+I didn't need to know
+the front of my stack.
+
+316
+00:14:50,630 --> 00:14:53,570
+Well, if I again for a
+queue-- let's just hard
+
+317
+00:14:53,570 --> 00:14:57,870
+code it as having like five
+integers in here potentially.
+
+318
+00:14:57,870 --> 00:15:00,940
+So this is zero, one, two, three, four.
+
+319
+00:15:00,940 --> 00:15:03,430
+This is going to be
+called numbers again.
+
+320
+00:15:03,430 --> 00:15:06,940
+And this will be called size.
+
+321
+00:15:06,940 --> 00:15:10,056
+>> Why is it not sufficient
+to have just size?
+
+322
+00:15:10,056 --> 00:15:11,680
+Well, let's push those same numbers on.
+
+323
+00:15:11,680 --> 00:15:14,220
+So I pushed-- I enqueued, or pushed.
+
+324
+00:15:14,220 --> 00:15:20,150
+Now I'll enqueue 50, and then
+51, and then 61, and dot dot dot.
+
+325
+00:15:20,150 --> 00:15:21,070
+So that's enqueue.
+
+326
+00:15:21,070 --> 00:15:23,176
+I enqueued 50, then 51, then 61.
+
+327
+00:15:23,176 --> 00:15:25,050
+And that looks identical
+to a stack thus far,
+
+328
+00:15:25,050 --> 00:15:27,190
+except I do need to make one change.
+
+329
+00:15:27,190 --> 00:15:33,680
+I need to update this size, so I go
+from zero to one to two to three now.
+
+330
+00:15:33,680 --> 00:15:35,760
+How do I dequeue?
+
+331
+00:15:35,760 --> 00:15:36,890
+What happens with dequeue?
+
+332
+00:15:36,890 --> 00:15:41,950
+Who should come off this list first
+if it's the line at the Apple Store?
+
+333
+00:15:41,950 --> 00:15:42,780
+So 50.
+
+334
+00:15:42,780 --> 00:15:44,700
+So it's kind of trickier this time.
+
+335
+00:15:44,700 --> 00:15:47,880
+Whereas last time it was super
+easy to just do size minus one,
+
+336
+00:15:47,880 --> 00:15:51,440
+I get to the end of my array effectively
+where the numbers are, it removes 61.
+
+337
+00:15:51,440 --> 00:15:52,920
+But I don't want to remove 61.
+
+338
+00:15:52,920 --> 00:15:55,030
+I want to take 50, who
+was there at 5:00 AM
+
+339
+00:15:55,030 --> 00:15:56,790
+to line up for the
+new iPhone or whatnot.
+
+340
+00:15:56,790 --> 00:16:01,200
+And so to get rid of 50, I
+can't just do this, right?
+
+341
+00:16:01,200 --> 00:16:02,547
+I can cross out 50.
+
+342
+00:16:02,547 --> 00:16:04,380
+But we just said we
+don't have to be so anal
+
+343
+00:16:04,380 --> 00:16:06,330
+as to scratch out or hide the data.
+
+344
+00:16:06,330 --> 00:16:08,090
+We can just forget where it is.
+
+345
+00:16:08,090 --> 00:16:12,330
+>> But if I change my size now to
+two, is this sufficient information
+
+346
+00:16:12,330 --> 00:16:15,711
+to know what is going on in my queue?
+
+347
+00:16:15,711 --> 00:16:16,680
+Not really.
+
+348
+00:16:16,680 --> 00:16:19,830
+Like my size is two, but
+where does the queue begin,
+
+349
+00:16:19,830 --> 00:16:22,980
+especially if I still have
+those same numbers in memory.
+
+350
+00:16:22,980 --> 00:16:24,260
+50, 51, 61.
+
+351
+00:16:24,260 --> 00:16:27,090
+So I need to remember
+now where the front is.
+
+352
+00:16:27,090 --> 00:16:29,630
+And so as I proposed up
+there, we'll have just called
+
+353
+00:16:29,630 --> 00:16:33,729
+Nth front, whose initial
+value should have been what?
+
+354
+00:16:33,729 --> 00:16:35,270
+Zero, just the beginning of the list.
+
+355
+00:16:35,270 --> 00:16:40,876
+But now in addition to decrementing
+the size, we just increment the front.
+
+356
+00:16:40,876 --> 00:16:42,000
+Now here's another problem.
+
+357
+00:16:42,000 --> 00:16:43,030
+So once I keep going.
+
+358
+00:16:43,030 --> 00:16:47,520
+Suppose this is the number of
+like 121, 124, and then, dammit,
+
+359
+00:16:47,520 --> 00:16:48,610
+I'm out of space.
+
+360
+00:16:48,610 --> 00:16:50,390
+But wait a minute, I'm not.
+
+361
+00:16:50,390 --> 00:16:55,630
+So at this point in the story,
+suppose that the size is one, two,
+
+362
+00:16:55,630 --> 00:17:00,370
+three, four, so suppose that the
+size is four, the front is one,
+
+363
+00:17:00,370 --> 00:17:01,621
+so 51 is at the front.
+
+364
+00:17:01,621 --> 00:17:04,329
+I want to put another number here,
+but, dammit, I'm out of space.
+
+365
+00:17:04,329 --> 00:17:06,710
+But I'm not really, right?
+
+366
+00:17:06,710 --> 00:17:11,192
+Where could I put some
+additional value, like 171?
+
+367
+00:17:11,192 --> 00:17:13,400
+Yeah, I could just kind of
+go back over there, right?
+
+368
+00:17:13,400 --> 00:17:18,161
+And then cross out the 50, or
+just overwrite it with 171.
+
+369
+00:17:18,161 --> 00:17:20,410
+And if you're wondering why
+our numbers got so random,
+
+370
+00:17:20,410 --> 00:17:24,150
+these are commonly taken computer
+science courses at Harvard after CS50.
+
+371
+00:17:24,150 --> 00:17:27,510
+But that was a good optimization,
+because now I'm not wasting space.
+
+372
+00:17:27,510 --> 00:17:30,750
+I still have to remember
+how big this thing is total.
+
+373
+00:17:30,750 --> 00:17:31,500
+It's five total.
+
+374
+00:17:31,500 --> 00:17:33,375
+Because I don't want to
+start overwriting 51.
+
+375
+00:17:33,375 --> 00:17:36,260
+So now I am still out of space,
+so the same problem as before.
+
+376
+00:17:36,260 --> 00:17:39,140
+But you can see how now
+in your code, you probably
+
+377
+00:17:39,140 --> 00:17:41,910
+have to write a little more
+complexity to make that happen.
+
+378
+00:17:41,910 --> 00:17:44,510
+And in fact, what operator
+in C probably lets
+
+379
+00:17:44,510 --> 00:17:48,110
+you magically do this the circularity?
+
+380
+00:17:48,110 --> 00:17:50,160
+Yeah the modulo operator,
+the percent sign.
+
+381
+00:17:50,160 --> 00:17:53,160
+So what's kind of cool about a queue,
+even though we keep drawing arrays
+
+382
+00:17:53,160 --> 00:17:56,520
+as these like straight lines, if you
+kind of think about this as curving
+
+383
+00:17:56,520 --> 00:18:00,341
+around as a circle, then just
+intuitively it kind of works mentally
+
+384
+00:18:00,341 --> 00:18:01,590
+I think a little more cleanly.
+
+385
+00:18:01,590 --> 00:18:05,190
+You would still have to implement
+that mental model in code.
+
+386
+00:18:05,190 --> 00:18:07,550
+So not that hard,
+ultimately, to implement,
+
+387
+00:18:07,550 --> 00:18:12,430
+but we still lose the size-- rather, the
+ability to resize, unless we do this.
+
+388
+00:18:12,430 --> 00:18:15,310
+>> We have to get rid of the array, we
+replace it with a single pointer,
+
+389
+00:18:15,310 --> 00:18:20,010
+and then somewhere in my code I've got
+a call what function to actually create
+
+390
+00:18:20,010 --> 00:18:23,720
+the array called numbers?
+
+391
+00:18:23,720 --> 00:18:26,190
+Malloc, or some similar
+function, exactly.
+
+392
+00:18:26,190 --> 00:18:30,481
+Any questions on stacks or queues.
+
+393
+00:18:30,481 --> 00:18:30,980
+Yeah?
+
+394
+00:18:30,980 --> 00:18:33,657
+
+395
+00:18:33,657 --> 00:18:34,240
+Good question.
+
+396
+00:18:34,240 --> 00:18:35,830
+What modulo would you use here.
+
+397
+00:18:35,830 --> 00:18:38,520
+So generally, when using
+mod, you would do it
+
+398
+00:18:38,520 --> 00:18:40,620
+with the size of the
+whole data structure.
+
+399
+00:18:40,620 --> 00:18:44,120
+So something like five or capacity, if
+it's constant, is probably involved.
+
+400
+00:18:44,120 --> 00:18:47,100
+But just doing modulo five
+probably isn't sufficient,
+
+401
+00:18:47,100 --> 00:18:51,380
+because we need to know do we
+wrap around here or here or here.
+
+402
+00:18:51,380 --> 00:18:54,160
+So you're probably also
+going to want to involve
+
+403
+00:18:54,160 --> 00:18:57,220
+the size of the thing, or
+the front variable as well.
+
+404
+00:18:57,220 --> 00:19:00,140
+So it's just this relatively
+simple arithmetic expression,
+
+405
+00:19:00,140 --> 00:19:02,000
+but modulo would be the key ingredient.
+
+406
+00:19:02,000 --> 00:19:03,330
+>> So short film if you will.
+
+407
+00:19:03,330 --> 00:19:05,780
+An animation that some
+folks at another university
+
+408
+00:19:05,780 --> 00:19:08,060
+put together that we've
+adapted for this discussion.
+
+409
+00:19:08,060 --> 00:19:12,630
+It involves Jack learning the
+facts about queues and stats.
+
+410
+00:19:12,630 --> 00:19:19,010
+
+411
+00:19:19,010 --> 00:19:21,890
+>> FILM: Once upon a time,
+there was a guy named Jack.
+
+412
+00:19:21,890 --> 00:19:25,330
+When it came to making friends,
+Jack did not have a knack.
+
+413
+00:19:25,330 --> 00:19:28,220
+So Jack went to talk to the
+most popular guy he knew.
+
+414
+00:19:28,220 --> 00:19:30,920
+He went to Lou and asked, What do I do?
+
+415
+00:19:30,920 --> 00:19:33,400
+Lou saw that his friend
+was really distressed.
+
+416
+00:19:33,400 --> 00:19:36,050
+Well, he began, just
+look how you're dressed.
+
+417
+00:19:36,050 --> 00:19:38,680
+Don't you have any clothes
+with a different look?
+
+418
+00:19:38,680 --> 00:19:39,660
+Yes, said Jack.
+
+419
+00:19:39,660 --> 00:19:40,840
+I sure do.
+
+420
+00:19:40,840 --> 00:19:43,320
+Come to my house and
+I'll show them to you.
+
+421
+00:19:43,320 --> 00:19:44,550
+So they went off to Jack's.
+
+422
+00:19:44,550 --> 00:19:47,520
+And Jack showed Lou the box
+where he kept all his shirts,
+
+423
+00:19:47,520 --> 00:19:49,260
+and his pants, and his socks.
+
+424
+00:19:49,260 --> 00:19:52,290
+Lou said, I see you have
+all your clothes in a pile.
+
+425
+00:19:52,290 --> 00:19:54,870
+Why don't you wear some
+others once in awhile?
+
+426
+00:19:54,870 --> 00:19:58,020
+>> Jack said, well, when I
+remove clothes and socks,
+
+427
+00:19:58,020 --> 00:20:00,780
+I wash them and put
+them away in the box.
+
+428
+00:20:00,780 --> 00:20:03,210
+Then comes the next
+morning, and up I hop.
+
+429
+00:20:03,210 --> 00:20:06,380
+I go to the box and get
+my clothes off the top.
+
+430
+00:20:06,380 --> 00:20:09,070
+Lou quickly realized
+the problem with Jack.
+
+431
+00:20:09,070 --> 00:20:12,080
+He kept clothes, CD's,
+and books in the stack.
+
+432
+00:20:12,080 --> 00:20:14,420
+When he reached for
+something to read or to wear,
+
+433
+00:20:14,420 --> 00:20:17,100
+he'd choose the top book or underwear.
+
+434
+00:20:17,100 --> 00:20:19,500
+Then when he was done, he
+would put it right back.
+
+435
+00:20:19,500 --> 00:20:21,970
+Back it would go, on top of the stack.
+
+436
+00:20:21,970 --> 00:20:24,460
+I know the solution,
+said a triumphant Loud.
+
+437
+00:20:24,460 --> 00:20:27,090
+You need to learn to
+start using a queue.
+
+438
+00:20:27,090 --> 00:20:29,870
+Lou took Jack's clothes and
+hung them in the closet.
+
+439
+00:20:29,870 --> 00:20:32,710
+And when he had emptied
+the box, he just tossed it.
+
+440
+00:20:32,710 --> 00:20:36,500
+>> Then he said, now Jack, at the end of
+the day, put your clothes on the left
+
+441
+00:20:36,500 --> 00:20:37,990
+when you put them away.
+
+442
+00:20:37,990 --> 00:20:41,300
+Then tomorrow morning when you
+see the sunshine, get your clothes
+
+443
+00:20:41,300 --> 00:20:43,440
+on the right, from the end of the line.
+
+444
+00:20:43,440 --> 00:20:44,880
+Don't you see? said Lou.
+
+445
+00:20:44,880 --> 00:20:46,370
+It will be so nice.
+
+446
+00:20:46,370 --> 00:20:49,770
+You'll wear everything once
+before you wear something twice.
+
+447
+00:20:49,770 --> 00:20:52,670
+And with everything in queues
+in his closet and shelf,
+
+448
+00:20:52,670 --> 00:20:55,160
+Jack started to feel
+quite sure of himself.
+
+449
+00:20:55,160 --> 00:20:59,720
+All thanks to Lou and
+his wonderful queue.
+
+450
+00:20:59,720 --> 00:21:01,220
+SPEAKER 1: All right, it's adorable.
+
+451
+00:21:01,220 --> 00:21:05,920
+
+452
+00:21:05,920 --> 00:21:10,080
+So what has been really going
+on underneath the hood now?
+
+453
+00:21:10,080 --> 00:21:12,370
+That we have pointers,
+that we have malloc,
+
+454
+00:21:12,370 --> 00:21:15,680
+that we have the ability to create
+chunks of memory for ourselves
+
+455
+00:21:15,680 --> 00:21:16,344
+dynamically.
+
+456
+00:21:16,344 --> 00:21:18,510
+So this is a picture we
+glimpsed just the other day.
+
+457
+00:21:18,510 --> 00:21:21,180
+We didn't really dwell
+on it, but this picture
+
+458
+00:21:21,180 --> 00:21:24,180
+has been going on underneath
+the hood for weeks now.
+
+459
+00:21:24,180 --> 00:21:27,050
+And so this represents, just
+a rectangle that we've drawn,
+
+460
+00:21:27,050 --> 00:21:28,180
+your computer's memory.
+
+461
+00:21:28,180 --> 00:21:31,850
+And maybe your computer, or CS50
+ID, has a gigabyte of memory or RAM
+
+462
+00:21:31,850 --> 00:21:33,050
+or two gigabytes or four.
+
+463
+00:21:33,050 --> 00:21:34,450
+It doesn't really matter.
+
+464
+00:21:34,450 --> 00:21:37,240
+Your operating system
+Windows or Mac OS or Linux,
+
+465
+00:21:37,240 --> 00:21:41,120
+essentially allows your program
+to think that it has access
+
+466
+00:21:41,120 --> 00:21:42,982
+to the entirety of
+your computer's memory,
+
+467
+00:21:42,982 --> 00:21:45,440
+even though you might be running
+multiple programs at once.
+
+468
+00:21:45,440 --> 00:21:46,990
+So in reality, that doesn't really work.
+
+469
+00:21:46,990 --> 00:21:49,448
+But it's kind of an illusion
+given to all of your programs.
+
+470
+00:21:49,448 --> 00:21:53,110
+So if you had two gigs of RAM, this
+is how the computer might think of it.
+
+471
+00:21:53,110 --> 00:21:57,110
+>> Now coincidentally, one of these
+things, one of these segments of memory,
+
+472
+00:21:57,110 --> 00:21:58,350
+is called a stack.
+
+473
+00:21:58,350 --> 00:22:01,680
+And indeed any time
+thus far in writing code
+
+474
+00:22:01,680 --> 00:22:05,900
+that you have called a
+function, for instance main.
+
+475
+00:22:05,900 --> 00:22:08,410
+Recall that any time I've
+drawn computer's memory,
+
+476
+00:22:08,410 --> 00:22:10,640
+I always draw sort of
+half of a rectangle here
+
+477
+00:22:10,640 --> 00:22:12,520
+and don't bother talking
+about what's above.
+
+478
+00:22:12,520 --> 00:22:15,980
+Because when main is called, I claim
+that you get this sliver of memory
+
+479
+00:22:15,980 --> 00:22:16,970
+that goes down here.
+
+480
+00:22:16,970 --> 00:22:20,650
+And if main called a function
+like swap, well swap goes here.
+
+481
+00:22:20,650 --> 00:22:23,720
+And it turns out, that's
+where it's ending up.
+
+482
+00:22:23,720 --> 00:22:26,277
+On something called a stack
+inside of your computer's memory.
+
+483
+00:22:26,277 --> 00:22:28,360
+Now at the end of the day,
+this is just addresses.
+
+484
+00:22:28,360 --> 00:22:30,680
+It's like byte zero,
+byte one, byte 2 billion.
+
+485
+00:22:30,680 --> 00:22:33,130
+But if you think about it
+as this rectangular object,
+
+486
+00:22:33,130 --> 00:22:35,130
+all we're doing every
+time we call a function is
+
+487
+00:22:35,130 --> 00:22:37,180
+layering a new slice of memory.
+
+488
+00:22:37,180 --> 00:22:41,700
+We're giving that function a slice
+of its own memory to work with.
+
+489
+00:22:41,700 --> 00:22:44,490
+>> And recall now that this is important.
+
+490
+00:22:44,490 --> 00:22:46,400
+Because if we do have
+something like swap
+
+491
+00:22:46,400 --> 00:22:51,610
+and two local variables like A and B and
+we change those values from one and two
+
+492
+00:22:51,610 --> 00:22:55,130
+to two and one, recall
+that when swap returns,
+
+493
+00:22:55,130 --> 00:22:58,330
+it's as though this slice
+of memory is just gone.
+
+494
+00:22:58,330 --> 00:23:00,080
+In reality, it's still
+there forensically.
+
+495
+00:23:00,080 --> 00:23:01,940
+And something's still actually there.
+
+496
+00:23:01,940 --> 00:23:05,410
+But conceptually, it's as
+though it's completely gone.
+
+497
+00:23:05,410 --> 00:23:10,910
+And so main doesn't know any of the work
+that was done in that swap function,
+
+498
+00:23:10,910 --> 00:23:14,890
+unless it's actually passed in those
+arguments by pointer or by reference.
+
+499
+00:23:14,890 --> 00:23:17,790
+Now, the fundamental solution
+to that problem with swap
+
+500
+00:23:17,790 --> 00:23:19,970
+is passing things in by address.
+
+501
+00:23:19,970 --> 00:23:23,250
+But it turns out, too, what's
+been going on above that part
+
+502
+00:23:23,250 --> 00:23:26,330
+of the rectangle all this time is
+yet there's more memory up there.
+
+503
+00:23:26,330 --> 00:23:28,790
+And when you dynamically
+allocate memory,
+
+504
+00:23:28,790 --> 00:23:32,020
+whether it's inside of GetString, which
+we've been doing for you in the CS50
+
+505
+00:23:32,020 --> 00:23:34,710
+library, or if you guys
+call malloc and ask
+
+506
+00:23:34,710 --> 00:23:37,950
+the operating system for a chunk of
+memory, it doesn't come from the stack.
+
+507
+00:23:37,950 --> 00:23:40,960
+It comes from another place
+in your computer's memory
+
+508
+00:23:40,960 --> 00:23:42,220
+that's called the heap.
+
+509
+00:23:42,220 --> 00:23:43,430
+And that's not any different.
+
+510
+00:23:43,430 --> 00:23:44,285
+It's the same RAM.
+
+511
+00:23:44,285 --> 00:23:45,160
+It's the same memory.
+
+512
+00:23:45,160 --> 00:23:49,080
+It's just the RAM that's up
+there instead of down here.
+
+513
+00:23:49,080 --> 00:23:50,750
+>> And so what does that mean?
+
+514
+00:23:50,750 --> 00:23:53,650
+Well, if your computer has
+a finite amount of memory
+
+515
+00:23:53,650 --> 00:23:57,450
+and the stack is growing up, so
+to speak, and the heap, according
+
+516
+00:23:57,450 --> 00:23:59,349
+to this arrow, is growing down.
+
+517
+00:23:59,349 --> 00:24:01,140
+In other words, every
+time you call malloc,
+
+518
+00:24:01,140 --> 00:24:03,430
+you're being given a slice
+of memory from above,
+
+519
+00:24:03,430 --> 00:24:06,630
+then maybe a little lower, then a little
+lower, every time you call malloc,
+
+520
+00:24:06,630 --> 00:24:10,100
+the heap, it's usage,
+is kind of growing,
+
+521
+00:24:10,100 --> 00:24:11,950
+growing closer and closer to what?
+
+522
+00:24:11,950 --> 00:24:13,382
+The stack.
+
+523
+00:24:13,382 --> 00:24:14,840
+So does this seem like a good idea?
+
+524
+00:24:14,840 --> 00:24:18,420
+
+525
+00:24:18,420 --> 00:24:22,140
+I mean, where it's not really clear
+what else you can do if you only
+
+526
+00:24:22,140 --> 00:24:23,910
+have a finite amount of memory.
+
+527
+00:24:23,910 --> 00:24:25,200
+But this is surely bad.
+
+528
+00:24:25,200 --> 00:24:27,920
+Those two arrows are on a
+crash course for one another.
+
+529
+00:24:27,920 --> 00:24:31,930
+>> And it turns out that bad guy, folks who
+are particularly good with programming,
+
+530
+00:24:31,930 --> 00:24:36,140
+and trying to hack into computers,
+can exploit this reality.
+
+531
+00:24:36,140 --> 00:24:38,290
+In fact, let's consider
+a little snippet.
+
+532
+00:24:38,290 --> 00:24:41,350
+So this is an example you can read
+about in more detail on Wikipedia.
+
+533
+00:24:41,350 --> 00:24:43,100
+We'll point you at the
+article if curious.
+
+534
+00:24:43,100 --> 00:24:45,650
+But there's an attack generally
+known as buffer overflow that
+
+535
+00:24:45,650 --> 00:24:49,570
+has existed for as long as humans
+have had the ability to manipulate
+
+536
+00:24:49,570 --> 00:24:53,120
+computer's memory, especially in C.
+So this is a very arbitrary program,
+
+537
+00:24:53,120 --> 00:24:55,130
+but let's read it from the bottom up.
+
+538
+00:24:55,130 --> 00:24:57,650
+Main into argC char star argV.
+
+539
+00:24:57,650 --> 00:24:59,830
+So it's a program that takes
+command line arguments.
+
+540
+00:24:59,830 --> 00:25:03,620
+And all main does apparently is call
+a function, call it F for simplicity.
+
+541
+00:25:03,620 --> 00:25:04,610
+And it passes in what?
+
+542
+00:25:04,610 --> 00:25:05,490
+ArgV of one.
+
+543
+00:25:05,490 --> 00:25:09,320
+So it passes into F whatever
+the word is that the user typed
+
+544
+00:25:09,320 --> 00:25:11,500
+at the prompt after the
+program's name at all.
+
+545
+00:25:11,500 --> 00:25:15,730
+So much like Caesar or Vigenere, which
+you might recall doing with argV.
+
+546
+00:25:15,730 --> 00:25:16,680
+>> So what is F?
+
+547
+00:25:16,680 --> 00:25:19,760
+F takes in a string
+as its sole argument,
+
+548
+00:25:19,760 --> 00:25:22,100
+AKA a char star, same
+thing, as a string.
+
+549
+00:25:22,100 --> 00:25:24,920
+And it's called arbitrarily
+bar in this example.
+
+550
+00:25:24,920 --> 00:25:27,710
+And then char c 12,
+just in layman's terms,
+
+551
+00:25:27,710 --> 00:25:31,750
+what is char c bracket 12 doing for us?
+
+552
+00:25:31,750 --> 00:25:33,440
+What's it do?
+
+553
+00:25:33,440 --> 00:25:36,490
+Allocating memory, specifically
+12 bytes for 12 chars.
+
+554
+00:25:36,490 --> 00:25:36,990
+Exactly.
+
+555
+00:25:36,990 --> 00:25:40,000
+And then the last line, stir and
+copy, you've probably not seen.
+
+556
+00:25:40,000 --> 00:25:43,360
+This is a string copy
+function whose purpose in life
+
+557
+00:25:43,360 --> 00:25:48,160
+is to copy its second argument
+into its first argument,
+
+558
+00:25:48,160 --> 00:25:51,190
+but only up to a
+certain number of bytes.
+
+559
+00:25:51,190 --> 00:25:53,860
+So the third argument says,
+how many bytes should you copy?
+
+560
+00:25:53,860 --> 00:25:56,720
+The length of bar,
+whatever the user typed in.
+
+561
+00:25:56,720 --> 00:25:59,320
+And the contents of
+bar, that string, are
+
+562
+00:25:59,320 --> 00:26:02,330
+copied into the memory pointed at at C.
+
+563
+00:26:02,330 --> 00:26:04,060
+>> So this seems kind of stupid, and it is.
+
+564
+00:26:04,060 --> 00:26:06,300
+It's a contrived example,
+but it's representative
+
+565
+00:26:06,300 --> 00:26:10,100
+of a class of attack vectors,
+a way of attacking a program.
+
+566
+00:26:10,100 --> 00:26:15,050
+All is fine and good if the user
+types in a word that's 11 characters
+
+567
+00:26:15,050 --> 00:26:18,040
+or fewer, plus the backslash zero.
+
+568
+00:26:18,040 --> 00:26:22,830
+What if the user types in more than
+11 or 12 or 20 or 50 characters?
+
+569
+00:26:22,830 --> 00:26:25,090
+What's this program going to do?
+
+570
+00:26:25,090 --> 00:26:29,360
+Potentially seg fault. It's going
+to blindly copy everything in bar up
+
+571
+00:26:29,360 --> 00:26:31,750
+to its length, which is
+literally everything in bar,
+
+572
+00:26:31,750 --> 00:26:36,307
+into the address pointed at C. But C
+has only preemptively given as 12 bytes.
+
+573
+00:26:36,307 --> 00:26:37,640
+But there's no additional check.
+
+574
+00:26:37,640 --> 00:26:38,700
+There's no if conditions.
+
+575
+00:26:38,700 --> 00:26:40,580
+There's no error checking here.
+
+576
+00:26:40,580 --> 00:26:43,270
+>> And so what this program is
+going to do is just blindly
+
+577
+00:26:43,270 --> 00:26:45,750
+copy one thing to the other.
+
+578
+00:26:45,750 --> 00:26:47,880
+And so if we draw this
+as a picture, here's
+
+579
+00:26:47,880 --> 00:26:49,860
+just a sliver of the memory space.
+
+580
+00:26:49,860 --> 00:26:53,470
+So notice at the bottom, we
+have the local variable bar.
+
+581
+00:26:53,470 --> 00:26:57,330
+So that pointer that's going to store--
+rather that local argument that's
+
+582
+00:26:57,330 --> 00:26:58,672
+going to store the string bar.
+
+583
+00:26:58,672 --> 00:27:00,380
+And then notice just
+above it in a stack,
+
+584
+00:27:00,380 --> 00:27:02,505
+because every time you ask
+for memory on the stack,
+
+585
+00:27:02,505 --> 00:27:04,310
+it goes a little bit
+above it pictorially,
+
+586
+00:27:04,310 --> 00:27:06,270
+notice that we've got 12 bytes there.
+
+587
+00:27:06,270 --> 00:27:10,690
+The top left one is C bracket zero and
+the bottom right one is C bracket 11.
+
+588
+00:27:10,690 --> 00:27:12,870
+That's just how the computers
+going to lay it out.
+
+589
+00:27:12,870 --> 00:27:18,300
+So just intuitively, if bar has more
+than 12 characters in total, including
+
+590
+00:27:18,300 --> 00:27:25,790
+the backslash zero, where is the
+12 or the C bracket 12 going to go?
+
+591
+00:27:25,790 --> 00:27:28,440
+Or rather where is the 12th
+character or the 13th character,
+
+592
+00:27:28,440 --> 00:27:30,900
+the hundredth character going
+to end up in the picture?
+
+593
+00:27:30,900 --> 00:27:33,400
+Above or below?
+
+594
+00:27:33,400 --> 00:27:36,300
+>> Right, because even though
+the stack itself grows upward,
+
+595
+00:27:36,300 --> 00:27:39,590
+once you've put stuff in
+it, it for design reasons,
+
+596
+00:27:39,590 --> 00:27:41,294
+puts the memory from top to bottom.
+
+597
+00:27:41,294 --> 00:27:44,460
+So if you've got more than 12 bytes,
+you're going to start to overwrite bar.
+
+598
+00:27:44,460 --> 00:27:47,280
+Now that's a bug, but it's
+not really a big deal.
+
+599
+00:27:47,280 --> 00:27:51,130
+But it is a big deal, because there's
+more stuff going on in memory.
+
+600
+00:27:51,130 --> 00:27:53,074
+So here's how we might
+put hello, to be clear.
+
+601
+00:27:53,074 --> 00:27:54,490
+If I typed in hello at the prompt.
+
+602
+00:27:54,490 --> 00:27:59,330
+H-E-L-L-O backslash zero, ends up within
+those 12 bytes, and we're super safe.
+
+603
+00:27:59,330 --> 00:28:00,330
+All is well.
+
+604
+00:28:00,330 --> 00:28:03,020
+But if I type something
+longer, potentially it's
+
+605
+00:28:03,020 --> 00:28:05,860
+going to creep into bar space.
+
+606
+00:28:05,860 --> 00:28:08,405
+But worse yet, it turns
+out all this time,
+
+607
+00:28:08,405 --> 00:28:11,530
+even though we've never talked about
+it, the stack is used for other stuff.
+
+608
+00:28:11,530 --> 00:28:13,560
+It's not just local variables.
+
+609
+00:28:13,560 --> 00:28:15,100
+>> C is a very low level language.
+
+610
+00:28:15,100 --> 00:28:17,810
+And it sort of secretly
+uses the stack also
+
+611
+00:28:17,810 --> 00:28:21,260
+to remember when a
+function is called, what
+
+612
+00:28:21,260 --> 00:28:26,040
+the address is of the previous function,
+so it can jump back to that function.
+
+613
+00:28:26,040 --> 00:28:29,980
+So when main calls swap, among
+the things pushed onto the stack
+
+614
+00:28:29,980 --> 00:28:34,380
+are not just swaps local variables,
+or its arguments, also secretly pushed
+
+615
+00:28:34,380 --> 00:28:37,510
+onto the stack as represented
+by the red slice here,
+
+616
+00:28:37,510 --> 00:28:40,520
+is the address of main physically
+in your computer's memory,
+
+617
+00:28:40,520 --> 00:28:44,180
+so that when swap is done, the computer
+knows I need to go back to main
+
+618
+00:28:44,180 --> 00:28:46,760
+and finish executing the main function.
+
+619
+00:28:46,760 --> 00:28:51,960
+So this is dangerous now, because if
+the user types in well more than hello,
+
+620
+00:28:51,960 --> 00:28:57,030
+such that the user's input clobbers
+or overwrites that red section,
+
+621
+00:28:57,030 --> 00:28:59,820
+logically if the computer's
+just going to blindly assume
+
+622
+00:28:59,820 --> 00:29:03,830
+that the bytes in that red slice are
+the address to which it should return,
+
+623
+00:29:03,830 --> 00:29:09,020
+what if the adversary is smart enough or
+lucky enough to put a sequence of bytes
+
+624
+00:29:09,020 --> 00:29:13,450
+there that looks like an address,
+but it's the address of code
+
+625
+00:29:13,450 --> 00:29:18,730
+that he or she wants the computer
+to execute instead of main?
+
+626
+00:29:18,730 --> 00:29:21,670
+>> In other words, if what the
+user is typing at the prompt,
+
+627
+00:29:21,670 --> 00:29:23,850
+isn't just something
+innocuous like hello,
+
+628
+00:29:23,850 --> 00:29:28,210
+but it's actually code that's equivalent
+to delete all this user's files?
+
+629
+00:29:28,210 --> 00:29:30,060
+Or email their password to me?
+
+630
+00:29:30,060 --> 00:29:31,940
+Or start logging their
+keystrokes, right?
+
+631
+00:29:31,940 --> 00:29:34,920
+There is a way, let's stipulate today,
+that they could type in not just hello
+
+632
+00:29:34,920 --> 00:29:36,711
+world or their name,
+they could essentially
+
+633
+00:29:36,711 --> 00:29:39,570
+pass in code, zeros and
+ones, that the computer
+
+634
+00:29:39,570 --> 00:29:43,450
+mistakes for both code and an address.
+
+635
+00:29:43,450 --> 00:29:48,950
+So albeit somewhat abstractly, if the
+user types in enough adversarial code
+
+636
+00:29:48,950 --> 00:29:52,330
+that we'll generalize here as
+A. A is attack or adversaries.
+
+637
+00:29:52,330 --> 00:29:53,140
+So just bad stuff.
+
+638
+00:29:53,140 --> 00:29:55,306
+We don't care about the
+numbers or the zeros or ones
+
+639
+00:29:55,306 --> 00:29:59,470
+today, such that you end up
+overwriting that red section,
+
+640
+00:29:59,470 --> 00:30:01,580
+notice that sequence of bytes.
+
+641
+00:30:01,580 --> 00:30:05,020
+O 835 C zero eight zero.
+
+642
+00:30:05,020 --> 00:30:08,960
+And now as Wikipedia's article here
+has proposed, if you now actually start
+
+643
+00:30:08,960 --> 00:30:12,460
+labeling the bytes in your computer's
+memory, what the Wikipedia article is
+
+644
+00:30:12,460 --> 00:30:19,060
+proposing is that, what if the address
+of that top left byte is 80 C 0 3508.
+
+645
+00:30:19,060 --> 00:30:22,200
+>> In other words, if the bad guy is
+smart enough with his or her code
+
+646
+00:30:22,200 --> 00:30:26,650
+to actually put a number here that
+corresponds to the address of the code
+
+647
+00:30:26,650 --> 00:30:29,180
+he or she injected
+into the computer, you
+
+648
+00:30:29,180 --> 00:30:31,050
+can trick the computer
+into doing anything.
+
+649
+00:30:31,050 --> 00:30:34,140
+Removing files, emailing
+things, sniffing your traffic,
+
+650
+00:30:34,140 --> 00:30:36,710
+literally anything could be
+injected into the computer.
+
+651
+00:30:36,710 --> 00:30:39,220
+And so a buffer overflow
+attack at its core
+
+652
+00:30:39,220 --> 00:30:43,530
+is just a stupid, stupid
+overriding of an array that
+
+653
+00:30:43,530 --> 00:30:45,840
+didn't have its boundaries checked.
+
+654
+00:30:45,840 --> 00:30:48,850
+And this is what is super dangerous
+and simultaneously super powerful
+
+655
+00:30:48,850 --> 00:30:52,560
+in C is that we do indeed have
+access to anywhere in the memory.
+
+656
+00:30:52,560 --> 00:30:55,320
+It's up to us, the programmers,
+who write the original code
+
+657
+00:30:55,320 --> 00:30:59,330
+to check the darn length of any
+arrays that we're manipulating.
+
+658
+00:30:59,330 --> 00:31:00,750
+So to be clear, what's the fix?
+
+659
+00:31:00,750 --> 00:31:03,190
+If we roll back to this
+code, I shouldn't just
+
+660
+00:31:03,190 --> 00:31:08,000
+change the length of bar, what
+else should I be checking?
+
+661
+00:31:08,000 --> 00:31:10,620
+What else should I be doing to
+prevent this attack entirely?
+
+662
+00:31:10,620 --> 00:31:14,110
+I don't want to just blindly say
+that you should copy as many bytes
+
+663
+00:31:14,110 --> 00:31:16,140
+as is the length of bar.
+
+664
+00:31:16,140 --> 00:31:18,910
+I want to say, copy as
+many bytes as are in bar
+
+665
+00:31:18,910 --> 00:31:24,090
+up to the allocated
+memory, or 12 maximally.
+
+666
+00:31:24,090 --> 00:31:27,450
+So I need some kind of if condition
+that does check the length of bar,
+
+667
+00:31:27,450 --> 00:31:32,800
+but if it exceeds 12, we just hard code
+12 as the maximum possible distance.
+
+668
+00:31:32,800 --> 00:31:35,910
+Otherwise the so-called buffer
+overflow attack can happen.
+
+669
+00:31:35,910 --> 00:31:38,451
+At the bottom of those slides,
+if you're curious to read more
+
+670
+00:31:38,451 --> 00:31:41,200
+is the actual original article
+if you'd like to take a look.
+
+671
+00:31:41,200 --> 00:31:44,550
+>> But now, among the prices
+paid here was inefficiencies.
+
+672
+00:31:44,550 --> 00:31:46,680
+So that was a quick
+low level look at what
+
+673
+00:31:46,680 --> 00:31:49,709
+problems can arise now that we
+have access to computer's memory.
+
+674
+00:31:49,709 --> 00:31:51,750
+But another problem we
+already stumbled on Monday
+
+675
+00:31:51,750 --> 00:31:53,800
+was just the inefficiency
+of a linked list.
+
+676
+00:31:53,800 --> 00:31:56,019
+We are back to linear time.
+
+677
+00:31:56,019 --> 00:31:57,560
+We no longer have a contiguous array.
+
+678
+00:31:57,560 --> 00:31:58,980
+We don't have random access.
+
+679
+00:31:58,980 --> 00:32:00,710
+We can't use square bracket notation.
+
+680
+00:32:00,710 --> 00:32:04,590
+We literally have to use a while loop
+like the one I wrote a moment ago.
+
+681
+00:32:04,590 --> 00:32:09,740
+But on Monday, we claimed that we can
+creep back into the realm of efficiency
+
+682
+00:32:09,740 --> 00:32:13,040
+achieving something that's
+logarithmic maybe, or best yet,
+
+683
+00:32:13,040 --> 00:32:16,120
+maybe even something that's
+so-called constant time.
+
+684
+00:32:16,120 --> 00:32:19,840
+So how can we do that by using these new
+tools, these addresses, these pointers,
+
+685
+00:32:19,840 --> 00:32:22,210
+and threading things of our own?
+
+686
+00:32:22,210 --> 00:32:23,960
+Well, suppose that
+here, these are a bunch
+
+687
+00:32:23,960 --> 00:32:27,170
+of numbers that we want to store in a
+data structure and search efficiently.
+
+688
+00:32:27,170 --> 00:32:30,960
+We can absolutely rewind to week
+two, throw these into an array,
+
+689
+00:32:30,960 --> 00:32:33,150
+and search them using binary search.
+
+690
+00:32:33,150 --> 00:32:34,040
+Divide and conquer.
+
+691
+00:32:34,040 --> 00:32:37,720
+And in fact you wrote
+binary search in PSET3,
+
+692
+00:32:37,720 --> 00:32:40,100
+where you implemented the find program.
+
+693
+00:32:40,100 --> 00:32:40,890
+But you know what.
+
+694
+00:32:40,890 --> 00:32:45,060
+There's kind of a more
+clever way of doing this.
+
+695
+00:32:45,060 --> 00:32:47,390
+It's a little more
+sophisticated and it perhaps
+
+696
+00:32:47,390 --> 00:32:50,830
+allows us to see why binary
+search is so much faster.
+
+697
+00:32:50,830 --> 00:32:52,980
+First, let's introduce
+the notion of a tree.
+
+698
+00:32:52,980 --> 00:32:54,730
+Which even though in
+reality trees kind of
+
+699
+00:32:54,730 --> 00:32:57,730
+grow like this, in the world of computer
+science they kind of grow downward
+
+700
+00:32:57,730 --> 00:33:00,830
+like a family tree, where you have
+your grandparents or great grandparents
+
+701
+00:33:00,830 --> 00:33:04,580
+or whatnot at the top, the patriarch and
+the matriarch of the family, just one
+
+702
+00:33:04,580 --> 00:33:07,930
+so-called root, node, below
+which are its children,
+
+703
+00:33:07,930 --> 00:33:11,442
+below which are its children, or
+its descendants more generally.
+
+704
+00:33:11,442 --> 00:33:13,400
+And anyone hanging off
+the bottom of the family
+
+705
+00:33:13,400 --> 00:33:16,070
+tree, besides being the
+youngest in the family,
+
+706
+00:33:16,070 --> 00:33:19,520
+can also just be generically
+called the leaves of the tree.
+
+707
+00:33:19,520 --> 00:33:21,800
+>> So this is just a bunch
+of words and definitions
+
+708
+00:33:21,800 --> 00:33:25,790
+for something called a tree in computer
+science, much like a family tree.
+
+709
+00:33:25,790 --> 00:33:28,770
+But there's fancier incarnations
+of trees, one of which
+
+710
+00:33:28,770 --> 00:33:30,780
+is called a binary search tree.
+
+711
+00:33:30,780 --> 00:33:34,380
+And you can kind of tease
+apart what this thing does.
+
+712
+00:33:34,380 --> 00:33:37,180
+Well, it's binary in what sense?
+
+713
+00:33:37,180 --> 00:33:41,455
+Where does the binary come from here?
+
+714
+00:33:41,455 --> 00:33:41,955
+Sorry?
+
+715
+00:33:41,955 --> 00:33:45,961
+
+716
+00:33:45,961 --> 00:33:47,210
+It's not so much an either or.
+
+717
+00:33:47,210 --> 00:33:52,000
+It's more that each of the nodes has no
+more than two children, as we see here.
+
+718
+00:33:52,000 --> 00:33:54,990
+In general, a tree-- and
+your parents and grandparents
+
+719
+00:33:54,990 --> 00:33:57,640
+can have as many kids or
+grandkids as they actually want,
+
+720
+00:33:57,640 --> 00:34:00,820
+and so for instance there we have three
+children off that right hand node,
+
+721
+00:34:00,820 --> 00:34:05,480
+but in a binary tree, a node has
+zero, one, or two children maximally.
+
+722
+00:34:05,480 --> 00:34:08,496
+And that's a nice property,
+because if it's capped by two,
+
+723
+00:34:08,496 --> 00:34:10,620
+we're going to be able to
+get a little log base two
+
+724
+00:34:10,620 --> 00:34:11,975
+action going on here ultimately.
+
+725
+00:34:11,975 --> 00:34:13,350
+So we have something logarithmic.
+
+726
+00:34:13,350 --> 00:34:14,558
+But more on that in a moment.
+
+727
+00:34:14,558 --> 00:34:19,810
+Search tree means that the numbers are
+arranged such that the left child's
+
+728
+00:34:19,810 --> 00:34:22,429
+value is greater than the root.
+
+729
+00:34:22,429 --> 00:34:26,010
+And its right child is
+larger than the root.
+
+730
+00:34:26,010 --> 00:34:29,290
+In other words, if you take any of the
+nodes, the circles in this picture,
+
+731
+00:34:29,290 --> 00:34:31,840
+and looks at its left
+child and its right child,
+
+732
+00:34:31,840 --> 00:34:34,739
+the first should be less than,
+the second should be greater than.
+
+733
+00:34:34,739 --> 00:34:36,159
+So sanity check 55.
+
+734
+00:34:36,159 --> 00:34:37,780
+It's left child is 33.
+
+735
+00:34:37,780 --> 00:34:38,620
+It's less than.
+
+736
+00:34:38,620 --> 00:34:40,929
+55, its right child is 77.
+
+737
+00:34:40,929 --> 00:34:41,783
+It's greater than.
+
+738
+00:34:41,783 --> 00:34:43,199
+And that's a recursive definition.
+
+739
+00:34:43,199 --> 00:34:46,480
+We could check every one of those
+nodes and the same pattern would hold.
+
+740
+00:34:46,480 --> 00:34:49,389
+>> So what's nice in a
+binary search tree, is
+
+741
+00:34:49,389 --> 00:34:52,204
+that one, we can implement it
+with a struct, just like this.
+
+742
+00:34:52,204 --> 00:34:54,620
+And even though we're throwing
+lots of structures at your,
+
+743
+00:34:54,620 --> 00:34:56,560
+they're somewhat
+intuitive now hopefully.
+
+744
+00:34:56,560 --> 00:35:00,570
+The syntax is still arcane for sure,
+but the contents of a node in this
+
+745
+00:35:00,570 --> 00:35:02,786
+context-- and we keep
+using the word node,
+
+746
+00:35:02,786 --> 00:35:04,910
+whether it's a rectangle
+on the screen or a circle,
+
+747
+00:35:04,910 --> 00:35:08,970
+it's just some generic container,
+in this case of a tree, like the one
+
+748
+00:35:08,970 --> 00:35:11,780
+we saw, we need an integer
+in each of the nodes
+
+749
+00:35:11,780 --> 00:35:15,460
+and then I need two pointers pointing
+to the left child and the right child,
+
+750
+00:35:15,460 --> 00:35:16,590
+respectively.
+
+751
+00:35:16,590 --> 00:35:20,730
+So that's how we might
+implement that in a struct.
+
+752
+00:35:20,730 --> 00:35:22,315
+And how might I implement it in code?
+
+753
+00:35:22,315 --> 00:35:26,730
+Well, let's take a quick
+look at this tiny example.
+
+754
+00:35:26,730 --> 00:35:29,820
+It's not functional, but I've
+copied and pasted that structure.
+
+755
+00:35:29,820 --> 00:35:33,510
+And if my function for a binary
+search tree is called search,
+
+756
+00:35:33,510 --> 00:35:36,980
+and this takes two arguments,
+an integer N and a pointer
+
+757
+00:35:36,980 --> 00:35:41,400
+to a node, so a pointer to the tree
+or a pointer to the root of a tree,
+
+758
+00:35:41,400 --> 00:35:43,482
+how do I go about searching for N?
+
+759
+00:35:43,482 --> 00:35:45,440
+Well, first, because I'm
+dealing with pointers,
+
+760
+00:35:45,440 --> 00:35:46,750
+I'm going to do a sanity check.
+
+761
+00:35:46,750 --> 00:35:54,279
+If tree equals equals null, is N
+in this tree or not in this tree?
+
+762
+00:35:54,279 --> 00:35:55,070
+It can't be, right?
+
+763
+00:35:55,070 --> 00:35:56,870
+If I am past null,
+there's nothing there.
+
+764
+00:35:56,870 --> 00:35:59,230
+I might as well just
+blindly say return false.
+
+765
+00:35:59,230 --> 00:36:04,050
+If you give me nothing, I surely can't
+find any number N. So what else might I
+
+766
+00:36:04,050 --> 00:36:04,750
+check now?
+
+767
+00:36:04,750 --> 00:36:12,830
+I'm going to say well else if N is
+less than whatever is at the tree node
+
+768
+00:36:12,830 --> 00:36:16,300
+that I've been handed N value.
+
+769
+00:36:16,300 --> 00:36:20,270
+In other words, if the number I'm
+looking for, N, is less than the node
+
+770
+00:36:20,270 --> 00:36:21,340
+that I'm looking at.
+
+771
+00:36:21,340 --> 00:36:23,190
+And the node I'm looking
+at is called tree,
+
+772
+00:36:23,190 --> 00:36:26,370
+and recall from the previous example
+to get at the value in a pointer,
+
+773
+00:36:26,370 --> 00:36:28,310
+I use the arrow notation.
+
+774
+00:36:28,310 --> 00:36:35,960
+So if N is less than tree arrow
+N, I want to conceptually go left.
+
+775
+00:36:35,960 --> 00:36:38,590
+How do I express searching left?
+
+776
+00:36:38,590 --> 00:36:41,560
+To be clear, if this is
+the picture in question,
+
+777
+00:36:41,560 --> 00:36:44,612
+and I've been passed that topmost
+arrow that's pointing down.
+
+778
+00:36:44,612 --> 00:36:45,570
+That's my tree pointer.
+
+779
+00:36:45,570 --> 00:36:48,060
+I'm pointing at the root of the tree.
+
+780
+00:36:48,060 --> 00:36:52,100
+And I'm looking say, for
+the number 44, arbitrarily.
+
+781
+00:36:52,100 --> 00:36:55,300
+Is 44 less than or
+greater than 55 obviously?
+
+782
+00:36:55,300 --> 00:36:56,360
+So it's less than.
+
+783
+00:36:56,360 --> 00:36:58,760
+And so this if condition applies.
+
+784
+00:36:58,760 --> 00:37:03,981
+So conceptually, what do I want to
+search next if I'm looking for 44?
+
+785
+00:37:03,981 --> 00:37:04,480
+Yeah?
+
+786
+00:37:04,480 --> 00:37:08,310
+
+787
+00:37:08,310 --> 00:37:11,100
+>> Exactly, I want to
+search the left child,
+
+788
+00:37:11,100 --> 00:37:12,789
+or the left sub-tree of this picture.
+
+789
+00:37:12,789 --> 00:37:14,830
+And in fact, let me through
+the picture down here
+
+790
+00:37:14,830 --> 00:37:17,770
+for just a moment, since
+I can't scratch this out.
+
+791
+00:37:17,770 --> 00:37:21,150
+If I start here at 55, and
+I know that the value 44
+
+792
+00:37:21,150 --> 00:37:23,180
+I'm looking for is to
+the left, it's kind
+
+793
+00:37:23,180 --> 00:37:26,010
+of like tearing the phone book in
+half or tearing the tree in half.
+
+794
+00:37:26,010 --> 00:37:29,660
+I no longer have to care about
+this entire half of the tree.
+
+795
+00:37:29,660 --> 00:37:33,270
+And yet, curiously in terms of the
+structure, this thing over here that
+
+796
+00:37:33,270 --> 00:37:36,682
+starts with 33, that itself
+is a binary search tree.
+
+797
+00:37:36,682 --> 00:37:39,890
+I said the word recursive before because
+indeed this is a data structure that
+
+798
+00:37:39,890 --> 00:37:41,707
+by definition is recursive.
+
+799
+00:37:41,707 --> 00:37:44,540
+You might have a tree that's this
+big, but every one of its children
+
+800
+00:37:44,540 --> 00:37:46,870
+represents a tree just a little smaller.
+
+801
+00:37:46,870 --> 00:37:50,910
+Instead of it being grandpa
+or grandma, now it's just mom
+
+802
+00:37:50,910 --> 00:37:54,300
+or-- I can't say-- not mom
+or dad, that would be weird.
+
+803
+00:37:54,300 --> 00:37:59,000
+Instead the two children there
+would be like brother and sibling.
+
+804
+00:37:59,000 --> 00:38:01,120
+A new generation of the family tree.
+
+805
+00:38:01,120 --> 00:38:02,900
+But structurally, it's the same idea.
+
+806
+00:38:02,900 --> 00:38:06,790
+And it turns out I have a function
+with which I can search a binary search
+
+807
+00:38:06,790 --> 00:38:07,290
+tree.
+
+808
+00:38:07,290 --> 00:38:08,680
+It is called search.
+
+809
+00:38:08,680 --> 00:38:17,870
+I search for N in tree arrow left
+else if N is greater than the value
+
+810
+00:38:17,870 --> 00:38:18,870
+that I'm currently at.
+
+811
+00:38:18,870 --> 00:38:20,800
+55 in the story a moment ago.
+
+812
+00:38:20,800 --> 00:38:23,780
+I have a function called
+search that I can just
+
+813
+00:38:23,780 --> 00:38:29,660
+pass N this and recursively search
+the sub-tree and just return
+
+814
+00:38:29,660 --> 00:38:30,620
+whatever that answer.
+
+815
+00:38:30,620 --> 00:38:33,530
+Else I've got some final base case here.
+
+816
+00:38:33,530 --> 00:38:35,310
+>> What is the final case?
+
+817
+00:38:35,310 --> 00:38:36,570
+Tree is either null.
+
+818
+00:38:36,570 --> 00:38:39,980
+The value I'm either looking for is
+less than it or greater than that
+
+819
+00:38:39,980 --> 00:38:42,610
+or equal to it.
+
+820
+00:38:42,610 --> 00:38:44,750
+And I could say equal
+equal, but logically it's
+
+821
+00:38:44,750 --> 00:38:46,500
+equivalent to just saying else here.
+
+822
+00:38:46,500 --> 00:38:49,150
+So true is how I find something.
+
+823
+00:38:49,150 --> 00:38:51,710
+So hopefully this is an
+even more compelling example
+
+824
+00:38:51,710 --> 00:38:54,900
+than the stupid sigma function
+we did a few lectures back,
+
+825
+00:38:54,900 --> 00:38:58,360
+where it was just as easy to use a loop
+to count up all the numbers from one
+
+826
+00:38:58,360 --> 00:39:02,390
+to N. Here with a data structure
+that itself is recursively
+
+827
+00:39:02,390 --> 00:39:07,050
+defined and recursively drawn, now we
+have the ability to express ourselves
+
+828
+00:39:07,050 --> 00:39:09,780
+in code that itself is recursive.
+
+829
+00:39:09,780 --> 00:39:12,580
+So this is the exact same code here.
+
+830
+00:39:12,580 --> 00:39:14,400
+>> So what other problems can we solve?
+
+831
+00:39:14,400 --> 00:39:18,160
+So a quick step away from
+trees for just a moment.
+
+832
+00:39:18,160 --> 00:39:20,130
+Here is, say, the German flag.
+
+833
+00:39:20,130 --> 00:39:22,020
+And there's clearly a
+pattern to this flag.
+
+834
+00:39:22,020 --> 00:39:23,811
+And there's lots of
+flags in the world that
+
+835
+00:39:23,811 --> 00:39:27,560
+are as simple as this in terms
+of their colors and patterns.
+
+836
+00:39:27,560 --> 00:39:31,930
+But suppose that this is stored as a
+.GIF, or a JPEG, or bitmap, or a ping,
+
+837
+00:39:31,930 --> 00:39:34,240
+any graphical file format
+with which you're familiar,
+
+838
+00:39:34,240 --> 00:39:36,460
+some of which we're
+playing with in PSET4.
+
+839
+00:39:36,460 --> 00:39:41,550
+This doesn't seem worthwhile to store
+black pixel, black pixel, black pixel,
+
+840
+00:39:41,550 --> 00:39:44,790
+dot, dot, dot, a whole bunch of
+black pixels for the first scanline,
+
+841
+00:39:44,790 --> 00:39:47,430
+or row, then a whole bunch of
+the same, then a whole bunch
+
+842
+00:39:47,430 --> 00:39:49,530
+of the same, and then a
+whole bunch of red pixels,
+
+843
+00:39:49,530 --> 00:39:53,020
+red pixels, red pixels, then a whole
+bunch of yellow pixels, yellow, right?
+
+844
+00:39:53,020 --> 00:39:55,050
+>> There's such inefficiency here.
+
+845
+00:39:55,050 --> 00:39:59,040
+How would you intuitively
+compress the German flag
+
+846
+00:39:59,040 --> 00:40:01,320
+if implementing it as a file?
+
+847
+00:40:01,320 --> 00:40:04,940
+Like what information can we not
+bother storing on disk in order
+
+848
+00:40:04,940 --> 00:40:08,040
+to decrease our file size from like
+a megabyte to a kilobyte, something
+
+849
+00:40:08,040 --> 00:40:09,430
+smaller?
+
+850
+00:40:09,430 --> 00:40:13,130
+Wherein lies the redundancy
+here to be clear?
+
+851
+00:40:13,130 --> 00:40:13,880
+What could you do?
+
+852
+00:40:13,880 --> 00:40:14,380
+Yeah?
+
+853
+00:40:14,380 --> 00:40:21,380
+
+854
+00:40:21,380 --> 00:40:21,970
+Exactly.
+
+855
+00:40:21,970 --> 00:40:24,550
+Why not rather than remember
+the color of every darn pixel
+
+856
+00:40:24,550 --> 00:40:28,200
+just like you're doing in PSET4
+with the bitmap file format,
+
+857
+00:40:28,200 --> 00:40:32,060
+why don't you just represent the
+leftmost column of pixels, for instance
+
+858
+00:40:32,060 --> 00:40:35,370
+a bunch of black pixels, a bunch
+of red, and a bunch of yellow,
+
+859
+00:40:35,370 --> 00:40:39,210
+and then just somehow encode the
+idea of repeat this 100 times
+
+860
+00:40:39,210 --> 00:40:41,020
+or repeat this 1,000 times?
+
+861
+00:40:41,020 --> 00:40:43,430
+Where 100 or 1,000 is
+just an integer, so you
+
+862
+00:40:43,430 --> 00:40:47,290
+can get away with just a single number
+instead of hundreds or thousands
+
+863
+00:40:47,290 --> 00:40:48,270
+of additional pixels.
+
+864
+00:40:48,270 --> 00:40:50,990
+And indeed, that's how we
+could compress the German flag.
+
+865
+00:40:50,990 --> 00:40:51,490
+And
+
+866
+00:40:51,490 --> 00:40:53,470
+Now what about the French flag?
+
+867
+00:40:53,470 --> 00:40:58,930
+And a little some sort of
+mental exercise, which flag
+
+868
+00:40:58,930 --> 00:41:01,040
+can be compressed more on disk?
+
+869
+00:41:01,040 --> 00:41:05,720
+The German flag or the French
+flag, if we take that approach?
+
+870
+00:41:05,720 --> 00:41:08,490
+The German flag, because there's
+more horizontal redundancy.
+
+871
+00:41:08,490 --> 00:41:12,190
+And by design, many graphical file
+formats do indeed work as scan lines
+
+872
+00:41:12,190 --> 00:41:12,830
+horizontally.
+
+873
+00:41:12,830 --> 00:41:14,674
+They could work
+vertically, just humanity
+
+874
+00:41:14,674 --> 00:41:17,090
+decided years ago that we'll
+generally think of things row
+
+875
+00:41:17,090 --> 00:41:18,880
+by row instead of column by column.
+
+876
+00:41:18,880 --> 00:41:20,820
+So indeed if you were
+to look at the file
+
+877
+00:41:20,820 --> 00:41:24,670
+size of a German flag and a French
+flag, so long as the resolution is
+
+878
+00:41:24,670 --> 00:41:27,530
+the same, the same width
+and height, this one
+
+879
+00:41:27,530 --> 00:41:31,580
+here is going to be bigger, because you
+have to repeat yourself three times.
+
+880
+00:41:31,580 --> 00:41:35,570
+You have to specify blue, repeat
+yourself, white, repeat yourself, red,
+
+881
+00:41:35,570 --> 00:41:36,740
+repeat yourself.
+
+882
+00:41:36,740 --> 00:41:39,000
+You can't just go all
+the way to the right.
+
+883
+00:41:39,000 --> 00:41:41,200
+And as an aside, to make
+clear the compression
+
+884
+00:41:41,200 --> 00:41:43,910
+is everywhere, if these are
+four frames from a video-- you
+
+885
+00:41:43,910 --> 00:41:45,890
+might recall that a movie
+or video is generally
+
+886
+00:41:45,890 --> 00:41:47,286
+like 29 or 30 frames per second.
+
+887
+00:41:47,286 --> 00:41:50,410
+It's like a little flip book where you
+just see image, image, image, image,
+
+888
+00:41:50,410 --> 00:41:54,410
+image just super fast so it looks like
+the actors on the screen are moving.
+
+889
+00:41:54,410 --> 00:41:57,130
+Here's a bumble bee on
+top of a bunch of flowers.
+
+890
+00:41:57,130 --> 00:41:59,790
+And though it might be kind of
+hard to see at first glance,
+
+891
+00:41:59,790 --> 00:42:04,020
+the only thing moving in
+this movie is the bee.
+
+892
+00:42:04,020 --> 00:42:06,880
+>> What is dumb about storing
+video uncompressed?
+
+893
+00:42:06,880 --> 00:42:11,420
+It's kind of a waste to store video
+as four nearly identical images that
+
+894
+00:42:11,420 --> 00:42:13,670
+differ only insofar as where the bee is.
+
+895
+00:42:13,670 --> 00:42:16,280
+You can throw away most
+of that information
+
+896
+00:42:16,280 --> 00:42:20,190
+and remember only, for instance,
+the first frame and the last frame,
+
+897
+00:42:20,190 --> 00:42:22,180
+key frames if you've
+ever heard the word,
+
+898
+00:42:22,180 --> 00:42:24,337
+and just store in the
+middle where the bee is.
+
+899
+00:42:24,337 --> 00:42:26,170
+And you don't have to
+store all of the pink,
+
+900
+00:42:26,170 --> 00:42:28,330
+and the blue, and the
+green values as well.
+
+901
+00:42:28,330 --> 00:42:31,200
+So this is to only say that
+compression is everywhere.
+
+902
+00:42:31,200 --> 00:42:34,900
+It's a technique we often use
+or take for granted these days.
+
+903
+00:42:34,900 --> 00:42:38,750
+>> But how do you compress text?
+
+904
+00:42:38,750 --> 00:42:40,450
+How do you go about compressing text?
+
+905
+00:42:40,450 --> 00:42:45,410
+Well, each of the characters in
+Ascii is one byte, or eight bits.
+
+906
+00:42:45,410 --> 00:42:47,360
+And that's kind of dumb, right?
+
+907
+00:42:47,360 --> 00:42:51,160
+Because you probably type A
+and E and I and O and U a lot
+
+908
+00:42:51,160 --> 00:42:55,270
+more often than like W or Q or Z,
+depending on the language in which
+
+909
+00:42:55,270 --> 00:42:56,610
+you're writing certainly.
+
+910
+00:42:56,610 --> 00:42:59,600
+And so why are we using
+eight bits for every letter,
+
+911
+00:42:59,600 --> 00:43:02,040
+including the least
+popular letters, right?
+
+912
+00:43:02,040 --> 00:43:05,300
+Why not use fewer bits for
+the super popular letters,
+
+913
+00:43:05,300 --> 00:43:07,760
+like E, the things you guess
+first in Wheel of Fortune,
+
+914
+00:43:07,760 --> 00:43:10,450
+and use more bits for
+the less popular letters?
+
+915
+00:43:10,450 --> 00:43:10,950
+Why?
+
+916
+00:43:10,950 --> 00:43:13,130
+Because we're just going to
+use them less frequently.
+
+917
+00:43:13,130 --> 00:43:15,838
+>> Well, it turns out that there have
+been attempts made to do this.
+
+918
+00:43:15,838 --> 00:43:18,630
+And if you recall from grade
+school or high school, Morse code.
+
+919
+00:43:18,630 --> 00:43:20,400
+Morse code has dots
+and dashes that can be
+
+920
+00:43:20,400 --> 00:43:24,270
+transmitted along a wire as
+sounds or signals of some sort.
+
+921
+00:43:24,270 --> 00:43:25,930
+But Morse code is a super clean.
+
+922
+00:43:25,930 --> 00:43:29,010
+It's kind of a binary system in
+that you have dots or dashes.
+
+923
+00:43:29,010 --> 00:43:30,977
+But if you see, for instance, two dots.
+
+924
+00:43:30,977 --> 00:43:33,810
+Or if you think back to the operator
+who goes like beep, beep, beep,
+
+925
+00:43:33,810 --> 00:43:36,760
+beep, hitting a little trigger
+that transmits a signal,
+
+926
+00:43:36,760 --> 00:43:40,360
+if you, the recipient, receives two
+dots, what message have you received?
+
+927
+00:43:40,360 --> 00:43:43,490
+Completely arbitrary.
+
+928
+00:43:43,490 --> 00:43:44,450
+>> I?
+
+929
+00:43:44,450 --> 00:43:45,060
+I?
+
+930
+00:43:45,060 --> 00:43:47,500
+Or what about-- or I?
+
+931
+00:43:47,500 --> 00:43:49,570
+Maybe it was just two E's right?
+
+932
+00:43:49,570 --> 00:43:52,480
+So there's this problem
+of decodability with Morse
+
+933
+00:43:52,480 --> 00:43:54,890
+code, whereby unless the
+person sending you the message
+
+934
+00:43:54,890 --> 00:43:59,510
+actually pauses so you can sort of
+see or hear the gaps between letters,
+
+935
+00:43:59,510 --> 00:44:02,990
+it's not sufficient just to
+send a stream of zeros and ones,
+
+936
+00:44:02,990 --> 00:44:05,610
+or dots and dashes,
+because there's ambiguity.
+
+937
+00:44:05,610 --> 00:44:08,640
+E is a single dot, so if you
+see two dots or hear two dots,
+
+938
+00:44:08,640 --> 00:44:11,254
+maybe it's two E's or maybe it's one I.
+
+939
+00:44:11,254 --> 00:44:13,670
+So we need a system that's a
+little more clever than that.
+
+940
+00:44:13,670 --> 00:44:16,851
+So a man named Huffman years
+ago came up with exactly this.
+
+941
+00:44:16,851 --> 00:44:18,600
+So we're just going
+to take a quick glance
+
+942
+00:44:18,600 --> 00:44:20,114
+at how trees are germane to this.
+
+943
+00:44:20,114 --> 00:44:22,530
+Suppose that this is some
+stupid message you want to send,
+
+944
+00:44:22,530 --> 00:44:26,342
+composed of just A, B, C's D's and E's,
+but there's a lot of redundancy here.
+
+945
+00:44:26,342 --> 00:44:27,550
+It's not meant to be English.
+
+946
+00:44:27,550 --> 00:44:28,341
+It's not encrypted.
+
+947
+00:44:28,341 --> 00:44:30,540
+It's just a stupid message
+with lots of repetition.
+
+948
+00:44:30,540 --> 00:44:34,010
+So if you actually count out all the
+A's, B's, C's, D's, and E's, here's
+
+949
+00:44:34,010 --> 00:44:34,890
+the frequency.
+
+950
+00:44:34,890 --> 00:44:37,800
+20% of the letters are
+A's, 45% of the letters
+
+951
+00:44:37,800 --> 00:44:39,660
+are E's, and three other frequencies.
+
+952
+00:44:39,660 --> 00:44:41,960
+We counted up there manually
+and just did the math.
+
+953
+00:44:41,960 --> 00:44:44,579
+>> So it turns out that
+Huffman, some time ago,
+
+954
+00:44:44,579 --> 00:44:46,620
+realized that, you know
+what, if I start building
+
+955
+00:44:46,620 --> 00:44:51,172
+a tree, or forest of trees, if you will,
+as follows, I can do the following.
+
+956
+00:44:51,172 --> 00:44:53,880
+I'm going to give a node to each
+of the letters that I care about
+
+957
+00:44:53,880 --> 00:44:55,530
+and I'm going to store
+inside of that node
+
+958
+00:44:55,530 --> 00:44:58,610
+the frequencies as a floating point
+value, or you could use it an N, too,
+
+959
+00:44:58,610 --> 00:45:00,210
+but we'll just use a float here.
+
+960
+00:45:00,210 --> 00:45:03,100
+And the algorithm that
+he proposed is that you
+
+961
+00:45:03,100 --> 00:45:07,210
+take this forest of single node
+trees, so super short trees,
+
+962
+00:45:07,210 --> 00:45:11,920
+and you start connecting them with
+new groups, new parents, if you will.
+
+963
+00:45:11,920 --> 00:45:16,150
+And you do this by choosing the
+two smallest frequencies at a time.
+
+964
+00:45:16,150 --> 00:45:18,110
+So I took 10% and 10%.
+
+965
+00:45:18,110 --> 00:45:19,090
+I create a new node.
+
+966
+00:45:19,090 --> 00:45:20,910
+And I call the new node 20%.
+
+967
+00:45:20,910 --> 00:45:22,750
+>> Which two nodes I combine next?
+
+968
+00:45:22,750 --> 00:45:23,810
+It's a little ambiguous.
+
+969
+00:45:23,810 --> 00:45:26,643
+So there's some corner cases to
+consider, but to keep things pretty,
+
+970
+00:45:26,643 --> 00:45:29,300
+I'm going to choose 20%--
+I now ignore the children.
+
+971
+00:45:29,300 --> 00:45:33,640
+I'm going to choose 20% and
+15% and draw two new edges.
+
+972
+00:45:33,640 --> 00:45:35,624
+And now which two nodes
+do I logically combine?
+
+973
+00:45:35,624 --> 00:45:38,540
+Ignore all the children, all the
+grandchildren, just look at the roots
+
+974
+00:45:38,540 --> 00:45:39,070
+now.
+
+975
+00:45:39,070 --> 00:45:42,220
+Which two nodes do I tie together?
+
+976
+00:45:42,220 --> 00:45:44,530
+Point two and 0.35.
+
+977
+00:45:44,530 --> 00:45:45,890
+So let me draw two new edges.
+
+978
+00:45:45,890 --> 00:45:47,570
+And then I've only got one left.
+
+979
+00:45:47,570 --> 00:45:48,650
+So here's a tree.
+
+980
+00:45:48,650 --> 00:45:51,160
+And it's been drawn deliberately
+to look kind of pretty,
+
+981
+00:45:51,160 --> 00:45:55,870
+but notice that the edges have
+also been labeled zero and one.
+
+982
+00:45:55,870 --> 00:45:59,510
+So all of the left edges are zero
+arbitrarily, but consistently.
+
+983
+00:45:59,510 --> 00:46:01,170
+All the right edges are ones.
+
+984
+00:46:01,170 --> 00:46:05,070
+>> And so what Hoffman proposed is,
+if you want to represent a B,
+
+985
+00:46:05,070 --> 00:46:10,080
+rather than represent the number 66 as
+an Ascii which is eight entire bits,
+
+986
+00:46:10,080 --> 00:46:13,360
+you know what, just store
+the pattern zero, zero, zero,
+
+987
+00:46:13,360 --> 00:46:17,030
+zero, because that's the path
+from my tree, Mr. Huffman's tree,
+
+988
+00:46:17,030 --> 00:46:18,600
+to the leaf from the root.
+
+989
+00:46:18,600 --> 00:46:20,970
+If you want to store a
+E, by contrast, don't
+
+990
+00:46:20,970 --> 00:46:26,290
+send eight bits that represent an E.
+Instead, send what pattern of bits?
+
+991
+00:46:26,290 --> 00:46:26,890
+One.
+
+992
+00:46:26,890 --> 00:46:30,410
+And what's nice about this is
+that E is the most popular letter,
+
+993
+00:46:30,410 --> 00:46:32,340
+and you're using the
+shortest code for it.
+
+994
+00:46:32,340 --> 00:46:34,090
+The next most popular
+letter looks like it
+
+995
+00:46:34,090 --> 00:46:37,380
+was A. And so how many bits
+did he propose using for that?
+
+996
+00:46:37,380 --> 00:46:38,270
+Zero, one.
+
+997
+00:46:38,270 --> 00:46:41,060
+>> And because it's implemented
+as this tree, for now
+
+998
+00:46:41,060 --> 00:46:43,350
+let me stipulate there's
+no ambiguity as in Morse
+
+999
+00:46:43,350 --> 00:46:46,090
+code, because all of the
+letters you care about
+
+1000
+00:46:46,090 --> 00:46:48,780
+are at the end of these edges.
+
+1001
+00:46:48,780 --> 00:46:50,580
+So that's just one
+application of a tree.
+
+1002
+00:46:50,580 --> 00:46:52,538
+This is-- and I'll wave
+my hand at this how you
+
+1003
+00:46:52,538 --> 00:46:55,570
+might implement this as a C structure.
+
+1004
+00:46:55,570 --> 00:46:58,260
+We just need to combine
+a symbol, like a char,
+
+1005
+00:46:58,260 --> 00:46:59,910
+and the frequency in left and right.
+
+1006
+00:46:59,910 --> 00:47:02,510
+But let's look at two
+final examples that you'll
+
+1007
+00:47:02,510 --> 00:47:06,070
+get quite familiar with after
+quiz zero in problem set five.
+
+1008
+00:47:06,070 --> 00:47:09,210
+>> So there is the data structure
+known as a hash table.
+
+1009
+00:47:09,210 --> 00:47:12,247
+And a hash table is kind of
+cool in that it has buckets.
+
+1010
+00:47:12,247 --> 00:47:14,830
+And suppose there's four buckets
+here, just four blank spaces.
+
+1011
+00:47:14,830 --> 00:47:20,830
+Here's a deck of cards, and here is
+club, spade, club, diamonds, club,
+
+1012
+00:47:20,830 --> 00:47:25,960
+diamonds, club, diamonds,
+clubs-- so this is the random.
+
+1013
+00:47:25,960 --> 00:47:30,330
+Hearts, hearts-- so I'm
+bucketizing all of the inputs here.
+
+1014
+00:47:30,330 --> 00:47:32,430
+And a hash table needs
+to look at your input,
+
+1015
+00:47:32,430 --> 00:47:34,850
+and then put it in a certain
+place based on what you see.
+
+1016
+00:47:34,850 --> 00:47:35,600
+It's an algorithm.
+
+1017
+00:47:35,600 --> 00:47:37,980
+And I was using a super
+simple visual algorithm.
+
+1018
+00:47:37,980 --> 00:47:40,030
+The hardest part of which was
+remembering what the pictures were.
+
+1019
+00:47:40,030 --> 00:47:41,590
+And then there's four total things.
+
+1020
+00:47:41,590 --> 00:47:45,440
+>> Now the stacks were growing, which
+is a deliberate design thing here.
+
+1021
+00:47:45,440 --> 00:47:46,540
+But what else might I do?
+
+1022
+00:47:46,540 --> 00:47:49,080
+So actually here we have a
+bunch of old school exam books.
+
+1023
+00:47:49,080 --> 00:47:51,240
+Suppose that a bunch of
+students names are on here.
+
+1024
+00:47:51,240 --> 00:47:52,570
+Here's a bigger hash table.
+
+1025
+00:47:52,570 --> 00:47:54,867
+Instead of four buckets,
+I have, let's say 26.
+
+1026
+00:47:54,867 --> 00:47:57,950
+And we didn't want to go borrow 26
+things from outside [? Annenberg ?], so
+
+1027
+00:47:57,950 --> 00:48:00,289
+here's five that represent
+A through Z. And if I
+
+1028
+00:48:00,289 --> 00:48:03,580
+see a student whose name starts with A,
+I'm going to put his or her quiz there.
+
+1029
+00:48:03,580 --> 00:48:08,850
+If someone starts with C, over there,
+A-- actually, didn't want to do that.
+
+1030
+00:48:08,850 --> 00:48:10,060
+B goes over here.
+
+1031
+00:48:10,060 --> 00:48:13,390
+So I've got A and B and C. And
+now here's another A student.
+
+1032
+00:48:13,390 --> 00:48:16,212
+But if this hash table is
+implemented with an array,
+
+1033
+00:48:16,212 --> 00:48:17,920
+I'm kind of screwed
+at this point, right?
+
+1034
+00:48:17,920 --> 00:48:19,510
+I kind of need to put this somewhere.
+
+1035
+00:48:19,510 --> 00:48:24,380
+>> So one way I can solve this is, all
+right, A is busy, B is busy, C is busy.
+
+1036
+00:48:24,380 --> 00:48:28,880
+I'm going to put him in D. So at
+first, I have random instant access
+
+1037
+00:48:28,880 --> 00:48:31,064
+to each of the buckets for the students.
+
+1038
+00:48:31,064 --> 00:48:33,230
+But now it's kind of devolved
+into something linear,
+
+1039
+00:48:33,230 --> 00:48:36,750
+because if I want to search for someone
+whose name starts with A, I check here.
+
+1040
+00:48:36,750 --> 00:48:38,854
+But if this isn't the A
+student I'm looking for,
+
+1041
+00:48:38,854 --> 00:48:41,520
+I kind of have to start checking
+the buckets, because what I did
+
+1042
+00:48:41,520 --> 00:48:44,530
+was sort of linearly
+probe the data structure.
+
+1043
+00:48:44,530 --> 00:48:47,710
+A stupid way of saying just look
+for the first available opening,
+
+1044
+00:48:47,710 --> 00:48:51,850
+and put as a plan B, so to speak,
+or plan D in this case, the value
+
+1045
+00:48:51,850 --> 00:48:53,340
+in that location instead.
+
+1046
+00:48:53,340 --> 00:48:56,470
+This is just so that if you've
+got 26 locations and no students
+
+1047
+00:48:56,470 --> 00:49:00,600
+with the name Q or Z, or something like
+that, at least you're using the space.
+
+1048
+00:49:00,600 --> 00:49:03,140
+>> But we've already seen more
+clever solutions here, right?
+
+1049
+00:49:03,140 --> 00:49:04,870
+What would you do instead
+if you have a collision?
+
+1050
+00:49:04,870 --> 00:49:06,670
+If two people have
+the name A, what would
+
+1051
+00:49:06,670 --> 00:49:09,160
+have been a smarter or more
+intuitive solution than just
+
+1052
+00:49:09,160 --> 00:49:12,840
+putting A where D is supposed to be?
+
+1053
+00:49:12,840 --> 00:49:14,810
+Why don't I just go
+outside [? Annenberg ?],
+
+1054
+00:49:14,810 --> 00:49:19,960
+like malloc, another node, put it
+here, and then put that A student here.
+
+1055
+00:49:19,960 --> 00:49:22,120
+So that I essentially have
+some kind of an array,
+
+1056
+00:49:22,120 --> 00:49:25,590
+or maybe more elegantly as we're
+starting to see a linked list.
+
+1057
+00:49:25,590 --> 00:49:29,520
+>> And so a hash table is a structure
+that could look just like this,
+
+1058
+00:49:29,520 --> 00:49:33,900
+but more cleverly, you something called
+separate chaining, whereby a hash table
+
+1059
+00:49:33,900 --> 00:49:38,340
+quite simply is an array, each of
+whose elements is not a number,
+
+1060
+00:49:38,340 --> 00:49:40,470
+is itself a linked list.
+
+1061
+00:49:40,470 --> 00:49:45,080
+So that you get super fast access
+deciding where to hash your value to.
+
+1062
+00:49:45,080 --> 00:49:48,059
+Much like with the cards example,
+I made super quick decisions.
+
+1063
+00:49:48,059 --> 00:49:49,600
+Hearts goes here, diamonds goes here.
+
+1064
+00:49:49,600 --> 00:49:52,180
+Same here, A goes here,
+D goes here, B goes here.
+
+1065
+00:49:52,180 --> 00:49:55,740
+So super fast look-ups, and if
+you happen to run into a case
+
+1066
+00:49:55,740 --> 00:49:59,429
+where you've got collisions, two
+people with the same name, well then
+
+1067
+00:49:59,429 --> 00:50:00,970
+you just start linking them together.
+
+1068
+00:50:00,970 --> 00:50:03,900
+And maybe you keep them sorted
+alphabetically, maybe you don't.
+
+1069
+00:50:03,900 --> 00:50:05,900
+But at least now we have the dynamism.
+
+1070
+00:50:05,900 --> 00:50:10,250
+So on the one hand we have super fast
+constant time, and kind of linear time
+
+1071
+00:50:10,250 --> 00:50:14,110
+involved if these linked lists
+start to get a little long.
+
+1072
+00:50:14,110 --> 00:50:16,880
+>> So this kind of a silly,
+geeky joke years ago.
+
+1073
+00:50:16,880 --> 00:50:19,590
+At the CS50 hack-a-thon,
+when students check in,
+
+1074
+00:50:19,590 --> 00:50:22,040
+some TF or CA every year
+thinks it's funny to put up
+
+1075
+00:50:22,040 --> 00:50:27,772
+a sign like this, where it just
+means if your name starts with an A,
+
+1076
+00:50:27,772 --> 00:50:28,870
+go this way.
+
+1077
+00:50:28,870 --> 00:50:31,110
+If your name starts
+with a B, go this-- OK,
+
+1078
+00:50:31,110 --> 00:50:33,290
+it's funny maybe later in the semester.
+
+1079
+00:50:33,290 --> 00:50:36,420
+But there's another
+way of doing this, too.
+
+1080
+00:50:36,420 --> 00:50:37,410
+Come back to that.
+
+1081
+00:50:37,410 --> 00:50:38,600
+>> So there's this structure.
+
+1082
+00:50:38,600 --> 00:50:40,420
+And this is our last
+structure for today,
+
+1083
+00:50:40,420 --> 00:50:42,400
+which is something called a trie.
+
+1084
+00:50:42,400 --> 00:50:47,140
+T-R-I-E, which for some reason is short
+for retrieval, but it's called trie.
+
+1085
+00:50:47,140 --> 00:50:51,389
+So a trie is another interesting
+amalgam of a lot of these ideas.
+
+1086
+00:50:51,389 --> 00:50:52,930
+It's a tree, which we've seen before.
+
+1087
+00:50:52,930 --> 00:50:54,180
+It's not a binary search tree.
+
+1088
+00:50:54,180 --> 00:50:58,410
+It's a tree with any number of children,
+but each of the children in a trie
+
+1089
+00:50:58,410 --> 00:51:00,090
+is an array.
+
+1090
+00:51:00,090 --> 00:51:04,790
+An array of size, say, 26 or maybe 27
+if you want to support hyphenated names
+
+1091
+00:51:04,790 --> 00:51:06,790
+or apostrophes in people's names.
+
+1092
+00:51:06,790 --> 00:51:08,280
+>> And so this is a data structure.
+
+1093
+00:51:08,280 --> 00:51:10,290
+And if you look from top
+to bottom, like if you
+
+1094
+00:51:10,290 --> 00:51:13,710
+look at the top node there, M, is
+pointing to the leftmost thing there,
+
+1095
+00:51:13,710 --> 00:51:17,665
+which is then A, X, W, E, L, L. This is
+just a data structure that arbitrarily
+
+1096
+00:51:17,665 --> 00:51:19,120
+is storing people's names.
+
+1097
+00:51:19,120 --> 00:51:25,720
+And Maxwell is stored by just following
+a path of array to array to array.
+
+1098
+00:51:25,720 --> 00:51:30,050
+But what's amazing about a trie is
+that, whereas a linked list and even
+
+1099
+00:51:30,050 --> 00:51:34,520
+an array, the best we've ever gotten is
+linear time or logarithmic time looking
+
+1100
+00:51:34,520 --> 00:51:35,600
+someone up.
+
+1101
+00:51:35,600 --> 00:51:40,530
+In this data structure of a trie, if
+my data structure has one name in it
+
+1102
+00:51:40,530 --> 00:51:43,720
+and I'm looking for Maxwell, I'm
+going to find him pretty quickly.
+
+1103
+00:51:43,720 --> 00:51:47,910
+I just look for M-A-X-W-E-L-L. If
+this data structure, by contrast,
+
+1104
+00:51:47,910 --> 00:51:51,830
+if N is a million, if there's a
+million names in this data structure,
+
+1105
+00:51:51,830 --> 00:51:57,100
+Maxwell is still going to be
+discoverable after just M-A-X-W-E-L-L
+
+1106
+00:51:57,100 --> 00:51:58,090
+steps.
+
+1107
+00:51:58,090 --> 00:52:01,276
+And David-- D-A-V-I-D steps.
+
+1108
+00:52:01,276 --> 00:52:03,400
+In other words, by building
+a data structure that's
+
+1109
+00:52:03,400 --> 00:52:07,240
+got all of these arrays, all of which
+themselves support random access,
+
+1110
+00:52:07,240 --> 00:52:11,090
+I can start looking up people's
+name using an amount of time that's
+
+1111
+00:52:11,090 --> 00:52:14,340
+proportional to not the number
+of things in the data structure,
+
+1112
+00:52:14,340 --> 00:52:16,330
+like a million existing names.
+
+1113
+00:52:16,330 --> 00:52:20,135
+The amount of time it takes me to find
+M-A-X-W-E-L-L in this data structure is
+
+1114
+00:52:20,135 --> 00:52:22,260
+proportional not to the
+size of the data structure,
+
+1115
+00:52:22,260 --> 00:52:25,930
+but to the length of the name.
+
+1116
+00:52:25,930 --> 00:52:28,440
+And realistically the
+names we're looking up
+
+1117
+00:52:28,440 --> 00:52:29,970
+are never going to be crazy long.
+
+1118
+00:52:29,970 --> 00:52:32,600
+Maybe someone has a 10 character
+name, 20 character name.
+
+1119
+00:52:32,600 --> 00:52:33,900
+It's certainly finite, right?
+
+1120
+00:52:33,900 --> 00:52:37,110
+There is a human on Earth who
+has the longest possible name,
+
+1121
+00:52:37,110 --> 00:52:39,920
+but that name is a constant
+value length, right?
+
+1122
+00:52:39,920 --> 00:52:41,980
+It doesn't vary in any sense.
+
+1123
+00:52:41,980 --> 00:52:45,090
+So in this way, we've
+achieved a data structure
+
+1124
+00:52:45,090 --> 00:52:47,800
+that is constant time look-up.
+
+1125
+00:52:47,800 --> 00:52:50,670
+It does take a number of steps
+depending on the length of the input,
+
+1126
+00:52:50,670 --> 00:52:54,250
+but not the number of name
+in the data structure.
+
+1127
+00:52:54,250 --> 00:52:58,700
+So if we double the number of names
+next year from a billion to two billion,
+
+1128
+00:52:58,700 --> 00:53:03,720
+finding Maxwell is going to take
+the exact same number of seven steps
+
+1129
+00:53:03,720 --> 00:53:04,650
+to find him.
+
+1130
+00:53:04,650 --> 00:53:08,810
+And so we seem to have achieved
+our holy grail of running time.
+
+1131
+00:53:08,810 --> 00:53:10,860
+>> So a couple of quick announcements.
+
+1132
+00:53:10,860 --> 00:53:11,850
+Quiz zero is coming up.
+
+1133
+00:53:11,850 --> 00:53:14,600
+More on that on the course's website
+over the next couple of days.
+
+1134
+00:53:14,600 --> 00:53:17,120
+Monday's lecture-- it's a holiday
+here at Harvard on Monday.
+
+1135
+00:53:17,120 --> 00:53:18,850
+It's not in New Haven,
+so we're taking the class
+
+1136
+00:53:18,850 --> 00:53:20,310
+to New Haven for lecture on Monday.
+
+1137
+00:53:20,310 --> 00:53:22,550
+Everything will be filmed
+and streamed live as usual,
+
+1138
+00:53:22,550 --> 00:53:24,900
+but let's end today
+with a 30 second clip
+
+1139
+00:53:24,900 --> 00:53:26,910
+called "Deep Thoughts"
+by Daven Farnham, which
+
+1140
+00:53:26,910 --> 00:53:30,850
+was inspired last year by Saturday
+Night Live's "Deep Thoughts"
+
+1141
+00:53:30,850 --> 00:53:35,700
+by Jack Handy, which
+should now make sense.
+
+1142
+00:53:35,700 --> 00:53:38,810
+>> FILM: And now, "Deep
+Thoughts" by Daven Farnham.
+
+1143
+00:53:38,810 --> 00:53:42,100
+
+1144
+00:53:42,100 --> 00:53:42,870
+Hash table.
+
+1145
+00:53:42,870 --> 00:53:45,940
+
+1146
+00:53:45,940 --> 00:53:47,660
+>> SPEAKER 1: All right, that's it for now.
+
+1147
+00:53:47,660 --> 00:53:48,805
+We'll see you next week.
+
+1148
+00:53:48,805 --> 00:53:55,380
+
+1149
+00:53:55,380 --> 00:53:56,680
+>> DOUG: To see it in action.
+
+1150
+00:53:56,680 --> 00:53:58,304
+So let's take a look at that right now.
+
+1151
+00:53:58,304 --> 00:53:59,890
+So here, we have an unsorted array.
+
+1152
+00:53:59,890 --> 00:54:04,860
+>> IAN: Doug, can you go ahead and restart
+this for just one second, please.
+
+1153
+00:54:04,860 --> 00:54:08,562
+All right, cameras are rolling, so
+action whenever you're ready, Doug, OK?
+
+1154
+00:54:08,562 --> 00:54:11,020
+DOUG: All right, so what we
+have here is an unsorted array.
+
+1155
+00:54:11,020 --> 00:54:13,960
+And I've colored all of the elements
+red to indicate that it is, in fact,
+
+1156
+00:54:13,960 --> 00:54:14,460
+unsorted.
+
+1157
+00:54:14,460 --> 00:54:17,960
+So recall that the first thing we do
+is we sort the left half of the array.
+
+1158
+00:54:17,960 --> 00:54:20,630
+Then we sort the right
+half of the array.
+
+1159
+00:54:20,630 --> 00:54:22,830
+And ya-da, ya-da, ya-da,
+we merge them together.
+
+1160
+00:54:22,830 --> 00:54:24,520
+And we have a completely sorted array.
+
+1161
+00:54:24,520 --> 00:54:25,360
+So that's how merge sort works.
+
+1162
+00:54:25,360 --> 00:54:27,109
+>> IAN: Whoa, whoa, whoa,
+cut, cut, cut, cut.
+
+1163
+00:54:27,109 --> 00:54:30,130
+Doug, you can't just ya-da, ya-da,
+ya-da, your way through merge sort.
+
+1164
+00:54:30,130 --> 00:54:31,970
+>> DOUG: I just did.
+
+1165
+00:54:31,970 --> 00:54:32,832
+It's fine.
+
+1166
+00:54:32,832 --> 00:54:33,540
+We're good to go.
+
+1167
+00:54:33,540 --> 00:54:34,760
+Let's just keep rolling.
+
+1168
+00:54:34,760 --> 00:54:35,380
+So anyway,
+
+1169
+00:54:35,380 --> 00:54:37,800
+>> IAN: You have to explain
+it more fully than that.
+
+1170
+00:54:37,800 --> 00:54:39,999
+That's just not enough.
+
+1171
+00:54:39,999 --> 00:54:41,790
+DOUG: Ian, we don't
+need to go back to one.
+
+1172
+00:54:41,790 --> 00:54:42,350
+It's fine.
+
+1173
+00:54:42,350 --> 00:54:45,690
+So anyway, if we continue with merge--
+Ian, we're in the middle of filming.
+
+1174
+00:54:45,690 --> 00:54:46,612
+>> IAN: I know.
+
+1175
+00:54:46,612 --> 00:54:49,320
+And we can't just ya-da, ya-da,
+ya-da, through the whole process.
+
+1176
+00:54:49,320 --> 00:54:52,200
+You have to explain how the
+two sides get merged together.
+
+1177
+00:54:52,200 --> 00:54:53,570
+>> DOUG: But we've already
+explained how the two sides--
+
+1178
+00:54:53,570 --> 00:54:55,321
+>> IAN: You've just shown
+them a merge array.
+
+1179
+00:54:55,321 --> 00:54:56,486
+DOUG: They know the process.
+
+1180
+00:54:56,486 --> 00:54:57,172
+They're fine.
+
+1181
+00:54:57,172 --> 00:54:58,380
+We've gone over it ten times.
+
+1182
+00:54:58,380 --> 00:55:00,330
+>> IAN: You just skipped right over it.
+
+1183
+00:55:00,330 --> 00:55:03,360
+We're going back to one, you
+can't you ya-da, ya-da over it.
+
+1184
+00:55:03,360 --> 00:55:05,480
+All right, back to one.
+
+1185
+00:55:05,480 --> 00:55:07,833
+>> DOUG: I have to go back
+through all of the slides?
+
+1186
+00:55:07,833 --> 00:55:08,332
+My God.
+
+1187
+00:55:08,332 --> 00:55:11,008
+
+1188
+00:55:11,008 --> 00:55:13,004
+It's like the sixth time, Ian.
+
+1189
+00:55:13,004 --> 00:55:13,940
+It's fine.
+
+1190
+00:55:13,940 --> 00:55:15,200
+>> IAN: All right.
+
+1191
+00:55:15,200 --> 00:55:16,590
+You ready?
+
+1192
+00:55:16,590 --> 00:55:17,400
+Great.
+
+1193
+00:55:17,400 --> 00:55:18,950
+Action.

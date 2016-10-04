@@ -1,0 +1,697 @@
+1
+00:00:00,000 --> 00:00:02,480
+>> [MUSIC PLAYING]
+
+2
+00:00:02,480 --> 00:00:06,460
+
+3
+00:00:06,460 --> 00:00:09,350
+>> DOUG LLOYD: All right, so let's
+talk about command-line arguments.
+
+4
+00:00:09,350 --> 00:00:11,800
+So, so far in the course pretty
+much all of your programs
+
+5
+00:00:11,800 --> 00:00:16,360
+have probably started
+like this-- int main void.
+
+6
+00:00:16,360 --> 00:00:18,310
+We've been collecting
+user input if we need it
+
+7
+00:00:18,310 --> 00:00:21,080
+in our programs, such as the
+Mario program, for example,
+
+8
+00:00:21,080 --> 00:00:22,990
+by in-program prompts.
+
+9
+00:00:22,990 --> 00:00:25,190
+We haven't needed to modify
+the declaration of main,
+
+10
+00:00:25,190 --> 00:00:30,684
+because instead inside of main we
+just say, you may call it to get int.
+
+11
+00:00:30,684 --> 00:00:32,350
+How large do you want the pyramid to be?
+
+12
+00:00:32,350 --> 00:00:34,455
+Or you may call it to get
+float-- how much change
+
+13
+00:00:34,455 --> 00:00:36,400
+should I output to the user?
+
+14
+00:00:36,400 --> 00:00:38,630
+>> There is another way though,
+and if we want our users
+
+15
+00:00:38,630 --> 00:00:40,580
+to be able to provide
+data to our program
+
+16
+00:00:40,580 --> 00:00:43,320
+at runtime instead of while
+the program is running,
+
+17
+00:00:43,320 --> 00:00:45,910
+a subtle distinction but
+sometimes a very useful one,
+
+18
+00:00:45,910 --> 00:00:48,120
+we need a new form of declaring main.
+
+19
+00:00:48,120 --> 00:00:53,320
+We can't use int main void if we want to
+collect other data at the command-line
+
+20
+00:00:53,320 --> 00:00:57,540
+when the user runs the program,
+hence command-line arguments.
+
+21
+00:00:57,540 --> 00:00:59,810
+>> To collect these command-line
+arguments from the user,
+
+22
+00:00:59,810 --> 00:01:03,140
+change your declaration of
+main to look like this-- int
+
+23
+00:01:03,140 --> 00:01:10,450
+main, open paren, int argc, comma,
+string argv, square brackets,
+
+24
+00:01:10,450 --> 00:01:12,670
+and then open curly brace.
+
+25
+00:01:12,670 --> 00:01:14,415
+So what does that mean already?
+
+26
+00:01:14,415 --> 00:01:19,410
+Well, we are passing in two parameters,
+or arguments, or inputs to main.
+
+27
+00:01:19,410 --> 00:01:23,800
+One, an integer called
+argc, and the other is what?
+
+28
+00:01:23,800 --> 00:01:26,430
+
+29
+00:01:26,430 --> 00:01:29,640
+It's an array of strings, right?
+
+30
+00:01:29,640 --> 00:01:31,140
+We see that square bracket notation.
+
+31
+00:01:31,140 --> 00:01:32,181
+It's an array of strings.
+
+32
+00:01:32,181 --> 00:01:35,110
+It's not an individual string,
+it's an array of strings.
+
+33
+00:01:35,110 --> 00:01:39,640
+And these two arguments, argc and argv,
+enable you to know what data the user
+
+34
+00:01:39,640 --> 00:01:42,912
+has provided at the command-line
+and how many things they
+
+35
+00:01:42,912 --> 00:01:44,120
+provided at the command-line.
+
+36
+00:01:44,120 --> 00:01:46,570
+Pretty useful things to work with.
+
+37
+00:01:46,570 --> 00:01:50,310
+>> Argc stands for argument count,
+and you should know, by the way,
+
+38
+00:01:50,310 --> 00:01:52,600
+that you could call argc
+whatever you want it.
+
+39
+00:01:52,600 --> 00:01:54,710
+You can call argv whatever you wanted.
+
+40
+00:01:54,710 --> 00:01:58,740
+These are just conventional names
+that we use for them-- argument count,
+
+41
+00:01:58,740 --> 00:02:00,907
+and as we'll see in a second,
+argument vector, argv.
+
+42
+00:02:00,907 --> 00:02:03,698
+But you don't have to call them
+argc and argv if you don't want to,
+
+43
+00:02:03,698 --> 00:02:05,570
+but conventionally, that's what we do.
+
+44
+00:02:05,570 --> 00:02:07,500
+>> So anyway, argc, the argument count.
+
+45
+00:02:07,500 --> 00:02:11,569
+It's an integer-type variable and so, as
+you might expect, if we have two things
+
+46
+00:02:11,569 --> 00:02:13,860
+that we're going to be finding
+out what these are typed
+
+47
+00:02:13,860 --> 00:02:16,070
+and how much stuff the
+user typed, argc is
+
+48
+00:02:16,070 --> 00:02:18,559
+going to tell us how much
+stuff the user typed.
+
+49
+00:02:18,559 --> 00:02:20,850
+So it gives you a number of
+command-line arguments user
+
+50
+00:02:20,850 --> 00:02:22,470
+typed when the program was executed.
+
+51
+00:02:22,470 --> 00:02:25,780
+So if your program is
+run dot slash greedy,
+
+52
+00:02:25,780 --> 00:02:28,670
+and inside of your greedy
+program your main function
+
+53
+00:02:28,670 --> 00:02:34,800
+has the declaration int main int argc,
+string argv square brackets, then
+
+54
+00:02:34,800 --> 00:02:37,950
+argc in that case is one.
+
+55
+00:02:37,950 --> 00:02:40,200
+Now notice we don't
+count how many things
+
+56
+00:02:40,200 --> 00:02:42,590
+the user typed after the program name.
+
+57
+00:02:42,590 --> 00:02:46,710
+The program name itself counts
+as a command-line argument.
+
+58
+00:02:46,710 --> 00:02:51,770
+>> So dot slash greedy, in
+that case, argc is one.
+
+59
+00:02:51,770 --> 00:02:57,910
+If the user typed slash greedy 1024 CS50
+at the command-line, argc in that case
+
+60
+00:02:57,910 --> 00:02:59,520
+would be three.
+
+61
+00:02:59,520 --> 00:03:03,720
+And we know this because the way
+that the division between the strings
+
+62
+00:03:03,720 --> 00:03:06,030
+is detected is whether
+there is a space, or a tab,
+
+63
+00:03:06,030 --> 00:03:08,230
+or something like that between them.
+
+64
+00:03:08,230 --> 00:03:13,860
+So any amount of white space, so-called,
+between the values typed command-line
+
+65
+00:03:13,860 --> 00:03:15,720
+indicates how many there are.
+
+66
+00:03:15,720 --> 00:03:24,040
+So dot slash greedy space 1024 space
+CS50, argc, in that case, is three.
+
+67
+00:03:24,040 --> 00:03:26,600
+>> Argv is the argument vector.
+
+68
+00:03:26,600 --> 00:03:29,240
+Vector, by the way, is just
+another word for an array,
+
+69
+00:03:29,240 --> 00:03:31,510
+and this is an array
+that stores strings.
+
+70
+00:03:31,510 --> 00:03:35,540
+One string per element, which is
+the strings that the user actually
+
+71
+00:03:35,540 --> 00:03:39,230
+typed at the command-line
+when the program was executed.
+
+72
+00:03:39,230 --> 00:03:40,990
+Now, as is the case
+with any array, if you
+
+73
+00:03:40,990 --> 00:03:44,380
+recall from our discussion of
+arrays, the first element of argv
+
+74
+00:03:44,380 --> 00:03:49,150
+is always going to be found
+at argv square bracket zero.
+
+75
+00:03:49,150 --> 00:03:51,800
+That's the first index
+of the argv array.
+
+76
+00:03:51,800 --> 00:03:55,720
+So that will-- and in fact, that will
+always be the name of the program,
+
+77
+00:03:55,720 --> 00:03:59,730
+will always be located at
+argv square bracket zero.
+
+78
+00:03:59,730 --> 00:04:08,590
+>> The last element of argv is always found
+at argv square brackets argc minus one.
+
+79
+00:04:08,590 --> 00:04:10,300
+Do you see why?
+
+80
+00:04:10,300 --> 00:04:14,180
+Remember how many elements
+exist in this array.
+
+81
+00:04:14,180 --> 00:04:16,660
+Well, we know that-- it's
+argc number of elements.
+
+82
+00:04:16,660 --> 00:04:21,279
+If the user typed three things at
+the command-line, argc is three.
+
+83
+00:04:21,279 --> 00:04:27,070
+But because in c, when we're working
+with arrays, each element of the array,
+
+84
+00:04:27,070 --> 00:04:30,190
+or rather the indices of
+the array, start at zero.
+
+85
+00:04:30,190 --> 00:04:34,000
+If we have three elements in our
+array, we have an element at argv zero,
+
+86
+00:04:34,000 --> 00:04:37,930
+an element at argv one,
+and an element at argv two.
+
+87
+00:04:37,930 --> 00:04:41,700
+There is no element at argv
+three, and an array of size three.
+
+88
+00:04:41,700 --> 00:04:43,990
+So that's why the last
+element of argv can always
+
+89
+00:04:43,990 --> 00:04:49,510
+be found at argv square
+brackets argc minus one.
+
+90
+00:04:49,510 --> 00:04:52,420
+>> So let's assume the user executes
+the greedy program as follows--
+
+91
+00:04:52,420 --> 00:04:57,970
+if they type in the command-line dot
+slash greedy space 1024 space CS50,
+
+92
+00:04:57,970 --> 00:05:00,720
+and for whatever reason we've
+already prepared our greedy program
+
+93
+00:05:00,720 --> 00:05:04,050
+to know and work with these
+command-line arguments.
+
+94
+00:05:04,050 --> 00:05:07,030
+We didn't previously when we worked
+on it for the greedy problem,
+
+95
+00:05:07,030 --> 00:05:09,660
+but let's say we've now modified
+it so that we do process
+
+96
+00:05:09,660 --> 00:05:11,480
+the command-line arguments in some way.
+
+97
+00:05:11,480 --> 00:05:15,720
+In this case, argv zero
+is dot slash greedy.
+
+98
+00:05:15,720 --> 00:05:17,042
+What's argv one?
+
+99
+00:05:17,042 --> 00:05:19,030
+Well, it's 1024, right?
+
+100
+00:05:19,030 --> 00:05:22,620
+It is 1024, but here's a
+really important distinction--
+
+101
+00:05:22,620 --> 00:05:26,410
+do you remember the data type of argv?
+
+102
+00:05:26,410 --> 00:05:31,020
+>> It stores strings, right?
+
+103
+00:05:31,020 --> 00:05:34,140
+But it looks like 1024
+is an integer value.
+
+104
+00:05:34,140 --> 00:05:36,530
+This is a really important
+distinction, and is actually
+
+105
+00:05:36,530 --> 00:05:40,200
+going to become something that you
+might encounter in later problems.
+
+106
+00:05:40,200 --> 00:05:43,770
+Everything in argv is
+stored as a string.
+
+107
+00:05:43,770 --> 00:05:48,775
+So argv one's contents are the
+string one, zero, two, four,
+
+108
+00:05:48,775 --> 00:05:50,275
+consisting of those four characters.
+
+109
+00:05:50,275 --> 00:05:53,870
+It's as if the user typed
+one, zero, two, four
+
+110
+00:05:53,870 --> 00:05:56,680
+as individual letters or characters.
+
+111
+00:05:56,680 --> 00:06:00,730
+It is not the integer 1024,
+and so you can't directly
+
+112
+00:06:00,730 --> 00:06:11,580
+work with it by saying int 1,000, or
+rather int x equals argv one minus 24.
+
+113
+00:06:11,580 --> 00:06:15,550
+>> Intuitively, you might think of that
+as, OK, well it's 1,024 minus 24,
+
+114
+00:06:15,550 --> 00:06:17,920
+so x is equal to 1,000.
+
+115
+00:06:17,920 --> 00:06:22,020
+But in fact, that's not the case,
+because argv one is a string.
+
+116
+00:06:22,020 --> 00:06:23,940
+The string 1024.
+
+117
+00:06:23,940 --> 00:06:28,739
+Now there is a function that can be
+used to convert strings to integers.
+
+118
+00:06:28,739 --> 00:06:30,780
+I won't spoil it for you
+now, but I'm sure Zamyla
+
+119
+00:06:30,780 --> 00:06:34,380
+will be happy to tell you about it in
+the walkthrough for a future problem.
+
+120
+00:06:34,380 --> 00:06:36,390
+But you can also find
+problems like-- excuse
+
+121
+00:06:36,390 --> 00:06:39,921
+me, functions that would
+do this in reference 50,
+
+122
+00:06:39,921 --> 00:06:42,462
+if you go to the reference guide
+you can find a function that
+
+123
+00:06:42,462 --> 00:06:43,820
+will make this conversion for you.
+
+124
+00:06:43,820 --> 00:06:45,980
+But again, in the walkthrough
+for a future problem,
+
+125
+00:06:45,980 --> 00:06:48,290
+Zamyla will be happy to
+tell you what function
+
+126
+00:06:48,290 --> 00:06:53,280
+it is that will convert the
+string 1024 to the integer 1024.
+
+127
+00:06:53,280 --> 00:06:54,560
+>> All right, so moving on.
+
+128
+00:06:54,560 --> 00:06:56,726
+We've covered our argv zero,
+we've covered argv one.
+
+129
+00:06:56,726 --> 00:06:58,000
+What's in argv two?
+
+130
+00:06:58,000 --> 00:06:58,620
+CS50.
+
+131
+00:06:58,620 --> 00:07:01,350
+That one's probably
+pretty self-explanatory.
+
+132
+00:07:01,350 --> 00:07:02,950
+What's in argv three?
+
+133
+00:07:02,950 --> 00:07:04,970
+Well again, we don't really know, right?
+
+134
+00:07:04,970 --> 00:07:08,060
+We have an array of size three,
+that's how many elements the user
+
+135
+00:07:08,060 --> 00:07:11,610
+typed at the command-line,
+so if we go to argv three,
+
+136
+00:07:11,610 --> 00:07:14,660
+we're now overstepping
+the bounds of our array.
+
+137
+00:07:14,660 --> 00:07:18,570
+The compiler will let us do this,
+there's no intuitive problem with it,
+
+138
+00:07:18,570 --> 00:07:22,890
+but in terms of actually what's going
+to happen, we don't really know.
+
+139
+00:07:22,890 --> 00:07:25,380
+It depends on what is
+located at the memory where
+
+140
+00:07:25,380 --> 00:07:28,060
+argv three would be expected to be.
+
+141
+00:07:28,060 --> 00:07:30,716
+And so we could end up
+getting away scot free.
+
+142
+00:07:30,716 --> 00:07:33,840
+More likely than not, particularly when
+you're working with argv as opposed
+
+143
+00:07:33,840 --> 00:07:35,548
+to any other array
+that's in our program,
+
+144
+00:07:35,548 --> 00:07:38,660
+we're probably going to suffer
+a segmentation fault. So again,
+
+145
+00:07:38,660 --> 00:07:42,756
+be sure not to overstep the bounds
+of your arrays, particularly argv,
+
+146
+00:07:42,756 --> 00:07:47,170
+given its high degree of
+importance in your programs.
+
+147
+00:07:47,170 --> 00:07:48,100
+>> I'm Doug Lloyd.
+
+148
+00:07:48,100 --> 00:07:50,170
+This is CS50.
+
+149
+00:07:50,170 --> 00:07:51,457

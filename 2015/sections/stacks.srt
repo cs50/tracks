@@ -1,0 +1,1426 @@
+1
+00:00:00,000 --> 00:00:04,074
+
+2
+00:00:04,074 --> 00:00:05,990
+DOUG LLOYD: All right,
+so by this point you're
+
+3
+00:00:05,990 --> 00:00:09,020
+probably pretty familiar
+with arrays and linked lists
+
+4
+00:00:09,020 --> 00:00:10,950
+which is the two primary
+data structures we've
+
+5
+00:00:10,950 --> 00:00:16,810
+talked about for keeping sets of
+data of similar data types organized.
+
+6
+00:00:16,810 --> 00:00:19,080
+>> Now we're going to talk
+about a couple of variations
+
+7
+00:00:19,080 --> 00:00:20,330
+on arrays and linked lists.
+
+8
+00:00:20,330 --> 00:00:22,362
+In this video we're going
+to talk about stacks.
+
+9
+00:00:22,362 --> 00:00:25,320
+Specifically we're going to talk
+about a data structure called a stack.
+
+10
+00:00:25,320 --> 00:00:28,510
+Recall from previous discussions
+about pointers and memory,
+
+11
+00:00:28,510 --> 00:00:32,060
+that the stack is also the
+name for a segment of memory
+
+12
+00:00:32,060 --> 00:00:34,980
+where statically declared
+memory-- memory that you
+
+13
+00:00:34,980 --> 00:00:38,730
+name, variables that you name, et
+cetera and function frames which we also
+
+14
+00:00:38,730 --> 00:00:41,000
+call stack frames exist.
+
+15
+00:00:41,000 --> 00:00:45,421
+So this is a stack data structure
+not a stack segment of memory.
+
+16
+00:00:45,421 --> 00:00:45,920
+OK.
+
+17
+00:00:45,920 --> 00:00:46,890
+>> But what is a stack?
+
+18
+00:00:46,890 --> 00:00:49,220
+So it's pretty much just a
+special kind of structure
+
+19
+00:00:49,220 --> 00:00:51,190
+that maintains data in an organized way.
+
+20
+00:00:51,190 --> 00:00:53,760
+And there's two very
+common ways to implement
+
+21
+00:00:53,760 --> 00:00:57,380
+stacks using two data structures
+that we're already familiar with,
+
+22
+00:00:57,380 --> 00:01:00,340
+arrays and linked lists.
+
+23
+00:01:00,340 --> 00:01:04,430
+What makes a stack special is the
+way in which we put information
+
+24
+00:01:04,430 --> 00:01:08,200
+into the stack, and the way we
+remove information from the stack.
+
+25
+00:01:08,200 --> 00:01:11,600
+In particular with stacks
+the rule is only the most
+
+26
+00:01:11,600 --> 00:01:15,830
+recently added element can be removed.
+
+27
+00:01:15,830 --> 00:01:17,660
+>> So think about it as if it's a stack.
+
+28
+00:01:17,660 --> 00:01:21,170
+We're piling information
+on top of itself,
+
+29
+00:01:21,170 --> 00:01:24,271
+and only the thing at the top
+of the pile can be removed.
+
+30
+00:01:24,271 --> 00:01:27,020
+We can't remove the thing underneath
+because everything else would
+
+31
+00:01:27,020 --> 00:01:28,020
+collapse and fall over.
+
+32
+00:01:28,020 --> 00:01:32,580
+So we really are building a stack that
+we then have to remove piece by piece.
+
+33
+00:01:32,580 --> 00:01:36,590
+Because of this we commonly refer
+to a stack as a LIFO structure,
+
+34
+00:01:36,590 --> 00:01:38,940
+last in, first out.
+
+35
+00:01:38,940 --> 00:01:42,290
+LIFO, last in, first out.
+
+36
+00:01:42,290 --> 00:01:45,635
+>> So because of this restriction on
+how information can be added to
+
+37
+00:01:45,635 --> 00:01:49,080
+and removed from a stack, there's really
+only two things we can do with a stack.
+
+38
+00:01:49,080 --> 00:01:52,010
+We can push, which is the
+term we use for adding
+
+39
+00:01:52,010 --> 00:01:55,130
+a new element to the top of the
+stack, or if the stack doesn't exist
+
+40
+00:01:55,130 --> 00:01:58,550
+and we're creating it from scratch,
+creating the stack in the first place
+
+41
+00:01:58,550 --> 00:02:00,110
+would be pushing.
+
+42
+00:02:00,110 --> 00:02:04,990
+And then pop, that's the sort of CS
+term we use to remove the most recently
+
+43
+00:02:04,990 --> 00:02:08,330
+added element from the top of the stack.
+
+44
+00:02:08,330 --> 00:02:11,130
+>> So we're going to look at both
+implementations, both array based
+
+45
+00:02:11,130 --> 00:02:13,120
+and linked list based.
+
+46
+00:02:13,120 --> 00:02:14,870
+And we're going to
+start with array based.
+
+47
+00:02:14,870 --> 00:02:19,990
+So here's the basic idea of what
+the array based stack data structure
+
+48
+00:02:19,990 --> 00:02:21,140
+would look like.
+
+49
+00:02:21,140 --> 00:02:23,740
+We have a typed definition here.
+
+50
+00:02:23,740 --> 00:02:27,790
+Inside of that we have two members
+or fields of the structure.
+
+51
+00:02:27,790 --> 00:02:29,880
+We have an array.
+
+52
+00:02:29,880 --> 00:02:32,400
+And again I'm using the
+arbitrary data type value.
+
+53
+00:02:32,400 --> 00:02:35,180
+>> So this could be any data type,
+int char or some other data
+
+54
+00:02:35,180 --> 00:02:37,080
+type you previously created.
+
+55
+00:02:37,080 --> 00:02:39,861
+So we have an array of size capacity.
+
+56
+00:02:39,861 --> 00:02:44,010
+Capacity being a pound defined constant,
+perhaps somewhere else in our file.
+
+57
+00:02:44,010 --> 00:02:47,550
+So notice already with this particular
+implementation we are bounding
+
+58
+00:02:47,550 --> 00:02:49,800
+ourselves as was typically
+the case with arrays,
+
+59
+00:02:49,800 --> 00:02:53,170
+which we cannot dynamically resize,
+where there's a certain number
+
+60
+00:02:53,170 --> 00:02:55,450
+of elements maximum that
+we can put in our stack.
+
+61
+00:02:55,450 --> 00:02:57,930
+In this case it's capacity elements.
+
+62
+00:02:57,930 --> 00:03:00,310
+>> We also keep track of
+the top of the stack.
+
+63
+00:03:00,310 --> 00:03:04,350
+What element is the most
+recently added to the stack?
+
+64
+00:03:04,350 --> 00:03:07,470
+And so we keep track of that
+in a variable called top.
+
+65
+00:03:07,470 --> 00:03:11,692
+And all of this gets wrapped up together
+into a new data type called a stack.
+
+66
+00:03:11,692 --> 00:03:13,400
+And once we're created
+this new data type
+
+67
+00:03:13,400 --> 00:03:15,410
+we can treat it like
+any other data type.
+
+68
+00:03:15,410 --> 00:03:20,970
+We can declare stack s, just like
+we could do int x, or char y.
+
+69
+00:03:20,970 --> 00:03:22,990
+And when we say stack
+s, well what happens
+
+70
+00:03:22,990 --> 00:03:26,420
+is we get a set of
+memory set aside for us.
+
+71
+00:03:26,420 --> 00:03:28,770
+>> In this case capacity
+I've apparently decided
+
+72
+00:03:28,770 --> 00:03:33,470
+is 10 because I've got a
+single variable of type stack
+
+73
+00:03:33,470 --> 00:03:35,320
+which contains two fields recall.
+
+74
+00:03:35,320 --> 00:03:38,330
+An array, in this case is going
+to be an array of integers
+
+75
+00:03:38,330 --> 00:03:40,440
+as is the case in most of my examples.
+
+76
+00:03:40,440 --> 00:03:43,996
+And another integer variable
+capable of storing the top,
+
+77
+00:03:43,996 --> 00:03:45,870
+the most recently added
+element to the stack.
+
+78
+00:03:45,870 --> 00:03:50,290
+So one single stack of what we
+just defined looks like this.
+
+79
+00:03:50,290 --> 00:03:53,190
+It's a box containing
+an array of 10 what
+
+80
+00:03:53,190 --> 00:03:57,280
+will be integers in this case and
+another integer variable there in green
+
+81
+00:03:57,280 --> 00:04:00,010
+to indicate the top of the stack.
+
+82
+00:04:00,010 --> 00:04:02,600
+>> To set the top of the
+stack we just say s.top.
+
+83
+00:04:02,600 --> 00:04:04,890
+That's how we access a
+field of a structure recall.
+
+84
+00:04:04,890 --> 00:04:10,460
+s.top equals 0 effectively
+does this to our stack.
+
+85
+00:04:10,460 --> 00:04:12,960
+So again we have two operations
+that we can perform now.
+
+86
+00:04:12,960 --> 00:04:14,270
+We can push and we can pop.
+
+87
+00:04:14,270 --> 00:04:15,635
+Let's start with push.
+
+88
+00:04:15,635 --> 00:04:18,260
+Again, pushing is adding a new
+element to the top of the stack.
+
+89
+00:04:18,260 --> 00:04:21,460
+>> So what do we need to do in
+this array based implementation?
+
+90
+00:04:21,460 --> 00:04:23,210
+Well in general the
+push function is going
+
+91
+00:04:23,210 --> 00:04:26,160
+to need to accept a
+pointer to the stack.
+
+92
+00:04:26,160 --> 00:04:28,610
+Now take a second and think about it.
+
+93
+00:04:28,610 --> 00:04:32,840
+Why would we want to accept
+a pointer to the stack?
+
+94
+00:04:32,840 --> 00:04:36,830
+Recall from previous videos on
+variable scope and pointers,
+
+95
+00:04:36,830 --> 00:04:42,350
+what would happen if we just sent
+stack, s rather in as a parameter?
+
+96
+00:04:42,350 --> 00:04:45,770
+What would actually be passed in there?
+
+97
+00:04:45,770 --> 00:04:49,430
+Remember we're creating a copy
+when we pass it to a function
+
+98
+00:04:49,430 --> 00:04:51,160
+unless we use pointers.
+
+99
+00:04:51,160 --> 00:04:55,380
+And so this function push needs
+to accept a pointer to the stack
+
+100
+00:04:55,380 --> 00:04:59,160
+so that we're actually changing
+the stack we intend to change.
+
+101
+00:04:59,160 --> 00:05:03,060
+>> The other thing push probably wants to
+accept is a data element of type value.
+
+102
+00:05:03,060 --> 00:05:06,970
+In this case, again, an integer that
+we're going to add to the top of stack.
+
+103
+00:05:06,970 --> 00:05:08,680
+So we've got our two parameters.
+
+104
+00:05:08,680 --> 00:05:11,310
+What are we going to
+now do inside of push?
+
+105
+00:05:11,310 --> 00:05:14,860
+Well, simply, we're just going to add
+that element to the top of the stack
+
+106
+00:05:14,860 --> 00:05:22,860
+and then change where the top of
+the stack is, that s dot top value.
+
+107
+00:05:22,860 --> 00:05:25,639
+So this is what a function
+declaration for push
+
+108
+00:05:25,639 --> 00:05:27,680
+might look like in an
+array-based implementation.
+
+109
+00:05:27,680 --> 00:05:30,967
+>> Again this isn't a hard and fast rule
+that you could change this and have
+
+110
+00:05:30,967 --> 00:05:32,050
+it vary in different ways.
+
+111
+00:05:32,050 --> 00:05:33,840
+Perhaps s is declared globally.
+
+112
+00:05:33,840 --> 00:05:36,180
+And so you don't even need
+to pass it is as a parameter.
+
+113
+00:05:36,180 --> 00:05:39,125
+This is again just a
+general case for push.
+
+114
+00:05:39,125 --> 00:05:41,000
+And there are different
+ways to implement it.
+
+115
+00:05:41,000 --> 00:05:42,810
+But in this case our
+push is going to take
+
+116
+00:05:42,810 --> 00:05:48,540
+two arguments, a pointer to a stack and
+a data element of type value, integer
+
+117
+00:05:48,540 --> 00:05:49,840
+in this case.
+
+118
+00:05:49,840 --> 00:05:52,100
+>> So we declared s, we
+said s.top equals 0.
+
+119
+00:05:52,100 --> 00:05:55,969
+Now let's push the
+number 28 onto the stack.
+
+120
+00:05:55,969 --> 00:05:57,010
+Well what does that mean?
+
+121
+00:05:57,010 --> 00:05:59,600
+Well currently the
+top of the stack is 0.
+
+122
+00:05:59,600 --> 00:06:01,350
+And so what's basically
+going to happen is
+
+123
+00:06:01,350 --> 00:06:05,820
+we're going to stick the number
+28 into array location 0.
+
+124
+00:06:05,820 --> 00:06:09,540
+Pretty straightforward, right, that
+was the top and now we're good to go.
+
+125
+00:06:09,540 --> 00:06:12,910
+And then we need to change what
+the top of the stack will be.
+
+126
+00:06:12,910 --> 00:06:15,130
+So that the next time
+we push an element in,
+
+127
+00:06:15,130 --> 00:06:18,017
+we're going to store it in
+array location, probably not 0.
+
+128
+00:06:18,017 --> 00:06:20,100
+We don't want to overwrite
+what we just put there.
+
+129
+00:06:20,100 --> 00:06:23,510
+And so we'll just move the top to 1.
+
+130
+00:06:23,510 --> 00:06:24,890
+That probably makes sense.
+
+131
+00:06:24,890 --> 00:06:28,940
+>> Now if we want to put another element
+onto the stack, say we want to push 33,
+
+132
+00:06:28,940 --> 00:06:33,190
+well now we're just going to take 33
+and put it at array location number
+
+133
+00:06:33,190 --> 00:06:37,580
+1, and then change the top of our
+stack to be array location number two.
+
+134
+00:06:37,580 --> 00:06:40,650
+So if the next time we want to
+push an element onto the stack,
+
+135
+00:06:40,650 --> 00:06:43,087
+it'll be put in array location 2.
+
+136
+00:06:43,087 --> 00:06:44,420
+And let's do that one more time.
+
+137
+00:06:44,420 --> 00:06:45,753
+We'll push 19 off of the stacks.
+
+138
+00:06:45,753 --> 00:06:48,940
+We'll put 19 in array location 2
+and change the top of our stack
+
+139
+00:06:48,940 --> 00:06:51,220
+to be array location 3
+so if the next time we
+
+140
+00:06:51,220 --> 00:06:54,780
+need to make a push we're good to go.
+
+141
+00:06:54,780 --> 00:06:56,980
+>> OK, so that's pushing in a nutshell.
+
+142
+00:06:56,980 --> 00:06:57,830
+What about popping?
+
+143
+00:06:57,830 --> 00:07:00,240
+So popping is the sort of
+counterpart to pushing.
+
+144
+00:07:00,240 --> 00:07:02,720
+It's how we remove data from the stack.
+
+145
+00:07:02,720 --> 00:07:04,610
+And in general pop needs
+to do the following.
+
+146
+00:07:04,610 --> 00:07:07,600
+It needs to accept a pointer to the
+stack, again in the general case.
+
+147
+00:07:07,600 --> 00:07:10,480
+In some other case you might
+have declared the stack globally,
+
+148
+00:07:10,480 --> 00:07:13,910
+in which case you don't need to pass it
+in because it already has access to it
+
+149
+00:07:13,910 --> 00:07:15,541
+as a global variable.
+
+150
+00:07:15,541 --> 00:07:17,040
+But then what else do we need to do?
+
+151
+00:07:17,040 --> 00:07:21,000
+Well we were incrementing
+the top of the stack in push,
+
+152
+00:07:21,000 --> 00:07:24,050
+so we're probably going to want
+to decrement the top of the stack
+
+153
+00:07:24,050 --> 00:07:25,009
+in pop, right?
+
+154
+00:07:25,009 --> 00:07:26,800
+And then of course
+we're also going to want
+
+155
+00:07:26,800 --> 00:07:29,240
+to return the value that we remove.
+
+156
+00:07:29,240 --> 00:07:32,125
+If we're adding elements, we want
+to get elements out later on,
+
+157
+00:07:32,125 --> 00:07:34,000
+we probably actually
+want to store them so we
+
+158
+00:07:34,000 --> 00:07:36,490
+don't just delete them from the
+stack and then do nothing with them.
+
+159
+00:07:36,490 --> 00:07:38,500
+Generally if we're
+pushing and popping here
+
+160
+00:07:38,500 --> 00:07:41,250
+we want to store this
+information in a meaningful way
+
+161
+00:07:41,250 --> 00:07:43,250
+and so it doesn't make
+sense to just discard it.
+
+162
+00:07:43,250 --> 00:07:46,380
+So this function should
+probably return a value to us.
+
+163
+00:07:46,380 --> 00:07:51,040
+>> So this is what a declaration for pop
+might look like there at the top left.
+
+164
+00:07:51,040 --> 00:07:53,870
+This function returns
+data of type value.
+
+165
+00:07:53,870 --> 00:07:56,320
+Again we've been using
+integers throughout.
+
+166
+00:07:56,320 --> 00:08:01,916
+And it accepts a pointer to a stack as
+its sole argument or sole parameter.
+
+167
+00:08:01,916 --> 00:08:03,040
+So what is pop going to do?
+
+168
+00:08:03,040 --> 00:08:07,990
+Let's say we want to now
+pop an element off of s.
+
+169
+00:08:07,990 --> 00:08:14,000
+So remember I said that stacks are last
+in, first out, LIFO data structures.
+
+170
+00:08:14,000 --> 00:08:17,855
+Which element is going to
+be removed from the stack?
+
+171
+00:08:17,855 --> 00:08:21,780
+
+172
+00:08:21,780 --> 00:08:24,150
+Did you guess 19?
+
+173
+00:08:24,150 --> 00:08:25,290
+Because you'd be right.
+
+174
+00:08:25,290 --> 00:08:28,836
+19 was the last element we added to the
+stack when we were pushing elements on,
+
+175
+00:08:28,836 --> 00:08:31,210
+and so it's going to the first
+element that gets removed.
+
+176
+00:08:31,210 --> 00:08:34,780
+It's as if we said 28, and
+then we put 33 on top of it,
+
+177
+00:08:34,780 --> 00:08:36,659
+and we put 19 on top of that.
+
+178
+00:08:36,659 --> 00:08:40,650
+The only element we can take off is 19.
+
+179
+00:08:40,650 --> 00:08:45,019
+>> Now in the diagram here what I've done
+is sort of deleted 19 from the array.
+
+180
+00:08:45,019 --> 00:08:46,810
+That's not actually
+what we're going to do.
+
+181
+00:08:46,810 --> 00:08:48,934
+We're just going to kind
+of pretend it isn't there.
+
+182
+00:08:48,934 --> 00:08:51,441
+It's still there in
+that memory location,
+
+183
+00:08:51,441 --> 00:08:54,190
+but we're just going to ignore it
+by changing the top of our stack
+
+184
+00:08:54,190 --> 00:08:56,080
+from being 3 to 2.
+
+185
+00:08:56,080 --> 00:08:58,720
+So if we were to now push
+another element onto the stack,
+
+186
+00:08:58,720 --> 00:09:00,720
+it would over write 19.
+
+187
+00:09:00,720 --> 00:09:03,990
+>> But let's not go through the trouble
+of deleting 19 from the stack.
+
+188
+00:09:03,990 --> 00:09:05,830
+We can just pretend it isn't there.
+
+189
+00:09:05,830 --> 00:09:11,107
+For purposes of the stack it's gone if
+we change the top to be 2 instead of 3.
+
+190
+00:09:11,107 --> 00:09:12,690
+All right, so that was pretty much it.
+
+191
+00:09:12,690 --> 00:09:15,080
+That's all we need to do
+to pop an element off.
+
+192
+00:09:15,080 --> 00:09:16,090
+Let's do it again.
+
+193
+00:09:16,090 --> 00:09:18,610
+So I've highlighted it in red here to
+indicate we're making another call.
+
+194
+00:09:18,610 --> 00:09:19,720
+We're going to do the same thing.
+
+195
+00:09:19,720 --> 00:09:20,803
+>> So what's going to happen?
+
+196
+00:09:20,803 --> 00:09:23,670
+Well, we're going to store
+33 in x and we're going
+
+197
+00:09:23,670 --> 00:09:26,217
+to change the top of the stack to 1.
+
+198
+00:09:26,217 --> 00:09:29,050
+So that if we were now to push an
+element into the stack which we're
+
+199
+00:09:29,050 --> 00:09:31,610
+going to do right now,
+what's going to happen
+
+200
+00:09:31,610 --> 00:09:36,367
+is we're going overwrite
+array location number 1.
+
+201
+00:09:36,367 --> 00:09:38,950
+So that 33 that was sort of left
+behind that we just pretended
+
+202
+00:09:38,950 --> 00:09:44,390
+isn't there anymore, we're just going
+to clobber it and put 40 there instead.
+
+203
+00:09:44,390 --> 00:09:46,290
+And then of course,
+since we made a push,
+
+204
+00:09:46,290 --> 00:09:48,780
+we're going to increment the
+top of the stack from 1 to 2
+
+205
+00:09:48,780 --> 00:09:50,950
+so that if we now add
+another element it'll
+
+206
+00:09:50,950 --> 00:09:54,700
+go into array location number two.
+
+207
+00:09:54,700 --> 00:09:57,590
+>> Now linked lists are another
+way to implement stacks.
+
+208
+00:09:57,590 --> 00:10:01,210
+And if this definition on the
+screen here looks familiar to you,
+
+209
+00:10:01,210 --> 00:10:04,260
+it's because it looks almost
+exactly the same, in fact,
+
+210
+00:10:04,260 --> 00:10:07,790
+it pretty much is exactly the
+same as a singly linked list,
+
+211
+00:10:07,790 --> 00:10:11,990
+if you recall from our discussion of
+singly linked lists in another video.
+
+212
+00:10:11,990 --> 00:10:15,510
+The only restriction here
+is for us as programmers,
+
+213
+00:10:15,510 --> 00:10:17,900
+we're not allowed to
+insert or delete randomly
+
+214
+00:10:17,900 --> 00:10:20,620
+from the singly linked list
+which we could previously do.
+
+215
+00:10:20,620 --> 00:10:25,820
+We can only now insert and delete from
+the front or the top of the linked
+
+216
+00:10:25,820 --> 00:10:26,320
+list.
+
+217
+00:10:26,320 --> 00:10:28,028
+That's really the only
+difference though.
+
+218
+00:10:28,028 --> 00:10:29,700
+This is otherwise a singly linked list.
+
+219
+00:10:29,700 --> 00:10:32,060
+It's only the restriction
+replacing on ourselves
+
+220
+00:10:32,060 --> 00:10:35,770
+as programmers that
+changes it into a stack.
+
+221
+00:10:35,770 --> 00:10:39,280
+>> The rule here is to always maintain a
+pointer to the head of a linked list.
+
+222
+00:10:39,280 --> 00:10:41,520
+This is of course a generally
+important rule first.
+
+223
+00:10:41,520 --> 00:10:44,260
+For singly linked list anyway you
+only need a pointer to the head
+
+224
+00:10:44,260 --> 00:10:46,160
+in order to have that
+chain be able to refer
+
+225
+00:10:46,160 --> 00:10:48,596
+to every other element
+in the linked list.
+
+226
+00:10:48,596 --> 00:10:50,470
+But it's particularly
+important with a stack.
+
+227
+00:10:50,470 --> 00:10:52,386
+And so generally you're
+going to actually want
+
+228
+00:10:52,386 --> 00:10:54,090
+this pointer to be a global variable.
+
+229
+00:10:54,090 --> 00:10:56,574
+It's probably going to
+be even easier that way.
+
+230
+00:10:56,574 --> 00:10:58,240
+So what are the analogs of push and pop?
+
+231
+00:10:58,240 --> 00:10:58,740
+Right.
+
+232
+00:10:58,740 --> 00:11:01,812
+So pushing again is adding
+a new element to the stack.
+
+233
+00:11:01,812 --> 00:11:03,770
+In a linked list that
+means we're going to have
+
+234
+00:11:03,770 --> 00:11:07,770
+to create a new node that we're
+going to add into the linked list,
+
+235
+00:11:07,770 --> 00:11:10,500
+and then follow the careful steps
+that we've outlined previously
+
+236
+00:11:10,500 --> 00:11:16,050
+in singly linked lists to add it to
+the chain without breaking the chain
+
+237
+00:11:16,050 --> 00:11:18,900
+and losing or orphaning any
+elements of the linked list.
+
+238
+00:11:18,900 --> 00:11:21,820
+And that's basically what that
+little blob of text there summarizes.
+
+239
+00:11:21,820 --> 00:11:23,740
+And let's take a look
+at it as a diagram.
+
+240
+00:11:23,740 --> 00:11:24,823
+>> So here's our linked list.
+
+241
+00:11:24,823 --> 00:11:26,620
+It concurrently contains four elements.
+
+242
+00:11:26,620 --> 00:11:30,420
+And more perfectly here's our
+stack containing four elements.
+
+243
+00:11:30,420 --> 00:11:36,030
+And let's say we now want to
+push a new item onto this stack.
+
+244
+00:11:36,030 --> 00:11:39,792
+And we want to push a new
+item whose data value is 12.
+
+245
+00:11:39,792 --> 00:11:41,000
+Well what are we going to do?
+
+246
+00:11:41,000 --> 00:11:43,420
+Well first we're going to
+malloc space, dynamically
+
+247
+00:11:43,420 --> 00:11:45,411
+allocate space for a new node.
+
+248
+00:11:45,411 --> 00:11:48,160
+And of course immediately after
+we make a call to malloc we always
+
+249
+00:11:48,160 --> 00:11:52,989
+make sure to check for null,
+because if we got null back
+
+250
+00:11:52,989 --> 00:11:54,280
+there was some sort of problem.
+
+251
+00:11:54,280 --> 00:11:57,570
+We don't want to dereference that null
+pointer or you will suffer a seg fault.
+
+252
+00:11:57,570 --> 00:11:58,510
+That's not good.
+
+253
+00:11:58,510 --> 00:11:59,760
+So we've malloced of the node.
+
+254
+00:11:59,760 --> 00:12:01,260
+We'll assume we've had success here.
+
+255
+00:12:01,260 --> 00:12:06,090
+We're going to put 12 into
+the data field of that node.
+
+256
+00:12:06,090 --> 00:12:11,570
+Now do you recall which of our pointers
+moves next so we don't break the chain?
+
+257
+00:12:11,570 --> 00:12:15,100
+We have a couple of options here but
+the only one that's going to be safe
+
+258
+00:12:15,100 --> 00:12:19,330
+is to set news next pointer to
+point to the old head of the list
+
+259
+00:12:19,330 --> 00:12:21,360
+or what will soon be the
+old head of the list.
+
+260
+00:12:21,360 --> 00:12:23,610
+And now that all of our
+elements are chained together,
+
+261
+00:12:23,610 --> 00:12:27,370
+we can just move list to point
+to the same place that new does.
+
+262
+00:12:27,370 --> 00:12:33,550
+And we have now effectively pushed a
+new element onto the front of the stack.
+
+263
+00:12:33,550 --> 00:12:36,420
+>> To pop we just want to
+delete that first element.
+
+264
+00:12:36,420 --> 00:12:38,150
+And so basically what
+we have to do here,
+
+265
+00:12:38,150 --> 00:12:40,050
+well we have to find the second element.
+
+266
+00:12:40,050 --> 00:12:43,540
+Eventually that will become the new
+head after we delete the first one.
+
+267
+00:12:43,540 --> 00:12:47,300
+So we just need to start from
+the beginning, move one forward.
+
+268
+00:12:47,300 --> 00:12:50,340
+Once we've got a hold on one
+forward of where we currently
+
+269
+00:12:50,340 --> 00:12:53,850
+are we can delete the first one safely
+and then we can just move the head
+
+270
+00:12:53,850 --> 00:12:57,150
+to point to what was the
+second term and then now
+
+271
+00:12:57,150 --> 00:12:59,170
+is the first after that
+node has been deleted.
+
+272
+00:12:59,170 --> 00:13:01,160
+>> So again, taking a look
+at it as a diagram we
+
+273
+00:13:01,160 --> 00:13:05,022
+want to now pop an
+element off of this stack.
+
+274
+00:13:05,022 --> 00:13:05,730
+So what do we do?
+
+275
+00:13:05,730 --> 00:13:08,188
+Well we're first going to create
+a new pointer that's going
+
+276
+00:13:08,188 --> 00:13:10,940
+to point to the same spot as the head.
+
+277
+00:13:10,940 --> 00:13:13,790
+We're going to move it one position
+forward by saying trav equals
+
+278
+00:13:13,790 --> 00:13:17,510
+trav next for example, which
+would advance the trav pointer one
+
+279
+00:13:17,510 --> 00:13:19,324
+position forward.
+
+280
+00:13:19,324 --> 00:13:21,240
+Now that we've got a
+hold on the first element
+
+281
+00:13:21,240 --> 00:13:24,573
+through the pointer called list, and the
+second element through a pointer called
+
+282
+00:13:24,573 --> 00:13:28,692
+trav, we can safely delete that
+first element from the stack
+
+283
+00:13:28,692 --> 00:13:30,650
+without losing the rest
+of the chain because we
+
+284
+00:13:30,650 --> 00:13:32,358
+have a way to refer
+to the second element
+
+285
+00:13:32,358 --> 00:13:34,780
+forward by way of the
+pointer called trav.
+
+286
+00:13:34,780 --> 00:13:37,100
+>> So now we can free that node.
+
+287
+00:13:37,100 --> 00:13:38,404
+We can free list.
+
+288
+00:13:38,404 --> 00:13:41,320
+And then all we need to do now is
+move list to point to the same place
+
+289
+00:13:41,320 --> 00:13:44,482
+that trav does, and we're sort of back
+where we started before we pushed 12
+
+290
+00:13:44,482 --> 00:13:45,690
+on in the first place, right.
+
+291
+00:13:45,690 --> 00:13:46,940
+This is exactly where we were.
+
+292
+00:13:46,940 --> 00:13:48,840
+We had this four element stack.
+
+293
+00:13:48,840 --> 00:13:49,690
+We added a fifth.
+
+294
+00:13:49,690 --> 00:13:51,910
+We pushed a fifth
+element on, and then we
+
+295
+00:13:51,910 --> 00:13:55,980
+popped that most recently
+added element back off.
+
+296
+00:13:55,980 --> 00:13:58,816
+>> That's really pretty much
+all there is to stacks.
+
+297
+00:13:58,816 --> 00:14:00,190
+You can implement them as arrays.
+
+298
+00:14:00,190 --> 00:14:01,815
+You can implement them as linked lists.
+
+299
+00:14:01,815 --> 00:14:04,810
+There are, of course, other
+ways to implement them as well.
+
+300
+00:14:04,810 --> 00:14:09,060
+Basically the reason we would use
+stacks is to maintain data in such a way
+
+301
+00:14:09,060 --> 00:14:12,090
+that the most recently added
+element is the first thing we're
+
+302
+00:14:12,090 --> 00:14:14,980
+going to want to get back.
+
+303
+00:14:14,980 --> 00:14:17,900
+I'm Doug Lloyd, this is cs50.
+
+304
+00:14:17,900 --> 00:14:19,926

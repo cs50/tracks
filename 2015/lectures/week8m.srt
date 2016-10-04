@@ -1,0 +1,4464 @@
+1
+00:00:00,000 --> 00:00:02,916
+
+2
+00:00:02,916 --> 00:00:04,860
+>> [MUSIC PLAYING]
+
+3
+00:00:04,860 --> 00:00:10,210
+
+4
+00:00:10,210 --> 00:00:13,350
+>> DAVID MALAN: This is CS50, and
+this is the start of week eight.
+
+5
+00:00:13,350 --> 00:00:17,510
+And we're so excited to welcome
+back, big surprise, CS50's own Ramon
+
+6
+00:00:17,510 --> 00:00:22,160
+Galvan, a rising senior who has been
+spending the past several months
+
+7
+00:00:22,160 --> 00:00:26,190
+since July in LA, in Hollywood,
+literally working on a brand new TV
+
+8
+00:00:26,190 --> 00:00:31,930
+show called Colony, the creator of which
+is actually a Harvard alum himself.
+
+9
+00:00:31,930 --> 00:00:36,610
+And so we're very excited to see this
+debut on the USA network this January.
+
+10
+00:00:36,610 --> 00:00:40,370
+So stay tuned for that, and for
+more Ramon for the weeks to come.
+
+11
+00:00:40,370 --> 00:00:42,550
+>> Know now that the end is near.
+
+12
+00:00:42,550 --> 00:00:47,400
+And what this means is that there's not
+all that much left of CS50, sad to say.
+
+13
+00:00:47,400 --> 00:00:49,400
+We have just three problem
+sets left-- there's
+
+14
+00:00:49,400 --> 00:00:52,510
+problem set six-- which is in
+your hands now or soon will be,
+
+15
+00:00:52,510 --> 00:00:56,080
+due later this week-- is meant to bridge
+our worlds of the command line, where
+
+16
+00:00:56,080 --> 00:00:59,450
+we've spent most of our time using
+C, and the world of web programming.
+
+17
+00:00:59,450 --> 00:01:02,350
+Well, you'll see a lot of ideas
+borrowed from the command line work,
+
+18
+00:01:02,350 --> 00:01:04,560
+but also a lot of new
+and interesting ideas
+
+19
+00:01:04,560 --> 00:01:07,929
+that are also going to be germane for
+mobile applications and for technology,
+
+20
+00:01:07,929 --> 00:01:10,470
+more generally, with which you
+guys are all familiar nowadays
+
+21
+00:01:10,470 --> 00:01:12,090
+on laptops and phones and the like.
+
+22
+00:01:12,090 --> 00:01:15,220
+>> So you'll implement not
+a web page, or a website
+
+23
+00:01:15,220 --> 00:01:17,620
+per se, but an actual web server.
+
+24
+00:01:17,620 --> 00:01:21,590
+You will write the rest of a web server
+written in C, whose purpose in life
+
+25
+00:01:21,590 --> 00:01:25,410
+is to receive HTTP requests, those
+virtual envelopes we keep talking
+
+26
+00:01:25,410 --> 00:01:29,780
+about, and actually respond either with
+some static content-- like a dot HTML
+
+27
+00:01:29,780 --> 00:01:32,310
+file, or a dot JPEG or
+any other number of files,
+
+28
+00:01:32,310 --> 00:01:37,070
+or even a PHP file whereby your web
+server is going to interpret that PHP
+
+29
+00:01:37,070 --> 00:01:38,332
+code and spit out the results.
+
+30
+00:01:38,332 --> 00:01:40,540
+Now, we've provided you with
+quite a bit of framework
+
+31
+00:01:40,540 --> 00:01:43,100
+for it-- indeed the
+distribution code for problem
+
+32
+00:01:43,100 --> 00:01:47,496
+set six is over 1,000 lines long, a
+lot of which is comments, to be fair--
+
+33
+00:01:47,496 --> 00:01:49,370
+but this is really meant
+to be an opportunity
+
+34
+00:01:49,370 --> 00:01:52,570
+to get your hands dirty diving
+into a fairly large project
+
+35
+00:01:52,570 --> 00:01:55,570
+that we've very specifically
+carved out pieces of for you,
+
+36
+00:01:55,570 --> 00:01:59,046
+so that really when you exit CS50 and
+enter the real world of programming
+
+37
+00:01:59,046 --> 00:02:00,920
+and want to dabble in
+any number of projects,
+
+38
+00:02:00,920 --> 00:02:03,253
+you'll have much greater
+comfort downloading some source
+
+39
+00:02:03,253 --> 00:02:05,020
+code, some open source
+project on the web,
+
+40
+00:02:05,020 --> 00:02:08,174
+and diving in and making
+changes that you see fit.
+
+41
+00:02:08,174 --> 00:02:11,340
+Problem set seven is going to be about
+making your own web-based application
+
+42
+00:02:11,340 --> 00:02:14,140
+that takes dynamic input and
+produces dynamic output in the form
+
+43
+00:02:14,140 --> 00:02:16,920
+of a etrade.com-like website.
+
+44
+00:02:16,920 --> 00:02:20,800
+And problem set eight will focus on yet
+another language known as JavaScript.
+
+45
+00:02:20,800 --> 00:02:24,170
+>> Meanwhile, the final
+project is on the horizon.
+
+46
+00:02:24,170 --> 00:02:26,800
+The so-called pre-proposal
+is due a week from today.
+
+47
+00:02:26,800 --> 00:02:29,930
+Pre-proposal-- per the specification,
+which is on CS50's website--
+
+48
+00:02:29,930 --> 00:02:33,260
+is a pretty casual opportunity for
+you to send a pretty succinct email
+
+49
+00:02:33,260 --> 00:02:35,170
+to your teaching fellow
+just to apprise him
+
+50
+00:02:35,170 --> 00:02:38,250
+or her of what you're thinking, to
+use him or her as a sounding board.
+
+51
+00:02:38,250 --> 00:02:40,980
+And have a sanity check--
+whether you're thinking
+
+52
+00:02:40,980 --> 00:02:43,210
+about biting off too
+much or maybe too little,
+
+53
+00:02:43,210 --> 00:02:46,480
+or maybe you have no idea whatsoever
+and want to engage in a conversation.
+
+54
+00:02:46,480 --> 00:02:48,480
+>> Thereafter is a proposal
+and status report,
+
+55
+00:02:48,480 --> 00:02:51,860
+the so-called CS50 hackathon here in
+Cambridge for Harvard and Yale students
+
+56
+00:02:51,860 --> 00:02:52,362
+alike.
+
+57
+00:02:52,362 --> 00:02:54,320
+The final project's
+implementation is then due.
+
+58
+00:02:54,320 --> 00:02:59,290
+And then a CS50 fair here, in Cambridge,
+as well as another in New Haven.
+
+59
+00:02:59,290 --> 00:03:02,500
+So the proposal, take a look at
+the website for those particulars.
+
+60
+00:03:02,500 --> 00:03:06,530
+>> But more excitingly, too, is an
+opportunity to get your hands dirty,
+
+61
+00:03:06,530 --> 00:03:09,350
+and your minds open to a whole
+bunch of topics and tools
+
+62
+00:03:09,350 --> 00:03:12,920
+and techniques that are ancillary
+to the course's core syllabus,
+
+63
+00:03:12,920 --> 00:03:14,810
+but nonetheless related.
+
+64
+00:03:14,810 --> 00:03:18,400
+And also wonderful stepping stones to
+doing really cool final projects that
+
+65
+00:03:18,400 --> 00:03:22,020
+go well beyond material we've covered
+formally in problem sets or in lecture.
+
+66
+00:03:22,020 --> 00:03:24,446
+So go to CS50's website for
+the whole roster of seminars.
+
+67
+00:03:24,446 --> 00:03:26,070
+If you don't register yet, that's fine.
+
+68
+00:03:26,070 --> 00:03:29,860
+Go ahead and sign up still and we will
+follow up with a live streaming link,
+
+69
+00:03:29,860 --> 00:03:31,844
+the day and time is on the website.
+
+70
+00:03:31,844 --> 00:03:33,760
+And everything will be
+recorded and put online
+
+71
+00:03:33,760 --> 00:03:35,800
+if you can't make the
+particular days and times.
+
+72
+00:03:35,800 --> 00:03:39,380
+>> As to what lies ahead thereafter-- well,
+of course, there's the CS50 hackathon.
+
+73
+00:03:39,380 --> 00:03:43,560
+This photo, recall, from week zero taken
+around 4 AM one evening in years past.
+
+74
+00:03:43,560 --> 00:03:46,900
+The CS50 fair, which again
+will take place in both cities.
+
+75
+00:03:46,900 --> 00:03:49,760
+And then, just to plant the
+seed, even though we still
+
+76
+00:03:49,760 --> 00:03:54,080
+have a month plus left of semester, if
+you'd like to join CS50's own teaching
+
+77
+00:03:54,080 --> 00:03:56,770
+staff, and you want to start
+thinking about becoming a CA,
+
+78
+00:03:56,770 --> 00:03:59,550
+or teaching fellow, know that
+we'll start talking more about that
+
+79
+00:03:59,550 --> 00:04:00,630
+later this semester.
+
+80
+00:04:00,630 --> 00:04:03,470
+But pictured here is
+most of this year's team.
+
+81
+00:04:03,470 --> 00:04:06,950
+>> And so, PHP-- and I was so sad
+last week that [? Allyse ?] kindly
+
+82
+00:04:06,950 --> 00:04:09,370
+went to the effort of getting
+us these wonderful props
+
+83
+00:04:09,370 --> 00:04:11,720
+that I didn't end up using, so it
+really just looked kind of stupid
+
+84
+00:04:11,720 --> 00:04:15,160
+that we had a shovel sitting here all
+day last Wednesday, and a little spoon.
+
+85
+00:04:15,160 --> 00:04:17,709
+But this was my metaphoric
+way of trying to paint
+
+86
+00:04:17,709 --> 00:04:21,600
+the picture of why we're transitioning
+from C to a language like PHP.
+
+87
+00:04:21,600 --> 00:04:25,480
+And the same could be said of any
+number of languages-- Java, Python, Ruby
+
+88
+00:04:25,480 --> 00:04:31,270
+or bunches of others-- but whereas in
+C, for instance, writing a program in C
+
+89
+00:04:31,270 --> 00:04:34,050
+might typically be like
+taking a spoon like this
+
+90
+00:04:34,050 --> 00:04:36,770
+and digging a hole in the
+ground, in the sand or the dirt.
+
+91
+00:04:36,770 --> 00:04:39,770
+PHP allows you to take much
+bigger bites out of the problem,
+
+92
+00:04:39,770 --> 00:04:42,842
+writing far less code
+using a far smaller tool,
+
+93
+00:04:42,842 --> 00:04:45,050
+because there's so much more
+functionality pieced in.
+
+94
+00:04:45,050 --> 00:04:47,633
+>> Now, if we were really dramatic,
+we'd have something to shovel
+
+95
+00:04:47,633 --> 00:04:48,760
+here, but so be it.
+
+96
+00:04:48,760 --> 00:04:51,370
+Meanwhile, the other
+metaphor we came up with
+
+97
+00:04:51,370 --> 00:04:53,770
+is, of course, you could
+use something like a wrench
+
+98
+00:04:53,770 --> 00:04:56,610
+to hammer in something like a nail.
+
+99
+00:04:56,610 --> 00:04:58,980
+But of course, the right
+tool to use is going
+
+100
+00:04:58,980 --> 00:05:01,360
+to be not so much the
+language called C--
+
+101
+00:05:01,360 --> 00:05:03,590
+and now I just annoyed
+[? Sanders, ?] probably,
+
+102
+00:05:03,590 --> 00:05:07,890
+we'll fix that later-- so
+the right tool to use often
+
+103
+00:05:07,890 --> 00:05:09,640
+is not going to be
+this lowest level tool.
+
+104
+00:05:09,640 --> 00:05:13,720
+And indeed, C is not a language that
+most of you are ever going to use,
+
+105
+00:05:13,720 --> 00:05:15,590
+or should necessarily use again.
+
+106
+00:05:15,590 --> 00:05:18,350
+>> And in fact, a little
+secret-- the only time
+
+107
+00:05:18,350 --> 00:05:23,160
+I use C myself is pretty much between
+September and December of every fall
+
+108
+00:05:23,160 --> 00:05:23,870
+semester.
+
+109
+00:05:23,870 --> 00:05:25,790
+And that's because we
+use it as an opportunity
+
+110
+00:05:25,790 --> 00:05:27,852
+to teach the fundamentals
+of programming,
+
+111
+00:05:27,852 --> 00:05:29,810
+and with it computer
+science fundamentals, data
+
+112
+00:05:29,810 --> 00:05:32,435
+structures, algorithms and the
+like-- but very quickly will you
+
+113
+00:05:32,435 --> 00:05:35,010
+see now that the syntax
+and the ideas underlying C
+
+114
+00:05:35,010 --> 00:05:37,530
+are so wonderfully
+transferable to more modern
+
+115
+00:05:37,530 --> 00:05:41,130
+higher level languages, like
+PHP and Python and Perl and Java
+
+116
+00:05:41,130 --> 00:05:46,750
+and Objective-C-- actually, not so much
+Objective-C-- but Swift, these newer
+
+117
+00:05:46,750 --> 00:05:50,010
+languages that many of you will
+then dabble with you final project.
+
+118
+00:05:50,010 --> 00:05:55,070
+>> So without further ado, let's actually
+use PHP to solve some problems.
+
+119
+00:05:55,070 --> 00:06:00,230
+Recall that early on, last
+week, we just used CS50 IDE,
+
+120
+00:06:00,230 --> 00:06:02,990
+we wrote a dinky little program
+that just said, "Hello world."
+
+121
+00:06:02,990 --> 00:06:05,680
+And then I saved it in
+a file called hello.php.
+
+122
+00:06:05,680 --> 00:06:07,280
+And then I ran this command.
+
+123
+00:06:07,280 --> 00:06:08,080
+>> And why?
+
+124
+00:06:08,080 --> 00:06:09,900
+In English, what's going on here?
+
+125
+00:06:09,900 --> 00:06:12,760
+What was I doing when
+I ran this command?
+
+126
+00:06:12,760 --> 00:06:13,405
+>> Yeah?
+
+127
+00:06:13,405 --> 00:06:16,572
+>> AUDIENCE: There's some function PHP
+that reads what's in-- understands that.
+
+128
+00:06:16,572 --> 00:06:19,696
+DAVID MALAN: Good, there's some function
+PHP-- and let me be more specific,
+
+129
+00:06:19,696 --> 00:06:21,810
+there's a program called PHP, a.k.a.
+
+130
+00:06:21,810 --> 00:06:25,872
+An interpreter, that understands
+the contents of hello.php,
+
+131
+00:06:25,872 --> 00:06:27,830
+and interprets it top to
+bottom, left to right,
+
+132
+00:06:27,830 --> 00:06:29,590
+and does what those commands say.
+
+133
+00:06:29,590 --> 00:06:33,320
+The commands in hello.php, of course,
+is just source code-- functions
+
+134
+00:06:33,320 --> 00:06:35,750
+and variables and loops and
+the like, that we ourselves
+
+135
+00:06:35,750 --> 00:06:37,460
+have started writing in PHP.
+
+136
+00:06:37,460 --> 00:06:40,240
+>> But unlike C, which is
+a compiled language,
+
+137
+00:06:40,240 --> 00:06:42,810
+PHP you just write it, and run it.
+
+138
+00:06:42,810 --> 00:06:46,420
+You skip that middleman step of
+converting it to zeros and ones,
+
+139
+00:06:46,420 --> 00:06:47,790
+and then running it.
+
+140
+00:06:47,790 --> 00:06:50,510
+And so what is an upside of this?
+
+141
+00:06:50,510 --> 00:06:52,690
+Why are we skipping the step?
+
+142
+00:06:52,690 --> 00:06:55,238
+Why do more modern languages
+tend to skip this step?
+
+143
+00:06:55,238 --> 00:06:58,880
+
+144
+00:06:58,880 --> 00:07:01,220
+What was the benefit?
+
+145
+00:07:01,220 --> 00:07:02,080
+>> Or just intuitively?
+
+146
+00:07:02,080 --> 00:07:04,200
+Even if we've not
+written much PHP before,
+
+147
+00:07:04,200 --> 00:07:07,210
+what's beneficial about not
+compiling your code do you think?
+
+148
+00:07:07,210 --> 00:07:08,520
+No?
+
+149
+00:07:08,520 --> 00:07:09,610
+Not committing?
+
+150
+00:07:09,610 --> 00:07:11,350
+Scratching your head?
+
+151
+00:07:11,350 --> 00:07:12,614
+Yeah.
+
+152
+00:07:12,614 --> 00:07:13,600
+>> AUDIENCE: More dynamic.
+
+153
+00:07:13,600 --> 00:07:14,683
+>> DAVID MALAN: More dynamic?
+
+154
+00:07:14,683 --> 00:07:16,032
+What you mean?
+
+155
+00:07:16,032 --> 00:07:17,000
+>> AUDIENCE: [INAUDIBLE]
+
+156
+00:07:17,000 --> 00:07:20,349
+
+157
+00:07:20,349 --> 00:07:22,390
+DAVID MALAN: OK, good, so
+depending on the input,
+
+158
+00:07:22,390 --> 00:07:23,470
+you don't have to compile it each time.
+
+159
+00:07:23,470 --> 00:07:24,990
+And it really is as
+simple as that-- what
+
+160
+00:07:24,990 --> 00:07:26,990
+is the point of continuing
+to compile your code?
+
+161
+00:07:26,990 --> 00:07:29,480
+This is just a step that's
+making-- this is requiring,
+
+162
+00:07:29,480 --> 00:07:31,900
+for the past several
+weeks, twice as many steps
+
+163
+00:07:31,900 --> 00:07:33,820
+as just running your program.
+
+164
+00:07:33,820 --> 00:07:36,940
+It's been useful in seeing that you
+see some error messages and so forth,
+
+165
+00:07:36,940 --> 00:07:38,720
+but it's still just an annoying step.
+
+166
+00:07:38,720 --> 00:07:41,810
+>> And so programmers realized
+over time, why don't we
+
+167
+00:07:41,810 --> 00:07:45,327
+start writing languages that don't
+need that fairly mechanical step,
+
+168
+00:07:45,327 --> 00:07:47,160
+so that can just write
+your code and run it.
+
+169
+00:07:47,160 --> 00:07:48,920
+But what was the price
+that we saw we paid
+
+170
+00:07:48,920 --> 00:07:50,910
+last week, with one particular example?
+
+171
+00:07:50,910 --> 00:07:51,650
+Yes?
+
+172
+00:07:51,650 --> 00:07:52,370
+>> Speed.
+
+173
+00:07:52,370 --> 00:07:54,690
+So [? what's ?] interpreters
+a little slower,
+
+174
+00:07:54,690 --> 00:07:57,330
+in that zeros and ones are
+nice and fast for a computer
+
+175
+00:07:57,330 --> 00:08:00,070
+to understand, because the
+Intel CPU, or whatever it is,
+
+176
+00:08:00,070 --> 00:08:03,070
+just understands what's going
+on with those patterns of bits.
+
+177
+00:08:03,070 --> 00:08:05,370
+Whereas an interpreter
+is a program that really
+
+178
+00:08:05,370 --> 00:08:07,980
+has to read the Ascii source
+code that you have written,
+
+179
+00:08:07,980 --> 00:08:12,700
+and convert it, so to speak, or
+figure out how it converts ultimately
+
+180
+00:08:12,700 --> 00:08:13,525
+to zeros and ones.
+
+181
+00:08:13,525 --> 00:08:15,650
+So it just takes a little
+bit of a performance hit.
+
+182
+00:08:15,650 --> 00:08:16,858
+So it's a bit of a trade-off.
+
+183
+00:08:16,858 --> 00:08:21,570
+Now if we do this over here, let me
+go ahead and do an example as follows.
+
+184
+00:08:21,570 --> 00:08:26,610
+If I go in here, new file, I'm going
+to save this again is hello.php.
+
+185
+00:08:26,610 --> 00:08:31,450
+And now I'm going to go ahead
+and say, "print hello world"--
+
+186
+00:08:31,450 --> 00:08:35,130
+and recall that I can use print, I don't
+have to use print-F. And now down here,
+
+187
+00:08:35,130 --> 00:08:42,039
+if I do PHP of hello.php, huh-- I
+don't seem to have interpreted it.
+
+188
+00:08:42,039 --> 00:08:43,412
+What did I do wrong?
+
+189
+00:08:43,412 --> 00:08:44,710
+>> AUDIENCE: The angled bracelets.
+
+190
+00:08:44,710 --> 00:08:47,015
+>> DAVID MALAN: Yeah, you need
+that angle bracket up top.
+
+191
+00:08:47,015 --> 00:08:49,390
+So it's kind of annoying, but
+you get used to it quickly.
+
+192
+00:08:49,390 --> 00:08:53,500
+If I have to write PHP code, I
+generally need to tell the program,
+
+193
+00:08:53,500 --> 00:08:56,950
+or tell the interpreter, hey
+PHP, here comes some PHP code.
+
+194
+00:08:56,950 --> 00:09:00,440
+And then for good measure, I would
+close this not with this, but rather
+
+195
+00:09:00,440 --> 00:09:03,740
+with just question mark angle
+bracket, so that now down here,
+
+196
+00:09:03,740 --> 00:09:06,840
+if I run this again, now
+I get the desired result.
+
+197
+00:09:06,840 --> 00:09:09,820
+>> Now let's do a slight optimisation,
+just so that you've seen it before.
+
+198
+00:09:09,820 --> 00:09:14,040
+This is kind of annoying that I
+have to run PHP space hello.php,
+
+199
+00:09:14,040 --> 00:09:16,060
+because in the past I
+could just write dot slash
+
+200
+00:09:16,060 --> 00:09:17,560
+program name, which is kind of nice.
+
+201
+00:09:17,560 --> 00:09:19,420
+It's kind of a better user experience.
+
+202
+00:09:19,420 --> 00:09:24,160
+>> So it turns out you can do this
+in PHP with the following-- I
+
+203
+00:09:24,160 --> 00:09:28,780
+can use this fairly cryptic
+incantation at the top here,
+
+204
+00:09:28,780 --> 00:09:31,740
+which is generally called a shebang,
+whereby this is a sharp symbol,
+
+205
+00:09:31,740 --> 00:09:34,270
+so to speak, this is a bang
+or an exclamation point.
+
+206
+00:09:34,270 --> 00:09:38,490
+And this now is the path to a program
+on a typical Linux system that
+
+207
+00:09:38,490 --> 00:09:41,500
+is called environment, or env.
+
+208
+00:09:41,500 --> 00:09:43,920
+And this line-- long story
+short-- line one just
+
+209
+00:09:43,920 --> 00:09:48,710
+says, hey computer, find the PHP
+interpreter for me in the environment,
+
+210
+00:09:48,710 --> 00:09:50,610
+find it in your memory, so to speak.
+
+211
+00:09:50,610 --> 00:09:54,130
+>> And what's nice now, is
+that if I go down here,
+
+212
+00:09:54,130 --> 00:09:57,750
+I can do dot slash
+hello dot php, or-- hmm.
+
+213
+00:09:57,750 --> 00:09:59,000
+Permission denied.
+
+214
+00:09:59,000 --> 00:10:02,350
+Well, you'll see even more of this
+with problem set seven, if you
+
+215
+00:10:02,350 --> 00:10:04,060
+haven't already, with permissions.
+
+216
+00:10:04,060 --> 00:10:06,510
+It turns out that I need
+to execute this command
+
+217
+00:10:06,510 --> 00:10:10,779
+called [? chamod ?] for change
+mode-- a plus x hello.php.
+
+218
+00:10:10,779 --> 00:10:13,820
+I need [INAUDIBLE] this one additional
+step which is telling my computer,
+
+219
+00:10:13,820 --> 00:10:16,400
+make hello.php executable.
+
+220
+00:10:16,400 --> 00:10:21,310
+And now watch what happens-- dot
+slash hello.php, it just runs.
+
+221
+00:10:21,310 --> 00:10:23,310
+I don't need to specify
+the interpreter anymore.
+
+222
+00:10:23,310 --> 00:10:26,680
+And I can make it even prettier,
+still, if I rename this thing.
+
+223
+00:10:26,680 --> 00:10:30,570
+If I move hello.php to just
+Hello-- so notice in the top left,
+
+224
+00:10:30,570 --> 00:10:32,860
+the program's name is
+indeed now just Hello.
+
+225
+00:10:32,860 --> 00:10:37,300
+Now I can make it look like a C program,
+even though it's written in PHP--
+
+226
+00:10:37,300 --> 00:10:39,210
+or frankly any number
+of other languages.
+
+227
+00:10:39,210 --> 00:10:41,480
+>> So marginal enhancement,
+no functional difference.
+
+228
+00:10:41,480 --> 00:10:44,460
+But it's just a little curiosity
+now, so that you can write programs
+
+229
+00:10:44,460 --> 00:10:48,989
+in any language, and the user doesn't
+have to know or care what those are.
+
+230
+00:10:48,989 --> 00:10:51,030
+Well, let's look at a more
+compelling example now
+
+231
+00:10:51,030 --> 00:10:52,850
+that I whipped up in advance.
+
+232
+00:10:52,850 --> 00:10:54,955
+And this is called quote.php.
+
+233
+00:10:54,955 --> 00:10:56,740
+And it's available online.
+
+234
+00:10:56,740 --> 00:11:00,299
+And notice that it's pretty short--
+but it's a command line program that's
+
+235
+00:11:00,299 --> 00:11:02,840
+going to look up stock prices
+for me, which is actually going
+
+236
+00:11:02,840 --> 00:11:04,230
+to be germane to problem set seven.
+
+237
+00:11:04,230 --> 00:11:05,396
+>> So let's see what I'm doing.
+
+238
+00:11:05,396 --> 00:11:08,640
+At the very top I've got the
+open bracket question mark PHP.
+
+239
+00:11:08,640 --> 00:11:13,372
+Then I've got this line, whereby I am
+requiring a file called functions.php--
+
+240
+00:11:13,372 --> 00:11:15,080
+we're going to see
+more on this in a bit,
+
+241
+00:11:15,080 --> 00:11:17,340
+but this is like C's
+version of sharp include,
+
+242
+00:11:17,340 --> 00:11:19,090
+where you want to go
+include another file.
+
+243
+00:11:19,090 --> 00:11:23,720
+PHP calls it require, though it
+also has an include function.
+
+244
+00:11:23,720 --> 00:11:26,861
+And it turns out that function.php is
+just something I wrote before class.
+
+245
+00:11:26,861 --> 00:11:29,860
+I put it in the same directory, because
+I wanted to factor out some code
+
+246
+00:11:29,860 --> 00:11:31,800
+that we might want to use elsewhere.
+
+247
+00:11:31,800 --> 00:11:34,560
+>> Meanwhile, you can probably
+infer what's going on here.
+
+248
+00:11:34,560 --> 00:11:39,200
+This is a little different from C-- but
+what do I mean by ensure proper usage?
+
+249
+00:11:39,200 --> 00:11:41,180
+Translate this more technically.
+
+250
+00:11:41,180 --> 00:11:45,950
+Under what circumstances am I
+quitting the program, or exiting?
+
+251
+00:11:45,950 --> 00:11:47,074
+Yeah?
+
+252
+00:11:47,074 --> 00:11:47,990
+>> AUDIENCE: When you don't have
+two command line arguments.
+
+253
+00:11:47,990 --> 00:11:49,480
+>> DAVID MALAN: When I don't have
+to command line arguments.
+
+254
+00:11:49,480 --> 00:11:52,396
+And remember that one of those
+arguments is the program's name itself.
+
+255
+00:11:52,396 --> 00:11:55,340
+And the second is going to be
+another word I type after the prompt.
+
+256
+00:11:55,340 --> 00:11:57,460
+So just like C, this
+is my way of checking,
+
+257
+00:11:57,460 --> 00:12:00,022
+did the user cooperate and
+run the program as I intended?
+
+258
+00:12:00,022 --> 00:12:01,730
+Now, there's something
+a little different
+
+259
+00:12:01,730 --> 00:12:04,020
+with C-- first of all we
+have this dollar sign,
+
+260
+00:12:04,020 --> 00:12:07,710
+and what does a dollar
+sign denote in PHP?
+
+261
+00:12:07,710 --> 00:12:08,440
+Just a variable.
+
+262
+00:12:08,440 --> 00:12:11,731
+That's all-- just a variable followed by
+whatever you want to actually call it.
+
+263
+00:12:11,731 --> 00:12:14,000
+Notice there is something
+missing from my PHP program,
+
+264
+00:12:14,000 --> 00:12:18,210
+just like it was missing last
+week, versus C, which is what?
+
+265
+00:12:18,210 --> 00:12:21,620
+>> A types, but also something else.
+
+266
+00:12:21,620 --> 00:12:26,409
+There is no something
+function-- main function.
+
+267
+00:12:26,409 --> 00:12:27,450
+There's no main function.
+
+268
+00:12:27,450 --> 00:12:29,680
+You just start writing
+your code without having
+
+269
+00:12:29,680 --> 00:12:32,790
+to worry about a fairly arbitrary
+convention of naming some default
+
+270
+00:12:32,790 --> 00:12:33,880
+function main.
+
+271
+00:12:33,880 --> 00:12:36,720
+So arg C is just really
+a global variable
+
+272
+00:12:36,720 --> 00:12:39,049
+that the interpreter
+makes available to me.
+
+273
+00:12:39,049 --> 00:12:40,090
+Now, this is interesting.
+
+274
+00:12:40,090 --> 00:12:41,140
+So look up stuff.
+
+275
+00:12:41,140 --> 00:12:43,370
+Dollar sign stock is on the
+left, that's my variable.
+
+276
+00:12:43,370 --> 00:12:45,120
+On the right hand side,
+there's apparently
+
+277
+00:12:45,120 --> 00:12:50,270
+a function in PHP called lookup that
+I'm passing my last command line
+
+278
+00:12:50,270 --> 00:12:51,902
+argument to-- whatever the word is.
+
+279
+00:12:51,902 --> 00:12:53,610
+And we'll see how this
+works in a moment.
+
+280
+00:12:53,610 --> 00:12:55,380
+>> And then lastly I'm reporting the price.
+
+281
+00:12:55,380 --> 00:12:58,650
+I'm printing out one
+share of such and such.
+
+282
+00:12:58,650 --> 00:13:02,082
+And remember, this is the
+way in PHP-- a way in PHP--
+
+283
+00:13:02,082 --> 00:13:04,290
+where you don't have to do
+the dollar sign S anymore.
+
+284
+00:13:04,290 --> 00:13:06,782
+You can just use curly braces
+and plug in some variable.
+
+285
+00:13:06,782 --> 00:13:09,240
+You don't have to worry about
+using printf in the same way.
+
+286
+00:13:09,240 --> 00:13:13,530
+>> And as an aside, when you put a variable
+inside of double quotes like this,
+
+287
+00:13:13,530 --> 00:13:17,370
+you are using a fancy technique
+called variable interpolation.
+
+288
+00:13:17,370 --> 00:13:20,380
+It just means plug the variable in here.
+
+289
+00:13:20,380 --> 00:13:23,760
+And as an aside, some of you who come
+from other programming backgrounds,
+
+290
+00:13:23,760 --> 00:13:26,960
+you may not use single quotes
+around strings to do this.
+
+291
+00:13:26,960 --> 00:13:30,290
+You must use double quotes for
+variable interpolation to work.
+
+292
+00:13:30,290 --> 00:13:32,740
+Otherwise you'll literally
+see those curly braces.
+
+293
+00:13:32,740 --> 00:13:34,500
+>> So lastly, let's go ahead and run this.
+
+294
+00:13:34,500 --> 00:13:36,690
+Let me make my terminal a little bigger.
+
+295
+00:13:36,690 --> 00:13:41,940
+Let me go ahead and run
+inside of my quote directory.
+
+296
+00:13:41,940 --> 00:13:46,950
+[? CDsource ?] [? AM ?]
+[? quote ?] PHP quote dot PHP,
+
+297
+00:13:46,950 --> 00:13:50,290
+and I'm going to search for something
+like GOOG, which is its ticker symbol,
+
+298
+00:13:50,290 --> 00:13:55,510
+and one share of its new name,
+Alphabet Inc, cost $717, as of today.
+
+299
+00:13:55,510 --> 00:13:58,680
+All right, if we want to
+run this again, anyone
+
+300
+00:13:58,680 --> 00:14:02,600
+have another stock ticker
+they want to look up?
+
+301
+00:14:02,600 --> 00:14:06,770
+>> Microsoft I think is
+this one, MSFT-- $53.
+
+302
+00:14:06,770 --> 00:14:09,720
+I think Yahoo is maybe that.
+
+303
+00:14:09,720 --> 00:14:12,130
+And Facebook is that.
+
+304
+00:14:12,130 --> 00:14:13,740
+>> So what is this program doing?
+
+305
+00:14:13,740 --> 00:14:16,306
+The magic seems to be embedded
+in that lookup function.
+
+306
+00:14:16,306 --> 00:14:17,430
+So let's take a quick look.
+
+307
+00:14:17,430 --> 00:14:21,815
+>> It turns out that doesn't come
+with PHP, it's in functions.php.
+
+308
+00:14:21,815 --> 00:14:23,690
+And we won't go through
+this in great detail,
+
+309
+00:14:23,690 --> 00:14:28,040
+but notice the operative word here is
+that on line six of functions.php--
+
+310
+00:14:28,040 --> 00:14:29,440
+I literally say function.
+
+311
+00:14:29,440 --> 00:14:31,050
+I specify the name of my function.
+
+312
+00:14:31,050 --> 00:14:34,330
+I then specify any
+arguments, or parameters,
+
+313
+00:14:34,330 --> 00:14:36,480
+I want that function to take-- no types.
+
+314
+00:14:36,480 --> 00:14:37,580
+And then I implement it.
+
+315
+00:14:37,580 --> 00:14:39,240
+>> And I'll wave my hand
+at the implementation,
+
+316
+00:14:39,240 --> 00:14:42,115
+since it's fairly advanced right
+now, but we'll see it again actually
+
+317
+00:14:42,115 --> 00:14:44,700
+in a week in problem set seven.
+
+318
+00:14:44,700 --> 00:14:47,490
+But I can clean this up, too.
+
+319
+00:14:47,490 --> 00:14:49,590
+I also included in
+today's code a version
+
+320
+00:14:49,590 --> 00:14:52,340
+of quote, which has no dot PHP file.
+
+321
+00:14:52,340 --> 00:14:57,270
+Because what is presumably at the
+top of the program called just quote?
+
+322
+00:14:57,270 --> 00:15:00,140
+That so-called shebang-- the
+fairly cryptic incantation
+
+323
+00:15:00,140 --> 00:15:04,590
+that says find PHP and then
+run it on my code here.
+
+324
+00:15:04,590 --> 00:15:07,360
+>> All right, so that brings
+us to where we left off
+
+325
+00:15:07,360 --> 00:15:09,560
+last time-- albeit with
+some more advanced examples.
+
+326
+00:15:09,560 --> 00:15:13,980
+Any questions thus far about
+PHP or what we're doing?
+
+327
+00:15:13,980 --> 00:15:15,570
+No-- all right.
+
+328
+00:15:15,570 --> 00:15:16,180
+Yeah?
+
+329
+00:15:16,180 --> 00:15:19,610
+>> AUDIENCE: Inside the
+HTML files, do you--
+
+330
+00:15:19,610 --> 00:15:22,226
+[? do you ?] [? just call it ?]
+a [INAUDIBLE] PHP file?
+
+331
+00:15:22,226 --> 00:15:23,350
+DAVID MALAN: Good question.
+
+332
+00:15:23,350 --> 00:15:26,070
+In a web context, which we're
+literally about to transition to,
+
+333
+00:15:26,070 --> 00:15:28,028
+you don't use the so-called
+shebang at the top,
+
+334
+00:15:28,028 --> 00:15:31,980
+because the web server-- often a
+program called Apache or Microsoft
+
+335
+00:15:31,980 --> 00:15:37,470
+IIS, Internet Information Server, or
+any number of other web server software,
+
+336
+00:15:37,470 --> 00:15:40,636
+knows that when it sees
+a dot PHP file, that it
+
+337
+00:15:40,636 --> 00:15:42,010
+should run the interpreter on it.
+
+338
+00:15:42,010 --> 00:15:43,468
+It doesn't look at that first line.
+
+339
+00:15:43,468 --> 00:15:45,580
+So this first line trick
+is just when you're
+
+340
+00:15:45,580 --> 00:15:48,330
+writing command line programs--
+which we won't do super often,
+
+341
+00:15:48,330 --> 00:15:52,510
+but it's our way of bridging
+our C examples to now our PHP.
+
+342
+00:15:52,510 --> 00:16:00,680
+>> So let's indeed bridge this world
+from the command line world to the web
+
+343
+00:16:00,680 --> 00:16:02,230
+by doing the following.
+
+344
+00:16:02,230 --> 00:16:05,090
+Let me go ahead and draw
+over here for just a moment.
+
+345
+00:16:05,090 --> 00:16:09,940
+So if we have a web server, or rather
+if we have my laptop over here,
+
+346
+00:16:09,940 --> 00:16:11,280
+which I'll draw like this.
+
+347
+00:16:11,280 --> 00:16:14,250
+And here we have the
+internet in some form.
+
+348
+00:16:14,250 --> 00:16:18,210
+And then over here, we have
+a server in a building--
+
+349
+00:16:18,210 --> 00:16:20,760
+this is how the internet
+works-- and in here
+
+350
+00:16:20,760 --> 00:16:23,120
+is a server with some lights maybe.
+
+351
+00:16:23,120 --> 00:16:27,530
+What's actually going on
+between these two connections?
+
+352
+00:16:27,530 --> 00:16:29,240
+>> So in this building is a web server.
+
+353
+00:16:29,240 --> 00:16:31,420
+That's just a computer
+that's running some operating
+
+354
+00:16:31,420 --> 00:16:34,561
+system-- maybe the free software called
+Apache, which CS50 IDE is running.
+
+355
+00:16:34,561 --> 00:16:36,310
+So you can actually
+think of this building
+
+356
+00:16:36,310 --> 00:16:38,579
+as being the building in
+which CSt0 IDE is stored.
+
+357
+00:16:38,579 --> 00:16:40,870
+That's where all of you have
+accounts, where all of you
+
+358
+00:16:40,870 --> 00:16:43,130
+have your own web server
+running, all of you
+
+359
+00:16:43,130 --> 00:16:45,730
+have your own unique URLs,
+as we started to discuss,
+
+360
+00:16:45,730 --> 00:16:47,280
+and you'll see more in P. set six.
+
+361
+00:16:47,280 --> 00:16:49,450
+>> Here's my laptop somewhere
+else on the internet.
+
+362
+00:16:49,450 --> 00:16:54,550
+And so when I visit a URL that belongs
+to me, that internet traffic is going
+
+363
+00:16:54,550 --> 00:16:58,360
+over to the server, the server's
+receiving an HTTP request--
+
+364
+00:16:58,360 --> 00:17:02,900
+like a get index.html and it's
+replying to that web page.
+
+365
+00:17:02,900 --> 00:17:04,280
+So that's the general paradigm.
+
+366
+00:17:04,280 --> 00:17:07,089
+Whereas everything up
+until now today, everything
+
+367
+00:17:07,089 --> 00:17:09,660
+was happening only in the
+confines of this building.
+
+368
+00:17:09,660 --> 00:17:12,910
+I was using my laptop, but
+I was connected to CS50 IDE,
+
+369
+00:17:12,910 --> 00:17:17,369
+so all of those programs I was running
+was inside of that server, itself.
+
+370
+00:17:17,369 --> 00:17:22,660
+>> But now, let's start reusing PHP
+to write some actual programs that
+
+371
+00:17:22,660 --> 00:17:24,230
+are served up by a web server.
+
+372
+00:17:24,230 --> 00:17:30,320
+And to do this, I'm going to go
+into a whole bunch of examples
+
+373
+00:17:30,320 --> 00:17:33,710
+that introduce this idea here.
+
+374
+00:17:33,710 --> 00:17:38,500
+So this is kind of a fancy way of
+describing a programming paradigm.
+
+375
+00:17:38,500 --> 00:17:41,540
+>> And in fact, as you exit CS50
+or work on final projects,
+
+376
+00:17:41,540 --> 00:17:43,520
+or take some follow
+on class, you'll start
+
+377
+00:17:43,520 --> 00:17:45,740
+to see that the world--
+especially having grown up
+
+378
+00:17:45,740 --> 00:17:48,300
+with languages like C
+that are super low level--
+
+379
+00:17:48,300 --> 00:17:51,290
+realize that there's better
+ways of writing software.
+
+380
+00:17:51,290 --> 00:17:53,290
+There are certain
+patterns you can follow,
+
+381
+00:17:53,290 --> 00:17:57,640
+certain ways of organizing your files
+and ways of naming your functions,
+
+382
+00:17:57,640 --> 00:18:00,300
+so that long story short,
+the world has come up
+
+383
+00:18:00,300 --> 00:18:04,340
+with a whole bunch of acronyms
+and names for ways of programming.
+
+384
+00:18:04,340 --> 00:18:06,260
+These are just techniques you might use.
+
+385
+00:18:06,260 --> 00:18:09,660
+>> And one of them is called MVC,
+for Model View Controller.
+
+386
+00:18:09,660 --> 00:18:12,270
+And this is just, for
+now, an overly complicated
+
+387
+00:18:12,270 --> 00:18:18,960
+way of saying how you should lay out
+a PHP-based website, in our case.
+
+388
+00:18:18,960 --> 00:18:22,140
+How do you organize your files,
+how do you organize your logic,
+
+389
+00:18:22,140 --> 00:18:26,220
+in a way that makes it easier to
+write more complicated websites?
+
+390
+00:18:26,220 --> 00:18:28,550
+And indeed, we'll quickly
+get there with p-set seven.
+
+391
+00:18:28,550 --> 00:18:32,020
+>> So in the world of MVC, you're going
+to see that our code can generally
+
+392
+00:18:32,020 --> 00:18:38,290
+be characterized as either model code,
+or controller code, or view code.
+
+393
+00:18:38,290 --> 00:18:40,200
+And I'm going to
+oversimplify it as follows--
+
+394
+00:18:40,200 --> 00:18:42,074
+the controller is the
+brains of your program,
+
+395
+00:18:42,074 --> 00:18:44,100
+it's where all of the
+interesting logic happens.
+
+396
+00:18:44,100 --> 00:18:46,110
+So everything we've been
+writing thus far in class,
+
+397
+00:18:46,110 --> 00:18:48,210
+is kind of like controller
+code-- it's controlling
+
+398
+00:18:48,210 --> 00:18:50,585
+your program, your loops, your
+conditions, your functions
+
+399
+00:18:50,585 --> 00:18:52,100
+and variables and all that.
+
+400
+00:18:52,100 --> 00:18:56,160
+>> Views, now, are going to be a little
+more obvious in the world of the web.
+
+401
+00:18:56,160 --> 00:18:59,360
+A view is the aesthetics
+of your website.
+
+402
+00:18:59,360 --> 00:19:04,080
+It's what the user sees-- the images,
+the HTML tables, the HTML tags, and all
+
+403
+00:19:04,080 --> 00:19:08,220
+of that, all of the fluffy aesthetic
+stuff that isn't that hard to write,
+
+404
+00:19:08,220 --> 00:19:11,380
+but is just what you're generating,
+is the so-called view, the aesthetics.
+
+405
+00:19:11,380 --> 00:19:13,880
+And model, ultimately, is going
+to be database stuff-- which
+
+406
+00:19:13,880 --> 00:19:16,510
+we'll start diving into all
+the more this Wednesday.
+
+407
+00:19:16,510 --> 00:19:19,740
+So controller is the logic,
+view is the aesthetic stuff,
+
+408
+00:19:19,740 --> 00:19:23,500
+and model is going to be where
+we store our actual data.
+
+409
+00:19:23,500 --> 00:19:26,410
+>> So let's look at this more concretely
+with the following example.
+
+410
+00:19:26,410 --> 00:19:34,700
+I'm going to go into my directory here
+of today's source code-- all of which
+
+411
+00:19:34,700 --> 00:19:35,770
+is available online.
+
+412
+00:19:35,770 --> 00:19:37,800
+And I'm going to go into version zero.
+
+413
+00:19:37,800 --> 00:19:41,500
+And here is-- let's call it the
+version zero of CS50's website.
+
+414
+00:19:41,500 --> 00:19:43,010
+There's not much here at all.
+
+415
+00:19:43,010 --> 00:19:46,810
+It's a very simple web page that's
+probably using what HTML tags-- just
+
+416
+00:19:46,810 --> 00:19:48,970
+guess from past examples?
+
+417
+00:19:48,970 --> 00:19:49,890
+>> What's that?
+
+418
+00:19:49,890 --> 00:19:53,920
+H1-- probably for that big bold
+title, that logo up top, CS50.
+
+419
+00:19:53,920 --> 00:19:55,080
+And what else is at play?
+
+420
+00:19:55,080 --> 00:19:55,799
+Yeah?
+
+421
+00:19:55,799 --> 00:19:56,840
+AUDIENCE: Unordered list.
+
+422
+00:19:56,840 --> 00:19:59,990
+DAVID MALAN: Unordered list-- so the
+UL tag and maybe a couple of LI tags.
+
+423
+00:19:59,990 --> 00:20:01,840
+And if you don't remember these,
+it honestly doesn't matter.
+
+424
+00:20:01,840 --> 00:20:04,170
+These are fluffy sort of
+implementation details of HTML
+
+425
+00:20:04,170 --> 00:20:06,378
+that you quickly look up
+and you're back on your way.
+
+426
+00:20:06,378 --> 00:20:10,040
+We'll focus more on the programming
+ideas that are the juicier pieces.
+
+427
+00:20:10,040 --> 00:20:12,890
+>> So let's just take a quick
+look at the HTML-- and indeed
+
+428
+00:20:12,890 --> 00:20:16,880
+if I open up the view source here, yup,
+that's exactly what's going on here.
+
+429
+00:20:16,880 --> 00:20:18,440
+There's an UL tag.
+
+430
+00:20:18,440 --> 00:20:20,630
+Nested inside of that is to LI tags.
+
+431
+00:20:20,630 --> 00:20:24,470
+And then I borrowed the URL
+of the actual syllabus here.
+
+432
+00:20:24,470 --> 00:20:27,570
+>> And then in the
+lectures.php is apparently
+
+433
+00:20:27,570 --> 00:20:31,640
+another dynamically generated page
+that's going to have, let's see-- ah,
+
+434
+00:20:31,640 --> 00:20:33,170
+the first two weeks of lecture.
+
+435
+00:20:33,170 --> 00:20:36,600
+So week zero and week one, let's
+look at this-- if I view page source,
+
+436
+00:20:36,600 --> 00:20:38,120
+also super simple.
+
+437
+00:20:38,120 --> 00:20:42,430
+These are leading to two pages
+called week0.php, and week1.php.
+
+438
+00:20:42,430 --> 00:20:44,040
+So consider now what's happening.
+
+439
+00:20:44,040 --> 00:20:50,630
+>> When I click on week0.php, my laptop
+is making a request for week0.php.
+
+440
+00:20:50,630 --> 00:20:53,700
+
+441
+00:20:53,700 --> 00:20:58,110
+The web server, a.k.a., CS50 IDE,
+is receiving that virtual envelope.
+
+442
+00:20:58,110 --> 00:21:01,040
+It's seeing a message
+like, get week0.php.
+
+443
+00:21:01,040 --> 00:21:05,060
+It is then interpreting the file, top
+to bottom, left to right-- the file
+
+444
+00:21:05,060 --> 00:21:07,720
+called week0.php-- and
+spitting out the results.
+
+445
+00:21:07,720 --> 00:21:10,510
+So inside of this file,
+week0.php, must be
+
+446
+00:21:10,510 --> 00:21:15,410
+the controller logic that is generating
+this HTML, and we'll soon see that.
+
+447
+00:21:15,410 --> 00:21:19,340
+>> But for now, let me click on week zero,
+and now we have Wednesday and Friday,
+
+448
+00:21:19,340 --> 00:21:25,260
+and now we have the slides
+slowly from week zero.
+
+449
+00:21:25,260 --> 00:21:27,400
+And you might recall
+this from way back when.
+
+450
+00:21:27,400 --> 00:21:29,340
+So that's all this website is doing.
+
+451
+00:21:29,340 --> 00:21:31,120
+>> So let's consider how it's doing this.
+
+452
+00:21:31,120 --> 00:21:34,290
+I'm going to go back into the
+source code here, in CS50 IDE,
+
+453
+00:21:34,290 --> 00:21:36,660
+and I'm going to open up index.php.
+
+454
+00:21:36,660 --> 00:21:38,910
+At the top of this file
+is a bunch of comments.
+
+455
+00:21:38,910 --> 00:21:43,000
+And then in the middle of this file, it
+turns out, is no PHP code whatsoever.
+
+456
+00:21:43,000 --> 00:21:47,380
+Because if you don't have any of the
+open bracket question mark PHP tags,
+
+457
+00:21:47,380 --> 00:21:49,180
+you're free to just put HTML.
+
+458
+00:21:49,180 --> 00:21:51,480
+>> Because what the PHP
+interpreter is supposed to do,
+
+459
+00:21:51,480 --> 00:21:53,938
+is when it reads this file--
+top to bottom, left to right--
+
+460
+00:21:53,938 --> 00:21:59,100
+it only interprets code it sees between
+those angle brackets question mark.
+
+461
+00:21:59,100 --> 00:22:02,380
+And anything else that it doesn't
+recognize as PHP, it just spits out.
+
+462
+00:22:02,380 --> 00:22:05,080
+And HTML Is among the stuff
+it will just spit out.
+
+463
+00:22:05,080 --> 00:22:09,090
+>> So this file could have
+been called index.html,
+
+464
+00:22:09,090 --> 00:22:11,690
+but I'm naming everything
+dot PHP as a stepping stone.
+
+465
+00:22:11,690 --> 00:22:15,960
+Lectures.php-- similarly
+underwhelming, it's just some HTML.
+
+466
+00:22:15,960 --> 00:22:19,840
+Week0.php, similarly just some HTML.
+
+467
+00:22:19,840 --> 00:22:22,300
+>> But now let's put on the
+proverbial engineering hat,
+
+468
+00:22:22,300 --> 00:22:24,400
+and consider how we can improve this.
+
+469
+00:22:24,400 --> 00:22:28,541
+It's not hard to do this, but I kind
+of devolved into copy and paste.
+
+470
+00:22:28,541 --> 00:22:31,540
+And in fact, if I make week two, you
+know what I'm probably going to do?
+
+471
+00:22:31,540 --> 00:22:34,940
+I'm going to go to week1.php, I'm
+going to highlight everything.
+
+472
+00:22:34,940 --> 00:22:39,110
+I'm going to copy it, paste it
+into a new file called week2.php,
+
+473
+00:22:39,110 --> 00:22:42,440
+tweak some URLs, and be on my way.
+
+474
+00:22:42,440 --> 00:22:45,240
+>> So based on what we've
+seen in C already,
+
+475
+00:22:45,240 --> 00:22:46,860
+this doesn't feel right, hopefully.
+
+476
+00:22:46,860 --> 00:22:49,610
+Copy, paste rarely the right solution.
+
+477
+00:22:49,610 --> 00:22:51,429
+So what can we start
+to do to improve this?
+
+478
+00:22:51,429 --> 00:22:53,345
+Where are the opportunities
+for better design?
+
+479
+00:22:53,345 --> 00:22:56,890
+
+480
+00:22:56,890 --> 00:22:58,760
+>> By the time I get to
+week eight, it's going
+
+481
+00:22:58,760 --> 00:23:00,910
+to be really annoying
+if I want to change
+
+482
+00:23:00,910 --> 00:23:03,930
+the font of every one of
+my pages, or if I want
+
+483
+00:23:03,930 --> 00:23:06,522
+to change the structure of the layout.
+
+484
+00:23:06,522 --> 00:23:08,396
+So where's the opportunity
+for better design?
+
+485
+00:23:08,396 --> 00:23:11,990
+
+486
+00:23:11,990 --> 00:23:15,160
+Well, let's consider what's
+shared across all of these files.
+
+487
+00:23:15,160 --> 00:23:21,696
+>> Here's week one, here's week
+zero, here's lectures.php,
+
+488
+00:23:21,696 --> 00:23:25,790
+here's index.php-- what is the same and
+what is different, roughly speaking,
+
+489
+00:23:25,790 --> 00:23:26,760
+in each of these files?
+
+490
+00:23:26,760 --> 00:23:30,560
+
+491
+00:23:30,560 --> 00:23:32,060
+Yeah?
+
+492
+00:23:32,060 --> 00:23:34,560
+>> AUDIENCE: [INAUDIBLE]
+
+493
+00:23:34,560 --> 00:23:41,244
+
+494
+00:23:41,244 --> 00:23:42,160
+DAVID MALAN: OK, good.
+
+495
+00:23:42,160 --> 00:23:46,115
+So there's a pattern, surely, whereby
+every time I choose lecture I,
+
+496
+00:23:46,115 --> 00:23:48,250
+I should be generating a
+very similar looking page.
+
+497
+00:23:48,250 --> 00:23:50,375
+And so perhaps I can leverage
+the fact that really,
+
+498
+00:23:50,375 --> 00:23:53,060
+we deliberately numerically
+indexed our lectures--
+
+499
+00:23:53,060 --> 00:23:55,290
+if I can put even more
+words in your answer.
+
+500
+00:23:55,290 --> 00:23:59,984
+And what is the only thing, really,
+that's changing between week one--
+
+501
+00:23:59,984 --> 00:24:02,400
+and let me scroll down so it's
+roughly in the same place--
+
+502
+00:24:02,400 --> 00:24:05,480
+so here is week zero,
+roughly at the top.
+
+503
+00:24:05,480 --> 00:24:12,370
+Here is week one, week
+zero, week one, week zero.
+
+504
+00:24:12,370 --> 00:24:14,370
+OK, literally if you know
+no program whatsoever,
+
+505
+00:24:14,370 --> 00:24:16,286
+this is now just like a
+pattern matching game.
+
+506
+00:24:16,286 --> 00:24:17,200
+So what's different?
+
+507
+00:24:17,200 --> 00:24:18,765
+Yeah?
+
+508
+00:24:18,765 --> 00:24:19,777
+>> AUDIENCE: [INAUDIBLE]
+
+509
+00:24:19,777 --> 00:24:22,360
+DAVID MALAN: Good, so the title
+is changing, ever so slightly.
+
+510
+00:24:22,360 --> 00:24:24,010
+Zero is going, of course, to one.
+
+511
+00:24:24,010 --> 00:24:25,570
+Same thing's happening in the H1 tag.
+
+512
+00:24:25,570 --> 00:24:28,790
+And we don't quite see it as easily,
+because the URLs are a little long.
+
+513
+00:24:28,790 --> 00:24:30,670
+But those URLs are changing slightly.
+
+514
+00:24:30,670 --> 00:24:34,490
+>> But what's not changing is, dare I
+say, most of the contents of the page--
+
+515
+00:24:34,490 --> 00:24:38,530
+the HTML tag's the same, the head is
+the same, the title is almost the same,
+
+516
+00:24:38,530 --> 00:24:40,659
+the body is the same, and
+almost everything else
+
+517
+00:24:40,659 --> 00:24:42,450
+is the same except for
+those little tweaks.
+
+518
+00:24:42,450 --> 00:24:45,310
+So how can we go about
+factoring some of this out?
+
+519
+00:24:45,310 --> 00:24:48,740
+>> Well let me propose exactly
+that in the next version.
+
+520
+00:24:48,740 --> 00:24:53,890
+So here in version one, I have the exact
+same files, plus a couple of others.
+
+521
+00:24:53,890 --> 00:24:59,730
+Here's index.php-- and even if
+you've never seen PHP before,
+
+522
+00:24:59,730 --> 00:25:05,511
+what am I probably doing to solve this
+problem-- based on what you see here?
+
+523
+00:25:05,511 --> 00:25:11,300
+
+524
+00:25:11,300 --> 00:25:12,760
+Yeah, is that a slight commitment?
+
+525
+00:25:12,760 --> 00:25:13,450
+No?
+
+526
+00:25:13,450 --> 00:25:16,020
+Yes, go on.
+
+527
+00:25:16,020 --> 00:25:17,380
+>> AUDIENCE: [INAUDIBLE]
+
+528
+00:25:17,380 --> 00:25:18,380
+>> DAVID MALAN: Yep.
+
+529
+00:25:18,380 --> 00:25:20,380
+>> AUDIENCE: [INAUDIBLE]
+
+530
+00:25:20,380 --> 00:25:26,090
+
+531
+00:25:26,090 --> 00:25:28,669
+>> DAVID MALAN: I need you to
+speak just a little louder.
+
+532
+00:25:28,669 --> 00:25:31,084
+>> AUDIENCE: [INAUDIBLE]
+
+533
+00:25:31,084 --> 00:25:35,744
+
+534
+00:25:35,744 --> 00:25:36,660
+DAVID MALAN: OK, good.
+
+535
+00:25:36,660 --> 00:25:38,620
+And I think-- it was
+hard to hear you-- but I
+
+536
+00:25:38,620 --> 00:25:42,690
+think what you're getting at is that
+the tags that were common up top,
+
+537
+00:25:42,690 --> 00:25:47,710
+and the tags that were common on the
+bottom, have now been factored out,
+
+538
+00:25:47,710 --> 00:25:51,140
+or relegated to what files?
+
+539
+00:25:51,140 --> 00:25:53,476
+Header.php and footer.php--
+and we're going
+
+540
+00:25:53,476 --> 00:25:55,600
+to make some tweaks to
+address the concern you just
+
+541
+00:25:55,600 --> 00:25:59,370
+raised about the numbers changing, for
+instance, if I heard you correctly.
+
+542
+00:25:59,370 --> 00:26:02,060
+>> But that seems to be the gist of it.
+
+543
+00:26:02,060 --> 00:26:04,820
+If there was a huge amount of
+redundancy at the top of the page,
+
+544
+00:26:04,820 --> 00:26:06,736
+and a huge amount of
+redundancy at the bottom,
+
+545
+00:26:06,736 --> 00:26:09,280
+let's literally just highlight
+and cut that content out,
+
+546
+00:26:09,280 --> 00:26:13,270
+put it in a separate file-- just like
+the idea of CSS, where we factored out
+
+547
+00:26:13,270 --> 00:26:16,710
+very similar aesthetics, put
+it in a separate dot PHP file,
+
+548
+00:26:16,710 --> 00:26:20,340
+use the require mechanism-- which
+is like C sharp include-- which
+
+549
+00:26:20,340 --> 00:26:23,570
+is essentially like saying go
+grab the contents of header.php,
+
+550
+00:26:23,570 --> 00:26:25,370
+and copy and paste them here.
+
+551
+00:26:25,370 --> 00:26:29,490
+>> But what this means is that now in
+index.php, I have those two lines.
+
+552
+00:26:29,490 --> 00:26:32,130
+In lectures.php, I also
+have those two lines.
+
+553
+00:26:32,130 --> 00:26:35,230
+In week0.php, I also
+have those two lines.
+
+554
+00:26:35,230 --> 00:26:38,380
+>> So now, if I want to change
+the title of all of my pages,
+
+555
+00:26:38,380 --> 00:26:40,530
+or I want to change the
+fundamental structure,
+
+556
+00:26:40,530 --> 00:26:44,380
+I can change it now in just one place,
+or two places-- header and footer,
+
+557
+00:26:44,380 --> 00:26:45,429
+respectively.
+
+558
+00:26:45,429 --> 00:26:47,970
+Now the code's starting to look
+a little more cryptic, right?
+
+559
+00:26:47,970 --> 00:26:53,590
+But if you think about what the page
+is doing-- if I'm requesting week0.php,
+
+560
+00:26:53,590 --> 00:26:59,880
+just like on the drawing over
+here-- when week0.php is requested,
+
+561
+00:26:59,880 --> 00:27:00,960
+what does that mean?
+
+562
+00:27:00,960 --> 00:27:04,410
+>> Literally, this file is
+requested by the browser.
+
+563
+00:27:04,410 --> 00:27:06,240
+The web server-- a.k.a.
+
+564
+00:27:06,240 --> 00:27:09,250
+CS50 ID-- grabs this
+file, week0.php, and reads
+
+565
+00:27:09,250 --> 00:27:10,780
+it top to bottom, left to right.
+
+566
+00:27:10,780 --> 00:27:15,400
+On line one, it immediately encounters
+open bracket question mark PHP, require
+
+567
+00:27:15,400 --> 00:27:17,872
+header dot PHP, and so
+what the PHP interpreter
+
+568
+00:27:17,872 --> 00:27:20,580
+does-- that's built into the web
+server, because we preconfigured
+
+569
+00:27:20,580 --> 00:27:24,580
+it for you-- it automatically goes
+into header.php, copies the contents,
+
+570
+00:27:24,580 --> 00:27:25,640
+pastes them here.
+
+571
+00:27:25,640 --> 00:27:28,790
+>> But then the interpreter encounters
+question mark close bracket,
+
+572
+00:27:28,790 --> 00:27:30,320
+so it's all done thinking.
+
+573
+00:27:30,320 --> 00:27:33,400
+Now it just blindly spits
+out lines two through seven,
+
+574
+00:27:33,400 --> 00:27:35,240
+because it's just raw HTML.
+
+575
+00:27:35,240 --> 00:27:38,470
+Gets to line eight, and does that
+same magic again-- opening the file,
+
+576
+00:27:38,470 --> 00:27:41,460
+grabbing the contents, and
+requiring them or pasting them
+
+577
+00:27:41,460 --> 00:27:42,480
+right then or there.
+
+578
+00:27:42,480 --> 00:27:44,210
+>> But I just alluded to a bug.
+
+579
+00:27:44,210 --> 00:27:48,610
+This is a partial step backward,
+because if we look in header.php,
+
+580
+00:27:48,610 --> 00:27:50,850
+I've kind of cut a corner.
+
+581
+00:27:50,850 --> 00:27:56,250
+What feature did I give up in order
+to gain this arguable better design?
+
+582
+00:27:56,250 --> 00:27:57,305
+Yeah?
+
+583
+00:27:57,305 --> 00:27:58,180
+AUDIENCE: [INAUDIBLE]
+
+584
+00:27:58,180 --> 00:28:00,570
+DAVID MALAN: Yeah, I kind
+of cut a nontrivial corner.
+
+585
+00:28:00,570 --> 00:28:04,489
+You pointed out that what was changing
+was the title, the number in the title,
+
+586
+00:28:04,489 --> 00:28:05,530
+and the number in the H1.
+
+587
+00:28:05,530 --> 00:28:08,170
+So my solution was, OK,
+let's just rename the page,
+
+588
+00:28:08,170 --> 00:28:10,080
+and not deal with that
+problem whatsoever.
+
+589
+00:28:10,080 --> 00:28:12,130
+So that's a partial
+step backwards for sure.
+
+590
+00:28:12,130 --> 00:28:14,300
+>> But what is noteworthy here
+is that what I have done
+
+591
+00:28:14,300 --> 00:28:17,200
+is otherwise factored
+out all the common stuff.
+
+592
+00:28:17,200 --> 00:28:21,520
+And in footer.php, notice I factored
+out all of that, albeit lesser,
+
+593
+00:28:21,520 --> 00:28:22,790
+common stuff.
+
+594
+00:28:22,790 --> 00:28:26,070
+So I need to somehow now be able to
+take another step forward, and fix
+
+595
+00:28:26,070 --> 00:28:27,160
+that title issues.
+
+596
+00:28:27,160 --> 00:28:28,180
+So let's do that.
+
+597
+00:28:28,180 --> 00:28:35,060
+>> Let me go into my second version
+here, which, again, has the same files
+
+598
+00:28:35,060 --> 00:28:36,825
+except for one new addition.
+
+599
+00:28:36,825 --> 00:28:38,950
+And it's a little more
+verbose, but let's see if we
+
+600
+00:28:38,950 --> 00:28:40,550
+can tease apart what's going on here.
+
+601
+00:28:40,550 --> 00:28:45,370
+So instead of requiring
+header.php, and footer.php,
+
+602
+00:28:45,370 --> 00:28:50,180
+I seem to be only requiring one
+file-- called, of course, helpers.php.
+
+603
+00:28:50,180 --> 00:28:52,560
+And let me stipulate now,
+what's inside of helpers.php
+
+604
+00:28:52,560 --> 00:28:55,330
+is just a bunch of functions
+that I wrote, just like before.
+
+605
+00:28:55,330 --> 00:28:57,550
+But I called it helpers.php.
+
+606
+00:28:57,550 --> 00:29:00,370
+>> Now apparently, in
+line three and 10, I'm
+
+607
+00:29:00,370 --> 00:29:02,840
+calling two functions--
+render header, render footer.
+
+608
+00:29:02,840 --> 00:29:05,040
+Those don't come with
+PHP, I wrote those myself.
+
+609
+00:29:05,040 --> 00:29:07,880
+And I put them in helpers.php.
+
+610
+00:29:07,880 --> 00:29:11,210
+>> Now, we've only seen this syntax
+once, and it was super brief.
+
+611
+00:29:11,210 --> 00:29:15,330
+But this is apparently an argument
+to render header, the function.
+
+612
+00:29:15,330 --> 00:29:16,450
+Why do I know that?
+
+613
+00:29:16,450 --> 00:29:18,522
+Well here's a close paren,
+here's an open paren.
+
+614
+00:29:18,522 --> 00:29:21,230
+And of course, just like in C,
+anything between those parentheses
+
+615
+00:29:21,230 --> 00:29:23,350
+is an input-- or an
+argument to the function.
+
+616
+00:29:23,350 --> 00:29:26,710
+>> What is the data type of this argument,
+based on what I've highlighted?
+
+617
+00:29:26,710 --> 00:29:30,820
+What do those square brackets
+indicate, based on last week?
+
+618
+00:29:30,820 --> 00:29:33,390
+Yeah, it's an array--
+specifically an associative array.
+
+619
+00:29:33,390 --> 00:29:35,700
+And this syntax admittedly
+is a little funky,
+
+620
+00:29:35,700 --> 00:29:38,860
+but this is just passing
+in one key value pair.
+
+621
+00:29:38,860 --> 00:29:43,530
+The key is, quote unquote
+title, and the value is CS50.
+
+622
+00:29:43,530 --> 00:29:46,220
+>> If we had done this
+in C, it might instead
+
+623
+00:29:46,220 --> 00:29:49,400
+look more like this,
+just quote unquote CS50--
+
+624
+00:29:49,400 --> 00:29:52,460
+or actually it would be curly
+braces, or something like that in C,
+
+625
+00:29:52,460 --> 00:29:55,580
+where the key is zero,
+and the value is CS50.
+
+626
+00:29:55,580 --> 00:29:59,840
+But again, in PHP, even though the
+syntax is, again, a little weird,
+
+627
+00:29:59,840 --> 00:30:02,860
+it allows you to pass in
+words instead of numbers
+
+628
+00:30:02,860 --> 00:30:05,120
+to associate keys with values.
+
+629
+00:30:05,120 --> 00:30:06,390
+>> So what does this all mean?
+
+630
+00:30:06,390 --> 00:30:09,750
+If I go into helpers.php,
+let's look at this function.
+
+631
+00:30:09,750 --> 00:30:13,620
+renderHeader.php, rather
+renderHeader is my function,
+
+632
+00:30:13,620 --> 00:30:16,220
+and I know that because I see
+the function keyword here.
+
+633
+00:30:16,220 --> 00:30:19,450
+This is new from C-- it apparently
+takes an argument called data--
+
+634
+00:30:19,450 --> 00:30:22,400
+but I could have called this
+anything, but I called it data,
+
+635
+00:30:22,400 --> 00:30:25,090
+just to be a little clean-- and
+just take a guess, especially
+
+636
+00:30:25,090 --> 00:30:28,173
+if you've programmed in some other
+higher level language before, something
+
+637
+00:30:28,173 --> 00:30:29,820
+above C, conceptually.
+
+638
+00:30:29,820 --> 00:30:33,820
+>> What does equal open bracket
+square bracket probably mean?
+
+639
+00:30:33,820 --> 00:30:35,540
+Or what might it mean?
+
+640
+00:30:35,540 --> 00:30:39,660
+We've not seen this in C. Yeah?
+
+641
+00:30:39,660 --> 00:30:40,480
+>> An empty array.
+
+642
+00:30:40,480 --> 00:30:45,440
+Specifically, this means that if
+the user does not call renderHeader
+
+643
+00:30:45,440 --> 00:30:49,340
+with an argument, I'm still going
+to have an argument called data,
+
+644
+00:30:49,340 --> 00:30:52,327
+but its default value is
+going to be an empty array.
+
+645
+00:30:52,327 --> 00:30:53,660
+So it's just a nice convenience.
+
+646
+00:30:53,660 --> 00:30:56,493
+I don't have to yell at the user,
+or say you used my function wrong.
+
+647
+00:30:56,493 --> 00:30:59,849
+I can just give the user a default
+value, if I don't particularly care.
+
+648
+00:30:59,849 --> 00:31:01,890
+Now this function, I'm
+going to wave my hands at.
+
+649
+00:31:01,890 --> 00:31:07,620
+But this extract function allows
+us to pass these variables in data
+
+650
+00:31:07,620 --> 00:31:10,360
+into header.php in the following way.
+
+651
+00:31:10,360 --> 00:31:13,100
+And this is the last piece,
+I think, of funky syntax.
+
+652
+00:31:13,100 --> 00:31:15,860
+Here is my new version
+of header.php-- it
+
+653
+00:31:15,860 --> 00:31:20,140
+used to say, literally, open
+bracket title CS50, and that was it.
+
+654
+00:31:20,140 --> 00:31:21,766
+And same thing for the H1.
+
+655
+00:31:21,766 --> 00:31:24,310
+>> Now it apparently says
+something pretty funky.
+
+656
+00:31:24,310 --> 00:31:28,030
+And let me simplify this
+for a moment as follows.
+
+657
+00:31:28,030 --> 00:31:31,020
+This is what I've
+changed my title to be.
+
+658
+00:31:31,020 --> 00:31:35,140
+However, it's getting a little ugly
+to constantly open brackets with PHP,
+
+659
+00:31:35,140 --> 00:31:36,610
+and then use the print function.
+
+660
+00:31:36,610 --> 00:31:40,810
+It turns out that PHP has a shorthand
+notation for this, which is just
+
+661
+00:31:40,810 --> 00:31:45,050
+an equal sign, which is technically a
+function called echo instead of print,
+
+662
+00:31:45,050 --> 00:31:46,800
+but it's the same thing, effectively.
+
+663
+00:31:46,800 --> 00:31:48,440
+>> That just looks better.
+
+664
+00:31:48,440 --> 00:31:50,510
+It's just a syntactic
+sugar, if you will,
+
+665
+00:31:50,510 --> 00:31:52,260
+that makes my code look a little better.
+
+666
+00:31:52,260 --> 00:31:54,010
+But it turns out, and
+we'll see this again
+
+667
+00:31:54,010 --> 00:31:57,420
+before long, we have to call this
+annoyingly long function called
+
+668
+00:31:57,420 --> 00:32:00,582
+HTML special chars in
+PHP, because it turns out
+
+669
+00:32:00,582 --> 00:32:02,790
+there are certain inputs
+that the user might give us,
+
+670
+00:32:02,790 --> 00:32:05,160
+or that users might give us,
+that are going to break our site.
+
+671
+00:32:05,160 --> 00:32:07,035
+But we'll see that next
+week with JavaScript.
+
+672
+00:32:07,035 --> 00:32:10,740
+But for now, just know that
+this file, headers.php, simply
+
+673
+00:32:10,740 --> 00:32:13,040
+takes the title that
+I passed in, it make
+
+674
+00:32:13,040 --> 00:32:17,380
+sure it's safe to be injected into a web
+page, and it spits it out as my title
+
+675
+00:32:17,380 --> 00:32:18,640
+and as my H1.
+
+676
+00:32:18,640 --> 00:32:24,440
+So if I go into this version now,
+notice that lectures has its title back,
+
+677
+00:32:24,440 --> 00:32:28,630
+week zero has its title back, and
+indeed, the HTML I'm generating
+
+678
+00:32:28,630 --> 00:32:32,110
+is identical to what my first version
+was-- except for my whitespace,
+
+679
+00:32:32,110 --> 00:32:35,150
+because I've started formatting
+my code a little differently.
+
+680
+00:32:35,150 --> 00:32:38,082
+But I've generated all
+the code I care about.
+
+681
+00:32:38,082 --> 00:32:39,790
+So let me pause for
+just a moment and see
+
+682
+00:32:39,790 --> 00:32:42,200
+if there's any questions
+or confusion I've created.
+
+683
+00:32:42,200 --> 00:32:44,970
+
+684
+00:32:44,970 --> 00:32:48,150
+All right, so let's twist
+a little harder here
+
+685
+00:32:48,150 --> 00:32:51,500
+to see if there's an
+opportunity for improvement.
+
+686
+00:32:51,500 --> 00:32:56,130
+Helpers.php also had this
+function, called renderFooter.
+
+687
+00:32:56,130 --> 00:32:59,652
+And what's noteworthy about
+renderHeader, and renderFooter?
+
+688
+00:32:59,652 --> 00:33:02,610
+And again, for today's purposes, know
+that the extract function is just
+
+689
+00:33:02,610 --> 00:33:08,280
+my way of passing arguments
+into header.php and footer.php.
+
+690
+00:33:08,280 --> 00:33:10,900
+
+691
+00:33:10,900 --> 00:33:11,780
+>> Sorry?
+
+692
+00:33:11,780 --> 00:33:13,056
+>> AUDIENCE: [INAUDIBLE]
+
+693
+00:33:13,056 --> 00:33:15,180
+DAVID MALAN: Yeah, I only
+changed the require line.
+
+694
+00:33:15,180 --> 00:33:19,410
+So literally, I've committed the sin
+of copying and pasting, yet again.
+
+695
+00:33:19,410 --> 00:33:21,920
+It's not a huge number
+of lines, but come on--
+
+696
+00:33:21,920 --> 00:33:25,220
+if I'm copying and pasting everything
+just to change one little word,
+
+697
+00:33:25,220 --> 00:33:28,610
+and the one little word that Alan points
+out is footer here, versus header here.
+
+698
+00:33:28,610 --> 00:33:30,670
+Otherwise, everything is
+identical, except for,
+
+699
+00:33:30,670 --> 00:33:32,180
+of course, the function's names.
+
+700
+00:33:32,180 --> 00:33:33,690
+So what could we do better?
+
+701
+00:33:33,690 --> 00:33:39,810
+>> Well let me open up this version
+here, whereby in helpers.php,
+
+702
+00:33:39,810 --> 00:33:42,300
+why don't I just get a
+little smarter about this?
+
+703
+00:33:42,300 --> 00:33:46,410
+Write slightly more complicated
+code, but call it render?
+
+704
+00:33:46,410 --> 00:33:48,470
+So what have I fundamentally changed?
+
+705
+00:33:48,470 --> 00:33:51,770
+>> It takes an argument now--
+two arguments, data still.
+
+706
+00:33:51,770 --> 00:33:54,444
+And then what's the first
+name probably being used for,
+
+707
+00:33:54,444 --> 00:33:55,860
+based on what you're reading here?
+
+708
+00:33:55,860 --> 00:33:58,452
+Even if some of the syntax is still new.
+
+709
+00:33:58,452 --> 00:33:59,660
+What is dollar sign template?
+
+710
+00:33:59,660 --> 00:34:02,400
+
+711
+00:34:02,400 --> 00:34:03,016
+>> Sorry?
+
+712
+00:34:03,016 --> 00:34:03,710
+>> AUDIENCE: Header or footer.
+
+713
+00:34:03,710 --> 00:34:04,510
+>> DAVID MALAN: Header or footer.
+
+714
+00:34:04,510 --> 00:34:07,134
+So apparently, I decided that if
+the only thing that's changing
+
+715
+00:34:07,134 --> 00:34:10,159
+is what template I want
+to print-- and by template
+
+716
+00:34:10,159 --> 00:34:13,100
+I mean this is blueprint for
+code that I want to output,
+
+717
+00:34:13,100 --> 00:34:16,350
+but I want to plug in some
+values-- so if it's only header
+
+718
+00:34:16,350 --> 00:34:20,440
+or footer, why don't I parameterize
+that and call the argument dollar sign
+
+719
+00:34:20,440 --> 00:34:21,409
+template?
+
+720
+00:34:21,409 --> 00:34:26,250
+And then this funky syntax allows me
+to create a path in a variable here.
+
+721
+00:34:26,250 --> 00:34:28,030
+>> So dollar sign path is a variable.
+
+722
+00:34:28,030 --> 00:34:31,120
+What does this syntax
+do, if you're familiar?
+
+723
+00:34:31,120 --> 00:34:32,512
+Yeah?
+
+724
+00:34:32,512 --> 00:34:34,065
+>> AUDIENCE: [INAUDIBLE]
+
+725
+00:34:34,065 --> 00:34:34,940
+DAVID MALAN: Exactly.
+
+726
+00:34:34,940 --> 00:34:37,600
+If template is, quote unquote,
+header, or if template is,
+
+727
+00:34:37,600 --> 00:34:41,170
+quote unquote, footer, that line there
+that I've highlighted, line eight,
+
+728
+00:34:41,170 --> 00:34:46,330
+is simply taking that name, like header,
+and concatenating it with dot PHP.
+
+729
+00:34:46,330 --> 00:34:49,750
+So we didn't have this operator
+in C. This dot operator is
+
+730
+00:34:49,750 --> 00:34:54,520
+an amazing thing in PHP-- if you're
+familiar with JavaScript or Java,
+
+731
+00:34:54,520 --> 00:34:56,949
+you can use the plus
+sign to do concatenation.
+
+732
+00:34:56,949 --> 00:34:59,974
+>> In C, it is a pain in the neck--
+and I'm so sorry, in p-set six,
+
+733
+00:34:59,974 --> 00:35:02,390
+you're going to have to do
+this-- it is a pain in the neck
+
+734
+00:35:02,390 --> 00:35:03,930
+to concatenate strings.
+
+735
+00:35:03,930 --> 00:35:04,670
+Why?
+
+736
+00:35:04,670 --> 00:35:06,580
+Well, because if you've got
+a string that's this long,
+
+737
+00:35:06,580 --> 00:35:09,538
+and another string that's this long,
+you can't just plug them together.
+
+738
+00:35:09,538 --> 00:35:11,070
+What do you instead have to do in C?
+
+739
+00:35:11,070 --> 00:35:11,680
+Yeah?
+
+740
+00:35:11,680 --> 00:35:12,380
+>> AUDIENCE: [INAUDIBLE]
+
+741
+00:35:12,380 --> 00:35:15,090
+>> DAVID MALAN: You have to malloc
+memory, or use an array on the stack.
+
+742
+00:35:15,090 --> 00:35:17,214
+And you actually have to
+make that array big enough
+
+743
+00:35:17,214 --> 00:35:20,940
+to fit this plus this,
+plus the backslash zero.
+
+744
+00:35:20,940 --> 00:35:24,994
+Then concatenate them together using
+stir cat or manually with a for loop,
+
+745
+00:35:24,994 --> 00:35:26,160
+or any number of techniques.
+
+746
+00:35:26,160 --> 00:35:27,760
+And we show you a couple in p-set six.
+
+747
+00:35:27,760 --> 00:35:29,080
+>> It's a pain in the neck.
+
+748
+00:35:29,080 --> 00:35:34,190
+And this is truly what I mean about
+this versus this-- like C versus PHP.
+
+749
+00:35:34,190 --> 00:35:36,870
+You just get so much more
+functionality for free,
+
+750
+00:35:36,870 --> 00:35:39,030
+so that you can focus,
+ideally, on the fun
+
+751
+00:35:39,030 --> 00:35:41,190
+part of coding, the
+project you want to solve,
+
+752
+00:35:41,190 --> 00:35:43,190
+rather than the low level minutiae.
+
+753
+00:35:43,190 --> 00:35:49,840
+>> So this just generates header.php or
+footer.php based on which one I call.
+
+754
+00:35:49,840 --> 00:35:52,280
+And indeed if I go
+into index.php, notice
+
+755
+00:35:52,280 --> 00:35:56,230
+all that's changed-- Instead of
+calling render header or render footer,
+
+756
+00:35:56,230 --> 00:36:00,230
+I'm calling render, followed by the
+name of the template that I want to do.
+
+757
+00:36:00,230 --> 00:36:02,370
+And you'll see this, too,
+in problem set seven,
+
+758
+00:36:02,370 --> 00:36:05,530
+whereby we allow you to use the
+same function to make bunches
+
+759
+00:36:05,530 --> 00:36:07,550
+and bunches of different web pages.
+
+760
+00:36:07,550 --> 00:36:10,570
+>> So rather than dwell too
+much more on those details--
+
+761
+00:36:10,570 --> 00:36:13,210
+which you'll see again in
+problem set seven-- let's look
+
+762
+00:36:13,210 --> 00:36:16,850
+at now the beginning of a solution
+to a more interesting problem.
+
+763
+00:36:16,850 --> 00:36:19,310
+Thus far, nothing we've
+done has saved data.
+
+764
+00:36:19,310 --> 00:36:22,920
+In fact, the only time we've ever saved
+something we've done in this class
+
+765
+00:36:22,920 --> 00:36:31,030
+is when we had a very simple demo awhile
+back, whereby we used file IO in C,
+
+766
+00:36:31,030 --> 00:36:34,520
+and I think I typed in my name, and
+Hannah's name, and Maria's name,
+
+767
+00:36:34,520 --> 00:36:37,610
+or maybe Andy's name, and
+then we saved a CSV file--
+
+768
+00:36:37,610 --> 00:36:39,430
+comma separated values file.
+
+769
+00:36:39,430 --> 00:36:43,530
+>> And we used fopen-- I think
+we used fprintf as I recall,
+
+770
+00:36:43,530 --> 00:36:44,910
+and we saved a file.
+
+771
+00:36:44,910 --> 00:36:46,920
+Now, that is the simplest
+form of a database.
+
+772
+00:36:46,920 --> 00:36:50,230
+If you want to make a website for the
+Frosh IMs program, whereby freshmen
+
+773
+00:36:50,230 --> 00:36:53,390
+can register for a sport, you ideally
+want to do something with that data.
+
+774
+00:36:53,390 --> 00:36:55,370
+Last week, we did nothing
+with the data-- we just said,
+
+775
+00:36:55,370 --> 00:36:56,661
+you are registered, not really.
+
+776
+00:36:56,661 --> 00:36:58,950
+Or maybe I emailed the
+proctor, and that was it.
+
+777
+00:36:58,950 --> 00:37:02,110
+>> But it would be nice if I could
+give that proctor a CSV file,
+
+778
+00:37:02,110 --> 00:37:03,340
+like an Excel file.
+
+779
+00:37:03,340 --> 00:37:05,090
+Or better yet, it would
+be nice if I could
+
+780
+00:37:05,090 --> 00:37:08,830
+put those users' names and
+dorm names and all of that
+
+781
+00:37:08,830 --> 00:37:11,740
+into a database that
+just lives on forever,
+
+782
+00:37:11,740 --> 00:37:13,530
+until I choose to delete the data.
+
+783
+00:37:13,530 --> 00:37:15,645
+A database that allows
+me to query information.
+
+784
+00:37:15,645 --> 00:37:18,070
+And indeed, that's what a database is.
+
+785
+00:37:18,070 --> 00:37:20,470
+>> We introduce today, and
+next week, too, a technology
+
+786
+00:37:20,470 --> 00:37:25,020
+called SQL-- a Structured Query
+Language, which is another language.
+
+787
+00:37:25,020 --> 00:37:28,750
+It's essentially a programming
+language, but for databases.
+
+788
+00:37:28,750 --> 00:37:31,760
+And a database for now, just
+think of as a super fancy version
+
+789
+00:37:31,760 --> 00:37:35,710
+of Microsoft Excel, or Google
+Spreadsheets, or Apple Numbers.
+
+790
+00:37:35,710 --> 00:37:39,950
+It's generally a program that allows
+you to store a whole bunch of data
+
+791
+00:37:39,950 --> 00:37:43,960
+in rows and columns, quite
+like you might in Excel.
+
+792
+00:37:43,960 --> 00:37:47,100
+>> But what's nice, especially if
+we're not super familiar with Excel,
+
+793
+00:37:47,100 --> 00:37:52,040
+what SQL allows you to do is query this
+information by writing lines of code
+
+794
+00:37:52,040 --> 00:37:55,220
+where you can, even if your
+database has a million rows in it,
+
+795
+00:37:55,220 --> 00:37:57,190
+you can find things super fast.
+
+796
+00:37:57,190 --> 00:37:59,950
+In fact, Excel is particularly
+bad at large data sets.
+
+797
+00:37:59,950 --> 00:38:02,460
+And in fact, up to a few
+years ago, turned out
+
+798
+00:38:02,460 --> 00:38:08,890
+Excel would only allow you to store
+up to 65,535 rows of data-- which
+
+799
+00:38:08,890 --> 00:38:12,020
+sounds like a lot, but at the
+time I was a grad student,
+
+800
+00:38:12,020 --> 00:38:14,920
+and I remember tripping over
+this because I was generating
+
+801
+00:38:14,920 --> 00:38:17,900
+CSV files for my research and I
+wanted to analyze them quickly
+
+802
+00:38:17,900 --> 00:38:19,530
+by just opening up in Excel.
+
+803
+00:38:19,530 --> 00:38:23,730
+Of course, my computer just crashed,
+because I had more than 65,000 rows.
+
+804
+00:38:23,730 --> 00:38:27,210
+>> But where did the 65,535 come from?
+
+805
+00:38:27,210 --> 00:38:29,670
+What was Microsoft doing, presumably?
+
+806
+00:38:29,670 --> 00:38:32,430
+If you're good with your powers of two?
+
+807
+00:38:32,430 --> 00:38:37,160
+Yeah, they were using a 16-bit
+value to represent the row number.
+
+808
+00:38:37,160 --> 00:38:41,310
+And two to 16 is 65,536--
+minus one, because if you
+
+809
+00:38:41,310 --> 00:38:45,414
+zero index means that was the
+most number of rows I could have.
+
+810
+00:38:45,414 --> 00:38:46,830
+And it was just a design decision.
+
+811
+00:38:46,830 --> 00:38:52,760
+By saving 16 bits, they limited me
+to 16,000 rows, instead of 4 billion,
+
+812
+00:38:52,760 --> 00:38:54,322
+which I could have had ideally.
+
+813
+00:38:54,322 --> 00:38:57,030
+But for now, we're going to
+introduce this more in a web context.
+
+814
+00:38:57,030 --> 00:39:00,390
+And what's nice about SQL is that even
+though it's pretty powerful and pretty
+
+815
+00:39:00,390 --> 00:39:04,050
+sophisticated, it really boils
+down to four key operations, four
+
+816
+00:39:04,050 --> 00:39:08,060
+key functions, if you will-- select,
+for retrieving data, searching
+
+817
+00:39:08,060 --> 00:39:12,510
+for data; delete or deleting data;
+insert for adding rows to the database;
+
+818
+00:39:12,510 --> 00:39:13,410
+and updating.
+
+819
+00:39:13,410 --> 00:39:17,010
+So if you have ever used Google
+Spreadsheets, Apple Numbers, Microsoft
+
+820
+00:39:17,010 --> 00:39:19,310
+Excel, you have executed,
+most likely, all
+
+821
+00:39:19,310 --> 00:39:22,530
+of these operations as a human by
+just using your keyboard and mouse--
+
+822
+00:39:22,530 --> 00:39:26,050
+inserting data, using your eyes
+to select or search for data,
+
+823
+00:39:26,050 --> 00:39:28,360
+or update data, or delete data.
+
+824
+00:39:28,360 --> 00:39:29,870
+>> So what does this mean?
+
+825
+00:39:29,870 --> 00:39:34,300
+Well, pre-installed in CS50
+IDE is a program called MySQL.
+
+826
+00:39:34,300 --> 00:39:37,050
+It's a free, open-source
+database that's super popular.
+
+827
+00:39:37,050 --> 00:39:40,590
+Facebook, for instance, uses it to this
+day, among other tools that they use.
+
+828
+00:39:40,590 --> 00:39:44,300
+And a lot of very popular websites use
+it in large part because it's fast,
+
+829
+00:39:44,300 --> 00:39:45,230
+and because it's free.
+
+830
+00:39:45,230 --> 00:39:46,820
+Though certainly alternatives exist.
+
+831
+00:39:46,820 --> 00:39:49,580
+And some of you might dabble with
+alternatives for final projects.
+
+832
+00:39:49,580 --> 00:39:55,330
+>> This is a screenshot, meanwhile, of
+a web-based tool called phpMyAdmin.
+
+833
+00:39:55,330 --> 00:39:58,260
+It is a coincidence that
+this web-based tool is also
+
+834
+00:39:58,260 --> 00:40:01,720
+written in a language, PHP,
+but what it's meant to do
+
+835
+00:40:01,720 --> 00:40:04,620
+is give us a web-based
+interface to a database.
+
+836
+00:40:04,620 --> 00:40:07,180
+Because MySQL typically is
+something, historically, you
+
+837
+00:40:07,180 --> 00:40:08,770
+would interact with only
+with a command line.
+
+838
+00:40:08,770 --> 00:40:10,811
+And it would be super
+annoying and arcane to have
+
+839
+00:40:10,811 --> 00:40:14,487
+to type textual commands to select
+data, insert data, and delete data.
+
+840
+00:40:14,487 --> 00:40:16,820
+So some people on the internet
+wrote a web-based program
+
+841
+00:40:16,820 --> 00:40:18,900
+that just let us manage
+the data in our database.
+
+842
+00:40:18,900 --> 00:40:23,040
+It's like double clicking on Excel, and
+running a web-based version thereof.
+
+843
+00:40:23,040 --> 00:40:26,370
+>> And what you're going to use this for
+ultimately next week, not in p-set six,
+
+844
+00:40:26,370 --> 00:40:28,680
+but is to build something
+called CS50 Finance, which
+
+845
+00:40:28,680 --> 00:40:32,630
+is going to have a database of
+users, with user names and passwords,
+
+846
+00:40:32,630 --> 00:40:34,860
+dollar amounts that they
+have in their bank accounts.
+
+847
+00:40:34,860 --> 00:40:37,280
+It's going to be
+something you use to store
+
+848
+00:40:37,280 --> 00:40:39,910
+the symbols and the quantities
+of stocks that users
+
+849
+00:40:39,910 --> 00:40:42,567
+have bought using virtual
+dollars that you'll give to them.
+
+850
+00:40:42,567 --> 00:40:44,900
+And it's going to allow users
+to register for your site,
+
+851
+00:40:44,900 --> 00:40:47,190
+so that even your friends
+can tune in to your website
+
+852
+00:40:47,190 --> 00:40:49,360
+and actually register,
+log in, and play around
+
+853
+00:40:49,360 --> 00:40:52,807
+and try to find fault in your code,
+and try to find bugs in your website.
+
+854
+00:40:52,807 --> 00:40:55,390
+And they'll simply register by
+adding themselves, effectively,
+
+855
+00:40:55,390 --> 00:40:58,120
+via code you write to your database.
+
+856
+00:40:58,120 --> 00:41:02,470
+>> For instance, this is a quick screenshot
+of what a database might look like.
+
+857
+00:41:02,470 --> 00:41:05,190
+This was from one of
+last year's solutions--
+
+858
+00:41:05,190 --> 00:41:07,760
+this is like a mini Excel
+file, stored in our database,
+
+859
+00:41:07,760 --> 00:41:09,950
+stored in this software called MySQL.
+
+860
+00:41:09,950 --> 00:41:13,260
+On the left hand side, I've apparently
+given every user a unique number.
+
+861
+00:41:13,260 --> 00:41:16,200
+In the second column, I've given
+everyone a user name-- my own
+
+862
+00:41:16,200 --> 00:41:16,880
+among them.
+
+863
+00:41:16,880 --> 00:41:21,430
+And on the right hand side,
+I've given them a hash.
+
+864
+00:41:21,430 --> 00:41:26,760
+>> Now this is actually a password,
+but it's not a plain text password.
+
+865
+00:41:26,760 --> 00:41:30,160
+It's a encrypted password, if
+you will, or a hash password.
+
+866
+00:41:30,160 --> 00:41:32,000
+Which we'll come back to before long.
+
+867
+00:41:32,000 --> 00:41:34,340
+>> But if you've ever read
+an article about how
+
+868
+00:41:34,340 --> 00:41:37,950
+your password at some bank or some
+website might have been compromised,
+
+869
+00:41:37,950 --> 00:41:39,630
+it can generally mean one of two things.
+
+870
+00:41:39,630 --> 00:41:42,780
+So this is just an excerpt of six users.
+
+871
+00:41:42,780 --> 00:41:45,460
+All of you now can figure
+out via hacking or cracking
+
+872
+00:41:45,460 --> 00:41:47,690
+what our six people's passwords are.
+
+873
+00:41:47,690 --> 00:41:49,720
+But if you've ever gotten
+an alert or an apology
+
+874
+00:41:49,720 --> 00:41:52,803
+from a company or website saying,
+sorry, a hacker broke into our database,
+
+875
+00:41:52,803 --> 00:41:56,360
+you should probably change your
+password, what might that mean?
+
+876
+00:41:56,360 --> 00:41:59,670
+>> Well, one, could mean the
+company has been more moronic,
+
+877
+00:41:59,670 --> 00:42:03,630
+and has been storing your password
+in a column like this, unencrypted.
+
+878
+00:42:03,630 --> 00:42:05,840
+Which means the adversary,
+who stole the database,
+
+879
+00:42:05,840 --> 00:42:07,440
+literally knows your
+username and password.
+
+880
+00:42:07,440 --> 00:42:08,960
+That's the worst possible scenario.
+
+881
+00:42:08,960 --> 00:42:11,710
+And as you'll see in p-set
+seven, so easy to avoid.
+
+882
+00:42:11,710 --> 00:42:15,624
+There is absolutely no excuse for that
+form of stupidity in today's internet.
+
+883
+00:42:15,624 --> 00:42:18,540
+Two-- and we'll find some articles
+to testify the fact that this still
+
+884
+00:42:18,540 --> 00:42:21,710
+happens, nonetheless--
+two, maybe the adversary
+
+885
+00:42:21,710 --> 00:42:23,840
+stole this version of the database.
+
+886
+00:42:23,840 --> 00:42:27,110
+Which is still kind of bad, because now
+they know that I have six customers,
+
+887
+00:42:27,110 --> 00:42:29,270
+I know the user names
+of those six customers,
+
+888
+00:42:29,270 --> 00:42:32,910
+and I know the encrypted
+versions, or the hashed versions,
+
+889
+00:42:32,910 --> 00:42:34,340
+of those six customers' passwords.
+
+890
+00:42:34,340 --> 00:42:37,010
+But any of you who might
+have done [? Hacker 2 ?]
+
+891
+00:42:37,010 --> 00:42:41,150
+where you cracked passwords, or took
+a look at that version of the problem
+
+892
+00:42:41,150 --> 00:42:46,280
+set, why is it still a little worrisome
+if the adversary knows your hash
+
+893
+00:42:46,280 --> 00:42:47,435
+passwords?
+
+894
+00:42:47,435 --> 00:42:49,732
+>> AUDIENCE: Because they could
+enter the whole dictionary
+
+895
+00:42:49,732 --> 00:42:50,690
+into the hash function.
+
+896
+00:42:50,690 --> 00:42:54,520
+And if your password is a dictionary
+word, [? they can just match-- ?]
+
+897
+00:42:54,520 --> 00:42:57,640
+>> DAVID MALAN: Exactly, the adversary
+can just write code, like some of you
+
+898
+00:42:57,640 --> 00:43:00,526
+did for [? Hacker ?] 2,
+whereby you iterate over
+
+899
+00:43:00,526 --> 00:43:03,400
+all of the words in the dictionary,
+or all possible combinations of A
+
+900
+00:43:03,400 --> 00:43:06,610
+through Z and one through nine--
+which sounds like a lot, and it is.
+
+901
+00:43:06,610 --> 00:43:08,361
+But for a computer,
+it's pretty darn fast.
+
+902
+00:43:08,361 --> 00:43:10,610
+And in fact, that was the
+point of [? Hacker 2, ?] was
+
+903
+00:43:10,610 --> 00:43:12,540
+to take stuff that
+literally looks like this,
+
+904
+00:43:12,540 --> 00:43:14,900
+and reverse engineer
+what it actually was.
+
+905
+00:43:14,900 --> 00:43:17,270
+>> So we'll look at how we can
+store this more efficiently.
+
+906
+00:43:17,270 --> 00:43:20,210
+Turns out, thankfully in MySQL,
+there are going to be data types.
+
+907
+00:43:20,210 --> 00:43:22,800
+And one of the fun parts about
+database design, to be honest,
+
+908
+00:43:22,800 --> 00:43:25,810
+is actually deciding for yourself
+how should you represent the data?
+
+909
+00:43:25,810 --> 00:43:29,630
+Should you represent a phone number as
+an int, like a big number, or a long?
+
+910
+00:43:29,630 --> 00:43:31,630
+Or do you actually do it
+as a sequence of chars?
+
+911
+00:43:31,630 --> 00:43:33,780
+And there can be very
+non-trivial impacts of this.
+
+912
+00:43:33,780 --> 00:43:36,714
+>> In fact, one of the
+earliest, fun germane stories
+
+913
+00:43:36,714 --> 00:43:39,880
+is when Mark Zuckerberg was building
+Facebook, it was originally written in,
+
+914
+00:43:39,880 --> 00:43:42,300
+and still is largely written in PHP.
+
+915
+00:43:42,300 --> 00:43:45,400
+And one of the biggest challenges
+they faced early on was scaling.
+
+916
+00:43:45,400 --> 00:43:48,820
+When they kept adding school after
+school after school, to my knowledge,
+
+917
+00:43:48,820 --> 00:43:51,639
+one of the original solutions
+was essentially to copy and paste
+
+918
+00:43:51,639 --> 00:43:53,430
+some of the databases
+and some of the code,
+
+919
+00:43:53,430 --> 00:43:55,346
+so that Harvard was
+running on its own server,
+
+920
+00:43:55,346 --> 00:43:56,995
+and MIT was running on its own server.
+
+921
+00:43:56,995 --> 00:43:59,120
+And this was why, for some
+of you who might recall,
+
+922
+00:43:59,120 --> 00:44:01,510
+you couldn't have friends
+in other networks.
+
+923
+00:44:01,510 --> 00:44:05,050
+>> You probably don't have friends at
+MIT or Harvard 10 or so years ago,
+
+924
+00:44:05,050 --> 00:44:07,467
+but you couldn't span networks
+for partly that reason.
+
+925
+00:44:07,467 --> 00:44:10,550
+And one of the biggest challenges for
+Mark and for companies like Facebook
+
+926
+00:44:10,550 --> 00:44:13,460
+is actually handling hundreds
+and thousands and millions
+
+927
+00:44:13,460 --> 00:44:14,460
+of requests per second.
+
+928
+00:44:14,460 --> 00:44:16,501
+So the things we'll start
+talking about this week
+
+929
+00:44:16,501 --> 00:44:19,860
+are really going to be germane to
+writing good software, and popularly
+
+930
+00:44:19,860 --> 00:44:23,040
+successful tools that
+can handle lots of users.
+
+931
+00:44:23,040 --> 00:44:25,460
+>> So we'll talk about things
+like indexing and searching,
+
+932
+00:44:25,460 --> 00:44:26,910
+but that is it for today.
+
+933
+00:44:26,910 --> 00:44:28,780
+We will see you for more on Wednesday.
+
+934
+00:44:28,780 --> 00:44:31,780
+
+935
+00:44:31,780 --> 00:44:33,902
+>> [MUSIC - "SEINFELD" THEME]
+
+936
+00:44:33,902 --> 00:44:35,943
+DAVID MALAN: You can to
+it, and subtract from it.
+
+937
+00:44:35,943 --> 00:44:38,859
+And you don't have to stick with
+some pre-determined amount of memory.
+
+938
+00:44:38,859 --> 00:44:40,580
+Well, what's that going to be called?
+
+939
+00:44:40,580 --> 00:44:42,369
+>> SPEAKER 1: Well, what's going on?
+
+940
+00:44:42,369 --> 00:44:43,535
+SPEAKER 2: What do you mean?
+
+941
+00:44:43,535 --> 00:44:44,451
+He's giving a lecture.
+
+942
+00:44:44,451 --> 00:44:47,650
+DAVID MALAN: And we can use a
+function called malloc to memory--
+
+943
+00:44:47,650 --> 00:44:50,050
+>> SPEAKER 1: Why aren't his arms moving?
+
+944
+00:44:50,050 --> 00:44:52,450
+>> SPEAKER 2: Well that's--
+you know, that's normal.
+
+945
+00:44:52,450 --> 00:44:57,162
+It's just like he has just
+big sausages hanging there.
+
+946
+00:44:57,162 --> 00:44:59,040
+>> SPEAKER 1: That's normal?
+
+947
+00:44:59,040 --> 00:45:03,096
+>> SPEAKER 2: Yeah, I think we
+just assume he accidentally
+
+948
+00:45:03,096 --> 00:45:06,840
+replaced his deodorant with superglue.
+
+949
+00:45:06,840 --> 00:45:07,608

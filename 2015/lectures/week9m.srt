@@ -1,0 +1,5346 @@
+1
+00:00:00,000 --> 00:00:02,862
+>> [MUSIC PLAYING]
+
+2
+00:00:02,862 --> 00:00:10,030
+
+3
+00:00:10,030 --> 00:00:11,580
+>> DAVID MALAN: This is CS50.
+
+4
+00:00:11,580 --> 00:00:12,880
+This is the start of week nine.
+
+5
+00:00:12,880 --> 00:00:15,797
+And this is what would have
+been Mr. Boole's 200th birthday.
+
+6
+00:00:15,797 --> 00:00:17,630
+So this is the fellows
+to whom we've alluded
+
+7
+00:00:17,630 --> 00:00:21,800
+quite some times about using
+Boolean variables true and false,
+
+8
+00:00:21,800 --> 00:00:22,910
+1 and 0 and such.
+
+9
+00:00:22,910 --> 00:00:25,270
+And this was Google's
+tribute to him today.
+
+10
+00:00:25,270 --> 00:00:26,489
+He would have turned 200.
+
+11
+00:00:26,489 --> 00:00:28,280
+So if you'd like to
+join us for CS50 lunch,
+
+12
+00:00:28,280 --> 00:00:30,279
+take a look at the link
+on the course's website.
+
+13
+00:00:30,279 --> 00:00:33,580
+And such faces and friends as
+these await you here in Cambridge.
+
+14
+00:00:33,580 --> 00:00:35,360
+Faces like these await you in New Haven.
+
+15
+00:00:35,360 --> 00:00:37,800
+And, in fact, Ken in
+New Haven kindly made
+
+16
+00:00:37,800 --> 00:00:41,594
+what's called an animated GIF of Eli
+here at a recent lunch-- a GIF is yet
+
+17
+00:00:41,594 --> 00:00:44,260
+another graphical file format,
+with which you're familiar-- that
+
+18
+00:00:44,260 --> 00:00:46,300
+looks a little something like this.
+
+19
+00:00:46,300 --> 00:00:48,179
+So just a sequence of-- OK.
+
+20
+00:00:48,179 --> 00:00:49,720
+No one here in Cambridge is laughing.
+
+21
+00:00:49,720 --> 00:00:51,720
+But in New Haven, this
+is really funny, right?
+
+22
+00:00:51,720 --> 00:00:52,350
+All right.
+
+23
+00:00:52,350 --> 00:00:53,940
+>> So do join us there.
+
+24
+00:00:53,940 --> 00:00:55,900
+Here at Harvard,
+specifically, this Wednesday,
+
+25
+00:00:55,900 --> 00:00:59,480
+if you're a sophomore or freshman even--
+or even junior-- thinking of making
+
+26
+00:00:59,480 --> 00:01:01,563
+a switch into computer
+science, know that there'll
+
+27
+00:01:01,563 --> 00:01:04,440
+be a CS advising fair this
+Wednesday, shortly after class
+
+28
+00:01:04,440 --> 00:01:08,040
+at 4:00 PM in the computer
+science building Maxwell Dworkin.
+
+29
+00:01:08,040 --> 00:01:11,890
+We'll put this on the course's
+website by tomorrow, as well.
+
+30
+00:01:11,890 --> 00:01:14,430
+Donuts, I'm told, will be served.
+
+31
+00:01:14,430 --> 00:01:15,180
+>> All right.
+
+32
+00:01:15,180 --> 00:01:18,790
+So funny story-- I was poking
+around on the internet,
+
+33
+00:01:18,790 --> 00:01:23,575
+and I found some old archives
+of my former website.
+
+34
+00:01:23,575 --> 00:01:25,950
+And it turns out-- around this
+time, it seems very timely
+
+35
+00:01:25,950 --> 00:01:28,910
+since I gather that the UC elections
+are about to gear up again.
+
+36
+00:01:28,910 --> 00:01:32,230
+So I ran for UC, lost miserably.
+
+37
+00:01:32,230 --> 00:01:34,770
+And maybe this was in part why.
+
+38
+00:01:34,770 --> 00:01:37,600
+So this was my website at the time.
+
+39
+00:01:37,600 --> 00:01:40,477
+For some reason, I thought it was
+a good idea, before telling people
+
+40
+00:01:40,477 --> 00:01:43,310
+what my platform was and why they
+should vote for me, that they have
+
+41
+00:01:43,310 --> 00:01:47,770
+to click to enter to find out that
+information, which in retrospect is
+
+42
+00:01:47,770 --> 00:01:48,660
+kind of creepy.
+
+43
+00:01:48,660 --> 00:01:50,910
+I don't really know what that was.
+
+44
+00:01:50,910 --> 00:01:53,140
+>> But it certainly didn't
+help my campaign.
+
+45
+00:01:53,140 --> 00:01:56,874
+I also found that by senior
+year-- I had this Muppet calendar.
+
+46
+00:01:56,874 --> 00:01:58,540
+Muppets were kind of in vogue back then.
+
+47
+00:01:58,540 --> 00:01:59,456
+Or maybe they weren't.
+
+48
+00:01:59,456 --> 00:02:01,790
+I had a Muppet calendar back then.
+
+49
+00:02:01,790 --> 00:02:04,860
+And I thought it'd be cool to name
+my computer on Harvard's network
+
+50
+00:02:04,860 --> 00:02:07,460
+frogman.student.harvard.edu.
+
+51
+00:02:07,460 --> 00:02:10,370
+At the time, we all had uniquely
+identifiable host names.
+
+52
+00:02:10,370 --> 00:02:13,150
+And you could choose some vanity
+name instead of your own name.
+
+53
+00:02:13,150 --> 00:02:15,580
+And I went with frogman for some reason.
+
+54
+00:02:15,580 --> 00:02:19,040
+>> And then I started-- I spent a lot
+of time clicking through these links
+
+55
+00:02:19,040 --> 00:02:20,280
+this morning.
+
+56
+00:02:20,280 --> 00:02:24,690
+And this was my about page,
+which now kind of seems adorable.
+
+57
+00:02:24,690 --> 00:02:28,210
+But it also testifies to just
+how far technology has come.
+
+58
+00:02:28,210 --> 00:02:30,310
+I mean, back in the day,
+a 486 was something.
+
+59
+00:02:30,310 --> 00:02:34,090
+These days, it's super, super,
+super slow and well less
+
+60
+00:02:34,090 --> 00:02:36,216
+than you might have in your
+own pockets these days.
+
+61
+00:02:36,216 --> 00:02:38,465
+There's more on there that
+was even more embarrassing.
+
+62
+00:02:38,465 --> 00:02:39,770
+So I'll leave it at that.
+
+63
+00:02:39,770 --> 00:02:42,640
+But that was my first
+foray into web-- oh, no.
+
+64
+00:02:42,640 --> 00:02:43,180
+That wasn't.
+
+65
+00:02:43,180 --> 00:02:47,000
+My first real foray into web programming
+was this site, which I just forgot.
+
+66
+00:02:47,000 --> 00:02:50,620
+At some point, I learned how to
+make repetitive background images.
+
+67
+00:02:50,620 --> 00:02:55,260
+And so I found this tiling effective,
+like hockey player, football, and golf
+
+68
+00:02:55,260 --> 00:02:58,040
+ball, or whatever that is
+for the Frosh IMs website.
+
+69
+00:02:58,040 --> 00:03:01,390
+And this was actually, genuinely the
+first web-based project I took on--
+
+70
+00:03:01,390 --> 00:03:03,880
+I think maybe sophomore
+year, junior year--
+
+71
+00:03:03,880 --> 00:03:07,622
+after taking CS50 and CS51, one
+of the common follow-on classes.
+
+72
+00:03:07,622 --> 00:03:09,330
+I noticed in looking
+through the archives
+
+73
+00:03:09,330 --> 00:03:12,150
+that one of my successors and
+friends, Lee, kind of changed
+
+74
+00:03:12,150 --> 00:03:13,480
+the copyright to himself.
+
+75
+00:03:13,480 --> 00:03:17,520
+But this was indeed something that
+I should own the embarrassment to.
+
+76
+00:03:17,520 --> 00:03:19,370
+But at the time, this
+was the first website,
+
+77
+00:03:19,370 --> 00:03:22,220
+as I said a few weeks ago,
+by which freshman could
+
+78
+00:03:22,220 --> 00:03:24,350
+register for intramural sports here.
+
+79
+00:03:24,350 --> 00:03:27,950
+And so it turns out
+that background images
+
+80
+00:03:27,950 --> 00:03:29,530
+like that are not such a good idea.
+
+81
+00:03:29,530 --> 00:03:31,840
+But the web was new, and
+we were all experimenting.
+
+82
+00:03:31,840 --> 00:03:34,310
+And this is what I
+apparently did at the time.
+
+83
+00:03:34,310 --> 00:03:34,810
+All right.
+
+84
+00:03:34,810 --> 00:03:38,020
+So without further ado, we switch
+gears today to give you, really,
+
+85
+00:03:38,020 --> 00:03:42,250
+the final piece that you might find
+especially useful for final projects
+
+86
+00:03:42,250 --> 00:03:44,780
+but also that will start to
+make the whole world wide web
+
+87
+00:03:44,780 --> 00:03:46,680
+feel a little bit more understandable.
+
+88
+00:03:46,680 --> 00:03:49,460
+Indeed, we're going to introduce
+one more programming language
+
+89
+00:03:49,460 --> 00:03:52,474
+called JavaScript that's similar
+and different in different ways
+
+90
+00:03:52,474 --> 00:03:54,140
+from languages we've looked at thus far.
+
+91
+00:03:54,140 --> 00:03:55,807
+>> So C, recall, is this compiled language.
+
+92
+00:03:55,807 --> 00:03:57,473
+You've got to run it through a compiler.
+
+93
+00:03:57,473 --> 00:03:59,810
+You get source code to object
+code, or zeroes and ones.
+
+94
+00:03:59,810 --> 00:04:03,000
+And those are zeroes and ones that
+your CPU, Central Processing Unit,
+
+95
+00:04:03,000 --> 00:04:04,360
+actually understand.
+
+96
+00:04:04,360 --> 00:04:06,610
+PHP, by contrast, isn't
+a compiled language.
+
+97
+00:04:06,610 --> 00:04:08,772
+It's a what?
+
+98
+00:04:08,772 --> 00:04:09,980
+It's an interpreted language.
+
+99
+00:04:09,980 --> 00:04:11,750
+So there's some program
+called an interpreter that
+
+100
+00:04:11,750 --> 00:04:13,708
+has to read it-- top to
+bottom, left to right--
+
+101
+00:04:13,708 --> 00:04:16,519
+and figure out what all of
+your syntax does and means,
+
+102
+00:04:16,519 --> 00:04:20,200
+whether it's a loop or a condition
+or any other number of programming
+
+103
+00:04:20,200 --> 00:04:20,740
+constructs.
+
+104
+00:04:20,740 --> 00:04:22,210
+So that's an interpreted language.
+
+105
+00:04:22,210 --> 00:04:23,910
+>> Then we introduced HTML.
+
+106
+00:04:23,910 --> 00:04:26,440
+And HTML's not even a
+programming language.
+
+107
+00:04:26,440 --> 00:04:28,110
+We'd call it what?
+
+108
+00:04:28,110 --> 00:04:31,650
+A markup language, which is just
+a sort of fancy way of saying it
+
+109
+00:04:31,650 --> 00:04:35,820
+doesn't have programming constructs like
+we saw even back in the day of Scratch.
+
+110
+00:04:35,820 --> 00:04:36,720
+There are no loops.
+
+111
+00:04:36,720 --> 00:04:37,920
+There are no conditions.
+
+112
+00:04:37,920 --> 00:04:40,820
+It really is a language
+about marking up your data
+
+113
+00:04:40,820 --> 00:04:43,620
+and formatting it or
+structuring it in some way.
+
+114
+00:04:43,620 --> 00:04:46,147
+>> CSS, meanwhile, similarly
+not a programming language.
+
+115
+00:04:46,147 --> 00:04:47,730
+It's even more aesthetically oriented.
+
+116
+00:04:47,730 --> 00:04:50,470
+And it allows you to sort of fine-tune
+things like font size and colors
+
+117
+00:04:50,470 --> 00:04:51,850
+and placement and all of that.
+
+118
+00:04:51,850 --> 00:04:52,370
+Then we had
+
+119
+00:04:52,370 --> 00:04:53,160
+>> SQL.
+
+120
+00:04:53,160 --> 00:04:56,010
+So SQL is indeed a programming
+language in some sense,
+
+121
+00:04:56,010 --> 00:04:59,330
+albeit tailored
+specifically to databases.
+
+122
+00:04:59,330 --> 00:05:03,347
+But even though we only introduce you to
+select and insert and delete and update
+
+123
+00:05:03,347 --> 00:05:05,430
+and a couple of others,
+turns out you can actually
+
+124
+00:05:05,430 --> 00:05:07,380
+write functions or
+procedures, as they're
+
+125
+00:05:07,380 --> 00:05:11,270
+called, in SQL that look and act
+quite like PHP and C functions.
+
+126
+00:05:11,270 --> 00:05:12,390
+So know that those exist.
+
+127
+00:05:12,390 --> 00:05:15,348
+But we don't even bother with them
+as we just scratch the surface here.
+
+128
+00:05:15,348 --> 00:05:18,600
+And then JavaScript, the last of
+our languages formally introduced.
+
+129
+00:05:18,600 --> 00:05:21,029
+So JavaScript, too, is
+an interpreted language.
+
+130
+00:05:21,029 --> 00:05:23,070
+And those familiar, do
+you want to distinguish it
+
+131
+00:05:23,070 --> 00:05:26,960
+with some characteristic
+from both C and PHP?
+
+132
+00:05:26,960 --> 00:05:28,300
+What makes it different?
+
+133
+00:05:28,300 --> 00:05:29,650
+>> AUDIENCE: It's not compiled.
+
+134
+00:05:29,650 --> 00:05:29,930
+>> DAVID MALAN: Say again?
+
+135
+00:05:29,930 --> 00:05:31,200
+>> AUDIENCE: It's not compiled.
+
+136
+00:05:31,200 --> 00:05:31,930
+>> DAVID MALAN: It's not compiled.
+
+137
+00:05:31,930 --> 00:05:33,450
+So it, too, is interpreted.
+
+138
+00:05:33,450 --> 00:05:34,760
+So it's not compiled.
+
+139
+00:05:34,760 --> 00:05:37,210
+But that makes it a little like PHP.
+
+140
+00:05:37,210 --> 00:05:39,545
+But it's still different from
+PHP in some striking way,
+
+141
+00:05:39,545 --> 00:05:40,920
+at least in the way we'll use it.
+
+142
+00:05:40,920 --> 00:05:41,205
+Yeah?
+
+143
+00:05:41,205 --> 00:05:41,940
+>> AUDIENCE: It runs client-side.
+
+144
+00:05:41,940 --> 00:05:44,000
+>> DAVID MALAN: It runs
+client-side, usually.
+
+145
+00:05:44,000 --> 00:05:47,190
+That's indeed the distinguishing
+characteristic for us right now.
+
+146
+00:05:47,190 --> 00:05:51,170
+C was server-side in the sense
+that we did everything in CS50 IDE.
+
+147
+00:05:51,170 --> 00:05:53,630
+PHP thus far has been
+server-side insofar
+
+148
+00:05:53,630 --> 00:05:56,550
+as it, too, gets interpreted--
+not compiled, but interpreted--
+
+149
+00:05:56,550 --> 00:06:00,690
+inside CS50 IDE, which of course is
+just a server or servers in the cloud.
+
+150
+00:06:00,690 --> 00:06:03,070
+>> But JavaScript, even
+though you you're going
+
+151
+00:06:03,070 --> 00:06:07,000
+to start writing it for, say, pset
+eight and maybe final projects-- you're
+
+152
+00:06:07,000 --> 00:06:09,620
+going to right it in
+CS50 IDE and save it
+
+153
+00:06:09,620 --> 00:06:14,760
+in files within CS50 IDE, CS50 IDE
+and, in turn, the cloud servers
+
+154
+00:06:14,760 --> 00:06:19,160
+on which it's hosted, are not going
+to interpret or execute your code.
+
+155
+00:06:19,160 --> 00:06:23,880
+Rather, it's going to be sent in
+unaltered form down to the browser.
+
+156
+00:06:23,880 --> 00:06:26,990
+And it's then going to be IE
+or Chrome or Firefox or Safari
+
+157
+00:06:26,990 --> 00:06:30,697
+or whatever that actually interprets
+it, top to bottom, left to right.
+
+158
+00:06:30,697 --> 00:06:32,780
+So the key distinguishing
+characteristic for today
+
+159
+00:06:32,780 --> 00:06:36,110
+is that JavaScript is client-side
+and PHP, for instance,
+
+160
+00:06:36,110 --> 00:06:37,690
+has been server-side.
+
+161
+00:06:37,690 --> 00:06:40,920
+Now, this has interesting implications
+for, like, intellectual property
+
+162
+00:06:40,920 --> 00:06:42,660
+and who can actually see your code.
+
+163
+00:06:42,660 --> 00:06:44,860
+And indeed, you can go
+on the web and see most
+
+164
+00:06:44,860 --> 00:06:47,530
+any code that someone has
+written in JavaScript.
+
+165
+00:06:47,530 --> 00:06:50,230
+Sometimes it's readable,
+sometimes it's obfuscated.
+
+166
+00:06:50,230 --> 00:06:52,550
+But more on that in due time.
+
+167
+00:06:52,550 --> 00:06:57,530
+>> So JavaScript, nicely enough, is
+super similar, syntactically, to C.
+
+168
+00:06:57,530 --> 00:06:59,364
+And much like PHP,
+there's no main function.
+
+169
+00:06:59,364 --> 00:07:02,113
+If you want to start writing
+JavaScript code, as you'll see today,
+
+170
+00:07:02,113 --> 00:07:03,270
+you just start writing it.
+
+171
+00:07:03,270 --> 00:07:06,910
+But it is, you'll see, particularly
+useful in the context of web browsers.
+
+172
+00:07:06,910 --> 00:07:09,820
+However, my little
+disclaimer-- usually earlier--
+
+173
+00:07:09,820 --> 00:07:13,790
+was to say that you can increasingly
+today use JavaScript server-side
+
+174
+00:07:13,790 --> 00:07:17,655
+using a fancy framework called Node.js
+that some of CS50's own applications
+
+175
+00:07:17,655 --> 00:07:18,280
+are written in.
+
+176
+00:07:18,280 --> 00:07:20,640
+Check 50 actually uses Node.js.
+
+177
+00:07:20,640 --> 00:07:24,140
+But we're going to focus on
+JavaScript client-side here on out.
+
+178
+00:07:24,140 --> 00:07:26,750
+>> So here is a set of conditions in PHP.
+
+179
+00:07:26,750 --> 00:07:29,350
+Sorry, in-- actually, that
+statement, too is correct.
+
+180
+00:07:29,350 --> 00:07:32,200
+Here is also a set of
+conditions in JavaScript.
+
+181
+00:07:32,200 --> 00:07:35,560
+Syntactically, it is
+identical to C and to PHP.
+
+182
+00:07:35,560 --> 00:07:39,040
+Mr. Boole's expressions are,
+similarly, syntactically
+
+183
+00:07:39,040 --> 00:07:41,190
+identical to both C and PHP.
+
+184
+00:07:41,190 --> 00:07:44,100
+We also have switches in
+JavaScript that look identical.
+
+185
+00:07:44,100 --> 00:07:46,350
+We have for loops that are
+structured identically,
+
+186
+00:07:46,350 --> 00:07:48,140
+while loops, do while loops.
+
+187
+00:07:48,140 --> 00:07:49,980
+>> This one's a little different.
+
+188
+00:07:49,980 --> 00:07:53,120
+PHP had the for each construct
+that you might be using
+
+189
+00:07:53,120 --> 00:07:55,320
+or will use in pset seven, perhaps.
+
+190
+00:07:55,320 --> 00:07:59,460
+JavaScript has this special version of
+for where you literally say something
+
+191
+00:07:59,460 --> 00:08:03,864
+like for variable key in object, which
+is a very succinct way of saying,
+
+192
+00:08:03,864 --> 00:08:06,780
+if I've got an object-- and we'll
+talk about these again in a moment--
+
+193
+00:08:06,780 --> 00:08:10,370
+and I want to iterate over all
+of the key value pairs inside,
+
+194
+00:08:10,370 --> 00:08:13,620
+I don't have to figure out how to
+numerically index them with zero, one,
+
+195
+00:08:13,620 --> 00:08:14,580
+two, three.
+
+196
+00:08:14,580 --> 00:08:15,900
+>> I can literally say this.
+
+197
+00:08:15,900 --> 00:08:20,740
+And on each iteration, JavaScript
+for me will update the variable key
+
+198
+00:08:20,740 --> 00:08:24,810
+to be the first key, then the next key,
+then the next key, then the next key,
+
+199
+00:08:24,810 --> 00:08:25,510
+and so forth.
+
+200
+00:08:25,510 --> 00:08:30,000
+And I can get at its value by treating
+an object in JavaScript, as we'll see,
+
+201
+00:08:30,000 --> 00:08:32,584
+as though it's an
+associative array in PHP.
+
+202
+00:08:32,584 --> 00:08:35,750
+Indeed, if you finally wrapped your
+mind around what an associative array is
+
+203
+00:08:35,750 --> 00:08:40,140
+in PHP, you can think of it for now as
+identical to an object in JavaScript.
+
+204
+00:08:40,140 --> 00:08:42,030
+But that's a bit of
+an oversimplification.
+
+205
+00:08:42,030 --> 00:08:47,230
+>> Arrays look, nicely enough, identical
+to PHP except for one character.
+
+206
+00:08:47,230 --> 00:08:51,425
+There's one thing missing here
+that we did see last week with PHP.
+
+207
+00:08:51,425 --> 00:08:52,050
+What's omitted?
+
+208
+00:08:52,050 --> 00:08:53,310
+Yeah?
+
+209
+00:08:53,310 --> 00:08:54,090
+No dollar sign.
+
+210
+00:08:54,090 --> 00:08:56,240
+So we're back to a
+more normal world where
+
+211
+00:08:56,240 --> 00:08:58,050
+variables don't have dollar signs.
+
+212
+00:08:58,050 --> 00:09:00,810
+But you do prefix them
+with var, typically.
+
+213
+00:09:00,810 --> 00:09:02,230
+And var means variable.
+
+214
+00:09:02,230 --> 00:09:06,440
+And much like PHP is loosely
+typed-- whereby there are types,
+
+215
+00:09:06,440 --> 00:09:10,120
+there are numbers and strings
+and floats and so forth--
+
+216
+00:09:10,120 --> 00:09:11,570
+JavaScript similarly has types.
+
+217
+00:09:11,570 --> 00:09:15,470
+But it's loosely typed in that we the
+programmers don't have to specify them.
+
+218
+00:09:15,470 --> 00:09:18,980
+We just have to be aware
+that different types exist.
+
+219
+00:09:18,980 --> 00:09:21,690
+>> Variables, meanwhile-- here's how
+we might declare "hello, world"
+
+220
+00:09:21,690 --> 00:09:22,230
+as a string.
+
+221
+00:09:22,230 --> 00:09:24,890
+Notice it's identical to
+PHP but no dollar sign.
+
+222
+00:09:24,890 --> 00:09:27,120
+And this is something we'll
+start seeing more today,
+
+223
+00:09:27,120 --> 00:09:30,990
+whereby you have an object
+with keys and values.
+
+224
+00:09:30,990 --> 00:09:32,990
+And if you want to try
+to infer from last week--
+
+225
+00:09:32,990 --> 00:09:34,730
+the syntax is a little different.
+
+226
+00:09:34,730 --> 00:09:39,740
+But a little sanity check-- how many
+keys does this object seem to have?
+
+227
+00:09:39,740 --> 00:09:40,850
+So I see four.
+
+228
+00:09:40,850 --> 00:09:43,560
+I see two.
+
+229
+00:09:43,560 --> 00:09:44,680
+>> So it's actually two.
+
+230
+00:09:44,680 --> 00:09:47,260
+So this is a collection
+of two key-value pairs.
+
+231
+00:09:47,260 --> 00:09:49,820
+The key is symbol whose value is FB.
+
+232
+00:09:49,820 --> 00:09:52,620
+The key is price whose value is 101.53.
+
+233
+00:09:52,620 --> 00:09:54,230
+So those are two key-value pairs.
+
+234
+00:09:54,230 --> 00:09:58,120
+And remember, PHP-- and this is again
+just sort of syntactic difference.
+
+235
+00:09:58,120 --> 00:10:00,170
+It's not all that
+intellectually interesting.
+
+236
+00:10:00,170 --> 00:10:04,610
+PHP might have written this same
+thing as follows-- quote, equals.
+
+237
+00:10:04,610 --> 00:10:06,730
+And I change these to square brackets.
+
+238
+00:10:06,730 --> 00:10:11,240
+And then I change this to
+a quoted word, "price."
+
+239
+00:10:11,240 --> 00:10:12,500
+And then I don't use a colon.
+
+240
+00:10:12,500 --> 00:10:15,060
+What did I use last week?
+
+241
+00:10:15,060 --> 00:10:18,290
+Yeah, the equal sign
+arrow funky notation.
+
+242
+00:10:18,290 --> 00:10:21,470
+>> And then I did the same thing here.
+
+243
+00:10:21,470 --> 00:10:23,580
+Same thing here.
+
+244
+00:10:23,580 --> 00:10:24,240
+And that's all.
+
+245
+00:10:24,240 --> 00:10:27,752
+So it's fine if this hasn't
+really sunk in to memory just
+
+246
+00:10:27,752 --> 00:10:29,960
+yet because it's really
+intellectually uninteresting.
+
+247
+00:10:29,960 --> 00:10:31,660
+It's just syntactic differences.
+
+248
+00:10:31,660 --> 00:10:33,230
+But the ideas are exactly the same.
+
+249
+00:10:33,230 --> 00:10:35,910
+Inside of this variable
+quote in JavaScript
+
+250
+00:10:35,910 --> 00:10:39,020
+is a collection of key-value pairs,
+one of which is symbol, one of which
+
+251
+00:10:39,020 --> 00:10:39,690
+is price.
+
+252
+00:10:39,690 --> 00:10:42,340
+And I can get at those values
+with the following syntax.
+
+253
+00:10:42,340 --> 00:10:46,280
+Just like in PHP, I could
+do something like-- let
+
+254
+00:10:46,280 --> 00:10:48,590
+me make this box a little bigger.
+
+255
+00:10:48,590 --> 00:10:52,750
+Just like in PHP, I could
+make this-- oh, dammit.
+
+256
+00:10:52,750 --> 00:10:53,250
+Come on.
+
+257
+00:10:53,250 --> 00:10:56,350
+
+258
+00:10:56,350 --> 00:11:00,800
+>> Just like in PHP-- OK, we'll
+just use the presenter notes.
+
+259
+00:11:00,800 --> 00:11:06,010
+Just like in PHP, I can
+do $quote$quote["symbol"],
+
+260
+00:11:06,010 --> 00:11:08,860
+and this will get me
+the value of "symbol."
+
+261
+00:11:08,860 --> 00:11:12,800
+In JavaScript, it's going to be
+identical, whereby I can just do this.
+
+262
+00:11:12,800 --> 00:11:14,850
+The only thing that's
+missing is the dollar sign.
+
+263
+00:11:14,850 --> 00:11:17,470
+>> So nicely enough, then, there's
+not all that much new syntax.
+
+264
+00:11:17,470 --> 00:11:21,025
+So what today we focus on, really, is
+some of the ideas and the applications.
+
+265
+00:11:21,025 --> 00:11:22,900
+And the first such
+application that you might
+
+266
+00:11:22,900 --> 00:11:26,090
+have seen if you dived into pset
+seven already is this syntax.
+
+267
+00:11:26,090 --> 00:11:28,980
+So in pset seven, if you've
+seen or not seen it yet,
+
+268
+00:11:28,980 --> 00:11:33,570
+know that there's a file that we give
+you called config.json-- JavaScript
+
+269
+00:11:33,570 --> 00:11:34,661
+Object Notation.
+
+270
+00:11:34,661 --> 00:11:35,160
+Why?
+
+271
+00:11:35,160 --> 00:11:39,540
+We wanted to be able to provide you with
+a template with some key-value pairs.
+
+272
+00:11:39,540 --> 00:11:44,290
+We wanted to be able to give you a list
+of the host, the name of the server.
+
+273
+00:11:44,290 --> 00:11:46,710
+We wanted to give you a
+placeholder for your username
+
+274
+00:11:46,710 --> 00:11:48,210
+and a placeholder for your password.
+
+275
+00:11:48,210 --> 00:11:49,410
+If you're not seeing
+this yet, not to worry.
+
+276
+00:11:49,410 --> 00:11:51,340
+More on this in pset seven
+[? spec. ?] And then,
+
+277
+00:11:51,340 --> 00:11:53,173
+obviously, we want you
+to fill in the to-dos
+
+278
+00:11:53,173 --> 00:11:55,310
+because when you log into
+CS50 IDE, each of you
+
+279
+00:11:55,310 --> 00:11:57,630
+have your own username and password.
+
+280
+00:11:57,630 --> 00:12:00,910
+>> So we could've used a half a dozen
+or more different file formats.
+
+281
+00:12:00,910 --> 00:12:02,940
+We could have used a .txt file.
+
+282
+00:12:02,940 --> 00:12:04,570
+We could used a CSV file.
+
+283
+00:12:04,570 --> 00:12:06,745
+We could've used an
+INI file, an XML file,
+
+284
+00:12:06,745 --> 00:12:09,370
+a whole bunch more acronyms that
+you might not have ever heard.
+
+285
+00:12:09,370 --> 00:12:11,244
+It's kind of arbitrary
+at the end of the day.
+
+286
+00:12:11,244 --> 00:12:16,030
+But super popular these days is a text
+format called JSON-- JavaScript Object
+
+287
+00:12:16,030 --> 00:12:18,460
+Notation-- that looks like this.
+
+288
+00:12:18,460 --> 00:12:20,890
+It's a little cryptic,
+but notice the patterns.
+
+289
+00:12:20,890 --> 00:12:24,180
+You start with an open curly
+brace, and you end with the same.
+
+290
+00:12:24,180 --> 00:12:26,550
+Inside of that is something.
+
+291
+00:12:26,550 --> 00:12:27,920
+It's a key-value pair.
+
+292
+00:12:27,920 --> 00:12:30,580
+So this is an object that I'm
+looking at on the screen here
+
+293
+00:12:30,580 --> 00:12:33,690
+that has one key, which has one value.
+
+294
+00:12:33,690 --> 00:12:37,610
+And just inferring based on the
+previous pattern, what's the key here?
+
+295
+00:12:37,610 --> 00:12:39,790
+Database, the thing to
+the left of the colon.
+
+296
+00:12:39,790 --> 00:12:43,500
+>> Now, the value happens to be
+a multiple lines this time.
+
+297
+00:12:43,500 --> 00:12:46,760
+But the value starts with a curly
+brace and ends with a curly brace.
+
+298
+00:12:46,760 --> 00:12:49,480
+So what would you propose is the
+type of the value of database?
+
+299
+00:12:49,480 --> 00:12:52,160
+
+300
+00:12:52,160 --> 00:12:54,670
+A dictionary or, just more
+succinctly, an object.
+
+301
+00:12:54,670 --> 00:12:55,170
+Right?
+
+302
+00:12:55,170 --> 00:13:00,010
+This is kind of a data structure that
+can use other structures within itself.
+
+303
+00:13:00,010 --> 00:13:02,750
+So if this whole thing we're
+calling an object-- and an object
+
+304
+00:13:02,750 --> 00:13:07,101
+is just a bunch of key-value pairs-- the
+value of database itself is an object.
+
+305
+00:13:07,101 --> 00:13:10,350
+The value of database has a whole bunch
+of key value pairs, the first of which
+
+306
+00:13:10,350 --> 00:13:13,130
+is host, then name, then
+username, then password,
+
+307
+00:13:13,130 --> 00:13:17,550
+each of whose values, meanwhile, it's
+just a boring string in double quotes.
+
+308
+00:13:17,550 --> 00:13:19,770
+>> So even if that's not
+super clear just yet,
+
+309
+00:13:19,770 --> 00:13:22,740
+know that this is just a
+standard, fairly boring way
+
+310
+00:13:22,740 --> 00:13:25,190
+of storing data in a standard format.
+
+311
+00:13:25,190 --> 00:13:27,700
+But the common mistakes you
+might make, even in pset seven,
+
+312
+00:13:27,700 --> 00:13:32,120
+are little stupid things, like if you
+accidentally omit the comma there.
+
+313
+00:13:32,120 --> 00:13:34,900
+That's going to result in the file
+not necessarily being readable.
+
+314
+00:13:34,900 --> 00:13:38,191
+If you accidentally omit things like the
+quotes, it's not going to be readable.
+
+315
+00:13:38,191 --> 00:13:41,654
+So it's a pretty nitpicky file format,
+but it's one that's super common.
+
+316
+00:13:41,654 --> 00:13:44,820
+And we happen to use it, even though
+you don't use any JavaScript otherwise,
+
+317
+00:13:44,820 --> 00:13:46,330
+in pset seven.
+
+318
+00:13:46,330 --> 00:13:46,860
+>> All right.
+
+319
+00:13:46,860 --> 00:13:48,110
+So remember this picture.
+
+320
+00:13:48,110 --> 00:13:51,657
+We talked about, in HTML, that
+the code might look like this.
+
+321
+00:13:51,657 --> 00:13:54,740
+This is the HyperText Markup Language
+[INAUDIBLE] for just "hello, world."
+
+322
+00:13:54,740 --> 00:13:57,570
+But then we proposed a
+while back that if it helps,
+
+323
+00:13:57,570 --> 00:14:00,210
+you might want to start thinking
+about this already as a tree.
+
+324
+00:14:00,210 --> 00:14:03,730
+In fact, the indentation that we
+use just for readability's sake
+
+325
+00:14:03,730 --> 00:14:05,610
+or for style's sake on
+the left can kind of
+
+326
+00:14:05,610 --> 00:14:10,040
+be translated into this tree, where you
+have some special root node that we'll
+
+327
+00:14:10,040 --> 00:14:16,860
+generically called document, below which
+is the root HTML element or tag, HTML,
+
+328
+00:14:16,860 --> 00:14:19,980
+which then has two
+children, head and body.
+
+329
+00:14:19,980 --> 00:14:21,750
+>> And then in turn, head has a title.
+
+330
+00:14:21,750 --> 00:14:23,440
+And title has a text value.
+
+331
+00:14:23,440 --> 00:14:26,130
+And body similarly has a text value.
+
+332
+00:14:26,130 --> 00:14:29,220
+So if you're comfortable saying
+that yes, you could take this HTML
+
+333
+00:14:29,220 --> 00:14:32,080
+and draw a picture like
+this, the right-hand side
+
+334
+00:14:32,080 --> 00:14:35,910
+is a nice mental model because now
+that we have JavaScript, a programming
+
+335
+00:14:35,910 --> 00:14:39,960
+language that browsers can
+execute and interpret for you,
+
+336
+00:14:39,960 --> 00:14:42,690
+it turns out that what
+we're about to do in code
+
+337
+00:14:42,690 --> 00:14:45,320
+is start to manipulate this
+tree structure in memory.
+
+338
+00:14:45,320 --> 00:14:47,070
+We don't have to build
+the tree in memory.
+
+339
+00:14:47,070 --> 00:14:49,880
+We don't have to do sort of
+pset-five-style data structure
+
+340
+00:14:49,880 --> 00:14:50,650
+complexity.
+
+341
+00:14:50,650 --> 00:14:54,610
+The browser, nicely enough, upon
+interpreting HTML top to bottom,
+
+342
+00:14:54,610 --> 00:14:58,600
+left or right, is literally going to
+hand us the equivalent of a pointer
+
+343
+00:14:58,600 --> 00:15:00,840
+to that entire tree for free.
+
+344
+00:15:00,840 --> 00:15:02,150
+It does all of the hard work.
+
+345
+00:15:02,150 --> 00:15:05,520
+That's what Mozilla and Apple
+and others have done for us.
+
+346
+00:15:05,520 --> 00:15:09,400
+>> And with JavaScript are we going to
+be able to control and change and do
+
+347
+00:15:09,400 --> 00:15:12,910
+interesting things to
+that tree, otherwise known
+
+348
+00:15:12,910 --> 00:15:15,880
+as a DOM or Document Object Model.
+
+349
+00:15:15,880 --> 00:15:17,110
+What kinds of things?
+
+350
+00:15:17,110 --> 00:15:19,030
+Well, it turns out that
+in JavaScript, there's
+
+351
+00:15:19,030 --> 00:15:22,800
+this laundry list of
+events that can take place.
+
+352
+00:15:22,800 --> 00:15:26,330
+And we haven't really used that
+word since week zero and pset
+
+353
+00:15:26,330 --> 00:15:28,240
+zero when we talked about Scratch.
+
+354
+00:15:28,240 --> 00:15:31,390
+Most of you probably didn't use
+an event in your Scratch project.
+
+355
+00:15:31,390 --> 00:15:33,850
+But you might recall
+the simple Marco Polo
+
+356
+00:15:33,850 --> 00:15:36,760
+example, where we had two
+sprites, one of whom said, Marco.
+
+357
+00:15:36,760 --> 00:15:40,180
+The other of whom then, upon listening
+and hearing that event, said, Polo.
+
+358
+00:15:40,180 --> 00:15:42,080
+If not, feel free to
+look back that far back.
+
+359
+00:15:42,080 --> 00:15:44,450
+>> But this is just to
+say, and you can kind of
+
+360
+00:15:44,450 --> 00:15:47,730
+infer from the names of these
+things, JavaScript, it turns out,
+
+361
+00:15:47,730 --> 00:15:53,200
+is going to give us a way to listen
+for mouse going down or mouse going up
+
+362
+00:15:53,200 --> 00:15:57,920
+or key going down or key
+going up or onsubmit onselect
+
+363
+00:15:57,920 --> 00:15:59,740
+or onresizing something.
+
+364
+00:15:59,740 --> 00:16:03,060
+In other words, any physical action
+that a human can take with a browser
+
+365
+00:16:03,060 --> 00:16:08,210
+that you do every day, you can write
+code for that listens for those events
+
+366
+00:16:08,210 --> 00:16:10,220
+and then does something appropriate.
+
+367
+00:16:10,220 --> 00:16:14,130
+>> For instance, if you use Google Maps,
+what happens if you click and move
+
+368
+00:16:14,130 --> 00:16:16,250
+the mouse, typically?
+
+369
+00:16:16,250 --> 00:16:17,758
+If you click and drag?
+
+370
+00:16:17,758 --> 00:16:18,258
+Yeah?
+
+371
+00:16:18,258 --> 00:16:21,701
+
+372
+00:16:21,701 --> 00:16:22,200
+Exactly.
+
+373
+00:16:22,200 --> 00:16:23,159
+The map starts to move.
+
+374
+00:16:23,159 --> 00:16:25,616
+So you can sort of see what's
+over here, what's over there.
+
+375
+00:16:25,616 --> 00:16:27,130
+And how does Google implement that?
+
+376
+00:16:27,130 --> 00:16:29,421
+Well, presumably, they're
+using a couple of these event
+
+377
+00:16:29,421 --> 00:16:31,720
+listeners, one that
+says, listen for on mouse
+
+378
+00:16:31,720 --> 00:16:35,410
+down-- so when the user physically
+pushes his trackpad or his or her mouse
+
+379
+00:16:35,410 --> 00:16:36,010
+down.
+
+380
+00:16:36,010 --> 00:16:38,350
+And then we're looking for
+something like movement
+
+381
+00:16:38,350 --> 00:16:41,145
+or some other event that
+allows us to capture drag.
+
+382
+00:16:41,145 --> 00:16:45,910
+And in fact, drag is similarly in this
+dot dot dot list of possible options.
+
+383
+00:16:45,910 --> 00:16:49,140
+>> So this is going to be a powerful
+way to start responding to the user
+
+384
+00:16:49,140 --> 00:16:52,824
+even before he or she actually clicks
+something explicit like submit.
+
+385
+00:16:52,824 --> 00:16:55,240
+But we're going to introduce
+a couple topics to get there.
+
+386
+00:16:55,240 --> 00:16:58,570
+But first, let's transition
+to some actual code.
+
+387
+00:16:58,570 --> 00:17:01,450
+So I'm going to go
+ahead and open up dom-0,
+
+388
+00:17:01,450 --> 00:17:05,869
+which is a very simple example
+here that if I zoom in simply
+
+389
+00:17:05,869 --> 00:17:08,500
+has this input here for me.
+
+390
+00:17:08,500 --> 00:17:12,410
+And I'm going to go ahead and type in
+"David" for my name and click Submit.
+
+391
+00:17:12,410 --> 00:17:17,940
+>> And then, albeit sort of cheaply, I
+have this prompt that pops up that says,
+
+392
+00:17:17,940 --> 00:17:19,244
+"hello, David!"
+
+393
+00:17:19,244 --> 00:17:21,740
+So this is kind of
+like our "hello, world"
+
+394
+00:17:21,740 --> 00:17:25,150
+that we did awhile back in C and
+even in PHP because I've dynamically
+
+395
+00:17:25,150 --> 00:17:26,310
+outputted my name.
+
+396
+00:17:26,310 --> 00:17:28,230
+I can do someone else's name here.
+
+397
+00:17:28,230 --> 00:17:31,240
+I could simply change this to,
+like, Hannah, click Submit.
+
+398
+00:17:31,240 --> 00:17:33,780
+And indeed, the little pop-up changes.
+
+399
+00:17:33,780 --> 00:17:36,650
+>> Now, pop-ups are one of the
+most abused features of the web.
+
+400
+00:17:36,650 --> 00:17:38,520
+And in fact, back in
+the day pop-up blockers
+
+401
+00:17:38,520 --> 00:17:40,820
+came into vogue because you
+would go to some website--
+
+402
+00:17:40,820 --> 00:17:43,604
+perhaps a questionable place--
+that would then suddenly
+
+403
+00:17:43,604 --> 00:17:46,020
+start peppering your screen
+with a whole bunch of pop-ups.
+
+404
+00:17:46,020 --> 00:17:49,700
+And so this ability to pop up
+windows in front of the user
+
+405
+00:17:49,700 --> 00:17:52,372
+has not been particularly
+well-received by humanity.
+
+406
+00:17:52,372 --> 00:17:54,080
+So that's why you see
+this prevent thing,
+
+407
+00:17:54,080 --> 00:17:55,706
+which just makes this whole thing ugly.
+
+408
+00:17:55,706 --> 00:17:57,996
+So we're going to need a
+better way to prompt the user.
+
+409
+00:17:57,996 --> 00:17:59,350
+But for now, that seems to work.
+
+410
+00:17:59,350 --> 00:18:03,320
+So just intuitively, what
+seems to be happening here?
+
+411
+00:18:03,320 --> 00:18:07,870
+I go ahead and click Submit, and
+then something's happening, clearly.
+
+412
+00:18:07,870 --> 00:18:12,870
+But what's not happening that did happen
+last week any time I clicked Submit?
+
+413
+00:18:12,870 --> 00:18:15,940
+What didn't happen on the screen?
+
+414
+00:18:15,940 --> 00:18:17,170
+Sorry?
+
+415
+00:18:17,170 --> 00:18:18,010
+Reload.
+
+416
+00:18:18,010 --> 00:18:19,720
+The URL didn't change at all.
+
+417
+00:18:19,720 --> 00:18:22,250
+I said this was dom-0,
+and I'm still at dom-0.
+
+418
+00:18:22,250 --> 00:18:26,890
+Normally, we'd get changed to some other
+URL, like register.php or the like.
+
+419
+00:18:26,890 --> 00:18:29,560
+>> But even when I dismiss
+this thing by clicking OK,
+
+420
+00:18:29,560 --> 00:18:32,310
+notice that the URL
+stays completely put.
+
+421
+00:18:32,310 --> 00:18:35,350
+And, in fact, if I'm a little
+skeptical, let me open up Chrome.
+
+422
+00:18:35,350 --> 00:18:36,860
+Let me open up the Network tab.
+
+423
+00:18:36,860 --> 00:18:38,360
+And notice it's blank at the moment.
+
+424
+00:18:38,360 --> 00:18:40,700
+Let me go ahead and resubmit Maria.
+
+425
+00:18:40,700 --> 00:18:42,810
+There's no network traffic whatsoever.
+
+426
+00:18:42,810 --> 00:18:44,320
+So there's no HTTP.
+
+427
+00:18:44,320 --> 00:18:47,620
+>> So indeed, if I look at the source code
+for this-- let me close this window
+
+428
+00:18:47,620 --> 00:18:49,480
+and go to View Source.
+
+429
+00:18:49,480 --> 00:18:50,400
+Interesting.
+
+430
+00:18:50,400 --> 00:18:53,520
+It looks like there's some
+new tags, among them script.
+
+431
+00:18:53,520 --> 00:18:57,490
+So let's take a look within CS50
+IDE exactly what I sent to the user.
+
+432
+00:18:57,490 --> 00:19:00,690
+>> So here is-- let's
+focus on the HTML only.
+
+433
+00:19:00,690 --> 00:19:03,500
+Here's the bottom half of dom-0.html.
+
+434
+00:19:03,500 --> 00:19:07,830
+And notice that it's got a title,
+a head tag, a body tag, a form tag.
+
+435
+00:19:07,830 --> 00:19:11,257
+But what jumps out to you as
+different, especially if you've never
+
+436
+00:19:11,257 --> 00:19:12,590
+written any JavaScript yourself.
+
+437
+00:19:12,590 --> 00:19:14,920
+Let me scroll a little
+to the right here.
+
+438
+00:19:14,920 --> 00:19:18,330
+I've got an input,
+another input for submit.
+
+439
+00:19:18,330 --> 00:19:21,410
+I've got an ID, which is kind of new.
+
+440
+00:19:21,410 --> 00:19:22,790
+But we did see this with CSS.
+
+441
+00:19:22,790 --> 00:19:24,480
+What else is definitely new?
+
+442
+00:19:24,480 --> 00:19:24,980
+Yeah?
+
+443
+00:19:24,980 --> 00:19:30,580
+
+444
+00:19:30,580 --> 00:19:32,140
+Nice.
+
+445
+00:19:32,140 --> 00:19:32,760
+>> All right.
+
+446
+00:19:32,760 --> 00:19:35,630
+So where it says onsubmit,
+notice what seems to follow.
+
+447
+00:19:35,630 --> 00:19:38,740
+This is an attribute
+in HTML nomenclature.
+
+448
+00:19:38,740 --> 00:19:40,944
+Its value is this quoted string here.
+
+449
+00:19:40,944 --> 00:19:42,860
+And this looks a little
+weird at first glance.
+
+450
+00:19:42,860 --> 00:19:44,050
+It's not HTML.
+
+451
+00:19:44,050 --> 00:19:45,240
+It's not CSS.
+
+452
+00:19:45,240 --> 00:19:47,580
+This is, as you might guess, JavaScript.
+
+453
+00:19:47,580 --> 00:19:51,850
+So it seems that built into this
+web page is a function called greet.
+
+454
+00:19:51,850 --> 00:19:54,250
+And I'm inferring that just
+because it's a word, greet.
+
+455
+00:19:54,250 --> 00:19:55,880
+It's got an open paren,
+close paren, semicolon.
+
+456
+00:19:55,880 --> 00:19:58,095
+Looks like a C function,
+looks like a PHP function.
+
+457
+00:19:58,095 --> 00:20:00,370
+>> And indeed, it's going to
+be a JavaScript function.
+
+458
+00:20:00,370 --> 00:20:01,440
+Then I'm returning false.
+
+459
+00:20:01,440 --> 00:20:03,440
+We'll come back to
+that in just a moment.
+
+460
+00:20:03,440 --> 00:20:05,320
+But where is this function defined?
+
+461
+00:20:05,320 --> 00:20:07,950
+Well let me scroll up
+to the top of the file.
+
+462
+00:20:07,950 --> 00:20:11,710
+And even though it's a long line,
+it's relatively straightforward.
+
+463
+00:20:11,710 --> 00:20:15,000
+Let me zoom out here and
+focus on these four lines.
+
+464
+00:20:15,000 --> 00:20:17,137
+>> So in JavaScript, just
+like PHP, you just
+
+465
+00:20:17,137 --> 00:20:19,720
+say, literally, the word "function,"
+the name of the function,
+
+466
+00:20:19,720 --> 00:20:22,700
+and then parentheses with any
+arguments-- no arguments in this case.
+
+467
+00:20:22,700 --> 00:20:25,290
+And there's no return type
+in JavaScript, just like PHP.
+
+468
+00:20:25,290 --> 00:20:29,470
+So it's a little looser than C.
+Open curly brace, close curly brace.
+
+469
+00:20:29,470 --> 00:20:33,270
+Built into JavaScript is a function--
+not a recommended function--
+
+470
+00:20:33,270 --> 00:20:35,730
+but a function called alert
+whose sole purpose in life
+
+471
+00:20:35,730 --> 00:20:38,620
+is to pull up that pretty ugly
+prompt that we saw a moment ago.
+
+472
+00:20:38,620 --> 00:20:40,950
+>> Now this is kind of a mouthful.
+
+473
+00:20:40,950 --> 00:20:42,560
+What's going on here?
+
+474
+00:20:42,560 --> 00:20:45,840
+So let's start to
+highlight everything here.
+
+475
+00:20:45,840 --> 00:20:48,540
+That's the same argument to alert.
+
+476
+00:20:48,540 --> 00:20:49,530
+And what's going on?
+
+477
+00:20:49,530 --> 00:20:51,200
+This just looks like a string.
+
+478
+00:20:51,200 --> 00:20:59,180
+And it turns out, unlike PHP and unlike
+C, it doesn't matter in JavaScript
+
+479
+00:20:59,180 --> 00:21:01,090
+if you single quotes or double quotes.
+
+480
+00:21:01,090 --> 00:21:02,060
+They'll be equivalent.
+
+481
+00:21:02,060 --> 00:21:03,769
+And frankly, it's just
+popular these days
+
+482
+00:21:03,769 --> 00:21:06,726
+for JavaScript programmers to always
+use single quotes for some reason.
+
+483
+00:21:06,726 --> 00:21:07,840
+It's just the thing to do.
+
+484
+00:21:07,840 --> 00:21:09,710
+But we could use double quotes, as well.
+
+485
+00:21:09,710 --> 00:21:11,540
+>> So plus is a new character.
+
+486
+00:21:11,540 --> 00:21:14,512
+But those of you who've done
+this before, what does plus mean?
+
+487
+00:21:14,512 --> 00:21:16,440
+Yeah.
+
+488
+00:21:16,440 --> 00:21:17,120
+Concatenate.
+
+489
+00:21:17,120 --> 00:21:18,570
+So we saw this in PHP.
+
+490
+00:21:18,570 --> 00:21:20,315
+There's just the dot
+operator in PHP that
+
+491
+00:21:20,315 --> 00:21:22,000
+will concatenate two strings together.
+
+492
+00:21:22,000 --> 00:21:24,000
+C was a pain in the neck to do this.
+
+493
+00:21:24,000 --> 00:21:27,310
+Recall from pset six, which was
+an especial pain in the neck,
+
+494
+00:21:27,310 --> 00:21:29,470
+you would have to use
+something like strcat
+
+495
+00:21:29,470 --> 00:21:31,660
+after allocating memory
+on the stack or the heap.
+
+496
+00:21:31,660 --> 00:21:34,243
+You had to jump through hoops
+just to concatenate two strings.
+
+497
+00:21:34,243 --> 00:21:36,040
+In JavaScript, it's super simple.
+
+498
+00:21:36,040 --> 00:21:38,030
+Just use the plus operator between them.
+
+499
+00:21:38,030 --> 00:21:41,420
+>> So the complex-looking
+thing seems to be this
+
+500
+00:21:41,420 --> 00:21:43,490
+because at the end of
+this whole string, I just
+
+501
+00:21:43,490 --> 00:21:45,797
+concatenate on an exclamation point.
+
+502
+00:21:45,797 --> 00:21:48,380
+So if what was popping up was
+"hello, David," "hello, Hannah,"
+
+503
+00:21:48,380 --> 00:21:52,740
+"hello, Maria," and so forth, clearly
+that middle thing in between the two
+
+504
+00:21:52,740 --> 00:21:55,215
+pluses must give me access to what?
+
+505
+00:21:55,215 --> 00:21:58,855
+
+506
+00:21:58,855 --> 00:22:01,991
+What's in there for sure?
+
+507
+00:22:01,991 --> 00:22:02,490
+Yeah.
+
+508
+00:22:02,490 --> 00:22:05,090
+So I'll pretending here the
+answer their name, right?
+
+509
+00:22:05,090 --> 00:22:10,380
+So their name popped up in the final
+result. So what does this mean?
+
+510
+00:22:10,380 --> 00:22:15,080
+Well, I proposed earlier in that
+picture that the so-called DOM
+
+511
+00:22:15,080 --> 00:22:18,580
+has this special root element
+way up top called document.
+
+512
+00:22:18,580 --> 00:22:21,660
+And now, it turns out, that's going
+to be a special global variable
+
+513
+00:22:21,660 --> 00:22:25,250
+in JavaScript, built into which is a
+whole bunch of useful functionality.
+
+514
+00:22:25,250 --> 00:22:31,770
+Among the useful functionality is the
+ability to get at any descendant node.
+
+515
+00:22:31,770 --> 00:22:37,760
+Those squares or rectangles or ellipses
+are just nodes in a tree, so to speak.
+
+516
+00:22:37,760 --> 00:22:41,850
+>> So it turns out that built into
+JavaScript's document object
+
+517
+00:22:41,850 --> 00:22:47,300
+is a function, otherwise known as a
+method, that's called getElementById.
+
+518
+00:22:47,300 --> 00:22:50,410
+The syntax for calling
+a function in JavaScript
+
+519
+00:22:50,410 --> 00:22:55,220
+that is inside of an object or a
+variable is just with the dot notation.
+
+520
+00:22:55,220 --> 00:22:57,950
+And we saw this in C
+what the struct syntax.
+
+521
+00:22:57,950 --> 00:23:03,530
+You see this in pset seven, kind of,
+sort of, when you see CS50::query.
+
+522
+00:23:03,530 --> 00:23:08,070
+The colon colon in PHP is another
+way of calling a function that's
+
+523
+00:23:08,070 --> 00:23:09,260
+inside of some object.
+
+524
+00:23:09,260 --> 00:23:11,960
+>> But for now in JavaScript,
+it's just a dot.
+
+525
+00:23:11,960 --> 00:23:14,170
+And so this function,
+nicely enough, kind of
+
+526
+00:23:14,170 --> 00:23:16,810
+says what it does-- get element by ID.
+
+527
+00:23:16,810 --> 00:23:20,280
+An element is just another name
+for a tag or node in the DOM.
+
+528
+00:23:20,280 --> 00:23:26,900
+And so get element by ID "name"
+means this-- here's my HTML.
+
+529
+00:23:26,900 --> 00:23:31,910
+And based on this HTML, what
+node or what HTML tag am I
+
+530
+00:23:31,910 --> 00:23:35,097
+going to programmatically be handed
+by calling document.getElementById?
+
+531
+00:23:35,097 --> 00:23:37,650
+
+532
+00:23:37,650 --> 00:23:38,500
+>> Yeah, exactly.
+
+533
+00:23:38,500 --> 00:23:42,670
+I'm going to get the input
+element there whose ID is "name."
+
+534
+00:23:42,670 --> 00:23:45,140
+So specifically, you can
+think of this function,
+
+535
+00:23:45,140 --> 00:23:49,560
+getElementById, as a way of giving
+back a pointer to that specific node
+
+536
+00:23:49,560 --> 00:23:50,060
+in the tree.
+
+537
+00:23:50,060 --> 00:23:51,980
+We haven't drawn this
+tree, but it's a way
+
+538
+00:23:51,980 --> 00:23:54,900
+of getting access to that
+rectangle or that rectangle
+
+539
+00:23:54,900 --> 00:23:58,090
+by uniquely identifying it via its ID.
+
+540
+00:23:58,090 --> 00:23:59,760
+>> Now, why is this useful?
+
+541
+00:23:59,760 --> 00:24:01,510
+Well, it turns out
+that once you've gotten
+
+542
+00:24:01,510 --> 00:24:07,220
+that node, that rectangle from the
+picture, that node inside of it,
+
+543
+00:24:07,220 --> 00:24:10,660
+in turn, has a whole bunch of
+properties-- key-value pairs
+
+544
+00:24:10,660 --> 00:24:13,480
+or data, one of which is called value.
+
+545
+00:24:13,480 --> 00:24:16,500
+So literally, it's kind of a
+mouthful to explain the whole thing.
+
+546
+00:24:16,500 --> 00:24:19,370
+But at the end of the day,
+all this does is give you
+
+547
+00:24:19,370 --> 00:24:23,070
+a string that the user typed in
+in this hierarchical fashion.
+
+548
+00:24:23,070 --> 00:24:24,820
+But I don't like a
+couple of these things.
+
+549
+00:24:24,820 --> 00:24:27,590
+Or rather, there's some curiosity still.
+
+550
+00:24:27,590 --> 00:24:28,870
+All of that seemed to work.
+
+551
+00:24:28,870 --> 00:24:33,420
+Why do you think I returned
+false after calling greet?
+
+552
+00:24:33,420 --> 00:24:35,910
+This looks a little ugly, that
+I have two statements there
+
+553
+00:24:35,910 --> 00:24:38,730
+separated by semicolons.
+
+554
+00:24:38,730 --> 00:24:39,310
+Take a guess.
+
+555
+00:24:39,310 --> 00:24:44,390
+If I removed return false, what
+might happen, just instinctively?
+
+556
+00:24:44,390 --> 00:24:46,990
+
+557
+00:24:46,990 --> 00:24:49,460
+Sorry, say again?
+
+558
+00:24:49,460 --> 00:24:50,530
+>> Open a bunch of Windows.
+
+559
+00:24:50,530 --> 00:24:52,780
+So potentially maybe something
+like that would happen.
+
+560
+00:24:52,780 --> 00:24:54,422
+What else?
+
+561
+00:24:54,422 --> 00:24:55,630
+Might submit a request where?
+
+562
+00:24:55,630 --> 00:24:59,109
+
+563
+00:24:59,109 --> 00:25:00,510
+To the same page.
+
+564
+00:25:00,510 --> 00:25:03,110
+So, in fact, that's that
+the closer answer here,
+
+565
+00:25:03,110 --> 00:25:05,890
+even though, unlike
+in the past, I've not
+
+566
+00:25:05,890 --> 00:25:09,300
+specified the action attribute,
+which normally we have to do.
+
+567
+00:25:09,300 --> 00:25:11,780
+Turns out there's a default.
+If you don't specify action,
+
+568
+00:25:11,780 --> 00:25:15,370
+it's like saying quote, unquote
+or the name of the file itself,
+
+569
+00:25:15,370 --> 00:25:17,850
+which in this case would
+be like dom-0.html.
+
+570
+00:25:17,850 --> 00:25:20,420
+It's just kind of inferred,
+or rather implied.
+
+571
+00:25:20,420 --> 00:25:22,420
+>> And so if I don't do this, let's notice.
+
+572
+00:25:22,420 --> 00:25:23,230
+Let me save this.
+
+573
+00:25:23,230 --> 00:25:25,270
+And I've removed return false.
+
+574
+00:25:25,270 --> 00:25:27,759
+Let me go back to this
+example and force reload it.
+
+575
+00:25:27,759 --> 00:25:30,800
+And you might have seen me suggest
+this on CS50 Discuss a bunch of times.
+
+576
+00:25:30,800 --> 00:25:34,560
+If anything's ever acting funky and the
+browser's not behaving as you expect,
+
+577
+00:25:34,560 --> 00:25:37,410
+oftentimes you'll want to hold
+Shift and then click Reload.
+
+578
+00:25:37,410 --> 00:25:41,480
+That will force every file to reload
+and not use your browser's local cache
+
+579
+00:25:41,480 --> 00:25:47,032
+or copy so that now, let me go ahead and
+open up my Inspector, the Network tab.
+
+580
+00:25:47,032 --> 00:25:48,740
+I'm going to click
+Preserve Log because I
+
+581
+00:25:48,740 --> 00:25:51,660
+don't want it to delete the rows
+once I get whisked away elsewhere.
+
+582
+00:25:51,660 --> 00:25:54,650
+>> Let me go ahead here and
+type in Andi, click Submit.
+
+583
+00:25:54,650 --> 00:25:55,150
+All right.
+
+584
+00:25:55,150 --> 00:25:56,480
+That seems as expected.
+
+585
+00:25:56,480 --> 00:25:57,440
+It says "hello, Andi."
+
+586
+00:25:57,440 --> 00:25:59,420
+Let me click OK.
+
+587
+00:25:59,420 --> 00:26:00,610
+Interesting.
+
+588
+00:26:00,610 --> 00:26:05,100
+Notice that the page changed,
+albeit to the original page.
+
+589
+00:26:05,100 --> 00:26:06,770
+Notice the URL kind of changed.
+
+590
+00:26:06,770 --> 00:26:09,430
+It added a question mark,
+which is usually an indicator
+
+591
+00:26:09,430 --> 00:26:11,260
+that we tried to submit something.
+
+592
+00:26:11,260 --> 00:26:13,570
+And then at the bottom,
+even more explicitly,
+
+593
+00:26:13,570 --> 00:26:17,570
+here is the actual HTTP request,
+which got a response of 200 that
+
+594
+00:26:17,570 --> 00:26:18,490
+brought me back here.
+
+595
+00:26:18,490 --> 00:26:20,250
+>> So this is not what
+we want to do, right?
+
+596
+00:26:20,250 --> 00:26:22,166
+Because I don't want to
+reload the whole page.
+
+597
+00:26:22,166 --> 00:26:24,970
+I instead wanted to return
+false so as to short circuit
+
+598
+00:26:24,970 --> 00:26:28,840
+the browser's default behavior, which
+was, of course, to submit the page.
+
+599
+00:26:28,840 --> 00:26:31,700
+>> So let's take a look at a
+marginally better example.
+
+600
+00:26:31,700 --> 00:26:33,920
+This is dom version one.
+
+601
+00:26:33,920 --> 00:26:36,680
+And notice the following.
+
+602
+00:26:36,680 --> 00:26:39,150
+It's OK if you don't grok
+all of the lines of code.
+
+603
+00:26:39,150 --> 00:26:41,750
+But what is fundamentally different
+about this implementation?
+
+604
+00:26:41,750 --> 00:26:44,690
+I'll stipulate it behaves the
+same, does the same thing.
+
+605
+00:26:44,690 --> 00:26:49,320
+
+606
+00:26:49,320 --> 00:26:51,570
+What have I obviously done differently?
+
+607
+00:26:51,570 --> 00:26:52,266
+Yeah?
+
+608
+00:26:52,266 --> 00:26:53,182
+>> AUDIENCE: [INAUDIBLE].
+
+609
+00:26:53,182 --> 00:27:03,421
+
+610
+00:27:03,421 --> 00:27:04,170
+DAVID MALAN: Yeah.
+
+611
+00:27:04,170 --> 00:27:08,620
+So the function is defined differently--
+in other words, absent from the form,
+
+612
+00:27:08,620 --> 00:27:13,180
+up there on line 7-- or
+rather, line 8-- no longer
+
+613
+00:27:13,180 --> 00:27:15,070
+do I have the onsubmit attribute.
+
+614
+00:27:15,070 --> 00:27:16,750
+In the previous example, I had this.
+
+615
+00:27:16,750 --> 00:27:18,530
+And then I literally wrote my code here.
+
+616
+00:27:18,530 --> 00:27:20,210
+And then I said return false.
+
+617
+00:27:20,210 --> 00:27:22,180
+And if it didn't rub
+you the wrong way yet,
+
+618
+00:27:22,180 --> 00:27:26,140
+it should start to insofar
+as, just like in HTML,
+
+619
+00:27:26,140 --> 00:27:29,530
+when we started to co-mingle it
+with CSS in style attributes,
+
+620
+00:27:29,530 --> 00:27:32,890
+it just started to get a little
+messy or feel a little wrong.
+
+621
+00:27:32,890 --> 00:27:35,020
+>> Similarly here, if
+you start taking HTML,
+
+622
+00:27:35,020 --> 00:27:37,419
+and then you automatically
+plop some JavaScript code
+
+623
+00:27:37,419 --> 00:27:40,460
+in the middle of a quoted string, it's
+not going to be very maintainable.
+
+624
+00:27:40,460 --> 00:27:40,630
+Right?
+
+625
+00:27:40,630 --> 00:27:43,690
+It's not even obvious at first
+place where the JavaScript code is.
+
+626
+00:27:43,690 --> 00:27:46,590
+So it would be really nice as
+a principle of better design,
+
+627
+00:27:46,590 --> 00:27:50,500
+let's keep our HTML completely
+separate from our JavaScript.
+
+628
+00:27:50,500 --> 00:27:53,150
+>> So to do that, what we've
+done here is the following--
+
+629
+00:27:53,150 --> 00:27:56,790
+we simply use HTML for markup only.
+
+630
+00:27:56,790 --> 00:28:00,730
+And so in version one of this, all
+I have is a form with a unique ID.
+
+631
+00:28:00,730 --> 00:28:04,630
+And then down here, I'm taking advantage
+of a special feature of JavaScript
+
+632
+00:28:04,630 --> 00:28:08,480
+whereby I can have what's
+called an anonymous function.
+
+633
+00:28:08,480 --> 00:28:14,150
+So it turns out that if I call
+document.getElementById of 'demo'
+
+634
+00:28:14,150 --> 00:28:18,890
+that's like giving me a pointer to
+this node in my tree, the form element,
+
+635
+00:28:18,890 --> 00:28:20,100
+so to speak.
+
+636
+00:28:20,100 --> 00:28:22,220
+>> Now, I just know from
+knowing a bit of HTML
+
+637
+00:28:22,220 --> 00:28:26,330
+now we're having read some online
+reference, that a form element supports
+
+638
+00:28:26,330 --> 00:28:29,950
+a whole bunch of event listeners-- in
+other words, the laundry list of event
+
+639
+00:28:29,950 --> 00:28:31,700
+listeners that we saw a moment ago.
+
+640
+00:28:31,700 --> 00:28:35,950
+I know from reading the documentation
+that onsubmit is a valid event
+
+641
+00:28:35,950 --> 00:28:38,520
+listener for a form element.
+
+642
+00:28:38,520 --> 00:28:41,480
+>> So once I know that,
+it's safe for me to do
+
+643
+00:28:41,480 --> 00:28:45,390
+the following-- get that node
+from the tree, the form element,
+
+644
+00:28:45,390 --> 00:28:48,070
+and access its so-called
+onsubmit property.
+
+645
+00:28:48,070 --> 00:28:49,880
+So the dot just means
+this is a property,
+
+646
+00:28:49,880 --> 00:28:52,180
+like a special value inside of it.
+
+647
+00:28:52,180 --> 00:28:55,590
+And what data type am I
+assigning, apparently,
+
+648
+00:28:55,590 --> 00:28:58,900
+to onsubmit, which is
+effectively a variable inside
+
+649
+00:28:58,900 --> 00:29:01,010
+of that node in the tree?
+
+650
+00:29:01,010 --> 00:29:04,100
+It's a field inside of that struct.
+
+651
+00:29:04,100 --> 00:29:05,810
+What's the data type?
+
+652
+00:29:05,810 --> 00:29:07,030
+>> A function, yeah.
+
+653
+00:29:07,030 --> 00:29:08,607
+So it turns out that PHP has this.
+
+654
+00:29:08,607 --> 00:29:10,440
+And even though we
+didn't tell you about it,
+
+655
+00:29:10,440 --> 00:29:16,240
+C also has function pointers, the
+ability to pass and assign functions
+
+656
+00:29:16,240 --> 00:29:18,330
+as variables' values themselves.
+
+657
+00:29:18,330 --> 00:29:20,280
+And we're not going
+to regress back to C.
+
+658
+00:29:20,280 --> 00:29:23,250
+But for now, it turns out that
+on the right-hand side here,
+
+659
+00:29:23,250 --> 00:29:26,260
+even though it looks a little
+funky, this means, hey browser,
+
+660
+00:29:26,260 --> 00:29:27,550
+give me a function.
+
+661
+00:29:27,550 --> 00:29:30,560
+I'm not going to even bother giving
+it a name because I'm literally
+
+662
+00:29:30,560 --> 00:29:34,450
+going to assign let's call it
+the address of this function
+
+663
+00:29:34,450 --> 00:29:35,994
+immediately to onsubmit.
+
+664
+00:29:35,994 --> 00:29:39,160
+In other words, browser, you don't need
+to know what this function's called.
+
+665
+00:29:39,160 --> 00:29:41,890
+You just need to know
+where it is in memory.
+
+666
+00:29:41,890 --> 00:29:44,210
+And so it suffices just to
+have an equal sign there
+
+667
+00:29:44,210 --> 00:29:48,240
+and not to bother naming this, like
+foo or greet or any other word.
+
+668
+00:29:48,240 --> 00:29:50,150
+And now this is just a stylistic thing.
+
+669
+00:29:50,150 --> 00:29:53,100
+I could move this curly brace
+onto the-- sorry-- next line
+
+670
+00:29:53,100 --> 00:29:54,750
+like we usually do CS50.
+
+671
+00:29:54,750 --> 00:29:57,550
+But in JavaScript, it's
+actually stylistically common
+
+672
+00:29:57,550 --> 00:30:00,450
+to just keep the curly brace, the
+first one, on that first line.
+
+673
+00:30:00,450 --> 00:30:02,620
+>> But hereafter, there's
+nothing interesting.
+
+674
+00:30:02,620 --> 00:30:05,830
+That open curly brace just
+demarcates the start of my function.
+
+675
+00:30:05,830 --> 00:30:09,320
+The function is now
+identical, except I've
+
+676
+00:30:09,320 --> 00:30:11,452
+included the return false
+inside of this function.
+
+677
+00:30:11,452 --> 00:30:13,160
+Because it turns out--
+and you would only
+
+678
+00:30:13,160 --> 00:30:14,980
+know this from reading
+the documentation--
+
+679
+00:30:14,980 --> 00:30:19,740
+that if the function that you assign
+to the onsubmit handler returns false,
+
+680
+00:30:19,740 --> 00:30:23,420
+the browser just knows and agrees
+not to submit the form to a server.
+
+681
+00:30:23,420 --> 00:30:27,210
+If it returns true, it will submit
+it to a server for reasons we'll see
+
+682
+00:30:27,210 --> 00:30:28,700
+are useful in just a moment.
+
+683
+00:30:28,700 --> 00:30:31,000
+>> And then the semicolon after
+the curly brace there just
+
+684
+00:30:31,000 --> 00:30:32,541
+means I'm done defining the function.
+
+685
+00:30:32,541 --> 00:30:36,600
+You know what to call as soon
+as you hear a submission.
+
+686
+00:30:36,600 --> 00:30:37,100
+All right.
+
+687
+00:30:37,100 --> 00:30:40,650
+This is still arguably kind of ugly.
+
+688
+00:30:40,650 --> 00:30:42,190
+So what more can we do?
+
+689
+00:30:42,190 --> 00:30:45,000
+>> Well, it turns out then in
+version two, which is the last--
+
+690
+00:30:45,000 --> 00:30:46,780
+and we'll just glance at this.
+
+691
+00:30:46,780 --> 00:30:49,850
+At the risk of making
+it uglier, it turns out
+
+692
+00:30:49,850 --> 00:30:52,160
+that there's a library in
+the world called jQuery.
+
+693
+00:30:52,160 --> 00:30:54,900
+And jQuery is a super
+popular JavaScript library
+
+694
+00:30:54,900 --> 00:30:57,930
+that's so popular that most
+any JavaScript-- it's not
+
+695
+00:30:57,930 --> 00:31:00,540
+uncommon for people to confuse
+jQuery with JavaScript.
+
+696
+00:31:00,540 --> 00:31:01,070
+Why?
+
+697
+00:31:01,070 --> 00:31:04,990
+JavaScript itself has very
+verbose ways of doing things--
+
+698
+00:31:04,990 --> 00:31:07,820
+document.getElementById, dadadadadada.
+
+699
+00:31:07,820 --> 00:31:10,510
+You end up having very
+long lines of code.
+
+700
+00:31:10,510 --> 00:31:15,550
+>> So a fellow named John Resid,
+who actually works for a startup
+
+701
+00:31:15,550 --> 00:31:18,630
+up these days, came out
+with this library years
+
+702
+00:31:18,630 --> 00:31:22,070
+ago that many people have contributed
+to called jQuery that changes
+
+703
+00:31:22,070 --> 00:31:23,449
+the syntax in the following way.
+
+704
+00:31:23,449 --> 00:31:25,740
+And just so you've seen this,
+because you'll invariably
+
+705
+00:31:25,740 --> 00:31:28,140
+see this if doing a
+web-based final project,
+
+706
+00:31:28,140 --> 00:31:33,270
+this would be the equivalent way of
+implementing that same function using
+
+707
+00:31:33,270 --> 00:31:34,630
+this special library.
+
+708
+00:31:34,630 --> 00:31:36,680
+>> Now, rather than tease
+it apart in its entirety,
+
+709
+00:31:36,680 --> 00:31:38,520
+let's just look at some patterns.
+
+710
+00:31:38,520 --> 00:31:44,850
+This syntax appears to have
+how many anonymous functions
+
+711
+00:31:44,850 --> 00:31:49,584
+or nameless functions
+or AKA lambda functions?
+
+712
+00:31:49,584 --> 00:31:50,190
+Two, right?
+
+713
+00:31:50,190 --> 00:31:52,690
+And you know that, even if
+you're not super comfy with this,
+
+714
+00:31:52,690 --> 00:31:55,780
+just by the fact that it
+says function() twice.
+
+715
+00:31:55,780 --> 00:31:58,172
+>> And it turns out that
+what this code is doing--
+
+716
+00:31:58,172 --> 00:32:01,255
+and we'll refer to online references,
+ultimately, for some help with this.
+
+717
+00:32:01,255 --> 00:32:04,480
+This just means that when
+the document is ready,
+
+718
+00:32:04,480 --> 00:32:07,490
+go ahead and register
+the following function
+
+719
+00:32:07,490 --> 00:32:12,064
+as the submit handler for the HTML
+element whose unique idea is demo.
+
+720
+00:32:12,064 --> 00:32:14,480
+And then, when that happens,
+call these two lines of code.
+
+721
+00:32:14,480 --> 00:32:18,677
+And this is, tragically, a more
+verbose way of saying return false.
+
+722
+00:32:18,677 --> 00:32:21,510
+And we mentioned this just because
+you'll see code like this online.
+
+723
+00:32:21,510 --> 00:32:23,140
+And it's nothing to be daunted by.
+
+724
+00:32:23,140 --> 00:32:26,057
+But rather, keep in mind that what's
+going to be common in JavaScript
+
+725
+00:32:26,057 --> 00:32:26,765
+is this paradigm.
+
+726
+00:32:26,765 --> 00:32:29,510
+And so that's why we show it for now.
+
+727
+00:32:29,510 --> 00:32:30,010
+All right.
+
+728
+00:32:30,010 --> 00:32:32,730
+So without dwelling too
+much on that syntax,
+
+729
+00:32:32,730 --> 00:32:37,800
+are there are any questions on
+these examples or ideas thus far?
+
+730
+00:32:37,800 --> 00:32:38,300
+All right.
+
+731
+00:32:38,300 --> 00:32:40,220
+So let's use this for something useful.
+
+732
+00:32:40,220 --> 00:32:47,070
+Making a web page that just says hello,
+so and so isn't all that interesting,
+
+733
+00:32:47,070 --> 00:32:47,830
+not to underwhelm.
+
+734
+00:32:47,830 --> 00:32:51,038
+This one's not going to be beautiful,
+but it is going to do something useful.
+
+735
+00:32:51,038 --> 00:32:56,350
+Let me go back to my directory
+here and open up, say, form-0.html.
+
+736
+00:32:56,350 --> 00:32:59,320
+>> So suppose this is the freshman
+intramural sports registration page
+
+737
+00:32:59,320 --> 00:33:01,780
+without any CSS or any sense of design.
+
+738
+00:33:01,780 --> 00:33:05,404
+And I want to go ahead and
+register here with a password.
+
+739
+00:33:05,404 --> 00:33:08,320
+And I'm going to agree to the terms
+and conditions and click Register.
+
+740
+00:33:08,320 --> 00:33:11,700
+And now the website says, "You are
+registered! (Well, not really.)"
+
+741
+00:33:11,700 --> 00:33:15,070
+That seems like it worked, but
+let me go ahead and force reload.
+
+742
+00:33:15,070 --> 00:33:18,720
+>> And let me say, no, you don't
+need my actual email address.
+
+743
+00:33:18,720 --> 00:33:21,820
+Or maybe we'll just say mail in there.
+
+744
+00:33:21,820 --> 00:33:25,080
+Password will be, like, 12345.
+
+745
+00:33:25,080 --> 00:33:28,810
+And then, just because I'm
+an idiot, now it's 123456789.
+
+746
+00:33:28,810 --> 00:33:31,150
+And I'm not going to check your box.
+
+747
+00:33:31,150 --> 00:33:31,850
+>> Hmm.
+
+748
+00:33:31,850 --> 00:33:32,350
+All right.
+
+749
+00:33:32,350 --> 00:33:34,920
+So there's several opportunities
+for improvement here.
+
+750
+00:33:34,920 --> 00:33:39,070
+And you know, or will see in pset
+seven, that you can write code--
+
+751
+00:33:39,070 --> 00:33:41,890
+and you'll have to write
+code in PHP-- to defend
+
+752
+00:33:41,890 --> 00:33:45,780
+against these kinds of user
+errors because the user clearly
+
+753
+00:33:45,780 --> 00:33:46,790
+has not cooperated.
+
+754
+00:33:46,790 --> 00:33:49,680
+And he or she has not given you all the
+values you wanted or even in the format
+
+755
+00:33:49,680 --> 00:33:50,630
+that you wanted them.
+
+756
+00:33:50,630 --> 00:33:53,250
+So you'll see in pset seven that
+we could certainly have some
+
+757
+00:33:53,250 --> 00:33:55,680
+if conditions that say
+if the email address
+
+758
+00:33:55,680 --> 00:33:59,450
+isn't a username@something.edu,
+we could just
+
+759
+00:33:59,450 --> 00:34:02,575
+say sorry and apologize to the user
+much, like you might be in pset seven.
+
+760
+00:34:02,575 --> 00:34:05,700
+Or if they haven't checked that box,
+turns out in PHP, you can detect that,
+
+761
+00:34:05,700 --> 00:34:06,200
+too.
+
+762
+00:34:06,200 --> 00:34:09,389
+And certainly if the passwords
+don't match as in register.php
+
+763
+00:34:09,389 --> 00:34:11,521
+for pset seven, you can detect that.
+
+764
+00:34:11,521 --> 00:34:13,770
+But that's a pain in the
+neck in that now they request
+
+765
+00:34:13,770 --> 00:34:15,510
+us to go all the way to the server.
+
+766
+00:34:15,510 --> 00:34:17,053
+The user is informed of the error.
+
+767
+00:34:17,053 --> 00:34:19,219
+And at least unless you use
+some fancier techniques,
+
+768
+00:34:19,219 --> 00:34:20,929
+now they have to click the back arrow.
+
+769
+00:34:20,929 --> 00:34:23,300
+Wouldn't it be nice, like
+a lot of websites today,
+
+770
+00:34:23,300 --> 00:34:26,190
+if you had more immediate
+feedback, instantly?
+
+771
+00:34:26,190 --> 00:34:31,389
+>> In other words, let me go to version
+one, which is going to be no prettier.
+
+772
+00:34:31,389 --> 00:34:33,469
+But it does have this feature.
+
+773
+00:34:33,469 --> 00:34:39,590
+Malan, 12345, 123456789, not
+going to check the box, Register.
+
+774
+00:34:39,590 --> 00:34:41,330
+Passwords do not match.
+
+775
+00:34:41,330 --> 00:34:44,459
+So even though this pop-up is ugly--
+we can replace this eventually
+
+776
+00:34:44,459 --> 00:34:47,000
+with something like Bootstrap,
+which you'll see in pset seven
+
+777
+00:34:47,000 --> 00:34:50,239
+is a very popular library-- I did
+detect that the passwords do not match.
+
+778
+00:34:50,239 --> 00:34:50,739
+All right.
+
+779
+00:34:50,739 --> 00:34:52,530
+Well, let me fix that as the user.
+
+780
+00:34:52,530 --> 00:34:55,460
+Let me go ahead and say 12345, 12345.
+
+781
+00:34:55,460 --> 00:34:57,780
+Still not checking the agreement.
+
+782
+00:34:57,780 --> 00:35:00,210
+You must agree to the
+terms and conditions.
+
+783
+00:35:00,210 --> 00:35:01,760
+So why?
+
+784
+00:35:01,760 --> 00:35:04,100
+>> If we've already posited
+that there's a way,
+
+785
+00:35:04,100 --> 00:35:07,260
+and we've required you in
+pset seven to detect error
+
+786
+00:35:07,260 --> 00:35:09,780
+conditions like this
+server-side, why should I
+
+787
+00:35:09,780 --> 00:35:13,940
+bother also doing this in JavaScript?
+
+788
+00:35:13,940 --> 00:35:15,850
+What's an argument in
+favor of adding what
+
+789
+00:35:15,850 --> 00:35:18,760
+you're about to see as some--
+there's additional complexity.
+
+790
+00:35:18,760 --> 00:35:23,610
+
+791
+00:35:23,610 --> 00:35:25,930
+>> Maybe there is no upside.
+
+792
+00:35:25,930 --> 00:35:26,924
+What could it be?
+
+793
+00:35:26,924 --> 00:35:27,840
+AUDIENCE: [INAUDIBLE].
+
+794
+00:35:27,840 --> 00:35:31,132
+
+795
+00:35:31,132 --> 00:35:32,340
+DAVID MALAN: Oh, interesting.
+
+796
+00:35:32,340 --> 00:35:33,530
+Potential exploits.
+
+797
+00:35:33,530 --> 00:35:37,540
+So sure, if you're not handling
+erroneous user input that great,
+
+798
+00:35:37,540 --> 00:35:40,170
+maybe it's all the better if it
+doesn't even reach your server.
+
+799
+00:35:40,170 --> 00:35:42,160
+I would push back there and
+say, you should probably
+
+800
+00:35:42,160 --> 00:35:43,284
+fix both of those problems.
+
+801
+00:35:43,284 --> 00:35:44,140
+But that's fair.
+
+802
+00:35:44,140 --> 00:35:44,710
+What else?
+
+803
+00:35:44,710 --> 00:35:45,626
+>> AUDIENCE: [INAUDIBLE].
+
+804
+00:35:45,626 --> 00:35:47,970
+
+805
+00:35:47,970 --> 00:35:49,014
+>> DAVID MALAN: Yeah.
+
+806
+00:35:49,014 --> 00:35:51,680
+This code, as we said before, is
+interpreted on the client-side.
+
+807
+00:35:51,680 --> 00:35:53,846
+It doesn't bother the server,
+which means it doesn't
+
+808
+00:35:53,846 --> 00:35:55,930
+impact the server's load or capacity.
+
+809
+00:35:55,930 --> 00:35:59,840
+And now, for little old me,
+this has no meaningful effect
+
+810
+00:35:59,840 --> 00:36:01,970
+because I have one user right now.
+
+811
+00:36:01,970 --> 00:36:04,010
+>> But if you're any
+website of decent size,
+
+812
+00:36:04,010 --> 00:36:07,400
+especially the biggest, like Facebook,
+the more you can keep people off
+
+813
+00:36:07,400 --> 00:36:09,927
+of your server the better
+because a server, of course,
+
+814
+00:36:09,927 --> 00:36:12,510
+only has a finite amount of RAM,
+a finite number of gigahertz,
+
+815
+00:36:12,510 --> 00:36:16,340
+a finite number of things
+it can do per unit of time.
+
+816
+00:36:16,340 --> 00:36:19,170
+So if there are more people in
+the world hitting your server,
+
+817
+00:36:19,170 --> 00:36:21,750
+accidentally logging
+incorrectly, just as well if you
+
+818
+00:36:21,750 --> 00:36:23,254
+can keep that load off your server.
+
+819
+00:36:23,254 --> 00:36:25,420
+Plus, especially on a mobile
+device-- if you've ever
+
+820
+00:36:25,420 --> 00:36:29,190
+log into my.harvard or
+Yale's netid or the like,
+
+821
+00:36:29,190 --> 00:36:32,330
+there's this the latency with a lot of
+websites like that whereby it takes,
+
+822
+00:36:32,330 --> 00:36:34,110
+like, a damn second or two sometimes.
+
+823
+00:36:34,110 --> 00:36:37,979
+And then, my God, if you mistype,
+then you have to hit back and redo it.
+
+824
+00:36:37,979 --> 00:36:40,520
+So there's latency, especially
+on slower network connections.
+
+825
+00:36:40,520 --> 00:36:43,030
+But JavaScript, because
+it runs on the client
+
+826
+00:36:43,030 --> 00:36:46,720
+and doesn't need to go back and forth
+across a potentially slow internet
+
+827
+00:36:46,720 --> 00:36:49,780
+connection, you can get
+nearly instantaneous feedback.
+
+828
+00:36:49,780 --> 00:36:50,760
+>> So let's look at this.
+
+829
+00:36:50,760 --> 00:36:54,280
+Let me open up form-0 and
+look at the HTML here.
+
+830
+00:36:54,280 --> 00:36:56,040
+And let's just see what's going on.
+
+831
+00:36:56,040 --> 00:36:59,460
+This is a form whose
+action is register.php.
+
+832
+00:36:59,460 --> 00:37:01,530
+I'm just using get so
+that I could see the URL.
+
+833
+00:37:01,530 --> 00:37:05,030
+But for passwords, we'd surely want
+to change this to post in reality.
+
+834
+00:37:05,030 --> 00:37:06,910
+Here's an input field of type text.
+
+835
+00:37:06,910 --> 00:37:09,050
+Here's another input
+field of type password.
+
+836
+00:37:09,050 --> 00:37:13,150
+Here is, if you've never seen,
+an input of type checkbox.
+
+837
+00:37:13,150 --> 00:37:15,250
+>> But there's no JavaScript
+here whatsoever.
+
+838
+00:37:15,250 --> 00:37:18,170
+This is just HTML that
+goes to register.php.
+
+839
+00:37:18,170 --> 00:37:21,020
+But in version one, where I
+started to get those pop-ups,
+
+840
+00:37:21,020 --> 00:37:23,010
+let's see what actually happens here.
+
+841
+00:37:23,010 --> 00:37:26,757
+In version one, what
+I'm going to see-- I
+
+842
+00:37:26,757 --> 00:37:29,340
+thought I could stall enough
+with enough words, but I ran out.
+
+843
+00:37:29,340 --> 00:37:35,180
+
+844
+00:37:35,180 --> 00:37:38,590
+>> In version one-- there we go.
+
+845
+00:37:38,590 --> 00:37:43,180
+In version one, notice the following--
+and is not the best implementation,
+
+846
+00:37:43,180 --> 00:37:44,420
+but it's my first.
+
+847
+00:37:44,420 --> 00:37:47,680
+Notice that below the
+form, I have a script tag.
+
+848
+00:37:47,680 --> 00:37:49,430
+And a script tag means,
+hey, browser, here
+
+849
+00:37:49,430 --> 00:37:52,340
+comes some code in,
+typically, JavaScript.
+
+850
+00:37:52,340 --> 00:37:54,420
+And now, notice what I'm doing.
+
+851
+00:37:54,420 --> 00:37:59,070
+On line-- I can barely
+read it-- line 32, it says,
+
+852
+00:37:59,070 --> 00:38:01,420
+var form-- so give me
+a variable called form.
+
+853
+00:38:01,420 --> 00:38:05,049
+And then get document.getElementId
+of "registration."
+
+854
+00:38:05,049 --> 00:38:05,590
+What is this?
+
+855
+00:38:05,590 --> 00:38:07,290
+Well, let me rewind up here.
+
+856
+00:38:07,290 --> 00:38:11,510
+And notice, ah, I gave the form element
+an arbitrary but descriptive idea
+
+857
+00:38:11,510 --> 00:38:13,050
+of registration.
+
+858
+00:38:13,050 --> 00:38:16,820
+So this gives me a variable that
+allows me to grab that node,
+
+859
+00:38:16,820 --> 00:38:19,580
+that rectangle in the tree called form.
+
+860
+00:38:19,580 --> 00:38:24,460
+form.onsubmit means, hey browser,
+register an event listener
+
+861
+00:38:24,460 --> 00:38:25,470
+on this form.
+
+862
+00:38:25,470 --> 00:38:28,890
+In other words, when this form is
+submitted, execute the following code.
+
+863
+00:38:28,890 --> 00:38:30,810
+It doesn't need a name because
+why do you need to know the name?
+
+864
+00:38:30,810 --> 00:38:32,880
+You just need to know
+what to execute, ergo
+
+865
+00:38:32,880 --> 00:38:35,610
+it's an anonymous or lambda function.
+
+866
+00:38:35,610 --> 00:38:37,632
+And that function is
+all of these lines here.
+
+867
+00:38:37,632 --> 00:38:40,840
+And now, to be honest, even though you
+might not have ever written JavaScript
+
+868
+00:38:40,840 --> 00:38:44,200
+before, it's just C and PHP logic.
+
+869
+00:38:44,200 --> 00:38:51,720
+So if form.email.value==" "--
+so if the email field is blank,
+
+870
+00:38:51,720 --> 00:38:54,980
+yell at the user with "You must
+provide your email address."
+
+871
+00:38:54,980 --> 00:38:58,980
+Else if form.password.value
+is blank yell at the user,
+
+872
+00:38:58,980 --> 00:39:00,400
+"You must provide your password."
+
+873
+00:39:00,400 --> 00:39:04,240
+>> More interestingly logically,
+if form.password.value does not
+
+874
+00:39:04,240 --> 00:39:08,630
+equal form.confirmation.value--
+where did confirmation come from?
+
+875
+00:39:08,630 --> 00:39:09,470
+Let me rewind.
+
+876
+00:39:09,470 --> 00:39:12,870
+Well, I called this input
+field here password.
+
+877
+00:39:12,870 --> 00:39:15,180
+And I called this one here confirmation.
+
+878
+00:39:15,180 --> 00:39:17,850
+I could have called it
+password two or anything else.
+
+879
+00:39:17,850 --> 00:39:20,560
+I'm just logically checking
+that these two are the same.
+
+880
+00:39:20,560 --> 00:39:25,760
+Else-- it turns out this is Mr. Boole
+again-- a Boolean value, the check box.
+
+881
+00:39:25,760 --> 00:39:29,810
+So if I say, exclamation point--
+if not form.agreement.checked,
+
+882
+00:39:29,810 --> 00:39:31,820
+yell at the user as well.
+
+883
+00:39:31,820 --> 00:39:34,470
+>> So this syntax you'll see is
+very common in JavaScript,
+
+884
+00:39:34,470 --> 00:39:35,970
+where you have this dotted notation.
+
+885
+00:39:35,970 --> 00:39:37,460
+You start with an object here.
+
+886
+00:39:37,460 --> 00:39:41,430
+You dive in deeper to a to
+a property like password.
+
+887
+00:39:41,430 --> 00:39:43,280
+And then you get at its actual value.
+
+888
+00:39:43,280 --> 00:39:45,830
+And again, here is the input.
+
+889
+00:39:45,830 --> 00:39:47,310
+Here is the name password.
+
+890
+00:39:47,310 --> 00:39:50,860
+And its value is whatever the
+human has actually typed in.
+
+891
+00:39:50,860 --> 00:39:53,610
+>> So in all of these
+cases, I returned false.
+
+892
+00:39:53,610 --> 00:39:55,800
+But if not, I return true.
+
+893
+00:39:55,800 --> 00:39:58,030
+And so now we see a
+compelling use of when
+
+894
+00:39:58,030 --> 00:40:00,620
+you would return false to
+stop what the user's doing
+
+895
+00:40:00,620 --> 00:40:03,200
+and make him or her choose
+again or type again.
+
+896
+00:40:03,200 --> 00:40:05,870
+Otherwise, we return true.
+
+897
+00:40:05,870 --> 00:40:08,585
+>> And let me introduce one
+other variant of this just
+
+898
+00:40:08,585 --> 00:40:13,140
+to seed some understanding thereof.
+
+899
+00:40:13,140 --> 00:40:16,850
+Well, in version 2 of this, form-2--
+I'll do it with a wave of a hand.
+
+900
+00:40:16,850 --> 00:40:19,920
+This is, for those curious,
+the jQuery version,
+
+901
+00:40:19,920 --> 00:40:23,330
+those of you who might want to
+dabble in that particular library.
+
+902
+00:40:23,330 --> 00:40:25,145
+But let's start-- and any questions?
+
+903
+00:40:25,145 --> 00:40:29,230
+Let me pause for moment because
+that was fast and a lot.
+
+904
+00:40:29,230 --> 00:40:32,610
+>> But the nice thing here is that all
+of the code is pretty much the same.
+
+905
+00:40:32,610 --> 00:40:33,985
+The new stuff is what is the dom?
+
+906
+00:40:33,985 --> 00:40:35,115
+What are these rectangles?
+
+907
+00:40:35,115 --> 00:40:35,990
+What are these nodes?
+
+908
+00:40:35,990 --> 00:40:37,540
+What's an anonymous function?
+
+909
+00:40:37,540 --> 00:40:38,830
+What's an event handler?
+
+910
+00:40:38,830 --> 00:40:43,480
+But thankfully, most of that is just
+full circle from, say, week zero.
+
+911
+00:40:43,480 --> 00:40:43,980
+All right.
+
+912
+00:40:43,980 --> 00:40:46,070
+So something slightly more interesting?
+
+913
+00:40:46,070 --> 00:40:49,340
+Well, first of all, let me go
+ahead and open up Google Maps.
+
+914
+00:40:49,340 --> 00:40:53,360
+And you'll notice that for a
+moment, on the split second,
+
+915
+00:40:53,360 --> 00:40:55,930
+notice what happens when
+I click fast enough.
+
+916
+00:40:55,930 --> 00:40:59,720
+And this connection at Harvard is so
+fast that you don't really notice it.
+
+917
+00:40:59,720 --> 00:41:04,469
+But what do you kind of sort of see
+if I click and drag really fast?
+
+918
+00:41:04,469 --> 00:41:07,010
+Those of you watching online,
+if you slow this to 0.5x speed,
+
+919
+00:41:07,010 --> 00:41:09,640
+you can see this better.
+
+920
+00:41:09,640 --> 00:41:13,550
+>> What was happening just
+before I clicked and dragged?
+
+921
+00:41:13,550 --> 00:41:15,900
+Let me try here-- let me do
+something else, like 90210.
+
+922
+00:41:15,900 --> 00:41:17,550
+Let's go far away.
+
+923
+00:41:17,550 --> 00:41:19,000
+That was really fast, too.
+
+924
+00:41:19,000 --> 00:41:22,460
+How about Disney World?
+
+925
+00:41:22,460 --> 00:41:23,190
+There we go.
+
+926
+00:41:23,190 --> 00:41:23,690
+OK.
+
+927
+00:41:23,690 --> 00:41:26,030
+What did you see for a split second?
+
+928
+00:41:26,030 --> 00:41:27,200
+Just, like, squares, right?
+
+929
+00:41:27,200 --> 00:41:28,930
+Placeholders for tiles?
+
+930
+00:41:28,930 --> 00:41:30,270
+>> Well, what's going on here?
+
+931
+00:41:30,270 --> 00:41:35,410
+Google Maps is a nice example of
+this technology that's called AJAX.
+
+932
+00:41:35,410 --> 00:41:38,510
+And this is where we'll start to
+use the JavaScript in a particularly
+
+933
+00:41:38,510 --> 00:41:39,277
+alluring way.
+
+934
+00:41:39,277 --> 00:41:41,610
+Back in the day, there was
+this website called MapQuest.
+
+935
+00:41:41,610 --> 00:41:44,120
+And I should have taken a
+screenshot of this from the 1990s,
+
+936
+00:41:44,120 --> 00:41:45,820
+where if you wanted to
+look up here on the map,
+
+937
+00:41:45,820 --> 00:41:48,590
+you would literally click an arrow
+up at the top that showed you
+
+938
+00:41:48,590 --> 00:41:49,870
+a different square of the map.
+
+939
+00:41:49,870 --> 00:41:51,790
+If you wanted to move left, you
+clicked an arrow that showed you
+
+940
+00:41:51,790 --> 00:41:53,210
+a different square of the map.
+
+941
+00:41:53,210 --> 00:41:54,840
+And some websites still do this today.
+
+942
+00:41:54,840 --> 00:41:57,820
+But even MapQuest has gotten
+better, like Google Maps.
+
+943
+00:41:57,820 --> 00:42:01,880
+>> Instead, what's better these
+days is websites that use AJAX.
+
+944
+00:42:01,880 --> 00:42:04,510
+AJAX-- otherwise known as
+Asynchronous JavaScript and XML,
+
+945
+00:42:04,510 --> 00:42:08,370
+which is just a fancy way of saying
+a technology or technique that
+
+946
+00:42:08,370 --> 00:42:14,200
+allows a browser using JavaScript
+to make additional HTTP requests
+
+947
+00:42:14,200 --> 00:42:16,390
+after the page has been loaded.
+
+948
+00:42:16,390 --> 00:42:17,479
+So what does this mean?
+
+949
+00:42:17,479 --> 00:42:19,270
+Well, it would be kind
+of annoying in Gmail
+
+950
+00:42:19,270 --> 00:42:21,103
+if every time you wanted
+to check your mail,
+
+951
+00:42:21,103 --> 00:42:24,940
+you had literally hit Control-R or
+Command-R or click the Reload button
+
+952
+00:42:24,940 --> 00:42:26,580
+and the whole darn page would reload.
+
+953
+00:42:26,580 --> 00:42:26,800
+Right?
+
+954
+00:42:26,800 --> 00:42:28,460
+It would flash white
+probably for second.
+
+955
+00:42:28,460 --> 00:42:30,043
+You would see the stupid progress bar.
+
+956
+00:42:30,043 --> 00:42:33,170
+And just to see if you have new
+mail, the whole web page and the URL
+
+957
+00:42:33,170 --> 00:42:34,580
+you're at would have to reload.
+
+958
+00:42:34,580 --> 00:42:35,960
+>> But that's not what happens in Gmail.
+
+959
+00:42:35,960 --> 00:42:36,459
+Right?
+
+960
+00:42:36,459 --> 00:42:40,300
+When you get a new email in
+Gmail, what happens on the screen?
+
+961
+00:42:40,300 --> 00:42:41,480
+It just shows up, right?
+
+962
+00:42:41,480 --> 00:42:44,280
+It just magically appears
+as a new row in the table.
+
+963
+00:42:44,280 --> 00:42:47,030
+That actually involves a
+decent amount of complexity.
+
+964
+00:42:47,030 --> 00:42:51,892
+In fact, if you think about this tree,
+which even though is a simple one here,
+
+965
+00:42:51,892 --> 00:42:54,100
+Gmail-- and I'd have to look
+at the code to be sure--
+
+966
+00:42:54,100 --> 00:42:58,710
+probably has an HTML table or maybe
+an unordered list that it renders
+
+967
+00:42:58,710 --> 00:43:01,060
+each of your inboxes emails as.
+
+968
+00:43:01,060 --> 00:43:04,050
+>> And so if you imagine this there
+is a tree in memory when you're
+
+969
+00:43:04,050 --> 00:43:09,050
+using Gmail that looks kind of sort of
+like this, when Google realizes, ooh,
+
+970
+00:43:09,050 --> 00:43:12,770
+you have a new email, it doesn't
+want to rebuild the whole tree.
+
+971
+00:43:12,770 --> 00:43:16,430
+Rather, it wants to find the node in
+the tree that represents your inbox
+
+972
+00:43:16,430 --> 00:43:18,580
+and just insert a new node.
+
+973
+00:43:18,580 --> 00:43:24,640
+>> So very similar to pset five, where you
+had to insert nodes into a hash table,
+
+974
+00:43:24,640 --> 00:43:28,410
+similarly does Google, via
+JavaScript code that it has written,
+
+975
+00:43:28,410 --> 00:43:31,890
+traverse this tree, figure out where
+is that inbox part of the window,
+
+976
+00:43:31,890 --> 00:43:33,440
+and then insert a new row.
+
+977
+00:43:33,440 --> 00:43:37,460
+And a new row just means one
+or more new nodes in a tree.
+
+978
+00:43:37,460 --> 00:43:41,340
+>> And so AJAX is this technique
+that allows for exactly that.
+
+979
+00:43:41,340 --> 00:43:44,440
+Once you've visited a URL,
+however crazy long it is,
+
+980
+00:43:44,440 --> 00:43:46,472
+and once the page has
+been loaded, you can still
+
+981
+00:43:46,472 --> 00:43:48,430
+grab more data from the
+internet-- whether it's
+
+982
+00:43:48,430 --> 00:43:52,460
+an email or a tile of a map--
+grab it behind the scenes
+
+983
+00:43:52,460 --> 00:43:55,290
+and then insert it into the page
+so that the human doesn't really
+
+984
+00:43:55,290 --> 00:43:56,910
+have to wait for it.
+
+985
+00:43:56,910 --> 00:43:58,980
+>> Facebook Messenger works the same way.
+
+986
+00:43:58,980 --> 00:44:01,562
+Any number of other websites--
+oh, actually, even this.
+
+987
+00:44:01,562 --> 00:44:04,270
+I mean, this is, frankly, kind of
+an annoying feature these days.
+
+988
+00:44:04,270 --> 00:44:07,500
+If I start searching for cats-- this
+is kind of a horrible user experience.
+
+989
+00:44:07,500 --> 00:44:08,990
+It just starts searching for me.
+
+990
+00:44:08,990 --> 00:44:10,050
+Well what is it doing?
+
+991
+00:44:10,050 --> 00:44:12,920
+The URL hasn't really changed
+since I started typing.
+
+992
+00:44:12,920 --> 00:44:17,330
+But what's going across the
+wire-- OK, hmm interesting.
+
+993
+00:44:17,330 --> 00:44:20,470
+What's going across the
+wire here just gets weirder.
+
+994
+00:44:20,470 --> 00:44:21,090
+>> OK.
+
+995
+00:44:21,090 --> 00:44:24,670
+So let me go ahead and inspect
+element and go to the Network tab
+
+996
+00:44:24,670 --> 00:44:27,040
+and try to make this
+technical and less about cats.
+
+997
+00:44:27,040 --> 00:44:32,595
+As I type, literally, cats
+and-- what's happening
+
+998
+00:44:32,595 --> 00:44:37,710
+per-- I'm not going to click that.
+
+999
+00:44:37,710 --> 00:44:38,210
+All right.
+
+1000
+00:44:38,210 --> 00:44:44,280
+So down here, what's happening every
+time I type a character, apparently?
+
+1001
+00:44:44,280 --> 00:44:45,000
+Like, low level?
+
+1002
+00:44:45,000 --> 00:44:47,860
+What's happening with each of those
+characters I'm typing at my keyboard?
+
+1003
+00:44:47,860 --> 00:44:48,359
+Yeah?
+
+1004
+00:44:48,359 --> 00:44:50,950
+AUDIENCE: [INAUDIBLE].
+
+1005
+00:44:50,950 --> 00:44:52,340
+>> DAVID MALAN: Exactly.
+
+1006
+00:44:52,340 --> 00:44:55,600
+Each of those characters is
+going to Google, one at a time.
+
+1007
+00:44:55,600 --> 00:44:58,490
+They are building up a string
+on their server that represents
+
+1008
+00:44:58,490 --> 00:44:59,936
+everything I've typed in thus far.
+
+1009
+00:44:59,936 --> 00:45:01,810
+And every time I type
+another character, they
+
+1010
+00:45:01,810 --> 00:45:04,530
+use their secret sauce of a
+search algorithm and figure out,
+
+1011
+00:45:04,530 --> 00:45:07,370
+does he mean this cat page
+or this cat page or the like?
+
+1012
+00:45:07,370 --> 00:45:10,620
+So in some sense, it provides me with a
+better experience in that I don't even
+
+1013
+00:45:10,620 --> 00:45:11,860
+need to complete my thought.
+
+1014
+00:45:11,860 --> 00:45:14,440
+And indeed, it's a useful
+thing, autocomplete in general.
+
+1015
+00:45:14,440 --> 00:45:17,690
+If their algorithms are good enough
+and if my searches are obvious enough,
+
+1016
+00:45:17,690 --> 00:45:19,300
+I don't have to type the whole word.
+
+1017
+00:45:19,300 --> 00:45:22,110
+They're going to tell me what it
+is I'm actually searching for.
+
+1018
+00:45:22,110 --> 00:45:25,940
+So what Google calls instant
+search is just using AJAX,
+
+1019
+00:45:25,940 --> 00:45:30,820
+using code that allows them to request
+additional content via a web browser
+
+1020
+00:45:30,820 --> 00:45:34,026
+behind the scenes using this
+new language, JavaScript.
+
+1021
+00:45:34,026 --> 00:45:35,400
+So we have a couple minutes left.
+
+1022
+00:45:35,400 --> 00:45:37,710
+And let me call up my buddy
+Colton up onto the stage,
+
+1023
+00:45:37,710 --> 00:45:40,090
+since it seemed
+particularly fun last time
+
+1024
+00:45:40,090 --> 00:45:42,290
+to introduce a technology
+that some of you
+
+1025
+00:45:42,290 --> 00:45:44,769
+have expressed an interest
+in for final projects.
+
+1026
+00:45:44,769 --> 00:45:47,310
+We thought it'd be fun to bring
+up a volunteer, though, today
+
+1027
+00:45:47,310 --> 00:45:50,074
+to show you an addition to
+this that allows you-- yeah,
+
+1028
+00:45:50,074 --> 00:45:50,990
+I saw this hand first.
+
+1029
+00:45:50,990 --> 00:45:52,900
+Come on up.
+
+1030
+00:45:52,900 --> 00:45:53,560
+Very well done.
+
+1031
+00:45:53,560 --> 00:45:55,035
+Good job.
+
+1032
+00:45:55,035 --> 00:45:57,410
+I'm going to project this on
+the screen in just a moment.
+
+1033
+00:45:57,410 --> 00:45:58,150
+What's your name for everyone?
+
+1034
+00:45:58,150 --> 00:45:59,180
+>> EFA: I'm Efa.
+
+1035
+00:45:59,180 --> 00:45:59,410
+>> DAVID MALAN: Etha?
+
+1036
+00:45:59,410 --> 00:45:59,785
+>> EFA: Efa.
+
+1037
+00:45:59,785 --> 00:46:00,160
+>> DAVID MALAN: Efa?
+
+1038
+00:46:00,160 --> 00:46:00,730
+>> EFA: Yeah.
+
+1039
+00:46:00,730 --> 00:46:01,250
+>> DAVID MALAN: Nice to see you.
+
+1040
+00:46:01,250 --> 00:46:01,600
+All right.
+
+1041
+00:46:01,600 --> 00:46:02,590
+Let me get this ready.
+
+1042
+00:46:02,590 --> 00:46:04,423
+Come on over to the
+middle with Colton here.
+
+1043
+00:46:04,423 --> 00:46:07,050
+What Colton has in his hands
+today is a remote control.
+
+1044
+00:46:07,050 --> 00:46:10,440
+So rather than just stand there in a
+three-dimensional world looking around
+
+1045
+00:46:10,440 --> 00:46:14,080
+as Colton did, now Efa can
+actually walk around by going up,
+
+1046
+00:46:14,080 --> 00:46:16,689
+down, left, and right like a
+Nintendo or Xbox controller.
+
+1047
+00:46:16,689 --> 00:46:18,230
+EFA: I'm going to fall off the stage.
+
+1048
+00:46:18,230 --> 00:46:20,500
+DAVID MALAN: I will
+stand roughly over here.
+
+1049
+00:46:20,500 --> 00:46:21,991
+But that is a risk.
+
+1050
+00:46:21,991 --> 00:46:22,490
+OK.
+
+1051
+00:46:22,490 --> 00:46:25,690
+So go ahead and put those on.
+
+1052
+00:46:25,690 --> 00:46:29,315
+Let me go ahead and
+switch to the screen here.
+
+1053
+00:46:29,315 --> 00:46:30,670
+Let me dim the lights.
+
+1054
+00:46:30,670 --> 00:46:32,780
+And Colton, let me
+come stand next to you.
+
+1055
+00:46:32,780 --> 00:46:35,520
+>> Do you want to explain here
+with the mic what we're doing?
+
+1056
+00:46:35,520 --> 00:46:36,380
+Here you go.
+
+1057
+00:46:36,380 --> 00:46:37,280
+>> COLTON: Sure.
+
+1058
+00:46:37,280 --> 00:46:39,980
+So right now we're
+loading up the Oculus,
+
+1059
+00:46:39,980 --> 00:46:43,070
+I guess operating-- not operating
+system, but the main program, where
+
+1060
+00:46:43,070 --> 00:46:46,630
+you can access all the games and
+apps that are in your library.
+
+1061
+00:46:46,630 --> 00:46:50,060
+So right now, it should say
+tap the touchpad to begin.
+
+1062
+00:46:50,060 --> 00:46:53,430
+Touchpad's going to be on the
+right side of the headset.
+
+1063
+00:46:53,430 --> 00:46:54,569
+So go ahead and tap--
+
+1064
+00:46:54,569 --> 00:46:55,110
+EFA: Oh, man.
+
+1065
+00:46:55,110 --> 00:46:56,443
+DAVID MALAN: Yeah, there you go.
+
+1066
+00:46:56,443 --> 00:47:00,340
+
+1067
+00:47:00,340 --> 00:47:02,460
+The quality Efa is seeing
+is much higher quality.
+
+1068
+00:47:02,460 --> 00:47:03,831
+This is just the Wi-Fi here.
+
+1069
+00:47:03,831 --> 00:47:05,580
+COLTON: So what you're
+going to want to do
+
+1070
+00:47:05,580 --> 00:47:08,350
+is look towards the top
+right of the screen.
+
+1071
+00:47:08,350 --> 00:47:10,420
+Yep, that game on the very top right.
+
+1072
+00:47:10,420 --> 00:47:14,780
+And then when you're selecting
+it, tap the touchpad again.
+
+1073
+00:47:14,780 --> 00:47:17,010
+I think its Dreadhalls.
+
+1074
+00:47:17,010 --> 00:47:20,820
+And then here is a-- here, let
+me hold your glasses for you.
+
+1075
+00:47:20,820 --> 00:47:24,420
+
+1076
+00:47:24,420 --> 00:47:25,790
+>> So I just gave him a controller.
+
+1077
+00:47:25,790 --> 00:47:28,886
+So now he can control the game.
+
+1078
+00:47:28,886 --> 00:47:30,510
+He can move around and stuff like that.
+
+1079
+00:47:30,510 --> 00:47:31,968
+So go ahead and look up to the top.
+
+1080
+00:47:31,968 --> 00:47:33,640
+You should see New Game.
+
+1081
+00:47:33,640 --> 00:47:36,310
+So go ahead and you can do that.
+
+1082
+00:47:36,310 --> 00:47:39,320
+Now, you should be able to control
+yourself with the controller,
+
+1083
+00:47:39,320 --> 00:47:43,860
+as well, as soon as
+the game loads up here.
+
+1084
+00:47:43,860 --> 00:47:46,356
+This might be a little bit scary.
+
+1085
+00:47:46,356 --> 00:47:47,300
+>> EFA: Now you tell me.
+
+1086
+00:47:47,300 --> 00:47:50,132
+OK.
+
+1087
+00:47:50,132 --> 00:47:51,080
+>> COLTON: All right.
+
+1088
+00:47:51,080 --> 00:47:52,650
+So confirm that you can move around.
+
+1089
+00:47:52,650 --> 00:47:52,750
+OK.
+
+1090
+00:47:52,750 --> 00:47:53,583
+You can move around.
+
+1091
+00:47:53,583 --> 00:47:54,300
+Perfect.
+
+1092
+00:47:54,300 --> 00:47:56,470
+So if you look down, you have a map.
+
+1093
+00:47:56,470 --> 00:47:58,170
+Map shows you where you are.
+
+1094
+00:47:58,170 --> 00:47:59,720
+You can look around the room.
+
+1095
+00:47:59,720 --> 00:48:01,440
+You can completely turn around.
+
+1096
+00:48:01,440 --> 00:48:02,128
+Yeah, exactly.
+
+1097
+00:48:02,128 --> 00:48:02,627
+Turn around.
+
+1098
+00:48:02,627 --> 00:48:05,370
+
+1099
+00:48:05,370 --> 00:48:07,125
+>> So look to your left.
+
+1100
+00:48:07,125 --> 00:48:09,875
+I think there's something you can
+pick up on a barrel in the room.
+
+1101
+00:48:09,875 --> 00:48:11,709
+>> EFA: How do I get the
+map out of the way?
+
+1102
+00:48:11,709 --> 00:48:12,375
+COLTON: Look up.
+
+1103
+00:48:12,375 --> 00:48:12,980
+Just look up.
+
+1104
+00:48:12,980 --> 00:48:13,480
+All right.
+
+1105
+00:48:13,480 --> 00:48:13,765
+There you go.
+
+1106
+00:48:13,765 --> 00:48:15,181
+Now go ahead and just turn around.
+
+1107
+00:48:15,181 --> 00:48:21,460
+
+1108
+00:48:21,460 --> 00:48:24,620
+So look farther to your left.
+
+1109
+00:48:24,620 --> 00:48:25,530
+Keep moving left.
+
+1110
+00:48:25,530 --> 00:48:26,960
+Keep looking left.
+
+1111
+00:48:26,960 --> 00:48:27,541
+Keep going.
+
+1112
+00:48:27,541 --> 00:48:28,040
+Yeah.
+
+1113
+00:48:28,040 --> 00:48:28,720
+>> EFA: Oh, that way.
+
+1114
+00:48:28,720 --> 00:48:29,261
+>> COLTON: Yeah.
+
+1115
+00:48:29,261 --> 00:48:30,999
+Walk towards it with the controller.
+
+1116
+00:48:30,999 --> 00:48:31,540
+There you go.
+
+1117
+00:48:31,540 --> 00:48:32,790
+Now it should say pick it up.
+
+1118
+00:48:32,790 --> 00:48:33,360
+There you go.
+
+1119
+00:48:33,360 --> 00:48:34,290
+Pick it up.
+
+1120
+00:48:34,290 --> 00:48:35,550
+All right.
+
+1121
+00:48:35,550 --> 00:48:38,286
+Now, let's get out of this room.
+
+1122
+00:48:38,286 --> 00:48:42,209
+Go ahead and walk to that door.
+
+1123
+00:48:42,209 --> 00:48:45,000
+So you're going to hold-- it says
+hold the button to force it open.
+
+1124
+00:48:45,000 --> 00:48:46,333
+So go ahead and hold the button.
+
+1125
+00:48:46,333 --> 00:48:48,250
+Yep, forcing it open.
+
+1126
+00:48:48,250 --> 00:48:48,750
+All right.
+
+1127
+00:48:48,750 --> 00:48:49,410
+Good job.
+
+1128
+00:48:49,410 --> 00:48:50,826
+Now we're walking out of the room.
+
+1129
+00:48:50,826 --> 00:48:56,970
+
+1130
+00:48:56,970 --> 00:49:01,366
+So I'm going to leave the rest up
+to you and see what you find out.
+
+1131
+00:49:01,366 --> 00:49:02,865
+EFA: I'm not going in the dark room.
+
+1132
+00:49:02,865 --> 00:49:07,315
+
+1133
+00:49:07,315 --> 00:49:07,815
+Oh, wait.
+
+1134
+00:49:07,815 --> 00:49:09,314
+Now I have to go down the dark hall?
+
+1135
+00:49:09,314 --> 00:49:10,785
+OK, I'm going back [INAUDIBLE].
+
+1136
+00:49:10,785 --> 00:49:15,520
+
+1137
+00:49:15,520 --> 00:49:16,270
+COLTON: All right.
+
+1138
+00:49:16,270 --> 00:49:17,560
+Some more items to pick up.
+
+1139
+00:49:17,560 --> 00:49:19,370
+Looks like some coins.
+
+1140
+00:49:19,370 --> 00:49:22,242
+That's a lock pick.
+
+1141
+00:49:22,242 --> 00:49:24,200
+So if you find a locked
+door, you can use that.
+
+1142
+00:49:24,200 --> 00:49:27,755
+
+1143
+00:49:27,755 --> 00:49:28,380
+Are you scared?
+
+1144
+00:49:28,380 --> 00:49:29,371
+>> EFA: Not yet.
+
+1145
+00:49:29,371 --> 00:49:29,871
+COLTON: OK.
+
+1146
+00:49:29,871 --> 00:49:34,850
+
+1147
+00:49:34,850 --> 00:49:35,497
+>> Pretend-- yeah.
+
+1148
+00:49:35,497 --> 00:49:37,330
+Just pretend you're
+actually standing there.
+
+1149
+00:49:37,330 --> 00:49:39,580
+And if you turn around--
+you've got to get used to it.
+
+1150
+00:49:39,580 --> 00:49:40,752
+But it makes sense.
+
+1151
+00:49:40,752 --> 00:49:43,960
+DAVID MALAN: And while Efa continues to
+play, since we could do this all day,
+
+1152
+00:49:43,960 --> 00:49:45,381
+we can all tip-toe out here.
+
+1153
+00:49:45,381 --> 00:49:48,130
+But we do have two other pairs,
+if you'd like to come up and play.
+
+1154
+00:49:48,130 --> 00:49:49,980
+Otherwise, we will see
+you next on Wednesday.
+
+1155
+00:49:49,980 --> 00:49:51,354
+Thank you to our volunteer today.
+
+1156
+00:49:51,354 --> 00:49:52,101
+[APPLAUSE]
+
+1157
+00:49:52,101 --> 00:49:54,506
+
+1158
+00:49:54,506 --> 00:49:57,392
+>> [MUSIC - "SEINFELD THEME"]
+
+1159
+00:49:57,392 --> 00:49:58,222
+
+1160
+00:49:58,222 --> 00:50:00,180
+SPEAKER 1: Well, I'm
+putting a new PL mount on.
+
+1161
+00:50:00,180 --> 00:50:01,800
+I just changed the OLPF--
+
+1162
+00:50:01,800 --> 00:50:03,980
+>> SPEAKER 2: So what
+exactly are you doing?
+
+1163
+00:50:03,980 --> 00:50:07,063
+>> SPEAKER 1: Well, each one of these--
+here, I'll show you this one in here.
+
+1164
+00:50:07,063 --> 00:50:08,690
+You can see it right here.
+
+1165
+00:50:08,690 --> 00:50:09,510
+>> SPEAKER 3: I think I'm good with these.
+
+1166
+00:50:09,510 --> 00:50:09,933
+You want some more?
+
+1167
+00:50:09,933 --> 00:50:11,325
+>> SPEAKER 4: No, I'm good. [INAUDIBLE].
+
+1168
+00:50:11,325 --> 00:50:12,200
+>> SPEAKER 3: No, [INAUDIBLE].
+
+1169
+00:50:12,200 --> 00:50:12,700
+Have some.
+
+1170
+00:50:12,700 --> 00:50:21,165
+
+1171
+00:50:21,165 --> 00:50:22,290
+SPEAKER 1: Different color.
+
+1172
+00:50:22,290 --> 00:50:22,890
+SPEAKER 2: OK.
+
+1173
+00:50:22,890 --> 00:50:26,690
+SPEAKER 1: So ultimately what it
+does is it adjusts the color of--

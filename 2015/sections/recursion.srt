@@ -1,0 +1,1289 @@
+1
+00:00:00,000 --> 00:00:05,860
+>> [MUSIC PLAYING]
+
+2
+00:00:05,860 --> 00:00:09,530
+>> DOUG LLOYD: You probably think that
+code is just used to accomplish a task.
+
+3
+00:00:09,530 --> 00:00:10,450
+You write it out.
+
+4
+00:00:10,450 --> 00:00:11,664
+It does something.
+
+5
+00:00:11,664 --> 00:00:12,580
+That's pretty much it.
+
+6
+00:00:12,580 --> 00:00:13,160
+>> You compile it.
+
+7
+00:00:13,160 --> 00:00:13,993
+You run the program.
+
+8
+00:00:13,993 --> 00:00:15,370
+You're good to go.
+
+9
+00:00:15,370 --> 00:00:17,520
+>> But believe it or not, if
+you code for a long time,
+
+10
+00:00:17,520 --> 00:00:20,550
+you actually might come to see
+code as something that's beautiful.
+
+11
+00:00:20,550 --> 00:00:23,275
+It solves a problem in
+a very interesting way,
+
+12
+00:00:23,275 --> 00:00:26,510
+or there's just something really
+neat about the way it looks.
+
+13
+00:00:26,510 --> 00:00:28,750
+You might be laughing
+at me, but it's true.
+
+14
+00:00:28,750 --> 00:00:31,530
+And recursion is one way
+to sort of get this idea
+
+15
+00:00:31,530 --> 00:00:34,090
+of beautiful, elegant-looking code.
+
+16
+00:00:34,090 --> 00:00:37,740
+It solves problems in ways that
+are interesting, easy to visualize,
+
+17
+00:00:37,740 --> 00:00:39,810
+and surprisingly short.
+
+18
+00:00:39,810 --> 00:00:43,190
+>> The way recursion works
+is, a recursive function
+
+19
+00:00:43,190 --> 00:00:49,291
+is defined as a function that calls
+itself as part of its execution.
+
+20
+00:00:49,291 --> 00:00:51,790
+That might seem a little strange,
+and we'll see a little bit
+
+21
+00:00:51,790 --> 00:00:53,750
+about how this works in a moment.
+
+22
+00:00:53,750 --> 00:00:55,560
+But again, these
+recursive procedures are
+
+23
+00:00:55,560 --> 00:00:57,730
+going to be so elegant
+because they're going
+
+24
+00:00:57,730 --> 00:01:00,410
+to solve this problem without
+having all these other functions
+
+25
+00:01:00,410 --> 00:01:02,710
+or these long loops.
+
+26
+00:01:02,710 --> 00:01:06,310
+You'll see that these recursive
+procedures are going to look so short.
+
+27
+00:01:06,310 --> 00:01:10,610
+And they really are going to make
+your code look a lot more beautiful.
+
+28
+00:01:10,610 --> 00:01:12,560
+>> I'll give you an example
+of this to see how
+
+29
+00:01:12,560 --> 00:01:14,880
+a recursive procedure might be defined.
+
+30
+00:01:14,880 --> 00:01:18,202
+So if you're familiar with this
+from math class many years ago,
+
+31
+00:01:18,202 --> 00:01:20,910
+there's something called the
+factorial function, which is usually
+
+32
+00:01:20,910 --> 00:01:25,340
+denoted as an exclamation point, which
+is defined over all positive integers.
+
+33
+00:01:25,340 --> 00:01:28,850
+And the way that n
+factorial is calculated
+
+34
+00:01:28,850 --> 00:01:31,050
+is you multiply all of
+the numbers less than
+
+35
+00:01:31,050 --> 00:01:33,750
+or equal to n together--
+all the integers less than
+
+36
+00:01:33,750 --> 00:01:34,880
+or equal to n together.
+
+37
+00:01:34,880 --> 00:01:39,850
+>> So 5 factorial is 5 times
+4 times 3 times 2 times 1.
+
+38
+00:01:39,850 --> 00:01:43,020
+And 4 factorial is 4 times
+3 times 2 times 1 and so on.
+
+39
+00:01:43,020 --> 00:01:44,800
+You get the idea.
+
+40
+00:01:44,800 --> 00:01:47,060
+>> As programmers, we don't
+use n, exclamation point.
+
+41
+00:01:47,060 --> 00:01:51,840
+So we'll define the factorial
+function as fact of n.
+
+42
+00:01:51,840 --> 00:01:56,897
+And we'll use factorial to create
+a recursive solution to a problem.
+
+43
+00:01:56,897 --> 00:01:59,230
+And I think you might find
+that it's a lot more visually
+
+44
+00:01:59,230 --> 00:02:02,380
+appealing than the iterative
+version of this, which
+
+45
+00:02:02,380 --> 00:02:05,010
+we'll also take a look at in a moment.
+
+46
+00:02:05,010 --> 00:02:08,310
+>> So here are a couple of
+facts-- pun intended--
+
+47
+00:02:08,310 --> 00:02:10,169
+about factorial-- the
+factorial function.
+
+48
+00:02:10,169 --> 00:02:13,090
+The factorial of 1, as I said, is 1.
+
+49
+00:02:13,090 --> 00:02:15,690
+The factorial of 2 is 2 times 1.
+
+50
+00:02:15,690 --> 00:02:18,470
+The factorial of 3 is 3
+times 2 times 1, and so on.
+
+51
+00:02:18,470 --> 00:02:20,810
+We talked about 4 and 5 already.
+
+52
+00:02:20,810 --> 00:02:23,940
+>> But looking at this, isn't this true?
+
+53
+00:02:23,940 --> 00:02:28,220
+Isn't factorial of 2 just
+2 times the factorial of 1?
+
+54
+00:02:28,220 --> 00:02:31,130
+I mean, the factorial of 1 is 1.
+
+55
+00:02:31,130 --> 00:02:34,940
+So why can't we just say that,
+since factorial of 2 is 2 times 1,
+
+56
+00:02:34,940 --> 00:02:38,520
+it's really just 2 times
+the factorial of 1?
+
+57
+00:02:38,520 --> 00:02:40,900
+>> And then extending that idea,
+isn't the factorial of 3
+
+58
+00:02:40,900 --> 00:02:44,080
+just 3 times the factorial of 2?
+
+59
+00:02:44,080 --> 00:02:50,350
+And the factorial of 4 is 4 times
+the factorial of 3, and so on?
+
+60
+00:02:50,350 --> 00:02:52,530
+In fact, the factorial
+of any number can just
+
+61
+00:02:52,530 --> 00:02:54,660
+be expressed if we kind
+of carry this out forever.
+
+62
+00:02:54,660 --> 00:02:56,870
+We can kind of generalize
+the factorial problem
+
+63
+00:02:56,870 --> 00:02:59,910
+as it's n times the
+factorial of n minus 1.
+
+64
+00:02:59,910 --> 00:03:04,840
+It's n times the product of
+all the numbers less than me.
+
+65
+00:03:04,840 --> 00:03:08,890
+>> This idea, this
+generalization of the problem,
+
+66
+00:03:08,890 --> 00:03:13,410
+allows us to recursively
+define the factorial function.
+
+67
+00:03:13,410 --> 00:03:15,440
+When you define a function
+recursively, there's
+
+68
+00:03:15,440 --> 00:03:17,470
+two things that need to be a part of it.
+
+69
+00:03:17,470 --> 00:03:20,990
+You need to have something called a
+base case, which, when you trigger it,
+
+70
+00:03:20,990 --> 00:03:22,480
+will stop the recursive process.
+
+71
+00:03:22,480 --> 00:03:25,300
+>> Otherwise, a function that calls
+itself-- as you might imagine--
+
+72
+00:03:25,300 --> 00:03:26,870
+could go on forever.
+
+73
+00:03:26,870 --> 00:03:29,047
+Function calls the function
+calls the function calls
+
+74
+00:03:29,047 --> 00:03:30,380
+the function calls the function.
+
+75
+00:03:30,380 --> 00:03:32,380
+If you don't have a way
+to stop it, your program
+
+76
+00:03:32,380 --> 00:03:34,760
+will be effectively stuck
+at an infinite loop.
+
+77
+00:03:34,760 --> 00:03:37,176
+It will crash eventually,
+because it'll run out of memory.
+
+78
+00:03:37,176 --> 00:03:38,990
+But that's beside the point.
+
+79
+00:03:38,990 --> 00:03:42,210
+>> We need to have some other way to stop
+things besides our program crashing,
+
+80
+00:03:42,210 --> 00:03:46,010
+because a program that crashes is
+probably not beautiful or elegant.
+
+81
+00:03:46,010 --> 00:03:47,690
+And so we call this the base case.
+
+82
+00:03:47,690 --> 00:03:50,610
+This is a simple solution
+to a problem which stops
+
+83
+00:03:50,610 --> 00:03:52,770
+the recursive process from occurring.
+
+84
+00:03:52,770 --> 00:03:55,220
+So that's one part of
+a recursive function.
+
+85
+00:03:55,220 --> 00:03:56,820
+>> The second part is the recursive case.
+
+86
+00:03:56,820 --> 00:03:59,195
+And this is where the recursion
+will actually take place.
+
+87
+00:03:59,195 --> 00:04:02,200
+This is where the
+function will call itself.
+
+88
+00:04:02,200 --> 00:04:05,940
+>> It won't call itself in exactly
+the same way it was called.
+
+89
+00:04:05,940 --> 00:04:08,880
+It'll be a slight variation
+that makes the problem it's
+
+90
+00:04:08,880 --> 00:04:11,497
+trying to solve a teeny bit smaller.
+
+91
+00:04:11,497 --> 00:04:14,330
+But it generally passes the buck
+of solving the bulk of the solution
+
+92
+00:04:14,330 --> 00:04:17,450
+to a different call down the line.
+
+93
+00:04:17,450 --> 00:04:20,290
+>> Which of these looks
+like the base case here?
+
+94
+00:04:20,290 --> 00:04:25,384
+Which one of these looks like the
+simplest solution to a problem?
+
+95
+00:04:25,384 --> 00:04:27,550
+We have a bunch of factorials,
+and we could continue
+
+96
+00:04:27,550 --> 00:04:30,470
+going on-- 6, 7, 8, 9, 10, and so on.
+
+97
+00:04:30,470 --> 00:04:34,130
+>> But one of these looks like a
+good case to be the base case.
+
+98
+00:04:34,130 --> 00:04:35,310
+It's a very simple solution.
+
+99
+00:04:35,310 --> 00:04:37,810
+We don't have to do anything special.
+
+100
+00:04:37,810 --> 00:04:40,560
+>> The factorial of 1 is just 1.
+
+101
+00:04:40,560 --> 00:04:42,790
+We don't have to do any
+multiplication at all.
+
+102
+00:04:42,790 --> 00:04:45,248
+It seems like if we're going
+to try and solve this problem,
+
+103
+00:04:45,248 --> 00:04:47,600
+and we need to stop the
+recursion somewhere,
+
+104
+00:04:47,600 --> 00:04:50,610
+we probably want to stop
+it when we get to 1.
+
+105
+00:04:50,610 --> 00:04:54,580
+We don't want to stop before that.
+
+106
+00:04:54,580 --> 00:04:56,660
+>> So if we're defining
+our factorial function,
+
+107
+00:04:56,660 --> 00:04:58,690
+here's a skeleton for
+how we might do that.
+
+108
+00:04:58,690 --> 00:05:03,110
+We need to plug in those two things--
+the base case and the recursive case.
+
+109
+00:05:03,110 --> 00:05:04,990
+What's the base case?
+
+110
+00:05:04,990 --> 00:05:10,150
+If n is equal to 1, return 1-- that's
+a really simple problem to solve.
+
+111
+00:05:10,150 --> 00:05:11,890
+>> The factorial of 1 is 1.
+
+112
+00:05:11,890 --> 00:05:13,860
+It's not 1 times anything.
+
+113
+00:05:13,860 --> 00:05:15,020
+It's just 1.
+
+114
+00:05:15,020 --> 00:05:17,170
+It's a very easy fact.
+
+115
+00:05:17,170 --> 00:05:19,620
+And so that can be our base case.
+
+116
+00:05:19,620 --> 00:05:24,730
+If we get passed 1 into this
+function, we'll just return 1.
+
+117
+00:05:24,730 --> 00:05:27,320
+>> What's the recursive
+case probably look like?
+
+118
+00:05:27,320 --> 00:05:32,445
+For every other number
+besides 1, what's the pattern?
+
+119
+00:05:32,445 --> 00:05:35,780
+Well, if we're taking
+the factorial of n,
+
+120
+00:05:35,780 --> 00:05:38,160
+it's n times the factorial of n minus 1.
+
+121
+00:05:38,160 --> 00:05:42,130
+>> If we're taking the factorial of 3,
+it's 3 times the factorial of 3 minus 1,
+
+122
+00:05:42,130 --> 00:05:43,070
+or 2.
+
+123
+00:05:43,070 --> 00:05:47,330
+And so if we're not
+looking at 1, otherwise
+
+124
+00:05:47,330 --> 00:05:51,710
+return n times the
+factorial of n minus 1.
+
+125
+00:05:51,710 --> 00:05:53,210
+It's pretty straightforward.
+
+126
+00:05:53,210 --> 00:05:57,360
+>> And for the sake of having slightly
+cleaner and more elegant code,
+
+127
+00:05:57,360 --> 00:06:01,440
+know that if we have single-line loops
+or single-line conditional branches,
+
+128
+00:06:01,440 --> 00:06:04,490
+we can get rid of all of the
+curly braces around them.
+
+129
+00:06:04,490 --> 00:06:06,850
+So we can consolidate this to this.
+
+130
+00:06:06,850 --> 00:06:09,640
+This has exactly the same
+functionality as this.
+
+131
+00:06:09,640 --> 00:06:13,850
+>> I'm just taking away the curly
+braces, because there's only one line
+
+132
+00:06:13,850 --> 00:06:18,500
+inside of those conditional branches.
+
+133
+00:06:18,500 --> 00:06:21,160
+So these behave identically.
+
+134
+00:06:21,160 --> 00:06:23,800
+If n is equal to 1, return 1.
+
+135
+00:06:23,800 --> 00:06:28,351
+Otherwise return n times
+the factorial of n minus 1.
+
+136
+00:06:28,351 --> 00:06:29,850
+So we're making the problem smaller.
+
+137
+00:06:29,850 --> 00:06:33,850
+If n starts out as 5, we're going to
+return 5 times the factorial of 4.
+
+138
+00:06:33,850 --> 00:06:37,100
+And we'll see in a minute when we talk
+about the call stack-- in another video
+
+139
+00:06:37,100 --> 00:06:39,390
+where we talk about the
+call stack-- we'll learn
+
+140
+00:06:39,390 --> 00:06:41,630
+about why exactly this process works.
+
+141
+00:06:41,630 --> 00:06:46,970
+>> But while factorial of 5 says
+return 5 times factorial of 4, and 4
+
+142
+00:06:46,970 --> 00:06:49,710
+is going to say, OK, well, return
+4 times the factorial of 3.
+
+143
+00:06:49,710 --> 00:06:51,737
+And as you can see, we're
+sort of approaching 1.
+
+144
+00:06:51,737 --> 00:06:53,820
+We're getting closer and
+closer to that base case.
+
+145
+00:06:53,820 --> 00:06:58,180
+>> And once we hit the base case,
+all of the previous functions
+
+146
+00:06:58,180 --> 00:07:00,540
+have the answer they were looking for.
+
+147
+00:07:00,540 --> 00:07:03,900
+Factorial of 2 was saying return
+2 times the factorial of 1.
+
+148
+00:07:03,900 --> 00:07:06,760
+Well, factorial of 1 returns 1.
+
+149
+00:07:06,760 --> 00:07:10,090
+So the call for factorial
+of 2 can return 2 times 1,
+
+150
+00:07:10,090 --> 00:07:13,980
+and give that back to factorial of
+3, which is waiting for that result.
+
+151
+00:07:13,980 --> 00:07:17,110
+>> And then it can calculate
+its result, 3 times 2 is 6,
+
+152
+00:07:17,110 --> 00:07:18,907
+and give it back to factorial of 4.
+
+153
+00:07:18,907 --> 00:07:20,740
+And again, we have a
+video on the call stack
+
+154
+00:07:20,740 --> 00:07:23,810
+where this is illustrated a little
+more than what I'm saying right now.
+
+155
+00:07:23,810 --> 00:07:25,300
+But this is it.
+
+156
+00:07:25,300 --> 00:07:29,300
+This alone is the solution to
+calculating the factorial of a number.
+
+157
+00:07:29,300 --> 00:07:31,527
+>> It's only four lines of code.
+
+158
+00:07:31,527 --> 00:07:32,610
+That's pretty cool, right?
+
+159
+00:07:32,610 --> 00:07:35,480
+It's kind of sexy.
+
+160
+00:07:35,480 --> 00:07:38,580
+>> So in general, but not
+always, a recursive function
+
+161
+00:07:38,580 --> 00:07:41,190
+can replace a loop in a
+non-recursive function.
+
+162
+00:07:41,190 --> 00:07:46,100
+So here, side by side, is the iterative
+version of the factorial function.
+
+163
+00:07:46,100 --> 00:07:49,650
+Both of these calculate
+exactly the same thing.
+
+164
+00:07:49,650 --> 00:07:52,170
+>> They both calculate the factorial of n.
+
+165
+00:07:52,170 --> 00:07:54,990
+The version on the left
+uses recursion to do it.
+
+166
+00:07:54,990 --> 00:07:58,320
+The version on the right
+uses iteration to do it.
+
+167
+00:07:58,320 --> 00:08:02,050
+>> And notice, we have to declare
+a variable an integer product.
+
+168
+00:08:02,050 --> 00:08:02,940
+And then we loop.
+
+169
+00:08:02,940 --> 00:08:06,790
+So long as n is greater than 0, we
+keep multiplying that product by n
+
+170
+00:08:06,790 --> 00:08:09,890
+and decrementing n until
+we calculate the product.
+
+171
+00:08:09,890 --> 00:08:14,600
+So these two functions, again,
+do exactly the same thing.
+
+172
+00:08:14,600 --> 00:08:19,980
+But they don't do it in
+exactly the same way.
+
+173
+00:08:19,980 --> 00:08:22,430
+>> Now, it is possible to
+have more than one base
+
+174
+00:08:22,430 --> 00:08:25,770
+case or more than one
+recursive case, depending
+
+175
+00:08:25,770 --> 00:08:27,670
+on what your function is trying to do.
+
+176
+00:08:27,670 --> 00:08:31,650
+You aren't necessarily just limited to
+a single base case or a single recursive
+
+177
+00:08:31,650 --> 00:08:32,370
+case.
+
+178
+00:08:32,370 --> 00:08:35,320
+So an example of something
+with multiple base cases
+
+179
+00:08:35,320 --> 00:08:37,830
+might be this-- the
+Fibonacci number sequence.
+
+180
+00:08:37,830 --> 00:08:41,549
+>> You may recall from
+elementary school days
+
+181
+00:08:41,549 --> 00:08:45,740
+that the Fibonacci sequence is defined
+like this-- the first element is 0.
+
+182
+00:08:45,740 --> 00:08:46,890
+The second element is 1.
+
+183
+00:08:46,890 --> 00:08:49,230
+Both of those are just by definition.
+
+184
+00:08:49,230 --> 00:08:55,920
+>> Then every other element is defined
+as the sum of n minus 1 and n minus 2.
+
+185
+00:08:55,920 --> 00:09:00,330
+So the third element
+would be 0 plus 1 is 1.
+
+186
+00:09:00,330 --> 00:09:03,280
+And then the fourth element
+would be the second element, 1,
+
+187
+00:09:03,280 --> 00:09:06,550
+plus the third element, 1.
+
+188
+00:09:06,550 --> 00:09:08,507
+And that would be 2.
+
+189
+00:09:08,507 --> 00:09:09,340
+And so on and so on.
+
+190
+00:09:09,340 --> 00:09:11,680
+>> So in this case, we have two base cases.
+
+191
+00:09:11,680 --> 00:09:14,850
+If n is equal to 1, return 0.
+
+192
+00:09:14,850 --> 00:09:18,560
+If n is equal to 2, return 1.
+
+193
+00:09:18,560 --> 00:09:25,930
+Otherwise, return Fibonacci of n
+minus 1 plus Fibonacci of n minus 2.
+
+194
+00:09:25,930 --> 00:09:27,180
+>> So that's multiple base cases.
+
+195
+00:09:27,180 --> 00:09:29,271
+What about multiple recursive cases?
+
+196
+00:09:29,271 --> 00:09:31,520
+Well, there's something
+called the Collatz conjecture.
+
+197
+00:09:31,520 --> 00:09:34,630
+I'm not going to say,
+you know what that is,
+
+198
+00:09:34,630 --> 00:09:38,170
+because it's actually our final
+problem for this particular video.
+
+199
+00:09:38,170 --> 00:09:43,220
+And it's our exercise
+to work on together.
+
+200
+00:09:43,220 --> 00:09:46,760
+>> So here's what the
+Collatz conjecture is--
+
+201
+00:09:46,760 --> 00:09:48,820
+it applies to every positive integer.
+
+202
+00:09:48,820 --> 00:09:51,500
+And it speculates that it's
+always possible to get back
+
+203
+00:09:51,500 --> 00:09:55,060
+to 1 if you follow these steps.
+
+204
+00:09:55,060 --> 00:09:57,560
+If n is 1, stop.
+
+205
+00:09:57,560 --> 00:10:00,070
+We've got back to 1 if n is 1.
+
+206
+00:10:00,070 --> 00:10:05,670
+>> Otherwise, go through this
+process again on n divided by 2.
+
+207
+00:10:05,670 --> 00:10:08,200
+And see if you can get back to 1.
+
+208
+00:10:08,200 --> 00:10:13,260
+Otherwise, if n is odd, go through
+this process again on 3n plus 1,
+
+209
+00:10:13,260 --> 00:10:15,552
+or 3 times n plus 1.
+
+210
+00:10:15,552 --> 00:10:17,010
+So here we have a single base case.
+
+211
+00:10:17,010 --> 00:10:18,430
+If n is equal to 1, stop.
+
+212
+00:10:18,430 --> 00:10:20,230
+We're not doing any more recursion.
+
+213
+00:10:20,230 --> 00:10:23,730
+>> But we have two recursive cases.
+
+214
+00:10:23,730 --> 00:10:28,750
+If n is even, we do one recursive
+case, calling n divided by 2.
+
+215
+00:10:28,750 --> 00:10:33,950
+If n is odd, we do a different
+recursive case on 3 times n plus 1.
+
+216
+00:10:33,950 --> 00:10:39,120
+>> And so the goal for this video is
+to take a second, pause the video,
+
+217
+00:10:39,120 --> 00:10:42,440
+and try and write this
+recursive function Collatz
+
+218
+00:10:42,440 --> 00:10:47,640
+where you pass in a value n, and
+it calculates how many steps it
+
+219
+00:10:47,640 --> 00:10:52,430
+takes to get to 1 if you start from n
+and you follow those steps up above.
+
+220
+00:10:52,430 --> 00:10:56,660
+If n is 1, it takes 0 steps.
+
+221
+00:10:56,660 --> 00:11:00,190
+Otherwise, it's going to
+take one step plus however
+
+222
+00:11:00,190 --> 00:11:06,200
+many steps it takes on either n
+divided by 2 if n is even, or 3n plus 1
+
+223
+00:11:06,200 --> 00:11:08,100
+if n is odd.
+
+224
+00:11:08,100 --> 00:11:11,190
+>> Now, I've put up on the screen here
+a couple of test things for you,
+
+225
+00:11:11,190 --> 00:11:15,690
+a couple of tests cases for you, to see
+what these various Collatz numbers are,
+
+226
+00:11:15,690 --> 00:11:17,440
+and also an illustration
+of the steps that
+
+227
+00:11:17,440 --> 00:11:20,390
+need to be gone through so you can
+sort of see this process in action.
+
+228
+00:11:20,390 --> 00:11:24,222
+So if n is equal to
+1, Collatz of n is 0.
+
+229
+00:11:24,222 --> 00:11:26,180
+You don't have to do
+anything to get back to 1.
+
+230
+00:11:26,180 --> 00:11:27,600
+You're already there.
+
+231
+00:11:27,600 --> 00:11:30,550
+>> If n is 2, it takes
+one step to get to 1.
+
+232
+00:11:30,550 --> 00:11:31,810
+You start with 2.
+
+233
+00:11:31,810 --> 00:11:33,100
+Well, 2 is not equal to 1.
+
+234
+00:11:33,100 --> 00:11:36,580
+So it's going to be one step
+plus however many steps it
+
+235
+00:11:36,580 --> 00:11:38,015
+takes on n divided by 2.
+
+236
+00:11:38,015 --> 00:11:41,280
+
+237
+00:11:41,280 --> 00:11:42,910
+>> 2 divided by 2 is 1.
+
+238
+00:11:42,910 --> 00:11:47,200
+So it takes one step plus however
+many steps it takes for 1.
+
+239
+00:11:47,200 --> 00:11:49,720
+1 takes zero steps.
+
+240
+00:11:49,720 --> 00:11:52,370
+>> For 3, as you can see, there's
+quite a few steps involved.
+
+241
+00:11:52,370 --> 00:11:53,590
+You go from 3.
+
+242
+00:11:53,590 --> 00:11:56,710
+And then you go to
+10, 5, 16, 8, 4, 2, 1.
+
+243
+00:11:56,710 --> 00:11:58,804
+It takes seven steps to get back to 1.
+
+244
+00:11:58,804 --> 00:12:01,220
+And as you can see, there's a
+couple other test cases here
+
+245
+00:12:01,220 --> 00:12:02,470
+to test out your program.
+
+246
+00:12:02,470 --> 00:12:03,970
+So again, pause the video.
+
+247
+00:12:03,970 --> 00:12:09,210
+And I'll go jump back now to
+what the actual process is here,
+
+248
+00:12:09,210 --> 00:12:11,390
+what this conjecture is.
+
+249
+00:12:11,390 --> 00:12:14,140
+>> See if you can figure out
+how to define Collatz of n
+
+250
+00:12:14,140 --> 00:12:19,967
+so that it calculates how many
+steps it takes to get to 1.
+
+251
+00:12:19,967 --> 00:12:23,050
+So hopefully, you have paused the video
+and you aren't just waiting for me
+
+252
+00:12:23,050 --> 00:12:25,820
+to give you the answer here.
+
+253
+00:12:25,820 --> 00:12:29,120
+But if you are, well,
+here's the answer anyway.
+
+254
+00:12:29,120 --> 00:12:33,070
+>> So here's a possible definition
+of the Collatz function.
+
+255
+00:12:33,070 --> 00:12:35,610
+Our base case-- if n is
+equal to 1, we return 0.
+
+256
+00:12:35,610 --> 00:12:38,250
+It doesn't take any
+steps to get back to 1.
+
+257
+00:12:38,250 --> 00:12:42,710
+>> Otherwise, we have two recursive cases--
+one for even numbers and one for odd.
+
+258
+00:12:42,710 --> 00:12:47,164
+The way I test for even numbers
+is to check if n mod 2 equals 0.
+
+259
+00:12:47,164 --> 00:12:49,080
+This is basically, again,
+asking the question,
+
+260
+00:12:49,080 --> 00:12:54,050
+if you recall what mod is-- if I
+divide n by 2 is there no remainder?
+
+261
+00:12:54,050 --> 00:12:55,470
+That would be an even number.
+
+262
+00:12:55,470 --> 00:13:01,370
+>> And so if n mod 2 equals 0 is
+testing is this an even number.
+
+263
+00:13:01,370 --> 00:13:04,250
+If so, I want to return 1,
+because this is definitely
+
+264
+00:13:04,250 --> 00:13:09,270
+taking one step plus Collatz of
+whatever number is half of me.
+
+265
+00:13:09,270 --> 00:13:13,910
+Otherwise, I want to return 1
+plus Collatz of 3 times n plus 1.
+
+266
+00:13:13,910 --> 00:13:16,060
+That was the other
+recursive step that we
+
+267
+00:13:16,060 --> 00:13:19,470
+could take to calculate the
+Collatz-- the number of steps
+
+268
+00:13:19,470 --> 00:13:22,610
+it takes to get back
+to 1 given a number.
+
+269
+00:13:22,610 --> 00:13:24,610
+So hopefully, this example
+gave you a little bit
+
+270
+00:13:24,610 --> 00:13:26,620
+of a taste of recursive procedures.
+
+271
+00:13:26,620 --> 00:13:30,220
+Hopefully, you think code is a
+little more beautiful if implemented
+
+272
+00:13:30,220 --> 00:13:32,760
+in an elegant, recursive way.
+
+273
+00:13:32,760 --> 00:13:35,955
+But even if not, recursion is a
+really powerful tool nonetheless.
+
+274
+00:13:35,955 --> 00:13:38,330
+And so it's definitely something
+to get your head around,
+
+275
+00:13:38,330 --> 00:13:41,360
+because you'll be able to create
+pretty cool programs using recursion
+
+276
+00:13:41,360 --> 00:13:45,930
+that might otherwise be complex to write
+if you're using loops and iteration.
+
+277
+00:13:45,930 --> 00:13:46,980
+I'm Doug Lloyd.
+
+278
+00:13:46,980 --> 00:13:48,780
+This is CS50.
+
+279
+00:13:48,780 --> 00:13:50,228

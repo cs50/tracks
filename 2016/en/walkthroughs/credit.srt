@@ -1,0 +1,240 @@
+1
+00:00:00,000 --> 00:00:00,820
+
+2
+00:00:00,820 --> 00:00:02,560
+>> Zamyla Chan: Let's check your credit.
+
+3
+00:00:02,560 --> 00:00:06,360
+In this problem, we'll prompt the user
+for an input of a credit card number.
+
+4
+00:00:06,360 --> 00:00:10,090
+Then we'll run that credit card
+number to see if it's valid.
+
+5
+00:00:10,090 --> 00:00:13,430
+If so, we'll print the company
+that that credit card belongs to.
+
+6
+00:00:13,430 --> 00:00:17,520
+Otherwise, we'll tell the user
+that that card is invalid.
+
+7
+00:00:17,520 --> 00:00:20,210
+>> Let's jump right in with
+prompting for user input.
+
+8
+00:00:20,210 --> 00:00:23,080
+The credit card number is
+of data type long_long,
+
+9
+00:00:23,080 --> 00:00:27,190
+so the CS50 library function
+get_long_long will be quite useful.
+
+10
+00:00:27,190 --> 00:00:30,690
+But this function ensures that
+the user inputs any integer.
+
+11
+00:00:30,690 --> 00:00:34,730
+So any positive integers, negative
+integers, or zero is all fine.
+
+12
+00:00:34,730 --> 00:00:37,560
+So up to you to further
+validate whether or not
+
+13
+00:00:37,560 --> 00:00:41,770
+the user has given us a valid
+credit card type number.
+
+14
+00:00:41,770 --> 00:00:44,560
+>> Now that we have a credit card
+number from the user, then
+
+15
+00:00:44,560 --> 00:00:46,580
+we need to calculate the checksum.
+
+16
+00:00:46,580 --> 00:00:49,780
+So credit card checksums
+are calculated as follows.
+
+17
+00:00:49,780 --> 00:00:54,370
+Starting from the second to last digit,
+we multiply every other digit by 2.
+
+18
+00:00:54,370 --> 00:00:57,060
+Then we add those
+products' digits together.
+
+19
+00:00:57,060 --> 00:01:00,140
+From that we add the
+sum of the digits that
+
+20
+00:01:00,140 --> 00:01:03,780
+weren't multiplied by 2 to that
+previous sum that we calculated.
+
+21
+00:01:03,780 --> 00:01:08,480
+Finally, if that number ends
+in 0, then the number is valid.
+
+22
+00:01:08,480 --> 00:01:11,760
+>> Let's go through an example
+and take this step by step.
+
+23
+00:01:11,760 --> 00:01:14,930
+So our first step is to start
+from the second to last digit
+
+24
+00:01:14,930 --> 00:01:18,080
+and multiply every other digit by two.
+
+25
+00:01:18,080 --> 00:01:22,240
+Now, if I stored the credit card
+number in a variable called CC number,
+
+26
+00:01:22,240 --> 00:01:26,060
+then modding that by 10 would
+give me the very last digit.
+
+27
+00:01:26,060 --> 00:01:28,910
+So how might you access
+the second to last digit?
+
+28
+00:01:28,910 --> 00:01:32,030
+>> OK, so once we've accessed
+the second to last digit,
+
+29
+00:01:32,030 --> 00:01:35,790
+then we'll iterate through
+multiplying every other digit by 2.
+
+30
+00:01:35,790 --> 00:01:38,620
+Once we have that, then
+we'll take those products
+
+31
+00:01:38,620 --> 00:01:41,350
+and add those products' digits together.
+
+32
+00:01:41,350 --> 00:01:43,830
+So here I have single
+digits, so that's fine.
+
+33
+00:01:43,830 --> 00:01:47,480
+But then once I get to my last
+number-- 7 multiplied by 2--
+
+34
+00:01:47,480 --> 00:01:52,080
+I add the 1 and the 4 to give me 27.
+
+35
+00:01:52,080 --> 00:01:55,980
+From there, we add that product--
+27-- to the sum of the digits that
+
+36
+00:01:55,980 --> 00:01:57,790
+weren't multiplied by 2.
+
+37
+00:01:57,790 --> 00:02:01,070
+>> So here I've highlighted all
+of those numbers in orange.
+
+38
+00:02:01,070 --> 00:02:04,900
+Once we add those digits, then
+we get our final checksum number.
+
+39
+00:02:04,900 --> 00:02:09,120
+So we validate it by making
+sure that the last digit is 0.
+
+40
+00:02:09,120 --> 00:02:12,635
+If the checksum does not end in
+0, then the credit card number
+
+41
+00:02:12,635 --> 00:02:14,400
+is definitely invalid.
+
+42
+00:02:14,400 --> 00:02:17,840
+Otherwise, let's go on to
+check the company identifiers
+
+43
+00:02:17,840 --> 00:02:19,870
+and the credit card number length.
+
+44
+00:02:19,870 --> 00:02:21,830
+>> We've provided a list
+of three companies,
+
+45
+00:02:21,830 --> 00:02:25,940
+along with that, the number of integers
+that their credit card numbers have.
+
+46
+00:02:25,940 --> 00:02:29,630
+Then the first two digits that
+those cards might start with.
+
+47
+00:02:29,630 --> 00:02:34,070
+So up to you to keep track of the
+first two digits of the credit card
+
+48
+00:02:34,070 --> 00:02:37,620
+and the number of integers in that card.
+
+49
+00:02:37,620 --> 00:02:40,110
+And with that, you've
+finished the problem.
+
+50
+00:02:40,110 --> 00:02:44,210
+My name is Zamyla, and this was Credit.
+
+51
+00:02:44,210 --> 00:02:45,859

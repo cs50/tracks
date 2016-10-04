@@ -1,0 +1,4823 @@
+1
+00:00:00,000 --> 00:00:00,499
+
+2
+00:00:00,499 --> 00:00:03,227
+[MUSIC PLAYING]
+
+3
+00:00:03,227 --> 00:00:04,705
+
+4
+00:00:04,705 --> 00:00:05,830
+EZRA ZIGMOND: Hi, everyone.
+
+5
+00:00:05,830 --> 00:00:08,020
+Thanks for coming out today.
+
+6
+00:00:08,020 --> 00:00:10,660
+This seminar is "Python
+Web Apps with Flask."
+
+7
+00:00:10,660 --> 00:00:14,510
+>> So, I'm going to be talking
+a little bit about why
+
+8
+00:00:14,510 --> 00:00:17,400
+you might want to use Flask to make
+web apps with Python, as opposed
+
+9
+00:00:17,400 --> 00:00:21,556
+to some other frameworks out there, like
+Django, which is the most well-known.
+
+10
+00:00:21,556 --> 00:00:24,330
+The subtitle is "and
+peewee," which is something
+
+11
+00:00:24,330 --> 00:00:27,250
+we're going to talk about how
+to interact with SQL databases.
+
+12
+00:00:27,250 --> 00:00:29,610
+It makes it really nice.
+
+13
+00:00:29,610 --> 00:00:32,390
+>> So, here's just a quick rundown
+of what I want to go over.
+
+14
+00:00:32,390 --> 00:00:35,520
+So, first, just one slide
+that's going to be quickstart,
+
+15
+00:00:35,520 --> 00:00:38,530
+which is how to get everything
+set up on your computer.
+
+16
+00:00:38,530 --> 00:00:41,760
+I'm going to be demonstrating
+this on my local Mac machine,
+
+17
+00:00:41,760 --> 00:00:45,220
+just because that's where I've done this
+before, I'm most comfortable with it,
+
+18
+00:00:45,220 --> 00:00:48,510
+but this is definitely
+possible on the CD50 IDE.
+
+19
+00:00:48,510 --> 00:00:52,050
+>> So, after that, I want to
+introduce what Flask is,
+
+20
+00:00:52,050 --> 00:00:55,089
+and convince you why you should
+use it in the first place.
+
+21
+00:00:55,089 --> 00:00:56,880
+Then, I'll give a quick
+example of what you
+
+22
+00:00:56,880 --> 00:01:00,550
+can do in Flask, a quick example
+of what you can do in peewee,
+
+23
+00:01:00,550 --> 00:01:05,010
+and then I will show you a more
+complete example application
+
+24
+00:01:05,010 --> 00:01:07,520
+that I put together that we
+can walk through together.
+
+25
+00:01:07,520 --> 00:01:10,040
+>> And then finally, in
+the last slide, I have
+
+26
+00:01:10,040 --> 00:01:12,730
+some resources that you look
+at online for more information.
+
+27
+00:01:12,730 --> 00:01:15,560
+This isn't a complete
+tutorial of how to use Flask.
+
+28
+00:01:15,560 --> 00:01:18,140
+And I'll hope to leave
+some time for questions.
+
+29
+00:01:18,140 --> 00:01:21,050
+Anyone watching locally, just
+like, shout out in the middle
+
+30
+00:01:21,050 --> 00:01:22,340
+if you have any questions.
+
+31
+00:01:22,340 --> 00:01:27,150
+>> So quick installation stuff,
+if you want to follow along,
+
+32
+00:01:27,150 --> 00:01:29,240
+or if you want to get this
+up on your own machine,
+
+33
+00:01:29,240 --> 00:01:32,440
+I'm going to be using Python 2.7.10.
+
+34
+00:01:32,440 --> 00:01:35,860
+Flask does work with
+Python 3, but I like
+
+35
+00:01:35,860 --> 00:01:38,660
+using Python 2, because there's
+some Python packages that
+
+36
+00:01:38,660 --> 00:01:40,910
+don't work with 3 yet.
+
+37
+00:01:40,910 --> 00:01:44,800
+If you have pip installed, which
+is a Python package manager,
+
+38
+00:01:44,800 --> 00:01:48,190
+I think if your Python is
+greater than or equal to 2.7.9,
+
+39
+00:01:48,190 --> 00:01:52,220
+you have it installed already, it's
+super easy to install these packages.
+
+40
+00:01:52,220 --> 00:01:54,990
+>> You can do pip install
+Flask, pip install peewee,
+
+41
+00:01:54,990 --> 00:01:58,600
+usually you have to run sudo just
+so that the permissions work out.
+
+42
+00:01:58,600 --> 00:02:01,080
+And, if you are using a
+super old version of Python,
+
+43
+00:02:01,080 --> 00:02:05,100
+I recommend updating your Python,
+or using EasyInstall to install pip.
+
+44
+00:02:05,100 --> 00:02:09,180
+
+45
+00:02:09,180 --> 00:02:11,120
+So, the next question is, what is Flask?
+
+46
+00:02:11,120 --> 00:02:13,280
+And I guess, first a
+reasonable question I wondered
+
+47
+00:02:13,280 --> 00:02:15,585
+for a long time is, what is a web app?
+
+48
+00:02:15,585 --> 00:02:17,960
+Because that's a word that I
+think is thrown around a lot
+
+49
+00:02:17,960 --> 00:02:19,240
+that I didn't really know.
+
+50
+00:02:19,240 --> 00:02:22,340
+And I think that the best
+example of what a web app is,
+
+51
+00:02:22,340 --> 00:02:26,960
+really is CS50 Finance, where
+it's not really just a website,
+
+52
+00:02:26,960 --> 00:02:29,320
+but it's something that you
+could sort of interact with.
+
+53
+00:02:29,320 --> 00:02:31,736
+There are user accounts and
+all sorts of different things.
+
+54
+00:02:31,736 --> 00:02:35,010
+So, where exactly you draw the
+line between what is a website,
+
+55
+00:02:35,010 --> 00:02:38,780
+and what is a web app, is sort of
+arbitrary, but I guess the idea,
+
+56
+00:02:38,780 --> 00:02:42,110
+it's something more than a website
+and it's a useful application.
+
+57
+00:02:42,110 --> 00:02:46,081
+>> So, Flask is a framework for
+making web apps using Python.
+
+58
+00:02:46,081 --> 00:02:48,330
+And hopefully, by the end
+of this, I will convince you
+
+59
+00:02:48,330 --> 00:02:52,210
+that you could actually write something
+like CS50 Finance using Python, which I
+
+60
+00:02:52,210 --> 00:02:53,950
+like a lot better than PHP, personally.
+
+61
+00:02:53,950 --> 00:02:57,320
+>> So, Flask is, they call a
+microframework, by which,
+
+62
+00:02:57,320 --> 00:02:59,800
+they mean it's very
+simple, but extensible.
+
+63
+00:02:59,800 --> 00:03:02,980
+So, it has just what you need,
+but if you want more features,
+
+64
+00:03:02,980 --> 00:03:04,522
+it's easy to bring them in.
+
+65
+00:03:04,522 --> 00:03:06,480
+But just because it's a
+microframework, doesn't
+
+66
+00:03:06,480 --> 00:03:08,960
+mean that it's only for small projects.
+
+67
+00:03:08,960 --> 00:03:12,590
+I have a link here that says
+that Obama used Flask in 2012
+
+68
+00:03:12,590 --> 00:03:14,410
+for his campaign
+website, which hopefully,
+
+69
+00:03:14,410 --> 00:03:16,937
+is something of an endorsement.
+
+70
+00:03:16,937 --> 00:03:18,770
+But the thing that I
+really like about Flask
+
+71
+00:03:18,770 --> 00:03:22,401
+is that, it doesn't really make
+any sort of decisions for you.
+
+72
+00:03:22,401 --> 00:03:24,150
+Just because we're
+talking about web apps,
+
+73
+00:03:24,150 --> 00:03:26,940
+I have to compare it to Ruby on
+Rails and Django, both of which
+
+74
+00:03:26,940 --> 00:03:30,450
+are great frameworks, but
+they both make assumptions
+
+75
+00:03:30,450 --> 00:03:33,600
+about how you want to
+interact with databases,
+
+76
+00:03:33,600 --> 00:03:36,900
+how you want to present your
+views, and they're definitely
+
+77
+00:03:36,900 --> 00:03:38,850
+good aspects to that.
+
+78
+00:03:38,850 --> 00:03:41,490
+>> For example, Ruby on Rails
+has this active record system,
+
+79
+00:03:41,490 --> 00:03:43,100
+which is a really nice
+way to interact with data,
+
+80
+00:03:43,100 --> 00:03:45,960
+but if you want to use Ruby on
+Rails, you're sort of tied into that.
+
+81
+00:03:45,960 --> 00:03:47,835
+But with Flask, as I'll
+show you with peewee,
+
+82
+00:03:47,835 --> 00:03:49,830
+you can use whatever sort
+of database you want,
+
+83
+00:03:49,830 --> 00:03:53,980
+and you can just pull that in
+as an extension into Flask.
+
+84
+00:03:53,980 --> 00:03:56,350
+>> So that's why I really
+like Flask, it's that it
+
+85
+00:03:56,350 --> 00:04:01,170
+doesn't make assumptions for you
+based on things you don't need really.
+
+86
+00:04:01,170 --> 00:04:04,440
+>> So, why should you use Flask?
+
+87
+00:04:04,440 --> 00:04:08,230
+The advantages are, it just
+has really the core features
+
+88
+00:04:08,230 --> 00:04:09,420
+built into it that you need.
+
+89
+00:04:09,420 --> 00:04:11,980
+So, you don't have to worry about
+understanding a whole bunch of things
+
+90
+00:04:11,980 --> 00:04:13,175
+that you don't really need.
+
+91
+00:04:13,175 --> 00:04:15,060
+You don't have to have to worry
+about turning off features
+
+92
+00:04:15,060 --> 00:04:16,620
+that you don't really need.
+
+93
+00:04:16,620 --> 00:04:21,082
+>> And, as I mentioned, it's super
+easy to add in extensions of things
+
+94
+00:04:21,082 --> 00:04:21,790
+that you do need.
+
+95
+00:04:21,790 --> 00:04:24,700
+Some of them, Flask has
+their own support for it.
+
+96
+00:04:24,700 --> 00:04:28,230
+So there's something called Flask
+admin, which mirrors that admin
+
+97
+00:04:28,230 --> 00:04:32,060
+panel that Django provides,
+which gives you a nice visual way
+
+98
+00:04:32,060 --> 00:04:33,405
+to administer your website.
+
+99
+00:04:33,405 --> 00:04:35,280
+But again, if you're
+making something simple,
+
+100
+00:04:35,280 --> 00:04:39,550
+you probably don't need a big admin
+panel, so I think that's super nice.
+
+101
+00:04:39,550 --> 00:04:45,940
+And the disadvantages are, that
+you have less power out of the box.
+
+102
+00:04:45,940 --> 00:04:49,660
+So, when you first open up Flask,
+and in your Python program,
+
+103
+00:04:49,660 --> 00:04:53,150
+you just type from Flask
+import*, or whatever,
+
+104
+00:04:53,150 --> 00:04:55,957
+you don't exactly get all of
+the features you might want.
+
+105
+00:04:55,957 --> 00:04:58,540
+And so you have to more explicitly
+list the features you want.
+
+106
+00:04:58,540 --> 00:05:01,990
+So that's one disadvantage, but I
+think that for building small web
+
+107
+00:05:01,990 --> 00:05:04,782
+apps like I'm going to be showing
+you, that's not really a problem.
+
+108
+00:05:04,782 --> 00:05:07,281
+And what the last thing is
+supposed to say, which is a typo,
+
+109
+00:05:07,281 --> 00:05:10,240
+is that there are less standardized
+conventions for how to use Flask,
+
+110
+00:05:10,240 --> 00:05:12,400
+just because there aren't as many
+people that use it professionally
+
+111
+00:05:12,400 --> 00:05:13,191
+compared to Django.
+
+112
+00:05:13,191 --> 00:05:16,380
+So, if you look something like,
+"how do I do x" in Django,
+
+113
+00:05:16,380 --> 00:05:18,190
+you'll probably find it.
+
+114
+00:05:18,190 --> 00:05:20,260
+>> There's good design
+patterns you can use,
+
+115
+00:05:20,260 --> 00:05:22,660
+but with Flask, it's
+sort of go your own way,
+
+116
+00:05:22,660 --> 00:05:24,850
+just because it's a
+pretty small library.
+
+117
+00:05:24,850 --> 00:05:27,100
+So those are the
+disadvantages, but I think
+
+118
+00:05:27,100 --> 00:05:29,370
+that it's still a good library to use.
+
+119
+00:05:29,370 --> 00:05:31,909
+>> So let's just jump right into Flask.
+
+120
+00:05:31,909 --> 00:05:34,200
+This is definitely not going
+to be a complete tutorial,
+
+121
+00:05:34,200 --> 00:05:37,480
+but it's to give you an idea
+of how to structure things,
+
+122
+00:05:37,480 --> 00:05:40,790
+and so you feel comfortable going
+off and looking at the documentation
+
+123
+00:05:40,790 --> 00:05:42,570
+and finding out more.
+
+124
+00:05:42,570 --> 00:05:48,500
+>> So, let me open up a really
+simple example at first,
+
+125
+00:05:48,500 --> 00:05:50,737
+and show you what that
+looks like, and then we'll
+
+126
+00:05:50,737 --> 00:05:52,070
+break it down a little bit more.
+
+127
+00:05:52,070 --> 00:05:56,160
+>> So this here, let me get it running.
+
+128
+00:05:56,160 --> 00:06:06,800
+
+129
+00:06:06,800 --> 00:06:09,750
+So, I now have my application running.
+
+130
+00:06:09,750 --> 00:06:15,910
+I'm going to open up Safari, and
+it's running on my local host.
+
+131
+00:06:15,910 --> 00:06:19,360
+So I'm just going to make this bigger.
+
+132
+00:06:19,360 --> 00:06:23,960
+But localhost:5000
+
+133
+00:06:23,960 --> 00:06:27,650
+>> And so, right now, all this does
+is, when you visit the website,
+
+134
+00:06:27,650 --> 00:06:31,490
+it prints out "Hello Flask,"
+which isn't super useful,
+
+135
+00:06:31,490 --> 00:06:34,630
+but I think it's cool that
+in this little file here,
+
+136
+00:06:34,630 --> 00:06:37,390
+we have a web server running
+that is printing out something.
+
+137
+00:06:37,390 --> 00:06:40,500
+So, let's actually look
+at the code for a second,
+
+138
+00:06:40,500 --> 00:06:43,080
+and break it down a little bit.
+
+139
+00:06:43,080 --> 00:06:45,260
+Is the size good for everyone here?
+
+140
+00:06:45,260 --> 00:06:51,560
+>> So, hopefully, you're somewhat
+comfortable using Python.
+
+141
+00:06:51,560 --> 00:06:55,820
+I'm assuming that we can look at
+the Python and read through it.
+
+142
+00:06:55,820 --> 00:06:59,290
+If you have any questions about
+anything, I can also go over that.
+
+143
+00:06:59,290 --> 00:07:03,974
+>> So the first line is, from Flask,
+we import, Flask with a capital "F"
+
+144
+00:07:03,974 --> 00:07:06,140
+which is sort of all the
+key features that you need.
+
+145
+00:07:06,140 --> 00:07:08,890
+Whenever you're writing
+a file and using Flask,
+
+146
+00:07:08,890 --> 00:07:12,120
+you're going to want to import that,
+just because that has all main things.
+
+147
+00:07:12,120 --> 00:07:15,400
+The next thing we do, is we
+call this function Flask, just
+
+148
+00:07:15,400 --> 00:07:19,270
+to create an app object, and you're
+always going to want to do that.
+
+149
+00:07:19,270 --> 00:07:25,960
+>> And then, jumping down to the
+bottom quickly, this part here is,
+
+150
+00:07:25,960 --> 00:07:28,760
+'if_name_=="_main_"' which is
+sort of a Python convention.
+
+151
+00:07:28,760 --> 00:07:32,750
+So this will only execute if you
+run this file directly using Python.
+
+152
+00:07:32,750 --> 00:07:36,040
+Then, we call app.run, which will
+actually start the app going.
+
+153
+00:07:36,040 --> 00:07:39,570
+>> So, that's the main structure that
+you'll have in any Flask application,
+
+154
+00:07:39,570 --> 00:07:48,550
+is you will have this
+app=Flask(_name_), and then app.run.
+
+155
+00:07:48,550 --> 00:07:54,940
+>> So, the two things that I have
+in here, are what we call routes.
+
+156
+00:07:54,940 --> 00:07:57,150
+So, let's talk about
+routing a little bit more.
+
+157
+00:07:57,150 --> 00:07:58,430
+I'll go back to the slide.
+
+158
+00:07:58,430 --> 00:08:02,540
+>> So the most fundamental
+concept in Flask is routing.
+
+159
+00:08:02,540 --> 00:08:06,750
+And it's the idea that you
+assign functions in Python
+
+160
+00:08:06,750 --> 00:08:11,280
+to particular addresses
+on your web page.
+
+161
+00:08:11,280 --> 00:08:13,930
+So, whenever you want
+to create a new route,
+
+162
+00:08:13,930 --> 00:08:16,500
+you use this @app.route
+function decorator.
+
+163
+00:08:16,500 --> 00:08:19,770
+So, if you are unfamiliar with
+function decorators in Python,
+
+164
+00:08:19,770 --> 00:08:24,160
+it's this concept that
+lets you take a function
+
+165
+00:08:24,160 --> 00:08:26,800
+and surround it with something else.
+
+166
+00:08:26,800 --> 00:08:30,140
+>> So really, what this decorator does,
+is that it takes the function below it,
+
+167
+00:08:30,140 --> 00:08:33,409
+and it adds more information
+to it, but what Flask actually
+
+168
+00:08:33,409 --> 00:08:37,480
+does make that happen isn't super
+crucial, but what is important,
+
+169
+00:08:37,480 --> 00:08:43,640
+is that before the route, you
+put this @app.route, and then
+
+170
+00:08:43,640 --> 00:08:46,480
+the address of the route,
+so the slash is what we
+
+171
+00:08:46,480 --> 00:08:48,360
+saw when we just open up the web page.
+
+172
+00:08:48,360 --> 00:08:49,580
+So that's the homepage.
+
+173
+00:08:49,580 --> 00:08:51,037
+It's just the slash route.
+
+174
+00:08:51,037 --> 00:08:52,370
+And then you have this function.
+
+175
+00:08:52,370 --> 00:08:54,453
+The name of the function
+can be whatever you want.
+
+176
+00:08:54,453 --> 00:08:56,930
+It doesn't have to necessarily
+have to do with the route.
+
+177
+00:08:56,930 --> 00:08:59,440
+And then, whatever
+the function's return,
+
+178
+00:08:59,440 --> 00:09:01,730
+the function should return a string.
+
+179
+00:09:01,730 --> 00:09:03,740
+And that string can
+contain HTML or anything,
+
+180
+00:09:03,740 --> 00:09:06,920
+and that is actually what will get
+returned to your web browser as HTML,
+
+181
+00:09:06,920 --> 00:09:08,200
+and it will render that.
+
+182
+00:09:08,200 --> 00:09:12,030
+>> So this is the same code
+that was from the example
+
+183
+00:09:12,030 --> 00:09:16,430
+that I just ran, so when we visit slash,
+it calls a Hello World function, which
+
+184
+00:09:16,430 --> 00:09:20,470
+just returns a string, Hello Flask,
+and that gets printed on the screen.
+
+185
+00:09:20,470 --> 00:09:27,290
+>> So there's another example,
+which is, when you visit /hello,
+
+186
+00:09:27,290 --> 00:09:30,370
+it prints out Hello Word, which
+should actually say, Hello World,
+
+187
+00:09:30,370 --> 00:09:32,010
+but let's pretend that was intentional.
+
+188
+00:09:32,010 --> 00:09:35,140
+So let's pull that up real quick.
+
+189
+00:09:35,140 --> 00:09:41,290
+>> So if you go to localhost/hello,
+it will now print something else.
+
+190
+00:09:41,290 --> 00:09:45,680
+So that's just a quick example of how
+you can create two different routes.
+
+191
+00:09:45,680 --> 00:09:50,630
+>> So, so far this is not super useful,
+there isn't a whole lot you can do,
+
+192
+00:09:50,630 --> 00:09:55,360
+you could just do all that with
+having different HTML pages,
+
+193
+00:09:55,360 --> 00:09:58,000
+and when you visit a particular
+page it just loads the page.
+
+194
+00:09:58,000 --> 00:10:00,864
+So let's see some more
+useful things you can do.
+
+195
+00:10:00,864 --> 00:10:03,780
+So, one thing that you might have
+noticed in the example that I pulled
+
+196
+00:10:03,780 --> 00:10:07,160
+up, is that I had app.run(debug=True).
+
+197
+00:10:07,160 --> 00:10:09,580
+And so, what this
+debug argument does, is
+
+198
+00:10:09,580 --> 00:10:14,600
+that when you run your web server,
+when you're in your application,
+
+199
+00:10:14,600 --> 00:10:18,100
+if you change a file, it will
+automatically reload the server.
+
+200
+00:10:18,100 --> 00:10:21,160
+>> And so you don't actually have to
+restart Python, which is super useful.
+
+201
+00:10:21,160 --> 00:10:24,020
+I can show that.
+
+202
+00:10:24,020 --> 00:10:26,960
+Let me pull up my code
+with the typo in it,
+
+203
+00:10:26,960 --> 00:10:30,420
+and pretend that typo was put there
+intentionally for instructive purposes.
+
+204
+00:10:30,420 --> 00:10:31,625
+So let's add this back in.
+
+205
+00:10:31,625 --> 00:10:33,140
+So now it says Hello World.
+
+206
+00:10:33,140 --> 00:10:34,410
+I will save it.
+
+207
+00:10:34,410 --> 00:10:36,540
+And if we pull back up
+the terminal, you'll
+
+208
+00:10:36,540 --> 00:10:39,520
+say that it's restarting,
+because it detected a change,
+
+209
+00:10:39,520 --> 00:10:43,620
+and so now when we reload this page,
+it will print out the correct thing.
+
+210
+00:10:43,620 --> 00:10:45,630
+>> So debug is super useful for that.
+
+211
+00:10:45,630 --> 00:10:48,740
+Also, if you have any
+sort of a crash, so
+
+212
+00:10:48,740 --> 00:10:54,370
+let me make this application crash
+by having it not return a string.
+
+213
+00:10:54,370 --> 00:10:57,540
+So, let's just have it
+return None for some reason.
+
+214
+00:10:57,540 --> 00:11:00,810
+And then when I visit this
+page, it will just crash,
+
+215
+00:11:00,810 --> 00:11:04,465
+but the server doesn't just crash, it
+actually gives you a super useful back
+
+216
+00:11:04,465 --> 00:11:06,490
+trace of everything that went wrong.
+
+217
+00:11:06,490 --> 00:11:10,050
+And what's really nice, is that
+at any step in this back trace,
+
+218
+00:11:10,050 --> 00:11:14,260
+you could open up an interactive
+shell here, and sort of print out what
+
+219
+00:11:14,260 --> 00:11:17,780
+variables you want to take a look at.
+
+220
+00:11:17,780 --> 00:11:21,054
+>> And so debugging is really
+useful for figuring out
+
+221
+00:11:21,054 --> 00:11:23,470
+what is going on with your
+server, rather than just seeing
+
+222
+00:11:23,470 --> 00:11:28,201
+something in PHP like a 500 internal
+server error, which is super useless.
+
+223
+00:11:28,201 --> 00:11:30,700
+One thing to be aware of, is
+that if you put your app online
+
+224
+00:11:30,700 --> 00:11:34,260
+so it's visible to the public, you
+never want to leave debug mode on,
+
+225
+00:11:34,260 --> 00:11:37,320
+because people can actually
+use that console that I
+
+226
+00:11:37,320 --> 00:11:39,150
+showed you to execute arbitrary code.
+
+227
+00:11:39,150 --> 00:11:42,120
+>> So they can print out like any
+secret codes you have in there,
+
+228
+00:11:42,120 --> 00:11:44,755
+they can look at exactly
+how your website is working.
+
+229
+00:11:44,755 --> 00:11:46,630
+So it's really useful
+for testing, but always
+
+230
+00:11:46,630 --> 00:11:50,090
+make sure to take it out before
+you publish anything online.
+
+231
+00:11:50,090 --> 00:11:56,640
+>> So when you're using something
+like PHP, there's this idea
+
+232
+00:11:56,640 --> 00:11:58,920
+that you can pass
+information between web pages
+
+233
+00:11:58,920 --> 00:12:03,620
+by putting the information actually
+in the URL, which is a GET request,
+
+234
+00:12:03,620 --> 00:12:07,490
+but in Flask, you can actually
+do something sort of like that,
+
+235
+00:12:07,490 --> 00:12:10,590
+by having a route that has
+a variable as part of it.
+
+236
+00:12:10,590 --> 00:12:14,090
+>> So if you look at this
+example on the screen here,
+
+237
+00:12:14,090 --> 00:12:19,930
+we have a route that's
+('/hello/'), and so, if you visit
+
+238
+00:12:19,930 --> 00:12:23,790
+/hello/something, that something
+is going to actually get filled
+
+239
+00:12:23,790 --> 00:12:25,490
+into the name variable.
+
+240
+00:12:25,490 --> 00:12:27,850
+And notice that the function
+that comes with that route
+
+241
+00:12:27,850 --> 00:12:31,302
+has to take in the parameter
+name, so that it will actually
+
+242
+00:12:31,302 --> 00:12:32,510
+get passed into the function.
+
+243
+00:12:32,510 --> 00:12:34,190
+>> And then, once you're
+inside of that function,
+
+244
+00:12:34,190 --> 00:12:36,420
+you can treat that like
+a normal Python variable,
+
+245
+00:12:36,420 --> 00:12:39,650
+and so then, it will
+print out Hello, and it
+
+246
+00:12:39,650 --> 00:12:42,000
+will fill in the name using
+some string formatting.
+
+247
+00:12:42,000 --> 00:12:48,060
+>> So to add variable parts to a routing,
+you use the angle bracket marking.
+
+248
+00:12:48,060 --> 00:12:51,220
+And optionally, you can use
+what's called a converter.
+
+249
+00:12:51,220 --> 00:12:56,840
+And so, if you put this
+annotation with the colon,
+
+250
+00:12:56,840 --> 00:13:00,015
+you can specify that it's
+an int, or a float, or path,
+
+251
+00:13:00,015 --> 00:13:01,640
+and it will automatically convert that.
+
+252
+00:13:01,640 --> 00:13:05,130
+You can also do the conversion
+within the Python function,
+
+253
+00:13:05,130 --> 00:13:09,710
+just by using a cast, but sometimes if
+you want to ensure that it's an int,
+
+254
+00:13:09,710 --> 00:13:12,080
+you can put that
+conversion rule in there.
+
+255
+00:13:12,080 --> 00:13:15,930
+>> So let's pull up an example
+of some variable rules.
+
+256
+00:13:15,930 --> 00:13:21,480
+So here, this has the same basic
+structure with the from Flask import
+
+257
+00:13:21,480 --> 00:13:25,030
+Flask, the app=Flask(_name_),
+and then it's running at the end.
+
+258
+00:13:25,030 --> 00:13:28,050
+We have these two different
+variable routes here.
+
+259
+00:13:28,050 --> 00:13:29,900
+And the first one, is
+the one that I showed
+
+260
+00:13:29,900 --> 00:13:34,230
+in the slide, which was that
+it just takes in a string name
+
+261
+00:13:34,230 --> 00:13:35,650
+and it will print out Hello, Name.
+
+262
+00:13:35,650 --> 00:13:41,410
+>> And then, the second
+one uses the conversion.
+
+263
+00:13:41,410 --> 00:13:44,690
+So this will automatically convert it
+to an int, and then double the int,
+
+264
+00:13:44,690 --> 00:13:46,150
+and print that out.
+
+265
+00:13:46,150 --> 00:13:48,220
+And, we don't do any sort
+of conversion within it
+
+266
+00:13:48,220 --> 00:13:49,594
+because Flask takes care of that.
+
+267
+00:13:49,594 --> 00:13:53,181
+So let's get this running.
+
+268
+00:13:53,181 --> 00:13:54,930
+When you have a Flask
+application running,
+
+269
+00:13:54,930 --> 00:13:58,440
+you can Control-C out of it
+to stop the server running.
+
+270
+00:13:58,440 --> 00:14:02,420
+And then I will run the variables.
+
+271
+00:14:02,420 --> 00:14:11,740
+>> So let's go to localhost/hello/ezra and
+hopefully, this will say hello to me.
+
+272
+00:14:11,740 --> 00:14:14,530
+
+273
+00:14:14,530 --> 00:14:20,310
+>> So it took in my name, in the variable
+route, and it filled it in here.
+
+274
+00:14:20,310 --> 00:14:23,950
+So I'll also show a quick
+example of the doubling.
+
+275
+00:14:23,950 --> 00:14:28,600
+So if you go to /double/3,
+it will print out 6.
+
+276
+00:14:28,600 --> 00:14:31,440
+So this took care of
+the conversion for us.
+
+277
+00:14:31,440 --> 00:14:34,190
+>> So you can also do it with
+float, and something special,
+
+278
+00:14:34,190 --> 00:14:37,530
+if you need to specify something like
+a path, that lets it accept slashes,
+
+279
+00:14:37,530 --> 00:14:39,155
+but that shouldn't usually be an issue.
+
+280
+00:14:39,155 --> 00:14:41,480
+
+281
+00:14:41,480 --> 00:14:43,820
+So far we, still have
+just been returning
+
+282
+00:14:43,820 --> 00:14:46,320
+strings, which is not very interesting.
+
+283
+00:14:46,320 --> 00:14:48,730
+>> We could actually return
+literal HTML string.
+
+284
+00:14:48,730 --> 00:14:54,322
+So in the code we can insert something
+like the b-tag to make it bold,
+
+285
+00:14:54,322 --> 00:14:56,030
+but most the time you
+don't actually want
+
+286
+00:14:56,030 --> 00:14:58,420
+to be writing HTML code
+in your Python code.
+
+287
+00:14:58,420 --> 00:15:01,940
+It gets really messy,
+and it's not a good time.
+
+288
+00:15:01,940 --> 00:15:06,430
+>> Flask allows us to separate out the
+HTML into what's called the Template,
+
+289
+00:15:06,430 --> 00:15:09,467
+and so if you're thinking
+in terms of the MVC model
+
+290
+00:15:09,467 --> 00:15:11,550
+that you're familiar with,
+hopefully, from working
+
+291
+00:15:11,550 --> 00:15:15,520
+with CS50 Finance a little bit,
+you can think of the Python files
+
+292
+00:15:15,520 --> 00:15:19,430
+as being more of the Controller, where
+they are interacting with whatever
+
+293
+00:15:19,430 --> 00:15:20,970
+data model you might have.
+
+294
+00:15:20,970 --> 00:15:24,900
+>> And then they are calling out to Views
+and passing information to that View
+
+295
+00:15:24,900 --> 00:15:28,120
+to fill in the information
+in HTML that it needs.
+
+296
+00:15:28,120 --> 00:15:30,490
+And what we call those Views
+are Templates in class.
+
+297
+00:15:30,490 --> 00:15:35,280
+>> So Flask uses another Python
+module that it will automatically
+
+298
+00:15:35,280 --> 00:15:38,620
+install when you pip install
+Flask called Jinja, which
+
+299
+00:15:38,620 --> 00:15:40,885
+lets you add these
+annotations to the HTML
+
+300
+00:15:40,885 --> 00:15:45,140
+that you see on the screen, that lets
+you put in things like conditionals,
+
+301
+00:15:45,140 --> 00:15:47,230
+and loops into the HTML.
+
+302
+00:15:47,230 --> 00:15:51,140
+>> So it looks a little bit like how you
+might use PHP within an HTML file,
+
+303
+00:15:51,140 --> 00:15:57,380
+but this is just when the Flask
+server serves up the HTML file,
+
+304
+00:15:57,380 --> 00:16:01,610
+it will run this templating engine and
+parse through this and fill things in.
+
+305
+00:16:01,610 --> 00:16:06,650
+So Flask has a render_template function
+that you can see at the bottom here.
+
+306
+00:16:06,650 --> 00:16:14,300
+And so when you visit this page, it
+would render this hello.html Template,
+
+307
+00:16:14,300 --> 00:16:16,407
+and then fill in this HTML page.
+
+308
+00:16:16,407 --> 00:16:18,990
+So let's just run this real
+quick, and see what it looks like,
+
+309
+00:16:18,990 --> 00:16:21,198
+and then I'll go through a
+little bit in more detail.
+
+310
+00:16:21,198 --> 00:16:25,380
+
+311
+00:16:25,380 --> 00:16:30,260
+So, your Templates are going
+to go in a Templates folder.
+
+312
+00:16:30,260 --> 00:16:33,980
+It will automatically look within the
+Templates folder for that Template.
+
+313
+00:16:33,980 --> 00:16:35,615
+So let's open this up.
+
+314
+00:16:35,615 --> 00:16:47,350
+
+315
+00:16:47,350 --> 00:16:50,005
+So, I'll run the Templating example.
+
+316
+00:16:50,005 --> 00:16:52,820
+
+317
+00:16:52,820 --> 00:17:03,660
+>> So if I go to /hello/ezra,
+it has this horrible,
+
+318
+00:17:03,660 --> 00:17:05,930
+obnoxious marquee tag that I put in.
+
+319
+00:17:05,930 --> 00:17:08,050
+Very nice, very dynamic.
+
+320
+00:17:08,050 --> 00:17:09,349
+I'm a big fan.
+
+321
+00:17:09,349 --> 00:17:13,900
+But what happens if
+I just go to, /hello?
+
+322
+00:17:13,900 --> 00:17:15,220
+So it just says Hello World.
+
+323
+00:17:15,220 --> 00:17:17,678
+I didn't pass it a name, and
+it filled it in automatically.
+
+324
+00:17:17,678 --> 00:17:22,050
+So let's see how it did that, and how
+we can get rid of that marquee maybe.
+
+325
+00:17:22,050 --> 00:17:26,240
+>> So here, this is sort of
+an interesting example of,
+
+326
+00:17:26,240 --> 00:17:29,101
+if you are familiar with how switch
+statements work in a language.
+
+327
+00:17:29,101 --> 00:17:31,350
+Say this is sort of like,
+that sort of a fall through,
+
+328
+00:17:31,350 --> 00:17:34,266
+where you actually attached two
+different routes to the same function.
+
+329
+00:17:34,266 --> 00:17:41,190
+So we attach the /hello route and
+the /hello/name route to Hello,
+
+330
+00:17:41,190 --> 00:17:45,130
+and we specify using-- Python lets you
+specify default function arguments--
+
+331
+00:17:45,130 --> 00:17:48,300
+so if there is no name, so
+if we go to just /hello,
+
+332
+00:17:48,300 --> 00:17:50,680
+it will automatically filter
+to name is equal to None.
+
+333
+00:17:50,680 --> 00:17:55,010
+>> So then, we render the
+Template with name=name,
+
+334
+00:17:55,010 --> 00:17:59,510
+so it will pass in the name parameter
+equal to this name function parameter,
+
+335
+00:17:59,510 --> 00:18:00,730
+into the Template.
+
+336
+00:18:00,730 --> 00:18:04,040
+That still doesn't explain how is
+deciding whether to print Hello World,
+
+337
+00:18:04,040 --> 00:18:05,100
+or print my name.
+
+338
+00:18:05,100 --> 00:18:08,050
+So let's actually look
+into the Template itself,
+
+339
+00:18:08,050 --> 00:18:11,610
+and see where that is coming from.
+
+340
+00:18:11,610 --> 00:18:18,680
+>> So, within this Template, we
+actually have some conditional logic,
+
+341
+00:18:18,680 --> 00:18:20,580
+which some people would
+argue, you actually
+
+342
+00:18:20,580 --> 00:18:23,730
+shouldn't have a lot of conditional
+logic within your Template itself.
+
+343
+00:18:23,730 --> 00:18:26,310
+It should be more within the
+Controller, but for this example
+
+344
+00:18:26,310 --> 00:18:27,476
+it's something pretty small.
+
+345
+00:18:27,476 --> 00:18:31,060
+So here, we check, if name, so
+if name is not equal to None,
+
+346
+00:18:31,060 --> 00:18:33,130
+if a name is actually
+passed in, then we will
+
+347
+00:18:33,130 --> 00:18:36,210
+say Hello, Name with the
+header and the marquee,
+
+348
+00:18:36,210 --> 00:18:41,490
+all this normal HTML, otherwise, we will
+print out Hello, World just normally.
+
+349
+00:18:41,490 --> 00:18:45,820
+So a couple things to notice here
+about how you format the templating,
+
+350
+00:18:45,820 --> 00:18:49,110
+is that, all of these
+conditional statements,
+
+351
+00:18:49,110 --> 00:18:54,475
+sort of like how we PHP it when
+you want to insert some PHP,
+
+352
+00:18:54,475 --> 00:18:58,380
+you use the less-than question
+mark, it's sort of analogous here
+
+353
+00:18:58,380 --> 00:19:00,140
+with the {%.
+
+354
+00:19:00,140 --> 00:19:02,130
+>> So here, we have our conditional code.
+
+355
+00:19:02,130 --> 00:19:05,920
+And then, when you actually want to
+literally evaluate something, and print
+
+356
+00:19:05,920 --> 00:19:08,710
+it out to the screen, you
+use the double braces.
+
+357
+00:19:08,710 --> 00:19:12,310
+So here are the double braces,
+and then we specify name,
+
+358
+00:19:12,310 --> 00:19:15,500
+so within that, it will evaluate
+to the variable name, which
+
+359
+00:19:15,500 --> 00:19:18,860
+was passed in from the
+render template function,
+
+360
+00:19:18,860 --> 00:19:21,484
+rather than just printing
+out, if we got rid of these,
+
+361
+00:19:21,484 --> 00:19:23,150
+it would just print out the word "name."
+
+362
+00:19:23,150 --> 00:19:26,340
+So, that's something to watch out for.
+
+363
+00:19:26,340 --> 00:19:29,792
+>> So another thing to
+notice is that, when we
+
+364
+00:19:29,792 --> 00:19:31,500
+want to use the
+render_template function,
+
+365
+00:19:31,500 --> 00:19:34,490
+we actually have to import
+it explicitly from Flask.
+
+366
+00:19:34,490 --> 00:19:36,915
+And this is an example of
+the modularity of Flask,
+
+367
+00:19:36,915 --> 00:19:39,290
+that you don't have to import
+things that you don't need.
+
+368
+00:19:39,290 --> 00:19:41,290
+You can just bring in the
+functions you actually
+
+369
+00:19:41,290 --> 00:19:43,450
+do need, which is sometimes
+nice, so you don't
+
+370
+00:19:43,450 --> 00:19:46,560
+have to have all these functions
+sitting around that you're not using,
+
+371
+00:19:46,560 --> 00:19:49,730
+but also, if you forget that you
+need to import render_template,
+
+372
+00:19:49,730 --> 00:19:52,660
+you'll probably get a warning
+that will let you know about that.
+
+373
+00:19:52,660 --> 00:19:56,700
+So, that is templating.
+
+374
+00:19:56,700 --> 00:20:01,680
+>> So, we've shown how to
+make simple web pages,
+
+375
+00:20:01,680 --> 00:20:04,947
+and add a little bit more logic to
+it, in terms of the variable routing.
+
+376
+00:20:04,947 --> 00:20:08,280
+It lets you do different things based on
+what URL you go to, and also then, give
+
+377
+00:20:08,280 --> 00:20:11,950
+the HTML a little bit more sense in
+terms of how you want to render things.
+
+378
+00:20:11,950 --> 00:20:14,210
+You don't have to put all
+your HTML in your Python,
+
+379
+00:20:14,210 --> 00:20:16,640
+but for pretty much
+every web application,
+
+380
+00:20:16,640 --> 00:20:21,480
+you're going to want some sort
+of data model associated with it.
+
+381
+00:20:21,480 --> 00:20:25,560
+>> And so traditionally, this would
+be something like an SQL database.
+
+382
+00:20:25,560 --> 00:20:30,280
+And you can just interact
+directly with SQL.
+
+383
+00:20:30,280 --> 00:20:32,190
+Python has, I think it's called.
+
+384
+00:20:32,190 --> 00:20:33,040
+SQLite 3.
+
+385
+00:20:33,040 --> 00:20:38,454
+You can just import SQLite 3 and
+execute SQL queries directly,
+
+386
+00:20:38,454 --> 00:20:40,870
+but I don't know about you,
+but I really don't like, just,
+
+387
+00:20:40,870 --> 00:20:42,750
+writing out SQL queries.
+
+388
+00:20:42,750 --> 00:20:45,350
+It tends to get really
+long and complicated.
+
+389
+00:20:45,350 --> 00:20:49,180
+>> And so, something that
+I like to use is what's
+
+390
+00:20:49,180 --> 00:20:53,610
+known as an ORM, which is an
+object-relational mapping.
+
+391
+00:20:53,610 --> 00:20:56,890
+And the point of an
+object-relational mapping,
+
+392
+00:20:56,890 --> 00:21:00,100
+is that there are two different
+ways you can think about databases.
+
+393
+00:21:00,100 --> 00:21:03,240
+>> So the example that
+Professor Malan usually
+
+394
+00:21:03,240 --> 00:21:07,660
+uses in class, is the Excel table, where
+you have these rows and these columns,
+
+395
+00:21:07,660 --> 00:21:10,210
+and that's really useful for
+how it is represented in SQL
+
+396
+00:21:10,210 --> 00:21:13,170
+and how you interact with it, but
+another way that it's actually
+
+397
+00:21:13,170 --> 00:21:16,390
+useful to think about it sometimes,
+is in terms of classes and objects.
+
+398
+00:21:16,390 --> 00:21:20,420
+>> So instead of thinking
+of each table as having
+
+399
+00:21:20,420 --> 00:21:23,040
+this row that has certain
+information, you can actually
+
+400
+00:21:23,040 --> 00:21:26,100
+think of it as being
+each table is a class,
+
+401
+00:21:26,100 --> 00:21:29,810
+and then every instance of the
+class has certain properties.
+
+402
+00:21:29,810 --> 00:21:35,110
+So, in this example, the instances of
+the class are the rows in the table,
+
+403
+00:21:35,110 --> 00:21:37,490
+and then each property would
+be a column in the table.
+
+404
+00:21:37,490 --> 00:21:40,840
+>> So, the ORM that I like
+to use is called peewee.
+
+405
+00:21:40,840 --> 00:21:43,520
+It's really small, sort of like Flask.
+
+406
+00:21:43,520 --> 00:21:46,760
+I think that they go well together,
+but there are a lot of other ORMs
+
+407
+00:21:46,760 --> 00:21:47,730
+that you can use.
+
+408
+00:21:47,730 --> 00:21:52,180
+A more popular one is
+known as SQLAlchemy,
+
+409
+00:21:52,180 --> 00:21:56,050
+and I can't remember why I originally
+chose peewee over SQLAlchemy,
+
+410
+00:21:56,050 --> 00:21:58,311
+or I would tell you why I
+think it's the best one,
+
+411
+00:21:58,311 --> 00:22:01,060
+but we're just going to use this
+one because I know how to use it.
+
+412
+00:22:01,060 --> 00:22:04,760
+>> So, one question is, why
+should you bother using an ORM,
+
+413
+00:22:04,760 --> 00:22:07,552
+instead of just directly
+writing SQL queries?
+
+414
+00:22:07,552 --> 00:22:09,760
+And I think the best case,
+is that you don't actually
+
+415
+00:22:09,760 --> 00:22:11,356
+have to write SQL queries.
+
+416
+00:22:11,356 --> 00:22:14,480
+It's much easier, as I'll show you, to
+do things like selection, insertion,
+
+417
+00:22:14,480 --> 00:22:16,157
+deletion, especially creating tables.
+
+418
+00:22:16,157 --> 00:22:17,990
+It's much easier to
+write a class structure,
+
+419
+00:22:17,990 --> 00:22:22,250
+than it is to structure a Create
+Table statement, but one thing
+
+420
+00:22:22,250 --> 00:22:25,710
+to be aware of, is that
+the ORM will try its best
+
+421
+00:22:25,710 --> 00:22:28,640
+to figure out what the most
+efficient SQL query would be,
+
+422
+00:22:28,640 --> 00:22:30,110
+but sometimes it gets it wrong.
+
+423
+00:22:30,110 --> 00:22:32,660
+>> And especially if you're
+working with a big database,
+
+424
+00:22:32,660 --> 00:22:35,557
+you can notice that a query
+that should be running fast,
+
+425
+00:22:35,557 --> 00:22:36,640
+is actually taking longer.
+
+426
+00:22:36,640 --> 00:22:40,164
+And if you look under the hood at how
+the ORM is interpreting that into SQL,
+
+427
+00:22:40,164 --> 00:22:42,080
+it might be doing something
+really ridiculous,
+
+428
+00:22:42,080 --> 00:22:44,371
+just because it sort of
+gestured your intentions wrong.
+
+429
+00:22:44,371 --> 00:22:48,080
+And, there have been times where
+I've had to override it, and just
+
+430
+00:22:48,080 --> 00:22:52,429
+execute my own SQL queries, just
+because it was parsing in a strange way.
+
+431
+00:22:52,429 --> 00:22:54,220
+So, there is some
+overhead, just in the way
+
+432
+00:22:54,220 --> 00:22:58,680
+that it compiles your
+statements down into SQL.
+
+433
+00:22:58,680 --> 00:23:06,200
+>> So, let's look super quickly at
+a simple example of a data model
+
+434
+00:23:06,200 --> 00:23:07,350
+that you might use.
+
+435
+00:23:07,350 --> 00:23:11,880
+So, this is Python code, and so the
+first thing you want to do is from
+
+436
+00:23:11,880 --> 00:23:12,950
+peewee import*.
+
+437
+00:23:12,950 --> 00:23:15,850
+So, unlike Flask, where you have
+all these individual modules,
+
+438
+00:23:15,850 --> 00:23:18,125
+and you want to import Flask, and
+write a Template, and some others
+
+439
+00:23:18,125 --> 00:23:20,690
+that we'll see later, from peewee,
+you can just import everything,
+
+440
+00:23:20,690 --> 00:23:22,290
+because it's a pretty small library.
+
+441
+00:23:22,290 --> 00:23:26,490
+>> So, the first thing you want to do, is
+actually create this database object.
+
+442
+00:23:26,490 --> 00:23:31,212
+So, you have db = SqliteDatabase,
+and then the name of your database.
+
+443
+00:23:31,212 --> 00:23:33,170
+And this will actually
+create a database object
+
+444
+00:23:33,170 --> 00:23:36,230
+that you can interact with, with peewee.
+
+445
+00:23:36,230 --> 00:23:40,570
+>> And then, we have the actual
+model that we want to create.
+
+446
+00:23:40,570 --> 00:23:42,470
+So the table we want to create.
+
+447
+00:23:42,470 --> 00:23:47,270
+So, within peewee, each class has
+its own table within your database.
+
+448
+00:23:47,270 --> 00:23:52,800
+So, all of the classes
+inherit from the base model,
+
+449
+00:23:52,800 --> 00:23:55,960
+and the capital M model is
+something that's defined in peewee.
+
+450
+00:23:55,960 --> 00:24:02,162
+>> So, all of your models should
+inherit as their highest superclass,
+
+451
+00:24:02,162 --> 00:24:04,620
+they should inherit from the
+model, but what's really cool,
+
+452
+00:24:04,620 --> 00:24:07,610
+is that you can actually have your
+models inherit from each other.
+
+453
+00:24:07,610 --> 00:24:10,530
+And a lot of the time, your
+data models don't necessarily
+
+454
+00:24:10,530 --> 00:24:13,754
+make a nice inheritance hierarchy, but
+times where they do, it's really nice,
+
+455
+00:24:13,754 --> 00:24:15,920
+because you have the model
+inherent from each other.
+
+456
+00:24:15,920 --> 00:24:19,710
+>> So, we defined this class
+'student,' which inherits a model,
+
+457
+00:24:19,710 --> 00:24:21,170
+and it has three properties.
+
+458
+00:24:21,170 --> 00:24:24,080
+It has an ID, which is
+a PrimaryKeyField, which
+
+459
+00:24:24,080 --> 00:24:26,920
+is something that's provided
+by peewee, name is a CharField,
+
+460
+00:24:26,920 --> 00:24:28,490
+and a grade is an IntegerField.
+
+461
+00:24:28,490 --> 00:24:32,260
+So this may or may not be
+how CS50 actually stores all
+
+462
+00:24:32,260 --> 00:24:33,650
+the students' grades.
+
+463
+00:24:33,650 --> 00:24:36,060
+It isn't, but this is how I would do it.
+
+464
+00:24:36,060 --> 00:24:37,920
+>> And then it has, within
+this class, and this
+
+465
+00:24:37,920 --> 00:24:41,620
+is something you can do with
+Python, you can have nested classes.
+
+466
+00:24:41,620 --> 00:24:43,920
+And this is something
+that's required by peewee.
+
+467
+00:24:43,920 --> 00:24:47,250
+So, this class Meta, you have
+to specify that the database is
+
+468
+00:24:47,250 --> 00:24:49,830
+equal to the object
+that we created above.
+
+469
+00:24:49,830 --> 00:24:54,339
+And this says what file is this table
+actually going to be contained in.
+
+470
+00:24:54,339 --> 00:24:57,130
+So this is something that you have
+to do within all of your models.
+
+471
+00:24:57,130 --> 00:24:59,380
+You just have to specify
+within this Meta class
+
+472
+00:24:59,380 --> 00:25:01,400
+that database is equal to db.
+
+473
+00:25:01,400 --> 00:25:03,940
+So what I usually do, if I have
+a bunch of different models,
+
+474
+00:25:03,940 --> 00:25:05,910
+is that I have one base
+model, that I usually
+
+475
+00:25:05,910 --> 00:25:08,839
+just call "base model"
+that has the Meta class,
+
+476
+00:25:08,839 --> 00:25:10,380
+and it sets the database equal to db.
+
+477
+00:25:10,380 --> 00:25:13,710
+And then all of my subsequent models
+will inherit from that base class.
+
+478
+00:25:13,710 --> 00:25:16,760
+And then I don't have to worry
+about setting the Meta class.
+
+479
+00:25:16,760 --> 00:25:21,490
+>> So, when this actually gets
+compiled down into an SQL statement,
+
+480
+00:25:21,490 --> 00:25:24,875
+it looks like this nasty thing down
+here, "Create table student ID integer,
+
+481
+00:25:24,875 --> 00:25:26,020
+" whatever.
+
+482
+00:25:26,020 --> 00:25:30,002
+>> And, I think that it is shorter,
+this SQL query right here,
+
+483
+00:25:30,002 --> 00:25:32,960
+but if you look at this class here
+you can see exactly what's going on.
+
+484
+00:25:32,960 --> 00:25:36,116
+You can see what sorts of fields
+there are, what they're are called,
+
+485
+00:25:36,116 --> 00:25:38,115
+and so, I think that
+looking at this Python code
+
+486
+00:25:38,115 --> 00:25:43,340
+is a lot more readable than
+trying to write this SQL query.
+
+487
+00:25:43,340 --> 00:25:45,990
+>> So, in order to actually
+use the database,
+
+488
+00:25:45,990 --> 00:25:48,470
+we have to connect to it within Python.
+
+489
+00:25:48,470 --> 00:25:52,770
+So, I usually write a function called
+initialize_db that does two things.
+
+490
+00:25:52,770 --> 00:25:54,880
+It takes in the database
+object db and it
+
+491
+00:25:54,880 --> 00:25:58,360
+connects to it, which just opens
+up section to the database.
+
+492
+00:25:58,360 --> 00:26:00,860
+If you're just running though
+website on your local machine,
+
+493
+00:26:00,860 --> 00:26:04,320
+it isn't a super big deal to worry
+about connecting and disconnecting,
+
+494
+00:26:04,320 --> 00:26:06,885
+but if you are running
+it on a website, you
+
+495
+00:26:06,885 --> 00:26:10,010
+want to make sure that, whenever a user
+connects to it, when they close out
+
+496
+00:26:10,010 --> 00:26:12,270
+the website, they disconnect so that you
+don't have a bunch of people connected
+
+497
+00:26:12,270 --> 00:26:14,480
+to your database all at once.
+
+498
+00:26:14,480 --> 00:26:16,370
+>> And then, when you
+connect to the database,
+
+499
+00:26:16,370 --> 00:26:20,832
+you want to call db.create_tables,
+and list the models for what you want
+
+500
+00:26:20,832 --> 00:26:21,540
+to create tables.
+
+501
+00:26:21,540 --> 00:26:23,950
+So here, I just want to
+create it for this student.
+
+502
+00:26:23,950 --> 00:26:28,070
+And then, what's important, is to
+specify safe=True most the time.
+
+503
+00:26:28,070 --> 00:26:30,380
+So what this statement
+will do, is that it
+
+504
+00:26:30,380 --> 00:26:33,580
+creates tables for the
+student model, but only
+
+505
+00:26:33,580 --> 00:26:36,109
+if that table hasn't
+been created already.
+
+506
+00:26:36,109 --> 00:26:37,400
+That's what the safe specifies.
+
+507
+00:26:37,400 --> 00:26:39,150
+So it won't overwrite
+your existing table,
+
+508
+00:26:39,150 --> 00:26:41,525
+it will only create a new
+table if there isn't one there.
+
+509
+00:26:41,525 --> 00:26:45,090
+So, you could just create
+the tables once using SQL.
+
+510
+00:26:45,090 --> 00:26:49,410
+And then have that database sitting
+there, and then connect to each time,
+
+511
+00:26:49,410 --> 00:26:52,450
+but it's usually nice just to
+put in this create_tables call,
+
+512
+00:26:52,450 --> 00:26:55,550
+so that, if you ever delete your
+database when you run your web
+
+513
+00:26:55,550 --> 00:26:57,960
+app again, it will recreate it.
+
+514
+00:26:57,960 --> 00:27:00,730
+>> So, just make sure that safe
+is specified to be True,
+
+515
+00:27:00,730 --> 00:27:03,580
+or you will find your data just
+getting clobbered every time.
+
+516
+00:27:03,580 --> 00:27:06,380
+And then, you can just call
+initialize_db to establish
+
+517
+00:27:06,380 --> 00:27:09,820
+a connection, and create
+tables if necessary.
+
+518
+00:27:09,820 --> 00:27:13,150
+>> So, the most common thing
+that you will want to do,
+
+519
+00:27:13,150 --> 00:27:15,920
+or one of the most common things,
+is to actually insert things
+
+520
+00:27:15,920 --> 00:27:17,170
+into your database.
+
+521
+00:27:17,170 --> 00:27:19,430
+And so, rather than having
+to write an insert INTO
+
+522
+00:27:19,430 --> 00:27:21,990
+statement with all of
+the values specified,
+
+523
+00:27:21,990 --> 00:27:24,650
+you can actually call
+function on the student class.
+
+524
+00:27:24,650 --> 00:27:28,200
+So, when you create a class
+that inherits from model,
+
+525
+00:27:28,200 --> 00:27:30,200
+it has this create method.
+
+526
+00:27:30,200 --> 00:27:33,870
+>> So, you do class name.create,
+and you specify the parameters
+
+527
+00:27:33,870 --> 00:27:35,260
+that you want to pass in.
+
+528
+00:27:35,260 --> 00:27:39,200
+So, if I want to add some students
+to our CS50 grade book example,
+
+529
+00:27:39,200 --> 00:27:41,820
+I'll put in David, who has a
+very good grade, he has a 95.
+
+530
+00:27:41,820 --> 00:27:45,100
+And myself, who's not doing
+so well in CS50, I have a 50.
+
+531
+00:27:45,100 --> 00:27:47,600
+And so, the nice thing about
+what this create function does,
+
+532
+00:27:47,600 --> 00:27:53,040
+is that it returns the instance, or the
+row, that it created within the table,
+
+533
+00:27:53,040 --> 00:27:55,750
+and so then you store that in a
+variable, and work with it later.
+
+534
+00:27:55,750 --> 00:27:58,830
+You can change around, which
+I'll show an example of.
+
+535
+00:27:58,830 --> 00:28:03,050
+>> Notice that I didn't
+have to specify the ID,
+
+536
+00:28:03,050 --> 00:28:09,340
+because since it is the
+PrimaryKeyField, it will automatically
+
+537
+00:28:09,340 --> 00:28:10,930
+increment it if you don't specify it.
+
+538
+00:28:10,930 --> 00:28:12,250
+And, in fact, you probably
+shouldn't specify it,
+
+539
+00:28:12,250 --> 00:28:14,810
+because you might accidentally
+clobber someone else's ID.
+
+540
+00:28:14,810 --> 00:28:16,830
+And you want to make
+sure that it's unique.
+
+541
+00:28:16,830 --> 00:28:20,662
+>> So, actually, the most
+common thing you want to do,
+
+542
+00:28:20,662 --> 00:28:22,620
+is probably select out
+of the database once you
+
+543
+00:28:22,620 --> 00:28:24,078
+have a lot of information in there.
+
+544
+00:28:24,078 --> 00:28:27,360
+And so, if you want to get everything,
+so the equivalent of the select star
+
+545
+00:28:27,360 --> 00:28:30,940
+from students statement, it
+would just be student.select.
+
+546
+00:28:30,940 --> 00:28:34,380
+And that will give you back an array
+with all of the student objects in it
+
+547
+00:28:34,380 --> 00:28:35,770
+that you iterate over you want.
+
+548
+00:28:35,770 --> 00:28:37,019
+You can get things out of it.
+
+549
+00:28:37,019 --> 00:28:39,310
+And most of the time, you
+don't just want to do select,
+
+550
+00:28:39,310 --> 00:28:40,935
+you actually want to specify something.
+
+551
+00:28:40,935 --> 00:28:44,580
+And so, you can chain
+together these function calls,
+
+552
+00:28:44,580 --> 00:28:48,830
+like how you would chain
+together the statements in SQL.
+
+553
+00:28:48,830 --> 00:28:53,002
+So you can do student.select().where
+in this example.
+
+554
+00:28:53,002 --> 00:28:54,710
+And then, you can
+specify the conditions,
+
+555
+00:28:54,710 --> 00:28:57,880
+just using normal Python
+Booleans to check things.
+
+556
+00:28:57,880 --> 00:29:02,110
+>> So, in this case, you want to
+limit what you're selecting to,
+
+557
+00:29:02,110 --> 00:29:06,790
+where student.grade is equal to 50,
+and student.name is equal to Ezra,
+
+558
+00:29:06,790 --> 00:29:09,130
+so that will just get me out of it.
+
+559
+00:29:09,130 --> 00:29:11,340
+And notice, one really
+subtle thing here is
+
+560
+00:29:11,340 --> 00:29:15,570
+that, if you want to specify
+an and/and or an or/or,
+
+561
+00:29:15,570 --> 00:29:19,840
+in Python, you would normally use,
+I think the word "and" actually,
+
+562
+00:29:19,840 --> 00:29:23,351
+but here you use the single ampersand,
+which is normally a bitwise operator,
+
+563
+00:29:23,351 --> 00:29:25,600
+but in this special case,
+just the way peewee does it,
+
+564
+00:29:25,600 --> 00:29:27,660
+you use the single
+ampersand to specify "and."
+
+565
+00:29:27,660 --> 00:29:29,451
+That's something that
+I get mixed up a lot,
+
+566
+00:29:29,451 --> 00:29:32,530
+but it doesn't come up
+that much in practice.
+
+567
+00:29:32,530 --> 00:29:36,350
+>> And then, once you have all of
+the students out of the database,
+
+568
+00:29:36,350 --> 00:29:39,420
+once you have done you're select
+and your wear or whatever,
+
+569
+00:29:39,420 --> 00:29:42,334
+you can use a foreach loop,
+just like normal in Python,
+
+570
+00:29:42,334 --> 00:29:44,500
+with any sort of iterator
+or with any sort of array.
+
+571
+00:29:44,500 --> 00:29:46,333
+So you can do, for s
+in student.select().whe
+
+572
+00:29:46,333 --> 00:29:52,930
+re(Student.grade<75), and so this will
+iterate over each student in the table
+
+573
+00:29:52,930 --> 00:29:56,260
+whose grade is less than 75, which
+in this case, is still just me.
+
+574
+00:29:56,260 --> 00:29:59,218
+And then you could do something within
+that loop, like send me an email
+
+575
+00:29:59,218 --> 00:30:01,680
+and tell me to actually
+turn in my Problem Sets.
+
+576
+00:30:01,680 --> 00:30:04,550
+>> So, another thing you can
+do, is it's really easy
+
+577
+00:30:04,550 --> 00:30:06,460
+to update rows within the table.
+
+578
+00:30:06,460 --> 00:30:08,720
+So, remember back here,
+your when I inserted,
+
+579
+00:30:08,720 --> 00:30:11,440
+I took the value that was
+returned by student.create,
+
+580
+00:30:11,440 --> 00:30:14,920
+and I assigned it to name called Ezra.
+
+581
+00:30:14,920 --> 00:30:18,995
+And so now, you can change the
+values within that instance,
+
+582
+00:30:18,995 --> 00:30:20,870
+just like you would a
+normal class in Python.
+
+583
+00:30:20,870 --> 00:30:25,060
+>> So you can set ezra.grade = 95 and
+that will update the local copy,
+
+584
+00:30:25,060 --> 00:30:28,380
+but if you actually want to
+commit that change to database,
+
+585
+00:30:28,380 --> 00:30:31,410
+you have to call ezra.save,
+so you called the .save method
+
+586
+00:30:31,410 --> 00:30:32,650
+on the instance.
+
+587
+00:30:32,650 --> 00:30:38,085
+>> And so now, I have successfully changed
+my own grade within the database.
+
+588
+00:30:38,085 --> 00:30:41,210
+So, then let's say that I get caught
+changing my grade within the database.
+
+589
+00:30:41,210 --> 00:30:44,126
+Professor Malan is probably going
+to want to delete me from the class,
+
+590
+00:30:44,126 --> 00:30:48,630
+and so you can call the .delete
+instance method just on that thing.
+
+591
+00:30:48,630 --> 00:30:51,674
+>> So, if you wanted to go
+back into this loop here,
+
+592
+00:30:51,674 --> 00:30:53,465
+and actually, instead
+of sending emails all
+
+593
+00:30:53,465 --> 00:30:56,577
+of the students whose grade is less
+than 75, you wanted to delete them,
+
+594
+00:30:56,577 --> 00:30:58,660
+within this loop you could
+call s.delete instance.
+
+595
+00:30:58,660 --> 00:31:04,180
+
+596
+00:31:04,180 --> 00:31:07,780
+And the very last thing you want to do,
+is whenever you establish a connection,
+
+597
+00:31:07,780 --> 00:31:10,350
+and you're done with your work,
+you want to call db.close,
+
+598
+00:31:10,350 --> 00:31:13,190
+where db is that database
+object that we had before.
+
+599
+00:31:13,190 --> 00:31:18,290
+And you want to make sure that
+everything gets closed out of.
+
+600
+00:31:18,290 --> 00:31:18,790
+>> Cool.
+
+601
+00:31:18,790 --> 00:31:22,410
+So now, I have an example application.
+
+602
+00:31:22,410 --> 00:31:26,880
+I've sort of pre-made everything just
+so that there won't be any live coding
+
+603
+00:31:26,880 --> 00:31:30,220
+mistakes, but we can walk through
+it and see how you would put Flask
+
+604
+00:31:30,220 --> 00:31:33,685
+and peewee together,
+and make a simple app.
+
+605
+00:31:33,685 --> 00:31:38,680
+I call it CS50 rant, and it's
+sort of a simple blog platform.
+
+606
+00:31:38,680 --> 00:31:41,150
+>> So, first, I'll run it and
+show what it looks like,
+
+607
+00:31:41,150 --> 00:31:42,890
+and then we can look more into the code.
+
+608
+00:31:42,890 --> 00:32:00,470
+
+609
+00:32:00,470 --> 00:32:02,830
+Okay, so let's just run this.
+
+610
+00:32:02,830 --> 00:32:14,040
+
+611
+00:32:14,040 --> 00:32:17,250
+Cool, I'll make this
+a little bit smaller.
+
+612
+00:32:17,250 --> 00:32:20,000
+It's not very pretty, just because
+I didn't make a lot of CSS,
+
+613
+00:32:20,000 --> 00:32:23,255
+but what it does is, it has
+this database of blog posts,
+
+614
+00:32:23,255 --> 00:32:25,630
+and it goes through all of
+them, and it will display them
+
+615
+00:32:25,630 --> 00:32:28,170
+on the page in order of the most recent.
+
+616
+00:32:28,170 --> 00:32:30,920
+And so these are just some posts
+that I had saved in the database.
+
+617
+00:32:30,920 --> 00:32:35,680
+>> So if we want to create a new
+post, we can go to Add a New Post,
+
+618
+00:32:35,680 --> 00:32:42,720
+and we can enter the title of the
+post, so something like, CS50 seminar.
+
+619
+00:32:42,720 --> 00:32:45,360
+
+620
+00:32:45,360 --> 00:32:46,735
+Wow, really enjoying the seminar.
+
+621
+00:32:46,735 --> 00:32:51,070
+
+622
+00:32:51,070 --> 00:32:52,270
+>> Cool.
+
+623
+00:32:52,270 --> 00:32:56,060
+Then you press post, and it will
+redirect you back to the home page,
+
+624
+00:32:56,060 --> 00:33:00,039
+and then you'll see that
+the latest post was added.
+
+625
+00:33:00,039 --> 00:33:01,580
+And we still have all the ones there.
+
+626
+00:33:01,580 --> 00:33:08,080
+So now, let's step through all of the
+code and see how this is implemented.
+
+627
+00:33:08,080 --> 00:33:11,995
+>> So, I think the first thing that let's
+take a look at, is actually the models.
+
+628
+00:33:11,995 --> 00:33:14,120
+A lot of the time, when
+you're designing something,
+
+629
+00:33:14,120 --> 00:33:17,036
+you want to think first about how
+you're going to represent your data,
+
+630
+00:33:17,036 --> 00:33:22,915
+and then design things around that,
+so that everything makes sense.
+
+631
+00:33:22,915 --> 00:33:25,290
+And that is actually how I
+did it when I was making this,
+
+632
+00:33:25,290 --> 00:33:28,030
+I sat down and thought,
+what do I want in a post.
+
+633
+00:33:28,030 --> 00:33:32,130
+>> So, here, we have the same structure
+that I was mentioning earlier,
+
+634
+00:33:32,130 --> 00:33:33,755
+where we do db=Sqldatabase('posts.db').
+
+635
+00:33:33,755 --> 00:33:37,840
+
+636
+00:33:37,840 --> 00:33:40,980
+In reality, you probably don't want
+to hard code in your name's databases.
+
+637
+00:33:40,980 --> 00:33:43,730
+That should probably be a parameter
+that's stored somewhere, maybe
+
+638
+00:33:43,730 --> 00:33:45,940
+in a config file, but in
+a small example like this,
+
+639
+00:33:45,940 --> 00:33:48,310
+it's okay to hard code that in.
+
+640
+00:33:48,310 --> 00:33:53,510
+>> So now, we have this Post class,
+which inherits from the base model.
+
+641
+00:33:53,510 --> 00:33:56,930
+And it has, again, the
+ID=PrimaryKeyField.
+
+642
+00:33:56,930 --> 00:34:02,250
+Actually, if you don't specify,
+if I actually got rid of this,
+
+643
+00:34:02,250 --> 00:34:07,152
+then peewee we will take care of
+automatically creating that ID field,
+
+644
+00:34:07,152 --> 00:34:09,360
+and it will automatically
+make it a PrimaryKey, which
+
+645
+00:34:09,360 --> 00:34:12,485
+I think is really nice, because usually,
+that's something you want to have,
+
+646
+00:34:12,485 --> 00:34:16,239
+but I like to put it in specifically,
+just so I remember that it's in there.
+
+647
+00:34:16,239 --> 00:34:19,480
+But if you don't specify that,
+that will be there automatically.
+
+648
+00:34:19,480 --> 00:34:22,198
+>> So then, I have a date which
+is a DateTimeField, and all
+
+649
+00:34:22,198 --> 00:34:24,864
+these different fields, if you
+look at the peewee documentation,
+
+650
+00:34:24,864 --> 00:34:28,920
+it'll give you a list of the different
+types of fields that you can use.
+
+651
+00:34:28,920 --> 00:34:34,440
+For the most part, it's analogous
+to what you would see in SQL.
+
+652
+00:34:34,440 --> 00:34:37,699
+So there is a CharField, a
+VarCharFields, TextFields,
+
+653
+00:34:37,699 --> 00:34:40,550
+which are for very long
+texts, like a blog post
+
+654
+00:34:40,550 --> 00:34:44,460
+potentially, DateTimeFields,
+DoubleFields, FloatFields,
+
+655
+00:34:44,460 --> 00:34:46,100
+all things like that.
+
+656
+00:34:46,100 --> 00:34:51,570
+>> And you can pass in other arguments
+to it, which I didn't specify here.
+
+657
+00:34:51,570 --> 00:34:55,719
+Say, for example, you didn't want to
+allow two posts to have the same title,
+
+658
+00:34:55,719 --> 00:34:59,672
+you could specify
+something like unique=True,
+
+659
+00:34:59,672 --> 00:35:02,880
+and that's just an extra parameter to
+the field that when it compiles it down
+
+660
+00:35:02,880 --> 00:35:06,865
+into the SQL, it will specify
+that it has to be unique.
+
+661
+00:35:06,865 --> 00:35:09,740
+You can also specify something like
+not null and all the other things
+
+662
+00:35:09,740 --> 00:35:11,750
+you normally do in SQL.
+
+663
+00:35:11,750 --> 00:35:16,020
+So, this is a pretty simple
+model that has the date.
+
+664
+00:35:16,020 --> 00:35:19,460
+Notice here, within the DateTimeField,
+I specified what the default is.
+
+665
+00:35:19,460 --> 00:35:22,560
+I specified it to be
+datetime.datetime.now,
+
+666
+00:35:22,560 --> 00:35:24,920
+because of the way that
+this gets evaluated,
+
+667
+00:35:24,920 --> 00:35:28,750
+it actually evaluates
+the datetime.now when
+
+668
+00:35:28,750 --> 00:35:32,110
+it gets inserted into the database.
+
+669
+00:35:32,110 --> 00:35:34,760
+>> I think that, I'd have
+to double check this,
+
+670
+00:35:34,760 --> 00:35:38,222
+but if you did something like this, then
+it would actually evaluate that once,
+
+671
+00:35:38,222 --> 00:35:40,180
+and then the DateTime
+would always be the same.
+
+672
+00:35:40,180 --> 00:35:44,240
+So, just if you're doing something
+with datetimes, double check
+
+673
+00:35:44,240 --> 00:35:47,080
+that it's evaluating when
+actually gets inserted, or else
+
+674
+00:35:47,080 --> 00:35:48,780
+you might be confused.
+
+675
+00:35:48,780 --> 00:35:51,221
+>> The title is just a
+CharField, which there
+
+676
+00:35:51,221 --> 00:35:53,970
+are more arguments you can pass
+in specifying exactly how long you
+
+677
+00:35:53,970 --> 00:35:56,170
+want it to be, but here,
+it didn't really matter.
+
+678
+00:35:56,170 --> 00:35:58,687
+And Text is going to be
+the text of the whole post,
+
+679
+00:35:58,687 --> 00:36:01,020
+and that's going to be a
+TextField just because you want
+
+680
+00:36:01,020 --> 00:36:03,370
+to allow it to be a pretty long string.
+
+681
+00:36:03,370 --> 00:36:05,970
+>> Then we have this Meta
+subclass that just
+
+682
+00:36:05,970 --> 00:36:11,250
+specifies that we want the database
+where this is actually opened up into
+
+683
+00:36:11,250 --> 00:36:14,267
+to be the db object that we have here.
+
+684
+00:36:14,267 --> 00:36:16,350
+And last thing we have
+here, is just this function
+
+685
+00:36:16,350 --> 00:36:18,120
+that we're going to
+use from our main app
+
+686
+00:36:18,120 --> 00:36:23,970
+to initialize the database to connect to
+it, and then to create the Post table.
+
+687
+00:36:23,970 --> 00:36:26,880
+>> Now, let's look at the main app itself.
+
+688
+00:36:26,880 --> 00:36:30,800
+So this one is quite a
+bit longer than the ones
+
+689
+00:36:30,800 --> 00:36:34,840
+that we've seen before,
+but hopefully not too bad.
+
+690
+00:36:34,840 --> 00:36:37,140
+So, let me extend this out.
+
+691
+00:36:37,140 --> 00:36:38,370
+Okay.
+
+692
+00:36:38,370 --> 00:36:42,070
+>> So, notice and the top I imported
+a whole bunch of other things
+
+693
+00:36:42,070 --> 00:36:44,129
+from Flask that we haven't
+really seen before.
+
+694
+00:36:44,129 --> 00:36:46,670
+And hopefully, we can go through
+each one of these one by one
+
+695
+00:36:46,670 --> 00:36:49,420
+and talk a little more about
+them, sorted by example.
+
+696
+00:36:49,420 --> 00:36:51,380
+So, we have the Flask,
+and the render_template,
+
+697
+00:36:51,380 --> 00:36:54,370
+which we've seen before,
+this request object,
+
+698
+00:36:54,370 --> 00:37:00,400
+which will come up when we look at how
+the form that I was showing actually
+
+699
+00:37:00,400 --> 00:37:01,170
+works.
+
+700
+00:37:01,170 --> 00:37:04,850
+Redirect, which lets you redirect
+back from the Create New Post
+
+701
+00:37:04,850 --> 00:37:11,710
+back to the original homepage, and then
+URL, which is something that lets you
+
+702
+00:37:11,710 --> 00:37:15,550
+figure out where on the
+website a particular page is.
+
+703
+00:37:15,550 --> 00:37:17,810
+>> So then, the next
+thing I do, is I import
+
+704
+00:37:17,810 --> 00:37:21,550
+all of the information from the Models
+files that we were just looking at.
+
+705
+00:37:21,550 --> 00:37:23,140
+And, yeah.
+
+706
+00:37:23,140 --> 00:37:28,720
+>> So, something else new that comes
+up when you're dealing with,
+
+707
+00:37:28,720 --> 00:37:31,850
+especially databases,
+is that you can specify
+
+708
+00:37:31,850 --> 00:37:35,110
+a function that gets called before
+every request, and function that gets
+
+709
+00:37:35,110 --> 00:37:39,690
+called after every request, using this
+function decorator app.before request.
+
+710
+00:37:39,690 --> 00:37:42,324
+>> And so this will get executed
+wherever this function is.
+
+711
+00:37:42,324 --> 00:37:44,240
+This doesn't have to be
+called before request,
+
+712
+00:37:44,240 --> 00:37:46,281
+but usually that's something
+sensible to call it.
+
+713
+00:37:46,281 --> 00:37:48,580
+
+714
+00:37:48,580 --> 00:37:51,650
+You can specify whatever function
+you want to get called there,
+
+715
+00:37:51,650 --> 00:37:56,330
+so I specified this initialize_db
+function that we had back in the Models
+
+716
+00:37:56,330 --> 00:38:02,390
+file, so before every request, you
+want to connect to the database.
+
+717
+00:38:02,390 --> 00:38:04,560
+>> There are two different
+ways you can do this.
+
+718
+00:38:04,560 --> 00:38:10,830
+You can do @app., i
+believe it's after_request.
+
+719
+00:38:10,830 --> 00:38:13,800
+And the difference between
+after_request and teardown_request,
+
+720
+00:38:13,800 --> 00:38:17,590
+is that after_request will only happen
+if the request actually was valid.
+
+721
+00:38:17,590 --> 00:38:20,440
+And so, only if the
+request was successful,
+
+722
+00:38:20,440 --> 00:38:22,490
+if nothing went wrong,
+but teardown_request
+
+723
+00:38:22,490 --> 00:38:26,300
+happens in the case of a successful
+request, or in the case of an error.
+
+724
+00:38:26,300 --> 00:38:28,252
+>> So, usually, you want
+to use teardown_request,
+
+725
+00:38:28,252 --> 00:38:30,460
+unless you want to do
+something, especially different
+
+726
+00:38:30,460 --> 00:38:31,470
+in the case of an error.
+
+727
+00:38:31,470 --> 00:38:35,122
+But just for closing the database,
+whether it succeeds or if it fails,
+
+728
+00:38:35,122 --> 00:38:37,080
+we do you want to disconnect
+from the database.
+
+729
+00:38:37,080 --> 00:38:41,240
+So it's called, db.close
+on the db object.
+
+730
+00:38:41,240 --> 00:38:43,740
+>> Notice that the teardown_request
+takes in an exception.
+
+731
+00:38:43,740 --> 00:38:46,781
+So you can check if there was actually
+an error when it was closing down,
+
+732
+00:38:46,781 --> 00:38:49,390
+but here, hopefully, there
+aren't a whole lot of errors,
+
+733
+00:38:49,390 --> 00:38:52,720
+so we're just sort of ignoring that.
+
+734
+00:38:52,720 --> 00:38:55,990
+>> Okay, and the rest of it is not too bad.
+
+735
+00:38:55,990 --> 00:39:02,240
+So, when we go to the home page,
+we rendered this home.html Template
+
+736
+00:39:02,240 --> 00:39:03,490
+that will open up.
+
+737
+00:39:03,490 --> 00:39:06,240
+The pass is in post
+equal to, and what this
+
+738
+00:39:06,240 --> 00:39:10,260
+does is, remember we have this post
+model, so we select all the posts,
+
+739
+00:39:10,260 --> 00:39:13,890
+and then another thing you can do,
+you can specify the WHERE clause,
+
+740
+00:39:13,890 --> 00:39:16,910
+you can specify an
+order by, and so we take
+
+741
+00:39:16,910 --> 00:39:18,820
+all of the posts that
+get selected, and then
+
+742
+00:39:18,820 --> 00:39:22,590
+we order them by the
+post.date.descending.
+
+743
+00:39:22,590 --> 00:39:25,030
+And that will specify, when
+they actually come out,
+
+744
+00:39:25,030 --> 00:39:29,250
+the most recent one
+will be very first one.
+
+745
+00:39:29,250 --> 00:39:31,420
+>> And then, we pass that into
+the home.html template,
+
+746
+00:39:31,420 --> 00:39:34,240
+so let's actually open up
+that Template really quick,
+
+747
+00:39:34,240 --> 00:39:36,760
+and take a look at how that's working.
+
+748
+00:39:36,760 --> 00:39:42,130
+And this is not great HTML, but
+hopefully, we can focus on the Python.
+
+749
+00:39:42,130 --> 00:39:46,960
+>> So there's a link to the Add New
+Post, and so this specifies the route
+
+750
+00:39:46,960 --> 00:39:51,580
+within the Flask that we
+define, which is right here.
+
+751
+00:39:51,580 --> 00:39:56,310
+This is the new post route,
+and we specify that up here.
+
+752
+00:39:56,310 --> 00:40:00,450
+And so that is a link that will then go
+to that route within the Flask server.
+
+753
+00:40:00,450 --> 00:40:03,820
+>> The more interesting thing
+is this for loop here.
+
+754
+00:40:03,820 --> 00:40:07,685
+So we specify that this
+post parameter which
+
+755
+00:40:07,685 --> 00:40:09,560
+was passed into the
+render_template function,
+
+756
+00:40:09,560 --> 00:40:13,550
+for every post in the post's
+object that gets passed in.
+
+757
+00:40:13,550 --> 00:40:16,600
+We want to print out
+the post title, in H1,
+
+758
+00:40:16,600 --> 00:40:21,930
+and then below, we want to print out
+the post text within a paragraph.
+
+759
+00:40:21,930 --> 00:40:25,710
+>> And here, we can actually
+call a Python function,
+
+760
+00:40:25,710 --> 00:40:35,130
+so we can call strftime, ST-RF-time,
+and you can pass in the format string
+
+761
+00:40:35,130 --> 00:40:37,064
+that you want to print the data out in.
+
+762
+00:40:37,064 --> 00:40:39,980
+So it's is pretty nice that you can
+actually call this Python function
+
+763
+00:40:39,980 --> 00:40:41,090
+from within here.
+
+764
+00:40:41,090 --> 00:40:44,370
+You don't have to do the formatting on
+the controller side, because really,
+
+765
+00:40:44,370 --> 00:40:47,770
+formatting the date is something that
+you want to deal within the View.
+
+766
+00:40:47,770 --> 00:40:51,480
+>> And all of these percent
+things is not super important.
+
+767
+00:40:51,480 --> 00:40:55,270
+If you look up the documentation
+for the strftime function in Python,
+
+768
+00:40:55,270 --> 00:40:57,040
+it specifies all these
+things, but that's
+
+769
+00:40:57,040 --> 00:40:59,190
+how, when we were looking
+at the home page here,
+
+770
+00:40:59,190 --> 00:41:04,440
+it formats this with a nice
+date, and it specifies AM or PM,
+
+771
+00:41:04,440 --> 00:41:09,410
+but normally, if we
+didn't have this here,
+
+772
+00:41:09,410 --> 00:41:14,024
+you'll probably get some garbage
+date that didn't look very good.
+
+773
+00:41:14,024 --> 00:41:15,940
+And then we specify the
+post.text, and I could
+
+774
+00:41:15,940 --> 00:41:19,460
+have put a couple of
+line breaks here, just
+
+775
+00:41:19,460 --> 00:41:21,820
+to put some spaces between each post.
+
+776
+00:41:21,820 --> 00:41:26,270
+>> So, I think the most important
+thing in this example,
+
+777
+00:41:26,270 --> 00:41:28,697
+is that you can use this for loop.
+
+778
+00:41:28,697 --> 00:41:30,780
+And this is analogous to
+things you can do in PHP.
+
+779
+00:41:30,780 --> 00:41:32,905
+You can iterate through,
+everything gets passed in,
+
+780
+00:41:32,905 --> 00:41:36,719
+and so, instead of having to do
+copy/paste, copy/paste all the HTML,
+
+781
+00:41:36,719 --> 00:41:40,010
+you just have to write it once, and then
+you can iterate over all of the posts.
+
+782
+00:41:40,010 --> 00:41:41,510
+>> And this is something
+common that you want
+
+783
+00:41:41,510 --> 00:41:44,510
+to do, when you have a lot of data,
+is that for everything in your data,
+
+784
+00:41:44,510 --> 00:41:48,370
+you want to do a similar thing.
+
+785
+00:41:48,370 --> 00:41:51,690
+And then, just remember, that when you
+want to print out something explicitly
+
+786
+00:41:51,690 --> 00:41:54,780
+in the HTML, you use
+the double braces here,
+
+787
+00:41:54,780 --> 00:41:57,820
+but then when you want to specify
+some information about a condition,
+
+788
+00:41:57,820 --> 00:42:02,430
+or about a for loop, you
+use the percent bracket.
+
+789
+00:42:02,430 --> 00:42:08,730
+>> So, going back to the Python
+code, so that explains
+
+790
+00:42:08,730 --> 00:42:12,242
+what's happening in the main
+route, when we go there,
+
+791
+00:42:12,242 --> 00:42:14,450
+it just displays all the
+posts, but then the question
+
+792
+00:42:14,450 --> 00:42:17,440
+is, how do we actually get
+posts into the database, which
+
+793
+00:42:17,440 --> 00:42:18,970
+is a little bit more interesting.
+
+794
+00:42:18,970 --> 00:42:23,960
+>> So, when you click on the New
+Post link, which we saw here,
+
+795
+00:42:23,960 --> 00:42:26,000
+it redirects you to this form.
+
+796
+00:42:26,000 --> 00:42:29,580
+And that's just a simple call to the
+render_template function, which then
+
+797
+00:42:29,580 --> 00:42:32,110
+passes in the new post in HTML form.
+
+798
+00:42:32,110 --> 00:42:36,212
+So let's take a look at that.
+
+799
+00:42:36,212 --> 00:42:37,420
+So this one is pretty simple.
+
+800
+00:42:37,420 --> 00:42:45,110
+It has a simple HTML form, which
+will look a little bit familiar,
+
+801
+00:42:45,110 --> 00:42:47,380
+based on the forms in CS50 Finance.
+
+802
+00:42:47,380 --> 00:42:49,940
+And so, we specify here, the action.
+
+803
+00:42:49,940 --> 00:42:52,435
+And here, if you're working
+with PHP, normally, it
+
+804
+00:42:52,435 --> 00:42:55,930
+would be something like,
+create.PHP, but here
+
+805
+00:42:55,930 --> 00:42:59,960
+we actually specify a route
+within the Flask server.
+
+806
+00:42:59,960 --> 00:43:02,520
+And so, this route corresponds
+to the create route
+
+807
+00:43:02,520 --> 00:43:05,680
+that we have here, which
+we'll go into in a second.
+
+808
+00:43:05,680 --> 00:43:07,630
+>> And so, we specify that
+it's a post method,
+
+809
+00:43:07,630 --> 00:43:09,820
+because we want to send
+this form data, and usually
+
+810
+00:43:09,820 --> 00:43:12,945
+when you're sending data from a form,
+you might want to use a post request,
+
+811
+00:43:12,945 --> 00:43:15,760
+just so you don't end up
+with this big, unwieldy URL.
+
+812
+00:43:15,760 --> 00:43:18,970
+But you could also use a GET request,
+and pass it in with variable routing,
+
+813
+00:43:18,970 --> 00:43:21,170
+but for forms, it's nice
+to a post request here.
+
+814
+00:43:21,170 --> 00:43:24,620
+And so then, just like you
+would do with HTML and PHP,
+
+815
+00:43:24,620 --> 00:43:28,420
+you can specify these text inputs,
+and you can specify the name of them,
+
+816
+00:43:28,420 --> 00:43:33,490
+and that's the name that will get passed
+into the request object within Flask.
+
+817
+00:43:33,490 --> 00:43:36,960
+>> And then we have a Submit
+button that says Post.
+
+818
+00:43:36,960 --> 00:43:40,760
+And here, Post is the name of the
+button, because it's a blog post,
+
+819
+00:43:40,760 --> 00:43:42,700
+but here, post is the request method.
+
+820
+00:43:42,700 --> 00:43:47,060
+So those are the same word
+but actually unrelated.
+
+821
+00:43:47,060 --> 00:43:48,460
+Yeah
+
+822
+00:43:48,460 --> 00:43:54,800
+>> Going back to the Python code,
+when we called the create method,
+
+823
+00:43:54,800 --> 00:43:57,702
+notice here that you can
+actually specify within the route
+
+824
+00:43:57,702 --> 00:44:00,650
+the request methods
+that you want to accept,
+
+825
+00:44:00,650 --> 00:44:04,770
+and so here, I specify that I
+only want to accept a Post method.
+
+826
+00:44:04,770 --> 00:44:09,800
+So, if I actually try to visit the page
+directly, which is using a GET request,
+
+827
+00:44:09,800 --> 00:44:11,700
+it will tell me "Method not allowed."
+
+828
+00:44:11,700 --> 00:44:15,840
+>> And so, you have pages, sort of like
+this create page, which I'm only
+
+829
+00:44:15,840 --> 00:44:20,192
+really using as a way for
+the form to get submitted,
+
+830
+00:44:20,192 --> 00:44:22,900
+you can specify that you don't
+want people to be able to go there
+
+831
+00:44:22,900 --> 00:44:25,650
+directly via a GET request,
+or if you didn't want,
+
+832
+00:44:25,650 --> 00:44:28,580
+for some reason, a Post request,
+you could just specify GET here,
+
+833
+00:44:28,580 --> 00:44:32,720
+but in this example, we just
+want the Post request to go out.
+
+834
+00:44:32,720 --> 00:44:38,700
+>> So, when create_post is called, when
+we visit that via the Post request,
+
+835
+00:44:38,700 --> 00:44:43,600
+whenever you go to a particular
+route, there's this request object,
+
+836
+00:44:43,600 --> 00:44:46,640
+and we had to import
+requests at the very top,
+
+837
+00:44:46,640 --> 00:44:49,640
+but there's this request
+object that gets passed in,
+
+838
+00:44:49,640 --> 00:44:53,210
+and you can access the form data,
+which will automatically get filled
+
+839
+00:44:53,210 --> 00:44:55,070
+when you send a request from a form.
+
+840
+00:44:55,070 --> 00:44:56,990
+>> And then, what I think
+is really cool, is
+
+841
+00:44:56,990 --> 00:45:02,840
+that the form object to get passed
+in, is just a Python dictionary that
+
+842
+00:45:02,840 --> 00:45:10,560
+contains, if you access-- so here, let
+me pull up the HTML next to it, just
+
+843
+00:45:10,560 --> 00:45:17,670
+so you can have that
+as a reference, yes, so
+
+844
+00:45:17,670 --> 00:45:21,060
+the names that we specify here
+for the different fields, so
+
+845
+00:45:21,060 --> 00:45:23,900
+the title and the text, we
+then just use those over here
+
+846
+00:45:23,900 --> 00:45:27,110
+as indices into the form data.
+
+847
+00:45:27,110 --> 00:45:28,950
+So that's super convenient.
+
+848
+00:45:28,950 --> 00:45:33,320
+>> So then we call post.create, which
+will create and automatically insert
+
+849
+00:45:33,320 --> 00:45:36,850
+this new post object into the database.
+
+850
+00:45:36,850 --> 00:45:40,690
+And I think this create function
+here is a really cool example of how
+
+851
+00:45:40,690 --> 00:45:44,900
+powerful Flask is and working with this,
+because if you were doing something
+
+852
+00:45:44,900 --> 00:45:48,660
+in PHP, you might have to
+do a lot of validation,
+
+853
+00:45:48,660 --> 00:45:51,730
+you would have to then
+establish a database connection,
+
+854
+00:45:51,730 --> 00:45:55,210
+you would have to then
+execute the SQL query,
+
+855
+00:45:55,210 --> 00:45:59,550
+but here we just have this nice
+post.create, which we can then just
+
+856
+00:45:59,550 --> 00:46:01,520
+get the information out
+of the request object,
+
+857
+00:46:01,520 --> 00:46:05,370
+and then pass it into a new
+post that we're creating.
+
+858
+00:46:05,370 --> 00:46:07,850
+>> And then, the very last
+thing we want to do,
+
+859
+00:46:07,850 --> 00:46:09,630
+is to redirect the
+user back to the home.
+
+860
+00:46:09,630 --> 00:46:13,020
+And so we use this
+Flask redirect function.
+
+861
+00:46:13,020 --> 00:46:17,770
+And something that we hadn't seen
+before, was this URL function.
+
+862
+00:46:17,770 --> 00:46:21,970
+So the URL for function lets
+you pass in actually the name
+
+863
+00:46:21,970 --> 00:46:26,090
+of a function in your Python code,
+rather than the particular route
+
+864
+00:46:26,090 --> 00:46:26,720
+that it's at.
+
+865
+00:46:26,720 --> 00:46:32,107
+>> So I could have just as easily
+redirected a user to slash,
+
+866
+00:46:32,107 --> 00:46:37,050
+which would send it back home, but
+using the URL for function is nice,
+
+867
+00:46:37,050 --> 00:46:39,990
+because if you change the
+location where things are,
+
+868
+00:46:39,990 --> 00:46:44,080
+so let's say that I change the
+home to be at /home instead,
+
+869
+00:46:44,080 --> 00:46:47,040
+this would still then return /home,
+because actually goes and looks up
+
+870
+00:46:47,040 --> 00:46:50,770
+the name of the function, and it
+will give you back the URL for that.
+
+871
+00:46:50,770 --> 00:46:52,490
+>> So, sort of on the
+assumption that you're
+
+872
+00:46:52,490 --> 00:46:55,489
+more likely to change where things
+are, than the names of the functions.
+
+873
+00:46:55,489 --> 00:46:58,840
+You can use this really
+nice URL for function.
+
+874
+00:46:58,840 --> 00:47:02,470
+And one thing to be aware of
+that is a little bit tricky,
+
+875
+00:47:02,470 --> 00:47:05,750
+is that you think you could just
+call redirect on the URL for,
+
+876
+00:47:05,750 --> 00:47:10,600
+but actually all of the routes have
+to return some sort of text and HTML,
+
+877
+00:47:10,600 --> 00:47:14,360
+so you actually have to
+return the redirect call.
+
+878
+00:47:14,360 --> 00:47:18,379
+Otherwise, you'll get something
+invalid about not returning a string,
+
+879
+00:47:18,379 --> 00:47:21,420
+because all of these have to return
+the HTML you actually want to render.
+
+880
+00:47:21,420 --> 00:47:26,980
+>> And so, when you call the redirect,
+it redirects you to the page,
+
+881
+00:47:26,980 --> 00:47:30,270
+but it actually returns the HTML
+you need to execute that redirect.
+
+882
+00:47:30,270 --> 00:47:34,430
+
+883
+00:47:34,430 --> 00:47:37,110
+Go back to the home page.
+
+884
+00:47:37,110 --> 00:47:39,200
+So we have these two different views.
+
+885
+00:47:39,200 --> 00:47:40,132
+We have the home view.
+
+886
+00:47:40,132 --> 00:47:41,590
+Or, I guess I should say templates.
+
+887
+00:47:41,590 --> 00:47:44,190
+We have these two templates,
+the home template which
+
+888
+00:47:44,190 --> 00:47:48,500
+displays all of our posts, and
+then we have this ad thing,
+
+889
+00:47:48,500 --> 00:47:52,970
+and when you click the post, it goes
+to a new route within the Flask,
+
+890
+00:47:52,970 --> 00:47:55,920
+but that route doesn't necessarily
+have a corresponding template.
+
+891
+00:47:55,920 --> 00:47:59,290
+
+892
+00:47:59,290 --> 00:48:01,560
+You don't have to see
+anything, but you can still
+
+893
+00:48:01,560 --> 00:48:04,090
+have this work going
+on behind the scenes.
+
+894
+00:48:04,090 --> 00:48:07,450
+And then you get redirected
+back to the home page.
+
+895
+00:48:07,450 --> 00:48:12,230
+And definitely, it's easy to work
+in some nicer CSS into the template
+
+896
+00:48:12,230 --> 00:48:15,580
+and make this look a lot nicer,
+but all of the main logic
+
+897
+00:48:15,580 --> 00:48:18,590
+is there in the Python.
+
+898
+00:48:18,590 --> 00:48:20,020
+>> Any questions about that example?
+
+899
+00:48:20,020 --> 00:48:22,760
+I know there are a lot of
+different things going on there,
+
+900
+00:48:22,760 --> 00:48:25,341
+a lot of things we hadn't seen
+before, but like anything.
+
+901
+00:48:25,341 --> 00:48:25,840
+Yeah.
+
+902
+00:48:25,840 --> 00:48:28,346
+>> AUDIENCE 1: Do you have to do anything
+special to scrub the data that's
+
+903
+00:48:28,346 --> 00:48:29,600
+coming in from the form?
+
+904
+00:48:29,600 --> 00:48:31,109
+I noticed you just said "create,"
+
+905
+00:48:31,109 --> 00:48:33,900
+EZRA ZIGMOND: Yeah, so that's
+actually, that's a really good point.
+
+906
+00:48:33,900 --> 00:48:36,350
+So the question was, do you
+need to check and make sure
+
+907
+00:48:36,350 --> 00:48:39,190
+that the data is valid, and
+do any sort of scrubbing
+
+908
+00:48:39,190 --> 00:48:41,840
+to make sure that it is valid,
+because as you can see here,
+
+909
+00:48:41,840 --> 00:48:42,660
+I'm not doing that.
+
+910
+00:48:42,660 --> 00:48:48,140
+So let's see what happens
+if I post something blank.
+
+911
+00:48:48,140 --> 00:48:51,190
+So, it'll actually just make a
+blank post and fill in the DateTime.
+
+912
+00:48:51,190 --> 00:48:55,990
+>> So in reality, you would probably
+want to do something like,
+
+913
+00:48:55,990 --> 00:49:04,749
+maybe specify if title is equal to
+the empty string, then don't do this.
+
+914
+00:49:04,749 --> 00:49:07,290
+Or, only do it if the title is
+not equal to the empty string.
+
+915
+00:49:07,290 --> 00:49:10,330
+So it doesn't actually automatically
+take care of that scrubbing
+
+916
+00:49:10,330 --> 00:49:12,820
+for you, so you still need to do that.
+
+917
+00:49:12,820 --> 00:49:14,330
+Yeah, good question.
+
+918
+00:49:14,330 --> 00:49:18,497
+>> AUDIENCE 2: Does it scrub
+for sequel injection?
+
+919
+00:49:18,497 --> 00:49:19,890
+Do you know?
+
+920
+00:49:19,890 --> 00:49:22,830
+>> EZRA ZIGMOND: Hopefully,
+peewee does that.
+
+921
+00:49:22,830 --> 00:49:25,830
+I think it would certainly be a pretty
+bad library if it didn't do that.
+
+922
+00:49:25,830 --> 00:49:29,511
+
+923
+00:49:29,511 --> 00:49:32,690
+I don't know exactly.
+
+924
+00:49:32,690 --> 00:49:34,820
+I'd have to look at the
+query that it generated.
+
+925
+00:49:34,820 --> 00:49:38,980
+I think that, if I typed in a
+blog post that sort of looked
+
+926
+00:49:38,980 --> 00:49:46,370
+like a SQL injection attack,
+something like this, if this
+
+927
+00:49:46,370 --> 00:49:49,370
+is like a password field or something,
+you might do something like this.
+
+928
+00:49:49,370 --> 00:49:53,410
+>> I think that will still
+get literally posted,
+
+929
+00:49:53,410 --> 00:49:59,200
+but I think that peewee does do
+some sort of scrubbing of the data
+
+930
+00:49:59,200 --> 00:50:01,680
+before it actually executes it.
+
+931
+00:50:01,680 --> 00:50:04,510
+>> AUDIENCE 1: That text field is
+designed to take plain text, right?
+
+932
+00:50:04,510 --> 00:50:05,710
+>> EZRA ZIGMOND: Yeah, it is.
+
+933
+00:50:05,710 --> 00:50:06,465
+Yeah.
+
+934
+00:50:06,465 --> 00:50:09,590
+So I think that all of the, so this is
+correct behavior, that will do that,
+
+935
+00:50:09,590 --> 00:50:12,170
+but I think that peewee
+hopefully does do
+
+936
+00:50:12,170 --> 00:50:13,780
+some sort of protection on their end.
+
+937
+00:50:13,780 --> 00:50:16,090
+And if you wanted to
+double check that, there
+
+938
+00:50:16,090 --> 00:50:19,530
+are ways when you generate a query.
+
+939
+00:50:19,530 --> 00:50:22,622
+so you don't have to
+execute it directly.
+
+940
+00:50:22,622 --> 00:50:24,330
+I'd have to take a
+look at documentation,
+
+941
+00:50:24,330 --> 00:50:27,930
+but you can actually view the
+SQL that it is generating,
+
+942
+00:50:27,930 --> 00:50:30,840
+and take a look at that, and make
+sure that it is escaping things.
+
+943
+00:50:30,840 --> 00:50:33,700
+>> Another reason why you might
+want to look at the SQL
+
+944
+00:50:33,700 --> 00:50:37,920
+that peewee is outputting, is if
+things seem to be going really slowly,
+
+945
+00:50:37,920 --> 00:50:41,090
+you can take a look and see what it's
+actually doing, because it's sometimes
+
+946
+00:50:41,090 --> 00:50:44,670
+easy to accidentally add
+in, the way you write it,
+
+947
+00:50:44,670 --> 00:50:47,880
+you can accidentally have it
+select the entire database first,
+
+948
+00:50:47,880 --> 00:50:50,230
+and then do some sort operation
+on that, when you really
+
+949
+00:50:50,230 --> 00:50:51,320
+meant to select a subset.
+
+950
+00:50:51,320 --> 00:50:53,560
+>> And so, if things aren't
+quite going right,
+
+951
+00:50:53,560 --> 00:50:57,300
+it's good to take a look at the request
+that's actually getting generated.
+
+952
+00:50:57,300 --> 00:50:57,800
+Yeah.
+
+953
+00:50:57,800 --> 00:51:02,100
+>> AUDIENCE 2: When you first started,
+you put in the port as 5000.
+
+954
+00:51:02,100 --> 00:51:02,904
+>> EZRA ZIGMOND: Yeah.
+
+955
+00:51:02,904 --> 00:51:06,070
+AUDIENCE 2: Is the default with peewee,
+or is that something you can change?
+
+956
+00:51:06,070 --> 00:51:10,870
+EZRA ZIGMOND: Yes, so the
+port is default with Flask.
+
+957
+00:51:10,870 --> 00:51:13,061
+If you run it without
+specifying anything,
+
+958
+00:51:13,061 --> 00:51:14,310
+it will automatically do that.
+
+959
+00:51:14,310 --> 00:51:16,060
+I believe, I'd have
+to double check this,
+
+960
+00:51:16,060 --> 00:51:19,130
+but you can specify that in the app.run,
+I think you can do something like,
+
+961
+00:51:19,130 --> 00:51:19,629
+port=8080.
+
+962
+00:51:19,629 --> 00:51:22,375
+
+963
+00:51:22,375 --> 00:51:23,750
+Let's give that a try real quick.
+
+964
+00:51:23,750 --> 00:51:29,100
+
+965
+00:51:29,100 --> 00:51:32,230
+Yeah, so you can just specify
+port=8080, and it will run it there,
+
+966
+00:51:32,230 --> 00:51:36,130
+which I think, if you wanted to run it
+on the IDE, I haven't tried this out,
+
+967
+00:51:36,130 --> 00:51:38,527
+but I think that if you
+ran it on port 8080,
+
+968
+00:51:38,527 --> 00:51:40,360
+you'd probably be able
+to access the server,
+
+969
+00:51:40,360 --> 00:51:41,870
+just like you were for the website.
+
+970
+00:51:41,870 --> 00:51:44,390
+>> Yeah, but it's easy
+to change that if you
+
+971
+00:51:44,390 --> 00:51:48,540
+have any sort of like port-forwarding
+things that you need to do.
+
+972
+00:51:48,540 --> 00:51:50,410
+>> Any other questions?
+
+973
+00:51:50,410 --> 00:51:50,916
+Yeah?
+
+974
+00:51:50,916 --> 00:51:53,416
+AUDIENCE 1: So, I saw in your
+models that, as you mentioned,
+
+975
+00:51:53,416 --> 00:51:55,647
+you have to specify the
+database for each object.
+
+976
+00:51:55,647 --> 00:51:58,105
+Do you happen to know, does
+that make it really easy if you
+
+977
+00:51:58,105 --> 00:52:03,210
+have lots of SQLIte databases that you
+want to use for one single web app,
+
+978
+00:52:03,210 --> 00:52:07,210
+that you can just specify a bunch
+of different ones in your model?
+
+979
+00:52:07,210 --> 00:52:11,620
+>> EZRA ZIGMOND: Yeah, let me
+open that up real quick.
+
+980
+00:52:11,620 --> 00:52:17,570
+So, you're saying, if you want to have
+a bunch of different something, maybe
+
+981
+00:52:17,570 --> 00:52:22,670
+like and the students, for some
+reason, something like that?
+
+982
+00:52:22,670 --> 00:52:26,870
+Yeah, so I think that
+you still, each model
+
+983
+00:52:26,870 --> 00:52:30,652
+would have to still have just
+one database assigned to it,
+
+984
+00:52:30,652 --> 00:52:32,610
+but if you wanted to have
+different models that
+
+985
+00:52:32,610 --> 00:52:35,818
+have different database objects assigned
+to it, you could definitely do that.
+
+986
+00:52:35,818 --> 00:52:43,070
+So, if I created a new,
+something like this,
+
+987
+00:52:43,070 --> 00:52:47,000
+and now this is a student that
+looks oddly like a blog post,
+
+988
+00:52:47,000 --> 00:52:49,390
+I could specify that the
+database is equal to db_2 here.
+
+989
+00:52:49,390 --> 00:52:51,390
+So, I think that's the
+main way you can do that.
+
+990
+00:52:51,390 --> 00:52:54,560
+
+991
+00:52:54,560 --> 00:52:56,200
+>> Cool.
+
+992
+00:52:56,200 --> 00:52:58,410
+Any other questions?
+
+993
+00:52:58,410 --> 00:53:02,170
+>> So just to finish up a little
+bit, here are some resources,
+
+994
+00:53:02,170 --> 00:53:06,030
+and these slides will be posted online
+so you can actually get to these links.
+
+995
+00:53:06,030 --> 00:53:08,500
+The best resources are really
+the documentation for Flask
+
+996
+00:53:08,500 --> 00:53:09,930
+and peewee themselves.
+
+997
+00:53:09,930 --> 00:53:12,940
+They're written really well, I think.
+
+998
+00:53:12,940 --> 00:53:18,180
+So, the Flask website is here, and
+they have a quickstart tutorial that
+
+999
+00:53:18,180 --> 00:53:20,710
+will walk through similar
+things to what I walked through,
+
+1000
+00:53:20,710 --> 00:53:23,560
+but if you want any sort of review
+of the things that I went over,
+
+1001
+00:53:23,560 --> 00:53:26,200
+or you thought that I explained
+something in a confusing way,
+
+1002
+00:53:26,200 --> 00:53:28,390
+they'll have similar examples there.
+
+1003
+00:53:28,390 --> 00:53:31,570
+>> Peewee has documentation, and
+they have a quickstart tutorial
+
+1004
+00:53:31,570 --> 00:53:34,650
+that goes over the main parameters
+that you would want to use.
+
+1005
+00:53:34,650 --> 00:53:38,900
+So, the things I talked about with
+the unique, and specifying defaults,
+
+1006
+00:53:38,900 --> 00:53:42,710
+the different sorts of fields that
+you can use, those would all be there.
+
+1007
+00:53:42,710 --> 00:53:44,690
+>> Also, if you have
+questions about peewee,
+
+1008
+00:53:44,690 --> 00:53:47,530
+and you post them on stackoverflow,
+the guy who made peewee actually
+
+1009
+00:53:47,530 --> 00:53:49,500
+goes on and answers those sometimes.
+
+1010
+00:53:49,500 --> 00:53:53,200
+If you have a question, hopefully
+he'll be able to answer it,
+
+1011
+00:53:53,200 --> 00:53:54,867
+because he wrote the whole thing.
+
+1012
+00:53:54,867 --> 00:53:56,700
+I think that's everything
+I wanted to cover.
+
+1013
+00:53:56,700 --> 00:53:58,930
+Thanks for coming out.
+
+1014
+00:53:58,930 --> 00:54:02,688

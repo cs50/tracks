@@ -1,0 +1,735 @@
+1
+00:00:00,000 --> 00:00:00,500
+
+
+2
+00:00:00,500 --> 00:00:02,550
+ZAMLYA CHAN: Let's save
+the day with Recover.
+
+3
+00:00:02,550 --> 00:00:05,130
+In Recover, we provide
+you with a memory card,
+
+4
+00:00:05,130 --> 00:00:09,200
+but we've accidentally deleted
+all of the photos on it.
+
+5
+00:00:09,200 --> 00:00:12,500
+So your job is to recover
+all of those JPEGs
+
+6
+00:00:12,500 --> 00:00:15,180
+so that we can see those pictures again.
+
+7
+00:00:15,180 --> 00:00:18,230
+Now, this might seem a little bit
+daunting, especially because there's
+
+8
+00:00:18,230 --> 00:00:20,700
+no distribution code to work off of.
+
+9
+00:00:20,700 --> 00:00:24,910
+But grab your pen and paper, get
+ready to draw some concepts out.
+
+10
+00:00:24,910 --> 00:00:26,860
+We're going to get this done.
+
+11
+00:00:26,860 --> 00:00:29,300
+Let's break this up
+into manageable pieces.
+
+12
+00:00:29,300 --> 00:00:32,850
+So first, I'll talk about how
+to open the memory card file.
+
+13
+00:00:32,850 --> 00:00:37,830
+Then we'll talk about how all JPEGs have
+a distinct header, so we can use this
+
+14
+00:00:37,830 --> 00:00:40,200
+to find the beginning of a new JPEG.
+
+15
+00:00:40,200 --> 00:00:45,400
+Once you've done that, we'll open the
+JPEG and write 512 bytes at a time
+
+16
+00:00:45,400 --> 00:00:49,220
+until we reach the end of that
+JPEG and the beginning of another.
+
+17
+00:00:49,220 --> 00:00:51,670
+From there, we also need
+to detect once we've
+
+18
+00:00:51,670 --> 00:00:54,230
+reached the end of the memory card.
+
+19
+00:00:54,230 --> 00:00:57,090
+First things first, let's
+open the memory card file.
+
+20
+00:00:57,090 --> 00:00:59,520
+Using the fopen function,
+you can do this.
+
+21
+00:00:59,520 --> 00:01:03,050
+But always remember to check
+the return value of fopen
+
+22
+00:01:03,050 --> 00:01:07,300
+to ensure that you didn't
+get some null value.
+
+23
+00:01:07,300 --> 00:01:12,420
+So once we open the file, let's
+find the beginning of a JPEG.
+
+24
+00:01:12,420 --> 00:01:14,530
+Let's talk about JPEGs.
+
+25
+00:01:14,530 --> 00:01:17,790
+JPEGs are just sequences of
+bytes, just like any other file.
+
+26
+00:01:17,790 --> 00:01:21,250
+What makes JPEGs extinct is that
+they start with a distinct header.
+
+27
+00:01:21,250 --> 00:01:24,510
+The first three bytes are always
+going to be the same for any JPEG,
+
+28
+00:01:24,510 --> 00:01:29,150
+and then there's a variety of options
+for the last byte of that header.
+
+29
+00:01:29,150 --> 00:01:32,770
+You can find these details in
+the problem's specification.
+
+30
+00:01:32,770 --> 00:01:35,900
+Now, JPEGs will be stored
+side-to-side on the memory card,
+
+31
+00:01:35,900 --> 00:01:38,880
+and each block is 512 bytes.
+
+32
+00:01:38,880 --> 00:01:42,760
+This is going to be really important,
+and we'll take advantage of this.
+
+33
+00:01:42,760 --> 00:01:45,000
+Throughout this problem
+you might find it
+
+34
+00:01:45,000 --> 00:01:48,400
+useful to draw for yourself
+your conception of a JPEG.
+
+35
+00:01:48,400 --> 00:01:51,410
+Here's just one of the ways
+that I might draw it out.
+
+36
+00:01:51,410 --> 00:01:54,476
+Here every box represents 512 bytes.
+
+37
+00:01:54,476 --> 00:01:56,350
+So from the beginning
+of the file, each block
+
+38
+00:01:56,350 --> 00:02:00,750
+is 512 bytes until I reach the
+beginning of a JPEG, indicated
+
+39
+00:02:00,750 --> 00:02:02,260
+by a starred block.
+
+40
+00:02:02,260 --> 00:02:05,820
+From there you'll see that all
+of the JPEGs follow continuously,
+
+41
+00:02:05,820 --> 00:02:10,660
+each 512 block at a time,
+until I reach my end of file.
+
+42
+00:02:10,660 --> 00:02:14,810
+To read into our memory card,
+we'll use the fread function, which
+
+43
+00:02:14,810 --> 00:02:18,190
+takes in four parameters-- first,
+the pointer to a struct that
+
+44
+00:02:18,190 --> 00:02:20,230
+will contain the bytes
+that you're reading;
+
+45
+00:02:20,230 --> 00:02:22,400
+second, the size of
+each element to read,
+
+46
+00:02:22,400 --> 00:02:25,490
+and then the number of elements
+to read; and finally, the file
+
+47
+00:02:25,490 --> 00:02:28,210
+pointer that you're reading from.
+
+48
+00:02:28,210 --> 00:02:30,320
+So how might we do this
+for the memory card?
+
+49
+00:02:30,320 --> 00:02:35,080
+In the beginning, we'll start reading
+in 512 blocks at a time, every time,
+
+50
+00:02:35,080 --> 00:02:39,130
+checking to see whether the first
+four bytes indicate a JPEG header.
+
+51
+00:02:39,130 --> 00:02:42,700
+If not, we don't need to worry
+about that block and we can proceed
+
+52
+00:02:42,700 --> 00:02:46,500
+to the next block of 512
+bytes, checking that to see
+
+53
+00:02:46,500 --> 00:02:49,190
+if the header is that of a JPEG.
+
+54
+00:02:49,190 --> 00:02:54,160
+We continue this process until
+we reach the first 512 block,
+
+55
+00:02:54,160 --> 00:02:57,760
+where the first four bytes
+do indicate a JPEG header.
+
+56
+00:02:57,760 --> 00:03:00,710
+From there we know that
+we found our first JPEG.
+
+57
+00:03:00,710 --> 00:03:03,100
+And from there on out,
+all of the blocks,
+
+58
+00:03:03,100 --> 00:03:06,390
+side-by-side, will belong to JPEGs.
+
+59
+00:03:06,390 --> 00:03:11,010
+So we continue reading in,
+building up this red JPEG,
+
+60
+00:03:11,010 --> 00:03:14,460
+in this case, until we
+reach another block which
+
+61
+00:03:14,460 --> 00:03:16,470
+indicates the header for a JPEG.
+
+62
+00:03:16,470 --> 00:03:21,450
+So we know that the red JPEG has ended,
+so we can close that and then start
+
+63
+00:03:21,450 --> 00:03:22,450
+a new one.
+
+64
+00:03:22,450 --> 00:03:26,430
+We continue this process,
+reading 512 blocks at a time,
+
+65
+00:03:26,430 --> 00:03:30,950
+until we reach a block that indicates
+the beginning of a new JPEG.
+
+66
+00:03:30,950 --> 00:03:34,920
+In which case, we close the previous
+one and open the next, all the way
+
+67
+00:03:34,920 --> 00:03:38,070
+until we reach the end
+of the memory card file.
+
+68
+00:03:38,070 --> 00:03:40,250
+So how do we read into the file?
+
+69
+00:03:40,250 --> 00:03:43,360
+Well, we've already talked
+about the fread function,
+
+70
+00:03:43,360 --> 00:03:45,980
+but there are actually
+two ways to do this.
+
+71
+00:03:45,980 --> 00:03:49,800
+We know that we want to
+read in 512 bytes at a time,
+
+72
+00:03:49,800 --> 00:03:59,230
+but we could either read in one block of
+512 bytes or 512 blocks one byte each.
+
+73
+00:03:59,230 --> 00:04:02,600
+Think about this for a second as we
+talk about the rest of the problem,
+
+74
+00:04:02,600 --> 00:04:04,780
+and we'll come back to this slide later.
+
+75
+00:04:04,780 --> 00:04:07,320
+Let's go back to identifying JPEGs.
+
+76
+00:04:07,320 --> 00:04:11,310
+So we know, per the problem's
+spec, that each JPEG
+
+77
+00:04:11,310 --> 00:04:13,140
+starts with a distinct header.
+
+78
+00:04:13,140 --> 00:04:16,160
+We can definitely check the
+first three bytes easily,
+
+79
+00:04:16,160 --> 00:04:18,160
+but then when it comes
+to the last byte, we
+
+80
+00:04:18,160 --> 00:04:22,790
+have so many options that writing a
+condition for checking the header could
+
+81
+00:04:22,790 --> 00:04:25,310
+get pretty messy pretty quick.
+
+82
+00:04:25,310 --> 00:04:29,340
+So instead I propose that we
+use a bitwise AND operator.
+
+83
+00:04:29,340 --> 00:04:33,960
+Say you've read in 512 bytes
+into an array called buffer.
+
+84
+00:04:33,960 --> 00:04:37,640
+Well, then, you can use this code
+to check whether the first four
+
+85
+00:04:37,640 --> 00:04:40,350
+bytes of buffer correspond to a JPEG.
+
+86
+00:04:40,350 --> 00:04:45,020
+If this code returns as
+true, then you found a JPEG.
+
+87
+00:04:45,020 --> 00:04:48,630
+All right, so now that we found
+the beginning of a JPEG, let's
+
+88
+00:04:48,630 --> 00:04:50,900
+talk about opening it.
+
+89
+00:04:50,900 --> 00:04:53,660
+The file names, per the
+spec, need to be formatted
+
+90
+00:04:53,660 --> 00:04:58,450
+with three digits dot J-P-G, named in
+the order in which they were found,
+
+91
+00:04:58,450 --> 00:04:59,750
+starting at zero.
+
+92
+00:04:59,750 --> 00:05:04,666
+So make sure that you're keeping track
+of how many JPEGs you found thus far.
+
+93
+00:05:04,666 --> 00:05:09,860
+We'll use the sprintf function to
+create a file name for our new JPEG.
+
+94
+00:05:09,860 --> 00:05:15,020
+Once we have that, we can
+open, using fopen our new file,
+
+95
+00:05:15,020 --> 00:05:18,420
+making sure to include
+writing permissions.
+
+96
+00:05:18,420 --> 00:05:22,280
+So once we've created the new
+JPEG and opened that file,
+
+97
+00:05:22,280 --> 00:05:28,040
+then we need to write 512 bytes at
+a time until a new JPEG is found.
+
+98
+00:05:28,040 --> 00:05:30,480
+How do we write those files?
+
+99
+00:05:30,480 --> 00:05:34,830
+In order to write the 512
+bytes into our new file,
+
+100
+00:05:34,830 --> 00:05:38,860
+we'll use the fwrite function,
+which takes in four parameters.
+
+101
+00:05:38,860 --> 00:05:42,060
+The first is a pointer to the struct
+that contains the bytes that you're
+
+102
+00:05:42,060 --> 00:05:45,750
+reading from, then the
+size and number of bytes,
+
+103
+00:05:45,750 --> 00:05:48,830
+and lastly, the file pointer
+that you're writing to.
+
+104
+00:05:48,830 --> 00:05:53,840
+So in this case, the first parameter
+will be where the 512 bytes are,
+
+105
+00:05:53,840 --> 00:05:59,300
+and then the out pointer will be our
+new image file that we've just created.
+
+106
+00:05:59,300 --> 00:06:02,160
+So now we know how to
+read into a memory card
+
+107
+00:06:02,160 --> 00:06:06,020
+and then how to write
+into a JPEG image file.
+
+108
+00:06:06,020 --> 00:06:11,160
+So the next step is to figure
+out, well, when do we stop?
+
+109
+00:06:11,160 --> 00:06:15,030
+Let's go back to the
+representation of the memory card.
+
+110
+00:06:15,030 --> 00:06:19,700
+As we've discussed already, we'll
+be reading 512 blocks at a time,
+
+111
+00:06:19,700 --> 00:06:23,900
+checking the header every time, until
+we reach the start of a new JPEG.
+
+112
+00:06:23,900 --> 00:06:30,340
+Once we find that, we continue
+building on 512 blocks at a time.
+
+113
+00:06:30,340 --> 00:06:34,820
+Let's fast forward to the end, where
+we've already identified our last JPEG,
+
+114
+00:06:34,820 --> 00:06:37,420
+indicated by these pink blocks here.
+
+115
+00:06:37,420 --> 00:06:41,630
+We read in 512 bytes at
+a time until we reach
+
+116
+00:06:41,630 --> 00:06:47,260
+the end of a file, which will
+be less than 512 bytes long.
+
+117
+00:06:47,260 --> 00:06:52,790
+OK, so knowing that the very last
+time that we try to read in 512 bytes,
+
+118
+00:06:52,790 --> 00:06:55,810
+we'll actually get
+something shorter than that.
+
+119
+00:06:55,810 --> 00:07:00,880
+Then let's go back to our two
+options for fread parameters.
+
+120
+00:07:00,880 --> 00:07:03,400
+When we're reading into
+the memory card file,
+
+121
+00:07:03,400 --> 00:07:10,160
+either we could read in 512 blocks,
+one by each, or, in the second case,
+
+122
+00:07:10,160 --> 00:07:14,650
+read in one block 512 bytes long.
+
+123
+00:07:14,650 --> 00:07:16,520
+So which one do we choose?
+
+124
+00:07:16,520 --> 00:07:21,250
+Well, fread will return how many
+items of size size were read.
+
+125
+00:07:21,250 --> 00:07:27,000
+And ideally, this will return the number
+that we asked for, until it doesn't.
+
+126
+00:07:27,000 --> 00:07:29,950
+So with that hint, try
+to see if you can come up
+
+127
+00:07:29,950 --> 00:07:35,720
+with a condition for when we've
+read in successfully our 512 bytes,
+
+128
+00:07:35,720 --> 00:07:40,040
+and then figure out a condition for
+when we've reached the end of a file.
+
+129
+00:07:40,040 --> 00:07:44,030
+So let's bring all these pieces
+together and make some pseudocode.
+
+130
+00:07:44,030 --> 00:07:46,660
+First we want to open
+the memory card file.
+
+131
+00:07:46,660 --> 00:07:50,240
+Then, repeating until we've
+reached the end of the card file,
+
+132
+00:07:50,240 --> 00:07:53,430
+we'll read 512 bytes in.
+
+133
+00:07:53,430 --> 00:07:57,100
+Then we'll ask whether we're
+at the start of a new JPEG.
+
+134
+00:07:57,100 --> 00:08:01,190
+If we are, then we'll ask whether
+we've already found a JPEG.
+
+135
+00:08:01,190 --> 00:08:06,280
+If we haven't, then that means that
+we'll start our very first JPEG.
+
+136
+00:08:06,280 --> 00:08:09,270
+But if we already have
+found a JPEG, then that
+
+137
+00:08:09,270 --> 00:08:14,150
+means that we need to close the
+previous file and then open our new one.
+
+138
+00:08:14,150 --> 00:08:18,250
+Now, say we've read 512
+bytes in and we haven't
+
+139
+00:08:18,250 --> 00:08:20,060
+reached the start of a new JPEG.
+
+140
+00:08:20,060 --> 00:08:24,380
+Well, then we ask ourselves, well,
+have we already found a JPEG or not?
+
+141
+00:08:24,380 --> 00:08:26,820
+Because if we haven't, then
+that means that we can simply
+
+142
+00:08:26,820 --> 00:08:31,270
+discard those 512 bytes and then
+go to the start of our loop.
+
+143
+00:08:31,270 --> 00:08:33,929
+But if we have already
+found a JPEG, then that
+
+144
+00:08:33,929 --> 00:08:39,669
+means that those 512 bytes belong
+to the currently opened file.
+
+145
+00:08:39,669 --> 00:08:43,530
+Finally, once we've reached the end of
+the memory card, we can exit the loop
+
+146
+00:08:43,530 --> 00:08:45,750
+and close any remaining files.
+
+147
+00:08:45,750 --> 00:08:47,150
+Now we're almost done.
+
+148
+00:08:47,150 --> 00:08:50,070
+The only thing that I ask is
+that you take pen and paper
+
+149
+00:08:50,070 --> 00:08:54,160
+and draw out your own representation
+and your own schematic of how the memory
+
+150
+00:08:54,160 --> 00:08:56,920
+card works and how those
+blocks are laid out.
+
+151
+00:08:56,920 --> 00:08:59,050
+It's really important
+to understand that,
+
+152
+00:08:59,050 --> 00:09:02,450
+and then writing the code
+will be that much easier.
+
+153
+00:09:02,450 --> 00:09:07,190
+My name is Zamyla, and this was Recover.
+
+154
+00:09:07,190 --> 00:09:09,197

@@ -1,0 +1,3946 @@
+1
+00:00:00,000 --> 00:00:02,538
+>> [MUSIC PLAYING]
+
+2
+00:00:02,538 --> 00:00:10,800
+
+3
+00:00:10,800 --> 00:00:12,390
+>> ERIC OUYANG: Hey, everyone.
+
+4
+00:00:12,390 --> 00:00:13,580
+Welcome.
+
+5
+00:00:13,580 --> 00:00:16,860
+This is Building Dynamic
+Web Apps with Laravel.
+
+6
+00:00:16,860 --> 00:00:18,290
+My name is Eric Ouyang.
+
+7
+00:00:18,290 --> 00:00:23,860
+I am a sophomore studying social studies
+with a secondary in computer science,
+
+8
+00:00:23,860 --> 00:00:27,290
+and I live in Adams
+House here at Harvard.
+
+9
+00:00:27,290 --> 00:00:33,340
+>> So Laravel, at its most core,
+is a MVC web app framework.
+
+10
+00:00:33,340 --> 00:00:38,265
+So like what you guys have
+been doing with CS50 Finance,
+
+11
+00:00:38,265 --> 00:00:42,480
+Laravel is a framework that allows
+you to build dynamic web apps.
+
+12
+00:00:42,480 --> 00:00:47,710
+So you can think of it in some senses
+as an extension of the type of stuff
+
+13
+00:00:47,710 --> 00:00:50,470
+you've been doing in CS50
+Finance, but a system that's
+
+14
+00:00:50,470 --> 00:00:55,890
+a lot more robust, a lot
+more elegant in some senses,
+
+15
+00:00:55,890 --> 00:00:57,870
+and provides a lot of
+functionality for you
+
+16
+00:00:57,870 --> 00:01:03,060
+to build fairly complex
+web applications.
+
+17
+00:01:03,060 --> 00:01:05,010
+So let's go through some
+of the key features,
+
+18
+00:01:05,010 --> 00:01:09,550
+and then we'll dive into an
+example of building a blog
+
+19
+00:01:09,550 --> 00:01:12,500
+application with Laravel.
+
+20
+00:01:12,500 --> 00:01:16,700
+>> So one of the first things that
+differentiates it from MVC type of work
+
+21
+00:01:16,700 --> 00:01:22,100
+that you've been doing with CS50
+is it includes a ORM engine.
+
+22
+00:01:22,100 --> 00:01:27,410
+So ORM stands for object
+relational mapping.
+
+23
+00:01:27,410 --> 00:01:31,080
+So this allows you to build
+a layer of abstraction
+
+24
+00:01:31,080 --> 00:01:35,230
+between the database
+and your controllers.
+
+25
+00:01:35,230 --> 00:01:39,150
+So unlike in CS50 Finance where
+you directly make queries,
+
+26
+00:01:39,150 --> 00:01:44,790
+the ORM layer allows you to
+abstract that away and create
+
+27
+00:01:44,790 --> 00:01:48,085
+models that are more powerful than
+you can directly with SQL queries.
+
+28
+00:01:48,085 --> 00:01:50,590
+
+29
+00:01:50,590 --> 00:01:53,510
+>> Another thing that's really
+helpful is inheritable templates.
+
+30
+00:01:53,510 --> 00:01:58,990
+So you'll notice in CS50 Finance,
+you end up rewriting a lot of things,
+
+31
+00:01:58,990 --> 00:02:03,150
+where places you could potentially
+reuse things, you're not able to.
+
+32
+00:02:03,150 --> 00:02:08,539
+So here in Laravel, you can use what's
+known as the blade template engine
+
+33
+00:02:08,539 --> 00:02:10,530
+to create a master layout.
+
+34
+00:02:10,530 --> 00:02:15,840
+And from there, you can inherit
+so that sub-templates can actually
+
+35
+00:02:15,840 --> 00:02:21,210
+include elements within
+that larger base template.
+
+36
+00:02:21,210 --> 00:02:21,810
+>> Migration.
+
+37
+00:02:21,810 --> 00:02:29,010
+So this is a fairly standard features on
+most modern web application frameworks.
+
+38
+00:02:29,010 --> 00:02:32,710
+So this allows you to represent
+database schema changes in code.
+
+39
+00:02:32,710 --> 00:02:39,200
+So without going to say, phpMyAdmin,
+you can actually create these migrations
+
+40
+00:02:39,200 --> 00:02:44,660
+where you represent the database
+schema changes in code directly.
+
+41
+00:02:44,660 --> 00:02:48,070
+And this allows you to-- especially
+if you have multiple people working
+
+42
+00:02:48,070 --> 00:02:52,650
+on the same web application--
+track these changes,
+
+43
+00:02:52,650 --> 00:02:55,380
+say in GitHub, or some other repository.
+
+44
+00:02:55,380 --> 00:03:00,880
+>> So this is really helpful
+and mitigates the need
+
+45
+00:03:00,880 --> 00:03:04,580
+to, say, pass around a lot of SQL dumps.
+
+46
+00:03:04,580 --> 00:03:07,140
+And finally, Composer is
+something really, really useful
+
+47
+00:03:07,140 --> 00:03:09,840
+that allows you to use other
+people's code to do awesome things.
+
+48
+00:03:09,840 --> 00:03:14,020
+So Laravel's structured as
+several composer packages.
+
+49
+00:03:14,020 --> 00:03:17,870
+So say if you wanted to bring
+in an authentication package
+
+50
+00:03:17,870 --> 00:03:23,440
+or if you wanted to bring in some
+sort of generator script or an admin
+
+51
+00:03:23,440 --> 00:03:26,910
+interface, you can plug and play
+those components with Composer.
+
+52
+00:03:26,910 --> 00:03:30,470
+
+53
+00:03:30,470 --> 00:03:31,570
+>> So let's get started.
+
+54
+00:03:31,570 --> 00:03:35,185
+Any questions from you
+guys before we get started?
+
+55
+00:03:35,185 --> 00:03:36,500
+No questions?
+
+56
+00:03:36,500 --> 00:03:37,490
+Cool.
+
+57
+00:03:37,490 --> 00:03:39,990
+So the first step is
+installing Composer.
+
+58
+00:03:39,990 --> 00:03:43,590
+So Composer allows you to
+manage these dependencies,
+
+59
+00:03:43,590 --> 00:03:47,770
+whether it's the Laravel framework
+or some other third party extension.
+
+60
+00:03:47,770 --> 00:03:50,400
+The first command allows
+you to download Composer,
+
+61
+00:03:50,400 --> 00:03:55,890
+and the second command allows you to
+move it into your local bin folder
+
+62
+00:03:55,890 --> 00:04:01,340
+so that you can run Composer
+directly through the terminal.
+
+63
+00:04:01,340 --> 00:04:05,405
+>> After that, go ahead and
+create a new Laravel project.
+
+64
+00:04:05,405 --> 00:04:07,280
+We're actually going to
+use some example code
+
+65
+00:04:07,280 --> 00:04:10,760
+that I've put together
+to create this blog.
+
+66
+00:04:10,760 --> 00:04:14,420
+But if you're starting from
+scratch, you would use this command
+
+67
+00:04:14,420 --> 00:04:18,160
+up here, composer create-project,
+laravel slash laravel, and then
+
+68
+00:04:18,160 --> 00:04:19,940
+the name of your project.
+
+69
+00:04:19,940 --> 00:04:22,275
+And that will include
+all the distribution code
+
+70
+00:04:22,275 --> 00:04:23,733
+for starting a new Laravel project.
+
+71
+00:04:23,733 --> 00:04:28,870
+So for your CS50 final projects, you'll
+probably want to use that command.
+
+72
+00:04:28,870 --> 00:04:31,210
+>> But we're going to start with this.
+
+73
+00:04:31,210 --> 00:04:34,630
+So once you've done
+that, you're going to get
+
+74
+00:04:34,630 --> 00:04:40,190
+a fairly extensive number
+of files in blog50.
+
+75
+00:04:40,190 --> 00:04:43,840
+So let's just go through
+some of these components.
+
+76
+00:04:43,840 --> 00:04:49,060
+You'll notice at this route
+directory, there is an app folder.
+
+77
+00:04:49,060 --> 00:04:52,960
+Inside the app folder, there's
+a couple helpful folders.
+
+78
+00:04:52,960 --> 00:04:56,330
+Of note to start with
+is this config folder.
+
+79
+00:04:56,330 --> 00:04:59,210
+So this sets up how
+your web application is
+
+80
+00:04:59,210 --> 00:05:04,350
+going to, say, authenticate people or
+cash things or connect to the database.
+
+81
+00:05:04,350 --> 00:05:06,400
+>> And what's really
+helpful is that Laravel
+
+82
+00:05:06,400 --> 00:05:09,130
+allows you to set up different
+development environments.
+
+83
+00:05:09,130 --> 00:05:12,090
+So what we've done here is if
+we go under the local folder,
+
+84
+00:05:12,090 --> 00:05:14,720
+there's a database.php file.
+
+85
+00:05:14,720 --> 00:05:18,320
+And you'll notice here that we
+set up a MySQL connection that
+
+86
+00:05:18,320 --> 00:05:22,230
+allows individuals to connect
+to the MySQL server that's
+
+87
+00:05:22,230 --> 00:05:24,310
+directly on the CS50 appliance.
+
+88
+00:05:24,310 --> 00:05:26,980
+And we're connecting to a database
+that I set up called Blog50.
+
+89
+00:05:26,980 --> 00:05:31,390
+
+90
+00:05:31,390 --> 00:05:37,085
+>> So let's actually go ahead and
+run the working version of this,
+
+91
+00:05:37,085 --> 00:05:39,710
+just to get a sense of what the
+application that we're building
+
+92
+00:05:39,710 --> 00:05:41,390
+looks like.
+
+93
+00:05:41,390 --> 00:05:46,150
+So I have a copy of
+this Blog50 completed.
+
+94
+00:05:46,150 --> 00:05:51,910
+So Laravel actually
+has built in a server
+
+95
+00:05:51,910 --> 00:05:53,910
+that you can run directly
+from the command line.
+
+96
+00:05:53,910 --> 00:05:56,900
+So this is similar to the
+PSet before when you actually
+
+97
+00:05:56,900 --> 00:06:00,580
+build your own server in C.
+So they have one built in so
+
+98
+00:06:00,580 --> 00:06:04,010
+that you can run your Laravel apps
+directly from the command line.
+
+99
+00:06:04,010 --> 00:06:11,650
+>> So if we do php artisan serve, this
+will launch a development server
+
+100
+00:06:11,650 --> 00:06:13,880
+on port 8,000.
+
+101
+00:06:13,880 --> 00:06:18,250
+So if we go to local host
+8,000, you'll notice that, hey.
+
+102
+00:06:18,250 --> 00:06:20,800
+We have our blog up and running.
+
+103
+00:06:20,800 --> 00:06:25,090
+So Laravel here is generating
+the front page of our blog.
+
+104
+00:06:25,090 --> 00:06:26,350
+Very simple application.
+
+105
+00:06:26,350 --> 00:06:28,610
+But there's a couple
+really nifty features
+
+106
+00:06:28,610 --> 00:06:31,346
+that it provides underneath the hood.
+
+107
+00:06:31,346 --> 00:06:33,680
+>> So the blog application's
+straightforward.
+
+108
+00:06:33,680 --> 00:06:36,430
+If we wanted to create a post,
+we can click on that button.
+
+109
+00:06:36,430 --> 00:06:40,470
+We can say, "Hey, everyone.
+
+110
+00:06:40,470 --> 00:06:44,530
+This is a really fun
+seminar," for example.
+
+111
+00:06:44,530 --> 00:06:46,560
+And write something down here.
+
+112
+00:06:46,560 --> 00:06:48,180
+Text here.
+
+113
+00:06:48,180 --> 00:06:51,327
+If we click Submit, you'll
+notice that our new blog
+
+114
+00:06:51,327 --> 00:06:53,410
+post has been added to the
+front page of the blog.
+
+115
+00:06:53,410 --> 00:06:56,532
+
+116
+00:06:56,532 --> 00:06:59,970
+If we go back here, you'll notice that
+there have been some comments already
+
+117
+00:06:59,970 --> 00:07:01,160
+on the blog.
+
+118
+00:07:01,160 --> 00:07:03,630
+So if we scroll down, you'll
+notice that Jonathan Tan says
+
+119
+00:07:03,630 --> 00:07:08,020
+that he was very intrigued by this post.
+
+120
+00:07:08,020 --> 00:07:11,570
+>> So we'll go into how object
+relational mapping allows
+
+121
+00:07:11,570 --> 00:07:16,668
+you to do these relations in
+a fairly seamless way as well.
+
+122
+00:07:16,668 --> 00:07:17,660
+Cool.
+
+123
+00:07:17,660 --> 00:07:20,290
+Any questions about functionality
+of what we're going to build?
+
+124
+00:07:20,290 --> 00:07:22,850
+
+125
+00:07:22,850 --> 00:07:23,840
+Cool.
+
+126
+00:07:23,840 --> 00:07:28,170
+So let's start out with actually
+creating the database tables.
+
+127
+00:07:28,170 --> 00:07:33,190
+>> So recall that in CS50 Finance, you
+put together a table for the users
+
+128
+00:07:33,190 --> 00:07:37,100
+as well as for the
+stocks in your portfolio.
+
+129
+00:07:37,100 --> 00:07:41,040
+So as we mentioned earlier,
+what we use in Laravel
+
+130
+00:07:41,040 --> 00:07:43,090
+is something known as migrations.
+
+131
+00:07:43,090 --> 00:07:48,570
+So if we go back to the
+distribution code here,
+
+132
+00:07:48,570 --> 00:07:51,790
+the first command that is
+helpful that Laravel provides you
+
+133
+00:07:51,790 --> 00:07:54,240
+is this migrate command.
+
+134
+00:07:54,240 --> 00:07:59,220
+So we can do php artisan migrate:make.
+
+135
+00:07:59,220 --> 00:08:01,760
+So this allows us to create a migration.
+
+136
+00:08:01,760 --> 00:08:03,710
+>> And then we'll want
+to create a migration
+
+137
+00:08:03,710 --> 00:08:07,050
+called create_posts_table,
+which is going
+
+138
+00:08:07,050 --> 00:08:11,521
+to be where we're going to
+be storing our blog posts.
+
+139
+00:08:11,521 --> 00:08:14,690
+And you'll notice here that it runs
+through some code that actually
+
+140
+00:08:14,690 --> 00:08:17,580
+generates a file with
+a time stamp on it.
+
+141
+00:08:17,580 --> 00:08:22,260
+So if we go and look at Database,
+we'll notice under Migrations
+
+142
+00:08:22,260 --> 00:08:24,830
+that it's created a
+blank file for us which
+
+143
+00:08:24,830 --> 00:08:30,100
+has boilerplate code with the name
+that we specified, create posts table.
+
+144
+00:08:30,100 --> 00:08:31,670
+>> And it has two functions in it.
+
+145
+00:08:31,670 --> 00:08:40,539
+Up is what we want to run when the
+migration is applied to the database.
+
+146
+00:08:40,539 --> 00:08:46,380
+And down is what we're going to do
+when we want to reverse a migration.
+
+147
+00:08:46,380 --> 00:08:49,890
+So here let's start out
+with writing this migration.
+
+148
+00:08:49,890 --> 00:08:55,480
+So there's a helpful class
+in Laravel called Schema.
+
+149
+00:08:55,480 --> 00:08:57,910
+>> So we're going to run Schema::create.
+
+150
+00:08:57,910 --> 00:09:01,080
+And we're going to create
+a table called posts.
+
+151
+00:09:01,080 --> 00:09:05,980
+And here we apply this using a function.
+
+152
+00:09:05,980 --> 00:09:11,010
+And within here, we're going to actually
+specify the contents of our table.
+
+153
+00:09:11,010 --> 00:09:14,860
+We're going to create a ID,
+which is auto-incrementing.
+
+154
+00:09:14,860 --> 00:09:19,850
+
+155
+00:09:19,850 --> 00:09:24,350
+>> In addition, we're going
+to create a field that
+
+156
+00:09:24,350 --> 00:09:27,060
+represents the title of our blog post.
+
+157
+00:09:27,060 --> 00:09:29,880
+
+158
+00:09:29,880 --> 00:09:36,950
+We're also going to create a field
+for storing the text of our blog post.
+
+159
+00:09:36,950 --> 00:09:40,600
+And finally, we're going
+to store some timestamps
+
+160
+00:09:40,600 --> 00:09:44,690
+for when our post was created
+and when it was updated.
+
+161
+00:09:44,690 --> 00:09:46,240
+And for down, it's fairly simple.
+
+162
+00:09:46,240 --> 00:09:53,974
+All we want to do is drop
+the table that we've created.
+
+163
+00:09:53,974 --> 00:09:54,930
+>> Great.
+
+164
+00:09:54,930 --> 00:09:55,850
+Any questions?
+
+165
+00:09:55,850 --> 00:09:59,730
+
+166
+00:09:59,730 --> 00:10:07,110
+So now if we go ahead
+and-- actually, local host,
+
+167
+00:10:07,110 --> 00:10:09,640
+let me delete what we had earlier.
+
+168
+00:10:09,640 --> 00:10:14,330
+
+169
+00:10:14,330 --> 00:10:15,190
+Go to Databases.
+
+170
+00:10:15,190 --> 00:10:17,640
+I'm going to delete what we had earlier.
+
+171
+00:10:17,640 --> 00:10:22,870
+Drop this and create
+a new database Blog50.
+
+172
+00:10:22,870 --> 00:10:24,930
+So now what the magical
+part is here that we
+
+173
+00:10:24,930 --> 00:10:28,760
+can apply these migrations directly
+to the database using the command line
+
+174
+00:10:28,760 --> 00:10:29,290
+tool.
+
+175
+00:10:29,290 --> 00:10:35,100
+So if we do php artisan migrate,
+you'll notice that, hey.
+
+176
+00:10:35,100 --> 00:10:38,320
+It's created the migration table,
+which we'll take a look at in a bit,
+
+177
+00:10:38,320 --> 00:10:40,540
+and it's applied this first migration.
+
+178
+00:10:40,540 --> 00:10:43,860
+
+179
+00:10:43,860 --> 00:10:48,920
+>> So we look at Blog50, you'll notice
+that it's created two tables for us.
+
+180
+00:10:48,920 --> 00:10:50,300
+First is this migrations table.
+
+181
+00:10:50,300 --> 00:10:54,130
+So if we browse this, you'll notice that
+this table is fairly straightforward.
+
+182
+00:10:54,130 --> 00:10:55,490
+It's just said that, hey.
+
+183
+00:10:55,490 --> 00:10:58,960
+We've applied this migration.
+
+184
+00:10:58,960 --> 00:11:01,470
+We go back and look at posts.
+
+185
+00:11:01,470 --> 00:11:05,720
+You'll notice that the structure
+is exactly what we had asked it.
+
+186
+00:11:05,720 --> 00:11:07,350
+We have an auto-incrementing ID.
+
+187
+00:11:07,350 --> 00:11:10,450
+We have a string for storing
+the title, and a text field
+
+188
+00:11:10,450 --> 00:11:11,450
+for storing the content.
+
+189
+00:11:11,450 --> 00:11:14,040
+
+190
+00:11:14,040 --> 00:11:14,706
+Great.
+
+191
+00:11:14,706 --> 00:11:15,560
+Cool.
+
+192
+00:11:15,560 --> 00:11:21,626
+Any questions about migrations
+work, how we can apply them?
+
+193
+00:11:21,626 --> 00:11:22,126
+No?
+
+194
+00:11:22,126 --> 00:11:23,600
+Cool.
+
+195
+00:11:23,600 --> 00:11:26,630
+So now we're going to go ahead
+and actually create the model.
+
+196
+00:11:26,630 --> 00:11:33,100
+So we want to create a posts model that
+stores an abstraction of the database.
+
+197
+00:11:33,100 --> 00:11:41,040
+So rather than doing MySQL queries
+directly, we're going to create.
+
+198
+00:11:41,040 --> 00:11:45,840
+So we have to create a
+folder in here called models.
+
+199
+00:11:45,840 --> 00:11:48,905
+And inside here, we're going to
+create a file called post.php.
+
+200
+00:11:48,905 --> 00:11:52,280
+
+201
+00:11:52,280 --> 00:11:54,550
+>> Inside this PHP file,
+we're going to create
+
+202
+00:11:54,550 --> 00:12:00,590
+a class post which extends eloquent.
+
+203
+00:12:00,590 --> 00:12:08,950
+Eloquent is the name of the ORM
+engine that Laravel provides.
+
+204
+00:12:08,950 --> 00:12:12,799
+And in here, we might expect that
+you actually need to write some code.
+
+205
+00:12:12,799 --> 00:12:14,840
+We're going to write some
+helper functions later.
+
+206
+00:12:14,840 --> 00:12:19,420
+But out of the box, this will already
+recognize what's in the database
+
+207
+00:12:19,420 --> 00:12:24,770
+and we can access, say, the text
+of our blog post or the title,
+
+208
+00:12:24,770 --> 00:12:29,230
+and create stuff directly with
+pretty much no code whatsoever.
+
+209
+00:12:29,230 --> 00:12:31,110
+>> So that's one of the magical components.
+
+210
+00:12:31,110 --> 00:12:34,980
+And wind once this class
+is more fully fledged,
+
+211
+00:12:34,980 --> 00:12:40,480
+we'll include information about what
+it's related to, so the comments.
+
+212
+00:12:40,480 --> 00:12:42,310
+Also create a function
+so we can actually
+
+213
+00:12:42,310 --> 00:12:46,340
+directly get the URL
+of a blog post page.
+
+214
+00:12:46,340 --> 00:12:46,840
+Cool.
+
+215
+00:12:46,840 --> 00:12:47,881
+Any questions about that?
+
+216
+00:12:47,881 --> 00:12:51,140
+
+217
+00:12:51,140 --> 00:12:51,832
+No.
+
+218
+00:12:51,832 --> 00:12:54,100
+Cool.
+
+219
+00:12:54,100 --> 00:12:57,860
+>> So now once we have our model, we
+want to create a controller that's
+
+220
+00:12:57,860 --> 00:13:02,340
+able to interface with these models,
+and subsequently the database.
+
+221
+00:13:02,340 --> 00:13:05,540
+So if we take a look at
+BlogController, you'll
+
+222
+00:13:05,540 --> 00:13:08,490
+notice that there's not
+much here right now.
+
+223
+00:13:08,490 --> 00:13:13,220
+All there is is an index function
+that generates the home page,
+
+224
+00:13:13,220 --> 00:13:18,220
+but without anything
+there to display yet.
+
+225
+00:13:18,220 --> 00:13:20,560
+>> So the first function
+that we're going to create
+
+226
+00:13:20,560 --> 00:13:25,790
+is one that allows us
+to create a blog post.
+
+227
+00:13:25,790 --> 00:13:30,540
+So we're going to declare a
+new function called newPost.
+
+228
+00:13:30,540 --> 00:13:36,430
+And inside here simply, we're going
+to set the layout of this page
+
+229
+00:13:36,430 --> 00:13:41,850
+to be a render version,
+if you recall from CS50,
+
+230
+00:13:41,850 --> 00:13:48,020
+of this template called blog.new, which
+we're going to create in a little bit.
+
+231
+00:13:48,020 --> 00:13:53,170
+>> You'll notice here on line six that
+we specified this variable, layout.
+
+232
+00:13:53,170 --> 00:13:55,820
+And if we take a look
+at the Views folder,
+
+233
+00:13:55,820 --> 00:14:01,640
+there is a Layouts folder, which
+includes a very basic HTML file.
+
+234
+00:14:01,640 --> 00:14:04,680
+And of note, you'll notice
+that we have this container
+
+235
+00:14:04,680 --> 00:14:06,800
+here that yields content.
+
+236
+00:14:06,800 --> 00:14:09,460
+So inside of our template
+what we're going to do
+
+237
+00:14:09,460 --> 00:14:16,180
+is create what's going to be
+substituted directly within this layout.
+
+238
+00:14:16,180 --> 00:14:20,060
+>> So we said that we want to render
+a template called blog.new.
+
+239
+00:14:20,060 --> 00:14:23,790
+But inside of Blog, there's
+not yet this new template.
+
+240
+00:14:23,790 --> 00:14:26,910
+So we're going to create a
+file called new.blade.php.
+
+241
+00:14:26,910 --> 00:14:29,860
+This tells Laravel that
+this PHP file should
+
+242
+00:14:29,860 --> 00:14:31,720
+be rendered with the
+blade template engine.
+
+243
+00:14:31,720 --> 00:14:39,510
+
+244
+00:14:39,510 --> 00:14:42,630
+So this is a fairly
+straightforward file.
+
+245
+00:14:42,630 --> 00:14:46,690
+It's going to be the form by which
+we actually add in a blog post.
+
+246
+00:14:46,690 --> 00:14:49,220
+>> So the magic here from the
+inheritance is that, hey.
+
+247
+00:14:49,220 --> 00:14:52,950
+We want to specify that the
+section, the content section
+
+248
+00:14:52,950 --> 00:14:56,640
+here, which is delineated
+by @section and @stop.
+
+249
+00:14:56,640 --> 00:15:02,260
+So what's in between here is going to
+be substituted into the master layout.
+
+250
+00:15:02,260 --> 00:15:07,000
+And here what we want to do is
+very simply create a new HTML file.
+
+251
+00:15:07,000 --> 00:15:08,690
+Let's just add a quick title.
+
+252
+00:15:08,690 --> 00:15:09,600
+Add a blog post.
+
+253
+00:15:09,600 --> 00:15:12,110
+
+254
+00:15:12,110 --> 00:15:15,390
+And within it, we're
+going to create a form.
+
+255
+00:15:15,390 --> 00:15:19,197
+>> This form is going to have an action.
+
+256
+00:15:19,197 --> 00:15:21,780
+And this is going to be something
+that we substitute in later,
+
+257
+00:15:21,780 --> 00:15:24,200
+and we'll see how
+routing fits into here.
+
+258
+00:15:24,200 --> 00:15:33,600
+But we're just going to define for now
+that this goes to a URL with the route
+
+259
+00:15:33,600 --> 00:15:34,860
+from createPost.
+
+260
+00:15:34,860 --> 00:15:38,200
+
+261
+00:15:38,200 --> 00:15:40,320
+And then this is going
+to have method post.
+
+262
+00:15:40,320 --> 00:15:43,940
+
+263
+00:15:43,940 --> 00:15:47,590
+Within here, we're going
+to have two fields.
+
+264
+00:15:47,590 --> 00:15:49,170
+Div class="form-group".
+
+265
+00:15:49,170 --> 00:15:55,806
+>> We're using the Bootstrap CSS library
+graciously provided by Twitter.
+
+266
+00:15:55,806 --> 00:15:57,720
+So we're going to create two of these.
+
+267
+00:15:57,720 --> 00:16:01,700
+
+268
+00:16:01,700 --> 00:16:05,970
+So this first input is
+going to be the title.
+
+269
+00:16:05,970 --> 00:16:08,437
+So input name="title".
+
+270
+00:16:08,437 --> 00:16:09,270
+Class="formcontrol".
+
+271
+00:16:09,270 --> 00:16:13,540
+
+272
+00:16:13,540 --> 00:16:14,425
+Type="text".
+
+273
+00:16:14,425 --> 00:16:16,050
+I'm going to add a placeholder="Title".
+
+274
+00:16:16,050 --> 00:16:21,570
+
+275
+00:16:21,570 --> 00:16:26,140
+>> And then the second one is
+going to be a text area.
+
+276
+00:16:26,140 --> 00:16:27,827
+Name="content".
+
+277
+00:16:27,827 --> 00:16:28,660
+Class="formcontrol".
+
+278
+00:16:28,660 --> 00:16:33,402
+
+279
+00:16:33,402 --> 00:16:34,610
+And placeholder="Write here".
+
+280
+00:16:34,610 --> 00:16:42,030
+
+281
+00:16:42,030 --> 00:16:43,480
+There we go.
+
+282
+00:16:43,480 --> 00:16:46,760
+Finally, we're going to
+add a quick submit button.
+
+283
+00:16:46,760 --> 00:16:50,370
+Type="submit" class="btn btn-primary".
+
+284
+00:16:50,370 --> 00:16:53,370
+
+285
+00:16:53,370 --> 00:16:55,340
+So these are all
+features of Bootstrap so
+
+286
+00:16:55,340 --> 00:16:58,510
+that this can be laid
+out in a way that's
+
+287
+00:16:58,510 --> 00:17:03,730
+prey to the user,
+rather than naked HTML.
+
+288
+00:17:03,730 --> 00:17:06,250
+>> So we've defined the controller here.
+
+289
+00:17:06,250 --> 00:17:08,930
+We've defined a very simple view.
+
+290
+00:17:08,930 --> 00:17:12,339
+But what's missing is
+the connective tissue.
+
+291
+00:17:12,339 --> 00:17:15,420
+So at this point,
+Laravel has no idea how
+
+292
+00:17:15,420 --> 00:17:18,312
+we're going to actually
+access this controller.
+
+293
+00:17:18,312 --> 00:17:20,270
+So this is defined in a
+file called routes.php.
+
+294
+00:17:20,270 --> 00:17:22,780
+
+295
+00:17:22,780 --> 00:17:24,310
+And right now, we have one route.
+
+296
+00:17:24,310 --> 00:17:29,060
+Which is when we go to the
+home path for this website,
+
+297
+00:17:29,060 --> 00:17:33,140
+it's going to render
+the index controller.
+
+298
+00:17:33,140 --> 00:17:38,880
+So here what we need do is implement
+a new route for us to create a post.
+
+299
+00:17:38,880 --> 00:17:41,910
+>> So we use this method
+get, which specifies
+
+300
+00:17:41,910 --> 00:17:48,650
+that when a user tries to
+get this page-- specifically
+
+301
+00:17:48,650 --> 00:17:52,850
+the post slash new page--
+what we're going to do
+
+302
+00:17:52,850 --> 00:18:02,060
+is use the controller called
+BlogController new post.
+
+303
+00:18:02,060 --> 00:18:03,460
+The one that we just created.
+
+304
+00:18:03,460 --> 00:18:08,090
+And then we're going
+to alias it as newPost.
+
+305
+00:18:08,090 --> 00:18:17,460
+
+306
+00:18:17,460 --> 00:18:19,850
+We're going to create another
+function in a little bit.
+
+307
+00:18:19,850 --> 00:18:23,520
+But what's here under
+the key "as" is what
+
+308
+00:18:23,520 --> 00:18:28,195
+we can substitute within
+our Blade templates.
+
+309
+00:18:28,195 --> 00:18:32,390
+
+310
+00:18:32,390 --> 00:18:36,230
+So for now, let's
+actually also say route.
+
+311
+00:18:36,230 --> 00:18:38,380
+So we're also going
+to create a controller
+
+312
+00:18:38,380 --> 00:18:41,020
+so that we can create these posts.
+
+313
+00:18:41,020 --> 00:18:46,940
+So if a user posts to the page post
+slash new, what we're going to do
+
+314
+00:18:46,940 --> 00:18:51,350
+is uses a controller that
+we're going to create shortly
+
+315
+00:18:51,350 --> 00:18:56,160
+called BlogController at createPost.
+
+316
+00:18:56,160 --> 00:19:01,929
+And we're going to alias
+this with as createPost.
+
+317
+00:19:01,929 --> 00:19:03,380
+Cool.
+
+318
+00:19:03,380 --> 00:19:05,811
+>> Any questions?
+
+319
+00:19:05,811 --> 00:19:06,310
+Cool.
+
+320
+00:19:06,310 --> 00:19:09,790
+So let's run what we have so far.
+
+321
+00:19:09,790 --> 00:19:16,930
+So if we do php artisan serve,
+we will see lots of errors.
+
+322
+00:19:16,930 --> 00:19:20,385
+So it looks like we have a
+syntax error on routes line 27.
+
+323
+00:19:20,385 --> 00:19:20,885
+Ah.
+
+324
+00:19:20,885 --> 00:19:21,718
+Missing a semicolon.
+
+325
+00:19:21,718 --> 00:19:24,900
+
+326
+00:19:24,900 --> 00:19:32,870
+So if we go to 8,000,
+you'll see nothing here yet.
+
+327
+00:19:32,870 --> 00:19:34,740
+So this is the default home page.
+
+328
+00:19:34,740 --> 00:19:37,730
+>> But if we go to post slash new, hey.
+
+329
+00:19:37,730 --> 00:19:40,425
+It'll be the form that we just created.
+
+330
+00:19:40,425 --> 00:19:42,550
+Right now, we haven't
+implemented the functionality
+
+331
+00:19:42,550 --> 00:19:44,060
+of when we press the Submit button.
+
+332
+00:19:44,060 --> 00:19:47,110
+So if we click on the Submit
+button, it's going to run an error.
+
+333
+00:19:47,110 --> 00:19:49,840
+But we're going to code that
+right now, precisely what we
+
+334
+00:19:49,840 --> 00:19:54,840
+want to do when a user
+submits this form.
+
+335
+00:19:54,840 --> 00:19:55,770
+>> So let's do that.
+
+336
+00:19:55,770 --> 00:19:57,380
+Go back to the Controllers file.
+
+337
+00:19:57,380 --> 00:20:00,180
+What we're going to do is
+implement this new function
+
+338
+00:20:00,180 --> 00:20:04,360
+that allows us to create a post.
+
+339
+00:20:04,360 --> 00:20:07,370
+
+340
+00:20:07,370 --> 00:20:08,990
+Declare new function.
+
+341
+00:20:08,990 --> 00:20:11,527
+Public function createPost.
+
+342
+00:20:11,527 --> 00:20:14,610
+And this function is going to be a
+little bit more sophisticated than what
+
+343
+00:20:14,610 --> 00:20:15,559
+we had before.
+
+344
+00:20:15,559 --> 00:20:18,350
+But you'll see here that we're not
+going to actually write any SQL.
+
+345
+00:20:18,350 --> 00:20:20,980
+The ORM, the Eloquent
+ORM, is going to allow
+
+346
+00:20:20,980 --> 00:20:26,400
+us to do this in some
+ways a more elegant way.
+
+347
+00:20:26,400 --> 00:20:29,140
+>> So we're going to create a new post.
+
+348
+00:20:29,140 --> 00:20:34,120
+And here we're
+instantiating a new object
+
+349
+00:20:34,120 --> 00:20:38,080
+from the model that we just
+created, the post model.
+
+350
+00:20:38,080 --> 00:20:44,450
+And what we're going to do is set the
+title attribute of this using something
+
+351
+00:20:44,450 --> 00:20:47,380
+that we get from the server.
+
+352
+00:20:47,380 --> 00:20:52,060
+So this is similar to what
+we had before in CS50 Finance
+
+353
+00:20:52,060 --> 00:20:57,750
+where we would do, using the Super
+Global Post looking for title.
+
+354
+00:20:57,750 --> 00:21:01,600
+>> So Laravel provides some sanitation
+and whatnot using this helper function.
+
+355
+00:21:01,600 --> 00:21:07,610
+So we would prefer to use this instead
+of this very basic raw form from PHP.
+
+356
+00:21:07,610 --> 00:21:17,430
+And then what we're going to do is set
+the content of it to Input get content.
+
+357
+00:21:17,430 --> 00:21:20,429
+
+358
+00:21:20,429 --> 00:21:22,720
+We're actually going to wrap
+this in a helpful function
+
+359
+00:21:22,720 --> 00:21:31,820
+that PHP provides called nl2br, which
+turns new lines, nls, into brs, breaks,
+
+360
+00:21:31,820 --> 00:21:35,822
+so that we can actually have
+different paragraphs within it.
+
+361
+00:21:35,822 --> 00:21:38,030
+And finally what we're going
+to do is save this post.
+
+362
+00:21:38,030 --> 00:21:41,686
+So we call the function
+save on this model.
+
+363
+00:21:41,686 --> 00:21:43,800
+We're going to save the post.
+
+364
+00:21:43,800 --> 00:21:49,970
+And finally what we're going to do
+is redirect the user specifically
+
+365
+00:21:49,970 --> 00:21:55,060
+to the route which we're going to
+create shortly, alias by viewPost.
+
+366
+00:21:55,060 --> 00:22:00,435
+And we're going to pass in the arguments
+id, being the id of this new post.
+
+367
+00:22:00,435 --> 00:22:04,280
+
+368
+00:22:04,280 --> 00:22:05,640
+>> Great.
+
+369
+00:22:05,640 --> 00:22:09,090
+So now if we actually go and run this.
+
+370
+00:22:09,090 --> 00:22:11,370
+We're going to add a new post.
+
+371
+00:22:11,370 --> 00:22:15,930
+Let's say this is seminar 50.
+
+372
+00:22:15,930 --> 00:22:17,620
+And say, sure.
+
+373
+00:22:17,620 --> 00:22:18,240
+Asdl.
+
+374
+00:22:18,240 --> 00:22:18,740
+Whatever.
+
+375
+00:22:18,740 --> 00:22:20,320
+Some sort of content.
+
+376
+00:22:20,320 --> 00:22:21,180
+And Submit it.
+
+377
+00:22:21,180 --> 00:22:23,850
+And we'll notice that,
+hey. routes not defined.
+
+378
+00:22:23,850 --> 00:22:32,340
+But if we take a look at phpMyAdmin and
+look for whether or not our function
+
+379
+00:22:32,340 --> 00:22:34,370
+did anything.
+
+380
+00:22:34,370 --> 00:22:36,670
+Look at Blog50 posts.
+
+381
+00:22:36,670 --> 00:22:37,720
+We'll notice that, hey.
+
+382
+00:22:37,720 --> 00:22:43,530
+In fact, we did just create that blog
+post with the timestamps as specified.
+
+383
+00:22:43,530 --> 00:22:46,600
+
+384
+00:22:46,600 --> 00:22:51,630
+>> So now let's go back and actually create
+this other function in our controller,
+
+385
+00:22:51,630 --> 00:22:54,790
+specifically the viewPost controller.
+
+386
+00:22:54,790 --> 00:23:00,290
+So public function viewPost.
+
+387
+00:23:00,290 --> 00:23:04,070
+So here what we'll do, instead
+of having empty parentheses,
+
+388
+00:23:04,070 --> 00:23:08,800
+we'll want to pass in the ID of
+the post that we're creating.
+
+389
+00:23:08,800 --> 00:23:12,800
+And from here what we're going to do
+is actually query the database for it.
+
+390
+00:23:12,800 --> 00:23:15,140
+>> So if we do post,
+there's a function called
+
+391
+00:23:15,140 --> 00:23:18,860
+Find that allows us to query it by ID.
+
+392
+00:23:18,860 --> 00:23:22,110
+Specifically, actually, we're going to
+use an alternate version of this called
+
+393
+00:23:22,110 --> 00:23:27,880
+Find or Fail, which allows us
+to quit out of this function,
+
+394
+00:23:27,880 --> 00:23:34,700
+throw an exception if the ID
+we pass in does not exist.
+
+395
+00:23:34,700 --> 00:23:37,500
+And then we're going to do something
+similar to what we did earlier
+
+396
+00:23:37,500 --> 00:23:41,100
+where we set the content
+of this page to be
+
+397
+00:23:41,100 --> 00:23:47,950
+the rendered version of this new view
+which we're going to create, blog.view.
+
+398
+00:23:47,950 --> 00:23:51,030
+>> And we're going to pass into
+it-- just like in the CS50 render
+
+399
+00:23:51,030 --> 00:23:56,645
+function-- a dictionary of variables.
+
+400
+00:23:56,645 --> 00:23:59,860
+
+401
+00:23:59,860 --> 00:24:04,620
+The keys of this associative array
+become variables within the template.
+
+402
+00:24:04,620 --> 00:24:06,830
+So we're going to do post post.
+
+403
+00:24:06,830 --> 00:24:12,474
+So pass indirectly the post that
+we've queried from the database. .
+
+404
+00:24:12,474 --> 00:24:14,390
+Now what we're going to
+do is create this view
+
+405
+00:24:14,390 --> 00:24:17,560
+so that we can actually view
+the blog posts that we've built.
+
+406
+00:24:17,560 --> 00:24:20,280
+>> So we're going to create a
+file called view.blade.php.
+
+407
+00:24:20,280 --> 00:24:25,870
+
+408
+00:24:25,870 --> 00:24:29,640
+So inside of this template,
+what we're going to do
+
+409
+00:24:29,640 --> 00:24:39,700
+is put together a simple page that
+allows us to display the content.
+
+410
+00:24:39,700 --> 00:24:44,280
+So we do section, that's before content.
+
+411
+00:24:44,280 --> 00:24:46,800
+Stop.
+
+412
+00:24:46,800 --> 00:24:53,920
+And what we're going
+to do within here is
+
+413
+00:24:53,920 --> 00:24:56,930
+write some HTML to display this page.
+
+414
+00:24:56,930 --> 00:25:03,590
+>> So we're going to wrap it with a fancy
+new HTML5 element called Article.
+
+415
+00:25:03,590 --> 00:25:05,790
+And in here, we're going
+to have a header where
+
+416
+00:25:05,790 --> 00:25:12,190
+we're going to simply have an h1,
+which includes the post title.
+
+417
+00:25:12,190 --> 00:25:17,120
+So here, if we look at this
+double curly brace notation,
+
+418
+00:25:17,120 --> 00:25:21,690
+this will do essentially
+PHP echo post title.
+
+419
+00:25:21,690 --> 00:25:25,630
+So it's a helpful shorthand
+that Laravel provides us.
+
+420
+00:25:25,630 --> 00:25:31,070
+So we're going to use
+this notation instead.
+
+421
+00:25:31,070 --> 00:25:40,220
+>> And here, we're going to also
+print out the content of it.
+
+422
+00:25:40,220 --> 00:25:43,480
+And in here, we're going
+to do post content.
+
+423
+00:25:43,480 --> 00:25:46,514
+
+424
+00:25:46,514 --> 00:25:50,660
+And down at the bottom what we're
+going to do is create a footer.
+
+425
+00:25:50,660 --> 00:25:57,690
+And in the footer, we're going to
+first display when this was posted.
+
+426
+00:25:57,690 --> 00:26:01,320
+So this was posted at, created at.
+
+427
+00:26:01,320 --> 00:26:07,996
+>> And Laravel uses a really nice
+date library called Carbon.
+
+428
+00:26:07,996 --> 00:26:11,120
+So we can actually do something called
+difforHumans, which you saw earlier.
+
+429
+00:26:11,120 --> 00:26:14,360
+When we posted. it'll say,
+like, five seconds ago.
+
+430
+00:26:14,360 --> 00:26:16,860
+So this is a really nice
+functionality of Laravel.
+
+431
+00:26:16,860 --> 00:26:19,469
+
+432
+00:26:19,469 --> 00:26:21,385
+And finally, we're going
+to close this footer.
+
+433
+00:26:21,385 --> 00:26:24,900
+
+434
+00:26:24,900 --> 00:26:31,450
+>> So now if we go back to
+Home Page we're going
+
+435
+00:26:31,450 --> 00:26:34,490
+to see nothing here yet because
+we haven't coded up the home page.
+
+436
+00:26:34,490 --> 00:26:40,962
+But if we go to post slash one,
+we're going to see an exception.
+
+437
+00:26:40,962 --> 00:26:42,670
+Does anyone know why
+we see an exception?
+
+438
+00:26:42,670 --> 00:26:44,516
+What are we missing?
+
+439
+00:26:44,516 --> 00:26:45,290
+Any ideas?
+
+440
+00:26:45,290 --> 00:26:48,050
+
+441
+00:26:48,050 --> 00:26:49,790
+So what did we do
+earlier for us actually
+
+442
+00:26:49,790 --> 00:26:52,285
+to define how we get to
+particular controllers?
+
+443
+00:26:52,285 --> 00:26:54,895
+
+444
+00:26:54,895 --> 00:26:55,770
+>> SPEAKER 1: The route?
+
+445
+00:26:55,770 --> 00:26:56,519
+ERIC OUYANG: Yeah.
+
+446
+00:26:56,519 --> 00:26:58,070
+So we still have to define the route.
+
+447
+00:26:58,070 --> 00:26:59,794
+So we go back here to routes.php.
+
+448
+00:26:59,794 --> 00:27:01,710
+You'll notice that we
+haven't actually defined
+
+449
+00:27:01,710 --> 00:27:05,010
+how we're going to get
+to this controller.
+
+450
+00:27:05,010 --> 00:27:06,780
+So now we're going to define this route.
+
+451
+00:27:06,780 --> 00:27:09,280
+It's fairly straightforward,
+similar to what we did earlier.
+
+452
+00:27:09,280 --> 00:27:13,910
+But what we're going to notice here is
+that we're going to have a placeholder.
+
+453
+00:27:13,910 --> 00:27:18,730
+>> So if we do route.get slash post ID.
+
+454
+00:27:18,730 --> 00:27:24,290
+So ID now is what's going to
+be passed into the controller.
+
+455
+00:27:24,290 --> 00:27:27,820
+This is going to use the
+controller that we just
+
+456
+00:27:27,820 --> 00:27:33,560
+created, BlogController at viewPost.
+
+457
+00:27:33,560 --> 00:27:36,420
+And we're going to
+alias this as viewPost.
+
+458
+00:27:36,420 --> 00:27:46,544
+
+459
+00:27:46,544 --> 00:27:47,490
+Great.
+
+460
+00:27:47,490 --> 00:27:49,470
+So now we're going to create this route.
+
+461
+00:27:49,470 --> 00:27:52,100
+>> So now if we go here
+and refresh this page,
+
+462
+00:27:52,100 --> 00:27:54,410
+we in fact do have our new blog post.
+
+463
+00:27:54,410 --> 00:27:57,710
+So this is what we created earlier.
+
+464
+00:27:57,710 --> 00:28:01,320
+Very simple page, but displays the
+blog post that we just created.
+
+465
+00:28:01,320 --> 00:28:04,210
+
+466
+00:28:04,210 --> 00:28:04,760
+Cool.
+
+467
+00:28:04,760 --> 00:28:08,880
+And if we actually go through the whole
+process of creating a new blog post,
+
+468
+00:28:08,880 --> 00:28:11,700
+we'll notice that everything
+redirects properly.
+
+469
+00:28:11,700 --> 00:28:12,950
+If I say, "Hi.
+
+470
+00:28:12,950 --> 00:28:15,710
+I'm Jonathan Tan."
+
+471
+00:28:15,710 --> 00:28:18,550
+Say, "This is my blog post."
+
+472
+00:28:18,550 --> 00:28:22,830
+And Submit it, this will create
+this new blog post with ID 2,
+
+473
+00:28:22,830 --> 00:28:28,920
+which increments from what we had
+previously and displays it properly.
+
+474
+00:28:28,920 --> 00:28:30,760
+Awesome.
+
+475
+00:28:30,760 --> 00:28:32,930
+>> Any questions?
+
+476
+00:28:32,930 --> 00:28:33,430
+Yes?
+
+477
+00:28:33,430 --> 00:28:36,537
+>> SPEAKER 2: Does Laravel handle
+sanitization and everything for you?
+
+478
+00:28:36,537 --> 00:28:37,245
+ERIC OUYANG: Yes.
+
+479
+00:28:37,245 --> 00:28:42,990
+So when we saw earlier when
+we did input colon colon get,
+
+480
+00:28:42,990 --> 00:28:47,720
+that sanitates any SQL
+injections and whatnot
+
+481
+00:28:47,720 --> 00:28:51,660
+that we might want to perform if
+we're a malicious user of the website.
+
+482
+00:28:51,660 --> 00:28:54,115
+So Laravel handles a lot
+of that behind the scenes.
+
+483
+00:28:54,115 --> 00:28:57,030
+Good question.
+
+484
+00:28:57,030 --> 00:29:00,390
+>> So let's take a look at the home page.
+
+485
+00:29:00,390 --> 00:29:03,220
+
+486
+00:29:03,220 --> 00:29:06,790
+So if we first go back to the
+controller for the home page,
+
+487
+00:29:06,790 --> 00:29:08,740
+you'll notice that it
+doesn't do much here.
+
+488
+00:29:08,740 --> 00:29:11,620
+You'll notice that we're not
+passing into this controller
+
+489
+00:29:11,620 --> 00:29:13,830
+anything particularly helpful.
+
+490
+00:29:13,830 --> 00:29:16,660
+It's just this index file.
+
+491
+00:29:16,660 --> 00:29:18,770
+>> So let's pass into
+this something helpful.
+
+492
+00:29:18,770 --> 00:29:21,450
+And specifically, we're
+going to pass in posts.
+
+493
+00:29:21,450 --> 00:29:28,740
+And Laravel allows us
+to do post all, which
+
+494
+00:29:28,740 --> 00:29:30,625
+will allow us to get all the posts.
+
+495
+00:29:30,625 --> 00:29:33,160
+
+496
+00:29:33,160 --> 00:29:35,730
+Now if we go back to
+index.php, you'll see, hey.
+
+497
+00:29:35,730 --> 00:29:37,060
+Nothing here yet.
+
+498
+00:29:37,060 --> 00:29:41,290
+But what we want to do here
+is actually iterate through,
+
+499
+00:29:41,290 --> 00:29:46,420
+do a foreach loop over the posts that
+allows us to print out the posts.
+
+500
+00:29:46,420 --> 00:29:53,180
+>> So foreach posts as
+post, what we want to do
+
+501
+00:29:53,180 --> 00:29:57,252
+is print out the content
+of the blog post.
+
+502
+00:29:57,252 --> 00:30:00,210
+But one thing you'll notice is that
+we actually wrote most of that code
+
+503
+00:30:00,210 --> 00:30:01,370
+already, in view.blade.php.
+
+504
+00:30:01,370 --> 00:30:04,070
+
+505
+00:30:04,070 --> 00:30:08,640
+So what we're going to actually do is
+use a nice helpful feature of Blade
+
+506
+00:30:08,640 --> 00:30:11,300
+and factor out this common code.
+
+507
+00:30:11,300 --> 00:30:12,570
+So we go here.
+
+508
+00:30:12,570 --> 00:30:16,210
+>> We're going to take this content
+right here, and what we're going to do
+
+509
+00:30:16,210 --> 00:30:18,170
+is create a new folder.
+
+510
+00:30:18,170 --> 00:30:20,364
+Let's just call it Partials.
+
+511
+00:30:20,364 --> 00:30:22,530
+And in here, we're going
+to create a post.blade.php.
+
+512
+00:30:22,530 --> 00:30:26,570
+
+513
+00:30:26,570 --> 00:30:33,100
+So here, we factored out the way in
+which we want to display these posts.
+
+514
+00:30:33,100 --> 00:30:38,690
+And here what we'll do instead of
+actually having that HTML directly,
+
+515
+00:30:38,690 --> 00:30:41,530
+we're going to use this directive
+called include blog.partials.post.
+
+516
+00:30:41,530 --> 00:30:45,210
+
+517
+00:30:45,210 --> 00:30:50,635
+>> And what we're going to do here
+is pass in the post of the page.
+
+518
+00:30:50,635 --> 00:30:57,076
+
+519
+00:30:57,076 --> 00:31:01,050
+So now if we go back here, we'll
+notice that the functionality is still
+
+520
+00:31:01,050 --> 00:31:01,550
+the same.
+
+521
+00:31:01,550 --> 00:31:05,140
+But now we have this
+factored out code, this HTML.
+
+522
+00:31:05,140 --> 00:31:07,070
+So we can use it in Index.
+
+523
+00:31:07,070 --> 00:31:09,090
+So here, this is very straightforward.
+
+524
+00:31:09,090 --> 00:31:17,870
+All we do is include
+blog.partials.post and array.
+
+525
+00:31:17,870 --> 00:31:20,845
+And somewhere to
+before, we do post post.
+
+526
+00:31:20,845 --> 00:31:23,830
+
+527
+00:31:23,830 --> 00:31:28,182
+>> So now if we go back to the
+home page, we'll see that, hey.
+
+528
+00:31:28,182 --> 00:31:30,515
+We have a list of all the
+blog posts that we had before.
+
+529
+00:31:30,515 --> 00:31:34,640
+
+530
+00:31:34,640 --> 00:31:37,700
+We might want to add some "if"
+conditions and "else" conditions
+
+531
+00:31:37,700 --> 00:31:39,979
+so that if we don't have
+anything on the blog,
+
+532
+00:31:39,979 --> 00:31:41,520
+we want to display something helpful.
+
+533
+00:31:41,520 --> 00:31:42,570
+Like, hey.
+
+534
+00:31:42,570 --> 00:31:44,340
+There's no content yet on the blog.
+
+535
+00:31:44,340 --> 00:31:47,670
+And if you guys actually look at
+the distribution code on GitHub,
+
+536
+00:31:47,670 --> 00:31:50,100
+you'll see an example of how we do that.
+
+537
+00:31:50,100 --> 00:31:52,770
+
+538
+00:31:52,770 --> 00:31:54,110
+>> Cool.
+
+539
+00:31:54,110 --> 00:31:54,890
+Any questions?
+
+540
+00:31:54,890 --> 00:31:55,510
+Yes.
+
+541
+00:31:55,510 --> 00:31:57,468
+>> SPEAKER 2: I guess just
+a fundamental question.
+
+542
+00:31:57,468 --> 00:31:59,480
+Back at the route.
+
+543
+00:31:59,480 --> 00:32:00,230
+ERIC OUYANG: Yeah.
+
+544
+00:32:00,230 --> 00:32:01,935
+If we take a look at routes.
+
+545
+00:32:01,935 --> 00:32:06,018
+>> SPEAKER 2: Where does the
+uses.blogcontroller at create post,
+
+546
+00:32:06,018 --> 00:32:07,560
+what does that direct us to?
+
+547
+00:32:07,560 --> 00:32:08,310
+ERIC OUYANG: Yeah.
+
+548
+00:32:08,310 --> 00:32:08,550
+Yeah.
+
+549
+00:32:08,550 --> 00:32:09,716
+>> SPEAKER 2: Or what is that--
+
+550
+00:32:09,716 --> 00:32:12,620
+ERIC OUYANG: So, take a look, say
+for example, this route right here.
+
+551
+00:32:12,620 --> 00:32:17,190
+The first part is the actual
+URL that the user will go to.
+
+552
+00:32:17,190 --> 00:32:19,930
+And this array here,
+associative array, defines
+
+553
+00:32:19,930 --> 00:32:24,520
+how we want to have the
+application act in response to it.
+
+554
+00:32:24,520 --> 00:32:29,090
+So uses is the controller,
+the function that we
+
+555
+00:32:29,090 --> 00:32:31,610
+want to call when a
+user goes to this URL.
+
+556
+00:32:31,610 --> 00:32:35,190
+So viewPost right here was a
+function that we defined inside
+
+557
+00:32:35,190 --> 00:32:36,100
+of BlogController--
+
+558
+00:32:36,100 --> 00:32:37,160
+>> SPEAKER 2: I see.
+
+559
+00:32:37,160 --> 00:32:39,368
+>> ERIC OUYANG: --so that we
+can actually render a view,
+
+560
+00:32:39,368 --> 00:32:42,590
+perform some calculations,
+interact with the SQL database.
+
+561
+00:32:42,590 --> 00:32:43,560
+>> SPEAKER 2: OK.
+
+562
+00:32:43,560 --> 00:32:46,960
+>> ERIC OUYANG: And then the other
+part, "as" is an alias that we use.
+
+563
+00:32:46,960 --> 00:32:50,714
+So if we notice when
+we created the form,
+
+564
+00:32:50,714 --> 00:32:52,380
+you'll notice that URL::routecreatePost.
+
+565
+00:32:52,380 --> 00:32:55,000
+
+566
+00:32:55,000 --> 00:32:58,330
+So it substitutes in the actual
+URL so that we're not hard
+
+567
+00:32:58,330 --> 00:33:02,940
+coding these in so we can change it
+once, say if we wanted to rename.
+
+568
+00:33:02,940 --> 00:33:06,055
+Instead of post slash
+new, we want to do like, p
+
+569
+00:33:06,055 --> 00:33:09,490
+slash new just to clean
+up our URLs a bit.
+
+570
+00:33:09,490 --> 00:33:14,740
+We would change it in one spot rather
+than across all the different files.
+
+571
+00:33:14,740 --> 00:33:15,451
+>> Cool.
+
+572
+00:33:15,451 --> 00:33:15,950
+That's good.
+
+573
+00:33:15,950 --> 00:33:20,070
+So now we have a very
+basic blog platform.
+
+574
+00:33:20,070 --> 00:33:24,260
+We probably want to add in a button so
+that we can actually create new posts.
+
+575
+00:33:24,260 --> 00:33:27,850
+So if we take a look
+at the Layout Master,
+
+576
+00:33:27,850 --> 00:33:31,280
+we have a section called Header Right
+that we've just defined up at the top.
+
+577
+00:33:31,280 --> 00:33:34,820
+So we can add buttons to
+the top of the header.
+
+578
+00:33:34,820 --> 00:33:43,950
+>> So if we go to index.blade.php, actually
+do is define what goes inside of here.
+
+579
+00:33:43,950 --> 00:33:46,970
+So this Header Right section,
+what we're going to do
+
+580
+00:33:46,970 --> 00:33:55,240
+is add in a button to go to the
+URL defined by the route new post.
+
+581
+00:33:55,240 --> 00:33:58,270
+
+582
+00:33:58,270 --> 00:34:01,660
+Just to clean it up and make
+it pretty and all Bootstrap,
+
+583
+00:34:01,660 --> 00:34:04,630
+we're going to make
+this a default button.
+
+584
+00:34:04,630 --> 00:34:07,794
+Let's just make it large for fun.
+
+585
+00:34:07,794 --> 00:34:09,969
+>> And inside it, we could put some text.
+
+586
+00:34:09,969 --> 00:34:14,030
+But what Bootstrap
+provides is glyphicons.
+
+587
+00:34:14,030 --> 00:34:17,840
+So we can actually add in that
+nice pencil that we saw earlier.
+
+588
+00:34:17,840 --> 00:34:20,570
+
+589
+00:34:20,570 --> 00:34:21,781
+Glyphicon.
+
+590
+00:34:21,781 --> 00:34:22,489
+Glyphicon-pencil.
+
+591
+00:34:22,489 --> 00:34:25,449
+
+592
+00:34:25,449 --> 00:34:35,340
+So this will allow us to put
+in an icon instead of text.
+
+593
+00:34:35,340 --> 00:34:38,960
+Now if we do stop, this
+will define this section.
+
+594
+00:34:38,960 --> 00:34:39,460
+And, hey.
+
+595
+00:34:39,460 --> 00:34:45,000
+We have a nice button that links us
+directly to the add a blog post page.
+
+596
+00:34:45,000 --> 00:34:46,659
+>> So we have a fairly simple blog.
+
+597
+00:34:46,659 --> 00:34:49,710
+We can add stuff to it.
+
+598
+00:34:49,710 --> 00:34:53,650
+But what we generally expect
+from blogs is commenting.
+
+599
+00:34:53,650 --> 00:34:57,340
+So it's really important for us to have,
+say, if someone else visits a website
+
+600
+00:34:57,340 --> 00:35:00,620
+and really likes the post that
+they can engage in discussion
+
+601
+00:35:00,620 --> 00:35:03,100
+with other people who visit the page.
+
+602
+00:35:03,100 --> 00:35:07,050
+So we're going to go and create a
+new database table and a new model
+
+603
+00:35:07,050 --> 00:35:12,220
+so that we can associate
+comments with posts.
+
+604
+00:35:12,220 --> 00:35:17,370
+>> So the first step, just like before,
+is that we need to run a migration.
+
+605
+00:35:17,370 --> 00:35:21,982
+So like before, we do
+php artisan migrate:make.
+
+606
+00:35:21,982 --> 00:35:24,440
+And we're going to create one
+called create_comments_table.
+
+607
+00:35:24,440 --> 00:35:29,520
+
+608
+00:35:29,520 --> 00:35:36,080
+This will create a file
+that has our new migration.
+
+609
+00:35:36,080 --> 00:35:40,170
+And we're going to, like
+before, define a new table.
+
+610
+00:35:40,170 --> 00:35:42,773
+So Schema::create a
+table called comments.
+
+611
+00:35:42,773 --> 00:35:47,410
+
+612
+00:35:47,410 --> 00:35:48,430
+This function here.
+
+613
+00:35:48,430 --> 00:35:51,620
+And inside this table what
+we're going to do is first,
+
+614
+00:35:51,620 --> 00:35:54,260
+like before, assign an ID.
+
+615
+00:35:54,260 --> 00:35:56,552
+Increments ID.
+
+616
+00:35:56,552 --> 00:36:05,440
+>> We're going to allow users to associate
+their name with a particular comment.
+
+617
+00:36:05,440 --> 00:36:10,080
+We're going to have some content that
+goes along with this, text content.
+
+618
+00:36:10,080 --> 00:36:13,580
+
+619
+00:36:13,580 --> 00:36:15,910
+And here what we're going to
+do is something different.
+
+620
+00:36:15,910 --> 00:36:23,620
+We're going to create an integer
+that's called post_id which
+
+621
+00:36:23,620 --> 00:36:32,100
+is going to signify what post
+a particular comment goes with.
+
+622
+00:36:32,100 --> 00:36:35,410
+>> In addition, we're actually going to
+set a foreign key constraint on this.
+
+623
+00:36:35,410 --> 00:36:37,750
+So MySQL will enforce that.
+
+624
+00:36:37,750 --> 00:36:39,840
+We're not trying to
+assign comment number
+
+625
+00:36:39,840 --> 00:36:44,440
+5 to post 5,000 if we haven't
+had 5,000 posts on it.
+
+626
+00:36:44,440 --> 00:36:50,240
+So what we do here,
+we do foreign post_id
+
+627
+00:36:50,240 --> 00:37:02,046
+is going to be associated with
+the ID field from the table posts.
+
+628
+00:37:02,046 --> 00:37:05,900
+And we'll actually do something
+else helpful, is onDelete.
+
+629
+00:37:05,900 --> 00:37:11,180
+>> So if we delete some
+post from the database,
+
+630
+00:37:11,180 --> 00:37:15,507
+that we want to cascade the
+deletes for comments as well.
+
+631
+00:37:15,507 --> 00:37:18,090
+Because it's not very helpful
+for us to have comments on posts
+
+632
+00:37:18,090 --> 00:37:19,900
+that don't exist.
+
+633
+00:37:19,900 --> 00:37:23,764
+And finally, like before, we're
+going to set time stamps on this.
+
+634
+00:37:23,764 --> 00:37:28,690
+
+635
+00:37:28,690 --> 00:37:33,510
+And like before, we're going to
+have the reverse migration be
+
+636
+00:37:33,510 --> 00:37:37,920
+dropping the comments table.
+
+637
+00:37:37,920 --> 00:37:40,070
+>> So now if we go back
+to here, we're going
+
+638
+00:37:40,070 --> 00:37:43,110
+to run this migration, artisan migrate.
+
+639
+00:37:43,110 --> 00:37:46,400
+And now it's applied this
+migration that we just created.
+
+640
+00:37:46,400 --> 00:37:50,080
+So if we a look at phpMyAdmin,
+we do, in fact, now
+
+641
+00:37:50,080 --> 00:37:53,210
+have a comments table that has the
+structure that we just specified.
+
+642
+00:37:53,210 --> 00:37:56,900
+
+643
+00:37:56,900 --> 00:37:59,610
+So like before, we're
+going to create a new model
+
+644
+00:37:59,610 --> 00:38:04,450
+to abstract the SQL table
+that we just created.
+
+645
+00:38:04,450 --> 00:38:05,450
+>> So let's Add a new file.
+
+646
+00:38:05,450 --> 00:38:06,908
+We're going to call it comment.php.
+
+647
+00:38:06,908 --> 00:38:10,160
+
+648
+00:38:10,160 --> 00:38:15,490
+And this is actually going to be fairly
+straightforward with a slight change
+
+649
+00:38:15,490 --> 00:38:17,520
+from what we had before.
+
+650
+00:38:17,520 --> 00:38:22,790
+So class Comment extends Eloquent.
+
+651
+00:38:22,790 --> 00:38:25,930
+And what we're going
+to do here is define
+
+652
+00:38:25,930 --> 00:38:31,360
+a function that is the
+relationship with other models.
+
+653
+00:38:31,360 --> 00:38:39,250
+So we're going to have a post function
+here that returns this relationship.
+
+654
+00:38:39,250 --> 00:38:43,330
+So we're specifying that
+this belongs to post,
+
+655
+00:38:43,330 --> 00:38:49,200
+saying that there is one post
+that this comment belongs to.
+
+656
+00:38:49,200 --> 00:38:53,917
+>> This actually has to be
+capital P for the model.
+
+657
+00:38:53,917 --> 00:38:56,500
+And now just on the other flip
+side, we have to say that, hey.
+
+658
+00:38:56,500 --> 00:38:58,160
+Posts have comments.
+
+659
+00:38:58,160 --> 00:39:03,030
+So what we're going to do is
+define public function comments.
+
+660
+00:39:03,030 --> 00:39:07,100
+
+661
+00:39:07,100 --> 00:39:13,620
+And here is returned
+this has many Comment.
+
+662
+00:39:13,620 --> 00:39:16,630
+
+663
+00:39:16,630 --> 00:39:22,010
+So now magically when we have a post,
+we can get the attribute comments
+
+664
+00:39:22,010 --> 00:39:25,615
+and it'll populate it with the
+information from the database.
+
+665
+00:39:25,615 --> 00:39:32,950
+
+666
+00:39:32,950 --> 00:39:38,220
+>> So let's actually go through and
+add a new feature to our view file
+
+667
+00:39:38,220 --> 00:39:43,600
+so that we can both display
+and create comments.
+
+668
+00:39:43,600 --> 00:39:54,010
+
+669
+00:39:54,010 --> 00:39:56,865
+So we're going to define a new section.
+
+670
+00:39:56,865 --> 00:39:59,890
+Let's just separate it
+with a horizontal rule.
+
+671
+00:39:59,890 --> 00:40:04,065
+Section id="comments".
+
+672
+00:40:04,065 --> 00:40:06,990
+What we're going to do
+here is, like before,
+
+673
+00:40:06,990 --> 00:40:09,880
+iterate through all the comments.
+
+674
+00:40:09,880 --> 00:40:12,960
+So actually how we do this is,
+as I mentioned, fairly magical.
+
+675
+00:40:12,960 --> 00:40:14,440
+>> We do post comments.
+
+676
+00:40:14,440 --> 00:40:17,410
+
+677
+00:40:17,410 --> 00:40:22,710
+And then we can do this for each
+loop over each of the comments.
+
+678
+00:40:22,710 --> 00:40:25,740
+And what we're going to
+do is div class comment,
+
+679
+00:40:25,740 --> 00:40:29,240
+and we're going to actually
+print out this comment.
+
+680
+00:40:29,240 --> 00:40:34,150
+So display that hey,
+comment name-- the person
+
+681
+00:40:34,150 --> 00:40:38,080
+who posted this comment--
+says dot dot dot.
+
+682
+00:40:38,080 --> 00:40:41,240
+We're going to put this in a block
+quote, just to make it look nice.
+
+683
+00:40:41,240 --> 00:40:46,470
+And then comment content block quote.
+
+684
+00:40:46,470 --> 00:40:49,790
+
+685
+00:40:49,790 --> 00:40:50,892
+And foreach.
+
+686
+00:40:50,892 --> 00:40:53,100
+So now this is going to loop
+through all the comments
+
+687
+00:40:53,100 --> 00:40:56,500
+that is associated
+with each of the posts
+
+688
+00:40:56,500 --> 00:41:00,960
+and display each of those comments.
+
+689
+00:41:00,960 --> 00:41:05,120
+I'm going to add another section down
+here, which allows us to add a comment.
+
+690
+00:41:05,120 --> 00:41:07,400
+So h3 class.
+
+691
+00:41:07,400 --> 00:41:09,580
+Put a title here.
+
+692
+00:41:09,580 --> 00:41:10,934
+Add a comment.
+
+693
+00:41:10,934 --> 00:41:13,886
+
+694
+00:41:13,886 --> 00:41:15,700
+And we're going to define a new form.
+
+695
+00:41:15,700 --> 00:41:18,730
+>> So like before, we're
+going to do form action.
+
+696
+00:41:18,730 --> 00:41:22,740
+And here, the new action is we're
+going to define a new controller that
+
+697
+00:41:22,740 --> 00:41:26,770
+allows us to respond to post
+requests for creating comments.
+
+698
+00:41:26,770 --> 00:41:33,365
+So URL::route createComment.
+
+699
+00:41:33,365 --> 00:41:37,730
+I'm going to pass in the parameter here.
+
+700
+00:41:37,730 --> 00:41:40,380
+The ID of the post that
+we're creating comment on.
+
+701
+00:41:40,380 --> 00:41:45,340
+
+702
+00:41:45,340 --> 00:41:50,280
+And then the method of this
+form is going to be post.
+
+703
+00:41:50,280 --> 00:41:57,240
+>> Now we're going to add in
+a two fields, form group.
+
+704
+00:41:57,240 --> 00:42:04,670
+This is going to be an input with the
+name "name" and class="form-control",
+
+705
+00:42:04,670 --> 00:42:14,250
+type="text", and with the
+placeholder="Your name."
+
+706
+00:42:14,250 --> 00:42:19,380
+We're also going to define
+another form field, which
+
+707
+00:42:19,380 --> 00:42:22,970
+is going to be a text
+area as we had before.
+
+708
+00:42:22,970 --> 00:42:25,480
+Just like before, call it content.
+
+709
+00:42:25,480 --> 00:42:31,160
+Class="form-control."
+
+710
+00:42:31,160 --> 00:42:41,660
+Placeholder="Write here."
+
+711
+00:42:41,660 --> 00:42:44,100
+>> And just so that we
+can actually submit it,
+
+712
+00:42:44,100 --> 00:42:55,740
+submit type and class="btn btn-primary."
+
+713
+00:42:55,740 --> 00:42:57,005
+Close the form.
+
+714
+00:42:57,005 --> 00:42:59,010
+Close this action.
+
+715
+00:42:59,010 --> 00:43:06,580
+So now if we refresh this page where
+we have, say, a particular post.
+
+716
+00:43:06,580 --> 00:43:10,310
+We have to reboot the server.
+
+717
+00:43:10,310 --> 00:43:12,340
+PHP artisan serve.
+
+718
+00:43:12,340 --> 00:43:15,630
+
+719
+00:43:15,630 --> 00:43:18,334
+Reboot this.
+
+720
+00:43:18,334 --> 00:43:19,500
+We have to define the route.
+
+721
+00:43:19,500 --> 00:43:25,090
+But for now, let's just take this
+out so that we can actually show you
+
+722
+00:43:25,090 --> 00:43:28,750
+what the page looks like, and then
+we'll actually create that route.
+
+723
+00:43:28,750 --> 00:43:29,250
+So, hey.
+
+724
+00:43:29,250 --> 00:43:37,080
+We have this new form down here
+so that we can create comments.
+
+725
+00:43:37,080 --> 00:43:39,950
+So let's actually define a
+function within the controller
+
+726
+00:43:39,950 --> 00:43:43,020
+so that we can add comments.
+
+727
+00:43:43,020 --> 00:43:43,650
+Let's go back.
+
+728
+00:43:43,650 --> 00:43:48,420
+And within blogcontroller.php,
+what we're going to do
+
+729
+00:43:48,420 --> 00:43:51,620
+is create a new function
+called create comment.
+
+730
+00:43:51,620 --> 00:43:54,220
+
+731
+00:43:54,220 --> 00:43:57,040
+>> Public function createComment.
+
+732
+00:43:57,040 --> 00:44:00,130
+This is going to have a single
+parameter, the ID of the posts
+
+733
+00:44:00,130 --> 00:44:02,280
+that we're commenting on.
+
+734
+00:44:02,280 --> 00:44:04,790
+And like before, we're
+going to first get the post.
+
+735
+00:44:04,790 --> 00:44:10,790
+So post, findOrfail id.
+
+736
+00:44:10,790 --> 00:44:15,020
+Afterwards, we're going
+to create a new comment.
+
+737
+00:44:15,020 --> 00:44:18,880
+So comment = new Comment.
+
+738
+00:44:18,880 --> 00:44:26,820
+Comment name = Input::get name.
+
+739
+00:44:26,820 --> 00:44:39,420
+Comment content = the same new line
+into breaks of Input::get content.
+
+740
+00:44:39,420 --> 00:44:43,460
+>> And finally, we're going to have to
+associate this comment with the post.
+
+741
+00:44:43,460 --> 00:44:47,230
+So we're going to use
+this function, comments,
+
+742
+00:44:47,230 --> 00:44:50,260
+that allows us to save
+this relationship.
+
+743
+00:44:50,260 --> 00:44:54,780
+So now this comment will have
+automatically the post ID.
+
+744
+00:44:54,780 --> 00:44:57,640
+We could also set it
+manually, but this is
+
+745
+00:44:57,640 --> 00:45:02,490
+more easy to read as far
+as the function goes.
+
+746
+00:45:02,490 --> 00:45:05,860
+And after we perform
+this, what we want to do
+
+747
+00:45:05,860 --> 00:45:10,840
+is redirect the user to the
+route specified by viewPost
+
+748
+00:45:10,840 --> 00:45:16,010
+with the array with the
+parameter of the post ID.
+
+749
+00:45:16,010 --> 00:45:20,360
+
+750
+00:45:20,360 --> 00:45:24,660
+>> And now so that this actually
+functions, we need to define this route.
+
+751
+00:45:24,660 --> 00:45:27,126
+Route::post.
+
+752
+00:45:27,126 --> 00:45:32,800
+And now we're going to call this
+post slash ID slash comment.
+
+753
+00:45:32,800 --> 00:45:36,725
+Array uses the new function
+that we just created.
+
+754
+00:45:36,725 --> 00:45:37,350
+BlogController.
+
+755
+00:45:37,350 --> 00:45:40,820
+
+756
+00:45:40,820 --> 00:45:44,770
+CreateComment as createComment.
+
+757
+00:45:44,770 --> 00:45:47,430
+
+758
+00:45:47,430 --> 00:45:50,120
+Great.
+
+759
+00:45:50,120 --> 00:45:56,150
+>> So now hopefully if we refresh this page
+and add in a comment, say, David Malan.
+
+760
+00:45:56,150 --> 00:46:00,630
+
+761
+00:46:00,630 --> 00:46:03,920
+"Hopefully this works."
+
+762
+00:46:03,920 --> 00:46:05,216
+Submit.
+
+763
+00:46:05,216 --> 00:46:09,050
+We do, in fact, have a
+comment on this blog post.
+
+764
+00:46:09,050 --> 00:46:13,760
+
+765
+00:46:13,760 --> 00:46:14,260
+Cool.
+
+766
+00:46:14,260 --> 00:46:16,790
+
+767
+00:46:16,790 --> 00:46:21,430
+So now we have a fairly
+functional blog post.
+
+768
+00:46:21,430 --> 00:46:23,180
+We're just going to
+add a couple tweaks so
+
+769
+00:46:23,180 --> 00:46:29,090
+that we have some more useful
+information on these posts.
+
+770
+00:46:29,090 --> 00:46:32,780
+>> So if we go back to the
+front page, we have no sense
+
+771
+00:46:32,780 --> 00:46:38,790
+of how many comments are
+on each of these posts.
+
+772
+00:46:38,790 --> 00:46:41,340
+So what we're actually going
+to do is, inside our model,
+
+773
+00:46:41,340 --> 00:46:51,250
+define a helper function that allows
+us to specify the number of comments
+
+774
+00:46:51,250 --> 00:46:53,020
+that go with a particular post.
+
+775
+00:46:53,020 --> 00:46:56,050
+So we're going to create
+a helper function.
+
+776
+00:46:56,050 --> 00:46:58,020
+>> Public function.
+
+777
+00:46:58,020 --> 00:46:58,770
+GetNumCommentsStr.
+
+778
+00:46:58,770 --> 00:47:02,030
+
+779
+00:47:02,030 --> 00:47:07,180
+So a string that specifies the number
+of comments that go along with it.
+
+780
+00:47:07,180 --> 00:47:12,850
+And what we're going to do is say
+that num = this comments count.
+
+781
+00:47:12,850 --> 00:47:15,150
+So we're going to count
+the number of comments.
+
+782
+00:47:15,150 --> 00:47:22,900
+And if this number equals 1, we're
+just going to return 1 comment.
+
+783
+00:47:22,900 --> 00:47:28,890
+And then otherwise, we want to return
+the concatenation of num and comments,
+
+784
+00:47:28,890 --> 00:47:31,890
+so we get the pluralization correct.
+
+785
+00:47:31,890 --> 00:47:33,380
+Just make this a single quote.
+
+786
+00:47:33,380 --> 00:47:36,040
+
+787
+00:47:36,040 --> 00:47:37,640
+One comment.
+
+788
+00:47:37,640 --> 00:47:41,140
+>> And now we can use this function
+directly inside of our view.
+
+789
+00:47:41,140 --> 00:47:44,510
+So if we go back to the
+partial posts that we created,
+
+790
+00:47:44,510 --> 00:47:49,370
+now we want to actually
+display the number of comments.
+
+791
+00:47:49,370 --> 00:47:52,660
+So what we can do is
+post, use this function
+
+792
+00:47:52,660 --> 00:47:57,230
+that we just created to
+display the number of comments.
+
+793
+00:47:57,230 --> 00:48:00,440
+So if we now refresh, it
+does, in fact, display
+
+794
+00:48:00,440 --> 00:48:02,240
+the number comments
+that go along with it.
+
+795
+00:48:02,240 --> 00:48:05,320
+>> If we wanted to be fancy if you
+actually look at the distribution code,
+
+796
+00:48:05,320 --> 00:48:07,800
+we can actually link
+this to the comments.
+
+797
+00:48:07,800 --> 00:48:17,040
+If you recall, we defined within the
+view that this has section ID comments.
+
+798
+00:48:17,040 --> 00:48:22,460
+So if we actually wanted to link
+directly to the comments section, what
+
+799
+00:48:22,460 --> 00:48:36,000
+we would do here is a href
+URL of the route viewPost.
+
+800
+00:48:36,000 --> 00:48:40,550
+Pass in the array ID of post ID.
+
+801
+00:48:40,550 --> 00:48:46,140
+And then we want to go to
+specifically the comments section.
+
+802
+00:48:46,140 --> 00:48:49,900
+>> Here let's close the A tag.
+
+803
+00:48:49,900 --> 00:48:52,950
+So now if we refresh this
+page, we click on this.
+
+804
+00:48:52,950 --> 00:48:54,700
+We'll go directly to
+the comments section.
+
+805
+00:48:54,700 --> 00:48:57,580
+If we had a longer post, you can
+actually see this bounce down.
+
+806
+00:48:57,580 --> 00:49:02,668
+But you'll notice that it's
+not at the top of the page.
+
+807
+00:49:02,668 --> 00:49:04,090
+Cool.
+
+808
+00:49:04,090 --> 00:49:04,600
+Great.
+
+809
+00:49:04,600 --> 00:49:08,582
+So that's a fairly straightforward
+example of something simple
+
+810
+00:49:08,582 --> 00:49:09,790
+that you can do with Laravel.
+
+811
+00:49:09,790 --> 00:49:13,230
+>> But you can notice here that
+we've done a lot of things
+
+812
+00:49:13,230 --> 00:49:16,200
+with fairly little amount of code.
+
+813
+00:49:16,200 --> 00:49:19,420
+Laravel allows us to do the
+SQL queries behind the scenes.
+
+814
+00:49:19,420 --> 00:49:21,960
+It does the sanitation
+for us behind the scenes.
+
+815
+00:49:21,960 --> 00:49:25,940
+Allows us to do these relationships
+very easily without us needing
+
+816
+00:49:25,940 --> 00:49:33,350
+to do any SQL join statements to
+combine comments with what the posts.
+
+817
+00:49:33,350 --> 00:49:36,480
+Allows us to do this
+inheritance of templates
+
+818
+00:49:36,480 --> 00:49:43,780
+so that we can define these nesting
+files so we're not repeating ourselves,
+
+819
+00:49:43,780 --> 00:49:47,020
+just like when we had that
+display of the blog posts
+
+820
+00:49:47,020 --> 00:49:50,770
+that we don't have to
+copy and paste the code.
+
+821
+00:49:50,770 --> 00:49:55,450
+>> And from here you can build
+increasingly complicated applications.
+
+822
+00:49:55,450 --> 00:49:58,370
+You can imagine if we
+wanted to implement log-in,
+
+823
+00:49:58,370 --> 00:50:05,532
+we could say, bring in a third party
+framework that allows us to do that.
+
+824
+00:50:05,532 --> 00:50:07,490
+There's a bunch of them
+that are really, really
+
+825
+00:50:07,490 --> 00:50:09,970
+great that can do like,
+password recovery.
+
+826
+00:50:09,970 --> 00:50:14,450
+And it'll send you a
+reset password email.
+
+827
+00:50:14,450 --> 00:50:18,260
+We can implement permission
+so that I can create a post,
+
+828
+00:50:18,260 --> 00:50:20,350
+but someone else can't edit it.
+
+829
+00:50:20,350 --> 00:50:24,610
+We can implement
+functionality to delete posts.
+
+830
+00:50:24,610 --> 00:50:28,160
+>> But you can see here that we have pretty
+much all the rudimentary components
+
+831
+00:50:28,160 --> 00:50:31,640
+to build some really, really,
+dynamic and exciting web apps.
+
+832
+00:50:31,640 --> 00:50:34,035
+So with that, I think we're good.
+
+833
+00:50:34,035 --> 00:50:35,720
+Do you guys have any questions?
+
+834
+00:50:35,720 --> 00:50:36,220
+Yes?
+
+835
+00:50:36,220 --> 00:50:38,090
+>> SPEAKER 3: How do you
+get static content?
+
+836
+00:50:38,090 --> 00:50:39,256
+>> ERIC OUYANG: Static content.
+
+837
+00:50:39,256 --> 00:50:45,520
+So you saw before that when we had
+this right here, this layout content,
+
+838
+00:50:45,520 --> 00:50:49,625
+view make, we had this
+without this array afterwards.
+
+839
+00:50:49,625 --> 00:50:56,440
+
+840
+00:50:56,440 --> 00:50:59,152
+Blog.index, we had this
+as just a static file.
+
+841
+00:50:59,152 --> 00:51:00,860
+So if we don't pass
+anything along to it,
+
+842
+00:51:00,860 --> 00:51:03,340
+it'll just render the HTML directly.
+
+843
+00:51:03,340 --> 00:51:09,240
+But if we pass in this associative
+array of posts, which is dynamically
+
+844
+00:51:09,240 --> 00:51:12,950
+pulled from the database, we
+can make the page dynamic.
+
+845
+00:51:12,950 --> 00:51:13,450
+Cool.
+
+846
+00:51:13,450 --> 00:51:14,830
+Any other questions?
+
+847
+00:51:14,830 --> 00:51:16,786
+
+848
+00:51:16,786 --> 00:51:19,720
+SPEAKER 3: How would you compare
+Laravel to maybe some other options?
+
+849
+00:51:19,720 --> 00:51:20,525
+ERIC OUYANG: Sure.
+
+850
+00:51:20,525 --> 00:51:21,025
+Yeah.
+
+851
+00:51:21,025 --> 00:51:23,430
+So Laravel is-- that's
+a great question--
+
+852
+00:51:23,430 --> 00:51:26,190
+one of many options for web frameworks.
+
+853
+00:51:26,190 --> 00:51:31,160
+So Ruby on Rails is one that's popular.
+
+854
+00:51:31,160 --> 00:51:34,590
+I believe Twitter used to be
+implemented with Ruby on Rails.
+
+855
+00:51:34,590 --> 00:51:37,600
+I think they've since switched.
+
+856
+00:51:37,600 --> 00:51:40,780
+There's another one called FuelPHP.
+
+857
+00:51:40,780 --> 00:51:46,120
+>> So Ruby on Rails uses the Ruby language
+and implements a lot of the MVC stuff
+
+858
+00:51:46,120 --> 00:51:48,200
+that we see here.
+
+859
+00:51:48,200 --> 00:51:52,320
+FuelPHP is another PHP framework.
+
+860
+00:51:52,320 --> 00:51:54,490
+Django is one of my favorites.
+
+861
+00:51:54,490 --> 00:51:57,010
+It's a web framework for Python.
+
+862
+00:51:57,010 --> 00:52:01,270
+So you can write your web app in Python.
+
+863
+00:52:01,270 --> 00:52:03,760
+So there's a ton of these options.
+
+864
+00:52:03,760 --> 00:52:06,170
+>> Laravel, I think, by and
+large is my favorite right
+
+865
+00:52:06,170 --> 00:52:08,232
+now for PHP just because
+of the components
+
+866
+00:52:08,232 --> 00:52:09,440
+that we talked about earlier.
+
+867
+00:52:09,440 --> 00:52:11,910
+It's Composer enabled.
+
+868
+00:52:11,910 --> 00:52:15,750
+It includes a really, really
+expressive ORM system.
+
+869
+00:52:15,750 --> 00:52:18,800
+Also has a really awesome templating
+language that some of the others
+
+870
+00:52:18,800 --> 00:52:20,630
+just don't provide.
+
+871
+00:52:20,630 --> 00:52:21,400
+And migrations.
+
+872
+00:52:21,400 --> 00:52:23,432
+Migrations are awesome as well.
+
+873
+00:52:23,432 --> 00:52:24,860
+Cool?
+
+874
+00:52:24,860 --> 00:52:25,390
+Awesome.
+
+875
+00:52:25,390 --> 00:52:27,560
+Well, thanks so much for
+watching this seminar,
+
+876
+00:52:27,560 --> 00:52:30,650
+and good luck on your final projects.
+
+877
+00:52:30,650 --> 00:52:31,616

@@ -1,0 +1,4739 @@
+1
+00:00:00,000 --> 00:00:05,900
+
+2
+00:00:05,900 --> 00:00:07,170
+>> SAM GREEN: Hi, everyone.
+
+3
+00:00:07,170 --> 00:00:08,640
+Welcome to our seminar.
+
+4
+00:00:08,640 --> 00:00:10,009
+My name is Sam.
+
+5
+00:00:10,009 --> 00:00:11,050
+HUGH ZABRISKIE: I'm Hugh.
+
+6
+00:00:11,050 --> 00:00:17,420
+SAM GREEN: And we're going to talk today
+about JavaScript and the Web Audio API.
+
+7
+00:00:17,420 --> 00:00:21,180
+Just to start out, this is an outline
+of our agenda for the seminar.
+
+8
+00:00:21,180 --> 00:00:25,350
+We're going to start by talking about
+why you should be interested in the Web
+
+9
+00:00:25,350 --> 00:00:30,130
+Audio API, why is JavaScript
+the language you need for it,
+
+10
+00:00:30,130 --> 00:00:32,619
+and then talk about JavaScript
+essentials-- so like,
+
+11
+00:00:32,619 --> 00:00:34,800
+walk you through some
+basics of the language,
+
+12
+00:00:34,800 --> 00:00:37,290
+and then talk about the
+audio API at a high level.
+
+13
+00:00:37,290 --> 00:00:41,140
+Then, Hugh will talk about some
+of the stages of audio production
+
+14
+00:00:41,140 --> 00:00:45,509
+and then demo this awesome sequencer
+project he built and show you the code.
+
+15
+00:00:45,509 --> 00:00:48,050
+And then, we'll have time for
+questions at the end for people
+
+16
+00:00:48,050 --> 00:00:49,593
+who are here live.
+
+17
+00:00:49,593 --> 00:00:50,540
+>> HUGH ZABRISKIE: Cool.
+
+18
+00:00:50,540 --> 00:00:50,990
+>> SAM GREEN: Cool.
+
+19
+00:00:50,990 --> 00:00:51,383
+>> HUGH ZABRISKIE: Cool.
+
+20
+00:00:51,383 --> 00:00:52,170
+I will back up.
+
+21
+00:00:52,170 --> 00:00:54,960
+>> SAM GREEN: So, first things first.
+
+22
+00:00:54,960 --> 00:00:57,840
+So one of the great things
+about the Web Audio API
+
+23
+00:00:57,840 --> 00:01:00,480
+is that there's no set up required.
+
+24
+00:01:00,480 --> 00:01:04,230
+It comes built-in to
+most modern browsers,
+
+25
+00:01:04,230 --> 00:01:08,630
+including Chrome, Edge, a whole
+bunch of others-- all the ones
+
+26
+00:01:08,630 --> 00:01:12,650
+that large portions of
+people are using today.
+
+27
+00:01:12,650 --> 00:01:14,807
+So there's no set up,
+aside from just getting
+
+28
+00:01:14,807 --> 00:01:16,890
+a web server going, for
+you to get started working
+
+29
+00:01:16,890 --> 00:01:18,420
+on your project, which is great.
+
+30
+00:01:18,420 --> 00:01:21,500
+
+31
+00:01:21,500 --> 00:01:24,190
+>> We recommend pretty
+heavily that you consider
+
+32
+00:01:24,190 --> 00:01:26,530
+using Chrome for
+JavaScript web development,
+
+33
+00:01:26,530 --> 00:01:30,260
+just because its developer
+tools are really strong.
+
+34
+00:01:30,260 --> 00:01:33,220
+As an example of just what we mean
+by saying open up your JavaScript
+
+35
+00:01:33,220 --> 00:01:38,600
+console-- if you go into Chrome
+and you look at any web page,
+
+36
+00:01:38,600 --> 00:01:43,897
+and you left click
+Inspect Element, and then
+
+37
+00:01:43,897 --> 00:01:46,730
+you go to this little drop-down
+right here and you click on Console,
+
+38
+00:01:46,730 --> 00:01:50,660
+you'll see what opens up looks a
+lot like a command prompt that you
+
+39
+00:01:50,660 --> 00:01:53,720
+might see on your Mac, or on the ID.
+
+40
+00:01:53,720 --> 00:01:59,260
+And just like that, we can
+type commands here, like Clear,
+
+41
+00:01:59,260 --> 00:02:01,350
+and other commands like that.
+
+42
+00:02:01,350 --> 00:02:04,267
+We can create variables, as
+we'll see later in JavaScript.
+
+43
+00:02:04,267 --> 00:02:07,100
+And so anything we can do in
+JavaScript, we can do with the console,
+
+44
+00:02:07,100 --> 00:02:11,430
+and that's a super handy way to
+start playing around with APIs
+
+45
+00:02:11,430 --> 00:02:15,760
+and getting comfortable with
+JavaScript right off the bat.
+
+46
+00:02:15,760 --> 00:02:18,290
+No set up required,
+which is really nice.
+
+47
+00:02:18,290 --> 00:02:18,790
+Cool.
+
+48
+00:02:18,790 --> 00:02:22,064
+
+49
+00:02:22,064 --> 00:02:22,880
+Awesome.
+
+50
+00:02:22,880 --> 00:02:24,780
+>> So just one more thing to add.
+
+51
+00:02:24,780 --> 00:02:27,780
+If you have any questions-- there are
+many of you who are not here live,
+
+52
+00:02:27,780 --> 00:02:31,232
+feel free to email us-- these
+are our email addresses.
+
+53
+00:02:31,232 --> 00:02:33,190
+If you have questions
+you don't want to ask us,
+
+54
+00:02:33,190 --> 00:02:36,160
+like, oh I have a bug
+in my code, or something
+
+55
+00:02:36,160 --> 00:02:39,270
+that's a little more specific,
+maybe Google it first.
+
+56
+00:02:39,270 --> 00:02:42,340
+There are a lot of great resources
+about the Web Audio API out there.
+
+57
+00:02:42,340 --> 00:02:44,089
+It's really well
+documented and it's being
+
+58
+00:02:44,089 --> 00:02:47,194
+used by a ton of people in
+industry, and people who are just
+
+59
+00:02:47,194 --> 00:02:48,610
+building fun stuff for themselves.
+
+60
+00:02:48,610 --> 00:02:51,306
+So there should be a lot
+of resources out there.
+
+61
+00:02:51,306 --> 00:02:53,040
+Awesome.
+
+62
+00:02:53,040 --> 00:02:56,100
+>> Cool, so why the Web Audio API?
+
+63
+00:02:56,100 --> 00:02:59,840
+This diagram is a little bit
+of an evolution of the way
+
+64
+00:02:59,840 --> 00:03:04,100
+sound on the web has grown over time.
+
+65
+00:03:04,100 --> 00:03:13,080
+Bgsound was like the original HTML tag
+that Internet Explorer used to support.
+
+66
+00:03:13,080 --> 00:03:16,790
+It only allowed for pretty basic sounds,
+the functionality wasn't very robust,
+
+67
+00:03:16,790 --> 00:03:19,380
+and you couldn't do
+complicated sequencing,
+
+68
+00:03:19,380 --> 00:03:21,890
+or control when sound started
+and stopped very robustly.
+
+69
+00:03:21,890 --> 00:03:23,930
+So, it wasn't particularly
+well developed.
+
+70
+00:03:23,930 --> 00:03:27,470
+Then after that, Flash
+came along-- which,
+
+71
+00:03:27,470 --> 00:03:31,712
+I'm sure that you guys are all familiar
+with Flash-- maybe not how it works,
+
+72
+00:03:31,712 --> 00:03:32,920
+but you've certainly seen it.
+
+73
+00:03:32,920 --> 00:03:35,586
+You've got to update your Flash
+Plug-in, all that kind of stuff,
+
+74
+00:03:35,586 --> 00:03:40,110
+and that certainly extended the range
+of functionality that was available.
+
+75
+00:03:40,110 --> 00:03:45,370
+But making the user install
+a plug-in is definitely
+
+76
+00:03:45,370 --> 00:03:48,480
+a drawback to including Flash
+in your application, right?
+
+77
+00:03:48,480 --> 00:03:52,410
+Because then you're dependent on the
+user going and finding this plug-in,
+
+78
+00:03:52,410 --> 00:03:54,660
+and probably being turned
+off by this extra step
+
+79
+00:03:54,660 --> 00:03:56,640
+they have to take to use your app.
+
+80
+00:03:56,640 --> 00:04:01,270
+And then there could be an update
+that'll break your whole application,
+
+81
+00:04:01,270 --> 00:04:03,880
+and it ends up being a nightmare
+for the developer, too.
+
+82
+00:04:03,880 --> 00:04:06,230
+So that was a barricade.
+
+83
+00:04:06,230 --> 00:04:10,480
+>> And then after that came along,
+the HTML audio tag, which
+
+84
+00:04:10,480 --> 00:04:16,579
+is a feature of more modern HTML-- which
+certainly allowed for a lot more stuff,
+
+85
+00:04:16,579 --> 00:04:20,050
+but even the things you could do
+there were a little bit limited just
+
+86
+00:04:20,050 --> 00:04:22,730
+as a result of the things
+that HTML was capable of.
+
+87
+00:04:22,730 --> 00:04:26,060
+So when the JavaScript
+API, the Web Audio API,
+
+88
+00:04:26,060 --> 00:04:29,290
+became a standard
+practice across browsers,
+
+89
+00:04:29,290 --> 00:04:32,490
+that really broadened the set
+of opportunities for developers
+
+90
+00:04:32,490 --> 00:04:36,590
+to really get into building
+cool stuff for the web.
+
+91
+00:04:36,590 --> 00:04:39,220
+For a long time there had
+been really robust tools
+
+92
+00:04:39,220 --> 00:04:44,360
+for native audio applications,
+like-- everyone knows GarageBand,
+
+93
+00:04:44,360 --> 00:04:48,360
+and then obviously there are more
+professional audio mixing applications,
+
+94
+00:04:48,360 --> 00:04:49,640
+and that kind of stuff.
+
+95
+00:04:49,640 --> 00:04:52,690
+But there wasn't a
+really good Cloud-- not
+
+96
+00:04:52,690 --> 00:04:55,811
+Cloud, yeah, I guess
+Cloud-- web-based platform
+
+97
+00:04:55,811 --> 00:04:58,310
+that would allow developers to
+build applications for people
+
+98
+00:04:58,310 --> 00:05:00,570
+to do audio mixing.
+
+99
+00:05:00,570 --> 00:05:03,960
+And as he will show you
+later, the Web Audio API
+
+100
+00:05:03,960 --> 00:05:07,470
+allows for really powerful
+stuff to happen really simply,
+
+101
+00:05:07,470 --> 00:05:09,597
+which is pretty cool.
+
+102
+00:05:09,597 --> 00:05:12,680
+So that's the instruction to why you
+should watch the rest of the seminar,
+
+103
+00:05:12,680 --> 00:05:14,350
+basically.
+
+104
+00:05:14,350 --> 00:05:17,880
+>> And now, I'm going to talk about
+some JavaScript-- just basic elements
+
+105
+00:05:17,880 --> 00:05:20,240
+of the language, so that
+we can be on the same page
+
+106
+00:05:20,240 --> 00:05:22,470
+when we talk about the
+API a little bit later.
+
+107
+00:05:22,470 --> 00:05:23,260
+Cool.
+
+108
+00:05:23,260 --> 00:05:26,192
+>> So, this is a summary.
+
+109
+00:05:26,192 --> 00:05:27,150
+I forgot this was here.
+
+110
+00:05:27,150 --> 00:05:27,510
+Yeah.
+
+111
+00:05:27,510 --> 00:05:27,870
+>> HUGH ZABRISKIE: There's two slides here.
+
+112
+00:05:27,870 --> 00:05:30,245
+>> SAM GREEN: This is the summary
+of some of the limitations
+
+113
+00:05:30,245 --> 00:05:35,220
+of the other binding, old methods.
+
+114
+00:05:35,220 --> 00:05:37,828
+And then now, we have these things.
+
+115
+00:05:37,828 --> 00:05:40,011
+Cool.
+
+116
+00:05:40,011 --> 00:05:40,510
+Awesome.
+
+117
+00:05:40,510 --> 00:05:43,200
+>> So, JavaScript essentials.
+
+118
+00:05:43,200 --> 00:05:47,230
+First things first, there's a
+pretty significant difference
+
+119
+00:05:47,230 --> 00:05:49,940
+in JavaScript versus in a
+language like C, in the way
+
+120
+00:05:49,940 --> 00:05:52,050
+that variables are created.
+
+121
+00:05:52,050 --> 00:05:55,634
+So in C, we're used to having
+to type our variables, right?
+
+122
+00:05:55,634 --> 00:05:57,800
+And I don't mean type like
+type them in, I mean type
+
+123
+00:05:57,800 --> 00:06:01,900
+like assign them a type-- meaning
+like, an int, a float, a char.
+
+124
+00:06:01,900 --> 00:06:05,210
+In C, we were really used to
+having to create a variable
+
+125
+00:06:05,210 --> 00:06:09,690
+and then stick to that type for the
+entire time that we use that variable.
+
+126
+00:06:09,690 --> 00:06:13,990
+And that isn't necessarily worse,
+but it's probably harder to use.
+
+127
+00:06:13,990 --> 00:06:16,190
+One of the cool features
+of JavaScript is
+
+128
+00:06:16,190 --> 00:06:19,740
+that variables are what's called
+"dynamically typed," which
+
+129
+00:06:19,740 --> 00:06:22,500
+means that I can create a
+variable with that syntax,
+
+130
+00:06:22,500 --> 00:06:25,800
+varX equals 5, for example.
+
+131
+00:06:25,800 --> 00:06:27,790
+That originally creates
+an integer variable--
+
+132
+00:06:27,790 --> 00:06:29,870
+right underneath the
+hood somewhere-- but I
+
+133
+00:06:29,870 --> 00:06:33,040
+can change that variable
+to refer to a string
+
+134
+00:06:33,040 --> 00:06:35,820
+without doing anything like
+creating a new variable.
+
+135
+00:06:35,820 --> 00:06:37,880
+I don't need to worry
+about the type changing.
+
+136
+00:06:37,880 --> 00:06:45,440
+JavaScript knows that the type's
+changed, and that happens dynamically.
+
+137
+00:06:45,440 --> 00:06:48,510
+>> So, there are benefits
+and drawbacks to that,
+
+138
+00:06:48,510 --> 00:06:51,250
+as anyone who's worked in
+JavaScript for a while might know.
+
+139
+00:06:51,250 --> 00:06:53,600
+There are times when
+you might accidentally
+
+140
+00:06:53,600 --> 00:06:57,720
+change the type of a variable and
+not handle that type changing,
+
+141
+00:06:57,720 --> 00:07:01,120
+and then your JavaScript
+can crash-- or an exception
+
+142
+00:07:01,120 --> 00:07:06,070
+be thrown, because you'll have the
+wrong type when you expect one type.
+
+143
+00:07:06,070 --> 00:07:07,040
+Cool.
+
+144
+00:07:07,040 --> 00:07:11,470
+>> So, scoping-- which is like, if we
+remember the early weeks in the course,
+
+145
+00:07:11,470 --> 00:07:15,420
+refers to how visible a variable
+is and in what area of the code.
+
+146
+00:07:15,420 --> 00:07:18,400
+All of that looks very similar
+to the way it looks in C.
+
+147
+00:07:18,400 --> 00:07:24,755
+So variables are scoped generally
+within curly braces within a function,
+
+148
+00:07:24,755 --> 00:07:27,005
+and then there are also
+globally-scoped variables that
+
+149
+00:07:27,005 --> 00:07:29,171
+are-- if you write a variable
+outside of a function,
+
+150
+00:07:29,171 --> 00:07:31,790
+it will be visible in the entire text.
+
+151
+00:07:31,790 --> 00:07:35,840
+>> One difference between
+JavaScript and C in particular,
+
+152
+00:07:35,840 --> 00:07:40,280
+is that if you declare a global
+variable anywhere in a text file
+
+153
+00:07:40,280 --> 00:07:43,324
+it's visible in any function
+within that text file.
+
+154
+00:07:43,324 --> 00:07:44,240
+That's correct, right?
+
+155
+00:07:44,240 --> 00:07:46,330
+>> HUGH ZABRISKIE: Yep.
+
+156
+00:07:46,330 --> 00:07:49,120
+>> SAM GREEN: So that's also a little
+bit funky in comparison to C,
+
+157
+00:07:49,120 --> 00:07:52,660
+where we always had to have our
+variable definitions above the places
+
+158
+00:07:52,660 --> 00:07:53,770
+they were used.
+
+159
+00:07:53,770 --> 00:07:57,957
+That's not a rule that's enforced
+anymore, so, a little bit different.
+
+160
+00:07:57,957 --> 00:08:00,540
+And again just to reemphasize,
+global versus local variables--
+
+161
+00:08:00,540 --> 00:08:03,457
+very similar to C. You could have
+two variables with the same name,
+
+162
+00:08:03,457 --> 00:08:06,540
+and have one of their names be shadowed
+by a local variable if one of them
+
+163
+00:08:06,540 --> 00:08:07,546
+was global.
+
+164
+00:08:07,546 --> 00:08:09,420
+So, similar kind of
+problems that some of you
+
+165
+00:08:09,420 --> 00:08:11,920
+may have run into in some
+of your problem sets so far.
+
+166
+00:08:11,920 --> 00:08:14,450
+Cool, so that's variables.
+
+167
+00:08:14,450 --> 00:08:20,310
+>> Control flow, meaning like,
+if-else-- logical stuff-- and loops.
+
+168
+00:08:20,310 --> 00:08:24,510
+So to start with, this is what if-else
+statements look like in JavaScript.
+
+169
+00:08:24,510 --> 00:08:29,750
+The placement of the various things
+on the lines isn't important.
+
+170
+00:08:29,750 --> 00:08:34,409
+This is just one of the conventions
+for the way we structure code.
+
+171
+00:08:34,409 --> 00:08:38,634
+Just like in C, we have an
+"if," a parenthesis statement.
+
+172
+00:08:38,634 --> 00:08:40,840
+
+173
+00:08:40,840 --> 00:08:42,090
+That's not what I meant to do.
+
+174
+00:08:42,090 --> 00:08:44,860
+
+175
+00:08:44,860 --> 00:08:45,550
+I did it again.
+
+176
+00:08:45,550 --> 00:08:46,841
+>> HUGH ZABRISKIE: Trying to exit?
+
+177
+00:08:46,841 --> 00:08:49,770
+SAM GREEN: No, I'm
+just trying to zoom in.
+
+178
+00:08:49,770 --> 00:08:50,660
+It doesn't matter.
+
+179
+00:08:50,660 --> 00:08:54,730
+
+180
+00:08:54,730 --> 00:08:59,370
+>> So, we have an "if" statement and
+we have a condition inside of it
+
+181
+00:08:59,370 --> 00:09:03,130
+that evaluates to true or false,
+and that determines whether or not
+
+182
+00:09:03,130 --> 00:09:04,510
+we enter that block of code.
+
+183
+00:09:04,510 --> 00:09:09,860
+And likewise, we have an else-if, and
+an else, just like we're used to in C.
+
+184
+00:09:09,860 --> 00:09:14,010
+>> You also should be pretty comfortable
+right off the bat with loops,
+
+185
+00:09:14,010 --> 00:09:16,440
+because they also look
+a lot like C looks.
+
+186
+00:09:16,440 --> 00:09:19,600
+But you'll notice again that we
+have, instead of int initializations,
+
+187
+00:09:19,600 --> 00:09:22,570
+we have var initializations.
+
+188
+00:09:22,570 --> 00:09:24,650
+And I guess you have
+to be careful to make
+
+189
+00:09:24,650 --> 00:09:28,460
+sure you don't change the value
+of I from an int to a string,
+
+190
+00:09:28,460 --> 00:09:31,780
+for example, because that's going to
+cause weird behavior you might not
+
+191
+00:09:31,780 --> 00:09:32,280
+expect.
+
+192
+00:09:32,280 --> 00:09:35,750
+But this should look
+pretty familiar, as well.
+
+193
+00:09:35,750 --> 00:09:39,460
+>> So this is where things start to
+get a little bit crazy in JavaScript
+
+194
+00:09:39,460 --> 00:09:44,920
+for someone who is going from a
+background of C. There are functions
+
+195
+00:09:44,920 --> 00:09:48,070
+in JavaScript, and there's one way
+to declare a function that looks
+
+196
+00:09:48,070 --> 00:09:50,361
+sort of similar to C, and
+then there's another one that
+
+197
+00:09:50,361 --> 00:09:52,450
+looks kind of different.
+
+198
+00:09:52,450 --> 00:09:54,930
+>> The first version,
+which we can see here,
+
+199
+00:09:54,930 --> 00:09:59,260
+is kind of C-like, where
+we say, this is a function,
+
+200
+00:09:59,260 --> 00:10:01,490
+give it a name, give
+the number of arguments,
+
+201
+00:10:01,490 --> 00:10:05,150
+and then the contents of the function
+go inside those curly braces.
+
+202
+00:10:05,150 --> 00:10:08,850
+We'll see an example of
+arguments in just a second.
+
+203
+00:10:08,850 --> 00:10:13,420
+>> Whereas on the next line, we see, oh,
+here's a variable called "myFunction,"
+
+204
+00:10:13,420 --> 00:10:17,546
+and we equal it to this
+generic thing-- function-- that
+
+205
+00:10:17,546 --> 00:10:19,170
+doesn't seem to have anything going on.
+
+206
+00:10:19,170 --> 00:10:22,780
+
+207
+00:10:22,780 --> 00:10:26,080
+The reason that's different
+than C is that JavaScript
+
+208
+00:10:26,080 --> 00:10:30,040
+is what's called a functional language,
+or has functional elements, which means
+
+209
+00:10:30,040 --> 00:10:33,510
+that functions are actually values.
+
+210
+00:10:33,510 --> 00:10:39,520
+And that means that we can set
+a variable to equal a function
+
+211
+00:10:39,520 --> 00:10:43,210
+and then move that function
+around, pass it as an argument,
+
+212
+00:10:43,210 --> 00:10:46,550
+do all kinds of stuff
+like that with functions.
+
+213
+00:10:46,550 --> 00:10:49,682
+>> One other thing to note--
+functions are written
+
+214
+00:10:49,682 --> 00:10:51,140
+with a certain number of arguments.
+
+215
+00:10:51,140 --> 00:10:54,056
+We'll see an example of a function
+with an argument on the next slide.
+
+216
+00:10:54,056 --> 00:10:56,720
+But JavaScript won't
+yell at you if you try
+
+217
+00:10:56,720 --> 00:10:59,330
+to use a function with the
+wrong number of arguments.
+
+218
+00:10:59,330 --> 00:11:05,310
+It'll just do its best to make
+do, meaning that if you pass,
+
+219
+00:11:05,310 --> 00:11:09,410
+you call a function that expects an
+argument with no argument, all that
+
+220
+00:11:09,410 --> 00:11:13,990
+will happen is it'll do its best
+to try and execute that code,
+
+221
+00:11:13,990 --> 00:11:16,541
+and if it eventually runs
+into an exception or an error,
+
+222
+00:11:16,541 --> 00:11:19,790
+it'll throw that exception and just keep
+going-- which is just one of the ways
+
+223
+00:11:19,790 --> 00:11:21,070
+that JavaScript works.
+
+224
+00:11:21,070 --> 00:11:21,781
+Yeah.
+
+225
+00:11:21,781 --> 00:11:24,207
+>> AUDIENCE: What happens if
+there's too many arguments?
+
+226
+00:11:24,207 --> 00:11:26,040
+SAM GREEN: So the
+question was, what happens
+
+227
+00:11:26,040 --> 00:11:27,380
+if there are too many arguments?
+
+228
+00:11:27,380 --> 00:11:29,171
+And the answer is that
+JavaScript will just
+
+229
+00:11:29,171 --> 00:11:32,120
+ignore the ones that are
+after the ones it expects.
+
+230
+00:11:32,120 --> 00:11:36,420
+It'll try to execute the function
+call as if it was just the first two.
+
+231
+00:11:36,420 --> 00:11:37,075
+Right?
+
+232
+00:11:37,075 --> 00:11:37,700
+>> HUGH ZABRISKIE: That's right, yeah.
+
+233
+00:11:37,700 --> 00:11:39,449
+Similarly, if there
+are too few arguments,
+
+234
+00:11:39,449 --> 00:11:42,640
+it just kind of gives null to all the
+arguments it doesn't have any values
+
+235
+00:11:42,640 --> 00:11:43,660
+for.
+
+236
+00:11:43,660 --> 00:11:45,810
+>> SAM GREEN: Which can
+actually be handy, if you
+
+237
+00:11:45,810 --> 00:11:49,060
+want to write a function that
+takes a variable number arguments.
+
+238
+00:11:49,060 --> 00:11:55,830
+You can set default values in
+the definition of the function,
+
+239
+00:11:55,830 --> 00:11:59,060
+and it can ignore the fact
+that the input's not there.
+
+240
+00:11:59,060 --> 00:12:01,584
+
+241
+00:12:01,584 --> 00:12:04,000
+So I want to talk a little bit
+more about this last bullet
+
+242
+00:12:04,000 --> 00:12:05,541
+point, which is functions are values.
+
+243
+00:12:05,541 --> 00:12:07,930
+
+244
+00:12:07,930 --> 00:12:11,010
+This is an example that is
+a little bit mind-blowing
+
+245
+00:12:11,010 --> 00:12:14,880
+if you just read it, and don't think
+about what's going on for a second.
+
+246
+00:12:14,880 --> 00:12:17,910
+So, let's look just at
+the first line here.
+
+247
+00:12:17,910 --> 00:12:24,360
+We have this variable, f1, that we say
+is a function that does this thing.
+
+248
+00:12:24,360 --> 00:12:28,535
+And the contents of the function
+are console.log('hello').
+
+249
+00:12:28,535 --> 00:12:32,220
+You can think of console.log as the
+JavaScript equivalent of printf.
+
+250
+00:12:32,220 --> 00:12:35,510
+So what will happen is, if we
+run this code in our browser,
+
+251
+00:12:35,510 --> 00:12:37,530
+it'll print out a string.
+
+252
+00:12:37,530 --> 00:12:39,342
+I can demonstrate that.
+
+253
+00:12:39,342 --> 00:12:42,300
+AUDIENCE: By log, though, does that
+mean it's being recorded somewhere?
+
+254
+00:12:42,300 --> 00:12:42,550
+SAM GREEN: Yeah.
+
+255
+00:12:42,550 --> 00:12:44,216
+So I'll show you what's going to happen.
+
+256
+00:12:44,216 --> 00:12:48,085
+So the question was, what does log mean?
+
+257
+00:12:48,085 --> 00:12:51,262
+>> HUGH ZABRISKIE: So console.log
+is like printf for C.
+
+258
+00:12:51,262 --> 00:12:52,970
+SAM GREEN: So console.log
+is like printf,
+
+259
+00:12:52,970 --> 00:12:59,240
+so if I have this console.log('hello'),
+and I call that, the string "hello"
+
+260
+00:12:59,240 --> 00:13:00,730
+gets printed out to the console.
+
+261
+00:13:00,730 --> 00:13:03,340
+This is the console.
+
+262
+00:13:03,340 --> 00:13:05,930
+It's just like printf, where
+it prints to standard out.
+
+263
+00:13:05,930 --> 00:13:09,050
+
+264
+00:13:09,050 --> 00:13:11,230
+And we'll see in a minute,
+but this is actually
+
+265
+00:13:11,230 --> 00:13:16,529
+referring to the console object,
+and calling a method on that object.
+
+266
+00:13:16,529 --> 00:13:18,320
+That'll make more sense
+in a minute when we
+
+267
+00:13:18,320 --> 00:13:20,660
+get to talking about
+objects in JavaScript,
+
+268
+00:13:20,660 --> 00:13:22,509
+but I thought I would just mention that.
+
+269
+00:13:22,509 --> 00:13:24,300
+HUGH ZABRISKIE: We're
+used to in C, right--
+
+270
+00:13:24,300 --> 00:13:27,580
+we usually write a big program
+in main to do anything.
+
+271
+00:13:27,580 --> 00:13:30,700
+But what's cool in JavaScript is you
+have this kind of interpreter that
+
+272
+00:13:30,700 --> 00:13:33,620
+runs in real time, so it
+takes just line by line,
+
+273
+00:13:33,620 --> 00:13:35,320
+it can just interpret that on the spot.
+
+274
+00:13:35,320 --> 00:13:37,403
+And it keeps track of
+things that have run before,
+
+275
+00:13:37,403 --> 00:13:41,620
+so it's a pretty useful tool to
+use console.log, or the console,
+
+276
+00:13:41,620 --> 00:13:46,870
+generally, for just playing
+around with JavaScript.
+
+277
+00:13:46,870 --> 00:13:51,420
+>> SAM GREEN: So going back to this
+example-- the second line of code
+
+278
+00:13:51,420 --> 00:13:55,320
+here is pretty mind-boggling in my head.
+
+279
+00:13:55,320 --> 00:13:59,790
+The first time I read this,
+it was like, what's going on?
+
+280
+00:13:59,790 --> 00:14:04,580
+So what's happening is, this
+function declaration says,
+
+281
+00:14:04,580 --> 00:14:10,170
+I have a function called f2
+that's expecting one argument, f,
+
+282
+00:14:10,170 --> 00:14:12,990
+and then it calls that
+function, f, which
+
+283
+00:14:12,990 --> 00:14:17,652
+was passed to it as an argument
+with no arguments itself.
+
+284
+00:14:17,652 --> 00:14:19,110
+So, that might have been confusing.
+
+285
+00:14:19,110 --> 00:14:21,890
+
+286
+00:14:21,890 --> 00:14:28,400
+If we understand this as f2 takes f1
+as an argument, and then inside of f2,
+
+287
+00:14:28,400 --> 00:14:31,190
+f gets called-- which means
+that this line of code,
+
+288
+00:14:31,190 --> 00:14:34,192
+after these two lines of
+code, results in "hello"
+
+289
+00:14:34,192 --> 00:14:35,400
+being printed to the console.
+
+290
+00:14:35,400 --> 00:14:41,660
+
+291
+00:14:41,660 --> 00:14:44,910
+>> The fact that we can pass
+functions around as values
+
+292
+00:14:44,910 --> 00:14:47,870
+ends up being one of the most
+powerful features of JavaScript
+
+293
+00:14:47,870 --> 00:14:49,700
+as a programming language.
+
+294
+00:14:49,700 --> 00:14:52,782
+Outside of all of the
+awesome things it can do,
+
+295
+00:14:52,782 --> 00:14:54,990
+just as a feature of the
+language in terms of the way
+
+296
+00:14:54,990 --> 00:14:58,400
+that it makes things easy
+to program and allows
+
+297
+00:14:58,400 --> 00:15:01,060
+for things that aren't particularly
+well-suited to the web,
+
+298
+00:15:01,060 --> 00:15:04,500
+functional programming and functional
+programming aspects of JavaScript
+
+299
+00:15:04,500 --> 00:15:07,130
+is one of the most
+powerful concepts that
+
+300
+00:15:07,130 --> 00:15:11,030
+exists in JavaScript-- if you ask me.
+
+301
+00:15:11,030 --> 00:15:11,960
+Cool.
+
+302
+00:15:11,960 --> 00:15:13,534
+>> So, next thing.
+
+303
+00:15:13,534 --> 00:15:16,450
+In addition to being functional,
+there are also elements of JavaScript
+
+304
+00:15:16,450 --> 00:15:20,510
+that are object-oriented,
+which is one of the very
+
+305
+00:15:20,510 --> 00:15:23,800
+popular buzz words in computer science.
+
+306
+00:15:23,800 --> 00:15:27,040
+Object-oriented programming
+is a really popular thing.
+
+307
+00:15:27,040 --> 00:15:34,210
+JavaScript has a version of that,
+where I believe every value is also
+
+308
+00:15:34,210 --> 00:15:41,475
+an object, which means that every object
+wraps together some number of values.
+
+309
+00:15:41,475 --> 00:15:44,020
+
+310
+00:15:44,020 --> 00:15:49,750
+So for values that are simple, like
+an integer, like varX equals 5,
+
+311
+00:15:49,750 --> 00:15:52,250
+that object just wraps that one value.
+
+312
+00:15:52,250 --> 00:15:54,760
+
+313
+00:15:54,760 --> 00:15:59,036
+>> But we can also imagine a situation
+where-- we can think of situations in C
+
+314
+00:15:59,036 --> 00:16:00,910
+where we wanted to do
+something with structs,
+
+315
+00:16:00,910 --> 00:16:03,285
+for example, that wraps several
+values together and makes
+
+316
+00:16:03,285 --> 00:16:05,870
+it really easy to pass things around.
+
+317
+00:16:05,870 --> 00:16:09,270
+That's when an object is in JavaScript.
+
+318
+00:16:09,270 --> 00:16:12,340
+>> It's important to remember
+when I say that objects wrapped
+
+319
+00:16:12,340 --> 00:16:15,330
+some number of values together,
+that functions are also
+
+320
+00:16:15,330 --> 00:16:21,506
+values, which means that functions can
+also be inside of a JavaScript object.
+
+321
+00:16:21,506 --> 00:16:26,910
+And the reason that's important
+is that, whereas we often
+
+322
+00:16:26,910 --> 00:16:30,290
+think of calling a method
+on an object that's
+
+323
+00:16:30,290 --> 00:16:35,200
+of a popular term from other
+popular object-oriented languages,
+
+324
+00:16:35,200 --> 00:16:39,330
+one of the differences here is that
+all that a method is in JavaScript
+
+325
+00:16:39,330 --> 00:16:47,270
+is a value stored inside of an object
+that performs some action-- possibly
+
+326
+00:16:47,270 --> 00:16:51,850
+using the other values that are inside
+of that object, but not necessarily.
+
+327
+00:16:51,850 --> 00:16:56,930
+So you can imagine a situation, I
+guess in a little bit of a crazy way,
+
+328
+00:16:56,930 --> 00:17:02,990
+where you called a method of one
+object on another object, for example.
+
+329
+00:17:02,990 --> 00:17:06,010
+So, it's a little bit funky in that way.
+
+330
+00:17:06,010 --> 00:17:09,369
+>> And you can also change the methods
+that are associated with an object
+
+331
+00:17:09,369 --> 00:17:13,740
+by assigning that method a
+new function, which is also
+
+332
+00:17:13,740 --> 00:17:18,250
+pretty different from other
+object-oriented languages, where
+
+333
+00:17:18,250 --> 00:17:21,410
+once we declare an object
+and instantiate it,
+
+334
+00:17:21,410 --> 00:17:25,839
+we can't change the methods that are
+associated with that object anymore.
+
+335
+00:17:25,839 --> 00:17:28,680
+So that's pretty different.
+
+336
+00:17:28,680 --> 00:17:29,570
+Cool.
+
+337
+00:17:29,570 --> 00:17:34,010
+>> So here's an example, first,
+of an object in action.
+
+338
+00:17:34,010 --> 00:17:36,390
+This is what's called
+a generic object, which
+
+339
+00:17:36,390 --> 00:17:39,460
+means that it doesn't have any
+particular name, doesn't have a class,
+
+340
+00:17:39,460 --> 00:17:42,190
+it's just some wrapping of values.
+
+341
+00:17:42,190 --> 00:17:49,790
+And the way that looks is, we have
+this outer pair of curly braces here
+
+342
+00:17:49,790 --> 00:17:57,950
+that indicate to JavaScript
+and say, this is an object.
+
+343
+00:17:57,950 --> 00:18:02,130
+The values inside of it
+are each values inside
+
+344
+00:18:02,130 --> 00:18:04,590
+of the object that should
+be wrapped together.
+
+345
+00:18:04,590 --> 00:18:09,180
+And inside of that object,
+we then have key value pairs,
+
+346
+00:18:09,180 --> 00:18:13,880
+where the key refers to the name
+of the value inside of the object,
+
+347
+00:18:13,880 --> 00:18:16,790
+and the other side--
+opposite the colon here--
+
+348
+00:18:16,790 --> 00:18:19,850
+is the actual value
+that should be stored.
+
+349
+00:18:19,850 --> 00:18:26,210
+>> So you see here that we have a
+key called fn with value sam,
+
+350
+00:18:26,210 --> 00:18:29,430
+followed by a comma,
+saying onto the next entry.
+
+351
+00:18:29,430 --> 00:18:33,560
+Then a key called ln,
+with a value of green,
+
+352
+00:18:33,560 --> 00:18:35,840
+followed by a comma,
+followed by "print,"
+
+353
+00:18:35,840 --> 00:18:43,209
+which is going to have a function value
+that is going to do this line of code.
+
+354
+00:18:43,209 --> 00:18:45,500
+Let's take a step back and
+unpack what's going on here.
+
+355
+00:18:45,500 --> 00:18:47,280
+So this is a little bit complicated,
+and we're seeing something new
+
+356
+00:18:47,280 --> 00:18:48,071
+for the first time.
+
+357
+00:18:48,071 --> 00:18:51,190
+
+358
+00:18:51,190 --> 00:18:55,065
+The "this" keyword is the new thing
+we're seeing here, and what this does
+
+359
+00:18:55,065 --> 00:19:00,540
+is, refers to the current
+object in scope, right?
+
+360
+00:19:00,540 --> 00:19:03,990
+So when we say, this
+points all the way back
+
+361
+00:19:03,990 --> 00:19:08,140
+to this entire object--
+when we do this.fn,
+
+362
+00:19:08,140 --> 00:19:11,990
+we're going to go all the way back
+to this object, go to the fn value
+
+363
+00:19:11,990 --> 00:19:16,471
+and get sam, pull it all the way
+back, stick it here, and then move on.
+
+364
+00:19:16,471 --> 00:19:19,838
+>> AUDIENCE: So with the retrieval, is
+that done because of the parameter
+
+365
+00:19:19,838 --> 00:19:20,621
+definition?
+
+366
+00:19:20,621 --> 00:19:23,870
+SAM GREEN: So the question was, is the
+retrieval done because of the parameter
+
+367
+00:19:23,870 --> 00:19:24,727
+definition?
+
+368
+00:19:24,727 --> 00:19:25,435
+Yeah, absolutely.
+
+369
+00:19:25,435 --> 00:19:29,660
+
+370
+00:19:29,660 --> 00:19:32,470
+What's going to happen here is,
+this dot says to the JavaScript,
+
+371
+00:19:32,470 --> 00:19:39,990
+OK, I'm getting some value
+from this object from myself.
+
+372
+00:19:39,990 --> 00:19:46,375
+And then it'll look for an entry
+called fn, and if it finds it,
+
+373
+00:19:46,375 --> 00:19:48,470
+it'll return that value-- so, it's sam.
+
+374
+00:19:48,470 --> 00:19:51,540
+But I could also have typed
+something that was not defined here,
+
+375
+00:19:51,540 --> 00:19:54,090
+and then it would just
+return undefined-- which
+
+376
+00:19:54,090 --> 00:19:58,250
+is a thing that JavaScript can
+do, which can have benefits,
+
+377
+00:19:58,250 --> 00:20:03,190
+but it's also-- if you make a typo,
+it can result in weird errors.
+
+378
+00:20:03,190 --> 00:20:05,617
+So it'll just try to find
+whatever you tell it to find
+
+379
+00:20:05,617 --> 00:20:07,700
+and it's not going to
+complain if doesn't find it.
+
+380
+00:20:07,700 --> 00:20:11,390
+It'll just say, I didn't
+find it, and then move on.
+
+381
+00:20:11,390 --> 00:20:17,581
+So it would be undefined,
+plus blank, plus last name.
+
+382
+00:20:17,581 --> 00:20:18,080
+Yeah.
+
+383
+00:20:18,080 --> 00:20:21,070
+And then we can see that if we
+could then go down and access--
+
+384
+00:20:21,070 --> 00:20:25,450
+and we call tf.print() with parentheses.
+
+385
+00:20:25,450 --> 00:20:30,000
+It's going to call that print
+function with no arguments, right?
+
+386
+00:20:30,000 --> 00:20:34,490
+But if we just said tf.print()
+semicolon, without the parentheses,
+
+387
+00:20:34,490 --> 00:20:37,480
+all that would have done is pull
+out the function from the value,
+
+388
+00:20:37,480 --> 00:20:40,609
+but not actually called it.
+
+389
+00:20:40,609 --> 00:20:41,162
+Cool.
+
+390
+00:20:41,162 --> 00:20:42,870
+HUGH ZABRISKIE: Should
+we make an object?
+
+391
+00:20:42,870 --> 00:20:44,161
+SAM GREEN: Sure, let's do that.
+
+392
+00:20:44,161 --> 00:20:48,750
+So I can move this
+example to the console.
+
+393
+00:20:48,750 --> 00:20:51,380
+
+394
+00:20:51,380 --> 00:20:55,466
+We can imagine that I have an object.
+
+395
+00:20:55,466 --> 00:21:03,026
+
+396
+00:21:03,026 --> 00:21:04,150
+So this is a simple object.
+
+397
+00:21:04,150 --> 00:21:06,910
+
+398
+00:21:06,910 --> 00:21:11,050
+This is an object that contains two
+values with two keys, two key value
+
+399
+00:21:11,050 --> 00:21:12,710
+pairs.
+
+400
+00:21:12,710 --> 00:21:21,850
+So I can then access the value stored
+inside of this object by doing x.x1,
+
+401
+00:21:21,850 --> 00:21:23,400
+for example, and I get 1 back.
+
+402
+00:21:23,400 --> 00:21:29,590
+Likewise, x.x2, get that value back.
+
+403
+00:21:29,590 --> 00:21:33,330
+>> And now the really cool thing is, I can
+actually add something to this object
+
+404
+00:21:33,330 --> 00:21:34,316
+after I've created it.
+
+405
+00:21:34,316 --> 00:21:36,315
+So you can imagine, let's
+say I have a function.
+
+406
+00:21:36,315 --> 00:21:44,430
+
+407
+00:21:44,430 --> 00:21:46,352
+>> HUGH ZABRISKIE: You
+have to do Shift-Enter.
+
+408
+00:21:46,352 --> 00:21:47,643
+>> SAM GREEN: Oh, that's annoying.
+
+409
+00:21:47,643 --> 00:22:02,460
+
+410
+00:22:02,460 --> 00:22:04,324
+What did it not like?
+
+411
+00:22:04,324 --> 00:22:04,824
+Oh.
+
+412
+00:22:04,824 --> 00:22:07,532
+
+413
+00:22:07,532 --> 00:22:08,691
+Here we go.
+
+414
+00:22:08,691 --> 00:22:09,190
+Cool.
+
+415
+00:22:09,190 --> 00:22:12,840
+>> So I've just created
+this function, f, that
+
+416
+00:22:12,840 --> 00:22:17,590
+is going to go to the current
+object and print this.x1.
+
+417
+00:22:17,590 --> 00:22:20,330
+So if I just call f by
+itself, nothing's going
+
+418
+00:22:20,330 --> 00:22:26,970
+to happen, right, because there is no x1
+field in the object it's referring to.
+
+419
+00:22:26,970 --> 00:22:39,710
+But, if I say, x.f = f, and then I
+call x.f(), I'm going to get back 1.
+
+420
+00:22:39,710 --> 00:22:42,990
+
+421
+00:22:42,990 --> 00:22:46,530
+That f function is now
+associated with the object x,
+
+422
+00:22:46,530 --> 00:22:51,800
+which has a key called x1
+associated with the value 1,
+
+423
+00:22:51,800 --> 00:22:54,570
+so when we call this.x1, it's
+going to find what it's looking for
+
+424
+00:22:54,570 --> 00:22:56,450
+and be able to print a value out.
+
+425
+00:22:56,450 --> 00:22:58,700
+So that's just one example
+of kind of the crazy things
+
+426
+00:22:58,700 --> 00:23:01,190
+you can do with objects in JavaScript.
+
+427
+00:23:01,190 --> 00:23:03,870
+
+428
+00:23:03,870 --> 00:23:07,560
+>> So that version was the
+generic version, meaning
+
+429
+00:23:07,560 --> 00:23:13,780
+that we've created an object using this
+parentheses notation-- brace notation,
+
+430
+00:23:13,780 --> 00:23:16,880
+rather-- and that's
+handy if we just want
+
+431
+00:23:16,880 --> 00:23:21,440
+one instance of a particular object, but
+what if we want to have more than one
+
+432
+00:23:21,440 --> 00:23:22,210
+of the same kind?
+
+433
+00:23:22,210 --> 00:23:24,440
+And the answer to that
+question is, there are things
+
+434
+00:23:24,440 --> 00:23:26,760
+called classes in JavaScript as well.
+
+435
+00:23:26,760 --> 00:23:31,470
+
+436
+00:23:31,470 --> 00:23:36,420
+We can create a function that
+does some sort of initialization
+
+437
+00:23:36,420 --> 00:23:41,690
+for a foreign object,
+and we'd say, like,
+
+438
+00:23:41,690 --> 00:23:44,550
+my class-- so the name
+of the reusable object--
+
+439
+00:23:44,550 --> 00:23:47,100
+equals function that sets it up.
+
+440
+00:23:47,100 --> 00:23:52,280
+So what this would be equivalent
+to is creating an object that
+
+441
+00:23:52,280 --> 00:23:55,930
+would be just like,
+curly brace, str, colon,
+
+442
+00:23:55,930 --> 00:23:59,630
+this is a string,
+semicolon, curly brace.
+
+443
+00:23:59,630 --> 00:24:01,880
+That would be the generic
+object we initialize,
+
+444
+00:24:01,880 --> 00:24:06,380
+with the one difference being on the
+next lines we create a prototype, which
+
+445
+00:24:06,380 --> 00:24:11,190
+means it's a default key that
+we add to our object that
+
+446
+00:24:11,190 --> 00:24:13,970
+has the value listed here.
+
+447
+00:24:13,970 --> 00:24:20,570
+Meaning that, when I create a new
+instance of this MyClass object,
+
+448
+00:24:20,570 --> 00:24:27,440
+it's going to have pre-built inside of
+it a value called str and another value
+
+449
+00:24:27,440 --> 00:24:32,418
+called myPrint, which is
+going to be a function.
+
+450
+00:24:32,418 --> 00:24:32,918
+Awesome.
+
+451
+00:24:32,918 --> 00:24:37,410
+
+452
+00:24:37,410 --> 00:24:37,990
+>> Great.
+
+453
+00:24:37,990 --> 00:24:40,710
+So the last thing to
+say about JavaScript
+
+454
+00:24:40,710 --> 00:24:46,430
+is that it's really useful for what
+are called asynchronous operations.
+
+455
+00:24:46,430 --> 00:24:52,500
+Asynchronous means is that we
+can wait for some operation
+
+456
+00:24:52,500 --> 00:24:57,870
+to complete before we move
+on, but move on while we wait
+
+457
+00:24:57,870 --> 00:24:59,690
+and then have something happen later on.
+
+458
+00:24:59,690 --> 00:25:03,480
+And what I mean by that is, you
+can imagine a situation where
+
+459
+00:25:03,480 --> 00:25:06,850
+you send a request to
+some web server somewhere,
+
+460
+00:25:06,850 --> 00:25:09,670
+and it's going to to send you back
+some big chunk of data, right?
+
+461
+00:25:09,670 --> 00:25:13,320
+And your user could wait in the
+meantime for that to happen,
+
+462
+00:25:13,320 --> 00:25:15,200
+and nothing could be
+going on at that time.
+
+463
+00:25:15,200 --> 00:25:18,110
+But that's not a great design, right?
+
+464
+00:25:18,110 --> 00:25:20,214
+You don't want the web page to freeze.
+
+465
+00:25:20,214 --> 00:25:22,380
+What if the user wants to
+click on a drop-down menu?
+
+466
+00:25:22,380 --> 00:25:24,870
+It's not a great design pattern.
+
+467
+00:25:24,870 --> 00:25:29,290
+Instead, basically what
+JavaScript does is says,
+
+468
+00:25:29,290 --> 00:25:31,870
+OK, do this operation asynchronously.
+
+469
+00:25:31,870 --> 00:25:36,520
+So like, wait in the background,
+and then when the operation is done,
+
+470
+00:25:36,520 --> 00:25:39,420
+call the callback function--
+call some function,
+
+471
+00:25:39,420 --> 00:25:43,800
+do some action-- to signal that the
+operation we were waiting for to end
+
+472
+00:25:43,800 --> 00:25:45,520
+is over.
+
+473
+00:25:45,520 --> 00:25:51,240
+And the reason that's super powerful is,
+we can do something, pass an argument,
+
+474
+00:25:51,240 --> 00:25:54,440
+do something, and then wait
+for something to happen.
+
+475
+00:25:54,440 --> 00:25:58,970
+Then, once that something
+completes, we can call a callback.
+
+476
+00:25:58,970 --> 00:26:03,300
+That's really handy because it lets
+us do things with Web Audio API,
+
+477
+00:26:03,300 --> 00:26:07,490
+for example, like load an
+audio file from a remote server
+
+478
+00:26:07,490 --> 00:26:11,660
+without having to wait for the
+entire audio file to be loaded,
+
+479
+00:26:11,660 --> 00:26:14,440
+which would be really
+bad for user experience.
+
+480
+00:26:14,440 --> 00:26:17,080
+Cool.
+
+481
+00:26:17,080 --> 00:26:19,460
+>> Last couple notes about
+debugging, since this
+
+482
+00:26:19,460 --> 00:26:23,682
+is a thing you're going to have to do
+as part of your project, guaranteed.
+
+483
+00:26:23,682 --> 00:26:25,140
+I mentioned the JavaScript console.
+
+484
+00:26:25,140 --> 00:26:27,550
+It's a super useful feature
+of all modern browsers,
+
+485
+00:26:27,550 --> 00:26:30,300
+And we really encourage you to get
+comfortable using your console,
+
+486
+00:26:30,300 --> 00:26:33,660
+if you want to get good at JavaScript.
+
+487
+00:26:33,660 --> 00:26:36,320
+It's super handy for
+debugging, but it's also
+
+488
+00:26:36,320 --> 00:26:39,440
+really useful for figuring
+out how to use an API.
+
+489
+00:26:39,440 --> 00:26:41,950
+It allows for really
+easy experimentation
+
+490
+00:26:41,950 --> 00:26:45,910
+without having to type some
+code, and then compile it.
+
+491
+00:26:45,910 --> 00:26:47,500
+You don't have to do all those steps.
+
+492
+00:26:47,500 --> 00:26:49,619
+You can just write
+some code into a line,
+
+493
+00:26:49,619 --> 00:26:52,410
+and then get immediate feedback on
+whether or not that line of code
+
+494
+00:26:52,410 --> 00:26:55,230
+worked-- very handy.
+
+495
+00:26:55,230 --> 00:26:59,760
+>> And also, just one technical note--
+the JavaScript console is an example
+
+496
+00:26:59,760 --> 00:27:05,680
+of a REPL-- so that's R-E-P-L, REPL,
+which stands for read, evaluate,
+
+497
+00:27:05,680 --> 00:27:06,180
+print loop.
+
+498
+00:27:06,180 --> 00:27:09,100
+
+499
+00:27:09,100 --> 00:27:12,120
+You're going to type some stuff
+in, it'll read what you typed in,
+
+500
+00:27:12,120 --> 00:27:17,280
+it'll evaluate it, and it'll print the
+output, and then it'll start again.
+
+501
+00:27:17,280 --> 00:27:22,056
+That allows you to rapidly go in
+circles iterating, which is really cool.
+
+502
+00:27:22,056 --> 00:27:25,150
+
+503
+00:27:25,150 --> 00:27:28,930
+>> I guess real last note-- this
+is the actual last note, yes.
+
+504
+00:27:28,930 --> 00:27:30,780
+How do we actually use JavaScript?
+
+505
+00:27:30,780 --> 00:27:34,040
+So first, we can import
+it using a script tag
+
+506
+00:27:34,040 --> 00:27:39,500
+at the top or bottom of an HTML file--
+anywhere inside of an HTML file,
+
+507
+00:27:39,500 --> 00:27:40,440
+really.
+
+508
+00:27:40,440 --> 00:27:47,390
+And within a script tag, there are
+two sub-ways of importing JavaScript.
+
+509
+00:27:47,390 --> 00:27:51,370
+The first is by having a
+separate JavaScript file
+
+510
+00:27:51,370 --> 00:27:58,010
+that we import in its entirety, or
+by having an area of code like script
+
+511
+00:27:58,010 --> 00:28:00,290
+to start, and then
+backslash script to end.
+
+512
+00:28:00,290 --> 00:28:02,620
+And then we just write
+JavaScript inside the HTML file.
+
+513
+00:28:02,620 --> 00:28:03,790
+Those are the two ways.
+
+514
+00:28:03,790 --> 00:28:05,165
+You can't have it inside of HTML.
+
+515
+00:28:05,165 --> 00:28:06,502
+
+516
+00:28:06,502 --> 00:28:08,126
+AUDIENCE: Is one better than the other?
+
+517
+00:28:08,126 --> 00:28:10,542
+SAM GREEN: The question was,
+is one better than the other.
+
+518
+00:28:10,542 --> 00:28:18,306
+So, yes, as a coding style practice,
+and also it's like a design practice.
+
+519
+00:28:18,306 --> 00:28:20,180
+There are two reasons
+why it might be better.
+
+520
+00:28:20,180 --> 00:28:23,934
+The first is, it makes your code a
+lot more readable if all of your HTML
+
+521
+00:28:23,934 --> 00:28:27,100
+is in one place, all of your CSS is in
+another place, all of your JavaScript
+
+522
+00:28:27,100 --> 00:28:28,420
+is in a third place.
+
+523
+00:28:28,420 --> 00:28:28,920
+Right?
+
+524
+00:28:28,920 --> 00:28:32,370
+I think we should have already talked
+about it in sections-- like CSS-- what
+
+525
+00:28:32,370 --> 00:28:35,220
+that is-- and it goes
+often in another file.
+
+526
+00:28:35,220 --> 00:28:37,090
+So, similar kind of concept here.
+
+527
+00:28:37,090 --> 00:28:42,410
+You can also imagine that JavaScript
+would be reused on more than one
+
+528
+00:28:42,410 --> 00:28:47,350
+HTML page, or perhaps a
+great many HTML pages,
+
+529
+00:28:47,350 --> 00:28:49,340
+and having that JavaScript
+refactored into one
+
+530
+00:28:49,340 --> 00:28:51,950
+file that you can import
+into more than one place
+
+531
+00:28:51,950 --> 00:28:54,570
+allows the code to be
+way more maintainable.
+
+532
+00:28:54,570 --> 00:28:57,930
+You can imagine making one
+change to the JavaScript
+
+533
+00:28:57,930 --> 00:29:00,070
+and having to change it
+in 100 different files.
+
+534
+00:29:00,070 --> 00:29:04,070
+And instead we can just change it
+in one, which is way more powerful.
+
+535
+00:29:04,070 --> 00:29:05,420
+Did I answer your question?
+
+536
+00:29:05,420 --> 00:29:07,950
+Cool.
+
+537
+00:29:07,950 --> 00:29:10,830
+>> We can also type into the console,
+as we've mentioned before.
+
+538
+00:29:10,830 --> 00:29:15,070
+And again, one last note--
+Web Audio is built in,
+
+539
+00:29:15,070 --> 00:29:16,978
+you don't need to load anything.
+
+540
+00:29:16,978 --> 00:29:17,478
+Cool.
+
+541
+00:29:17,478 --> 00:29:20,519
+Are there any questions, do you have
+any more questions about JavaScript,
+
+542
+00:29:20,519 --> 00:29:21,930
+before we move on?
+
+543
+00:29:21,930 --> 00:29:24,286
+>> AUDIENCE: [INAUDIBLE]
+
+544
+00:29:24,286 --> 00:29:25,410
+SAM GREEN: All right, cool.
+
+545
+00:29:25,410 --> 00:29:27,200
+So now he's going to talk about the API.
+
+546
+00:29:27,200 --> 00:29:28,490
+>> HUGH ZABRISKIE: Cool.
+
+547
+00:29:28,490 --> 00:29:28,990
+Thanks, Sam.
+
+548
+00:29:28,990 --> 00:29:30,184
+>> SAM GREEN: Sure.
+
+549
+00:29:30,184 --> 00:29:32,600
+HUGH ZABRISKIE: Awesome, so
+we'll move on from JavaScript.
+
+550
+00:29:32,600 --> 00:29:35,350
+So we've talked about some of
+the essentials of JavaScript,
+
+551
+00:29:35,350 --> 00:29:41,105
+and those are the variables, functions,
+objects, functions as variables,
+
+552
+00:29:41,105 --> 00:29:41,980
+asynchronous loading.
+
+553
+00:29:41,980 --> 00:29:46,100
+These are all things that you'll
+see as you use the Web Audio.
+
+554
+00:29:46,100 --> 00:29:49,230
+So we're just going to talk
+about it first at a high level.
+
+555
+00:29:49,230 --> 00:29:52,120
+>> It's an API, so it's something
+that's built, as Sam said,
+
+556
+00:29:52,120 --> 00:29:57,010
+right into the JavaScript
+that you use in the console.
+
+557
+00:29:57,010 --> 00:30:01,020
+And it's actually just like C++ code
+that is really built into Chrome
+
+558
+00:30:01,020 --> 00:30:04,470
+and Firefox, and all of these browsers.
+
+559
+00:30:04,470 --> 00:30:07,060
+So the main idea with Web
+Audio is that you have
+
+560
+00:30:07,060 --> 00:30:09,440
+this kind of pipeline of audio, right?
+
+561
+00:30:09,440 --> 00:30:13,670
+So your audio data
+comes in in some form.
+
+562
+00:30:13,670 --> 00:30:16,690
+>> There are kind of three main forms--
+you have the oscillator, which
+
+563
+00:30:16,690 --> 00:30:21,340
+creates a sine wave, cosine wave,
+we're going to see how that works.
+
+564
+00:30:21,340 --> 00:30:23,890
+Another very common one,
+of course, is an MP3.
+
+565
+00:30:23,890 --> 00:30:25,810
+So maybe you start with
+a song, and then you
+
+566
+00:30:25,810 --> 00:30:28,320
+want to do some filtering
+to that and output
+
+567
+00:30:28,320 --> 00:30:30,605
+that-- that could be a possible source.
+
+568
+00:30:30,605 --> 00:30:32,480
+And then a really cool
+one is the microphone.
+
+569
+00:30:32,480 --> 00:30:37,230
+So you can use some very
+basic calls in JavaScript
+
+570
+00:30:37,230 --> 00:30:39,440
+to get access to the
+microphone, and so if you
+
+571
+00:30:39,440 --> 00:30:42,870
+wanted to make an app
+like a pitch detector,
+
+572
+00:30:42,870 --> 00:30:45,290
+for example, that takes in
+your voice and figures out
+
+573
+00:30:45,290 --> 00:30:47,740
+the pitch-- very easy way to that.
+
+574
+00:30:47,740 --> 00:30:50,730
+You can just kind of read it
+in, figure out the frequency,
+
+575
+00:30:50,730 --> 00:30:52,250
+and then output a number.
+
+576
+00:30:52,250 --> 00:30:56,080
+So we'll see how that works, as well.
+
+577
+00:30:56,080 --> 00:30:59,430
+>> The destination is basically
+where the audio data is output.
+
+578
+00:30:59,430 --> 00:31:02,890
+So generally, that's like
+your laptop speakers.
+
+579
+00:31:02,890 --> 00:31:05,610
+Other options are like
+a ScriptProcessorNode--
+
+580
+00:31:05,610 --> 00:31:07,990
+we'll get to nodes in a
+second-- but basically,
+
+581
+00:31:07,990 --> 00:31:11,939
+either you're putting sound out
+through your computer through speakers,
+
+582
+00:31:11,939 --> 00:31:14,730
+or you're kind of recording it, so
+you're storing it as audio data.
+
+583
+00:31:14,730 --> 00:31:18,980
+So maybe if someone creates
+music in your app and then
+
+584
+00:31:18,980 --> 00:31:22,410
+you want to record that and maybe like
+export it to SoundCloud, for example--
+
+585
+00:31:22,410 --> 00:31:25,281
+that would be one way to do that.
+
+586
+00:31:25,281 --> 00:31:27,030
+All the fun stuff,
+which we'll talk about,
+
+587
+00:31:27,030 --> 00:31:29,950
+happens between these two points,
+where we load in the music
+
+588
+00:31:29,950 --> 00:31:31,410
+and then output it.
+
+589
+00:31:31,410 --> 00:31:36,660
+>> So I'm going to talk about the five
+stages of audio production in a second.
+
+590
+00:31:36,660 --> 00:31:38,950
+We have this thing called
+an AudioContext, which
+
+591
+00:31:38,950 --> 00:31:41,580
+is this little wrapper we see here.
+
+592
+00:31:41,580 --> 00:31:49,980
+Basically what AudioContext is-- if we
+go to the JavaScript console right now,
+
+593
+00:31:49,980 --> 00:31:52,740
+we can create one right now.
+
+594
+00:31:52,740 --> 00:31:54,040
+Just an example of REPL, right?
+
+595
+00:31:54,040 --> 00:31:57,880
+We're reading,
+evaluating, and it prints.
+
+596
+00:31:57,880 --> 00:32:00,260
+>> AudioContext is a global state.
+
+597
+00:32:00,260 --> 00:32:05,500
+It's a struct, it's an object
+here, and it keeps information
+
+598
+00:32:05,500 --> 00:32:09,960
+about things that are going on
+on the screen related to audio.
+
+599
+00:32:09,960 --> 00:32:15,220
+One example is the current time.
+
+600
+00:32:15,220 --> 00:32:18,910
+This tells you the number
+of seconds, very precisely,
+
+601
+00:32:18,910 --> 00:32:20,890
+since the web page loaded.
+
+602
+00:32:20,890 --> 00:32:24,110
+So this is a really useful
+little property that you can use.
+
+603
+00:32:24,110 --> 00:32:27,898
+It's read only-- I think actually
+you can try to set it a value.
+
+604
+00:32:27,898 --> 00:32:29,856
+It'll tell you set it,
+and then if you print it
+
+605
+00:32:29,856 --> 00:32:31,439
+again-- it didn't actually quite work.
+
+606
+00:32:31,439 --> 00:32:34,472
+So there are read-only
+properties in JavaScript.
+
+607
+00:32:34,472 --> 00:32:36,430
+This is really useful if
+you're kind of syncing
+
+608
+00:32:36,430 --> 00:32:38,610
+a lot of different
+information, when you're
+
+609
+00:32:38,610 --> 00:32:41,280
+kind of playing different sounds.
+
+610
+00:32:41,280 --> 00:32:43,630
+>> Another really useful one
+is the context destination.
+
+611
+00:32:43,630 --> 00:32:46,587
+
+612
+00:32:46,587 --> 00:32:49,670
+Definitely, if you're interested, be
+trying this at your own console right
+
+613
+00:32:49,670 --> 00:32:50,980
+now.
+
+614
+00:32:50,980 --> 00:32:53,150
+So this is an AudioDestinationNode.
+
+615
+00:32:53,150 --> 00:32:56,480
+Basically what this says is,
+where is the output going?
+
+616
+00:32:56,480 --> 00:32:59,590
+So there are two real options here.
+
+617
+00:32:59,590 --> 00:33:01,940
+Usually the default
+is just your speakers,
+
+618
+00:33:01,940 --> 00:33:05,150
+so AudioDestinationNode
+basically just says
+
+619
+00:33:05,150 --> 00:33:09,240
+there are zero outputs to the sound
+coming in, sent to the speaker.
+
+620
+00:33:09,240 --> 00:33:12,050
+So generally, you don't
+have to play with that.
+
+621
+00:33:12,050 --> 00:33:15,720
+If you're interested in actually using
+the ScriptProcessorNode for recording,
+
+622
+00:33:15,720 --> 00:33:16,990
+definitely shoot me an
+email later because that's
+
+623
+00:33:16,990 --> 00:33:18,330
+a little more complicated.
+
+624
+00:33:18,330 --> 00:33:21,590
+But generally, you're just kind
+of outputting sound in some form.
+
+625
+00:33:21,590 --> 00:33:24,347
+So cool, we'll jump back here.
+
+626
+00:33:24,347 --> 00:33:25,180
+AUDIENCE: I'm sorry.
+
+627
+00:33:25,180 --> 00:33:26,054
+HUGH ZABRISKIE: Yeah.
+
+628
+00:33:26,054 --> 00:33:28,770
+AUDIENCE: I know you said to talk
+to you later about recording.
+
+629
+00:33:28,770 --> 00:33:31,550
+Can you interface that with Pro Tools?
+
+630
+00:33:31,550 --> 00:33:33,120
+>> HUGH ZABRISKIE: With Pro Tools?
+
+631
+00:33:33,120 --> 00:33:35,260
+Let's see.
+
+632
+00:33:35,260 --> 00:33:37,220
+I don't think so.
+
+633
+00:33:37,220 --> 00:33:41,670
+So going between the client,
+which is the JavaScript
+
+634
+00:33:41,670 --> 00:33:44,310
+console, and your actual
+computer, is generally
+
+635
+00:33:44,310 --> 00:33:46,490
+something that's kind
+of off limits, if you
+
+636
+00:33:46,490 --> 00:33:52,320
+will, kind by the nature of the--
+it's kind of a design thing,
+
+637
+00:33:52,320 --> 00:33:57,770
+but you try to keep the browser separate
+from the user's actual computer.
+
+638
+00:33:57,770 --> 00:34:02,310
+Generally, the only thing you're able to
+access is the microphone or the camera.
+
+639
+00:34:02,310 --> 00:34:04,730
+You're not able to, I
+don't think, use Pro Tools.
+
+640
+00:34:04,730 --> 00:34:07,480
+However, if you created
+a track in Pro Tools,
+
+641
+00:34:07,480 --> 00:34:12,710
+exported that, you could load that
+in here, filter it, for example,
+
+642
+00:34:12,710 --> 00:34:16,820
+process that, and record that into an
+Audio Destination-- or, no-- a Sphere
+
+643
+00:34:16,820 --> 00:34:17,870
+Processor Node.
+
+644
+00:34:17,870 --> 00:34:20,730
+And then from there, you could
+export that to SoundCloud, you
+
+645
+00:34:20,730 --> 00:34:25,320
+could send it in an email, or
+whatever you like from there.
+
+646
+00:34:25,320 --> 00:34:31,159
+>> But there is kind of a slight barrier
+between making music on your computer
+
+647
+00:34:31,159 --> 00:34:33,050
+and making music online.
+
+648
+00:34:33,050 --> 00:34:37,940
+>> SAM GREEN: And that's
+not unique to this API.
+
+649
+00:34:37,940 --> 00:34:44,060
+It's a security feature of Chrome, and
+I think every other modern browser.
+
+650
+00:34:44,060 --> 00:34:45,860
+The browser is self-contained.
+
+651
+00:34:45,860 --> 00:34:50,980
+So for example, a web page can't
+use JavaScript to turn the sound
+
+652
+00:34:50,980 --> 00:34:54,190
+on on your speakers, for example.
+
+653
+00:34:54,190 --> 00:34:58,120
+Or it can't turn your computer off.
+
+654
+00:34:58,120 --> 00:35:01,530
+And there is no intermediate point
+between those two things, right,
+
+655
+00:35:01,530 --> 00:35:05,960
+so either you have a
+complete abstraction,
+
+656
+00:35:05,960 --> 00:35:10,050
+or you open up the
+security flaw of letting
+
+657
+00:35:10,050 --> 00:35:14,440
+a programmer with bad intentions do
+whatever they want with your laptop.
+
+658
+00:35:14,440 --> 00:35:18,104
+And that's why Chrome is self-contained.
+
+659
+00:35:18,104 --> 00:35:19,310
+>> HUGH ZABRISKIE: Yeah.
+
+660
+00:35:19,310 --> 00:35:20,840
+Does that make sense?
+
+661
+00:35:20,840 --> 00:35:21,369
+Cool, cool.
+
+662
+00:35:21,369 --> 00:35:23,160
+I was just going to
+show an example of one.
+
+663
+00:35:23,160 --> 00:35:25,118
+This is pretty much as
+far as you get, in terms
+
+664
+00:35:25,118 --> 00:35:26,950
+of accessing the user's computer.
+
+665
+00:35:26,950 --> 00:35:30,180
+If you have a USB keyboard plugged in,
+you can use something called the Web
+
+666
+00:35:30,180 --> 00:35:32,180
+MIDI API, which we won't
+really talk about here,
+
+667
+00:35:32,180 --> 00:35:36,330
+but this is another API that's
+built into at least Chrome-- again,
+
+668
+00:35:36,330 --> 00:35:41,570
+this is why we love Chrome--
+I think Firefox or Safari,
+
+669
+00:35:41,570 --> 00:35:44,300
+this is an easy thing to
+google-- different browsers have
+
+670
+00:35:44,300 --> 00:35:46,917
+different support for which
+APIs they have implemented.
+
+671
+00:35:46,917 --> 00:35:49,875
+But if you wanted to plug in a keyboard
+and work with that information,
+
+672
+00:35:49,875 --> 00:35:52,850
+kind of send the keyboard
+information over to the computer
+
+673
+00:35:52,850 --> 00:35:57,620
+and then use that online, this API
+is where you'd be working that.
+
+674
+00:35:57,620 --> 00:35:58,150
+>> Cool.
+
+675
+00:35:58,150 --> 00:35:58,710
+OK.
+
+676
+00:35:58,710 --> 00:36:01,320
+So, quickly moving on here.
+
+677
+00:36:01,320 --> 00:36:03,310
+How are we doing on time?
+
+678
+00:36:03,310 --> 00:36:04,210
+>> SPEAKER 1: About 15.
+
+679
+00:36:04,210 --> 00:36:05,543
+>> HUGH ZABRISKIE: 15 minutes left?
+
+680
+00:36:05,543 --> 00:36:06,160
+OK, cool.
+
+681
+00:36:06,160 --> 00:36:08,170
+So we'll race ahead here.
+
+682
+00:36:08,170 --> 00:36:13,500
+>> So basically, the main point of
+thinking of this as a pipeline
+
+683
+00:36:13,500 --> 00:36:16,430
+is that each step in the pipeline
+is a series of audio nodes.
+
+684
+00:36:16,430 --> 00:36:19,284
+
+685
+00:36:19,284 --> 00:36:20,950
+Our source, let's say, is an oscillator.
+
+686
+00:36:20,950 --> 00:36:23,380
+We need to create an oscillator node.
+
+687
+00:36:23,380 --> 00:36:25,690
+And that is just kind
+of the little function--
+
+688
+00:36:25,690 --> 00:36:30,460
+and they're all based out
+of the audio context here.
+
+689
+00:36:30,460 --> 00:36:32,885
+>> AUDIENCE: When it said
+oscillator, does that mean
+
+690
+00:36:32,885 --> 00:36:37,250
+it's actually literally going from
+two different poles back and forth?
+
+691
+00:36:37,250 --> 00:36:41,170
+>> HUGH ZABRISKIE: No, it's like
+a digital representation.
+
+692
+00:36:41,170 --> 00:36:42,740
+It's actually implemented in C++.
+
+693
+00:36:42,740 --> 00:36:46,460
+I actually don't know the specs
+of how it's actually implemented,
+
+694
+00:36:46,460 --> 00:36:48,500
+but all this is working as binary data.
+
+695
+00:36:48,500 --> 00:36:51,260
+
+696
+00:36:51,260 --> 00:36:52,370
+Actually, yeah.
+
+697
+00:36:52,370 --> 00:36:53,950
+That would be saying, I could
+actually, if you're interested,
+
+698
+00:36:53,950 --> 00:36:56,533
+I could send you a little more
+information about how waveforms
+
+699
+00:36:56,533 --> 00:37:00,181
+are kept having a digital format.
+
+700
+00:37:00,181 --> 00:37:00,680
+OK, cool.
+
+701
+00:37:00,680 --> 00:37:03,120
+>> So we're generating a tone like a sine
+wave or something like that, maybe
+
+702
+00:37:03,120 --> 00:37:04,190
+440 Hertz.
+
+703
+00:37:04,190 --> 00:37:05,830
+We create an oscillator.
+
+704
+00:37:05,830 --> 00:37:09,180
+If we want to set the volume, we
+connect anything to a GainNode,
+
+705
+00:37:09,180 --> 00:37:12,500
+which we could do with .creategain.
+
+706
+00:37:12,500 --> 00:37:14,250
+That sets your volume.
+
+707
+00:37:14,250 --> 00:37:17,820
+You can pass that onto any
+of the other options-- well,
+
+708
+00:37:17,820 --> 00:37:20,300
+so an audio buffer source
+node is where you might
+
+709
+00:37:20,300 --> 00:37:23,660
+store an MP3 that you've loaded in.
+
+710
+00:37:23,660 --> 00:37:27,670
+>> Biquad filter is for filtering if
+you want to take all the base out
+
+711
+00:37:27,670 --> 00:37:29,630
+of a song, or something like that.
+
+712
+00:37:29,630 --> 00:37:32,450
+God forbid you want to take
+the base out of a song.
+
+713
+00:37:32,450 --> 00:37:36,980
+And AudioDestination node is, again,
+like where our finalization is.
+
+714
+00:37:36,980 --> 00:37:39,980
+If you're ever interested in seeing
+all the different possible options,
+
+715
+00:37:39,980 --> 00:37:45,190
+just go to the tab and let
+the auto-complete come up.
+
+716
+00:37:45,190 --> 00:37:48,690
+And if you do create, you'll see all the
+different things that you can create.
+
+717
+00:37:48,690 --> 00:37:50,398
+You can create dynamic
+script processors,
+
+718
+00:37:50,398 --> 00:37:52,940
+I don't even know what that
+is, for mixing channel mergers
+
+719
+00:37:52,940 --> 00:37:55,930
+and channel splitters and all that.
+
+720
+00:37:55,930 --> 00:37:56,430
+Cool.
+
+721
+00:37:56,430 --> 00:37:59,560
+
+722
+00:37:59,560 --> 00:38:01,390
+>> So this is just an
+example of a pipeline.
+
+723
+00:38:01,390 --> 00:38:03,580
+So we have three sources coming in.
+
+724
+00:38:03,580 --> 00:38:06,830
+Maybe these are waveforms,
+maybe these are MP3s.
+
+725
+00:38:06,830 --> 00:38:08,740
+One's going through a
+filter, another one's
+
+726
+00:38:08,740 --> 00:38:12,404
+getting distorted another
+one's panning left and right.
+
+727
+00:38:12,404 --> 00:38:15,320
+You can do all sorts of things and
+they all get mixed around together,
+
+728
+00:38:15,320 --> 00:38:18,880
+and then out comes the audio
+at the end, as destination.
+
+729
+00:38:18,880 --> 00:38:22,720
+This is an example of what more
+complicated Web Audio code looks like.
+
+730
+00:38:22,720 --> 00:38:26,720
+You're creating all these
+different objects right here--
+
+731
+00:38:26,720 --> 00:38:27,706
+I'm not sure of this.
+
+732
+00:38:27,706 --> 00:38:29,120
+No, it doesn't zoom in.
+
+733
+00:38:29,120 --> 00:38:29,620
+OK.
+
+734
+00:38:29,620 --> 00:38:31,257
+>> SAM GREEN: You do Control, Scroll-Up.
+
+735
+00:38:31,257 --> 00:38:32,590
+HUGH ZABRISKIE: Control Scroll--
+
+736
+00:38:32,590 --> 00:38:33,000
+SAM GREEN: No, no.
+
+737
+00:38:33,000 --> 00:38:33,500
+Control--
+
+738
+00:38:33,500 --> 00:38:36,540
+
+739
+00:38:36,540 --> 00:38:38,140
+>> HUGH ZABRISKIE: Oh, Control, Scroll?
+
+740
+00:38:38,140 --> 00:38:38,780
+Oh, gotcha.
+
+741
+00:38:38,780 --> 00:38:41,480
+Yeah.
+
+742
+00:38:41,480 --> 00:38:42,240
+Wow, nope, nope.
+
+743
+00:38:42,240 --> 00:38:42,740
+OK.
+
+744
+00:38:42,740 --> 00:38:46,090
+I will not do that.
+
+745
+00:38:46,090 --> 00:38:48,300
+>> So yeah, in this first
+section here, you see
+
+746
+00:38:48,300 --> 00:38:52,720
+we're creating all these different
+nodes out of the context.
+
+747
+00:38:52,720 --> 00:38:54,980
+We're just piecing them
+together in the second part
+
+748
+00:38:54,980 --> 00:38:56,980
+by this function called Connect.
+
+749
+00:38:56,980 --> 00:38:58,830
+That's a really key
+function in Web Audio.
+
+750
+00:38:58,830 --> 00:39:01,930
+It just means once you've done
+something with the sound in one node,
+
+751
+00:39:01,930 --> 00:39:03,705
+pass it on to the next node.
+
+752
+00:39:03,705 --> 00:39:05,830
+So we have the source, it
+connects to the analyzer,
+
+753
+00:39:05,830 --> 00:39:09,140
+the analyzer does something with it,
+it goes to distortion, and so on,
+
+754
+00:39:09,140 --> 00:39:12,725
+and to the destination
+at the bottom right here.
+
+755
+00:39:12,725 --> 00:39:13,225
+Cool.
+
+756
+00:39:13,225 --> 00:39:14,640
+OK, so we'll keep moving on.
+
+757
+00:39:14,640 --> 00:39:17,180
+>> The pipeline-- again, these
+are the most common pipelines,
+
+758
+00:39:17,180 --> 00:39:21,300
+so we talk about all these things like
+distortion, panning, all this stuff.
+
+759
+00:39:21,300 --> 00:39:24,280
+If you're really interested
+in using things Pro Tools,
+
+760
+00:39:24,280 --> 00:39:25,820
+those probably interest you.
+
+761
+00:39:25,820 --> 00:39:27,740
+If not, maybe you just
+want to play the sound,
+
+762
+00:39:27,740 --> 00:39:29,990
+or maybe you just want to
+set the volume on the sound.
+
+763
+00:39:29,990 --> 00:39:35,270
+Those are the two most common sort
+of pipelines in audio production.
+
+764
+00:39:35,270 --> 00:39:38,640
+>> Again, the ways you can take it
+in as an oscillator-- so, let's
+
+765
+00:39:38,640 --> 00:39:42,460
+do a the demo of that right here.
+
+766
+00:39:42,460 --> 00:39:47,090
+
+767
+00:39:47,090 --> 00:39:52,225
+So we're going to create a
+simple audio context here,
+
+768
+00:39:52,225 --> 00:39:54,350
+and from that we're going
+to create our oscillator.
+
+769
+00:39:54,350 --> 00:39:58,620
+So that is, again, we're just
+going to call Create Oscillator.
+
+770
+00:39:58,620 --> 00:40:07,030
+We're going to set a frequency on
+that, 440 Hertz, everyone's favorite.
+
+771
+00:40:07,030 --> 00:40:13,290
+Then we connect that to the destination
+point-- which is the speaker, so
+
+772
+00:40:13,290 --> 00:40:15,750
+the context destination.
+
+773
+00:40:15,750 --> 00:40:21,400
+Finally, we just say, start zero
+seconds from now, and do we have sound?
+
+774
+00:40:21,400 --> 00:40:22,400
+>> [RINGING]
+
+775
+00:40:22,400 --> 00:40:24,980
+>> HUGH ZABRISKIE: Here we go.
+
+776
+00:40:24,980 --> 00:40:25,940
+It's just a sine wave.
+
+777
+00:40:25,940 --> 00:40:26,440
+OK, cool.
+
+778
+00:40:26,440 --> 00:40:28,274
+And then we'll stop that.
+
+779
+00:40:28,274 --> 00:40:30,520
+>> AUDIENCE: Where did
+that feedback come from?
+
+780
+00:40:30,520 --> 00:40:31,250
+>> HUGH ZABRISKIE: The feedback?
+
+781
+00:40:31,250 --> 00:40:32,458
+Oh, probably our microphones.
+
+782
+00:40:32,458 --> 00:40:34,221
+
+783
+00:40:34,221 --> 00:40:35,470
+So yeah, that's how you do it.
+
+784
+00:40:35,470 --> 00:40:37,261
+And actually, if I had
+kept it running, you
+
+785
+00:40:37,261 --> 00:40:39,540
+could have the frequency
+value as it's running,
+
+786
+00:40:39,540 --> 00:40:43,320
+so that's a fun thing to play around.
+
+787
+00:40:43,320 --> 00:40:44,930
+Cool.
+
+788
+00:40:44,930 --> 00:40:46,600
+That's always a lovely one to present.
+
+789
+00:40:46,600 --> 00:40:48,792
+>> SAM GREEN: We didn't
+think about that, did we?
+
+790
+00:40:48,792 --> 00:40:50,500
+HUGH ZABRISKIE: Yeah,
+that's a nasty one.
+
+791
+00:40:50,500 --> 00:40:53,249
+So, buffer loading-- I'll show an
+example of that at the very end.
+
+792
+00:40:53,249 --> 00:40:55,090
+That's loading an MP3.
+
+793
+00:40:55,090 --> 00:40:58,880
+And microphone, you use just a function
+called Navigator.getUserMedia()
+
+794
+00:40:58,880 --> 00:41:03,240
+to request access to the user's
+microphone for that information.
+
+795
+00:41:03,240 --> 00:41:05,610
+>> Here's filtering, I'll
+just keep moving from this.
+
+796
+00:41:05,610 --> 00:41:08,600
+This is pretty high level,
+but filters just allow you to
+
+797
+00:41:08,600 --> 00:41:16,154
+>> [BEEPING]
+
+798
+00:41:16,154 --> 00:41:18,320
+Filtering also allows you
+to create things like pink
+
+799
+00:41:18,320 --> 00:41:20,050
+noise, brown noise, white noise.
+
+800
+00:41:20,050 --> 00:41:24,330
+If you want to create pure noise, which
+some people love to mess around with,
+
+801
+00:41:24,330 --> 00:41:27,490
+you can use Web Audio
+filtering to do that.
+
+802
+00:41:27,490 --> 00:41:30,039
+>> Audio Panning-- so imagine
+if you're writing a game
+
+803
+00:41:30,039 --> 00:41:32,330
+and you want the sound to
+sound like it's coming, like,
+
+804
+00:41:32,330 --> 00:41:36,090
+shooting across the screen, you
+can use the panning of the audio
+
+805
+00:41:36,090 --> 00:41:39,770
+to create this kind of cone,
+which like-- it's pretty mathy,
+
+806
+00:41:39,770 --> 00:41:41,850
+but it's actually really
+cool if you get it work,
+
+807
+00:41:41,850 --> 00:41:44,500
+and there's some good
+tutorials on it I can send you.
+
+808
+00:41:44,500 --> 00:41:46,400
+Basically, you can kind
+of create the sound
+
+809
+00:41:46,400 --> 00:41:50,480
+of something going by in a 3D way.
+
+810
+00:41:50,480 --> 00:41:57,350
+And if you have a DJ interest, you can
+start mixing and cross fading songs.
+
+811
+00:41:57,350 --> 00:42:01,260
+>> This is just some very basic
+code, basically what I did before.
+
+812
+00:42:01,260 --> 00:42:06,140
+This sets the volume of the
+oscillator, so we create our oscillator
+
+813
+00:42:06,140 --> 00:42:07,380
+which creates the waveform.
+
+814
+00:42:07,380 --> 00:42:09,940
+We create our GainNode,
+set our frequency,
+
+815
+00:42:09,940 --> 00:42:14,170
+and then connect the oscillator to the
+GainNode, which then basically changes
+
+816
+00:42:14,170 --> 00:42:16,760
+how much signal is allowed through.
+
+817
+00:42:16,760 --> 00:42:20,467
+But really, it's a digital
+thing, so it's more just-- yeah.
+
+818
+00:42:20,467 --> 00:42:23,550
+That's not what's actually happening,
+but that's what happens in real life
+
+819
+00:42:23,550 --> 00:42:24,393
+with a gain.
+
+820
+00:42:24,393 --> 00:42:27,258
+>> AUDIENCE: --quantization
+of the volume parameter?
+
+821
+00:42:27,258 --> 00:42:28,174
+HUGH ZABRISKIE: Sorry?
+
+822
+00:42:28,174 --> 00:42:30,360
+AUDIENCE: Is it a
+quantized volume parameter?
+
+823
+00:42:30,360 --> 00:42:31,840
+HUGH ZABRISKIE: Yeah.
+
+824
+00:42:31,840 --> 00:42:34,620
+And this is one thing I'm really
+deficient on in my knowledge,
+
+825
+00:42:34,620 --> 00:42:38,010
+how gain works on a digital level.
+
+826
+00:42:38,010 --> 00:42:40,140
+I know with actual
+signals, it's basically
+
+827
+00:42:40,140 --> 00:42:45,120
+controlling how much you're
+amplifying the signal.
+
+828
+00:42:45,120 --> 00:42:47,017
+So, yeah.
+
+829
+00:42:47,017 --> 00:42:50,100
+I'll send you more information about
+that, because I'd be curious actually
+
+830
+00:42:50,100 --> 00:42:51,099
+to know more about that.
+
+831
+00:42:51,099 --> 00:42:54,090
+But basically the parameters
+are, one is the fold--
+
+832
+00:42:54,090 --> 00:42:59,690
+the louder signal-- and zero is no
+signal, or you won't hear any sound.
+
+833
+00:42:59,690 --> 00:43:03,150
+We'll skip demo time for that because
+it's basically what I did before.
+
+834
+00:43:03,150 --> 00:43:07,630
+And again, the Context.Destination
+is the audio destination node.
+
+835
+00:43:07,630 --> 00:43:08,360
+Awesome, OK.
+
+836
+00:43:08,360 --> 00:43:10,470
+>> So I'm going to do a quick two demos.
+
+837
+00:43:10,470 --> 00:43:11,760
+How are we doing on time?
+
+838
+00:43:11,760 --> 00:43:12,640
+>> SPEAKER 1: About 10 minutes.
+
+839
+00:43:12,640 --> 00:43:13,130
+>> HUGH ZABRISKIE: 10 minutes?
+
+840
+00:43:13,130 --> 00:43:13,630
+Great!
+
+841
+00:43:13,630 --> 00:43:14,320
+Awesome.
+
+842
+00:43:14,320 --> 00:43:19,010
+>> So the first one I'm going to
+do, it's called My Favorite Song.
+
+843
+00:43:19,010 --> 00:43:22,410
+So this is just a
+little HTML JavaScript.
+
+844
+00:43:22,410 --> 00:43:25,510
+We're going to have two buttons
+on the page play my favorite song
+
+845
+00:43:25,510 --> 00:43:29,192
+and stop my favorite song.
+
+846
+00:43:29,192 --> 00:43:30,180
+I'll change this.
+
+847
+00:43:30,180 --> 00:43:32,110
+>> AUDIENCE: Cover your microphone.
+
+848
+00:43:32,110 --> 00:43:33,430
+>> HUGH ZABRISKIE: Yeah.
+
+849
+00:43:33,430 --> 00:43:36,300
+And I've loaded in here
+a script that basically--
+
+850
+00:43:36,300 --> 00:43:38,520
+and this is really useful
+for loading an MP3,
+
+851
+00:43:38,520 --> 00:43:41,820
+so this just makes
+loading MP3s way faster.
+
+852
+00:43:41,820 --> 00:43:44,180
+It's basically just a wrapper.
+
+853
+00:43:44,180 --> 00:43:48,737
+It just makes the process of
+loading in MP3s much faster,
+
+854
+00:43:48,737 --> 00:43:51,570
+otherwise you're using HTTP request,
+kind of like what we were doing
+
+855
+00:43:51,570 --> 00:43:53,950
+on the current piece set with Server.
+
+856
+00:43:53,950 --> 00:43:55,950
+It's really ugly, you
+don't want to do it.
+
+857
+00:43:55,950 --> 00:44:04,110
+>> So this guy, Boris Smus, wrote a really
+useful little tool called BufferLoader.
+
+858
+00:44:04,110 --> 00:44:08,780
+All you do is simply pass it the
+context, you pass it a list--
+
+859
+00:44:08,780 --> 00:44:11,327
+or, yeah, is it a list in JavaScript?
+
+860
+00:44:11,327 --> 00:44:12,160
+SAM GREEN: An array.
+
+861
+00:44:12,160 --> 00:44:14,201
+HUGH ZABRISKIE: Oh, it is
+an array, that's right.
+
+862
+00:44:14,201 --> 00:44:18,660
+It's an array of paths
+to different files.
+
+863
+00:44:18,660 --> 00:44:21,990
+And then you pass it a function.
+
+864
+00:44:21,990 --> 00:44:25,530
+This is the callback we were talking
+about with asynchronous loading.
+
+865
+00:44:25,530 --> 00:44:28,720
+That will be called
+once the files loaded.
+
+866
+00:44:28,720 --> 00:44:33,780
+And that function that is called when
+the file's loaded takes as a perimeter
+
+867
+00:44:33,780 --> 00:44:35,840
+an array of loaded buffers.
+
+868
+00:44:35,840 --> 00:44:37,990
+So that occurs here.
+
+869
+00:44:37,990 --> 00:44:41,180
+Basically, BufferList is
+going to be one value--
+
+870
+00:44:41,180 --> 00:44:46,380
+or it's going to be an array of
+length one, that has in it in index
+
+871
+00:44:46,380 --> 00:44:51,320
+zero the entire loaded file of the MP3.
+
+872
+00:44:51,320 --> 00:44:53,320
+So what I do when I finish
+loading is, I simply
+
+873
+00:44:53,320 --> 00:44:57,430
+create a buffer source, which
+is an audio buffer source node.
+
+874
+00:44:57,430 --> 00:45:03,410
+The next step is I load in the
+source.buffer as the full loaded buffer
+
+875
+00:45:03,410 --> 00:45:06,740
+from the BufferList--
+it's a lot of buffers--
+
+876
+00:45:06,740 --> 00:45:10,255
+and then you connect that audio
+buffer to the destination.
+
+877
+00:45:10,255 --> 00:45:12,380
+So what it's going to do
+is just simply put the MP3
+
+878
+00:45:12,380 --> 00:45:15,260
+straight through to the output,
+and start it immediately
+
+879
+00:45:15,260 --> 00:45:18,010
+upon getting this call.
+
+880
+00:45:18,010 --> 00:45:21,660
+>> Cool, so let's see
+this happen in action.
+
+881
+00:45:21,660 --> 00:45:24,490
+My [INAUDIBLE] here, let's see.
+
+882
+00:45:24,490 --> 00:45:26,430
+So I'm just going to
+start a basic server.
+
+883
+00:45:26,430 --> 00:45:28,660
+That's something that
+you need to do if you're
+
+884
+00:45:28,660 --> 00:45:32,490
+making requests for loading files.
+
+885
+00:45:32,490 --> 00:45:34,140
+I'm going to start a basic server.
+
+886
+00:45:34,140 --> 00:45:38,200
+This is basically your entire
+PSET right now in one line,
+
+887
+00:45:38,200 --> 00:45:43,930
+but it's just starting
+a server on port 80/80.
+
+888
+00:45:43,930 --> 00:45:47,300
+So we go over here, we
+going to load 80/80,
+
+889
+00:45:47,300 --> 00:45:49,110
+we're going to go to My Favorite Song.
+
+890
+00:45:49,110 --> 00:45:51,660
+So if I hit "Play my
+favorite song" right now,
+
+891
+00:45:51,660 --> 00:45:53,964
+it's going to load my
+favorite song and play it--
+
+892
+00:45:53,964 --> 00:45:55,880
+[MUSIC - THE EAGLES, "LIFE IN THE FAST
+ LANE"]
+
+893
+00:45:55,880 --> 00:46:00,490
+--which happens to be "Life in
+the Fast Lane" by The Eagles.
+
+894
+00:46:00,490 --> 00:46:06,346
+Now, I could hit "Stop my
+favorite song" and replay it.
+
+895
+00:46:06,346 --> 00:46:09,160
+>> [MUSIC - THE EAGLES, "LIFE IN THE FAST
+ LANE"]
+
+896
+00:46:09,160 --> 00:46:18,340
+>> And if I go over to console, because
+I used a global variable over here
+
+897
+00:46:18,340 --> 00:46:23,390
+to keep track of this value, it actually
+will now be recognized in the console.
+
+898
+00:46:23,390 --> 00:46:25,160
+So it auto-creates for me.
+
+899
+00:46:25,160 --> 00:46:29,991
+So that's what's playing right now,
+and I can simply call source.stop()
+
+900
+00:46:29,991 --> 00:46:30,490
+on that.
+
+901
+00:46:30,490 --> 00:46:34,930
+
+902
+00:46:34,930 --> 00:46:35,860
+Well, you know what?
+
+903
+00:46:35,860 --> 00:46:39,760
+Just so you guys have heard this
+song-- you might recognize this song.
+
+904
+00:46:39,760 --> 00:46:41,801
+>> [MUSIC - RICK ASTLEY, "NEVER GONNA GIVE
+ YOU UP"]
+
+905
+00:46:41,801 --> 00:46:42,299
+
+906
+00:46:42,299 --> 00:46:44,215
+[MUSIC - THE EAGLES, "LIFE IN THE FAST
+ LANE"]
+
+907
+00:46:44,215 --> 00:46:46,195
+We've now all been Rickrolled.
+
+908
+00:46:46,195 --> 00:46:50,155
+OK, great, moving on.
+
+909
+00:46:50,155 --> 00:46:51,160
+Cool.
+
+910
+00:46:51,160 --> 00:46:54,554
+So this is basically an example of
+just how you could load an MP3 file--
+
+911
+00:46:54,554 --> 00:46:56,470
+[MUSIC - THE EAGLES, "LIFE IN THE FAST
+ LANE"]
+
+912
+00:46:56,470 --> 00:46:59,590
+--and play it, and stop and start it.
+
+913
+00:46:59,590 --> 00:47:03,008
+I could have done a lot more [INAUDIBLE]
+
+914
+00:47:03,008 --> 00:47:07,570
+>> The last one I'll do is,
+I'll show you a [INAUDIBLE].
+
+915
+00:47:07,570 --> 00:47:18,070
+>> [MUSIC PLAYING]
+
+916
+00:47:18,070 --> 00:47:21,800
+>> It's like, ogg.wave.mp3.
+
+917
+00:47:21,800 --> 00:47:26,450
+I think, if I remember correctly,
+I've run into some issues with .m4a,
+
+918
+00:47:26,450 --> 00:47:27,721
+but I'm not sure about that.
+
+919
+00:47:27,721 --> 00:47:28,470
+I think mp3.wave--
+
+920
+00:47:28,470 --> 00:47:28,930
+
+921
+00:47:28,930 --> 00:47:30,971
+>> [MUSIC - RICK ASTLEY, "NEVER GONNA GIVE
+ YOU UP"]
+
+922
+00:47:30,971 --> 00:47:35,930
+
+923
+00:47:35,930 --> 00:47:36,500
+>> OK, great.
+
+924
+00:47:36,500 --> 00:47:37,625
+I shouldn't have said that.
+
+925
+00:47:37,625 --> 00:47:40,570
+Anyway, hello.
+
+926
+00:47:40,570 --> 00:47:43,430
+
+927
+00:47:43,430 --> 00:47:45,490
+So we have this open.
+
+928
+00:47:45,490 --> 00:47:52,320
+So now all I do is, I basically created
+a basic syntax for creating music.
+
+929
+00:47:52,320 --> 00:47:57,610
+So if I do something like, add g4
+on 1 2, what that means is that,
+
+930
+00:47:57,610 --> 00:48:00,950
+add the piano note, G4,
+which is the fourth G
+
+931
+00:48:00,950 --> 00:48:02,680
+up on the piano from the bottom.
+
+932
+00:48:02,680 --> 00:48:05,930
+So this is kind of MIDI speak,
+so for those who are music based,
+
+933
+00:48:05,930 --> 00:48:07,860
+this is just MIDI notes.
+
+934
+00:48:07,860 --> 00:48:10,090
+>> AUDIENCE: That's the G
+of the Middle C, right?
+
+935
+00:48:10,090 --> 00:48:11,840
+>> HUGH ZABRISKIE: This is the G
+above Middle C, that's right.
+
+936
+00:48:11,840 --> 00:48:12,470
+>> AUDIENCE: Above Middle C.
+
+937
+00:48:12,470 --> 00:48:13,345
+>> HUGH ZABRISKIE: Yeah.
+
+938
+00:48:13,345 --> 00:48:14,340
+Actually, yes.
+
+939
+00:48:14,340 --> 00:48:16,131
+I think I actually made
+it one [INAUDIBLE],
+
+940
+00:48:16,131 --> 00:48:18,860
+so this might be an octave above that.
+
+941
+00:48:18,860 --> 00:48:20,070
+So let's see.
+
+942
+00:48:20,070 --> 00:48:21,152
+If I hit Play--
+
+943
+00:48:21,152 --> 00:48:22,110
+[REPETITIVE PIANO NOTE]
+
+944
+00:48:22,110 --> 00:48:23,200
+--we're going to hear that.
+
+945
+00:48:23,200 --> 00:48:25,700
+The idea is that it operates
+just like a command line would,
+
+946
+00:48:25,700 --> 00:48:27,510
+so if I go up and down
+on my keyboard, you
+
+947
+00:48:27,510 --> 00:48:31,550
+can go back to previous
+commands, which is pretty useful.
+
+948
+00:48:31,550 --> 00:48:35,136
+And below is my list of tracks,
+which are all running on loop.
+
+949
+00:48:35,136 --> 00:48:38,260
+>> AUDIENCE: You were assuming the
+88-key keyboard on that, right?
+
+950
+00:48:38,260 --> 00:48:41,051
+>> HUGH ZABRISKIE: The question was,
+am I assuming an 88-key keyboard,
+
+951
+00:48:41,051 --> 00:48:41,990
+and yes, I am.
+
+952
+00:48:41,990 --> 00:48:45,030
+What I did is I
+basically took 88 samples
+
+953
+00:48:45,030 --> 00:48:46,970
+of the piano, one for each note.
+
+954
+00:48:46,970 --> 00:48:49,180
+And so every time you
+hear a note from now on,
+
+955
+00:48:49,180 --> 00:48:57,550
+that is actually a loop that looks
+like-- this is getting played on loop,
+
+956
+00:48:57,550 --> 00:49:00,120
+so for every note, this is running.
+
+957
+00:49:00,120 --> 00:49:02,860
+What happens is, I
+create a buffer again,
+
+958
+00:49:02,860 --> 00:49:06,010
+I create a gain node to set the volume.
+
+959
+00:49:06,010 --> 00:49:08,240
+This just a really
+complicated way of saying I
+
+960
+00:49:08,240 --> 00:49:10,550
+store the buffer in a source.buffer.
+
+961
+00:49:10,550 --> 00:49:13,160
+I give it the gain, I
+connect it to the gain,
+
+962
+00:49:13,160 --> 00:49:15,576
+the gain is connected to the
+output, and then I play it.
+
+963
+00:49:15,576 --> 00:49:20,735
+So that is kind of the process
+of taking in a buffer source.
+
+964
+00:49:20,735 --> 00:49:24,820
+>> AUDIENCE: Can you actually take that
+dry sound and make it wet [INAUDIBLE]?
+
+965
+00:49:24,820 --> 00:49:26,260
+>> HUGH ZABRISKIE: You can, yeah.
+
+966
+00:49:26,260 --> 00:49:29,260
+There's re-verb, there's
+delay, distortion.
+
+967
+00:49:29,260 --> 00:49:33,260
+You can basically put anything in
+between in that sandwich of-- well,
+
+968
+00:49:33,260 --> 00:49:37,660
+pipeline is a better metaphor,
+but you can add anything in that.
+
+969
+00:49:37,660 --> 00:49:38,200
+Cool.
+
+970
+00:49:38,200 --> 00:49:40,280
+>> So I'll finish the demo
+here to give you a sense
+
+971
+00:49:40,280 --> 00:49:46,390
+of just the sheer number of times you
+can run that function all at once.
+
+972
+00:49:46,390 --> 00:49:49,280
+So I'm going to remove this.
+
+973
+00:49:49,280 --> 00:49:59,110
+I'm going to create a generator that--
+basically what does-- this is really
+
+974
+00:49:59,110 --> 00:50:04,220
+kind of a complicated syntax-- but it's
+going to generate notes on the fly,
+
+975
+00:50:04,220 --> 00:50:06,601
+and just start playing
+them as it evaluates them.
+
+976
+00:50:06,601 --> 00:50:07,392
+[INTERPOSING PIANO]
+
+977
+00:50:07,392 --> 00:50:10,990
+
+978
+00:50:10,990 --> 00:50:12,817
+>> So we can just make a little music here.
+
+979
+00:50:12,817 --> 00:50:13,608
+[INTERPOSING PIANO]
+
+980
+00:50:13,608 --> 00:50:39,570
+
+981
+00:50:39,570 --> 00:50:41,470
+>> So what this command
+does, for example, is
+
+982
+00:50:41,470 --> 00:50:46,910
+it takes those three notes for the
+piano and then puts them on B3.
+
+983
+00:50:46,910 --> 00:50:48,660
+This syntax might make
+a little more sense
+
+984
+00:50:48,660 --> 00:50:50,590
+to those who have a
+music background here.
+
+985
+00:50:50,590 --> 00:50:55,180
+
+986
+00:50:55,180 --> 00:50:56,551
+>> I can add a kick drum.
+
+987
+00:50:56,551 --> 00:50:57,050
+I can--
+
+988
+00:50:57,050 --> 00:50:58,048
+>> [INTERPOSING INSTRUMENTS]
+
+989
+00:50:58,048 --> 00:50:59,256
+>> --just play around with that.
+
+990
+00:50:59,256 --> 00:51:12,519
+
+991
+00:51:12,519 --> 00:51:13,474
+>> So you can make--
+
+992
+00:51:13,474 --> 00:51:14,515
+[INTERPOSING INSTRUMENTS]
+
+993
+00:51:14,515 --> 00:51:15,513
+That one's a little more annoying.
+
+994
+00:51:15,513 --> 00:51:16,554
+[INTERPOSING INSTRUMENTS]
+
+995
+00:51:16,554 --> 00:51:26,491
+
+996
+00:51:26,491 --> 00:51:30,981
+>> So that randomly adds a dry cymbal
+on every 16th note, with a 16%
+
+997
+00:51:30,981 --> 00:51:31,481
+[INAUDIBLE].
+
+998
+00:51:31,481 --> 00:51:32,522
+>> [INTERPOSING INSTRUMENTS]
+
+999
+00:51:32,522 --> 00:51:40,962
+
+1000
+00:51:40,962 --> 00:51:50,400
+>> Yeah, so the way this
+works-- it's always in 4:4.
+
+1001
+00:51:50,400 --> 00:51:51,441
+[INTERPOSING INSTRUMENTS]
+
+1002
+00:51:51,441 --> 00:52:06,910
+
+1003
+00:52:06,910 --> 00:52:10,902
+>> Yeah, so the four quarters, and 16/8.
+
+1004
+00:52:10,902 --> 00:52:14,851
+
+1005
+00:52:14,851 --> 00:52:15,892
+[INTERPOSING INSTRUMENTS]
+
+1006
+00:52:15,892 --> 00:52:27,970
+
+1007
+00:52:27,970 --> 00:52:33,780
+>> So on average, you get 60%
+of hits on the 16th notes.
+
+1008
+00:52:33,780 --> 00:52:35,990
+>> Anyways, this was just
+kind of to show off
+
+1009
+00:52:35,990 --> 00:52:39,780
+some of the things you could
+build with the Web Audio API.
+
+1010
+00:52:39,780 --> 00:52:43,840
+It's really powerful, it's really fast,
+and you can make a lot of cool things
+
+1011
+00:52:43,840 --> 00:52:44,340
+with it.
+
+1012
+00:52:44,340 --> 00:52:51,260
+So again, any questions you have,
+email myself-- Hugh-- or Sam,
+
+1013
+00:52:51,260 --> 00:52:55,869
+and honestly, Google has
+a ton of good resources.
+
+1014
+00:52:55,869 --> 00:52:56,660
+Any last questions?
+
+1015
+00:52:56,660 --> 00:52:57,970
+Yeah.
+
+1016
+00:52:57,970 --> 00:53:00,790
+>> AUDIENCE: So you can access
+the built-in microphone.
+
+1017
+00:53:00,790 --> 00:53:03,089
+What if you wanted to
+use a better microphone?
+
+1018
+00:53:03,089 --> 00:53:05,380
+HUGH ZABRISKIE: If you wanted
+to use better microphone?
+
+1019
+00:53:05,380 --> 00:53:11,320
+So again, this is part of the
+abstraction between Chrome
+
+1020
+00:53:11,320 --> 00:53:12,950
+and the rest of your computer.
+
+1021
+00:53:12,950 --> 00:53:18,950
+Unless it's available through
+an API, like Web MIDI API,
+
+1022
+00:53:18,950 --> 00:53:22,030
+you could probably find some hacks,
+but generally not as feasible.
+
+1023
+00:53:22,030 --> 00:53:25,300
+>> SAM GREEN: You can also--
+all the Chrome knows
+
+1024
+00:53:25,300 --> 00:53:28,820
+is what your default microphone
+is, and it accesses that.
+
+1025
+00:53:28,820 --> 00:53:33,410
+So if you had a microphone you could
+set as computer's default microphone,
+
+1026
+00:53:33,410 --> 00:53:35,990
+you could access it that way
+and it would probably work.
+
+1027
+00:53:35,990 --> 00:53:37,490
+HUGH ZABRISKIE: That's a good point.
+
+1028
+00:53:37,490 --> 00:53:39,656
+I've never tried that, but
+you might be able to kind
+
+1029
+00:53:39,656 --> 00:53:45,700
+of-- if you redirect the input speaker,
+you might be able to do that, yeah.
+
+1030
+00:53:45,700 --> 00:53:48,360
+>> Any last questions?
+
+1031
+00:53:48,360 --> 00:53:49,340
+Cool.
+
+1032
+00:53:49,340 --> 00:53:51,680
+Well thank you guys
+so much for watching.
+
+1033
+00:53:51,680 --> 00:53:52,199
+I'm Hugh.
+
+1034
+00:53:52,199 --> 00:53:52,990
+SAM GREEN: I'm Sam.
+
+1035
+00:53:52,990 --> 00:53:55,410
+HUGH ZABRISKIE: And this is CS50.
+
+1036
+00:53:55,410 --> 00:53:56,767

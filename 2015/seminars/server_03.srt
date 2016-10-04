@@ -1,0 +1,365 @@
+1
+00:00:00,000 --> 00:00:00,200
+
+2
+00:00:00,200 --> 00:00:02,280
+>> SPEAKER 1: All right, so what
+is it you concretely need to do?
+
+3
+00:00:02,280 --> 00:00:04,140
+Well, turns out there's
+just four functions
+
+4
+00:00:04,140 --> 00:00:06,390
+that you need to implement
+whose functionality is
+
+5
+00:00:06,390 --> 00:00:08,520
+integral to the proper
+operation of the web server,
+
+6
+00:00:08,520 --> 00:00:10,720
+but all of whose
+behavior is very narrowly
+
+7
+00:00:10,720 --> 00:00:13,104
+defined, so that they only
+do pretty much one thing.
+
+8
+00:00:13,104 --> 00:00:15,270
+First thing you're going
+to need to do is implement,
+
+9
+00:00:15,270 --> 00:00:17,540
+per the specification,
+the LOOKUP function.
+
+10
+00:00:17,540 --> 00:00:20,900
+This is a fairly simple function in
+the end, that takes as an argument
+
+11
+00:00:20,900 --> 00:00:24,690
+whatever the path to the file
+that the user wants to request,
+
+12
+00:00:24,690 --> 00:00:28,310
+and you need to respond with the
+so-called MIME type, or Content-type,
+
+13
+00:00:28,310 --> 00:00:29,200
+of that file.
+
+14
+00:00:29,200 --> 00:00:31,415
+For instance, if it's
+a file like, hello dot
+
+15
+00:00:31,415 --> 00:00:37,470
+HTML you're going to respond with a MIME
+type of quote unquote text slash HTML.
+
+16
+00:00:37,470 --> 00:00:40,920
+>> Or if it's an image, you might want
+to respond with image dot slash
+
+17
+00:00:40,920 --> 00:00:42,990
+JIFF or image slash JPEG.
+
+18
+00:00:42,990 --> 00:00:46,280
+See the specification for the various
+file formats you need to detect.
+
+19
+00:00:46,280 --> 00:00:49,760
+But it really boils down to taking a
+look at the path, that you are past,
+
+20
+00:00:49,760 --> 00:00:52,870
+and looking at its file
+extension, the last few characters
+
+21
+00:00:52,870 --> 00:00:54,297
+after the trailing period or dot.
+
+22
+00:00:54,297 --> 00:00:57,130
+So we'll leave it to you with some
+of the hints in the specification
+
+23
+00:00:57,130 --> 00:01:00,170
+to figure out exactly how to find
+that dot and the file extension
+
+24
+00:01:00,170 --> 00:01:02,840
+so that you can do the
+mapping from one to the other.
+
+25
+00:01:02,840 --> 00:01:04,395
+>> Next up is the parse function.
+
+26
+00:01:04,395 --> 00:01:06,270
+So this one's a little
+more involved, in that
+
+27
+00:01:06,270 --> 00:01:08,590
+you need to take in that
+argument [INAUDIBLE],
+
+28
+00:01:08,590 --> 00:01:12,030
+it's iterated over it, character
+for character, or string by string,
+
+29
+00:01:12,030 --> 00:01:14,660
+in order to make sure
+that it meets exactly
+
+30
+00:01:14,660 --> 00:01:19,155
+the formal definition of that first
+request line, as per the specification.
+
+31
+00:01:19,155 --> 00:01:23,930
+And you need to load into absolute
+path that substring, that represents
+
+32
+00:01:23,930 --> 00:01:26,550
+something like, slash hello dot HTML.
+
+33
+00:01:26,550 --> 00:01:29,960
+Meanwhile, optionally, after that
+path might be a question mark
+
+34
+00:01:29,960 --> 00:01:32,240
+and then a query string
+like, q equals cats,
+
+35
+00:01:32,240 --> 00:01:35,310
+or q equals cats ampersand, and
+then another key value pair.
+
+36
+00:01:35,310 --> 00:01:38,380
+So you're going to need to
+step over those characters,
+
+37
+00:01:38,380 --> 00:01:41,150
+as well, up until the
+first space, in order
+
+38
+00:01:41,150 --> 00:01:47,327
+to create a string that stores
+inside of it the query string itself.
+
+39
+00:01:47,327 --> 00:01:49,410
+Next, you're going to
+implement the load function.
+
+40
+00:01:49,410 --> 00:01:52,493
+So it turns out, if you look through
+the source code, as the spec directs,
+
+41
+00:01:52,493 --> 00:01:54,210
+the load function is used in two places.
+
+42
+00:01:54,210 --> 00:01:57,420
+It's either used to load the
+output from the PHP Interpreter.
+
+43
+00:01:57,420 --> 00:01:59,700
+And we wrote all of
+the PHP handling code,
+
+44
+00:01:59,700 --> 00:02:01,840
+but it does need to
+use a function called
+
+45
+00:02:01,840 --> 00:02:06,350
+load, that essentially reads all of the
+bytes of output from PHP's Interpreter
+
+46
+00:02:06,350 --> 00:02:08,430
+into a big array.
+
+47
+00:02:08,430 --> 00:02:10,850
+>> That same function load
+is also used to load
+
+48
+00:02:10,850 --> 00:02:15,200
+into memory all of the bytes from a file
+like, a JIFF, or a JPEG, or dot HTML
+
+49
+00:02:15,200 --> 00:02:16,630
+file, that the user has requested.
+
+50
+00:02:16,630 --> 00:02:21,060
+So you will need to use some tricks and
+tools from problem set 4 in file IO,
+
+51
+00:02:21,060 --> 00:02:24,410
+but you should find that relatively
+familiar and in a nice way, hopefully,
+
+52
+00:02:24,410 --> 00:02:28,110
+of tying together the newer web
+stuff with the older file IO stuff.
+
+53
+00:02:28,110 --> 00:02:31,490
+>> Finally, in the indexes
+function, all you need to do
+
+54
+00:02:31,490 --> 00:02:34,570
+is to decide whether or not there
+exists some file effectively
+
+55
+00:02:34,570 --> 00:02:40,430
+called index dot HTML, or index dot PHP,
+inside of the directory, whose path you
+
+56
+00:02:40,430 --> 00:02:41,220
+are past.
+
+57
+00:02:41,220 --> 00:02:44,360
+The upside of this means that if
+the user does request a directory,
+
+58
+00:02:44,360 --> 00:02:47,318
+we're not just going to show him or
+her the contents of that directory,
+
+59
+00:02:47,318 --> 00:02:51,342
+we'll literally show them index dot
+HTML, or index dot PHP, by default.
+
+60
+00:02:51,342 --> 00:02:54,300
+But it's going to be left to you to
+figure out, using some of the hints
+
+61
+00:02:54,300 --> 00:02:56,350
+in the source code, that
+we've already given you,
+
+62
+00:02:56,350 --> 00:02:59,880
+how you can actually check
+whether a certain file exists
+
+63
+00:02:59,880 --> 00:03:03,380
+in the current directory, so that
+you can return the correct response.
+
+64
+00:03:03,380 --> 00:03:05,800
+>> So in the end there's
+relatively few bytes
+
+65
+00:03:05,800 --> 00:03:09,155
+that you need to take out of the
+problem set to implement the server's
+
+66
+00:03:09,155 --> 00:03:10,210
+incomplete functionality.
+
+67
+00:03:10,210 --> 00:03:13,180
+But definitely make sure you wrap
+your mind around as much of the code
+
+68
+00:03:13,180 --> 00:03:15,013
+as you can, taking
+comfort in that you don't
+
+69
+00:03:15,013 --> 00:03:18,160
+need to understand all of the
+lowest level networking code, all
+
+70
+00:03:18,160 --> 00:03:19,834
+of the lowest level file IO code.
+
+71
+00:03:19,834 --> 00:03:21,750
+Really, what we're doing
+with this problem set
+
+72
+00:03:21,750 --> 00:03:25,670
+is synthesizing the past several problem
+sets, introducing a bit of WebLogic,
+
+73
+00:03:25,670 --> 00:03:28,802
+and networking concepts,
+so that ultimately you
+
+74
+00:03:28,802 --> 00:03:31,760
+build something that's really quite
+interesting, really quite powerful,
+
+75
+00:03:31,760 --> 00:03:33,468
+but still using the
+same building blocks,
+
+76
+00:03:33,468 --> 00:03:36,310
+that we've been using for some time.

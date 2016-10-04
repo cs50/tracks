@@ -1,0 +1,5083 @@
+1
+00:00:00,000 --> 00:00:02,940
+>> [MUSIC PLAYING]
+
+2
+00:00:02,940 --> 00:00:10,310
+
+3
+00:00:10,310 --> 00:00:13,019
+>> DAVID MALAN: This is CS50, and
+this is the start of week 10.
+
+4
+00:00:13,019 --> 00:00:15,310
+And you might remember this
+image from a few weeks back
+
+5
+00:00:15,310 --> 00:00:17,179
+when we talked about
+the internet and how
+
+6
+00:00:17,179 --> 00:00:18,720
+it's actually implemented physically.
+
+7
+00:00:18,720 --> 00:00:21,480
+And you might recall that there's
+actually a whole bunch of cables
+
+8
+00:00:21,480 --> 00:00:23,690
+as well as wireless
+technologies that interconnect
+
+9
+00:00:23,690 --> 00:00:27,140
+all of the nodes or routers and other
+such technologies on the internet.
+
+10
+00:00:27,140 --> 00:00:28,880
+And a lot of that is underseas.
+
+11
+00:00:28,880 --> 00:00:32,290
+>> Well, it turns out that those
+underseas cables are a bit of a target.
+
+12
+00:00:32,290 --> 00:00:34,990
+And today's lecture is entirely
+about security, not only
+
+13
+00:00:34,990 --> 00:00:37,650
+the threats that we all face
+physically, but also virtually,
+
+14
+00:00:37,650 --> 00:00:40,470
+and also, toward tail end
+today, some of the defenses
+
+15
+00:00:40,470 --> 00:00:43,100
+that we as users can
+actually put into place.
+
+16
+00:00:43,100 --> 00:00:46,674
+>> But first, one of the first and
+perhaps most physical threat--
+
+17
+00:00:46,674 --> 00:00:47,340
+[VIDEO PLAYBACK]
+
+18
+00:00:47,340 --> 00:00:50,680
+-Could Russia be planning
+an attack on undersea cables
+
+19
+00:00:50,680 --> 00:00:52,460
+that connect global internet?
+
+20
+00:00:52,460 --> 00:00:55,910
+>> -Russian ships and submarines
+lurking near undersea cables
+
+21
+00:00:55,910 --> 00:00:57,830
+that carry almost all
+of the world's internet.
+
+22
+00:00:57,830 --> 00:01:00,840
+>> -The entire internet is
+carried along these cables.
+
+23
+00:01:00,840 --> 00:01:05,260
+>> -First of all, what is the
+internet doing underwater?
+
+24
+00:01:05,260 --> 00:01:08,980
+
+25
+00:01:08,980 --> 00:01:13,170
+Last time I checked, I'm not
+supposed to get my computer wet.
+
+26
+00:01:13,170 --> 00:01:16,540
+Second, if you ask me how the internet
+travels from continent to continent,
+
+27
+00:01:16,540 --> 00:01:20,790
+I would've said satellites
+or lasers, or, honestly,
+
+28
+00:01:20,790 --> 00:01:24,310
+I probably would have
+just said the internet.
+
+29
+00:01:24,310 --> 00:01:26,360
+>> And what happened to the cloud?
+
+30
+00:01:26,360 --> 00:01:28,587
+I was told there was a cloud.
+
+31
+00:01:28,587 --> 00:01:29,086
+Remember?
+
+32
+00:01:29,086 --> 00:01:30,530
+Hey, let's put that in the cloud.
+
+33
+00:01:30,530 --> 00:01:34,160
+It was like the internet was a vapor
+of information that circles the Earth,
+
+34
+00:01:34,160 --> 00:01:39,040
+and your computer was like a ladle
+that scooped out what you needed.
+
+35
+00:01:39,040 --> 00:01:41,800
+>> But it turns out the internet
+is actually underwater
+
+36
+00:01:41,800 --> 00:01:46,650
+because these cables carry more than
+95% of daily internet communications.
+
+37
+00:01:46,650 --> 00:01:49,740
+And US intelligence worries that
+in times of tension or conflict,
+
+38
+00:01:49,740 --> 00:01:52,090
+Russia might resort to severing them.
+
+39
+00:01:52,090 --> 00:01:55,380
+It would be the biggest disruption
+to your internet service
+
+40
+00:01:55,380 --> 00:01:59,490
+since your upstairs neighbor
+put a password on his Wi-Fi.
+
+41
+00:01:59,490 --> 00:02:00,960
+OK?
+
+42
+00:02:00,960 --> 00:02:02,837
+Try his dog's name.
+
+43
+00:02:02,837 --> 00:02:03,420
+[END PLAYBACK]
+
+44
+00:02:03,420 --> 00:02:05,730
+DAVID MALAN: Before we turn now to
+some of the more virtual threats,
+
+45
+00:02:05,730 --> 00:02:06,813
+a couple of announcements.
+
+46
+00:02:06,813 --> 00:02:08,919
+So our friends a
+CrimsonEMS are currently
+
+47
+00:02:08,919 --> 00:02:11,637
+recruiting for new EMTs,
+Emergency Medical Technicians.
+
+48
+00:02:11,637 --> 00:02:14,220
+And this is actually something
+particularly close to my heart.
+
+49
+00:02:14,220 --> 00:02:17,540
+>> A long time ago, I
+remember being in an Ikea
+
+50
+00:02:17,540 --> 00:02:19,150
+shortly after graduation, actually.
+
+51
+00:02:19,150 --> 00:02:22,280
+And as I was exiting the store, this
+little boy who was in a stroller
+
+52
+00:02:22,280 --> 00:02:24,151
+started turning literally blue.
+
+53
+00:02:24,151 --> 00:02:26,650
+And he was choking on some piece
+of food that had presumably
+
+54
+00:02:26,650 --> 00:02:28,940
+gotten stuck in his throat.
+
+55
+00:02:28,940 --> 00:02:30,160
+>> And his mother was panicking.
+
+56
+00:02:30,160 --> 00:02:31,785
+The parents around them were panicking.
+
+57
+00:02:31,785 --> 00:02:36,390
+And even I, who had a bit of familiarity
+with EMS just by way of friends,
+
+58
+00:02:36,390 --> 00:02:37,597
+completely froze.
+
+59
+00:02:37,597 --> 00:02:40,430
+And it was only thanks to something
+like a 15-year-old lifeguard who
+
+60
+00:02:40,430 --> 00:02:43,460
+ran over and actually knew what to
+do instinctively and called for help
+
+61
+00:02:43,460 --> 00:02:46,504
+and actually pulled the
+boy out of his stroller
+
+62
+00:02:46,504 --> 00:02:48,045
+and actually addressed the situation.
+
+63
+00:02:48,045 --> 00:02:49,570
+>> And for me, that was a turning point.
+
+64
+00:02:49,570 --> 00:02:51,770
+And it was that moment in
+time where I decided, dammit,
+
+65
+00:02:51,770 --> 00:02:53,520
+I need to have my act
+together and actually know
+
+66
+00:02:53,520 --> 00:02:55,450
+how to respond to these
+kinds of situations.
+
+67
+00:02:55,450 --> 00:02:57,960
+And so I myself got licensed
+years ago as an EMT.
+
+68
+00:02:57,960 --> 00:03:00,840
+And through graduate school
+did I ride on MIT's ambulance
+
+69
+00:03:00,840 --> 00:03:03,640
+for some period of time as well
+as have kept up my license since.
+
+70
+00:03:03,640 --> 00:03:06,380
+>> And actually, to this day, all
+of CS50 staff here in Cambridge
+
+71
+00:03:06,380 --> 00:03:10,310
+are actually certified in CPR,
+as well, for similar reasons.
+
+72
+00:03:10,310 --> 00:03:12,470
+So if you're at all
+interested in this, there's
+
+73
+00:03:12,470 --> 00:03:15,720
+never going to be enough time in
+the day to take on something new.
+
+74
+00:03:15,720 --> 00:03:18,531
+But if you want a New Year's
+resolution, do join these guys here
+
+75
+00:03:18,531 --> 00:03:21,030
+or consider reaching out to the
+Red Cross for certification,
+
+76
+00:03:21,030 --> 00:03:23,450
+either here or in New Haven, as well.
+
+77
+00:03:23,450 --> 00:03:25,027
+>> So CS50's last lunch is this Friday.
+
+78
+00:03:25,027 --> 00:03:28,110
+So if you've not yet joined us, or if
+you have and you want one more time,
+
+79
+00:03:28,110 --> 00:03:30,870
+do go on CS50's website to
+fill out the form there.
+
+80
+00:03:30,870 --> 00:03:34,030
+Know, too, that our friends in
+Yale, Professor Scassellati,
+
+81
+00:03:34,030 --> 00:03:37,770
+has been producing an AI, artificial
+intelligence, series for us
+
+82
+00:03:37,770 --> 00:03:39,630
+that will start to debut
+this week on video.
+
+83
+00:03:39,630 --> 00:03:43,430
+So especially if you are interested
+in pursuing a final project somehow
+
+84
+00:03:43,430 --> 00:03:46,670
+related to artificial intelligence,
+natural language processing,
+
+85
+00:03:46,670 --> 00:03:50,440
+even robotics, realize that these will
+be a wonderful inspiration for that.
+
+86
+00:03:50,440 --> 00:03:55,664
+>> And just to give you a teaser
+of this, here is Scaz himself.
+
+87
+00:03:55,664 --> 00:03:56,580
+>> [VIDEO PLAYBACK]
+
+88
+00:03:56,580 --> 00:03:59,050
+>> -One of the really great
+things about computer science
+
+89
+00:03:59,050 --> 00:04:01,680
+is that with even only
+a few weeks of study,
+
+90
+00:04:01,680 --> 00:04:05,170
+you're going to be able to understand
+many of the intelligent artifacts
+
+91
+00:04:05,170 --> 00:04:08,500
+and devices that populate
+our modern world.
+
+92
+00:04:08,500 --> 00:04:11,100
+In this short video
+series, we're going to look
+
+93
+00:04:11,100 --> 00:04:15,540
+at things like how Netflix is able
+to suggest and recommend movies
+
+94
+00:04:15,540 --> 00:04:20,490
+that I might like, how it is that
+Siri can answer questions that I have,
+
+95
+00:04:20,490 --> 00:04:23,540
+how it is that Facebook
+can recognize my face
+
+96
+00:04:23,540 --> 00:04:26,130
+and automatically tag
+me in a photograph,
+
+97
+00:04:26,130 --> 00:04:30,920
+or how Google is able to build
+a car that drives on its own.
+
+98
+00:04:30,920 --> 00:04:37,090
+>> So I hope you'll join me for this short
+series of videos, the CS50 AI series.
+
+99
+00:04:37,090 --> 00:04:40,887
+I think you'll find that you know
+much more than you thought you did.
+
+100
+00:04:40,887 --> 00:04:41,470
+[END PLAYBACK]
+
+101
+00:04:41,470 --> 00:04:43,930
+DAVID MALAN: So those will appear on
+the course's website later this week.
+
+102
+00:04:43,930 --> 00:04:44,640
+Stay tuned.
+
+103
+00:04:44,640 --> 00:04:47,300
+And in the meantime, a few
+announcements as to what lies ahead.
+
+104
+00:04:47,300 --> 00:04:48,810
+So we are here.
+
+105
+00:04:48,810 --> 00:04:50,400
+This is in our lecture on security.
+
+106
+00:04:50,400 --> 00:04:53,920
+This coming Wednesday, Scaz and Andy,
+our head teaching fellow in New Haven,
+
+107
+00:04:53,920 --> 00:04:56,120
+will be here to look at
+artificial intelligence
+
+108
+00:04:56,120 --> 00:04:58,670
+itself for a look at
+computation for communication--
+
+109
+00:04:58,670 --> 00:05:01,970
+how to build systems that use
+language to communicate from ELIZA,
+
+110
+00:05:01,970 --> 00:05:04,770
+if you're familiar with this
+software from yesteryear, to Siri
+
+111
+00:05:04,770 --> 00:05:08,960
+more recently and to Watson, which you
+might know from Jeopardy or the like.
+
+112
+00:05:08,960 --> 00:05:10,890
+>> Then next Monday, we're
+not here in Cambridge.
+
+113
+00:05:10,890 --> 00:05:13,515
+We're in New Haven for a second
+look at artificial intelligence
+
+114
+00:05:13,515 --> 00:05:16,440
+with Scaz and company--
+AI opponents in games.
+
+115
+00:05:16,440 --> 00:05:19,516
+So if you've ever played against
+the computer in some video game
+
+116
+00:05:19,516 --> 00:05:22,140
+or mobile game or the like, we'll
+talk about exactly that-- how
+
+117
+00:05:22,140 --> 00:05:24,522
+to build opponents for games,
+how to represent things
+
+118
+00:05:24,522 --> 00:05:26,980
+underneath the hood using trees
+from games like tic-tac-toe
+
+119
+00:05:26,980 --> 00:05:31,080
+to chess to actual modern
+video games, as well.
+
+120
+00:05:31,080 --> 00:05:33,050
+>> Sadly, quiz one is shortly thereafter.
+
+121
+00:05:33,050 --> 00:05:35,420
+More details on that on CS50's
+website later this week.
+
+122
+00:05:35,420 --> 00:05:39,620
+And our final lecture at Yale will
+be that Friday after the quiz.
+
+123
+00:05:39,620 --> 00:05:42,950
+And our final lecture at Harvard
+will be the Monday thereafter,
+
+124
+00:05:42,950 --> 00:05:44,390
+by nature of scheduling.
+
+125
+00:05:44,390 --> 00:05:47,229
+>> And so in terms of milestones,
+besides pset eight out this week;
+
+126
+00:05:47,229 --> 00:05:49,770
+status report, which will be a
+quick sanity check between you
+
+127
+00:05:49,770 --> 00:05:51,360
+and your teaching fellow;
+the hackathon, which
+
+128
+00:05:51,360 --> 00:05:54,170
+will be here in Cambridge for students
+from New Haven and Cambridge alike.
+
+129
+00:05:54,170 --> 00:05:56,461
+We will take care of all
+transportation from New Haven.
+
+130
+00:05:56,461 --> 00:05:58,750
+The implementation of the
+final project will be due.
+
+131
+00:05:58,750 --> 00:06:02,630
+And then for both campuses
+will there be a CS50 fair
+
+132
+00:06:02,630 --> 00:06:05,380
+that allows us to take
+a look at and delight
+
+133
+00:06:05,380 --> 00:06:07,240
+in what everyone has accomplished.
+
+134
+00:06:07,240 --> 00:06:11,400
+>> In fact, I thought this would be a good
+moment to draw attention to this device
+
+135
+00:06:11,400 --> 00:06:14,420
+here, which we've used for
+some amount of time here,
+
+136
+00:06:14,420 --> 00:06:15,750
+which is a nice touch screen.
+
+137
+00:06:15,750 --> 00:06:18,172
+And actually, last
+year we had a $0.99 app
+
+138
+00:06:18,172 --> 00:06:21,380
+that we downloaded from the Windows app
+store in order to draw on the screen.
+
+139
+00:06:21,380 --> 00:06:22,580
+>> But frankly, it was very cluttered.
+
+140
+00:06:22,580 --> 00:06:24,996
+It allowed us to draw on the
+screen, but there were, like,
+
+141
+00:06:24,996 --> 00:06:26,060
+a lot of icons up here.
+
+142
+00:06:26,060 --> 00:06:27,580
+The user interface was pretty bad.
+
+143
+00:06:27,580 --> 00:06:28,845
+If you wanted to change
+certain settings,
+
+144
+00:06:28,845 --> 00:06:30,420
+there were just so many damn clicks.
+
+145
+00:06:30,420 --> 00:06:32,770
+And the user interface--
+or, more properly,
+
+146
+00:06:32,770 --> 00:06:35,075
+the user experience--
+was pretty suboptimal,
+
+147
+00:06:35,075 --> 00:06:36,950
+especially using it in
+a lecture environment.
+
+148
+00:06:36,950 --> 00:06:38,658
+>> And so we reached out
+to a friend of ours
+
+149
+00:06:38,658 --> 00:06:42,090
+at Microsoft, Bjorn, who's actually
+been following along with CS50 online.
+
+150
+00:06:42,090 --> 00:06:45,430
+And as his final project,
+essentially, did he very graciously
+
+151
+00:06:45,430 --> 00:06:48,630
+take some input from us as to exactly
+the features and user experience
+
+152
+00:06:48,630 --> 00:06:49,350
+we want.
+
+153
+00:06:49,350 --> 00:06:54,430
+And he then went about building
+for Windows this application here
+
+154
+00:06:54,430 --> 00:06:59,570
+that allows us to draw--
+oops-- and spell on the-- wow.
+
+155
+00:06:59,570 --> 00:07:00,940
+Thank you.
+
+156
+00:07:00,940 --> 00:07:05,530
+To draw and spell on this screen here
+with very minimal user interface.
+
+157
+00:07:05,530 --> 00:07:08,610
+>> So you've seen me, perhaps, tap up
+here ever so slightly where now we
+
+158
+00:07:08,610 --> 00:07:10,130
+can underline things in red.
+
+159
+00:07:10,130 --> 00:07:12,046
+We can toggle and now
+go to white text here.
+
+160
+00:07:12,046 --> 00:07:14,420
+If we want to actually delete
+the screen, we can do this.
+
+161
+00:07:14,420 --> 00:07:16,850
+And if we actually prefer a
+white canvas, we can do that.
+
+162
+00:07:16,850 --> 00:07:20,800
+So it does so terribly little
+by design and does it well.
+
+163
+00:07:20,800 --> 00:07:24,680
+So that I futz, hopefully,
+far less this year in class.
+
+164
+00:07:24,680 --> 00:07:30,630
+>> And thanks, too, to a protege of his
+am I wearing today a little ring.
+
+165
+00:07:30,630 --> 00:07:33,290
+This is Benjamin, who was
+interning with Bjorn this summer.
+
+166
+00:07:33,290 --> 00:07:33,940
+So it's a little ring.
+
+167
+00:07:33,940 --> 00:07:35,660
+It's a little larger than my usual ring.
+
+168
+00:07:35,660 --> 00:07:38,340
+But via a little dial on
+the side here can I actually
+
+169
+00:07:38,340 --> 00:07:41,840
+move the slides left and right, forward
+and back, and actually advance things
+
+170
+00:07:41,840 --> 00:07:45,270
+wirelessly so that, one, I don't have
+to keep going back over to the space bar
+
+171
+00:07:45,270 --> 00:07:45,770
+here.
+
+172
+00:07:45,770 --> 00:07:47,730
+And two, I don't have to have
+one of those stupid clickers
+
+173
+00:07:47,730 --> 00:07:50,360
+and preoccupy my hand by holding
+the damn thing all the time
+
+174
+00:07:50,360 --> 00:07:51,480
+in order to simply click.
+
+175
+00:07:51,480 --> 00:07:54,800
+And surely, in time, will the hardware
+like this get super, super smaller.
+
+176
+00:07:54,800 --> 00:07:57,420
+>> So certainly, don't hesitate
+to think outside the box
+
+177
+00:07:57,420 --> 00:07:59,580
+and do things and create
+things that don't even
+
+178
+00:07:59,580 --> 00:08:01,520
+exist yet for final projects.
+
+179
+00:08:01,520 --> 00:08:04,190
+Without further ado,
+a look at what awaits
+
+180
+00:08:04,190 --> 00:08:08,770
+as you dive into your final
+projects at the CS50 hackathon
+
+181
+00:08:08,770 --> 00:08:09,610
+>> [VIDEO PLAYBACK]
+
+182
+00:08:09,610 --> 00:08:11,210
+>> [MUSIC PLAYING]
+
+183
+00:08:11,210 --> 00:09:37,990
+
+184
+00:09:37,990 --> 00:09:40,750
+>> [SNORING]
+
+185
+00:09:40,750 --> 00:09:41,997
+
+186
+00:09:41,997 --> 00:09:42,580
+[END PLAYBACK]
+
+187
+00:09:42,580 --> 00:09:43,260
+DAVID MALAN: All right.
+
+188
+00:09:43,260 --> 00:09:45,900
+So the Stephen Colbert clip
+that I showed just a moment ago
+
+189
+00:09:45,900 --> 00:09:47,947
+was actually on TV just a few days ago.
+
+190
+00:09:47,947 --> 00:09:51,280
+And in fact, a couple of the other clips
+we'll show today are incredibly recent.
+
+191
+00:09:51,280 --> 00:09:54,120
+And in fact, that speaks to the
+reality that so much of technology
+
+192
+00:09:54,120 --> 00:09:56,900
+and, frankly, a lot of the ideas
+we've been talking about in CS50
+
+193
+00:09:56,900 --> 00:09:57,892
+really are omnipresent.
+
+194
+00:09:57,892 --> 00:09:59,850
+And one of the goals of
+the course is certainly
+
+195
+00:09:59,850 --> 00:10:03,300
+to equip you with technical skills so
+that you can actually solve problems
+
+196
+00:10:03,300 --> 00:10:06,736
+programmatically, but two, so that
+you can actually make better decisions
+
+197
+00:10:06,736 --> 00:10:08,110
+and make more informed decisions.
+
+198
+00:10:08,110 --> 00:10:11,420
+And, in fact, thematic throughout the
+press and online videos and articles
+
+199
+00:10:11,420 --> 00:10:15,100
+these days is just a frightening
+misunderstanding or lack
+
+200
+00:10:15,100 --> 00:10:18,640
+of understanding of how technology
+works, especially among politicians.
+
+201
+00:10:18,640 --> 00:10:22,091
+>> And so indeed, in just a bit we'll
+take a look at one of those details,
+
+202
+00:10:22,091 --> 00:10:22,590
+as well.
+
+203
+00:10:22,590 --> 00:10:24,660
+But literally just last
+night was I sitting
+
+204
+00:10:24,660 --> 00:10:27,600
+in Bertucci's, a local
+franchise Italian place.
+
+205
+00:10:27,600 --> 00:10:28,960
+And I hopped on their Wi-Fi.
+
+206
+00:10:28,960 --> 00:10:32,220
+And I was very reassured
+to see that it's secure.
+
+207
+00:10:32,220 --> 00:10:35,710
+And I knew that because it says
+here "Secure Internet Portal"
+
+208
+00:10:35,710 --> 00:10:36,710
+when the screen came up.
+
+209
+00:10:36,710 --> 00:10:38,918
+So this was the little prompt
+that comes up in Mac OS
+
+210
+00:10:38,918 --> 00:10:41,840
+or in Windows when you connect to
+a Wi-Fi network for the first time.
+
+211
+00:10:41,840 --> 00:10:45,480
+And I had to read through their terms
+and conditions and finally click OK.
+
+212
+00:10:45,480 --> 00:10:47,140
+And then I was allowed to proceed.
+
+213
+00:10:47,140 --> 00:10:51,510
+>> So let's start to rethink what all of
+this means and to no longer take for
+
+214
+00:10:51,510 --> 00:10:54,800
+granted what people tell us when we
+encounter it with various technology.
+
+215
+00:10:54,800 --> 00:10:57,520
+So one, what does it mean that
+this is a secure internet portal?
+
+216
+00:10:57,520 --> 00:11:00,260
+
+217
+00:11:00,260 --> 00:11:02,557
+What could Bertucci's
+be reassuring me of?
+
+218
+00:11:02,557 --> 00:11:04,890
+AUDIENCE: The packets sent
+back and forth are encrypted.
+
+219
+00:11:04,890 --> 00:11:05,030
+DAVID MALAN: Good.
+
+220
+00:11:05,030 --> 00:11:07,470
+The packets being sent back
+and forth are encrypted.
+
+221
+00:11:07,470 --> 00:11:08,984
+Is that in fact the case?
+
+222
+00:11:08,984 --> 00:11:12,150
+If that were the case, what would I
+have to do or what would I have to know?
+
+223
+00:11:12,150 --> 00:11:14,486
+Well, you'd see a little
+padlock icon in Mac OS
+
+224
+00:11:14,486 --> 00:11:16,860
+or in Windows saying that
+there is indeed some encryption
+
+225
+00:11:16,860 --> 00:11:17,818
+or scrambling going on.
+
+226
+00:11:17,818 --> 00:11:20,970
+But before you can use an encrypted
+portal or Wi-Fi connection, what
+
+227
+00:11:20,970 --> 00:11:23,300
+do you have to usually type in?
+
+228
+00:11:23,300 --> 00:11:23,890
+A password.
+
+229
+00:11:23,890 --> 00:11:26,570
+I know no such password, nor
+did I type any such password.
+
+230
+00:11:26,570 --> 00:11:27,530
+I simply clicked OK.
+
+231
+00:11:27,530 --> 00:11:29,360
+So this is utterly meaningless.
+
+232
+00:11:29,360 --> 00:11:31,400
+This is not a secure internet portal.
+
+233
+00:11:31,400 --> 00:11:34,500
+This is a 100% insecure internet portal.
+
+234
+00:11:34,500 --> 00:11:38,290
+There's absolutely no encryption going
+on, and all that is making it secure
+
+235
+00:11:38,290 --> 00:11:41,660
+is that three-word phrase
+on the screen there.
+
+236
+00:11:41,660 --> 00:11:44,027
+>> So that means nothing,
+necessarily, technologically.
+
+237
+00:11:44,027 --> 00:11:45,860
+And a little more
+worrisome, if you actually
+
+238
+00:11:45,860 --> 00:11:48,560
+read through the terms and conditions,
+which are surprisingly readable,
+
+239
+00:11:48,560 --> 00:11:50,070
+was this-- "you
+understand that we reserve
+
+240
+00:11:50,070 --> 00:11:53,380
+the right to log or monitor traffic to
+ensure these terms are being followed."
+
+241
+00:11:53,380 --> 00:11:56,940
+So that's a little creepy, if Bertucci's
+is watching my internet traffic.
+
+242
+00:11:56,940 --> 00:11:59,480
+But most any agreement that
+you've blindly clicked through
+
+243
+00:11:59,480 --> 00:12:01,220
+has surely said that before.
+
+244
+00:12:01,220 --> 00:12:03,370
+>> So what does that actually
+mean technologically?
+
+245
+00:12:03,370 --> 00:12:05,839
+So if there's some creepy
+guy or woman in back
+
+246
+00:12:05,839 --> 00:12:07,880
+who's, like, monitoring
+all the internet traffic,
+
+247
+00:12:07,880 --> 00:12:12,120
+how is he or she accessing
+that information exactly?
+
+248
+00:12:12,120 --> 00:12:14,900
+What are the technological
+means via which
+
+249
+00:12:14,900 --> 00:12:17,200
+that person-- or
+adversary, more generally--
+
+250
+00:12:17,200 --> 00:12:18,450
+can be looking at our traffic?
+
+251
+00:12:18,450 --> 00:12:21,366
+>> Well, if there's no encryption, what
+kinds of things could they sniff,
+
+252
+00:12:21,366 --> 00:12:24,622
+so to speak, sort of detect in the air.
+
+253
+00:12:24,622 --> 00:12:25,580
+What would you look at?
+
+254
+00:12:25,580 --> 00:12:25,830
+Yeah?
+
+255
+00:12:25,830 --> 00:12:28,790
+>> AUDIENCE: The packets being sent
+from your computer to the router?
+
+256
+00:12:28,790 --> 00:12:29,100
+>> DAVID MALAN: Yeah.
+
+257
+00:12:29,100 --> 00:12:31,160
+The packets being sent from
+the computer to your router.
+
+258
+00:12:31,160 --> 00:12:32,540
+So you might recall when
+we were in New Haven,
+
+259
+00:12:32,540 --> 00:12:36,047
+we passed those envelopes, physically,
+throughout the audience to represent
+
+260
+00:12:36,047 --> 00:12:37,380
+data going through the internet.
+
+261
+00:12:37,380 --> 00:12:40,940
+And certainly, if we were throwing
+them through the audience wirelessly
+
+262
+00:12:40,940 --> 00:12:45,631
+to reach their destination, anyone can
+sort of grab it and make a copy of it
+
+263
+00:12:45,631 --> 00:12:47,630
+and actually see what's
+inside of that envelope.
+
+264
+00:12:47,630 --> 00:12:49,630
+>> And, of course, what's
+inside of these envelopes
+
+265
+00:12:49,630 --> 00:12:53,390
+is any number of things,
+including the IP address
+
+266
+00:12:53,390 --> 00:12:55,910
+that you're trying to
+access or the host name,
+
+267
+00:12:55,910 --> 00:12:59,070
+like www.harvard.edu or
+yale.edu that you're trying
+
+268
+00:12:59,070 --> 00:13:00,840
+to access or something else altogether.
+
+269
+00:13:00,840 --> 00:13:04,740
+Moreover, the path, too-- you know from
+pset six that inside of HTTP requests
+
+270
+00:13:04,740 --> 00:13:08,130
+are get slash something.html.
+
+271
+00:13:08,130 --> 00:13:12,010
+So if you're visiting a specific page,
+downloading a specific image or video,
+
+272
+00:13:12,010 --> 00:13:14,780
+all of that information
+is inside of that packet.
+
+273
+00:13:14,780 --> 00:13:19,186
+And so anyone there in Bertucci's can
+be looking at that very same data.
+
+274
+00:13:19,186 --> 00:13:21,310
+Well, what are some other
+threats along these lines
+
+275
+00:13:21,310 --> 00:13:24,590
+to be mindful of before you
+just start accepting as fact
+
+276
+00:13:24,590 --> 00:13:26,980
+what someone like
+Bertucci's simply tells you?
+
+277
+00:13:26,980 --> 00:13:29,350
+Well, this was an article--
+a series of articles
+
+278
+00:13:29,350 --> 00:13:31,260
+that came out just a few months back.
+
+279
+00:13:31,260 --> 00:13:34,450
+All the rage these days are
+these newfangled smart TVs.
+
+280
+00:13:34,450 --> 00:13:37,787
+What's a smart TV, if you've
+heard of them or have one at home?
+
+281
+00:13:37,787 --> 00:13:39,120
+AUDIENCE: Internet connectivity?
+
+282
+00:13:39,120 --> 00:13:40,828
+DAVID MALAN: Yeah,
+internet connectivity.
+
+283
+00:13:40,828 --> 00:13:44,030
+So generally, a smart TV is a
+TV with internet connectivity
+
+284
+00:13:44,030 --> 00:13:46,267
+and a really crappy user
+interface that makes
+
+285
+00:13:46,267 --> 00:13:49,100
+it harder to actually use the web
+because you have to use, like, up,
+
+286
+00:13:49,100 --> 00:13:51,260
+down, left, and right or something
+on your remote control just
+
+287
+00:13:51,260 --> 00:13:54,150
+to access things that are so much
+more easily done on a laptop.
+
+288
+00:13:54,150 --> 00:13:58,870
+>> But more worrisome about a smart TV,
+and Samsung TVs in this particular case,
+
+289
+00:13:58,870 --> 00:14:03,290
+was that Samsung TVs and others
+these days come with certain hardware
+
+290
+00:14:03,290 --> 00:14:06,280
+to create what they claim is a
+better user interface for you.
+
+291
+00:14:06,280 --> 00:14:09,070
+So one, you can talk to
+some of your TVs these days,
+
+292
+00:14:09,070 --> 00:14:13,640
+not unlike Siri or any of the
+other equivalents on mobile phones.
+
+293
+00:14:13,640 --> 00:14:15,530
+So you can say commands,
+like change channel,
+
+294
+00:14:15,530 --> 00:14:18,006
+raise volume, turn off, or the like.
+
+295
+00:14:18,006 --> 00:14:19,880
+But what's the implication
+of that logically?
+
+296
+00:14:19,880 --> 00:14:23,400
+If you've got the TV in your living
+room or the TV at the foot of your bed
+
+297
+00:14:23,400 --> 00:14:25,299
+to fall asleep to,
+what's the implication?
+
+298
+00:14:25,299 --> 00:14:25,799
+Yeah?
+
+299
+00:14:25,799 --> 00:14:29,222
+>> AUDIENCE: There might be something
+going in through the mechanism
+
+300
+00:14:29,222 --> 00:14:30,917
+to detect your speech.
+
+301
+00:14:30,917 --> 00:14:31,667
+DAVID MALAN: Yeah.
+
+302
+00:14:31,667 --> 00:14:34,601
+AUDIENCE: That could
+be sent via internet.
+
+303
+00:14:34,601 --> 00:14:36,617
+If it's unencrypted,
+then it's vulnerable.
+
+304
+00:14:36,617 --> 00:14:37,450
+DAVID MALAN: Indeed.
+
+305
+00:14:37,450 --> 00:14:40,420
+If you have a microphone built
+into a TV and its purpose in life
+
+306
+00:14:40,420 --> 00:14:43,550
+is, by design, to listen
+to you and respond to you,
+
+307
+00:14:43,550 --> 00:14:46,660
+it's surely going to be
+listening to everything you say
+
+308
+00:14:46,660 --> 00:14:50,140
+and then translating that to
+some embedded instructions.
+
+309
+00:14:50,140 --> 00:14:54,190
+But the catch is that most of these
+TVs aren't perfectly smart themselves.
+
+310
+00:14:54,190 --> 00:14:56,430
+They're very dependent on
+that internet connection.
+
+311
+00:14:56,430 --> 00:14:58,560
+>> So much like Siri, when
+you talk into your phone,
+
+312
+00:14:58,560 --> 00:15:01,660
+quickly sends that data across
+the internet to Apple servers,
+
+313
+00:15:01,660 --> 00:15:05,551
+then gets back a response, literally
+is the Samsung TV and equivalents
+
+314
+00:15:05,551 --> 00:15:07,925
+just sending everything you're
+saying in your living room
+
+315
+00:15:07,925 --> 00:15:12,040
+or bedroom to their servers just to
+detect did he say, turn on the TV
+
+316
+00:15:12,040 --> 00:15:13,030
+or turn off the TV?
+
+317
+00:15:13,030 --> 00:15:15,052
+And God knows what
+else might be uttered.
+
+318
+00:15:15,052 --> 00:15:17,010
+Now, there's some ways
+to mitigate this, right?
+
+319
+00:15:17,010 --> 00:15:20,730
+Like what does Siri and what
+does Google and others do
+
+320
+00:15:20,730 --> 00:15:23,630
+to at least defend against
+that risk that they're
+
+321
+00:15:23,630 --> 00:15:26,491
+listening to absolutely everything?
+
+322
+00:15:26,491 --> 00:15:28,240
+It has to be activated
+by saying something
+
+323
+00:15:28,240 --> 00:15:32,580
+like, hey, Siri, or hi Google or
+the like or OK, Google or the like.
+
+324
+00:15:32,580 --> 00:15:35,180
+>> But we all know that those
+expressions kind of suck, right?
+
+325
+00:15:35,180 --> 00:15:37,842
+Like I was just sitting--
+actually the last time
+
+326
+00:15:37,842 --> 00:15:41,050
+I was at office hours at Yale, I think,
+Jason or one of the TFs kept yelling,
+
+327
+00:15:41,050 --> 00:15:44,000
+like, hey, Siri, hey, Siri
+and was making my phone
+
+328
+00:15:44,000 --> 00:15:46,460
+do things because he was too
+proximal to my actual phone.
+
+329
+00:15:46,460 --> 00:15:47,550
+But the reverse is true, too.
+
+330
+00:15:47,550 --> 00:15:49,740
+Sometimes those things just
+kick on because it's imperfect.
+
+331
+00:15:49,740 --> 00:15:51,640
+And indeed, natural
+language processing--
+
+332
+00:15:51,640 --> 00:15:54,660
+understanding a human's phrasing and
+then doing something based on it--
+
+333
+00:15:54,660 --> 00:15:55,970
+is certainly imperfect.
+
+334
+00:15:55,970 --> 00:15:58,220
+>> Now, worse yet, some
+of you might have seen
+
+335
+00:15:58,220 --> 00:16:01,939
+or have a TV where you can do
+stupid or new-age things like this
+
+336
+00:16:01,939 --> 00:16:04,855
+to change channels to the left or
+this to change channels to the right
+
+337
+00:16:04,855 --> 00:16:07,400
+or lower the volume or raise the volume.
+
+338
+00:16:07,400 --> 00:16:09,480
+But what does that mean the TV has?
+
+339
+00:16:09,480 --> 00:16:12,610
+A camera pointed at you
+at all possible times.
+
+340
+00:16:12,610 --> 00:16:15,741
+>> And in fact, the brouhaha around Samsung
+TVs for which they took some flack
+
+341
+00:16:15,741 --> 00:16:18,490
+is that if you read the terms and
+conditions of the TV-- the thing
+
+342
+00:16:18,490 --> 00:16:22,300
+you certainly never read when unpacking
+your TV for the first time-- embedded
+
+343
+00:16:22,300 --> 00:16:26,700
+in there was a little disclaimer
+saying the equivalent of,
+
+344
+00:16:26,700 --> 00:16:30,050
+a you might not want to have personal
+conversations in front of this TV.
+
+345
+00:16:30,050 --> 00:16:31,300
+And that's what it reduces to.
+
+346
+00:16:31,300 --> 00:16:33,230
+>> But you shouldn't even
+need to be told that.
+
+347
+00:16:33,230 --> 00:16:35,063
+You should be able to
+infer from the reality
+
+348
+00:16:35,063 --> 00:16:38,610
+that microphone and camera literally
+pointing at me all the time
+
+349
+00:16:38,610 --> 00:16:40,940
+maybe is more bad than good.
+
+350
+00:16:40,940 --> 00:16:43,600
+And frankly, I say this
+somewhat hypocritically.
+
+351
+00:16:43,600 --> 00:16:47,080
+I literally have, besides those cameras,
+I have a tiny little camera here
+
+352
+00:16:47,080 --> 00:16:47,680
+in my laptop.
+
+353
+00:16:47,680 --> 00:16:48,950
+I have another one over here.
+
+354
+00:16:48,950 --> 00:16:50,842
+I have the in my
+cellphone on both sides.
+
+355
+00:16:50,842 --> 00:16:52,550
+So lest I put it down
+the wrong way, they
+
+356
+00:16:52,550 --> 00:16:54,550
+can still watch me and listen to me.
+
+357
+00:16:54,550 --> 00:16:56,430
+>> And all this could be
+happening all the time.
+
+358
+00:16:56,430 --> 00:17:01,240
+So what's stopping my iPhone or Android
+phone from doing this all the time?
+
+359
+00:17:01,240 --> 00:17:04,099
+How do we know that Apple and
+some creepy person at Google,
+
+360
+00:17:04,099 --> 00:17:06,560
+aren't listening in to
+this very conversation
+
+361
+00:17:06,560 --> 00:17:09,404
+through the phone or conversations
+I have at home or at work?
+
+362
+00:17:09,404 --> 00:17:11,220
+>> AUDIENCE: Because our lives
+aren't that interesting.
+
+363
+00:17:11,220 --> 00:17:13,511
+>> DAVID MALAN: Because our
+lives aren't that interesting.
+
+364
+00:17:13,511 --> 00:17:15,400
+That actually is a valid response.
+
+365
+00:17:15,400 --> 00:17:17,500
+If we're not worried
+about a particular threat,
+
+366
+00:17:17,500 --> 00:17:19,520
+there is a sort of who
+cares aspect to it.
+
+367
+00:17:19,520 --> 00:17:22,000
+Little old me is not going
+to really be a target.
+
+368
+00:17:22,000 --> 00:17:23,300
+But they certainly could.
+
+369
+00:17:23,300 --> 00:17:26,140
+>> And so even though you see some
+cheesy things on TVs and movies,
+
+370
+00:17:26,140 --> 00:17:29,830
+like, oh, let's turn on the grid and--
+like Batman does this a lot, actually,
+
+371
+00:17:29,830 --> 00:17:32,920
+and actually can see Gotham, what's
+going on by way of people's cellphones
+
+372
+00:17:32,920 --> 00:17:33,420
+or the like.
+
+373
+00:17:33,420 --> 00:17:37,410
+Some of that's a little futuristic,
+but we're pretty much there these days.
+
+374
+00:17:37,410 --> 00:17:40,030
+>> Almost all of us are
+walking around with GPS
+
+375
+00:17:40,030 --> 00:17:42,130
+transponders that is
+telling Apple and Google
+
+376
+00:17:42,130 --> 00:17:44,460
+and everyone else that wants to
+know where we are in the world.
+
+377
+00:17:44,460 --> 00:17:45,340
+We have a microphone.
+
+378
+00:17:45,340 --> 00:17:46,140
+We have a camera.
+
+379
+00:17:46,140 --> 00:17:50,410
+We're telling things like Snapchat and
+other applications everyone we know,
+
+380
+00:17:50,410 --> 00:17:53,090
+all of their phone numbers,
+all of their email addresses.
+
+381
+00:17:53,090 --> 00:17:56,650
+And so again, one of the takeaways
+today, hopefully, is to at least pause
+
+382
+00:17:56,650 --> 00:17:58,830
+a little bit before
+just blindly saying, OK
+
+383
+00:17:58,830 --> 00:18:00,590
+when you want the
+convenience of Snapchat
+
+384
+00:18:00,590 --> 00:18:02,203
+knowing who all of your friends is.
+
+385
+00:18:02,203 --> 00:18:05,440
+But conversely, now Snapchat
+knows everyone you know
+
+386
+00:18:05,440 --> 00:18:08,140
+and any little notes you might
+have made in your contacts.
+
+387
+00:18:08,140 --> 00:18:09,850
+>> So this was a timely one, too.
+
+388
+00:18:09,850 --> 00:18:12,780
+A few months back, Snapchat
+itself was not compromised.
+
+389
+00:18:12,780 --> 00:18:14,780
+But there had been some
+third-party applications
+
+390
+00:18:14,780 --> 00:18:18,220
+that made it easier to save
+snaps And the catch was
+
+391
+00:18:18,220 --> 00:18:21,520
+that that third-party service
+was itself compromised,
+
+392
+00:18:21,520 --> 00:18:25,200
+in part because Snapchat's service
+supported a feature that they probably
+
+393
+00:18:25,200 --> 00:18:28,075
+shouldn't have, which allowed for
+this archiving by a third party.
+
+394
+00:18:28,075 --> 00:18:32,740
+>> And the problem was that an archive
+of, like, 90,000 snaps, I think,
+
+395
+00:18:32,740 --> 00:18:34,690
+were ultimately compromised.
+
+396
+00:18:34,690 --> 00:18:37,980
+And so you might take some comfort in
+things like Snapchat being ephemeral,
+
+397
+00:18:37,980 --> 00:18:38,480
+right?
+
+398
+00:18:38,480 --> 00:18:41,650
+You have seven seconds to look at
+that inappropriate message or note,
+
+399
+00:18:41,650 --> 00:18:42,640
+and then it disappears.
+
+400
+00:18:42,640 --> 00:18:44,770
+But one, most of you
+have probably figured out
+
+401
+00:18:44,770 --> 00:18:48,620
+how to take screenshots by now, which
+is the most easy way to circumvent that.
+
+402
+00:18:48,620 --> 00:18:53,050
+But two, there's nothing stopping the
+company or the person's on the internet
+
+403
+00:18:53,050 --> 00:18:56,160
+from intercepting that
+data, potentially, as well.
+
+404
+00:18:56,160 --> 00:18:59,640
+>> So this was literally
+just a day or two ago.
+
+405
+00:18:59,640 --> 00:19:03,850
+This was a nice article headline on a
+website online. "Epic Fail-- Power Worm
+
+406
+00:19:03,850 --> 00:19:07,767
+Ransomware Accidentally Destroys
+Victim's Data During Encryption."
+
+407
+00:19:07,767 --> 00:19:10,100
+So another ripped from the
+headlines kind of thing here.
+
+408
+00:19:10,100 --> 00:19:11,808
+So you might have
+heard of malware, which
+
+409
+00:19:11,808 --> 00:19:15,380
+is malicious software-- so bad software
+that people with too much free time
+
+410
+00:19:15,380 --> 00:19:15,900
+write.
+
+411
+00:19:15,900 --> 00:19:18,880
+And sometimes, it just does
+stupid things like delete files
+
+412
+00:19:18,880 --> 00:19:20,830
+or send spam or the like.
+
+413
+00:19:20,830 --> 00:19:23,880
+>> But sometimes, and increasingly,
+it's more sophisticated, right?
+
+414
+00:19:23,880 --> 00:19:26,000
+You all know how to
+dabble in encryption.
+
+415
+00:19:26,000 --> 00:19:27,950
+And Caesar and Vigenere
+aren't super secure,
+
+416
+00:19:27,950 --> 00:19:30,575
+but there's other ones, certainly,
+that are more sophisticated.
+
+417
+00:19:30,575 --> 00:19:33,700
+And so what this adversary did
+was wrote a piece of malware
+
+418
+00:19:33,700 --> 00:19:36,200
+that somehow infected a
+bunch of people's computers.
+
+419
+00:19:36,200 --> 00:19:39,830
+But he was kind of an idiot and
+wrote a buggy version of this malware
+
+420
+00:19:39,830 --> 00:19:45,480
+such that when he or she
+implemented the code-- oh, we're
+
+421
+00:19:45,480 --> 00:19:49,280
+getting a lot of-- sorry.
+
+422
+00:19:49,280 --> 00:19:51,580
+We're getting a lot of
+hits on the microphone.
+
+423
+00:19:51,580 --> 00:19:52,260
+OK.
+
+424
+00:19:52,260 --> 00:19:55,280
+>> So what the problem was that
+he or she wrote some bad code.
+
+425
+00:19:55,280 --> 00:19:58,500
+And so they generated
+pseudorandomly an encryption key
+
+426
+00:19:58,500 --> 00:20:00,920
+with which to encrypt
+someone's data maliciously,
+
+427
+00:20:00,920 --> 00:20:03,580
+and then accidentally threw
+away the encryption key.
+
+428
+00:20:03,580 --> 00:20:06,110
+So the effect of this
+malware was not as intended,
+
+429
+00:20:06,110 --> 00:20:09,750
+to ransom someone's data by
+encrypting his or her hard drive
+
+430
+00:20:09,750 --> 00:20:13,930
+and then expecting $800 US in return
+for the encryption key, at which point
+
+431
+00:20:13,930 --> 00:20:15,970
+the victim could
+decrypt his or her data.
+
+432
+00:20:15,970 --> 00:20:18,810
+Rather, the bad guy simply
+encrypted all the data
+
+433
+00:20:18,810 --> 00:20:21,800
+on their hard drive, accidentally
+deleted the encryption key,
+
+434
+00:20:21,800 --> 00:20:23,390
+and got no money out of it.
+
+435
+00:20:23,390 --> 00:20:26,850
+But this also means that the victim is
+truly a victim because now he or she
+
+436
+00:20:26,850 --> 00:20:30,450
+cannot recover any of the data unless
+they actually have some old-school
+
+437
+00:20:30,450 --> 00:20:31,660
+backup of it.
+
+438
+00:20:31,660 --> 00:20:35,840
+>> So here too is sort of a reality
+that you'll read about these days.
+
+439
+00:20:35,840 --> 00:20:37,340
+And how can you defend against this?
+
+440
+00:20:37,340 --> 00:20:39,890
+Well, this is a whole can
+of worms, no pun intended,
+
+441
+00:20:39,890 --> 00:20:41,950
+about viruses and worms and the like.
+
+442
+00:20:41,950 --> 00:20:45,090
+And there is certainly software
+with which you can defend yourself.
+
+443
+00:20:45,090 --> 00:20:47,500
+But better than that is
+just to be smart about it.
+
+444
+00:20:47,500 --> 00:20:51,680
+>> In fact, I haven't-- this is one of
+these do as I say, not as I do things,
+
+445
+00:20:51,680 --> 00:20:54,950
+perhaps-- I haven't really used
+antivirus software in years
+
+446
+00:20:54,950 --> 00:20:58,700
+because if you generally know what to
+look for, you can defend against most
+
+447
+00:20:58,700 --> 00:20:59,720
+everything on your own.
+
+448
+00:20:59,720 --> 00:21:02,870
+And actually, timely here at
+Harvard-- there was a bug or an issue
+
+449
+00:21:02,870 --> 00:21:04,880
+last week where Harvard
+is clearly, like,
+
+450
+00:21:04,880 --> 00:21:06,690
+monitoring lots of network traffic.
+
+451
+00:21:06,690 --> 00:21:08,482
+And all of you even
+visiting CS50's website
+
+452
+00:21:08,482 --> 00:21:11,315
+might have gotten an alert saying
+that you can't visit this website.
+
+453
+00:21:11,315 --> 00:21:12,180
+It's not secure.
+
+454
+00:21:12,180 --> 00:21:13,730
+But if you tried visiting
+Google or other sites,
+
+455
+00:21:13,730 --> 00:21:15,270
+too, those, too, were insecure.
+
+456
+00:21:15,270 --> 00:21:17,990
+>> That's because Harvard, too, has
+some kind of filtration system
+
+457
+00:21:17,990 --> 00:21:21,860
+that is keeping an eye out on
+potentially malicious websites
+
+458
+00:21:21,860 --> 00:21:23,620
+to help protect us against us.
+
+459
+00:21:23,620 --> 00:21:27,490
+But even those things are clearly
+imperfect, if not buggy, themselves.
+
+460
+00:21:27,490 --> 00:21:30,790
+>> So here-- if you're curious, I'll
+leave these slides up online--
+
+461
+00:21:30,790 --> 00:21:32,990
+is the actual information
+that the adversary gave.
+
+462
+00:21:32,990 --> 00:21:36,680
+And he or she was
+asking for in bitcoin--
+
+463
+00:21:36,680 --> 00:21:40,890
+which is a virtual currency-- $800
+US to actually decrypt your data.
+
+464
+00:21:40,890 --> 00:21:45,494
+Unfortunately, this
+was completely foiled.
+
+465
+00:21:45,494 --> 00:21:47,410
+So now we'll look at
+something more political.
+
+466
+00:21:47,410 --> 00:21:49,510
+And again, the goal here is
+to start to think about how
+
+467
+00:21:49,510 --> 00:21:51,051
+you can make more informed decisions.
+
+468
+00:21:51,051 --> 00:21:53,310
+And this is something
+happening currently in the UK.
+
+469
+00:21:53,310 --> 00:21:56,500
+And this was a wonderful tagline
+from an article about this.
+
+470
+00:21:56,500 --> 00:21:58,840
+The UK is introducing, as
+you'll see, a new surveillance
+
+471
+00:21:58,840 --> 00:22:02,040
+bill whereby the UK is
+proposing to monitor everything
+
+472
+00:22:02,040 --> 00:22:03,930
+the Brits do for a period of one year.
+
+473
+00:22:03,930 --> 00:22:05,420
+And then the data is thrown out.
+
+474
+00:22:05,420 --> 00:22:08,350
+Quote, unquote, "It would
+serve a tyranny well."
+
+475
+00:22:08,350 --> 00:22:11,490
+>> So let's take a look with
+a friend of Mr. Colbert's.
+
+481
+00:22:11,670 --> 00:22:17,250
+And we begin with the UK,
+Earth's least magic kingdom.
+
+482
+00:22:17,250 --> 00:22:22,490
+>> This week, debate has been raging over
+there over a controversial new law.
+
+483
+00:22:22,490 --> 00:22:25,550
+>> -The British government is
+unveiling new surveillance laws
+
+484
+00:22:25,550 --> 00:22:30,430
+that significantly extend its power
+to monitor people's activities online.
+
+485
+00:22:30,430 --> 00:22:32,830
+>> -Theresa May there calls
+it a license to operate.
+
+486
+00:22:32,830 --> 00:22:35,360
+Others have called it a
+snooper's charter, haven't they?
+
+487
+00:22:35,360 --> 00:22:38,986
+>> -Well, hold on because-- snooper's
+charter is not the right phrase.
+
+488
+00:22:38,986 --> 00:22:41,110
+That sounds like the
+agreement an eight-year-old is
+
+489
+00:22:41,110 --> 00:22:45,680
+forced to sign promising to knock
+before he enters his parents' bedroom.
+
+490
+00:22:45,680 --> 00:22:49,860
+Dexter, sign this snooper's charter or
+we cannot be held responsible for what
+
+491
+00:22:49,860 --> 00:22:52,070
+you might see.
+
+492
+00:22:52,070 --> 00:22:57,170
+>> This bill could potentially write
+into law a huge invasion of privacy.
+
+493
+00:22:57,170 --> 00:23:01,900
+>> -Under the plans, a list of websites
+visited by every person in the UK
+
+494
+00:23:01,900 --> 00:23:06,160
+will be recorded for a year and could
+be made available to police and security
+
+495
+00:23:06,160 --> 00:23:06,890
+services.
+
+496
+00:23:06,890 --> 00:23:09,430
+>> -This communications
+data wouldn't reveal
+
+497
+00:23:09,430 --> 00:23:13,030
+the exact web page you looked at,
+but it would show the site it was on.
+
+498
+00:23:13,030 --> 00:23:13,530
+-OK.
+
+499
+00:23:13,530 --> 00:23:17,720
+So it wouldn't store the
+exact page, just the website.
+
+500
+00:23:17,720 --> 00:23:20,370
+But that is still a lot of information.
+
+501
+00:23:20,370 --> 00:23:22,525
+For instance, if someone
+visited orbitz.com,
+
+502
+00:23:22,525 --> 00:23:24,670
+you'd know they were
+thinking about taking a trip.
+
+503
+00:23:24,670 --> 00:23:27,860
+If they visited yahoo.com, you'd
+know they just had a stroke
+
+504
+00:23:27,860 --> 00:23:29,999
+and forgot the word "google."
+
+505
+00:23:29,999 --> 00:23:34,260
+And if they visited vigvoovs.com,
+you'd know they're horny
+
+506
+00:23:34,260 --> 00:23:36,620
+and their B key doesn't work.
+
+507
+00:23:36,620 --> 00:23:40,720
+>> And yet for all the sweeping
+powers the bill contains,
+
+508
+00:23:40,720 --> 00:23:44,340
+British Home Secretary Theresa May
+insists that critics have blown it out
+
+509
+00:23:44,340 --> 00:23:45,320
+of proportion.
+
+510
+00:23:45,320 --> 00:23:49,330
+>> -An internet connection record is a
+record of the communication service
+
+511
+00:23:49,330 --> 00:23:54,030
+that a person has used, not a record
+of every web page they have accessed.
+
+512
+00:23:54,030 --> 00:23:58,520
+It is simply the modern equivalent
+of an itemized phone bill.
+
+513
+00:23:58,520 --> 00:24:02,344
+>> -Yeah, but that's not quite as
+reassuring as she thinks it is.
+
+514
+00:24:02,344 --> 00:24:03,260
+And I'll tell you why.
+
+515
+00:24:03,260 --> 00:24:06,990
+First, I don't want the government
+looking at my phone calls either.
+
+516
+00:24:06,990 --> 00:24:09,350
+And secondly, an
+internet browsing history
+
+517
+00:24:09,350 --> 00:24:11,900
+is a little different from
+an itemized phone bill.
+
+518
+00:24:11,900 --> 00:24:17,155
+No one frantically deletes their phone
+bill every time they finish a call.
+
+519
+00:24:17,155 --> 00:24:17,854
+>> [END PLAYBACK]
+
+520
+00:24:17,854 --> 00:24:20,520
+DAVID MALAN: A pattern's emerging
+as to how I prepare for class.
+
+521
+00:24:20,520 --> 00:24:22,900
+It's just to watch TV for a week
+and see what comes out, clearly.
+
+522
+00:24:22,900 --> 00:24:25,660
+So that, too, was just from last
+night on "Last Week Tonight."
+
+523
+00:24:25,660 --> 00:24:27,920
+So let's begin to talk now
+about some of the defenses.
+
+524
+00:24:27,920 --> 00:24:29,920
+Indeed, for something
+like this, where the Brits
+
+525
+00:24:29,920 --> 00:24:33,830
+are proposing to keep a log of that kind
+of data, where might it be coming from?
+
+526
+00:24:33,830 --> 00:24:36,790
+Well, recall from pset six,
+pset seven, and pset eight now
+
+527
+00:24:36,790 --> 00:24:39,620
+that inside of those virtual
+envelopes-- at least for HTTP--
+
+528
+00:24:39,620 --> 00:24:41,330
+are messages that look like this.
+
+529
+00:24:41,330 --> 00:24:43,410
+And so this message,
+of course, is not only
+
+530
+00:24:43,410 --> 00:24:46,615
+addressed to a specific IP address,
+which the government here or there
+
+531
+00:24:46,615 --> 00:24:47,830
+could certainly log.
+
+532
+00:24:47,830 --> 00:24:51,350
+But even inside of that envelope is
+an explicit mention of the domain name
+
+533
+00:24:51,350 --> 00:24:52,380
+that's being visited.
+
+534
+00:24:52,380 --> 00:24:54,430
+And if it's not just
+slash, it might actually
+
+535
+00:24:54,430 --> 00:24:57,140
+be a specific file name or
+a specific image or movie
+
+536
+00:24:57,140 --> 00:24:59,780
+or, again, anything of
+interest to you could
+
+537
+00:24:59,780 --> 00:25:02,160
+be certainly intercepted if
+all of the network traffic
+
+538
+00:25:02,160 --> 00:25:04,950
+is somehow being proxied
+through governmental servers,
+
+539
+00:25:04,950 --> 00:25:07,550
+as already happens in some
+countries, or if there
+
+540
+00:25:07,550 --> 00:25:10,542
+are sort of unknown or
+undisclosed agreements,
+
+541
+00:25:10,542 --> 00:25:13,500
+as has happened already in this
+country between certain large players--
+
+542
+00:25:13,500 --> 00:25:16,960
+ISPs and phone companies and
+the like-- and the government.
+
+543
+00:25:16,960 --> 00:25:20,680
+>> So funny story-- the last time I chose
+badplace.com off the top of my head
+
+544
+00:25:20,680 --> 00:25:23,350
+as an example of a sketchy
+website, I didn't actually
+
+545
+00:25:23,350 --> 00:25:26,560
+vet beforehand whether or not that
+actually led to a badplace.com.
+
+546
+00:25:26,560 --> 00:25:29,120
+Thankfully, this domain
+name is just parked,
+
+547
+00:25:29,120 --> 00:25:31,342
+and it doesn't actually
+lead to a badplace.com.
+
+548
+00:25:31,342 --> 00:25:33,470
+So we'll continue to
+use that one for now.
+
+549
+00:25:33,470 --> 00:25:36,730
+But I'm told that could've backfire
+very poorly that particular day.
+
+550
+00:25:36,730 --> 00:25:39,970
+>> So let's begin to now talk
+about certain defenses
+
+551
+00:25:39,970 --> 00:25:42,460
+and what holes there
+might even be in those.
+
+552
+00:25:42,460 --> 00:25:46,700
+So passwords is kind of the go-to answer
+for a lot of defense mechanisms, right?
+
+553
+00:25:46,700 --> 00:25:50,300
+Just password protect it, then
+that will keep the adversaries out.
+
+554
+00:25:50,300 --> 00:25:51,790
+But what does that actually mean?
+
+555
+00:25:51,790 --> 00:25:56,030
+>> So recall from hacker
+two, back if you tackled
+
+556
+00:25:56,030 --> 00:26:00,680
+that-- when you had to crack passwords
+in a file-- or even in problem
+
+557
+00:26:00,680 --> 00:26:04,310
+set seven, when we give you a sample SQL
+file of some usernames and passwords.
+
+558
+00:26:04,310 --> 00:26:06,980
+These were the usernames you
+saw, and these were the hashes
+
+559
+00:26:06,980 --> 00:26:09,647
+that we distributed for the
+hacker edition of problem set two.
+
+560
+00:26:09,647 --> 00:26:12,730
+And if you've been wondering all this
+time what the actual passwords were,
+
+561
+00:26:12,730 --> 00:26:14,934
+this is what, in fact,
+they decrypt to, which
+
+562
+00:26:14,934 --> 00:26:18,100
+you could have cracked in pset two, or
+you could have playfully figured them
+
+563
+00:26:18,100 --> 00:26:20,390
+out in problem set seven.
+
+564
+00:26:20,390 --> 00:26:23,760
+All of them have some hopefully
+cute meaning here or in New Haven.
+
+565
+00:26:23,760 --> 00:26:26,510
+>> But the takeaway is that
+all of them, at least here,
+
+566
+00:26:26,510 --> 00:26:28,619
+are pretty short, pretty guessable.
+
+567
+00:26:28,619 --> 00:26:31,160
+I mean, based on the list here,
+which are perhaps the easiest
+
+568
+00:26:31,160 --> 00:26:34,540
+to crack, to figure out by writing
+software that just guesses and checks,
+
+569
+00:26:34,540 --> 00:26:36,009
+would you say?
+
+570
+00:26:36,009 --> 00:26:36,800
+AUDIENCE: Password.
+
+571
+00:26:36,800 --> 00:26:38,591
+DAVID MALAN: Password's
+pretty good, right?
+
+572
+00:26:38,591 --> 00:26:41,202
+And it's just-- one, it's
+a very common password.
+
+573
+00:26:41,202 --> 00:26:44,410
+In fact, every year there's a list of
+the most common passwords in the world.
+
+574
+00:26:44,410 --> 00:26:47,342
+And quote, unquote "password"
+is generally atop that list.
+
+575
+00:26:47,342 --> 00:26:48,425
+Two, it's in a dictionary.
+
+576
+00:26:48,425 --> 00:26:50,310
+And you know from problem
+set five that it's not
+
+577
+00:26:50,310 --> 00:26:52,110
+that hard-- might be a
+little time consuming--
+
+578
+00:26:52,110 --> 00:26:54,440
+but it's not that hard to load
+a big dictionary into memory
+
+579
+00:26:54,440 --> 00:26:56,190
+and then use it to
+sort of guess and check
+
+580
+00:26:56,190 --> 00:26:58,060
+all possible words in a dictionary.
+
+581
+00:26:58,060 --> 00:27:01,108
+>> What else might be pretty
+easy to guess and check?
+
+582
+00:27:01,108 --> 00:27:02,084
+Yeah?
+
+583
+00:27:02,084 --> 00:27:04,036
+>> AUDIENCE: The repetition of letters.
+
+584
+00:27:04,036 --> 00:27:12,360
+
+585
+00:27:12,360 --> 00:27:14,760
+>> DAVID MALAN: The repetition
+of symbols and letters.
+
+586
+00:27:14,760 --> 00:27:16,280
+So kind of sort of.
+
+587
+00:27:16,280 --> 00:27:20,570
+So, in fact-- and we won't go into great
+detail here-- all of these were salted,
+
+588
+00:27:20,570 --> 00:27:23,404
+which you might recall from
+problem set seven's documentation.
+
+589
+00:27:23,404 --> 00:27:24,820
+Some of them have different salts.
+
+590
+00:27:24,820 --> 00:27:28,240
+So you could actually avoid having
+repetition of certain characters simply
+
+591
+00:27:28,240 --> 00:27:30,220
+by salting the passwords differently.
+
+592
+00:27:30,220 --> 00:27:33,460
+>> But things like 12345, that's
+a pretty easy thing to guess.
+
+593
+00:27:33,460 --> 00:27:35,770
+And frankly, the problem
+with all of these passwords
+
+594
+00:27:35,770 --> 00:27:39,982
+is that they're all just using 26
+possible characters, or maybe 52
+
+595
+00:27:39,982 --> 00:27:41,690
+with some uppercase,
+and then 10 letters.
+
+596
+00:27:41,690 --> 00:27:43,500
+I'm not using any funky characters.
+
+597
+00:27:43,500 --> 00:27:49,870
+I'm not using zeros for O's or ones
+for I's or L's or-- if any of you
+
+598
+00:27:49,870 --> 00:27:54,220
+think you're being clever, though, by
+having a zero for an O in your password
+
+599
+00:27:54,220 --> 00:27:55,570
+or-- OK, I saw someone smile.
+
+600
+00:27:55,570 --> 00:28:00,790
+So someone has an zero for
+an O in his or her password.
+
+601
+00:28:00,790 --> 00:28:03,720
+>> You're not actually being as
+clever as you might think, right?
+
+602
+00:28:03,720 --> 00:28:06,150
+Because if more than one of
+us is doing this in the room--
+
+603
+00:28:06,150 --> 00:28:09,400
+and I've been guilty of this as well--
+well, if everyone's kind of doing this,
+
+604
+00:28:09,400 --> 00:28:10,940
+what does the adversary have to do?
+
+605
+00:28:10,940 --> 00:28:14,310
+Just add zeros and ones
+and a couple of other--
+
+606
+00:28:14,310 --> 00:28:18,135
+maybe fours for H's-- to his or her
+arsenal and just substitute those
+
+607
+00:28:18,135 --> 00:28:19,510
+letters for the dictionary words.
+
+608
+00:28:19,510 --> 00:28:22,040
+And it's just an additional
+loop or something like that.
+
+609
+00:28:22,040 --> 00:28:24,570
+>> So really, the best
+defense for passwords
+
+610
+00:28:24,570 --> 00:28:28,412
+is something much, much more
+random-seeming then these.
+
+611
+00:28:28,412 --> 00:28:30,120
+Now, of course, threats
+against passwords
+
+612
+00:28:30,120 --> 00:28:31,620
+sometimes include emails like that.
+
+613
+00:28:31,620 --> 00:28:34,640
+So I literally just got this
+in my inbox four days ago.
+
+614
+00:28:34,640 --> 00:28:38,010
+This is from Brittany, who
+apparently works at harvard.edu.
+
+615
+00:28:38,010 --> 00:28:40,080
+And she wrote me as a
+webmail user. "We just
+
+616
+00:28:40,080 --> 00:28:41,880
+noticed that your email
+account was logged
+
+617
+00:28:41,880 --> 00:28:43,796
+onto another computer
+in a different location,
+
+618
+00:28:43,796 --> 00:28:46,410
+and you are to verify
+your personal identity."
+
+619
+00:28:46,410 --> 00:28:50,810
+>> So thematic in many emails like
+this, which are examples of phishing
+
+620
+00:28:50,810 --> 00:28:56,310
+attacks-- P-H-I-S-H-I-N-G-- where
+someone is trying to fish and get some
+
+621
+00:28:56,310 --> 00:28:59,560
+information out of you,
+generally by an email like this.
+
+622
+00:28:59,560 --> 00:29:02,320
+But what are some of the telltale
+signs that this is not, in fact,
+
+623
+00:29:02,320 --> 00:29:04,345
+a legitimate email from
+Harvard University?
+
+624
+00:29:04,345 --> 00:29:06,860
+
+625
+00:29:06,860 --> 00:29:09,080
+What's that?
+
+626
+00:29:09,080 --> 00:29:11,380
+>> So bad grammar, the
+weird capitalization,
+
+627
+00:29:11,380 --> 00:29:13,540
+how some letters are
+capitalized in certain places.
+
+628
+00:29:13,540 --> 00:29:15,900
+There's some odd indentation
+in a couple of places.
+
+629
+00:29:15,900 --> 00:29:18,220
+What else?
+
+630
+00:29:18,220 --> 00:29:19,470
+What's that?
+
+631
+00:29:19,470 --> 00:29:22,230
+Well, that certainly
+helps-- the big yellow box
+
+632
+00:29:22,230 --> 00:29:25,900
+that says this might be spam from
+Google, which is certainly helpful.
+
+633
+00:29:25,900 --> 00:29:28,100
+>> So there's a lot of telltale signs here.
+
+634
+00:29:28,100 --> 00:29:30,700
+But the reality is these
+emails must work, right?
+
+635
+00:29:30,700 --> 00:29:34,970
+It's pretty cheap, if not free, to send
+out hundreds or thousands of emails.
+
+636
+00:29:34,970 --> 00:29:37,315
+And it's not just by sending
+them out of your own ISP.
+
+637
+00:29:37,315 --> 00:29:39,930
+One of the things that
+malware does tend to do--
+
+638
+00:29:39,930 --> 00:29:43,260
+so viruses and worms that accidentally
+infect or computers because they've
+
+639
+00:29:43,260 --> 00:29:47,390
+been written by adversaries-- one of the
+things they do is just churn out spam.
+
+640
+00:29:47,390 --> 00:29:49,860
+>> So what there does exist
+in the world, in fact,
+
+641
+00:29:49,860 --> 00:29:52,706
+are things called botnets,
+which is a fancy way of saying
+
+642
+00:29:52,706 --> 00:29:55,080
+that people with better coding
+skills than the person who
+
+643
+00:29:55,080 --> 00:29:59,040
+wrote that buggy version of software,
+have actually written software
+
+644
+00:29:59,040 --> 00:30:03,080
+that people like us unsuspectingly
+install on our computers
+
+645
+00:30:03,080 --> 00:30:05,830
+and then start running behind
+the scenes, unbeknownst to us.
+
+646
+00:30:05,830 --> 00:30:08,850
+And those malware
+programs intercommunicate.
+
+647
+00:30:08,850 --> 00:30:11,350
+They form a network,
+a botnet if you will.
+
+648
+00:30:11,350 --> 00:30:13,820
+And generally, the most
+sophisticated of adversaries
+
+649
+00:30:13,820 --> 00:30:17,820
+has some kind of remote control over
+thousands, if not tens of thousands,
+
+650
+00:30:17,820 --> 00:30:20,800
+of computers by just sending
+out a message on the internet
+
+651
+00:30:20,800 --> 00:30:24,620
+that all of those bots, so to speak,
+are able to hear or occasionally
+
+652
+00:30:24,620 --> 00:30:29,430
+request from some central site and then
+can be controlled to send out spam.
+
+653
+00:30:29,430 --> 00:30:32,210
+>> And these spam things can be
+just sold to the highest bidder.
+
+654
+00:30:32,210 --> 00:30:34,890
+If you're a company or
+sort of a fringe company
+
+655
+00:30:34,890 --> 00:30:38,720
+that doesn't really care about the
+sort of ethics of spamming your users
+
+656
+00:30:38,720 --> 00:30:40,600
+but you just want to
+hit out a million people
+
+657
+00:30:40,600 --> 00:30:42,390
+and hope that 1% of
+them-- which is still
+
+658
+00:30:42,390 --> 00:30:45,326
+a nontrivial number
+of potential buyers--
+
+659
+00:30:45,326 --> 00:30:48,450
+you can actually pay these adversaries
+in the sort of black market of sorts
+
+660
+00:30:48,450 --> 00:30:50,930
+to send out these spams
+via their botnets for you.
+
+661
+00:30:50,930 --> 00:30:54,380
+>> So suffice it to say, this is not
+a particularly compelling email.
+
+662
+00:30:54,380 --> 00:30:56,410
+But even Harvard and
+Yale and the like often
+
+663
+00:30:56,410 --> 00:31:00,150
+make mistakes, in that
+we know from a few weeks
+
+664
+00:31:00,150 --> 00:31:04,870
+back that you can make a
+link say www.paypal.com.
+
+665
+00:31:04,870 --> 00:31:06,440
+And it looks like it goes there.
+
+666
+00:31:06,440 --> 00:31:08,480
+But, of course, it
+doesn't actually do that.
+
+667
+00:31:08,480 --> 00:31:11,646
+>> And so Harvard and Yale and others have
+certainly been guilty over the years
+
+668
+00:31:11,646 --> 00:31:13,650
+in sending out emails
+that are legitimate,
+
+669
+00:31:13,650 --> 00:31:15,810
+but they contain hyperlinks in them.
+
+670
+00:31:15,810 --> 00:31:19,030
+And we, as humans, have been
+trained by sort of the officials,
+
+671
+00:31:19,030 --> 00:31:21,997
+quite often, to actually just follow
+links that we receive in an email.
+
+672
+00:31:21,997 --> 00:31:23,580
+But even that isn't the best practice.
+
+673
+00:31:23,580 --> 00:31:25,390
+So if you do ever get
+an email like this--
+
+674
+00:31:25,390 --> 00:31:28,339
+and maybe it is from Paypal or
+Harvard or Yale or Bank of America
+
+675
+00:31:28,339 --> 00:31:31,630
+or the like-- you still should not click
+the link, even if it looks legitimate.
+
+676
+00:31:31,630 --> 00:31:34,019
+You should manually type
+out that URL yourself.
+
+677
+00:31:34,019 --> 00:31:36,060
+And frankly, that's what
+the system administrator
+
+678
+00:31:36,060 --> 00:31:39,530
+should be telling us to do so that
+we're not tricked into doing this.
+
+679
+00:31:39,530 --> 00:31:44,930
+>> Now, how many of you, perhaps
+by looking down at your seat,
+
+680
+00:31:44,930 --> 00:31:46,890
+have passwords written down somewhere?
+
+681
+00:31:46,890 --> 00:31:52,640
+Maybe in a drawer in your dorm room or
+maybe under-- in a backpack somewhere?
+
+682
+00:31:52,640 --> 00:31:53,140
+Wallet?
+
+683
+00:31:53,140 --> 00:31:53,450
+No?
+
+684
+00:31:53,450 --> 00:31:54,950
+>> AUDIENCE: In a fireproof lockbox?
+
+685
+00:31:54,950 --> 00:31:56,690
+>> DAVID MALAN: In a fireproof lockbox?
+
+686
+00:31:56,690 --> 00:31:57,290
+OK.
+
+687
+00:31:57,290 --> 00:32:01,750
+So that's better than a
+sticky note on your monitor.
+
+688
+00:32:01,750 --> 00:32:04,459
+So certainly, some of
+you are insisting no.
+
+689
+00:32:04,459 --> 00:32:06,750
+But something tells me that's
+not necessarily the case.
+
+690
+00:32:06,750 --> 00:32:08,920
+So how about an easier,
+more likely question--
+
+691
+00:32:08,920 --> 00:32:13,395
+how many of you are using the
+same password for multiple sites?
+
+692
+00:32:13,395 --> 00:32:14,040
+Oh, OK.
+
+693
+00:32:14,040 --> 00:32:14,770
+Now we're being honest.
+
+694
+00:32:14,770 --> 00:32:15,270
+>> All right.
+
+695
+00:32:15,270 --> 00:32:17,560
+So that's wonderful news, right?
+
+696
+00:32:17,560 --> 00:32:21,170
+Because if it means if just one of those
+sites you all are using is compromised,
+
+697
+00:32:21,170 --> 00:32:23,800
+now the adversary has
+access to more data
+
+698
+00:32:23,800 --> 00:32:26,220
+about you or more potential exploits.
+
+699
+00:32:26,220 --> 00:32:27,660
+So that's an easy one to avoid.
+
+700
+00:32:27,660 --> 00:32:30,250
+But how many of you have a
+pretty guessable password?
+
+701
+00:32:30,250 --> 00:32:33,344
+Maybe not as bad as this, but something?
+
+702
+00:32:33,344 --> 00:32:34,510
+For some stupid site, right?
+
+703
+00:32:34,510 --> 00:32:36,630
+It's not high-risk,
+doesn't have a credit card?
+
+704
+00:32:36,630 --> 00:32:37,200
+All of us.
+
+705
+00:32:37,200 --> 00:32:40,990
+Like, even I have passwords that
+are probably just 12345, surely.
+
+706
+00:32:40,990 --> 00:32:44,930
+So now try logging into every website
+you can think of with malan@harvard.edu
+
+707
+00:32:44,930 --> 00:32:47,000
+and 12345 and see if that works.
+
+708
+00:32:47,000 --> 00:32:47,980
+>> But we do this, too.
+
+709
+00:32:47,980 --> 00:32:48,650
+So why?
+
+710
+00:32:48,650 --> 00:32:54,510
+Why do so many of us have either pretty
+easy passwords or the same passwords?
+
+711
+00:32:54,510 --> 00:32:58,070
+What's the real-world
+rationale for this?
+
+712
+00:32:58,070 --> 00:32:59,190
+It's easier, right?
+
+713
+00:32:59,190 --> 00:33:01,372
+If I said instead,
+academically, you guys
+
+714
+00:33:01,372 --> 00:33:03,580
+should really be choosing
+pseudorandom passwords that
+
+715
+00:33:03,580 --> 00:33:07,060
+are at least 16 characters long and have
+a combination of alphabetical letters,
+
+716
+00:33:07,060 --> 00:33:09,550
+numbers, and symbols,
+who the hell is going
+
+717
+00:33:09,550 --> 00:33:11,650
+to be able to do that or
+remember those passwords,
+
+718
+00:33:11,650 --> 00:33:14,820
+let alone for each and
+every possible website?
+
+719
+00:33:14,820 --> 00:33:16,022
+>> So what's a viable solution?
+
+720
+00:33:16,022 --> 00:33:17,730
+Well, one of the
+biggest takeaways today,
+
+721
+00:33:17,730 --> 00:33:20,500
+too, pragmatically, would
+be, honestly, to start
+
+722
+00:33:20,500 --> 00:33:22,820
+using some kind of password manager.
+
+723
+00:33:22,820 --> 00:33:25,260
+Now, there are upsides and
+downsides of these things, too.
+
+724
+00:33:25,260 --> 00:33:27,259
+These are two that we
+tend to recommend in CS50.
+
+725
+00:33:27,259 --> 00:33:28,530
+One's called button 1Password.
+
+726
+00:33:28,530 --> 00:33:29,664
+One's called LastPass.
+
+727
+00:33:29,664 --> 00:33:31,330
+And some of you might use these already.
+
+728
+00:33:31,330 --> 00:33:33,470
+But it's generally a
+piece of software that
+
+729
+00:33:33,470 --> 00:33:36,710
+does facilitate generating big
+pseudorandom passwords that you
+
+730
+00:33:36,710 --> 00:33:38,790
+can't possibly remember as a human.
+
+731
+00:33:38,790 --> 00:33:41,650
+It stores those pseudorandom
+passwords in its own database,
+
+732
+00:33:41,650 --> 00:33:45,110
+hopefully on your local hard
+drive-- encrypted, better yet.
+
+733
+00:33:45,110 --> 00:33:46,930
+And all you, the human,
+have to remember,
+
+734
+00:33:46,930 --> 00:33:50,879
+typically, is one master password, which
+probably is going to be super long.
+
+735
+00:33:50,879 --> 00:33:52,420
+And maybe it's not random characters.
+
+736
+00:33:52,420 --> 00:33:56,350
+Maybe it's, like, a sentence or a
+short paragraph that you can remember
+
+737
+00:33:56,350 --> 00:33:59,430
+and you can type once a day
+to unlock your computer.
+
+738
+00:33:59,430 --> 00:34:02,960
+>> So you use an especially large
+password to protect and to encrypt
+
+739
+00:34:02,960 --> 00:34:04,610
+all of your other passwords.
+
+740
+00:34:04,610 --> 00:34:07,110
+But now you're in the
+habit of using software
+
+741
+00:34:07,110 --> 00:34:10,139
+like this to generate pseudorandom
+passwords across all of the websites
+
+742
+00:34:10,139 --> 00:34:10,770
+you visit.
+
+743
+00:34:10,770 --> 00:34:13,620
+And indeed, I can
+comfortably say now, in 2015,
+
+744
+00:34:13,620 --> 00:34:15,900
+I don't know most of
+my passwords anymore.
+
+745
+00:34:15,900 --> 00:34:18,659
+I know my master password,
+and I type that, unknowingly,
+
+746
+00:34:18,659 --> 00:34:20,449
+one or more times a day.
+
+747
+00:34:20,449 --> 00:34:23,655
+But the upside is that now, if any
+of my one accounts is compromised,
+
+748
+00:34:23,655 --> 00:34:25,780
+there's no way someone is
+going to use that account
+
+749
+00:34:25,780 --> 00:34:28,969
+to get into another because none of
+my passwords are the same anymore.
+
+750
+00:34:28,969 --> 00:34:32,230
+>> And certainly, no one, even if he
+or she writes adversarial software
+
+751
+00:34:32,230 --> 00:34:35,270
+to brute force things and
+guess all possible passwords--
+
+752
+00:34:35,270 --> 00:34:38,850
+the odds that they are going to
+choose my 24-character long passwords
+
+753
+00:34:38,850 --> 00:34:43,480
+is just so, so low I'm just not
+worried about that threat anymore.
+
+754
+00:34:43,480 --> 00:34:45,250
+>> So what's the trade-off here?
+
+755
+00:34:45,250 --> 00:34:46,409
+That seems wonderful.
+
+756
+00:34:46,409 --> 00:34:48,260
+I'm so much more safe.
+
+757
+00:34:48,260 --> 00:34:49,400
+What's the trade-off?
+
+758
+00:34:49,400 --> 00:34:50,000
+Yeah?
+
+759
+00:34:50,000 --> 00:34:51,850
+>> AUDIENCE: Time.
+
+760
+00:34:51,850 --> 00:34:52,600
+DAVID MALAN: Time.
+
+761
+00:34:52,600 --> 00:34:54,516
+It's a lot easier to
+type 12345 and I'm logged
+
+762
+00:34:54,516 --> 00:34:57,670
+in versus something that's 24
+characters long or a short paragraph.
+
+763
+00:34:57,670 --> 00:34:58,170
+What else?
+
+764
+00:34:58,170 --> 00:35:00,211
+>> AUDIENCE: If someone breaks
+your master password.
+
+765
+00:35:00,211 --> 00:35:01,702
+DAVID MALAN: Yeah.
+
+766
+00:35:01,702 --> 00:35:03,660
+So you're kind of changing
+the threat scenario.
+
+767
+00:35:03,660 --> 00:35:07,110
+If someone guesses or figures
+out or reads the Post-it note
+
+768
+00:35:07,110 --> 00:35:09,900
+in your secure file vault,
+the master password you have,
+
+769
+00:35:09,900 --> 00:35:12,576
+now everything is compromised
+whereby previously it
+
+770
+00:35:12,576 --> 00:35:13,700
+was maybe just one account.
+
+771
+00:35:13,700 --> 00:35:14,200
+What else?
+
+772
+00:35:14,200 --> 00:35:16,640
+>> AUDIENCE: If you want to use any
+of your accounts on another device
+
+773
+00:35:16,640 --> 00:35:18,110
+and you don't have LastPass [INAUDIBLE].
+
+774
+00:35:18,110 --> 00:35:19,680
+>> DAVID MALAN: Yeah, that's
+kind of a catch, too.
+
+775
+00:35:19,680 --> 00:35:22,080
+With these tools, too, if
+you don't have your computer
+
+776
+00:35:22,080 --> 00:35:25,430
+and you're in, like, some cafe or you're
+at a friend's house or a computer lab
+
+777
+00:35:25,430 --> 00:35:27,750
+or wherever and you want
+to log into Facebook,
+
+778
+00:35:27,750 --> 00:35:29,980
+you don't even know what
+your Facebook password is.
+
+779
+00:35:29,980 --> 00:35:32,600
+Now sometimes, you can mitigate
+this by having a solution
+
+780
+00:35:32,600 --> 00:35:35,670
+that we'll talk about in just a moment
+called two-factor authentication
+
+781
+00:35:35,670 --> 00:35:38,740
+whereby Facebook will text you or
+will send a special encrypted message
+
+782
+00:35:38,740 --> 00:35:41,120
+to your phone or some other
+device that you carry around
+
+783
+00:35:41,120 --> 00:35:42,912
+on your keychain with
+which you can log in.
+
+784
+00:35:42,912 --> 00:35:46,120
+But that's, perhaps, annoying if you're
+in the basement of the science center
+
+785
+00:35:46,120 --> 00:35:48,130
+or elsewhere here at New Haven's campus.
+
+786
+00:35:48,130 --> 00:35:49,320
+You might not have signal.
+
+787
+00:35:49,320 --> 00:35:51,044
+And so that's not necessarily solution.
+
+788
+00:35:51,044 --> 00:35:52,210
+So it really is a trade-off.
+
+789
+00:35:52,210 --> 00:35:54,780
+But what I would encourage you to
+do-- if you go to CS50's website,
+
+790
+00:35:54,780 --> 00:35:57,750
+we actually arranged for the first of
+these companies for a site license,
+
+791
+00:35:57,750 --> 00:36:00,541
+so to speak, for all CS50 students
+so you don't have to pay the $30
+
+792
+00:36:00,541 --> 00:36:01,860
+or so it normally costs.
+
+793
+00:36:01,860 --> 00:36:06,030
+For Macs and Windows, you can check out
+1Password for free on CS50's website,
+
+794
+00:36:06,030 --> 00:36:07,730
+and we'll hook you up with that.
+
+795
+00:36:07,730 --> 00:36:10,630
+>> Realize, too, that some of
+these tools-- including LastPass
+
+796
+00:36:10,630 --> 00:36:13,280
+in one of its forms-- is
+cloud-based, as Colbert
+
+797
+00:36:13,280 --> 00:36:17,584
+says, which means your passwords
+are encryptedly stored in the cloud.
+
+798
+00:36:17,584 --> 00:36:20,750
+The idea there is that you can go to
+some random person or friend's computer
+
+799
+00:36:20,750 --> 00:36:23,030
+and log in to your Facebook
+account or the like
+
+800
+00:36:23,030 --> 00:36:26,287
+because you first go to
+lastpass.com, access your password,
+
+801
+00:36:26,287 --> 00:36:27,120
+and then type it in.
+
+802
+00:36:27,120 --> 00:36:29,180
+But what's the threat scenario there?
+
+803
+00:36:29,180 --> 00:36:31,610
+If you're storing things
+in the cloud, and you're
+
+804
+00:36:31,610 --> 00:36:35,980
+accessing that website
+on some unknown computer,
+
+805
+00:36:35,980 --> 00:36:40,561
+what could your friend be doing
+to you or to your keystrokes?
+
+806
+00:36:40,561 --> 00:36:41,060
+OK.
+
+807
+00:36:41,060 --> 00:36:44,140
+I'll be manually advancing
+slides here on out.
+
+808
+00:36:44,140 --> 00:36:45,020
+>> Keylogger, right?
+
+809
+00:36:45,020 --> 00:36:47,030
+Another type of malware
+is a keylogger, which
+
+810
+00:36:47,030 --> 00:36:49,740
+is just a program that actually
+logs everything you type.
+
+811
+00:36:49,740 --> 00:36:53,580
+So there, too, it's probably better to
+have some secondary device like this.
+
+812
+00:36:53,580 --> 00:36:55,320
+>> So what is two-factor authentication?
+
+813
+00:36:55,320 --> 00:36:58,240
+As the name suggests, it's you have
+not one but two factors with which
+
+814
+00:36:58,240 --> 00:36:59,870
+to authenticate to a website.
+
+815
+00:36:59,870 --> 00:37:04,520
+So rather than use just a password,
+you have some other second factor.
+
+816
+00:37:04,520 --> 00:37:07,479
+Now, that generally is, one,
+factor is something you know.
+
+817
+00:37:07,479 --> 00:37:09,520
+So something kind of in
+your mind's eye, which is
+
+818
+00:37:09,520 --> 00:37:11,160
+your password which you've memorized.
+
+819
+00:37:11,160 --> 00:37:13,870
+But two, not something else
+that you know or have memorized
+
+820
+00:37:13,870 --> 00:37:15,690
+but something you physically have.
+
+821
+00:37:15,690 --> 00:37:18,607
+The idea here being
+your threat no longer
+
+822
+00:37:18,607 --> 00:37:20,940
+could be some random person
+on the internet who can just
+
+823
+00:37:20,940 --> 00:37:22,400
+guess or figure out your password.
+
+824
+00:37:22,400 --> 00:37:25,779
+He or she has to have physical
+access to something that you have,
+
+825
+00:37:25,779 --> 00:37:27,570
+which is still possible
+and still, perhaps,
+
+826
+00:37:27,570 --> 00:37:29,150
+all the more physically threatening.
+
+827
+00:37:29,150 --> 00:37:31,024
+But it's at least a
+different kind of threat.
+
+828
+00:37:31,024 --> 00:37:34,360
+It's not a million nameless people
+out there trying to get at your data.
+
+829
+00:37:34,360 --> 00:37:36,730
+Now it's a very specific
+person, perhaps,
+
+830
+00:37:36,730 --> 00:37:40,370
+that if that's an issue, that's
+another problem altogether, as well.
+
+831
+00:37:40,370 --> 00:37:42,670
+>> So that generally exists
+for phones or other devices.
+
+832
+00:37:42,670 --> 00:37:46,540
+And, in fact, Yale just rolled
+this out mid-semester such
+
+833
+00:37:46,540 --> 00:37:48,456
+that this doesn't affect
+folks in this room.
+
+834
+00:37:48,456 --> 00:37:50,330
+But those of you following
+along in New Haven
+
+835
+00:37:50,330 --> 00:37:52,410
+know that if you'd log
+into your yale.net ID,
+
+836
+00:37:52,410 --> 00:37:54,720
+in addition to typing your
+user name and your password,
+
+837
+00:37:54,720 --> 00:37:56,060
+you're then prompted with this.
+
+838
+00:37:56,060 --> 00:37:58,060
+And, for instance, this is a
+screenshot I took this morning
+
+839
+00:37:58,060 --> 00:37:59,640
+when I logged into my Yale account.
+
+840
+00:37:59,640 --> 00:38:02,480
+And it sends me the equivalent
+of a text message to my phone.
+
+841
+00:38:02,480 --> 00:38:05,750
+But in reality, I downloaded an app
+in advance that Yale now distributes,
+
+842
+00:38:05,750 --> 00:38:08,840
+and I have to now just type in the
+code that they send to my phone.
+
+843
+00:38:08,840 --> 00:38:11,830
+>> But to be clear, the
+upside of this is that now,
+
+844
+00:38:11,830 --> 00:38:14,550
+even if someone figures out
+my Yale password, I'm safe.
+
+845
+00:38:14,550 --> 00:38:15,300
+That's not enough.
+
+846
+00:38:15,300 --> 00:38:18,990
+That's only one key, but I
+need two to unlock my account.
+
+847
+00:38:18,990 --> 00:38:21,886
+But what's the downside,
+perhaps, of Yale's system?
+
+848
+00:38:21,886 --> 00:38:24,420
+And we'll let Yale know.
+
+849
+00:38:24,420 --> 00:38:26,770
+What's the downside?
+
+850
+00:38:26,770 --> 00:38:28,369
+What's that?
+
+851
+00:38:28,369 --> 00:38:31,660
+If you don't have cell service or if you
+don't have Wi-Fi access because you're
+
+852
+00:38:31,660 --> 00:38:34,760
+just in a basement or something, you
+might not be able to get the message.
+
+853
+00:38:34,760 --> 00:38:37,640
+Thankfully, in this particular case,
+this will use Wi-Fi or something else,
+
+854
+00:38:37,640 --> 00:38:38,730
+which works around it.
+
+855
+00:38:38,730 --> 00:38:39,730
+But a possible scenario.
+
+856
+00:38:39,730 --> 00:38:41,067
+What else?
+
+857
+00:38:41,067 --> 00:38:42,150
+You could lose your phone.
+
+858
+00:38:42,150 --> 00:38:43,108
+You just don't have it.
+
+859
+00:38:43,108 --> 00:38:43,964
+The battery dies.
+
+860
+00:38:43,964 --> 00:38:45,880
+I mean, there's a number
+of annoying scenarios
+
+861
+00:38:45,880 --> 00:38:50,040
+but possible scenarios that could happen
+that make you regret this decision.
+
+862
+00:38:50,040 --> 00:38:52,450
+And the worst possible
+outcome, frankly, then
+
+863
+00:38:52,450 --> 00:38:54,979
+would be for users to
+disable this altogether.
+
+864
+00:38:54,979 --> 00:38:56,770
+So there's always going
+to be this tension.
+
+865
+00:38:56,770 --> 00:38:59,950
+And you have to find for yourself
+as a user sort of a sweet spot.
+
+866
+00:38:59,950 --> 00:39:03,110
+And to do this, take a couple
+of concrete suggestions.
+
+867
+00:39:03,110 --> 00:39:07,170
+If you use Google Gmail or Google Apps,
+know that if you go to this URL here,
+
+868
+00:39:07,170 --> 00:39:09,300
+you can enable two-factor
+authentication.
+
+869
+00:39:09,300 --> 00:39:11,807
+Google calls it 2-step verification.
+
+870
+00:39:11,807 --> 00:39:13,890
+And you click Setup, and
+then you do exactly that.
+
+871
+00:39:13,890 --> 00:39:16,960
+That's a good thing to do, especially
+these days because, thanks to cookies,
+
+872
+00:39:16,960 --> 00:39:18,510
+you're logged in almost all day long.
+
+873
+00:39:18,510 --> 00:39:20,910
+So you rarely have to
+type your password anyway.
+
+874
+00:39:20,910 --> 00:39:23,360
+So you might do it once a
+week, once a month, once a day,
+
+875
+00:39:23,360 --> 00:39:25,650
+and it's less of a big
+deal than in the past.
+
+876
+00:39:25,650 --> 00:39:27,470
+>> Facebook, too, has this.
+
+877
+00:39:27,470 --> 00:39:31,710
+If you're a little too loose with typing
+your Facebook password into friends'
+
+878
+00:39:31,710 --> 00:39:35,640
+computers, at least enable two-factor
+authentication so that that friend,
+
+879
+00:39:35,640 --> 00:39:39,940
+even if he or she has
+a keystroke logger,
+
+880
+00:39:39,940 --> 00:39:41,440
+they can't get into your account.
+
+881
+00:39:41,440 --> 00:39:43,100
+Well, why is that?
+
+882
+00:39:43,100 --> 00:39:45,810
+Couldn't they just log the
+code I've typed in on my phone
+
+883
+00:39:45,810 --> 00:39:47,647
+that Facebook has sent to me?
+
+884
+00:39:47,647 --> 00:39:48,563
+AUDIENCE: [INAUDIBLE].
+
+885
+00:39:48,563 --> 00:39:50,990
+
+886
+00:39:50,990 --> 00:39:51,740
+DAVID MALAN: Yeah.
+
+887
+00:39:51,740 --> 00:39:53,890
+The well-designed software
+will change those codes
+
+888
+00:39:53,890 --> 00:39:56,760
+that are sent to your phone
+every few seconds or every time
+
+889
+00:39:56,760 --> 00:39:58,790
+and so that, yeah, even
+if he or she figures out
+
+890
+00:39:58,790 --> 00:40:02,032
+what your code is, you're still
+safe because it will have expired.
+
+891
+00:40:02,032 --> 00:40:04,240
+And this is what it looks
+like on Facebook's website.
+
+892
+00:40:04,240 --> 00:40:06,340
+>> But there's another approach altogether.
+
+893
+00:40:06,340 --> 00:40:10,130
+So if those kinds of trade-offs
+aren't particularly alluring,
+
+894
+00:40:10,130 --> 00:40:13,620
+a general principle in security would
+be, well, just at least audit things.
+
+895
+00:40:13,620 --> 00:40:17,380
+Don't kind of put your head in the
+sand and just never know if or when
+
+896
+00:40:17,380 --> 00:40:18,890
+you've been compromised or attacked.
+
+897
+00:40:18,890 --> 00:40:22,435
+At least set up some mechanism
+that informs you instantly
+
+898
+00:40:22,435 --> 00:40:25,060
+if something anomalous has happened
+so that you at least narrow
+
+899
+00:40:25,060 --> 00:40:28,030
+the window of time during
+which someone can do damage.
+
+900
+00:40:28,030 --> 00:40:31,070
+>> And by this, I mean the following--
+at Facebook, for instance,
+
+901
+00:40:31,070 --> 00:40:33,370
+you can turn on what
+they call login alerts.
+
+902
+00:40:33,370 --> 00:40:37,020
+And right now, I've enabled email
+login alerts but not notifications.
+
+903
+00:40:37,020 --> 00:40:39,290
+And what that means is
+that if Facebook notices
+
+904
+00:40:39,290 --> 00:40:41,994
+I've logged into a new computer--
+like I don't have a cookie,
+
+905
+00:40:41,994 --> 00:40:44,660
+it's a different IP address, it's
+a different type of computer--
+
+906
+00:40:44,660 --> 00:40:47,580
+they will, in this scenario, send
+me an email saying, hey, David.
+
+907
+00:40:47,580 --> 00:40:51,200
+Looks like you logged in from an
+unfamiliar computer, just FYI.
+
+908
+00:40:51,200 --> 00:40:54,020
+>> And now my account might be
+compromised, or my annoying friend
+
+909
+00:40:54,020 --> 00:40:58,390
+might have been logging into
+my account now posting things
+
+910
+00:40:58,390 --> 00:41:00,070
+on my news feed or the like.
+
+911
+00:41:00,070 --> 00:41:03,340
+But at least the amount of time
+with which I am ignorant of that
+
+912
+00:41:03,340 --> 00:41:04,630
+is super, super narrow.
+
+913
+00:41:04,630 --> 00:41:06,140
+And I can hopefully respond.
+
+914
+00:41:06,140 --> 00:41:08,974
+So all three of these, I would
+say, are very good things to do.
+
+915
+00:41:08,974 --> 00:41:10,890
+What are some threats
+that are a little harder
+
+916
+00:41:10,890 --> 00:41:13,060
+for us end users to protect against?
+
+917
+00:41:13,060 --> 00:41:16,180
+Does anyone know what
+session hijacking is?
+
+918
+00:41:16,180 --> 00:41:18,800
+It's a more technical threat,
+but very familiar now that we've
+
+919
+00:41:18,800 --> 00:41:22,450
+done pset six and seven and now eight.
+
+920
+00:41:22,450 --> 00:41:27,260
+So recall that when you send traffic
+over the internet, a few things happen.
+
+921
+00:41:27,260 --> 00:41:32,450
+Let me go ahead and
+log into c9 or CS50.io.
+
+922
+00:41:32,450 --> 00:41:36,240
+Give me just one moment to
+log into my jHarvard account.
+
+923
+00:41:36,240 --> 00:41:37,590
+>> AUDIENCE: What's your password.
+
+924
+00:41:37,590 --> 00:41:40,530
+>> DAVID MALAN: 12345.
+
+925
+00:41:40,530 --> 00:41:41,740
+All right.
+
+926
+00:41:41,740 --> 00:41:45,530
+And in here, know that if I go
+ahead and request a web page--
+
+927
+00:41:45,530 --> 00:41:47,030
+and in the meantime, let me do this.
+
+928
+00:41:47,030 --> 00:41:50,390
+Let me open up Chrome's Inspector
+tab and my network traffic.
+
+929
+00:41:50,390 --> 00:41:57,120
+And let me go to
+http://facebook.com and clear this.
+
+930
+00:41:57,120 --> 00:41:58,120
+Actually, you know what?
+
+931
+00:41:58,120 --> 00:42:04,800
+Let's go to a more familiar
+one-- https://finance.cs50.net
+
+932
+00:42:04,800 --> 00:42:08,300
+and click Enter and log
+the network traffic here.
+
+933
+00:42:08,300 --> 00:42:13,930
+>> So notice here, if I look
+in my network traffic,
+
+934
+00:42:13,930 --> 00:42:17,140
+response headers-- let's go up here.
+
+935
+00:42:17,140 --> 00:42:18,920
+Response headers-- here.
+
+936
+00:42:18,920 --> 00:42:23,740
+So the very first request that I
+sent, which was for the default page,
+
+937
+00:42:23,740 --> 00:42:25,800
+it responded with
+these response headers.
+
+938
+00:42:25,800 --> 00:42:27,820
+And we've talked about
+things like location.
+
+939
+00:42:27,820 --> 00:42:30,700
+Like, location means
+redirect to login.php.
+
+940
+00:42:30,700 --> 00:42:33,970
+But one thing we didn't talk a huge
+amount about was lines like this.
+
+941
+00:42:33,970 --> 00:42:36,010
+So this is inside of the
+virtual envelope that's
+
+942
+00:42:36,010 --> 00:42:38,220
+sent from CS50 Finance--
+the version you guys wrote,
+
+943
+00:42:38,220 --> 00:42:41,342
+too-- to a user's laptop
+or desktop computer.
+
+944
+00:42:41,342 --> 00:42:42,550
+And this is setting a cookie.
+
+945
+00:42:42,550 --> 00:42:44,550
+But what is a cookie?
+
+946
+00:42:44,550 --> 00:42:46,110
+Think back to our discussion of PHP.
+
+947
+00:42:46,110 --> 00:42:48,347
+Yeah?
+
+948
+00:42:48,347 --> 00:42:51,180
+Yeah, it's a way of telling the
+website that you're still logged in.
+
+949
+00:42:51,180 --> 00:42:52,340
+But how does that work?
+
+950
+00:42:52,340 --> 00:42:57,090
+Well, upon visiting finance.cs50.net,
+it looks like that server
+
+951
+00:42:57,090 --> 00:42:59,010
+that we implemented is setting a cookie.
+
+952
+00:42:59,010 --> 00:43:03,280
+And that cookie is conventionally
+call PHPSESSID session ID.
+
+953
+00:43:03,280 --> 00:43:06,305
+And you can think of it like a
+virtual handstamp at a club or, like,
+
+954
+00:43:06,305 --> 00:43:09,140
+an amusement park, a little piece
+of red ink that goes on your hand
+
+955
+00:43:09,140 --> 00:43:12,280
+so that the next time you visit the
+gate, you simply show your hand,
+
+956
+00:43:12,280 --> 00:43:16,320
+and the bouncer at the door will let you
+pass or not at all based on that stamp.
+
+957
+00:43:16,320 --> 00:43:19,120
+>> So the subsequent
+requests that my browser
+
+958
+00:43:19,120 --> 00:43:22,800
+sends-- if I go to the next request
+and you look at the request headers,
+
+959
+00:43:22,800 --> 00:43:24,450
+you'll notice more stuff.
+
+960
+00:43:24,450 --> 00:43:26,890
+But the most important is this
+highlighted portion here--
+
+961
+00:43:26,890 --> 00:43:28,660
+not set cookie but cookie.
+
+962
+00:43:28,660 --> 00:43:32,090
+And if I flip through every one
+of those subsequent HTTP requests,
+
+963
+00:43:32,090 --> 00:43:35,360
+every time I would see a hand
+being extended with that exact same
+
+964
+00:43:35,360 --> 00:43:38,410
+PHPSESSID, which is to say
+this is the mechanism--
+
+965
+00:43:38,410 --> 00:43:41,640
+this big pseudorandom number-- that a
+server uses to maintain the illusion
+
+966
+00:43:41,640 --> 00:43:46,390
+of PHP's $_SESSION object, into which
+you can store things like the user's ID
+
+967
+00:43:46,390 --> 00:43:49,720
+or what's in their shopping cart or
+any number of other pieces of data.
+
+968
+00:43:49,720 --> 00:43:51,510
+>> So what's the implication?
+
+969
+00:43:51,510 --> 00:43:54,841
+Well, what if that
+data is not encrypted?
+
+970
+00:43:54,841 --> 00:43:57,090
+And, in fact, we for best
+practice encrypt pretty much
+
+971
+00:43:57,090 --> 00:43:59,117
+every one of CS50's websites these days.
+
+972
+00:43:59,117 --> 00:44:01,200
+But it's very common these
+days for websites still
+
+973
+00:44:01,200 --> 00:44:04,640
+not to have HTTPS at
+the start of the URL.
+
+974
+00:44:04,640 --> 00:44:06,722
+They're just HTTP, colon, slash slash.
+
+975
+00:44:06,722 --> 00:44:08,640
+So what's the implication there?
+
+976
+00:44:08,640 --> 00:44:10,530
+That simply means that
+all of these headers
+
+977
+00:44:10,530 --> 00:44:12,030
+are inside of that virtual envelope.
+
+978
+00:44:12,030 --> 00:44:14,860
+And anyone who sniffs
+the air or physically
+
+979
+00:44:14,860 --> 00:44:17,660
+intercepts that packet physically
+can look inside and see
+
+980
+00:44:17,660 --> 00:44:18,590
+what that cookie is.
+
+981
+00:44:18,590 --> 00:44:21,700
+>> And so session hijacking
+is simply a technique
+
+982
+00:44:21,700 --> 00:44:25,590
+that an adversary uses to sniff data
+in the air or on some wired network,
+
+983
+00:44:25,590 --> 00:44:27,340
+look inside of this
+envelope, and see, oh.
+
+984
+00:44:27,340 --> 00:44:30,450
+I see that your cookie
+is 2kleu whatever.
+
+985
+00:44:30,450 --> 00:44:33,390
+Let me go ahead and make
+a copy of your hand stamp
+
+986
+00:44:33,390 --> 00:44:37,050
+and now start visiting Facebook
+or Gmail or whatever myself
+
+987
+00:44:37,050 --> 00:44:39,360
+and just present the
+exact same handstamp.
+
+988
+00:44:39,360 --> 00:44:42,510
+And the reality is, browsers and
+servers really are that naive.
+
+989
+00:44:42,510 --> 00:44:45,780
+If the server sees that same
+cookie, its purpose in life
+
+990
+00:44:45,780 --> 00:44:47,660
+should be to say, oh,
+that must be David,
+
+991
+00:44:47,660 --> 00:44:49,570
+who just logged in a little bit ago.
+
+992
+00:44:49,570 --> 00:44:53,860
+Let me show this same user,
+presumably, David's inbox or Facebook
+
+993
+00:44:53,860 --> 00:44:56,260
+messages or anything else
+into which your logged.
+
+994
+00:44:56,260 --> 00:44:58,950
+>> And the only defense against
+that is to just encrypt
+
+995
+00:44:58,950 --> 00:45:00,760
+everything inside of the envelope.
+
+996
+00:45:00,760 --> 00:45:03,200
+And thankfully, a lot of sites like
+Facebook and Google and the like
+
+997
+00:45:03,200 --> 00:45:04,200
+are doing that nowadays.
+
+998
+00:45:04,200 --> 00:45:07,159
+But any that don't leave you
+perfectly, perfectly vulnerable.
+
+999
+00:45:07,159 --> 00:45:10,200
+And one of the things you can do--
+and one of the nice features, frankly,
+
+1000
+00:45:10,200 --> 00:45:12,180
+of 1Password, the software
+I mentioned earlier,
+
+1001
+00:45:12,180 --> 00:45:14,682
+is if you install it on your
+Mac or PC, the software,
+
+1002
+00:45:14,682 --> 00:45:16,390
+besides storing your
+passwords, will also
+
+1003
+00:45:16,390 --> 00:45:20,840
+warn you if you ever try
+logging into a website that's
+
+1004
+00:45:20,840 --> 00:45:23,065
+going to send your username
+and password unencrypted
+
+1005
+00:45:23,065 --> 00:45:25,740
+and in the clear, so to speak.
+
+1006
+00:45:25,740 --> 00:45:26,240
+All right.
+
+1007
+00:45:26,240 --> 00:45:28,120
+So session hijacking boils down to that.
+
+1008
+00:45:28,120 --> 00:45:31,950
+But there's this other
+way that HTTP headers
+
+1009
+00:45:31,950 --> 00:45:34,950
+can be used to take advantage of us.
+
+1010
+00:45:34,950 --> 00:45:36,530
+And this is still kind of an issue.
+
+1011
+00:45:36,530 --> 00:45:39,405
+This is really just an adorable
+excuse to put up Cookie Monster here.
+
+1012
+00:45:39,405 --> 00:45:42,360
+But Verizon and AT&T and
+others took a lot of flak
+
+1013
+00:45:42,360 --> 00:45:46,510
+a few months back for injecting,
+unbeknownst to users initially,
+
+1014
+00:45:46,510 --> 00:45:48,640
+an extra HTTP header.
+
+1015
+00:45:48,640 --> 00:45:52,680
+>> So those of you who have had
+Verizon Wireless or AT&T cell
+
+1016
+00:45:52,680 --> 00:45:56,280
+phones, and you've been visiting
+websites via your phone,
+
+1017
+00:45:56,280 --> 00:46:00,510
+unbeknownst to you, after your HTTP
+requests leave Chrome or Safari
+
+1018
+00:46:00,510 --> 00:46:04,620
+or whatever on your phone, go
+to Verizon or AT&T's router,
+
+1019
+00:46:04,620 --> 00:46:07,530
+they presumptuously
+for some time have been
+
+1020
+00:46:07,530 --> 00:46:10,990
+injecting a header that looks
+like this-- a key-value pair where
+
+1021
+00:46:10,990 --> 00:46:14,300
+the key is just X-UIDH
+for unique identifier
+
+1022
+00:46:14,300 --> 00:46:17,110
+header and then some big random value.
+
+1023
+00:46:17,110 --> 00:46:18,950
+And they do this so
+that they can uniquely
+
+1024
+00:46:18,950 --> 00:46:25,050
+identify all of your web traffic to
+people receiving your HTTP request.
+
+1025
+00:46:25,050 --> 00:46:27,300
+>> Now, why would Verizon
+and AT&T and the like
+
+1026
+00:46:27,300 --> 00:46:30,140
+want to uniquely identify you to
+all the websites you're visiting?
+
+1027
+00:46:30,140 --> 00:46:31,740
+>> AUDIENCE: Better customer service.
+
+1028
+00:46:31,740 --> 00:46:33,510
+>> DAVID MALAN: Better-- no.
+
+1029
+00:46:33,510 --> 00:46:37,430
+It's a good thought, but it's
+not for better customer service.
+
+1030
+00:46:37,430 --> 00:46:38,970
+What else?
+
+1031
+00:46:38,970 --> 00:46:40,140
+Advertising, right?
+
+1032
+00:46:40,140 --> 00:46:42,970
+So they can build up an
+advertising network, presumably,
+
+1033
+00:46:42,970 --> 00:46:45,570
+whereby even if you
+have turned off cookies,
+
+1034
+00:46:45,570 --> 00:46:48,090
+even if you have special
+software on your phone
+
+1035
+00:46:48,090 --> 00:46:50,970
+that keeps you in incognito mode-- ha.
+
+1036
+00:46:50,970 --> 00:46:54,195
+There is no incognito mode when the
+man in the middle-- literally, Verizon
+
+1037
+00:46:54,195 --> 00:46:57,410
+or AT&T-- is injecting
+additional data over which
+
+1038
+00:46:57,410 --> 00:47:02,450
+you have no control, thereby revealing
+who you are to that resulting website
+
+1039
+00:47:02,450 --> 00:47:03,280
+again and again.
+
+1040
+00:47:03,280 --> 00:47:06,720
+>> So there are ways to opt out of this.
+
+1041
+00:47:06,720 --> 00:47:08,970
+But here, too, is something
+that frankly, the only way
+
+1042
+00:47:08,970 --> 00:47:12,070
+to push back on this is to leave
+the carrier altogether, disable it
+
+1043
+00:47:12,070 --> 00:47:14,610
+if they even allow you to,
+or, as happened in this case,
+
+1044
+00:47:14,610 --> 00:47:18,910
+make quite a bit of fuss online such
+that the companies actually respond.
+
+1045
+00:47:18,910 --> 00:47:22,640
+This, too, is just another
+adorable opportunity to show this.
+
+1046
+00:47:22,640 --> 00:47:30,530
+>> And let's take a look at, let's
+say, one or two final threats.
+
+1047
+00:47:30,530 --> 00:47:32,860
+So we talked about CS50 Finance here.
+
+1048
+00:47:32,860 --> 00:47:37,590
+So you'll notice that we have this cute
+little icon on the login button here.
+
+1049
+00:47:37,590 --> 00:47:40,550
+What does it mean if I
+instead use this icon?
+
+1050
+00:47:40,550 --> 00:47:42,240
+So before, after.
+
+1051
+00:47:42,240 --> 00:47:43,645
+Before, after.
+
+1052
+00:47:43,645 --> 00:47:44,520
+What does after mean?
+
+1053
+00:47:44,520 --> 00:47:47,470
+
+1054
+00:47:47,470 --> 00:47:49,324
+It's secure.
+
+1055
+00:47:49,324 --> 00:47:50,740
+That's what I'd like you to think.
+
+1056
+00:47:50,740 --> 00:47:53,690
+But ironically, it is secure
+because we do have HTTPS.
+
+1057
+00:47:53,690 --> 00:47:56,840
+>> But that is how easy it is to change
+something on a website, right?
+
+1058
+00:47:56,840 --> 00:47:58,555
+You all know a bit of HTML and CSS now.
+
+1059
+00:47:58,555 --> 00:48:00,430
+And in fact, it's pretty
+easy to-- and if you
+
+1060
+00:48:00,430 --> 00:48:01,990
+didn't do it-- to change the icon.
+
+1061
+00:48:01,990 --> 00:48:04,240
+But this, too, is what
+companies have taught us to do.
+
+1062
+00:48:04,240 --> 00:48:06,890
+So here's a screenshot from Bank
+of America's website this morning.
+
+1063
+00:48:06,890 --> 00:48:08,973
+And notice, one, they're
+reassuring me that's it's
+
+1064
+00:48:08,973 --> 00:48:11,030
+a secure sign in at top left.
+
+1065
+00:48:11,030 --> 00:48:13,530
+And they also have a
+padlock icon on the button,
+
+1066
+00:48:13,530 --> 00:48:16,820
+which means what to me, the end user?
+
+1067
+00:48:16,820 --> 00:48:18,390
+>> Truly nothing, right?
+
+1068
+00:48:18,390 --> 00:48:21,070
+What does matter is the fact
+that there's the big green
+
+1069
+00:48:21,070 --> 00:48:22,950
+URL up top with HTTPS.
+
+1070
+00:48:22,950 --> 00:48:27,120
+But if we zoom in on this, is just
+like me, knowing a little bit of HTML
+
+1071
+00:48:27,120 --> 00:48:30,280
+and a bit of CSS, and saying,
+hey, my website's secure.
+
+1072
+00:48:30,280 --> 00:48:35,340
+Like, anyone can put a padlock and the
+word secure sign-on onto their website.
+
+1073
+00:48:35,340 --> 00:48:36,880
+And it truly means nothing.
+
+1074
+00:48:36,880 --> 00:48:39,420
+What does mean something
+is something like this,
+
+1075
+00:48:39,420 --> 00:48:44,240
+where you do see https:// the fact that
+Bank of America corporation has this
+
+1076
+00:48:44,240 --> 00:48:47,670
+big green bar, whereas CS50 does not,
+just means they paid several hundred
+
+1077
+00:48:47,670 --> 00:48:51,110
+dollars more to have additional
+verification done of their domain
+
+1078
+00:48:51,110 --> 00:48:55,120
+in the US so that browsers who adhere
+to this standard will also show us
+
+1079
+00:48:55,120 --> 00:48:57,380
+a little bit more than that.
+
+1080
+00:48:57,380 --> 00:49:01,532
+>> So we'll leave things at that,
+frighten you a little more before long.
+
+1081
+00:49:01,532 --> 00:49:03,240
+But on Wednesday,
+we'll be joined by Scaz
+
+1082
+00:49:03,240 --> 00:49:05,050
+from Yale for a look at
+artificial intelligence
+
+1083
+00:49:05,050 --> 00:49:06,675
+and what we can do with these machines.
+
+1084
+00:49:06,675 --> 00:49:08,970
+We will see you next time.

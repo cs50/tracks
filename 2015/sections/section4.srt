@@ -1,0 +1,8636 @@
+1
+00:00:00,000 --> 00:00:04,875
+
+
+2
+00:00:04,875 --> 00:00:05,750
+ANDI PENG: All right.
+
+3
+00:00:05,750 --> 00:00:08,240
+Welcome to week four of section.
+
+4
+00:00:08,240 --> 00:00:10,280
+It's a beautiful day
+out here in New Haven
+
+5
+00:00:10,280 --> 00:00:14,370
+so I really think the sparse
+scattering of kids that
+
+6
+00:00:14,370 --> 00:00:17,530
+joined me for section today, thank you.
+
+7
+00:00:17,530 --> 00:00:21,517
+So quickly, just before we
+start, the agenda for today.
+
+8
+00:00:21,517 --> 00:00:23,600
+We are going to go over a
+few brief announcements.
+
+9
+00:00:23,600 --> 00:00:26,224
+We have a really wacky schedule
+coming up in the next two weeks
+
+10
+00:00:26,224 --> 00:00:28,010
+or so so we're going to go over that.
+
+11
+00:00:28,010 --> 00:00:30,410
+Secondly, I know
+everyone's favorite topic--
+
+12
+00:00:30,410 --> 00:00:33,572
+I'm sure this melted your mind
+during lecture, don't worry,
+
+13
+00:00:33,572 --> 00:00:34,780
+I still kind of don't get it.
+
+14
+00:00:34,780 --> 00:00:35,444
+It's fine.
+
+15
+00:00:35,444 --> 00:00:36,110
+That was a joke.
+
+16
+00:00:36,110 --> 00:00:37,450
+I actually do get it.
+
+17
+00:00:37,450 --> 00:00:40,234
+But I will make sure that
+you guys get it, too.
+
+18
+00:00:40,234 --> 00:00:42,400
+So we're going to spend a
+really, really good amount
+
+19
+00:00:42,400 --> 00:00:44,020
+of time talking about pointer today.
+
+20
+00:00:44,020 --> 00:00:47,012
+As you can see, Candy's
+talk is huge today.
+
+21
+00:00:47,012 --> 00:00:49,220
+We're really going to keep
+that-- yeah, that's right.
+
+22
+00:00:49,220 --> 00:00:49,890
+Keep taking candy.
+
+23
+00:00:49,890 --> 00:00:51,556
+I'm going to pass them around right now.
+
+24
+00:00:51,556 --> 00:00:55,150
+
+
+25
+00:00:55,150 --> 00:00:56,510
+No worries.
+
+26
+00:00:56,510 --> 00:00:59,570
+We're going to really try
+to keep people's blood sugar
+
+27
+00:00:59,570 --> 00:01:04,390
+up because that brain is going to burn
+some oxygen today because pointers
+
+28
+00:01:04,390 --> 00:01:05,652
+are really, really hard.
+
+29
+00:01:05,652 --> 00:01:08,360
+Then we're going to talk about
+memory management which kind of is
+
+30
+00:01:08,360 --> 00:01:09,487
+in the same realm.
+
+31
+00:01:09,487 --> 00:01:11,570
+And we're going to move
+on to redirection and file
+
+32
+00:01:11,570 --> 00:01:15,297
+I/O which are just syntax, nice
+things that we should talk about.
+
+33
+00:01:15,297 --> 00:01:17,130
+And then lastly, I'm
+going to once again try
+
+34
+00:01:17,130 --> 00:01:19,070
+to leave like 10, 15 minutes for pset4.
+
+35
+00:01:19,070 --> 00:01:21,820
+That's due in a few days so we're
+going to really kind of give you
+
+36
+00:01:21,820 --> 00:01:24,850
+some helpful hints if you
+already got started on that.
+
+37
+00:01:24,850 --> 00:01:26,141
+Cool.
+
+38
+00:01:26,141 --> 00:01:26,640
+OK.
+
+39
+00:01:26,640 --> 00:01:30,710
+So some announcements
+for this upcoming week.
+
+40
+00:01:30,710 --> 00:01:31,805
+Grading.
+
+41
+00:01:31,805 --> 00:01:33,930
+I don't actually know at
+this point how many of you
+
+42
+00:01:33,930 --> 00:01:37,180
+guys are actually in my
+section-- you OK there?
+
+43
+00:01:37,180 --> 00:01:38,020
+OK.
+
+44
+00:01:38,020 --> 00:01:40,150
+But, for those of you
+who are in my section,
+
+45
+00:01:40,150 --> 00:01:42,180
+just a couple comments on grading.
+
+46
+00:01:42,180 --> 00:01:44,899
+First, really good job of commenting.
+
+47
+00:01:44,899 --> 00:01:47,940
+Those of you who don't comment, you
+know who you are because you probably
+
+48
+00:01:47,940 --> 00:01:50,610
+got some style points dinged this week.
+
+49
+00:01:50,610 --> 00:01:53,920
+Just make sure that in all of your
+programs add a couple comments.
+
+50
+00:01:53,920 --> 00:01:56,960
+Really, style is really easy to
+get correct points as a scope.
+
+51
+00:01:56,960 --> 00:01:58,710
+So for us, just make
+sure that you're kind
+
+52
+00:01:58,710 --> 00:02:03,770
+of adding a brief description in all
+your programs about what you're doing.
+
+53
+00:02:03,770 --> 00:02:09,190
+Secondly-- this is a huge issue for
+a lot of the TAs this past week--
+
+54
+00:02:09,190 --> 00:02:12,020
+so make sure you're uploading to
+the correct folder with correctly
+
+55
+00:02:12,020 --> 00:02:13,370
+named programs.
+
+56
+00:02:13,370 --> 00:02:16,820
+And the reason why we ask for this is
+because we, in the course of grading,
+
+57
+00:02:16,820 --> 00:02:20,820
+actually run a script on your
+code that downloads automatically
+
+58
+00:02:20,820 --> 00:02:24,780
+all of your psets, runs
+correctness tests on all of them,
+
+59
+00:02:24,780 --> 00:02:27,550
+and then uploads your scores
+directly into the gradebook.
+
+60
+00:02:27,550 --> 00:02:32,140
+However, at any point, if you
+named your program incorrectly,
+
+61
+00:02:32,140 --> 00:02:34,510
+it screws up the entire
+program for everyone.
+
+62
+00:02:34,510 --> 00:02:37,280
+And so, legitimately,
+this beautiful script
+
+63
+00:02:37,280 --> 00:02:40,260
+that we've written that does
+all of this for us, completely
+
+64
+00:02:40,260 --> 00:02:43,070
+crashes if you don't have
+your program named correctly.
+
+65
+00:02:43,070 --> 00:02:46,020
+So just upload to the correct
+folder, have them named correctly,
+
+66
+00:02:46,020 --> 00:02:47,372
+and then life is good.
+
+67
+00:02:47,372 --> 00:02:49,080
+I get your psets back
+to you guys earlier
+
+68
+00:02:49,080 --> 00:02:51,110
+because I get to grade them quickly.
+
+69
+00:02:51,110 --> 00:02:52,461
+Yeah.
+
+70
+00:02:52,461 --> 00:02:52,960
+OK.
+
+71
+00:02:52,960 --> 00:02:57,870
+And also we're going to talk
+about-- Yale has a really, really
+
+72
+00:02:57,870 --> 00:02:59,950
+wacky schedule in these next two weeks.
+
+73
+00:02:59,950 --> 00:03:02,460
+So those of you guys at
+Harvard, this does not apply.
+
+74
+00:03:02,460 --> 00:03:05,585
+But for us lovely kids at Yale we have
+something called fall break-- sorry,
+
+75
+00:03:05,585 --> 00:03:08,430
+Harvard-- where we have
+five days off of school.
+
+76
+00:03:08,430 --> 00:03:12,270
+And while this is lovely, it
+kind of messes up our pset rhythm
+
+77
+00:03:12,270 --> 00:03:14,104
+because psets are due Thursday, Fridays.
+
+78
+00:03:14,104 --> 00:03:16,020
+And so if we're not here
+Thursday, Fridays, we
+
+79
+00:03:16,020 --> 00:03:18,640
+can't have work for you guys
+due on Thursday, Fridays.
+
+80
+00:03:18,640 --> 00:03:23,832
+So what we're going to do is-- we're
+like 99% sure this is what's happening,
+
+81
+00:03:23,832 --> 00:03:25,540
+there may be some
+change but I think it's
+
+82
+00:03:25,540 --> 00:03:28,460
+subtle-- is we're going to
+have-- this week is normal.
+
+83
+00:03:28,460 --> 00:03:32,130
+So we have our section on
+Tuesdays followed by office hours
+
+84
+00:03:32,130 --> 00:03:35,190
+throughout the rest of the week
+and then pset4 is due on Friday.
+
+85
+00:03:35,190 --> 00:03:38,180
+Then, as you guys all know, as
+I reminded you guys last week,
+
+86
+00:03:38,180 --> 00:03:41,700
+we have our quiz 0
+coming up on Wednesday.
+
+87
+00:03:41,700 --> 00:03:44,400
+And so, being a student myself,
+I know that very few of you
+
+88
+00:03:44,400 --> 00:03:49,110
+guys will actually be working on
+pset5 the two days before your quiz.
+
+89
+00:03:49,110 --> 00:03:51,110
+So what we're going to
+probably end up doing is,
+
+90
+00:03:51,110 --> 00:03:54,840
+that Monday night, we're going
+to actually, from 5:30 to 7:00,
+
+91
+00:03:54,840 --> 00:03:59,970
+have a brief review
+session on topics covered.
+
+92
+00:03:59,970 --> 00:04:02,040
+Unclear if it's a
+review session or a Q&A.
+
+93
+00:04:02,040 --> 00:04:04,650
+It will be some sort of review
+form in which we'll cover
+
+94
+00:04:04,650 --> 00:04:06,640
+some topics relevant for you guys.
+
+95
+00:04:06,640 --> 00:04:09,886
+And then Monday and Tuesday nights
+of that week from 8:00 to 11:00,
+
+96
+00:04:09,886 --> 00:04:11,260
+we're going to have office hours.
+
+97
+00:04:11,260 --> 00:04:14,500
+Those office hours will most
+likely be more of just come in,
+
+98
+00:04:14,500 --> 00:04:17,564
+ask TAs your questions regarding
+any concepts you're confused about,
+
+99
+00:04:17,564 --> 00:04:20,480
+and they'll kind of go over with you
+and review concepts for the quiz.
+
+100
+00:04:20,480 --> 00:04:22,920
+Quiz 0, if you're in the
+Monday, Wednesday section,
+
+101
+00:04:22,920 --> 00:04:26,480
+will be Wednesday's during
+class-- on Wednesday during class.
+
+102
+00:04:26,480 --> 00:04:29,530
+And then if you're in the
+Tuesday, Thursday section,
+
+103
+00:04:29,530 --> 00:04:32,577
+will be also during class on Thursday.
+
+104
+00:04:32,577 --> 00:04:34,410
+You can't really choose
+which one you go to.
+
+105
+00:04:34,410 --> 00:04:35,640
+If you're a Monday, Wednesday,
+you have to go to Wednesday.
+
+106
+00:04:35,640 --> 00:04:38,056
+If you're on Tuesday, Thursday
+you have to go to Thursday.
+
+107
+00:04:38,056 --> 00:04:42,277
+But then that night,
+us lovely staff, will
+
+108
+00:04:42,277 --> 00:04:45,360
+have a giant quiz grading party in
+which we'll get your scores back to you
+
+109
+00:04:45,360 --> 00:04:46,190
+that night.
+
+110
+00:04:46,190 --> 00:04:46,900
+At what time?
+
+111
+00:04:46,900 --> 00:04:51,190
+Unclear, who knows, but it will
+be back to you within 24 hours
+
+112
+00:04:51,190 --> 00:04:53,700
+so that you guys hopefully
+have some feedback by Friday.
+
+113
+00:04:53,700 --> 00:04:55,870
+And then we have a really wacky week.
+
+114
+00:04:55,870 --> 00:05:00,330
+So pset5 is one of the
+hardest psets of the year.
+
+115
+00:05:00,330 --> 00:05:03,370
+So sorry guys.
+
+116
+00:05:03,370 --> 00:05:06,520
+What we're going to try to
+do is we're going to have
+
+117
+00:05:06,520 --> 00:05:08,380
+some actual support that weekend.
+
+118
+00:05:08,380 --> 00:05:12,970
+Because, as you guys can see, the
+pset is due before fall break.
+
+119
+00:05:12,970 --> 00:05:16,760
+We don't have support for
+you guys during fall break
+
+120
+00:05:16,760 --> 00:05:18,897
+and so we really kind of
+want to phrase this as,
+
+121
+00:05:18,897 --> 00:05:21,230
+let's get this over with,
+let's work really, really hard
+
+122
+00:05:21,230 --> 00:05:25,380
+these next two weeks, get this quiz
+and add these two psets done with
+
+123
+00:05:25,380 --> 00:05:29,650
+and then you guys have a nice relaxing
+seven days without thinking about CS.
+
+124
+00:05:29,650 --> 00:05:33,750
+So in order for that to
+happen, we are probably
+
+125
+00:05:33,750 --> 00:05:36,870
+going to move my section
+to Sunday afternoons.
+
+126
+00:05:36,870 --> 00:05:39,070
+It will be filmed so no
+worries if you can't come.
+
+127
+00:05:39,070 --> 00:05:41,595
+But the online filming will
+be there and accessible
+
+128
+00:05:41,595 --> 00:05:47,630
+so that you guys have Sunday,
+Monday, Tuesdays, to work on pset5.
+
+129
+00:05:47,630 --> 00:05:50,205
+And then it's fall
+break and no CS and then
+
+130
+00:05:50,205 --> 00:05:51,830
+we come back and its back in the grind.
+
+131
+00:05:51,830 --> 00:05:54,926
+But it's going to be a
+lovely week for fall break
+
+132
+00:05:54,926 --> 00:05:58,050
+and we really want to make it as stress
+free for everyone as possible which
+
+133
+00:05:58,050 --> 00:06:02,620
+is why we moved the pset to be due
+before fall break rather than after.
+
+134
+00:06:02,620 --> 00:06:07,601
+Because it's-- I mean, I kind of feel
+like it defeats the purpose of having
+
+135
+00:06:07,601 --> 00:06:10,850
+the deadline after fall break if there's
+no support anyways during fall break.
+
+136
+00:06:10,850 --> 00:06:14,670
+So it's rather-- I think
+we'd rather focus on it now.
+
+137
+00:06:14,670 --> 00:06:16,950
+Does anyone have questions
+about that schedule?
+
+138
+00:06:16,950 --> 00:06:17,830
+Anything confusing?
+
+139
+00:06:17,830 --> 00:06:18,330
+Yeah.
+
+140
+00:06:18,330 --> 00:06:20,944
+AUDIENCE: Do we still have
+a lecture on the 21st?
+
+141
+00:06:20,944 --> 00:06:21,610
+ANDI PENG: Yeah.
+
+142
+00:06:21,610 --> 00:06:26,421
+So on the 21st, there is going to be
+a lecture that is live from Harvard.
+
+143
+00:06:26,421 --> 00:06:29,170
+I don't know if David is filming
+it or if he's actually lecturing,
+
+144
+00:06:29,170 --> 00:06:32,430
+but it's going to be available
+online for you guys to access.
+
+145
+00:06:32,430 --> 00:06:35,510
+So just make sure you carve an
+hour out somewhere in fall break
+
+146
+00:06:35,510 --> 00:06:39,375
+so you guys can catch
+up on that lecture.
+
+147
+00:06:39,375 --> 00:06:39,875
+Yeah?
+
+148
+00:06:39,875 --> 00:06:40,300
+AUDIENCE: Yeah.
+
+149
+00:06:40,300 --> 00:06:40,422
+Sorry.
+
+150
+00:06:40,422 --> 00:06:41,280
+I got here a couple--
+
+151
+00:06:41,280 --> 00:06:41,640
+ANDI PENG: No worries.
+
+152
+00:06:41,640 --> 00:06:42,556
+Here, take some candy.
+
+153
+00:06:42,556 --> 00:06:45,350
+
+
+154
+00:06:45,350 --> 00:06:47,800
+AUDIENCE: Hey, I caught that.
+
+155
+00:06:47,800 --> 00:06:53,869
+So just to recap, not tomorrow but the
+Wednesday after that, we have a quiz.
+
+156
+00:06:53,869 --> 00:06:54,660
+ANDI PENG: Correct.
+
+157
+00:06:54,660 --> 00:06:59,207
+AUDIENCE: And it's going to be--
+what's the format of the quiz?
+
+158
+00:06:59,207 --> 00:06:59,790
+ANDI PENG: Oh.
+
+159
+00:06:59,790 --> 00:07:03,870
+So we'll send out an email that
+covers all that more in depth.
+
+160
+00:07:03,870 --> 00:07:06,590
+But, essentially, it just covers
+basic topics already covered
+
+161
+00:07:06,590 --> 00:07:09,042
+in the first half of the semester.
+
+162
+00:07:09,042 --> 00:07:12,250
+We'll have review sessions and question
+and answers so no worries about that.
+
+163
+00:07:12,250 --> 00:07:14,107
+But we'll be going over that too.
+
+164
+00:07:14,107 --> 00:07:16,940
+AUDIENCE: Is it going to be, we
+bring our computers and code there--
+
+165
+00:07:16,940 --> 00:07:17,140
+ANDI PENG: No.
+
+166
+00:07:17,140 --> 00:07:20,130
+It's going to be you guys writing
+and answering questions by hand.
+
+167
+00:07:20,130 --> 00:07:21,160
+AUDIENCE: Oh.
+
+168
+00:07:21,160 --> 00:07:23,160
+ANDI PENG: So we'll give
+out practices and stuff
+
+169
+00:07:23,160 --> 00:07:26,420
+so you guys may want to perhaps go
+back and rewrite Mario by hand just
+
+170
+00:07:26,420 --> 00:07:28,100
+to make sure you guys have
+an idea of how to do that.
+
+171
+00:07:28,100 --> 00:07:29,933
+Because sometimes when
+you write by hand you
+
+172
+00:07:29,933 --> 00:07:32,656
+forget semicolons and stuff
+and that's really bad.
+
+173
+00:07:32,656 --> 00:07:34,156
+AUDIENCE: Won't that be [INAUDIBLE]?
+
+174
+00:07:34,156 --> 00:07:38,290
+Like, you're getting
+a semicolon on your--
+
+175
+00:07:38,290 --> 00:07:40,270
+ANDI PENG: Yes and no.
+
+176
+00:07:40,270 --> 00:07:43,170
+We'll talk more in depth
+regarding how the quiz layout is
+
+177
+00:07:43,170 --> 00:07:44,550
+and how we're going to grade.
+
+178
+00:07:44,550 --> 00:07:47,425
+But essentially, just know that the
+general format is going to be you
+
+179
+00:07:47,425 --> 00:07:49,930
+guys either interpreting code--
+answering basic questions.
+
+180
+00:07:49,930 --> 00:07:51,370
+If I asked you, what is a library?
+
+181
+00:07:51,370 --> 00:07:53,450
+You guys should know what a
+library does and write that down.
+
+182
+00:07:53,450 --> 00:07:56,283
+Or I may say, write a program that
+prints Hello World to the screen.
+
+183
+00:07:56,283 --> 00:08:01,140
+You guys would write, int main
+void printf hello world semicolon.
+
+184
+00:08:01,140 --> 00:08:01,908
+Yeah.
+
+185
+00:08:01,908 --> 00:08:04,398
+AUDIENCE: So it's not going
+to be anywhere [INAUDIBLE]
+
+186
+00:08:04,398 --> 00:08:05,900
+difficulty level of the problem set?
+
+187
+00:08:05,900 --> 00:08:06,170
+ANDI PENG: No.
+
+188
+00:08:06,170 --> 00:08:06,380
+No.
+
+189
+00:08:06,380 --> 00:08:07,046
+We won't-- yeah.
+
+190
+00:08:07,046 --> 00:08:10,030
+Write the entirety of the
+game of 15 in 20 minutes, go.
+
+191
+00:08:10,030 --> 00:08:12,120
+No, it won't be that.
+
+192
+00:08:12,120 --> 00:08:12,801
+No.
+
+193
+00:08:12,801 --> 00:08:13,342
+AUDIENCE: OK.
+
+194
+00:08:13,342 --> 00:08:15,326
+So that is Wednesday.
+
+195
+00:08:15,326 --> 00:08:19,017
+During that week we also
+have the hardest problem set?
+
+196
+00:08:19,017 --> 00:08:19,600
+ANDI PENG: No.
+
+197
+00:08:19,600 --> 00:08:22,970
+So the problem set it due
+the day before fall break.
+
+198
+00:08:22,970 --> 00:08:25,690
+The schedule-- the email
+was actually send out
+
+199
+00:08:25,690 --> 00:08:27,232
+20 minutes ago regarding all of this.
+
+200
+00:08:27,232 --> 00:08:28,689
+So you guys just check your emails.
+
+201
+00:08:28,689 --> 00:08:29,430
+It'll be there.
+
+202
+00:08:29,430 --> 00:08:30,060
+Yeah.
+
+203
+00:08:30,060 --> 00:08:31,701
+No worries.
+
+204
+00:08:31,701 --> 00:08:32,200
+Cool.
+
+205
+00:08:32,200 --> 00:08:34,900
+
+
+206
+00:08:34,900 --> 00:08:38,900
+Any general questions regarding
+announcements, grading, quizzes,
+
+207
+00:08:38,900 --> 00:08:41,659
+before we dive right into
+pointers which will consume
+
+208
+00:08:41,659 --> 00:08:45,060
+the majority of our section time today?
+
+209
+00:08:45,060 --> 00:08:47,030
+Cool.
+
+210
+00:08:47,030 --> 00:08:47,530
+All right.
+
+211
+00:08:47,530 --> 00:08:50,905
+So did you guys all watch this lovely--
+I don't know what they call it.
+
+212
+00:08:50,905 --> 00:08:53,490
+The thing where the claymation
+blew itself up because it
+
+213
+00:08:53,490 --> 00:08:54,820
+didn't use a pointer correctly.
+
+214
+00:08:54,820 --> 00:08:57,629
+Well, your program is going to
+probably blow itself up if you
+
+215
+00:08:57,629 --> 00:08:59,170
+don't use pointers correctly as well.
+
+216
+00:08:59,170 --> 00:09:01,250
+So we're going to make
+sure that doesn't happen.
+
+217
+00:09:01,250 --> 00:09:04,810
+Today we're going to
+do some pointer fun.
+
+218
+00:09:04,810 --> 00:09:08,970
+I'm going to go over things
+as smoothly as I think
+
+219
+00:09:08,970 --> 00:09:10,790
+is possible in a small time frame.
+
+220
+00:09:10,790 --> 00:09:14,592
+But there's just so much to cover
+that I really want you guys,
+
+221
+00:09:14,592 --> 00:09:17,300
+if you don't understand something,
+to not just let me keep going.
+
+222
+00:09:17,300 --> 00:09:18,580
+Because if you don't
+understand something,
+
+223
+00:09:18,580 --> 00:09:21,329
+you're probably not going to
+understand anything I say after that.
+
+224
+00:09:21,329 --> 00:09:23,310
+So please stop me and ask a question.
+
+225
+00:09:23,310 --> 00:09:25,380
+Because it all kind
+of snowballs together.
+
+226
+00:09:25,380 --> 00:09:27,800
+Like, pointers lead into
+memory lead into other things.
+
+227
+00:09:27,800 --> 00:09:31,710
+And so if you don't understand pointers,
+stop me and we'll figure it out
+
+228
+00:09:31,710 --> 00:09:35,070
+and life will be fine.
+
+229
+00:09:35,070 --> 00:09:35,680
+Cool.
+
+230
+00:09:35,680 --> 00:09:39,050
+So how many of you guys in lecture,
+when David mentioned pointers,
+
+231
+00:09:39,050 --> 00:09:42,050
+your brains kind of turned into Jell-O?
+
+232
+00:09:42,050 --> 00:09:42,550
+Yeah.
+
+233
+00:09:42,550 --> 00:09:44,190
+Good.
+
+234
+00:09:44,190 --> 00:09:46,900
+We're going to try to
+de-Jell-O your brains today.
+
+235
+00:09:46,900 --> 00:09:50,300
+We're going to really systematically
+go through what exactly a pointer is,
+
+236
+00:09:50,300 --> 00:09:52,530
+what it does, and how we use them.
+
+237
+00:09:52,530 --> 00:09:56,620
+So all pointers-- so
+normally with the variables
+
+238
+00:09:56,620 --> 00:10:00,920
+we've been using in coding, like
+variables such as integers or strings
+
+239
+00:10:00,920 --> 00:10:04,790
+or floats, they're all essentially
+a value assigned to them
+
+240
+00:10:04,790 --> 00:10:06,870
+as well as an address
+pointing to that value.
+
+241
+00:10:06,870 --> 00:10:08,895
+So I'm going to draw this right now.
+
+242
+00:10:08,895 --> 00:10:14,270
+
+
+243
+00:10:14,270 --> 00:10:16,140
+We have almost no chalk but that's OK.
+
+244
+00:10:16,140 --> 00:10:25,550
+So for example, normally
+the way that we've
+
+245
+00:10:25,550 --> 00:10:30,860
+been using variables is we create the
+name of the variable of type int, let's
+
+246
+00:10:30,860 --> 00:10:31,360
+just say.
+
+247
+00:10:31,360 --> 00:10:37,360
+So here we've got int x and we're
+initializing that int to 50.
+
+248
+00:10:37,360 --> 00:10:42,390
+So here in this block of memory on our
+computers we've stored a number of 50.
+
+249
+00:10:42,390 --> 00:10:46,170
+So where pointers come into play is
+that your computer itself-- like, here,
+
+250
+00:10:46,170 --> 00:10:48,880
+physically in the hard drive
+in the RAM of my computer--
+
+251
+00:10:48,880 --> 00:10:51,147
+it only has a finite amount of memory.
+
+252
+00:10:51,147 --> 00:10:53,980
+You can't just keep storing things
+on top of things on top of things
+
+253
+00:10:53,980 --> 00:10:54,990
+and have them all.
+
+254
+00:10:54,990 --> 00:10:59,570
+So the way that we dynamically allot
+memory to be able to store what we want
+
+255
+00:10:59,570 --> 00:11:03,150
+and access it, is by having pointers.
+
+256
+00:11:03,150 --> 00:11:06,210
+So imagine in your memory space, right.
+
+257
+00:11:06,210 --> 00:11:10,420
+If this is the RAM of your
+computer, you have these little bits
+
+258
+00:11:10,420 --> 00:11:14,540
+or blocks or bytes of memory in
+which-- these are just little
+
+259
+00:11:14,540 --> 00:11:18,120
+blocks that have been allocated out on
+the hard drive or RAM of your computer,
+
+260
+00:11:18,120 --> 00:11:21,950
+and within each of those blocks
+you can store different things.
+
+261
+00:11:21,950 --> 00:11:26,990
+So for example, one
+array in this example
+
+262
+00:11:26,990 --> 00:11:29,984
+here is one byte which is
+consisting of eight bits.
+
+263
+00:11:29,984 --> 00:11:32,900
+The number changes depending on the
+operating system of your computer.
+
+264
+00:11:32,900 --> 00:11:35,942
+For example, how many of you have
+heard of 32-bit versus 64-bit operating
+
+265
+00:11:35,942 --> 00:11:36,441
+systems?
+
+266
+00:11:36,441 --> 00:11:37,070
+Exactly.
+
+267
+00:11:37,070 --> 00:11:38,860
+So all that's saying
+is that the memory--
+
+268
+00:11:38,860 --> 00:11:42,420
+that the way that your computer
+manages the memory is different.
+
+269
+00:11:42,420 --> 00:11:45,370
+Which is why it's really
+important to understand
+
+270
+00:11:45,370 --> 00:11:49,450
+why memory itself functions rather
+than pay attention to the numbers.
+
+271
+00:11:49,450 --> 00:11:52,400
+So we don't really care
+how large this array
+
+272
+00:11:52,400 --> 00:11:55,710
+is, we just need to care about
+how large do we need an int to be,
+
+273
+00:11:55,710 --> 00:11:58,350
+how large do we need a string
+to be, how large is a pointer?
+
+274
+00:11:58,350 --> 00:12:00,630
+
+
+275
+00:12:00,630 --> 00:12:01,130
+OK.
+
+276
+00:12:01,130 --> 00:12:03,690
+So it's going to be a lot
+of heavy, dense information.
+
+277
+00:12:03,690 --> 00:12:07,005
+I'm going to give you guys a
+couple comic relief moments here.
+
+278
+00:12:07,005 --> 00:12:09,130
+You guys should all be able
+to understand this now.
+
+279
+00:12:09,130 --> 00:12:12,550
+Because we know that
+pointers are addresses,
+
+280
+00:12:12,550 --> 00:12:14,480
+and those are different from variables.
+
+281
+00:12:14,480 --> 00:12:14,980
+OK.
+
+282
+00:12:14,980 --> 00:12:15,610
+Cool.
+
+283
+00:12:15,610 --> 00:12:17,065
+CS jokes are the best, yeah?
+
+284
+00:12:17,065 --> 00:12:19,800
+
+
+285
+00:12:19,800 --> 00:12:23,450
+So the way that we go
+about creating a pointer
+
+286
+00:12:23,450 --> 00:12:25,750
+is a very specific sort of syntax.
+
+287
+00:12:25,750 --> 00:12:27,870
+As with creating any
+type of variable, it's
+
+288
+00:12:27,870 --> 00:12:30,240
+going to be a specific
+syntax we use to create it.
+
+289
+00:12:30,240 --> 00:12:34,830
+So when declaring any pointer,
+a pointer is just essentially--
+
+290
+00:12:34,830 --> 00:12:37,040
+I think the important
+part of pointers is
+
+291
+00:12:37,040 --> 00:12:41,650
+that whereas a variable has
+both a value and an address,
+
+292
+00:12:41,650 --> 00:12:44,100
+a pointer is an address.
+
+293
+00:12:44,100 --> 00:12:45,740
+Its value is an address.
+
+294
+00:12:45,740 --> 00:12:48,120
+So it's an address stored
+at a different address.
+
+295
+00:12:48,120 --> 00:12:49,120
+If that makes any sense.
+
+296
+00:12:49,120 --> 00:12:52,390
+We'll go over this in more detail,
+but that's the generic form
+
+297
+00:12:52,390 --> 00:12:54,370
+of why-- of how a printer is stored.
+
+298
+00:12:54,370 --> 00:12:58,900
+So the way that you create a pointer
+is by doing whatever type of data
+
+299
+00:12:58,900 --> 00:13:02,840
+that the pointer is going
+to be referencing and then--
+
+300
+00:13:02,840 --> 00:13:05,324
+with the star-- and then
+the name of the pointer.
+
+301
+00:13:05,324 --> 00:13:07,240
+So here, if we wanted
+to create a pointer that
+
+302
+00:13:07,240 --> 00:13:11,640
+pointed towards an integer, and we
+wanted the name of the pointer to be x,
+
+303
+00:13:11,640 --> 00:13:13,880
+we would do int star x.
+
+304
+00:13:13,880 --> 00:13:14,380
+Yeah?
+
+305
+00:13:14,380 --> 00:13:16,680
+AUDIENCE: And so if
+the following line you
+
+306
+00:13:16,680 --> 00:13:20,045
+do int x, will the int star x
+indicate the location of the x
+
+307
+00:13:20,045 --> 00:13:21,170
+you're defining afterwards?
+
+308
+00:13:21,170 --> 00:13:22,000
+ANDI PENG: Really good question.
+
+309
+00:13:22,000 --> 00:13:23,860
+We'll go over this in
+a couple slides later.
+
+310
+00:13:23,860 --> 00:13:24,920
+Yeah.
+
+311
+00:13:24,920 --> 00:13:27,610
+And then same thing with
+char and same thing floats.
+
+312
+00:13:27,610 --> 00:13:29,950
+Just know that at this point
+we've created a pointer,
+
+313
+00:13:29,950 --> 00:13:32,470
+we haven't actually set
+it to equal anything yet.
+
+314
+00:13:32,470 --> 00:13:34,110
+We haven't actually referenced it.
+
+315
+00:13:34,110 --> 00:13:36,087
+The same thing here when
+you create a variable,
+
+316
+00:13:36,087 --> 00:13:39,420
+you've created the name of the variable,
+you haven't actually set a value to it.
+
+317
+00:13:39,420 --> 00:13:41,410
+Same thing here.
+
+318
+00:13:41,410 --> 00:13:42,110
+OK.
+
+319
+00:13:42,110 --> 00:13:44,670
+So how do we set values to pointers?
+
+320
+00:13:44,670 --> 00:13:47,190
+It's by referencing and dereferencing.
+
+321
+00:13:47,190 --> 00:13:52,260
+So the way that we can reference
+a varia-- a pointer, in essence
+
+322
+00:13:52,260 --> 00:13:56,630
+we return the address in memory
+of which a variable is stored.
+
+323
+00:13:56,630 --> 00:14:02,550
+So if I had a pointer-- I'll draw
+this once we get to the next slide,
+
+324
+00:14:02,550 --> 00:14:05,760
+but just know that, essentially,
+the and-- the ampersand
+
+325
+00:14:05,760 --> 00:14:10,240
+and the variable-- all that
+does is tell you the address
+
+326
+00:14:10,240 --> 00:14:11,780
+of where something is stored.
+
+327
+00:14:11,780 --> 00:14:15,730
+And dereferencing is the opposite
+of that, which is just the star.
+
+328
+00:14:15,730 --> 00:14:18,950
+The star just gives you the actual
+data stored at that address.
+
+329
+00:14:18,950 --> 00:14:21,090
+So one gives you the address
+stored at an address,
+
+330
+00:14:21,090 --> 00:14:23,945
+the other gives you the actual
+value stored at the address.
+
+331
+00:14:23,945 --> 00:14:25,820
+So the two of them give
+you different things.
+
+332
+00:14:25,820 --> 00:14:27,755
+
+
+333
+00:14:27,755 --> 00:14:29,880
+Once again, the slides are
+all online so no worries
+
+334
+00:14:29,880 --> 00:14:33,200
+if you guys can't copy
+this down in time.
+
+335
+00:14:33,200 --> 00:14:36,330
+So let's take a look
+at this example here.
+
+336
+00:14:36,330 --> 00:14:40,530
+So we've got a giant
+memory array here, right?
+
+337
+00:14:40,530 --> 00:14:42,920
+Where we just have blocks of
+memory, or bytes of memory,
+
+338
+00:14:42,920 --> 00:14:45,060
+in which we can store different things.
+
+339
+00:14:45,060 --> 00:14:47,310
+Let's just say these are the
+address points in memory.
+
+340
+00:14:47,310 --> 00:14:51,350
+So anytime you have--see the 0x,
+all that is telling you is that
+
+341
+00:14:51,350 --> 00:14:52,930
+that's a hexadecimal digits.
+
+342
+00:14:52,930 --> 00:14:56,310
+As you guys all know, numbers
+could be based in different bases.
+
+343
+00:14:56,310 --> 00:14:58,770
+Base 10 is how we typically
+interpret numbers.
+
+344
+00:14:58,770 --> 00:15:00,550
+There's also base 2, which is binary.
+
+345
+00:15:00,550 --> 00:15:03,366
+And in this case,
+hexadecimal is base 16.
+
+346
+00:15:03,366 --> 00:15:06,240
+It's just a different way of saying
+from zero to 10-- or zero to nine
+
+347
+00:15:06,240 --> 00:15:10,904
+and then also A, B, C, D, E, F.
+Also references different numbers.
+
+348
+00:15:10,904 --> 00:15:12,570
+David went over this in lecture briefly.
+
+349
+00:15:12,570 --> 00:15:14,280
+If you guys are
+confused, just Google it.
+
+350
+00:15:14,280 --> 00:15:17,370
+There's really easy ways to learn
+what a hexadecimal digit is.
+
+351
+00:15:17,370 --> 00:15:19,510
+All that's really relevant
+right now is for you
+
+352
+00:15:19,510 --> 00:15:24,170
+guys to know that a
+hexadecimal digits in C
+
+353
+00:15:24,170 --> 00:15:27,090
+tells you-- that typically
+tells you that it's a pointer.
+
+354
+00:15:27,090 --> 00:15:29,150
+Or that's a address.
+
+355
+00:15:29,150 --> 00:15:33,310
+So in this example here, int x equals 5.
+
+356
+00:15:33,310 --> 00:15:36,350
+We're creating an integer--
+sorry, a variable of type
+
+357
+00:15:36,350 --> 00:15:39,090
+integer and we're initializing it to 5.
+
+358
+00:15:39,090 --> 00:15:47,040
+So here on our memory board, we can
+see that x is at the address of 0x0
+
+359
+00:15:47,040 --> 00:15:50,550
+and the value that you've
+stored inside of it is 5.
+
+360
+00:15:50,550 --> 00:15:52,370
+That should make sense
+to everyone, right?
+
+361
+00:15:52,370 --> 00:15:53,030
+OK.
+
+362
+00:15:53,030 --> 00:15:56,520
+And then what we've done
+in the second line of code
+
+363
+00:15:56,520 --> 00:16:00,290
+is that we've created
+a pointer of type int.
+
+364
+00:16:00,290 --> 00:16:02,750
+That's what the int
+star pointer is doing.
+
+365
+00:16:02,750 --> 00:16:07,320
+And that equals that the ampersand x
+is giving you the address of something.
+
+366
+00:16:07,320 --> 00:16:12,120
+So the address of x in
+this example is 0x0.
+
+367
+00:16:12,120 --> 00:16:15,630
+And so that address is being
+stored in that pointer.
+
+368
+00:16:15,630 --> 00:16:17,360
+Does that make sense to everybody?
+
+369
+00:16:17,360 --> 00:16:19,965
+So think of this--
+think of pointers-- here
+
+370
+00:16:19,965 --> 00:16:24,780
+at Yale we have a PO box system
+where every student has a mailing
+
+371
+00:16:24,780 --> 00:16:26,960
+address where you can go
+into the basement of LW
+
+372
+00:16:26,960 --> 00:16:30,492
+and you can just go and grab
+whatever you need from that address.
+
+373
+00:16:30,492 --> 00:16:32,450
+The same thing is happening
+here in a computer.
+
+374
+00:16:32,450 --> 00:16:36,770
+You have these memory bytes that
+you can store information into,
+
+375
+00:16:36,770 --> 00:16:39,529
+but in order to know which
+pieces of information
+
+376
+00:16:39,529 --> 00:16:42,570
+match up of what you're trying to find
+and where, you need a pointer that
+
+377
+00:16:42,570 --> 00:16:43,740
+tells you how to go there.
+
+378
+00:16:43,740 --> 00:16:47,270
+So for example, for me, my PO box,
+I have a specific five digit number.
+
+379
+00:16:47,270 --> 00:16:48,400
+That's my address.
+
+380
+00:16:48,400 --> 00:16:51,880
+So I can physically go to memory,
+I can look at the address,
+
+381
+00:16:51,880 --> 00:16:54,507
+I can go to that PO box
+and access the data inside.
+
+382
+00:16:54,507 --> 00:16:57,090
+Does that make sense to Everybody
+Your computer is essentially
+
+383
+00:16:57,090 --> 00:16:59,000
+doing the exact same thing.
+
+384
+00:16:59,000 --> 00:17:02,750
+So all pointer is doing is that
+it's just creating a memory
+
+385
+00:17:02,750 --> 00:17:06,099
+and its memory data is actually
+the address of something else.
+
+386
+00:17:06,099 --> 00:17:08,210
+Then you can go and find that.
+
+387
+00:17:08,210 --> 00:17:09,060
+Everyone good?
+
+388
+00:17:09,060 --> 00:17:10,720
+Everyone good with me so far?
+
+389
+00:17:10,720 --> 00:17:11,360
+OK.
+
+390
+00:17:11,360 --> 00:17:11,859
+Cool.
+
+391
+00:17:11,859 --> 00:17:14,311
+
+
+392
+00:17:14,311 --> 00:17:14,810
+All right.
+
+393
+00:17:14,810 --> 00:17:19,160
+So almost the same thing as before.
+
+394
+00:17:19,160 --> 00:17:23,849
+So we have, first, a variable
+called x in which case--
+
+395
+00:17:23,849 --> 00:17:27,700
+I'm going to change this value to 5.
+
+396
+00:17:27,700 --> 00:17:31,820
+Let's just say the address
+of this in memory is 0x0.
+
+397
+00:17:31,820 --> 00:17:33,070
+00.
+
+398
+00:17:33,070 --> 00:17:33,570
+Great.
+
+399
+00:17:33,570 --> 00:17:35,320
+So then, on our second
+line of code, we're
+
+400
+00:17:35,320 --> 00:17:41,210
+going to create a pointer
+called ptr pointer.
+
+401
+00:17:41,210 --> 00:17:45,760
+And the address of that, let's
+just say that's 0x01 in memory.
+
+402
+00:17:45,760 --> 00:17:48,280
+And we actually want to
+store-- the ampersand
+
+403
+00:17:48,280 --> 00:17:50,620
+x gives you the address of what x was.
+
+404
+00:17:50,620 --> 00:17:53,990
+And the address of x was 0x00.
+
+405
+00:17:53,990 --> 00:17:57,300
+So this pointer now
+actually has the address
+
+406
+00:17:57,300 --> 00:18:00,210
+stored as its value of what x was.
+
+407
+00:18:00,210 --> 00:18:01,700
+Everyone with me so far?
+
+408
+00:18:01,700 --> 00:18:02,320
+Cool.
+
+409
+00:18:02,320 --> 00:18:04,670
+And then, the way that
+we would copy that,
+
+410
+00:18:04,670 --> 00:18:09,650
+is if we would declare and initialize
+another block of memory of type int.
+
+411
+00:18:09,650 --> 00:18:10,150
+Right?
+
+412
+00:18:10,150 --> 00:18:11,130
+This would be an int.
+
+413
+00:18:11,130 --> 00:18:14,130
+It would be called copy.
+
+414
+00:18:14,130 --> 00:18:17,120
+And you're going to get-- so
+the star pointer gives you
+
+415
+00:18:17,120 --> 00:18:19,080
+the actual data from that address.
+
+416
+00:18:19,080 --> 00:18:22,490
+The ampersand gives you the address,
+the star gives you the data.
+
+417
+00:18:22,490 --> 00:18:24,630
+So the data at pointer.
+
+418
+00:18:24,630 --> 00:18:29,420
+This pointer is pointing to 5.
+
+419
+00:18:29,420 --> 00:18:33,140
+And so this function
+here-- the star pointer--
+
+420
+00:18:33,140 --> 00:18:39,740
+goes, gets whatever is in
+this block and stores it here.
+
+421
+00:18:39,740 --> 00:18:41,730
+Everyone clear on how that happened?
+
+422
+00:18:41,730 --> 00:18:45,490
+So the two operators right there--
+the ampersand and the star--
+
+423
+00:18:45,490 --> 00:18:48,250
+just do different things
+when used on pointers.
+
+424
+00:18:48,250 --> 00:18:50,837
+One gets you the address, one
+gets you the actual value.
+
+425
+00:18:50,837 --> 00:18:53,670
+So make sure when you guys are
+coding that you don't confuse the two
+
+426
+00:18:53,670 --> 00:18:55,650
+because they're vastly different.
+
+427
+00:18:55,650 --> 00:18:58,880
+Here we have a nice example of a 0x01.
+
+428
+00:18:58,880 --> 00:19:01,207
+That's a really nice
+small number to remember.
+
+429
+00:19:01,207 --> 00:19:03,040
+In your actual computer
+you're going to have
+
+430
+00:19:03,040 --> 00:19:06,740
+a giant ass number that is something
+that's not nice, not pleasant.
+
+431
+00:19:06,740 --> 00:19:08,280
+It's going to be some garbage value.
+
+432
+00:19:08,280 --> 00:19:10,920
+And so it's going to really,
+really mess up your programs.
+
+433
+00:19:10,920 --> 00:19:12,670
+It's very important
+right now that we have
+
+434
+00:19:12,670 --> 00:19:16,150
+the fundamentals down for why-- like,
+what is physically happening when
+
+435
+00:19:16,150 --> 00:19:18,270
+you're running those blocks of code.
+
+436
+00:19:18,270 --> 00:19:19,120
+Everyone-- yeah?
+
+437
+00:19:19,120 --> 00:19:21,425
+AUDIENCE: So int x equals int copy?
+
+438
+00:19:21,425 --> 00:19:24,650
+
+
+439
+00:19:24,650 --> 00:19:34,970
+ANDI PENG: No because, in this case, int
+x-- the value of x-- equals 5, right?
+
+440
+00:19:34,970 --> 00:19:40,546
+And then int copy equals 5.
+
+441
+00:19:40,546 --> 00:19:43,420
+So if you were to equate them to
+each other because they're integers,
+
+442
+00:19:43,420 --> 00:19:46,379
+yes, they would evaluate to true.
+
+443
+00:19:46,379 --> 00:19:49,670
+But if they were strings in memory, like
+the one that David did during example,
+
+444
+00:19:49,670 --> 00:19:51,670
+that's different because
+they're referencing
+
+445
+00:19:51,670 --> 00:19:54,920
+the addresses of places in memory
+and they would equate to false.
+
+446
+00:19:54,920 --> 00:20:00,070
+So here it would be true because you're
+directly comparing values-- integers--
+
+447
+00:20:00,070 --> 00:20:02,240
+but in the others you're
+referencing points.
+
+448
+00:20:02,240 --> 00:20:05,290
+Because a string is in an array, and
+all-- we'll talk about this later--
+
+449
+00:20:05,290 --> 00:20:09,940
+but array is essentially just a
+pointer to a bunch of chars in memory.
+
+450
+00:20:09,940 --> 00:20:11,610
+So those are a bit different.
+
+451
+00:20:11,610 --> 00:20:14,642
+But in this case, yes,
+you could do that.
+
+452
+00:20:14,642 --> 00:20:17,354
+AUDIENCE: Can you explain
+the address of copy?
+
+453
+00:20:17,354 --> 00:20:18,020
+ANDI PENG: Yeah.
+
+454
+00:20:18,020 --> 00:20:20,030
+So that's just-- I
+didn't fill in a value
+
+455
+00:20:20,030 --> 00:20:23,022
+but it's just some random other
+garbage value that we don't care about.
+
+456
+00:20:23,022 --> 00:20:25,730
+Because once you start program
+you realize that we don't actually
+
+457
+00:20:25,730 --> 00:20:28,150
+really care what the
+actual addresses are,
+
+458
+00:20:28,150 --> 00:20:30,470
+we just need to know
+what's at the addresses.
+
+459
+00:20:30,470 --> 00:20:31,608
+Yeah.
+
+460
+00:20:31,608 --> 00:20:36,034
+AUDIENCE: The star next to int on the
+second line, that's different than--
+
+461
+00:20:36,034 --> 00:20:36,700
+ANDI PENG: Yeah.
+
+462
+00:20:36,700 --> 00:20:39,015
+AUDIENCE: --the dereferencing
+and referencing star?
+
+463
+00:20:39,015 --> 00:20:39,681
+ANDI PENG: Yeah.
+
+464
+00:20:39,681 --> 00:20:43,180
+So the authors of C-- whoever
+decided to write the language of C--
+
+465
+00:20:43,180 --> 00:20:44,200
+was not very smart.
+
+466
+00:20:44,200 --> 00:20:46,830
+They were not very smart in trying
+to figure out why we should do this.
+
+467
+00:20:46,830 --> 00:20:49,413
+If it was me, I would definitely
+use two different characters.
+
+468
+00:20:49,413 --> 00:20:52,100
+But they decided to use the same one.
+
+469
+00:20:52,100 --> 00:20:56,607
+So the star after an int,
+that tells the computer
+
+470
+00:20:56,607 --> 00:20:58,190
+that you're about to create a pointer.
+
+471
+00:20:58,190 --> 00:21:00,820
+But if you're trying to dereference
+something-- in other words,
+
+472
+00:21:00,820 --> 00:21:03,780
+go to the address and pull
+the data from somewhere--
+
+473
+00:21:03,780 --> 00:21:05,070
+the star is used differently.
+
+474
+00:21:05,070 --> 00:21:08,750
+So you guys just be careful about
+not messing up the two uses.
+
+475
+00:21:08,750 --> 00:21:09,870
+Cool.
+
+476
+00:21:09,870 --> 00:21:10,605
+Yeah?
+
+477
+00:21:10,605 --> 00:21:14,680
+AUDIENCE: So just to repeat to
+make sure that I'm following--
+
+478
+00:21:14,680 --> 00:21:16,252
+ANDI PENG: Totally fine.
+
+479
+00:21:16,252 --> 00:21:20,491
+AUDIENCE: --in the left-hand side of
+that slide, we do a thing that we know.
+
+480
+00:21:20,491 --> 00:21:23,124
+We declare an integer
+[INAUDIBLE] that are equal to 5.
+
+481
+00:21:23,124 --> 00:21:23,790
+ANDI PENG: Yeah.
+
+482
+00:21:23,790 --> 00:21:24,456
+AUDIENCE: Right.
+
+483
+00:21:24,456 --> 00:21:28,960
+And then we have an int star thing and
+that says that, OK, kind of like we
+
+484
+00:21:28,960 --> 00:21:31,235
+declared an integer, now
+we're declaring a pointer.
+
+485
+00:21:31,235 --> 00:21:32,110
+ANDI PENG: Correctly.
+
+486
+00:21:32,110 --> 00:21:32,410
+Correct.
+
+487
+00:21:32,410 --> 00:21:32,710
+AUDIENCE: Right?
+
+488
+00:21:32,710 --> 00:21:33,870
+And our pointer is ptr.
+
+489
+00:21:33,870 --> 00:21:34,080
+ANDI PENG: Yep.
+
+490
+00:21:34,080 --> 00:21:35,460
+The name of the pointer is ptr.
+
+491
+00:21:35,460 --> 00:21:35,959
+Pointer.
+
+492
+00:21:35,959 --> 00:21:39,000
+AUDIENCE: And then it
+equals nx that just tells C
+
+493
+00:21:39,000 --> 00:21:44,667
+that it wants to access the value at
+integer x-- the value that integer x
+
+494
+00:21:44,667 --> 00:21:45,800
+was assigned.
+
+495
+00:21:45,800 --> 00:21:49,050
+ANDI PENG: Be careful
+because ampersand x actually
+
+496
+00:21:49,050 --> 00:21:53,120
+tells you-- the computer that you
+want to pull the address of what x is.
+
+497
+00:21:53,120 --> 00:21:56,350
+So ampersand gives you the
+address, star gives you the value.
+
+498
+00:21:56,350 --> 00:21:58,255
+AUDIENCE: So we want the address.
+
+499
+00:21:58,255 --> 00:22:02,075
+Let's say x was at--
+
+500
+00:22:02,075 --> 00:22:03,950
+ANDI PENG: We actually
+know what x is, right?
+
+501
+00:22:03,950 --> 00:22:06,790
+Because we know that x was-- I'm
+making this up but let's just say,
+
+502
+00:22:06,790 --> 00:22:08,760
+arbitrarily, it was 0x00.
+
+503
+00:22:08,760 --> 00:22:09,590
+Right?
+
+504
+00:22:09,590 --> 00:22:14,120
+So we know the address is 0x00,
+and so when we go and ampersand x,
+
+505
+00:22:14,120 --> 00:22:17,050
+we know that that
+should evaluate to 0x00.
+
+506
+00:22:17,050 --> 00:22:20,810
+Which is why we stored that
+as the value of our pointer.
+
+507
+00:22:20,810 --> 00:22:21,924
+Does that make sense?
+
+508
+00:22:21,924 --> 00:22:22,832
+AUDIENCE: Yes.
+
+509
+00:22:22,832 --> 00:22:28,057
+And copy goes to dereference ptr--
+
+510
+00:22:28,057 --> 00:22:28,765
+ANDI PENG: Right.
+
+511
+00:22:28,765 --> 00:22:30,473
+AUDIENCE: --which is
+a pointer that we've
+
+512
+00:22:30,473 --> 00:22:35,220
+declared that tells us the
+address of the integer x.
+
+513
+00:22:35,220 --> 00:22:36,160
+ANDI PENG: Yeah.
+
+514
+00:22:36,160 --> 00:22:39,272
+AUDIENCE: And in this
+one case, star ptr is
+
+515
+00:22:39,272 --> 00:22:41,256
+equal to the value of x which equals 5.
+
+516
+00:22:41,256 --> 00:22:42,744
+ANDI PENG: Correct.
+
+517
+00:22:42,744 --> 00:22:44,728
+AUDIENCE: Cool.
+
+518
+00:22:44,728 --> 00:22:49,382
+And that is a simpler way to get
+that or is that the only way--
+
+519
+00:22:49,382 --> 00:22:51,840
+ANDI PENG: So right now it
+doesn't seem very logical for us
+
+520
+00:22:51,840 --> 00:22:54,690
+to spend all of this time doing
+this super complicated thing when
+
+521
+00:22:54,690 --> 00:22:57,606
+all we've done is just create two
+integers with the value of 5, right?
+
+522
+00:22:57,606 --> 00:22:58,900
+It doesn't make sense.
+
+523
+00:22:58,900 --> 00:23:03,060
+But once we'll go over
+memory allocation and-- we'll
+
+524
+00:23:03,060 --> 00:23:06,067
+go over why this may be
+handy and useful later on.
+
+525
+00:23:06,067 --> 00:23:09,150
+Trust me when I say we don't just
+create these arbitrary functions for you
+
+526
+00:23:09,150 --> 00:23:11,340
+guys to learn because we're
+trying to mess with you.
+
+527
+00:23:11,340 --> 00:23:14,550
+There's actually uses for all of these
+things and we will talk about them.
+
+528
+00:23:14,550 --> 00:23:14,950
+AUDIENCE: Awesome.
+
+529
+00:23:14,950 --> 00:23:15,350
+ANDI PENG: Yeah.
+
+530
+00:23:15,350 --> 00:23:16,150
+AUDIENCE: [INAUDIBLE].
+
+531
+00:23:16,150 --> 00:23:16,450
+ANDI PENG: Good question.
+
+532
+00:23:16,450 --> 00:23:17,510
+AUDIENCE: [INAUDIBLE].
+
+533
+00:23:17,510 --> 00:23:18,000
+ANDI PENG: It's not.
+
+534
+00:23:18,000 --> 00:23:18,666
+It really isn't.
+
+535
+00:23:18,666 --> 00:23:21,050
+AUDIENCE: --two variables
+that also equal [INAUDIBLE].
+
+536
+00:23:21,050 --> 00:23:22,400
+OK.
+
+537
+00:23:22,400 --> 00:23:23,070
+ANDI PENG: Yeah.
+
+538
+00:23:23,070 --> 00:23:23,570
+OK.
+
+539
+00:23:23,570 --> 00:23:25,249
+Before I move on, is everyone clear?
+
+540
+00:23:25,249 --> 00:23:26,790
+I know Taylor, you got in a bit late.
+
+541
+00:23:26,790 --> 00:23:27,490
+It's OK.
+
+542
+00:23:27,490 --> 00:23:28,100
+It's online.
+
+543
+00:23:28,100 --> 00:23:30,600
+You'll watch the first 20
+minutes and you'll be all good.
+
+544
+00:23:30,600 --> 00:23:31,190
+OK.
+
+545
+00:23:31,190 --> 00:23:31,690
+Cool.
+
+546
+00:23:31,690 --> 00:23:35,597
+
+
+547
+00:23:35,597 --> 00:23:37,140
+All right.
+
+548
+00:23:37,140 --> 00:23:41,270
+So this is essentially kind of a
+similar thing that we just did.
+
+549
+00:23:41,270 --> 00:23:43,100
+It's just in a graphical form.
+
+550
+00:23:43,100 --> 00:23:47,070
+If you were to track what
+just happened, int x equals 5,
+
+551
+00:23:47,070 --> 00:23:52,159
+all we've done at this point is
+create a variable named x of type int.
+
+552
+00:23:52,159 --> 00:23:54,200
+We're going to store the
+value of 5 inside of it.
+
+553
+00:23:54,200 --> 00:23:57,366
+There's no pointer because we haven't
+actually created a pointer yet, right?
+
+554
+00:23:57,366 --> 00:24:00,302
+And then in the next
+line, int star pointer,
+
+555
+00:24:00,302 --> 00:24:02,760
+that's where we're actually
+physically creating the pointer
+
+556
+00:24:02,760 --> 00:24:05,010
+and we're setting that
+equal to, or referencing
+
+557
+00:24:05,010 --> 00:24:07,250
+the pointer, to ampersand x.
+
+558
+00:24:07,250 --> 00:24:10,002
+Which is where wherever in
+memory this happened to be.
+
+559
+00:24:10,002 --> 00:24:12,210
+I didn't actually bother
+making up a value this time.
+
+560
+00:24:12,210 --> 00:24:14,900
+But in this case, that point
+you would be equal to that.
+
+561
+00:24:14,900 --> 00:24:18,060
+And then down there, the star
+pointer is the dereferencing.
+
+562
+00:24:18,060 --> 00:24:20,310
+That's where we're
+pulling the information.
+
+563
+00:24:20,310 --> 00:24:24,170
+So that value at x is actually
+going to be equal to 35.
+
+564
+00:24:24,170 --> 00:24:30,390
+So at this point, we've essentially
+just reinitialized x to 35
+
+565
+00:24:30,390 --> 00:24:32,320
+without actually touching x.
+
+566
+00:24:32,320 --> 00:24:34,560
+Just through the pointer
+that was pointing to x,
+
+567
+00:24:34,560 --> 00:24:36,910
+we can actually change what x was.
+
+568
+00:24:36,910 --> 00:24:38,420
+I'm going to draw this out as well.
+
+569
+00:24:38,420 --> 00:24:52,200
+So here we've created
+some random address here.
+
+570
+00:24:52,200 --> 00:24:54,734
+Let's just say 0x00 again.
+
+571
+00:24:54,734 --> 00:24:56,150
+Let's just say that's the address.
+
+572
+00:24:56,150 --> 00:25:00,830
+And we've created an integer named x
+and the value I've assigned to it is 5.
+
+573
+00:25:00,830 --> 00:25:03,840
+In the second line, int
+pointer-- so now we've
+
+574
+00:25:03,840 --> 00:25:07,820
+got this second thing
+here called a pointer--
+
+575
+00:25:07,820 --> 00:25:14,310
+and we're going to-- let's just say
+it's some other random memory address.
+
+576
+00:25:14,310 --> 00:25:18,460
+So we're going to set this
+equal to whatever that was.
+
+577
+00:25:18,460 --> 00:25:21,540
+
+
+578
+00:25:21,540 --> 00:25:25,880
+And this pointer is going to
+point towards the value of x
+
+579
+00:25:25,880 --> 00:25:30,090
+And then, if we change
+the-- if we do star pointer,
+
+580
+00:25:30,090 --> 00:25:32,800
+that's going to the
+value of our pointer.
+
+581
+00:25:32,800 --> 00:25:36,979
+In this case, it's going to track
+this arrow over to this value of x
+
+582
+00:25:36,979 --> 00:25:38,395
+and it's going to change it to 35.
+
+583
+00:25:38,395 --> 00:25:41,400
+
+
+584
+00:25:41,400 --> 00:25:44,760
+Effectively, we just changed
+x without touching x.
+
+585
+00:25:44,760 --> 00:25:48,970
+Through just referencing pointers,
+we can go and change the value of x.
+
+586
+00:25:48,970 --> 00:25:50,050
+Does that make sense?
+
+587
+00:25:50,050 --> 00:25:55,200
+So in this way, we can actually rename
+and rechange and reassign values
+
+588
+00:25:55,200 --> 00:25:57,750
+to things that we didn't
+actually make ourselves.
+
+589
+00:25:57,750 --> 00:26:00,925
+Does that make sense to everybody?
+
+590
+00:26:00,925 --> 00:26:01,425
+Cool.
+
+591
+00:26:01,425 --> 00:26:04,450
+
+
+592
+00:26:04,450 --> 00:26:05,310
+OK.
+
+593
+00:26:05,310 --> 00:26:08,210
+So complex graphic here.
+
+594
+00:26:08,210 --> 00:26:09,360
+Go line by line.
+
+595
+00:26:09,360 --> 00:26:12,055
+Essentially, just do the exact
+same thing that I just did.
+
+596
+00:26:12,055 --> 00:26:15,977
+
+
+597
+00:26:15,977 --> 00:26:17,810
+Before I move on, I
+really want to just make
+
+598
+00:26:17,810 --> 00:26:19,370
+sure everyone's really clear on this.
+
+599
+00:26:19,370 --> 00:26:26,260
+So up here, the code that we have is
+int a equals 3, b equals 4, c equals 5.
+
+600
+00:26:26,260 --> 00:26:33,130
+So we've created three integers named
+a, b and c that are equal to 3, 4 and 5.
+
+601
+00:26:33,130 --> 00:26:38,460
+And then we're creating three pointers
+that point to each of those variables.
+
+602
+00:26:38,460 --> 00:26:41,760
+And now we're going
+to go over essentially
+
+603
+00:26:41,760 --> 00:26:44,240
+what happens when you operate on them.
+
+604
+00:26:44,240 --> 00:26:45,490
+So draw them out.
+
+605
+00:26:45,490 --> 00:26:48,156
+Take a sheet of paper-- I don't
+know if you guys all have paper,
+
+606
+00:26:48,156 --> 00:26:50,930
+but those of you who don't, maybe
+borrow from those of you who do.
+
+607
+00:26:50,930 --> 00:26:53,580
+Take sheets of paper
+and go line by line.
+
+608
+00:26:53,580 --> 00:26:59,390
+And at every operation that you do,
+I want you guys to actually write out
+
+609
+00:26:59,390 --> 00:27:00,800
+what is a, b and c at this point.
+
+610
+00:27:00,800 --> 00:27:03,550
+And what are the addresses, what are
+the pointers that point to a, b and c
+
+611
+00:27:03,550 --> 00:27:04,410
+at this point?
+
+612
+00:27:04,410 --> 00:27:07,150
+And then hopefully this
+will kind of step you guys
+
+613
+00:27:07,150 --> 00:27:08,900
+through how to think about pointers.
+
+614
+00:27:08,900 --> 00:27:10,650
+We're not going to go
+through all of them.
+
+615
+00:27:10,650 --> 00:27:13,450
+Maybe I'll give you five--
+like, three minutes.
+
+616
+00:27:13,450 --> 00:27:14,660
+Get started on the first few.
+
+617
+00:27:14,660 --> 00:28:10,410
+
+
+618
+00:28:10,410 --> 00:28:10,959
+Oh.
+
+619
+00:28:10,959 --> 00:28:11,459
+Oops.
+
+620
+00:28:11,459 --> 00:28:20,940
+
+
+621
+00:28:20,940 --> 00:28:26,950
+AUDIENCE: In the second line, why
+isn't the star [INAUDIBLE] variable?
+
+622
+00:28:26,950 --> 00:28:29,410
+ANDI PENG: Remember in
+operators, in the first week,
+
+623
+00:28:29,410 --> 00:28:31,730
+we talked about how
+if you do plus equals,
+
+624
+00:28:31,730 --> 00:28:35,320
+that just means a equals a plus c.
+
+625
+00:28:35,320 --> 00:28:39,370
+In this case-- so this is another
+way in which the star could be used.
+
+626
+00:28:39,370 --> 00:28:42,040
+In addition to referencing
+and declaring pointers,
+
+627
+00:28:42,040 --> 00:28:44,440
+remember that it also
+means multiplication.
+
+628
+00:28:44,440 --> 00:28:46,575
+So in this case, it'd just
+be a equals a times c.
+
+629
+00:28:46,575 --> 00:28:48,450
+That's just as different
+way of writing that.
+
+630
+00:28:48,450 --> 00:28:49,776
+AUDIENCE: a equals a times c.
+
+631
+00:28:49,776 --> 00:28:50,442
+ANDI PENG: Yeah.
+
+632
+00:28:50,442 --> 00:30:43,488
+
+
+633
+00:30:43,488 --> 00:30:47,130
+AUDIENCE: What does it mean if
+it says an ampersand letter?
+
+634
+00:30:47,130 --> 00:30:50,900
+ANDI PENG: Ampersand means
+you're going to that-- you're
+
+635
+00:30:50,900 --> 00:30:54,760
+going to the place the pointer is
+pointing and pulling the address.
+
+636
+00:30:54,760 --> 00:31:01,270
+So ampersand gives you the address,
+star gives you the actual value there.
+
+637
+00:31:01,270 --> 00:31:03,090
+AUDIENCE: Are we
+building on line by line?
+
+638
+00:31:03,090 --> 00:31:04,881
+ANDI PENG: You're
+building on line by line.
+
+639
+00:31:04,881 --> 00:31:07,260
+So just go one line at
+a time and then-- you
+
+640
+00:31:07,260 --> 00:31:08,470
+don't have to worry about
+finishing the whole thing.
+
+641
+00:31:08,470 --> 00:31:10,428
+Let's try to get through
+maybe two, three lines
+
+642
+00:31:10,428 --> 00:31:12,445
+and then we'll convene and finish this.
+
+643
+00:31:12,445 --> 00:31:15,530
+
+
+644
+00:31:15,530 --> 00:31:17,470
+It's totally OK if you guys are lost.
+
+645
+00:31:17,470 --> 00:31:19,334
+This is a really hard concept.
+
+646
+00:31:19,334 --> 00:31:22,500
+If you guys are worried that the class
+goes like this like David was saying,
+
+647
+00:31:22,500 --> 00:31:23,190
+it doesn't.
+
+648
+00:31:23,190 --> 00:31:25,949
+We're reaching the
+conceptual peak of difficulty
+
+649
+00:31:25,949 --> 00:31:27,740
+and then it's going to
+be downward sloping.
+
+650
+00:31:27,740 --> 00:31:29,110
+So you guys are almost there.
+
+651
+00:31:29,110 --> 00:31:31,080
+We have lots of candy to get
+you guys through the hump.
+
+652
+00:31:31,080 --> 00:31:32,940
+I think pretty much after fall
+break we'll be over the hump
+
+653
+00:31:32,940 --> 00:31:34,220
+and life will be fine again.
+
+654
+00:31:34,220 --> 00:31:36,580
+So no worries at all.
+
+655
+00:31:36,580 --> 00:32:30,732
+
+
+656
+00:32:30,732 --> 00:32:31,232
+All right.
+
+657
+00:32:31,232 --> 00:32:33,650
+I'll give you guys 20
+more seconds to wrap up.
+
+658
+00:32:33,650 --> 00:33:12,560
+
+
+659
+00:33:12,560 --> 00:33:13,330
+OK.
+
+660
+00:33:13,330 --> 00:33:13,830
+All right.
+
+661
+00:33:13,830 --> 00:33:16,370
+Let's take a stab at this.
+
+662
+00:33:16,370 --> 00:33:19,430
+As you guys give me answers,
+I'm just going to type them in.
+
+663
+00:33:19,430 --> 00:33:22,140
+And hopefully we-- can I?
+
+664
+00:33:22,140 --> 00:33:23,317
+I actually can't type it in.
+
+665
+00:33:23,317 --> 00:33:24,400
+I'll draw it on the board.
+
+666
+00:33:24,400 --> 00:33:31,420
+
+
+667
+00:33:31,420 --> 00:33:35,900
+So here in this first line
+we have a equals b star c.
+
+668
+00:33:35,900 --> 00:33:38,060
+Also Elliot brought up a
+really, really good point.
+
+669
+00:33:38,060 --> 00:33:42,500
+Because I forgot that in addition to
+the two ways we can use the star symbol,
+
+670
+00:33:42,500 --> 00:33:43,750
+there's actually a third way.
+
+671
+00:33:43,750 --> 00:33:44,990
+Multiplication.
+
+672
+00:33:44,990 --> 00:33:51,380
+And so just don't get confused because
+that is the first way of using a star.
+
+673
+00:33:51,380 --> 00:33:54,470
+It's just telling the computer
+that I'm about to create a pointer.
+
+674
+00:33:54,470 --> 00:34:00,600
+The second way by doing
+star of your pointer,
+
+675
+00:34:00,600 --> 00:34:04,320
+that tells the pointer that you want
+to access the data at that pointer.
+
+676
+00:34:04,320 --> 00:34:06,710
+And then, of course, there's
+just simple multiplication
+
+677
+00:34:06,710 --> 00:34:09,564
+between two numbers that tells you
+that I want to multiply the two.
+
+678
+00:34:09,564 --> 00:34:11,730
+So there's a lot of ways
+we can use the star symbol.
+
+679
+00:34:11,730 --> 00:34:13,830
+Don't get confused.
+
+680
+00:34:13,830 --> 00:34:16,991
+Just make sure that you guys understand
+exactly what all three of them
+
+681
+00:34:16,991 --> 00:34:18,630
+are doing.
+
+682
+00:34:18,630 --> 00:34:22,920
+So in this first line,
+a equals b times c.
+
+683
+00:34:22,920 --> 00:34:26,850
+So let's go through what
+is a, what is b, what is c?
+
+684
+00:34:26,850 --> 00:34:32,600
+And what is the pointer of a, the
+pointer to b, and the pointer to c?
+
+685
+00:34:32,600 --> 00:34:34,050
+What are those all equaling?
+
+686
+00:34:34,050 --> 00:34:34,600
+OK.
+
+687
+00:34:34,600 --> 00:34:38,650
+So we start off with a equals 3,
+b equals 4, and c equals 5, right?
+
+688
+00:34:38,650 --> 00:34:42,230
+So after that first line, can
+somebody tell me what a is?
+
+689
+00:34:42,230 --> 00:34:42,730
+Yeah.
+
+690
+00:34:42,730 --> 00:34:44,229
+Feel free to just shout out answers.
+
+691
+00:34:44,229 --> 00:34:44,929
+20.
+
+692
+00:34:44,929 --> 00:34:45,550
+Good.
+
+693
+00:34:45,550 --> 00:34:46,410
+What's b?
+
+694
+00:34:46,410 --> 00:34:47,777
+AUDIENCE: 4.
+
+695
+00:34:47,777 --> 00:34:48,610
+ANDI PENG: What's c?
+
+696
+00:34:48,610 --> 00:34:49,659
+AUDIENCE: 5.
+
+697
+00:34:49,659 --> 00:34:50,770
+ANDI PENG: Yay.
+
+698
+00:34:50,770 --> 00:34:51,639
+Good.
+
+699
+00:34:51,639 --> 00:34:55,707
+What are pa, pb, and pc?
+
+700
+00:34:55,707 --> 00:34:58,564
+AUDIENCE: 000001 and 002?
+
+701
+00:34:58,564 --> 00:34:59,230
+ANDI PENG: Yeah.
+
+702
+00:34:59,230 --> 00:35:02,390
+So kind of a trick question
+but not really because here I
+
+703
+00:35:02,390 --> 00:35:04,760
+drew out actual memories.
+
+704
+00:35:04,760 --> 00:35:08,520
+But because, for an example, we don't
+actually know what those numbers are,
+
+705
+00:35:08,520 --> 00:35:10,326
+we can just say ampersand.
+
+706
+00:35:10,326 --> 00:35:12,200
+I don't even know if I
+can draw an ampersand.
+
+707
+00:35:12,200 --> 00:35:18,022
+It's like-- how do you do it?
+
+708
+00:35:18,022 --> 00:35:19,790
+AUDIENCE: Like drawing an eight.
+
+709
+00:35:19,790 --> 00:35:20,870
+ANDI PENG: Like an eight.
+
+710
+00:35:20,870 --> 00:35:21,580
+Like that.
+
+711
+00:35:21,580 --> 00:35:22,080
+OK.
+
+712
+00:35:22,080 --> 00:35:23,446
+AUDIENCE: Bingo.
+
+713
+00:35:23,446 --> 00:35:25,350
+ANDI PENG: Killing it.
+
+714
+00:35:25,350 --> 00:35:28,202
+So ampersand a, you can just do that.
+
+715
+00:35:28,202 --> 00:35:30,410
+Because we don't actually
+care what the value of that
+
+716
+00:35:30,410 --> 00:35:32,880
+is, and it's some long
+ass value anyways,
+
+717
+00:35:32,880 --> 00:35:35,220
+we're using just giong
+to say ampersand a.
+
+718
+00:35:35,220 --> 00:35:37,024
+Then what's pb?
+
+719
+00:35:37,024 --> 00:35:37,940
+AUDIENCE: [INAUDIBLE].
+
+720
+00:35:37,940 --> 00:35:38,606
+ANDI PENG: Yeah.
+
+721
+00:35:38,606 --> 00:35:42,490
+
+
+722
+00:35:42,490 --> 00:35:43,500
+Cool.
+
+723
+00:35:43,500 --> 00:35:44,010
+All right.
+
+724
+00:35:44,010 --> 00:35:44,770
+Easy first line.
+
+725
+00:35:44,770 --> 00:35:45,270
+We got this.
+
+726
+00:35:45,270 --> 00:35:46,330
+Pointers are easy.
+
+727
+00:35:46,330 --> 00:35:47,450
+It's OK.
+
+728
+00:35:47,450 --> 00:35:48,740
+Second line.
+
+729
+00:35:48,740 --> 00:35:52,400
+And so star equals is the same
+thing as saying a equals a times c.
+
+730
+00:35:52,400 --> 00:35:54,730
+It's just an easier way of writing.
+
+731
+00:35:54,730 --> 00:35:57,170
+So we're not trying to make
+a point or anything here.
+
+732
+00:35:57,170 --> 00:36:00,600
+So done with the first line.
+
+733
+00:36:00,600 --> 00:36:05,144
+What is a on the second line
+after you do a equals a times c?
+
+734
+00:36:05,144 --> 00:36:05,777
+AUDIENCE: 100?
+
+735
+00:36:05,777 --> 00:36:06,610
+ANDI PENG: It's 100.
+
+736
+00:36:06,610 --> 00:36:07,795
+Good.
+
+737
+00:36:07,795 --> 00:36:08,864
+How about b?
+
+738
+00:36:08,864 --> 00:36:10,256
+AUDIENCE: [INAUDIBLE].
+
+739
+00:36:10,256 --> 00:36:11,335
+ANDI PENG: How about c?
+
+740
+00:36:11,335 --> 00:36:12,490
+AUDIENCE: [INAUDIBLE].
+
+741
+00:36:12,490 --> 00:36:14,530
+ANDI PENG: And how about pointers?
+
+742
+00:36:14,530 --> 00:36:15,800
+Are they-- the same, right?
+
+743
+00:36:15,800 --> 00:36:20,640
+
+
+744
+00:36:20,640 --> 00:36:21,940
+OK.
+
+745
+00:36:21,940 --> 00:36:23,820
+Now third line.
+
+746
+00:36:23,820 --> 00:36:26,400
+
+
+747
+00:36:26,400 --> 00:36:27,350
+Little trickier.
+
+748
+00:36:27,350 --> 00:36:29,760
+b equals star pa.
+
+749
+00:36:29,760 --> 00:36:34,189
+Can someone tell me, first,
+what does star pa equal?
+
+750
+00:36:34,189 --> 00:36:36,159
+AUDIENCE: It's the value
+that's stored at a.
+
+751
+00:36:36,159 --> 00:36:36,950
+ANDI PENG: Exactly.
+
+752
+00:36:36,950 --> 00:36:38,070
+And what is the value
+that's stored at a?
+
+753
+00:36:38,070 --> 00:36:38,860
+AUDIENCE: 100.
+
+754
+00:36:38,860 --> 00:36:39,660
+ANDI PENG: OK.
+
+755
+00:36:39,660 --> 00:36:43,462
+So what would a be after
+executing that line of code?
+
+756
+00:36:43,462 --> 00:36:44,760
+AUDIENCE: [INAUDIBLE].
+
+757
+00:36:44,760 --> 00:36:45,870
+ANDI PENG: What about b?
+
+758
+00:36:45,870 --> 00:36:46,780
+AUDIENCE: 100.
+
+759
+00:36:46,780 --> 00:36:47,620
+ANDI PENG: Yeah.
+
+760
+00:36:47,620 --> 00:36:49,995
+And then everything else is
+pretty much unchanged, right?
+
+761
+00:36:49,995 --> 00:36:51,239
+Because we didn't touch it.
+
+762
+00:36:51,239 --> 00:36:55,370
+
+
+763
+00:36:55,370 --> 00:36:57,010
+Cool.
+
+764
+00:36:57,010 --> 00:36:58,390
+Fourth line.
+
+765
+00:36:58,390 --> 00:37:00,390
+Slightly more complex.
+
+766
+00:37:00,390 --> 00:37:06,910
+So pc-- once again, pc is the pointer
+that pointed to c-- equals pa.
+
+767
+00:37:06,910 --> 00:37:11,520
+
+
+768
+00:37:11,520 --> 00:37:12,360
+What is a?
+
+769
+00:37:12,360 --> 00:37:14,525
+AUDIENCE: 100.
+
+770
+00:37:14,525 --> 00:37:15,400
+ANDI PENG: What is b?
+
+771
+00:37:15,400 --> 00:37:17,920
+AUDIENCE: 100.
+
+772
+00:37:17,920 --> 00:37:18,862
+ANDI PENG: What is c?
+
+773
+00:37:18,862 --> 00:37:19,993
+AUDIENCE: 5.
+
+774
+00:37:19,993 --> 00:37:20,867
+ANDI PENG: What's pa?
+
+775
+00:37:20,867 --> 00:37:22,775
+AUDIENCE: Ampersand a.
+
+776
+00:37:22,775 --> 00:37:23,730
+ANDI PENG: pb?
+
+777
+00:37:23,730 --> 00:37:26,010
+AUDIENCE: Ampersand b.
+
+778
+00:37:26,010 --> 00:37:27,730
+ANDI PENG: And tricky, what is pc now?
+
+779
+00:37:27,730 --> 00:37:28,410
+AUDIENCE: Ampersand a.
+
+780
+00:37:28,410 --> 00:37:29,034
+ANDI PENG: Yay.
+
+781
+00:37:29,034 --> 00:37:31,790
+Woo hoo.
+
+782
+00:37:31,790 --> 00:37:32,500
+You guys see?
+
+783
+00:37:32,500 --> 00:37:33,282
+This is all right.
+
+784
+00:37:33,282 --> 00:37:33,990
+It's not too bad.
+
+785
+00:37:33,990 --> 00:37:38,730
+We have more candy if it's not all
+right, but I think it's all right.
+
+786
+00:37:38,730 --> 00:37:41,900
+And we're going to go over just one
+more before we hit the harder ones.
+
+787
+00:37:41,900 --> 00:37:43,710
+The answers I have up here.
+
+788
+00:37:43,710 --> 00:37:47,050
+Essentially, know that this is
+just like math at this point.
+
+789
+00:37:47,050 --> 00:37:53,240
+When you have simple equations like a
+plus b, a times c, that's easy to do.
+
+790
+00:37:53,240 --> 00:37:56,390
+And when you start expanding upon
+it, just go order of operations.
+
+791
+00:37:56,390 --> 00:37:57,830
+Same thing as before.
+
+792
+00:37:57,830 --> 00:38:00,030
+Keep track of if your
+star is before something.
+
+793
+00:38:00,030 --> 00:38:01,640
+That tells you the value.
+
+794
+00:38:01,640 --> 00:38:04,640
+If you have an and before
+something, it tells you the address.
+
+795
+00:38:04,640 --> 00:38:07,860
+And you should assign either
+pointers or that value.
+
+796
+00:38:07,860 --> 00:38:11,260
+So let's go over this
+last one real quick.
+
+797
+00:38:11,260 --> 00:38:12,520
+Not this last one, sorry.
+
+798
+00:38:12,520 --> 00:38:13,340
+Actually, you guys can pick.
+
+799
+00:38:13,340 --> 00:38:16,006
+Which one do you guys want to go
+over out of the remaining three
+
+800
+00:38:16,006 --> 00:38:17,449
+that we have?
+
+801
+00:38:17,449 --> 00:38:20,490
+I don't think we can just do that
+because we can't just jump to the line.
+
+802
+00:38:20,490 --> 00:38:21,000
+OK.
+
+803
+00:38:21,000 --> 00:38:25,700
+You guys don't have a choice,
+it's just the third to last one.
+
+804
+00:38:25,700 --> 00:38:29,228
+Star pc equals b times c.
+
+805
+00:38:29,228 --> 00:38:30,144
+AUDIENCE: Star pb?
+
+806
+00:38:30,144 --> 00:38:32,117
+AUDIENCE: Star pb.
+
+807
+00:38:32,117 --> 00:38:32,825
+ANDI PENG: Sorry?
+
+808
+00:38:32,825 --> 00:38:33,599
+AUDIENCE: Star pb.
+
+809
+00:38:33,599 --> 00:38:34,390
+ANDI PENG: Star pb.
+
+810
+00:38:34,390 --> 00:38:35,100
+Oh, my bad.
+
+811
+00:38:35,100 --> 00:38:38,647
+Star pb equals b times c.
+
+812
+00:38:38,647 --> 00:38:40,230
+I'm going to give you guys 10 seconds.
+
+813
+00:38:40,230 --> 00:38:41,140
+Just quickly think.
+
+814
+00:38:41,140 --> 00:38:43,450
+This is that we have so
+far, what happens after we
+
+815
+00:38:43,450 --> 00:38:46,770
+execute that fifth line right there?
+
+816
+00:38:46,770 --> 00:38:54,030
+
+
+817
+00:38:54,030 --> 00:38:55,980
+OK.
+
+818
+00:38:55,980 --> 00:38:58,720
+What is a?
+
+819
+00:38:58,720 --> 00:38:59,560
+AUDIENCE: 100.
+
+820
+00:38:59,560 --> 00:39:02,470
+ANDI PENG: 100.
+
+821
+00:39:02,470 --> 00:39:03,610
+What is b now?
+
+822
+00:39:03,610 --> 00:39:04,330
+AUDIENCE: 500.
+
+823
+00:39:04,330 --> 00:39:05,250
+ANDI PENG: Good.
+
+824
+00:39:05,250 --> 00:39:08,570
+Does somebody want to explain
+to me why this is 500?
+
+825
+00:39:08,570 --> 00:39:10,540
+I don't feel like we
+actually ever touched b.
+
+826
+00:39:10,540 --> 00:39:13,950
+How did we manage to change the
+value of b without touching b?
+
+827
+00:39:13,950 --> 00:39:15,090
+Yeah?
+
+828
+00:39:15,090 --> 00:39:18,239
+AUDIENCE: Because star pb
+means the value at pb--
+
+829
+00:39:18,239 --> 00:39:19,030
+ANDI PENG: Exactly.
+
+830
+00:39:19,030 --> 00:39:19,790
+AUDIENCE: --which is b.
+
+831
+00:39:19,790 --> 00:39:20,581
+ANDI PENG: Exactly.
+
+832
+00:39:20,581 --> 00:39:26,880
+So here in our diagram, our pointer
+pb is actually pointing to this right
+
+833
+00:39:26,880 --> 00:39:28,690
+here, which is the actual physical b.
+
+834
+00:39:28,690 --> 00:39:31,340
+And so if you go and
+you do star pb, that's
+
+835
+00:39:31,340 --> 00:39:36,080
+following your arrow of your pointer
+and physically changing the value of b.
+
+836
+00:39:36,080 --> 00:39:39,532
+So that's why we have b changed to
+500 without actually touching b.
+
+837
+00:39:39,532 --> 00:39:42,490
+And then everything else remains the
+same because we didn't touch that.
+
+838
+00:39:42,490 --> 00:39:47,060
+
+
+839
+00:39:47,060 --> 00:39:48,530
+That's b.
+
+840
+00:39:48,530 --> 00:39:49,420
+Cool.
+
+841
+00:39:49,420 --> 00:39:50,485
+And then--
+
+842
+00:39:50,485 --> 00:39:51,910
+AUDIENCE: I just have a question.
+
+843
+00:39:51,910 --> 00:39:52,730
+ANDI PENG: Yeah?
+
+844
+00:39:52,730 --> 00:39:56,000
+AUDIENCE: Since we've--
+there's no longer ampersand c,
+
+845
+00:39:56,000 --> 00:39:59,620
+does that mean ampersand a
+redirect to the same thing now?
+
+846
+00:39:59,620 --> 00:40:00,520
+ANDI PENG: Yep.
+
+847
+00:40:00,520 --> 00:40:01,582
+So--
+
+848
+00:40:01,582 --> 00:40:03,540
+AUDIENCE: So the arrow
+kind of just moves and--
+
+849
+00:40:03,540 --> 00:40:04,030
+ANDI PENG: So essentially--
+
+850
+00:40:04,030 --> 00:40:05,405
+AUDIENCE: --now we can't access--
+
+851
+00:40:05,405 --> 00:40:08,387
+ANDI PENG: --when we
+dereference c on-- I forger.
+
+852
+00:40:08,387 --> 00:40:08,970
+What was that?
+
+853
+00:40:08,970 --> 00:40:09,560
+The third line?
+
+854
+00:40:09,560 --> 00:40:10,060
+Fourth.
+
+855
+00:40:10,060 --> 00:40:11,490
+Fourth line.
+
+856
+00:40:11,490 --> 00:40:14,910
+All we did was, essentially,
+change this arrow
+
+857
+00:40:14,910 --> 00:40:16,680
+and have it pointed towards a instead.
+
+858
+00:40:16,680 --> 00:40:19,480
+AUDIENCE: So we can't access c anymore.
+
+859
+00:40:19,480 --> 00:40:22,520
+ANDI PENG: If you had this exact
+number, you could access it.
+
+860
+00:40:22,520 --> 00:40:23,260
+But, no.
+
+861
+00:40:23,260 --> 00:40:25,680
+We don't have a pointer
+pointing towards c anymore.
+
+862
+00:40:25,680 --> 00:40:27,430
+I think if you wanted
+to re-access it, you
+
+863
+00:40:27,430 --> 00:40:30,390
+would create another
+pointer that re-pointed to c
+
+864
+00:40:30,390 --> 00:40:32,856
+or dereferenced this and pointed back.
+
+865
+00:40:32,856 --> 00:40:35,730
+So, no, as of right now, the three
+pointers, none of them point to c.
+
+866
+00:40:35,730 --> 00:40:38,800
+
+
+867
+00:40:38,800 --> 00:40:40,110
+Everyone good?
+
+868
+00:40:40,110 --> 00:40:41,440
+Answers are online.
+
+869
+00:40:41,440 --> 00:40:45,210
+Feel free to, after section, go over
+the last two and test yourselves.
+
+870
+00:40:45,210 --> 00:40:47,840
+Same concepts, just a
+little bit trickier.
+
+871
+00:40:47,840 --> 00:40:51,860
+Just follow through the logic of
+why things are different things.
+
+872
+00:40:51,860 --> 00:40:54,530
+And hint, pointers are
+a topic that we love
+
+873
+00:40:54,530 --> 00:40:58,780
+to cover on quizzes because they're
+conceptually very challenging.
+
+874
+00:40:58,780 --> 00:41:01,360
+So I would suggest that you
+guys all review this chart
+
+875
+00:41:01,360 --> 00:41:05,916
+or slash similar concepts to
+this before your quiz next week.
+
+876
+00:41:05,916 --> 00:41:06,864
+AUDIENCE: Excuse me.
+
+877
+00:41:06,864 --> 00:41:07,530
+ANDI PENG: Yeah?
+
+878
+00:41:07,530 --> 00:41:09,708
+AUDIENCE: [INAUDIBLE]
+final one-- [INAUDIBLE].
+
+879
+00:41:09,708 --> 00:41:12,710
+
+
+880
+00:41:12,710 --> 00:41:15,770
+ANDI PENG: 50,000?
+
+881
+00:41:15,770 --> 00:41:17,850
+I would need to follow it back down.
+
+882
+00:41:17,850 --> 00:41:22,530
+But somewhere-- I think the line
+before, you created giant c value.
+
+883
+00:41:22,530 --> 00:41:26,250
+c equals this giant thing
+which is 100 times 500.
+
+884
+00:41:26,250 --> 00:41:27,006
+No.
+
+885
+00:41:27,006 --> 00:41:28,000
+AUDIENCE: [INAUDIBLE].
+
+886
+00:41:28,000 --> 00:41:28,625
+ANDI PENG: Yes.
+
+887
+00:41:28,625 --> 00:41:30,620
+100 times 100 which is 10,000.
+
+888
+00:41:30,620 --> 00:41:32,020
+Which is 10,000.
+
+889
+00:41:32,020 --> 00:41:35,410
+So back down there you're
+multiplying b and c.
+
+890
+00:41:35,410 --> 00:41:43,165
+So the pointer that points to b--
+which is the value of 500-- times a--
+
+891
+00:41:43,165 --> 00:41:44,480
+AUDIENCE: [INAUDIBLE].
+
+892
+00:41:44,480 --> 00:41:45,730
+ANDI PENG: Maybe that's wrong.
+
+893
+00:41:45,730 --> 00:41:49,514
+AUDIENCE: No, no, it's not. [INAUDIBLE]
+pointer at c is now pointing at a--
+
+894
+00:41:49,514 --> 00:41:50,180
+ANDI PENG: Yeah.
+
+895
+00:41:50,180 --> 00:41:50,840
+He's right.
+
+896
+00:41:50,840 --> 00:41:56,477
+AUDIENCE: --it's at its at a equals
+a times-- it's the value of c.
+
+897
+00:41:56,477 --> 00:41:59,560
+ANDI PENG: Can you say that a little
+bit louder so everybody can hear you?
+
+898
+00:41:59,560 --> 00:42:04,879
+AUDIENCE: So pointer at c now points
+to what the pointer of a used to point
+
+899
+00:42:04,879 --> 00:42:09,460
+to-- and still does-- but they point to
+the same thing which is the a, right?
+
+900
+00:42:09,460 --> 00:42:12,925
+The value a, however
+it's been newly defined.
+
+901
+00:42:12,925 --> 00:42:17,875
+And at the beginning of that you're
+saying a was previously 100 times
+
+902
+00:42:17,875 --> 00:42:21,340
+the value at b which is 500.
+
+903
+00:42:21,340 --> 00:42:24,305
+And so that's however much that is.
+
+904
+00:42:24,305 --> 00:42:24,805
+50,000.
+
+905
+00:42:24,805 --> 00:42:32,860
+They you're reassigning that to what the
+memory space at c is-- the pointer at c
+
+906
+00:42:32,860 --> 00:42:34,510
+is pointing to which is a.
+
+907
+00:42:34,510 --> 00:42:38,460
+So you're redefining a to be 50,000.
+
+908
+00:42:38,460 --> 00:42:40,210
+ANDI PENG: She could
+teach section for me.
+
+909
+00:42:40,210 --> 00:42:41,260
+Next time it's all yours.
+
+910
+00:42:41,260 --> 00:42:41,440
+Here.
+
+911
+00:42:41,440 --> 00:42:42,564
+Here's more candy for that.
+
+912
+00:42:42,564 --> 00:42:45,790
+You deserve candy for that.
+
+913
+00:42:45,790 --> 00:42:47,260
+AUDIENCE: I almost caught that.
+
+914
+00:42:47,260 --> 00:42:47,660
+ANDI PENG: You almost caught that.
+
+915
+00:42:47,660 --> 00:42:48,450
+That's all right.
+
+916
+00:42:48,450 --> 00:42:48,950
+Yeah.
+
+917
+00:42:48,950 --> 00:42:50,033
+But she was exactly right.
+
+918
+00:42:50,033 --> 00:42:54,469
+So what you have to do
+is that-- I think we
+
+919
+00:42:54,469 --> 00:42:56,510
+have to follow the fact
+that the pointers are now
+
+920
+00:42:56,510 --> 00:42:57,880
+pointing to different values.
+
+921
+00:42:57,880 --> 00:43:01,785
+So the value-- sorry, the
+pointer of c repointed to a.
+
+922
+00:43:01,785 --> 00:43:04,390
+And so that shifted all of our numbers.
+
+923
+00:43:04,390 --> 00:43:08,930
+And that's why, when you access the
+value stored there, it's different.
+
+924
+00:43:08,930 --> 00:43:10,490
+Does that make sense?
+
+925
+00:43:10,490 --> 00:43:11,380
+OK.
+
+926
+00:43:11,380 --> 00:43:12,820
+Cool.
+
+927
+00:43:12,820 --> 00:43:16,635
+Everyone good, before I move on?
+
+928
+00:43:16,635 --> 00:43:25,332
+AUDIENCE: Does the-- when you're going
+down the rows in the left column,
+
+929
+00:43:25,332 --> 00:43:30,494
+does the first row affect the second row
+and then the second-- like, it's all--
+
+930
+00:43:30,494 --> 00:43:31,160
+ANDI PENG: Yeah.
+
+931
+00:43:31,160 --> 00:43:37,610
+So imagine it's code where I just typed
+in a equals b times c, a star equals c.
+
+932
+00:43:37,610 --> 00:43:40,290
+Just imagine that I've
+just ran this code
+
+933
+00:43:40,290 --> 00:43:42,710
+and I didn't print out what
+all of these things were.
+
+934
+00:43:42,710 --> 00:43:46,200
+If I were just to print the first
+thing at the top, it would be here.
+
+935
+00:43:46,200 --> 00:43:48,510
+If after I ran all of
+those lines of code,
+
+936
+00:43:48,510 --> 00:43:51,160
+what these values should
+be at the end are that.
+
+937
+00:43:51,160 --> 00:43:53,290
+So I've actually written a program here.
+
+938
+00:43:53,290 --> 00:43:55,840
+I haven't done all of
+the multiplication.
+
+939
+00:43:55,840 --> 00:43:58,310
+But just imagine.
+
+940
+00:43:58,310 --> 00:44:00,370
+So here I just have a
+program called pointers.
+
+941
+00:44:00,370 --> 00:44:04,190
+I'm going to zoom in if you guys-- OK.
+
+942
+00:44:04,190 --> 00:44:07,580
+So I've created variables a, b, and c.
+
+943
+00:44:07,580 --> 00:44:09,640
+I've set them equal to
+3, 4, and 5 and I've
+
+944
+00:44:09,640 --> 00:44:11,770
+created their corresponding pointers.
+
+945
+00:44:11,770 --> 00:44:14,550
+And then here I'm just going
+to print out what that is.
+
+946
+00:44:14,550 --> 00:44:15,833
+So let me run that.
+
+947
+00:44:15,833 --> 00:44:21,520
+
+
+948
+00:44:21,520 --> 00:44:24,750
+Do you guys see-- crap.
+
+949
+00:44:24,750 --> 00:44:28,150
+Do you guys see how a,
+b and c are those values
+
+950
+00:44:28,150 --> 00:44:33,530
+but their pointers are this giant
+garbage value that we don't care about?
+
+951
+00:44:33,530 --> 00:44:36,690
+So if I were to actually plug
+in all the multiplication
+
+952
+00:44:36,690 --> 00:44:39,770
+and then reprint all of
+this, it would execute out
+
+953
+00:44:39,770 --> 00:44:44,509
+to what that is at the bottom.
+
+954
+00:44:44,509 --> 00:44:47,300
+So if you guys want to play around
+with actually physically coding,
+
+955
+00:44:47,300 --> 00:44:49,000
+you guys can just plug all of those in.
+
+956
+00:44:49,000 --> 00:44:52,860
+The code will be online and then your
+values should print to that afterwards.
+
+957
+00:44:52,860 --> 00:44:56,170
+And then you'll see how the pointer
+addresses have actually reassigned.
+
+958
+00:44:56,170 --> 00:44:59,190
+So you'll see how the
+address of c actually becomes
+
+959
+00:44:59,190 --> 00:45:00,920
+to equal whatever the address of a was.
+
+960
+00:45:00,920 --> 00:45:04,140
+And they'll match whatever
+that large number is.
+
+961
+00:45:04,140 --> 00:45:06,530
+Good question.
+
+962
+00:45:06,530 --> 00:45:07,550
+Everyone all right?
+
+963
+00:45:07,550 --> 00:45:10,300
+One last call for questions.
+
+964
+00:45:10,300 --> 00:45:11,590
+OK.
+
+965
+00:45:11,590 --> 00:45:12,090
+All right.
+
+966
+00:45:12,090 --> 00:45:15,940
+So prepare to have your mind
+blown a slightly bit more.
+
+967
+00:45:15,940 --> 00:45:18,000
+Arrays are actually just pointers.
+
+968
+00:45:18,000 --> 00:45:19,010
+That's all they are.
+
+969
+00:45:19,010 --> 00:45:20,410
+And remember, what are strings?
+
+970
+00:45:20,410 --> 00:45:21,630
+They're also arrays.
+
+971
+00:45:21,630 --> 00:45:23,110
+So what are strings really?
+
+972
+00:45:23,110 --> 00:45:27,100
+They're like pointers to the
+beginning of a char of more chars.
+
+973
+00:45:27,100 --> 00:45:29,970
+So it's just concepts that start
+to build on top of each other.
+
+974
+00:45:29,970 --> 00:45:32,030
+So that's why-- you
+remember in lecture, David,
+
+975
+00:45:32,030 --> 00:45:34,990
+when he had that comparison
+of int string mom
+
+976
+00:45:34,990 --> 00:45:37,640
+is something and then
+another string mom and you
+
+977
+00:45:37,640 --> 00:45:41,240
+try to equate the two to each other,
+they give you different values.
+
+978
+00:45:41,240 --> 00:45:44,370
+It's because strings
+themselves aren't values.
+
+979
+00:45:44,370 --> 00:45:48,860
+All they are are memory addresses char--
+they are arrays of chars and arrays
+
+980
+00:45:48,860 --> 00:45:50,050
+are just pointers.
+
+981
+00:45:50,050 --> 00:45:54,022
+So, in essence, when
+David was comparing--
+
+982
+00:45:54,022 --> 00:45:55,355
+is it OK if I erase all of this?
+
+983
+00:45:55,355 --> 00:46:02,320
+
+
+984
+00:46:02,320 --> 00:46:09,750
+So in lecture when David
+had mom equals equals mom,
+
+985
+00:46:09,750 --> 00:46:11,630
+to us that seems to be the same thing.
+
+986
+00:46:11,630 --> 00:46:12,317
+Right?
+
+987
+00:46:12,317 --> 00:46:15,150
+But, in the computer underneath the
+hood, what is actually happening
+
+988
+00:46:15,150 --> 00:46:18,380
+is that this string,
+all that is is an array.
+
+989
+00:46:18,380 --> 00:46:21,420
+
+
+990
+00:46:21,420 --> 00:46:25,390
+With an ampersand-- or, sorry,
+with a null terminator at the end.
+
+991
+00:46:25,390 --> 00:46:28,311
+
+
+992
+00:46:28,311 --> 00:46:28,810
+Right?
+
+993
+00:46:28,810 --> 00:46:29,940
+Backslash 0.
+
+994
+00:46:29,940 --> 00:46:32,900
+Wrong backslash.
+
+995
+00:46:32,900 --> 00:46:35,960
+So all they were-- all
+these two strings were--
+
+996
+00:46:35,960 --> 00:46:40,360
+are array of size fours with
+the letters of mom and mom.
+
+997
+00:46:40,360 --> 00:46:44,780
+But what arrays really are are just
+pointers to a specific place in memory
+
+998
+00:46:44,780 --> 00:46:47,140
+that tells you to start your array.
+
+999
+00:46:47,140 --> 00:46:52,370
+So in this case, all this was
+was just some garbage value,
+
+1000
+00:46:52,370 --> 00:46:54,230
+some random pointer.
+
+1001
+00:46:54,230 --> 00:46:56,330
+And all this was was
+some other garbage value.
+
+1002
+00:46:56,330 --> 00:46:59,830
+Let's just say 0x200.
+
+1003
+00:46:59,830 --> 00:47:02,410
+And so when you try to equal
+them two to each other,
+
+1004
+00:47:02,410 --> 00:47:06,130
+they evaluate to false because
+the addresses-- the pointers
+
+1005
+00:47:06,130 --> 00:47:08,390
+that they were-- were different.
+
+1006
+00:47:08,390 --> 00:47:11,400
+Whereas it's different if you're
+trying to compare actual integers.
+
+1007
+00:47:11,400 --> 00:47:15,820
+Like if you wanted to compare--
+in the last example-- int a to b,
+
+1008
+00:47:15,820 --> 00:47:17,640
+they would evaluate
+to true as Elliot said
+
+1009
+00:47:17,640 --> 00:47:19,431
+because they were
+integers that were stored
+
+1010
+00:47:19,431 --> 00:47:21,320
+and you're evaluating just the values.
+
+1011
+00:47:21,320 --> 00:47:25,090
+Here, because strings are arrays
+and all arrays are pointers,
+
+1012
+00:47:25,090 --> 00:47:28,080
+that's why they aren't
+equal to each other.
+
+1013
+00:47:28,080 --> 00:47:31,210
+So kind of confusing, that graphic.
+
+1014
+00:47:31,210 --> 00:47:32,450
+But let's just imagine.
+
+1015
+00:47:32,450 --> 00:47:38,110
+We've create an array of size
+3 with index from 0 to 2-- 0,
+
+1016
+00:47:38,110 --> 00:47:41,530
+1, 2 with the values of 1,
+2, and 3 stored in them.
+
+1017
+00:47:41,530 --> 00:47:43,820
+All the array really
+does-- here, let's just
+
+1018
+00:47:43,820 --> 00:47:46,720
+say I'm creating a pointer
+to that array that's
+
+1019
+00:47:46,720 --> 00:47:50,810
+accessing the value at the
+first index of this array.
+
+1020
+00:47:50,810 --> 00:47:52,890
+So here it would be 0.
+
+1021
+00:47:52,890 --> 00:47:53,390
+Right?
+
+1022
+00:47:53,390 --> 00:47:56,820
+Does everyone understand how
+that first line evaluated?
+
+1023
+00:47:56,820 --> 00:47:57,420
+Great.
+
+1024
+00:47:57,420 --> 00:48:00,800
+And so if you wanted to initialize
+the additional values after that,
+
+1025
+00:48:00,800 --> 00:48:04,390
+all we're doing is reassigning.
+
+1026
+00:48:04,390 --> 00:48:08,810
+So 0, 1, 2, 1.
+
+1027
+00:48:08,810 --> 00:48:12,770
+So this pointer that was once
+pointing to here, all we're doing
+
+1028
+00:48:12,770 --> 00:48:15,540
+is moving it down.
+
+1029
+00:48:15,540 --> 00:48:16,970
+That's what the plus 1 is doing.
+
+1030
+00:48:16,970 --> 00:48:18,500
+And then we can put 2 there.
+
+1031
+00:48:18,500 --> 00:48:23,250
+If we wanted to put 3 in the one
+after, we would erase this pointer,
+
+1032
+00:48:23,250 --> 00:48:25,170
+put 3 in there.
+
+1033
+00:48:25,170 --> 00:48:26,420
+Does that make sense everyone?
+
+1034
+00:48:26,420 --> 00:48:26,920
+Yeah.
+
+1035
+00:48:26,920 --> 00:48:28,086
+Did you have a question?
+
+1036
+00:48:28,086 --> 00:48:30,711
+AUDIENCE: It's [INAUDIBLE] have
+a question, I'll say it anyway.
+
+1037
+00:48:30,711 --> 00:48:35,496
+I don't think it's actually a
+question but-- in English, array
+
+1038
+00:48:35,496 --> 00:48:37,448
+equals 1 makes sense.
+
+1039
+00:48:37,448 --> 00:48:39,888
+We're like, OK, the first thing.
+
+1040
+00:48:39,888 --> 00:48:44,280
+But things are 0 index
+[INAUDIBLE] the array equals 0
+
+1041
+00:48:44,280 --> 00:48:48,024
+to indicate the first spot.
+
+1042
+00:48:48,024 --> 00:48:48,690
+ANDI PENG: Yeah.
+
+1043
+00:48:48,690 --> 00:48:53,740
+So actually what I'm doing here is
+I'm not accessing the first index.
+
+1044
+00:48:53,740 --> 00:48:57,930
+All I was doing-- so first of all,
+tell me what does star array do?
+
+1045
+00:48:57,930 --> 00:48:59,480
+What does a star before a pointer do?
+
+1046
+00:48:59,480 --> 00:49:00,855
+AUDIENCE: It indicates a pointer.
+
+1047
+00:49:00,855 --> 00:49:02,910
+That you're declaring a pointer.
+
+1048
+00:49:02,910 --> 00:49:04,380
+It de--
+
+1049
+00:49:04,380 --> 00:49:07,520
+ANDI PENG: It dereferences which means
+it goes and actually gets the value.
+
+1050
+00:49:07,520 --> 00:49:08,020
+Right?
+
+1051
+00:49:08,020 --> 00:49:13,030
+So in this case, you want to get
+the value here and set that to 1.
+
+1052
+00:49:13,030 --> 00:49:13,800
+Yeah?
+
+1053
+00:49:13,800 --> 00:49:17,050
+So I'm not actually-- I don't
+really care about the index of this,
+
+1054
+00:49:17,050 --> 00:49:21,406
+all I'm doing is just iterating down
+by moving my pointer down the array.
+
+1055
+00:49:21,406 --> 00:49:23,280
+And then eventually I
+have to stop it, right?
+
+1056
+00:49:23,280 --> 00:49:26,750
+And the way that I stop
+is when I hit, in the case
+
+1057
+00:49:26,750 --> 00:49:28,750
+of a string, a null terminator.
+
+1058
+00:49:28,750 --> 00:49:32,710
+I know, oh, if I hit a back-- if I see
+backslash 0, I know I'm done with this
+
+1059
+00:49:32,710 --> 00:49:35,270
+and I know that I can just
+stop iterating through.
+
+1060
+00:49:35,270 --> 00:49:36,200
+Really good question.
+
+1061
+00:49:36,200 --> 00:49:40,210
+And we'll really go farther
+in depth in this next week
+
+1062
+00:49:40,210 --> 00:49:43,990
+because the piece that's going to
+involve a lot of usage of pointers.
+
+1063
+00:49:43,990 --> 00:49:48,459
+But just know that right now,
+that's just a different more--
+
+1064
+00:49:48,459 --> 00:49:51,250
+that's just a different way for
+the computer to write, essentially,
+
+1065
+00:49:51,250 --> 00:49:52,470
+what we've been doing.
+
+1066
+00:49:52,470 --> 00:49:54,900
+Like David said in
+lecture, the way that we
+
+1067
+00:49:54,900 --> 00:50:01,720
+access an array is just by doing
+array 0, bracket 0, if we just
+
+1068
+00:50:01,720 --> 00:50:04,050
+wanted to access the first value.
+
+1069
+00:50:04,050 --> 00:50:10,280
+All the computer is doing is turning
+that into that and iterating itself.
+
+1070
+00:50:10,280 --> 00:50:13,580
+So we call it syntactic
+sugar which is just
+
+1071
+00:50:13,580 --> 00:50:18,420
+a fancy way of saying user friendly
+ways of us knowing how to program.
+
+1072
+00:50:18,420 --> 00:50:21,560
+But the computer
+underneath, what it's doing,
+
+1073
+00:50:21,560 --> 00:50:23,997
+it's actually just having
+a pointer that's adjusting.
+
+1074
+00:50:23,997 --> 00:50:26,330
+But the way that we write it,
+because it's easier for us
+
+1075
+00:50:26,330 --> 00:50:30,240
+to think about things in terms of
+boxes and how to move down boxes,
+
+1076
+00:50:30,240 --> 00:50:32,190
+is by having the brackets.
+
+1077
+00:50:32,190 --> 00:50:36,394
+Sorry, that was really,
+really poorly but-- yeah.
+
+1078
+00:50:36,394 --> 00:50:38,310
+AUDIENCE: So how would
+you compare two strings
+
+1079
+00:50:38,310 --> 00:50:40,560
+to see if they're equal to each other?
+
+1080
+00:50:40,560 --> 00:50:42,690
+ANDI PENG: So David wrote
+this program in lecture
+
+1081
+00:50:42,690 --> 00:50:45,274
+so I'm just going to go
+over quickly and briefly.
+
+1082
+00:50:45,274 --> 00:50:47,440
+The way you would do that
+is that you would actually
+
+1083
+00:50:47,440 --> 00:50:51,300
+need to go and compare the
+addresses-- or the values
+
+1084
+00:50:51,300 --> 00:50:52,810
+obtained from the pointers.
+
+1085
+00:50:52,810 --> 00:50:55,140
+So remember, how do you
+obtain the value here?
+
+1086
+00:50:55,140 --> 00:50:56,825
+I don't care about the address here.
+
+1087
+00:50:56,825 --> 00:50:58,950
+How do I actually get the
+value of whatever's here?
+
+1088
+00:50:58,950 --> 00:50:59,470
+AUDIENCE: [INAUDIBLE].
+
+1089
+00:50:59,470 --> 00:51:00,261
+ANDI PENG: Exactly.
+
+1090
+00:51:00,261 --> 00:51:05,090
+So you compare the star
+here versus the star here.
+
+1091
+00:51:05,090 --> 00:51:06,150
+Are those equal.
+
+1092
+00:51:06,150 --> 00:51:07,690
+And then you go down.
+
+1093
+00:51:07,690 --> 00:51:09,530
+Are the star here and
+the star here equal?
+
+1094
+00:51:09,530 --> 00:51:10,030
+OK.
+
+1095
+00:51:10,030 --> 00:51:10,283
+They're equal.
+
+1096
+00:51:10,283 --> 00:51:12,866
+And you just keep going down
+until you've hit the end of both.
+
+1097
+00:51:12,866 --> 00:51:16,190
+And if all of them are equal, then
+you know your string is equal.
+
+1098
+00:51:16,190 --> 00:51:18,130
+And C actually has a
+function written called
+
+1099
+00:51:18,130 --> 00:51:20,713
+String Comp which actually just
+does that for you so you dont'
+
+1100
+00:51:20,713 --> 00:51:22,140
+have to write it yourself.
+
+1101
+00:51:22,140 --> 00:51:23,274
+Yeah?
+
+1102
+00:51:23,274 --> 00:51:26,970
+AUDIENCE: I think in lecture
+is when we do the compare.
+
+1103
+00:51:26,970 --> 00:51:29,520
+We don't really need a
+counter like pi, right?
+
+1104
+00:51:29,520 --> 00:51:34,310
+ANDI PENG: You don't
+because we don't really care
+
+1105
+00:51:34,310 --> 00:51:36,250
+how many boxes we've iterated through.
+
+1106
+00:51:36,250 --> 00:51:39,580
+All we care is that we're going to
+keep going until I know to stop.
+
+1107
+00:51:39,580 --> 00:51:41,990
+And you know to stop when
+there's some sort of indication
+
+1108
+00:51:41,990 --> 00:51:45,310
+that you're at a null terminator.
+
+1109
+00:51:45,310 --> 00:51:45,930
+Yeah.
+
+1110
+00:51:45,930 --> 00:51:47,154
+So--
+
+1111
+00:51:47,154 --> 00:51:48,070
+AUDIENCE: [INAUDIBLE].
+
+1112
+00:51:48,070 --> 00:51:48,736
+ANDI PENG: Yeah.
+
+1113
+00:51:48,736 --> 00:51:51,950
+So in the case of comparing
+strings, I don't really
+
+1114
+00:51:51,950 --> 00:51:54,207
+care how many letters
+are-- I need to compare
+
+1115
+00:51:54,207 --> 00:51:56,540
+if they're true or false if
+they're equal to each other.
+
+1116
+00:51:56,540 --> 00:51:58,914
+I don't care how many letters
+are in each of them, right?
+
+1117
+00:51:58,914 --> 00:52:01,130
+I just care that this
+matches with this and the one
+
+1118
+00:52:01,130 --> 00:52:05,311
+after matches and the one after
+matches all the way up until the end.
+
+1119
+00:52:05,311 --> 00:52:05,810
+Right?
+
+1120
+00:52:05,810 --> 00:52:07,000
+Does that make sense?
+
+1121
+00:52:07,000 --> 00:52:10,166
+So I don't really care how many letters,
+I just care that all of the letters
+
+1122
+00:52:10,166 --> 00:52:11,050
+match.
+
+1123
+00:52:11,050 --> 00:52:12,910
+Yeah.
+
+1124
+00:52:12,910 --> 00:52:13,920
+OK.
+
+1125
+00:52:13,920 --> 00:52:16,840
+Can I move on from this?
+
+1126
+00:52:16,840 --> 00:52:18,489
+Great.
+
+1127
+00:52:18,489 --> 00:52:21,280
+We're running a little short on
+time so I'm going to just allow you
+
+1128
+00:52:21,280 --> 00:52:23,670
+guys to briefly look at this.
+
+1129
+00:52:23,670 --> 00:52:26,430
+Run it into your ID if
+you guys are curious.
+
+1130
+00:52:26,430 --> 00:52:30,030
+And you guys can see what
+this will be printing out.
+
+1131
+00:52:30,030 --> 00:52:30,640
+OK.
+
+1132
+00:52:30,640 --> 00:52:34,990
+So something that we'll also touch on a
+bit is the idea of pointer arithmetic.
+
+1133
+00:52:34,990 --> 00:52:38,180
+Which, all it is, is
+rather than adjusting
+
+1134
+00:52:38,180 --> 00:52:42,610
+the values of what is stored
+at the address of your pointer,
+
+1135
+00:52:42,610 --> 00:52:45,030
+it's just actually changing
+the address itself.
+
+1136
+00:52:45,030 --> 00:52:49,420
+So if you as the human wanted
+to adjust your pointer manually,
+
+1137
+00:52:49,420 --> 00:52:52,700
+the way you would do that is just
+do n times the size of the pointer.
+
+1138
+00:52:52,700 --> 00:52:53,240
+Right?
+
+1139
+00:52:53,240 --> 00:52:54,810
+So an int.
+
+1140
+00:52:54,810 --> 00:52:58,580
+An int-- how many bytes
+in memory is an int?
+
+1141
+00:52:58,580 --> 00:52:59,640
+It's four, right?
+
+1142
+00:52:59,640 --> 00:53:03,520
+So if I know I have an array of all
+ints and I want it to point to the one
+
+1143
+00:53:03,520 --> 00:53:08,470
+afterwards, I'd know I just have to
+move my pointer down four bytes, right?
+
+1144
+00:53:08,470 --> 00:53:12,440
+And so n times the size
+of the pointer bytes
+
+1145
+00:53:12,440 --> 00:53:15,890
+is however many bytes you're just
+going to move your pointer down by.
+
+1146
+00:53:15,890 --> 00:53:20,350
+So for example, if we have an array of
+ints, the first one, let's just say,
+
+1147
+00:53:20,350 --> 00:53:22,280
+is stored as 0x00.
+
+1148
+00:53:22,280 --> 00:53:26,150
+You know the next one is going to be at
+0x04 because that's four bytes later.
+
+1149
+00:53:26,150 --> 00:53:31,030
+And the one after that's going to
+be 0x08 and so on and so forth.
+
+1150
+00:53:31,030 --> 00:53:33,830
+And so, guys, take a look.
+
+1151
+00:53:33,830 --> 00:53:36,640
+All you're doing here is
+that you have a pointer y
+
+1152
+00:53:36,640 --> 00:53:43,700
+and you're adding that to your
+memory so that you can move down
+
+1153
+00:53:43,700 --> 00:53:45,559
+the blocks of memory allocated.
+
+1154
+00:53:45,559 --> 00:53:46,850
+Kind of a higher level concept.
+
+1155
+00:53:46,850 --> 00:53:48,820
+You guys won't need
+to know for this week,
+
+1156
+00:53:48,820 --> 00:53:51,290
+but that's all it's doing down there.
+
+1157
+00:53:51,290 --> 00:53:55,190
+
+
+1158
+00:53:55,190 --> 00:53:55,900
+OK.
+
+1159
+00:53:55,900 --> 00:53:56,710
+Another joke time.
+
+1160
+00:53:56,710 --> 00:54:01,360
+
+
+1161
+00:54:01,360 --> 00:54:02,780
+Two strings walk into a bar.
+
+1162
+00:54:02,780 --> 00:54:05,713
+One says, I'd like a rum
+and Coke garbage values.
+
+1163
+00:54:05,713 --> 00:54:08,796
+The other says, you'll have to excuse
+my friend, he's not null terminated.
+
+1164
+00:54:08,796 --> 00:54:10,390
+You guys get it.
+
+1165
+00:54:10,390 --> 00:54:10,890
+Sorry.
+
+1166
+00:54:10,890 --> 00:54:13,490
+This is how I keep myself
+going when I prep for section
+
+1167
+00:54:13,490 --> 00:54:15,650
+is I insert a couple joke slides.
+
+1168
+00:54:15,650 --> 00:54:16,150
+Anyways.
+
+1169
+00:54:16,150 --> 00:54:21,460
+
+
+1170
+00:54:21,460 --> 00:54:21,960
+OK.
+
+1171
+00:54:21,960 --> 00:54:24,290
+Before I move on--
+so, essentially, we've
+
+1172
+00:54:24,290 --> 00:54:30,600
+covered all the conceptual
+issues related to pointers.
+
+1173
+00:54:30,600 --> 00:54:34,090
+And then we're going to talk-- moving
+more, talk about why that's important
+
+1174
+00:54:34,090 --> 00:54:37,810
+and how that fits into the
+idea of memory management.
+
+1175
+00:54:37,810 --> 00:54:39,810
+But before I move on,
+does anyone have questions
+
+1176
+00:54:39,810 --> 00:54:43,880
+about pointer use, what's going
+on when you're creating pointers,
+
+1177
+00:54:43,880 --> 00:54:47,540
+how are the referencing each
+other, how are they dereferencing?
+
+1178
+00:54:47,540 --> 00:54:51,760
+Any questions about
+that before I move on?
+
+1179
+00:54:51,760 --> 00:54:53,060
+OK.
+
+1180
+00:54:53,060 --> 00:54:54,770
+Great.
+
+1181
+00:54:54,770 --> 00:54:58,170
+So this brings us into this
+larger higher level concept
+
+1182
+00:54:58,170 --> 00:55:00,310
+of memory management as a whole.
+
+1183
+00:55:00,310 --> 00:55:02,720
+So, essentially, in
+your computer, there's
+
+1184
+00:55:02,720 --> 00:55:06,300
+two basic types of memory or
+regions in which memory is stored.
+
+1185
+00:55:06,300 --> 00:55:10,210
+You have here what's called
+the heap and you have down here
+
+1186
+00:55:10,210 --> 00:55:11,550
+what's called the stack.
+
+1187
+00:55:11,550 --> 00:55:13,966
+And we're going to talk about
+the stack first because it's
+
+1188
+00:55:13,966 --> 00:55:16,910
+the more finagley one that you
+have to kind of conceptually
+
+1189
+00:55:16,910 --> 00:55:18,570
+understand what's going on.
+
+1190
+00:55:18,570 --> 00:55:23,930
+So all the stack is-- think of
+it as a physical stack of memory
+
+1191
+00:55:23,930 --> 00:55:28,880
+where you have a block of memory
+that's set aside for your program
+
+1192
+00:55:28,880 --> 00:55:30,180
+while it's running.
+
+1193
+00:55:30,180 --> 00:55:34,480
+And this is where, essentially, all
+of your local variables are stored.
+
+1194
+00:55:34,480 --> 00:55:38,300
+So this is just a zoomed
+in picture of that stack.
+
+1195
+00:55:38,300 --> 00:55:41,060
+The stack down there, I'm
+just zooming in a bit more.
+
+1196
+00:55:41,060 --> 00:55:46,170
+So, essentially, in a stack you have
+a bunch of function in your program.
+
+1197
+00:55:46,170 --> 00:55:48,250
+So let's just go back
+to the week two example
+
+1198
+00:55:48,250 --> 00:55:51,450
+where we had our main function
+as well as a cube function
+
+1199
+00:55:51,450 --> 00:55:56,410
+where we tried to create a function that
+cubed-- that took parameters as input,
+
+1200
+00:55:56,410 --> 00:55:59,110
+cubed them and returned
+them back to main.
+
+1201
+00:55:59,110 --> 00:56:02,459
+So the way that that's stored in memory
+is that you have your main function
+
+1202
+00:56:02,459 --> 00:56:03,250
+here at the bottom.
+
+1203
+00:56:03,250 --> 00:56:06,630
+And then with each additional function
+that you call and add on top of that,
+
+1204
+00:56:06,630 --> 00:56:07,960
+the memory just stacks on top.
+
+1205
+00:56:07,960 --> 00:56:10,190
+Think of it as a physical stack.
+
+1206
+00:56:10,190 --> 00:56:13,570
+And so you have all of you main
+variables of your main functions,
+
+1207
+00:56:13,570 --> 00:56:15,260
+everything that's going on here, stored.
+
+1208
+00:56:15,260 --> 00:56:17,440
+And then when you called
+cube, it goes and it
+
+1209
+00:56:17,440 --> 00:56:20,810
+creates copies of all those
+parameters and it stores them
+
+1210
+00:56:20,810 --> 00:56:23,010
+above in a different place.
+
+1211
+00:56:23,010 --> 00:56:24,280
+And so why do we care?
+
+1212
+00:56:24,280 --> 00:56:29,220
+The reason we care is that we can't just
+use the parameters here-- the variables
+
+1213
+00:56:29,220 --> 00:56:33,080
+here-- and we change them, we expect
+them to also be changed here, right?
+
+1214
+00:56:33,080 --> 00:56:35,910
+The idea is that they're saved
+in different places in memory
+
+1215
+00:56:35,910 --> 00:56:40,540
+so that, when you're accessing different
+functions, what you think is happening
+
+1216
+00:56:40,540 --> 00:56:45,520
+isn't actually happening because the
+memory bits aren't interconnected.
+
+1217
+00:56:45,520 --> 00:56:50,530
+And so the question that's really
+important for us to kind of understand
+
+1218
+00:56:50,530 --> 00:56:54,100
+is, what if, when we're running
+a program, the size of a function
+
+1219
+00:56:54,100 --> 00:56:57,159
+stack frame-- so physically, how
+much memory do we have to give it?
+
+1220
+00:56:57,159 --> 00:56:59,950
+Maybe it's a giant function so we
+have to give it that much memory.
+
+1221
+00:56:59,950 --> 00:57:02,230
+But if it were smaller we'd
+need a tiny little bit.
+
+1222
+00:57:02,230 --> 00:57:05,980
+So the idea is that when we're running
+a program the size of that function
+
+1223
+00:57:05,980 --> 00:57:09,100
+is dependent upon how many
+variables and the type of variables
+
+1224
+00:57:09,100 --> 00:57:10,940
+that we want to give it.
+
+1225
+00:57:10,940 --> 00:57:13,910
+But what if the number of
+variables-- and their sizes,
+
+1226
+00:57:13,910 --> 00:57:16,140
+that's determined not
+by you the encoder but
+
+1227
+00:57:16,140 --> 00:57:20,580
+is determined by the actual
+user of your program.
+
+1228
+00:57:20,580 --> 00:57:24,240
+So if I wanted to create a function
+that took strings from the user,
+
+1229
+00:57:24,240 --> 00:57:27,630
+but I don't actually know how large
+those strings are, it's hard for me
+
+1230
+00:57:27,630 --> 00:57:30,220
+to allot the specific
+amount of memory needed.
+
+1231
+00:57:30,220 --> 00:57:30,920
+Right?
+
+1232
+00:57:30,920 --> 00:57:35,234
+Because if this function-- if
+this user inputs a giant string,
+
+1233
+00:57:35,234 --> 00:57:37,650
+it's going to create an error
+of what's called essentially
+
+1234
+00:57:37,650 --> 00:57:42,190
+stack overflow where you go beyond the
+bounds of the memory that you have.
+
+1235
+00:57:42,190 --> 00:57:44,250
+And so then what do we do?
+
+1236
+00:57:44,250 --> 00:57:47,290
+If we can't just create this giant
+stack that can save everything,
+
+1237
+00:57:47,290 --> 00:57:50,260
+what do we do to solve that problem?
+
+1238
+00:57:50,260 --> 00:57:54,364
+So we are going to move on and talk
+about this second type of memory
+
+1239
+00:57:54,364 --> 00:57:56,780
+and then we can talk about how
+we can use the two together
+
+1240
+00:57:56,780 --> 00:57:58,550
+to solve that question.
+
+1241
+00:57:58,550 --> 00:58:01,024
+So now we're going to move up
+to a different part of memory
+
+1242
+00:58:01,024 --> 00:58:01,690
+in our computer.
+
+1243
+00:58:01,690 --> 00:58:03,215
+That's called the heap.
+
+1244
+00:58:03,215 --> 00:58:07,150
+So all the heap is is a pool
+of available memory that
+
+1245
+00:58:07,150 --> 00:58:08,690
+can be allocated dynamically.
+
+1246
+00:58:08,690 --> 00:58:12,420
+So that can change while
+your program is running.
+
+1247
+00:58:12,420 --> 00:58:15,160
+And so a region of
+unused memory that can
+
+1248
+00:58:15,160 --> 00:58:18,200
+be allowed-- that can be
+allotted with the function
+
+1249
+00:58:18,200 --> 00:58:20,490
+called malloc, or memory allocation.
+
+1250
+00:58:20,490 --> 00:58:23,110
+So, essentially, when
+you're running a program,
+
+1251
+00:58:23,110 --> 00:58:29,560
+you can dynamically create memory from
+the heap and use that all down here.
+
+1252
+00:58:29,560 --> 00:58:34,280
+And so then, all of your functions
+here can access the heap.
+
+1253
+00:58:34,280 --> 00:58:37,960
+And so malloc, this idea that David
+kind of quickly, briefly glossed over
+
+1254
+00:58:37,960 --> 00:58:41,570
+in lecture, is just a way for
+you to control your memory.
+
+1255
+00:58:41,570 --> 00:58:45,470
+Like, when you're just creating
+stack functions, when you're just
+
+1256
+00:58:45,470 --> 00:58:48,290
+having your main function
+with your random functions,
+
+1257
+00:58:48,290 --> 00:58:52,270
+you think of them as children that just
+ran away when you were done with them.
+
+1258
+00:58:52,270 --> 00:58:53,690
+They were really bad children.
+
+1259
+00:58:53,690 --> 00:58:55,515
+You create them, you
+teach them something,
+
+1260
+00:58:55,515 --> 00:58:57,640
+and then when you want to
+access them again they're
+
+1261
+00:58:57,640 --> 00:58:59,850
+not there because your
+memory just ran away.
+
+1262
+00:58:59,850 --> 00:59:04,140
+But malloc, or the heap, is a way
+of having better children, where
+
+1263
+00:59:04,140 --> 00:59:07,090
+you can kind of create
+them, assign them values,
+
+1264
+00:59:07,090 --> 00:59:11,080
+use them-- that sounded really
+bad-- use them however you wanted,
+
+1265
+00:59:11,080 --> 00:59:14,002
+but then be able to control
+them and then free up memory
+
+1266
+00:59:14,002 --> 00:59:14,960
+whenever you need them.
+
+1267
+00:59:14,960 --> 00:59:18,085
+So then, when you're done with your
+function, the children come back to you
+
+1268
+00:59:18,085 --> 00:59:20,290
+and you still have that data there.
+
+1269
+00:59:20,290 --> 00:59:25,690
+So the way that we malloc, or create,
+memory is by the function void star
+
+1270
+00:59:25,690 --> 00:59:26,790
+malloc size in bytes.
+
+1271
+00:59:26,790 --> 00:59:29,730
+So that's just the prototype
+for why we do that.
+
+1272
+00:59:29,730 --> 00:59:35,800
+So an example is we create a pointer
+of type int-- int star pointer-- equals
+
+1273
+00:59:35,800 --> 00:59:38,120
+malloc size of int.
+
+1274
+00:59:38,120 --> 00:59:41,734
+So the reason why we do size
+of and not just a number--
+
+1275
+00:59:41,734 --> 00:59:43,650
+because we all know that
+an int is four bytes,
+
+1276
+00:59:43,650 --> 00:59:48,310
+right-- but an int is only four
+bytes on certain operating systems.
+
+1277
+00:59:48,310 --> 00:59:50,410
+The idea for us as
+programmers is that we
+
+1278
+00:59:50,410 --> 00:59:53,160
+want to create code that can
+run on all computers, not just
+
+1279
+00:59:53,160 --> 00:59:54,860
+our simple computers.
+
+1280
+00:59:54,860 --> 00:59:58,350
+And so that's why we like to use
+size of and not just the number four.
+
+1281
+00:59:58,350 --> 00:59:59,970
+Does that make sense to everyone?
+
+1282
+00:59:59,970 --> 01:00:03,930
+So size of-- all it is a C
+function or operator that
+
+1283
+01:00:03,930 --> 01:00:09,350
+tells you how many bytes of memory does
+a certain type of variable take up.
+
+1284
+01:00:09,350 --> 01:00:11,150
+So in this case, size of an int is four.
+
+1285
+01:00:11,150 --> 01:00:12,090
+Four bytes.
+
+1286
+01:00:12,090 --> 01:00:15,490
+And malloc is going to free
+up four bytes in your heap,
+
+1287
+01:00:15,490 --> 01:00:18,790
+then you can then use in your main
+function to be able to store memory.
+
+1288
+01:00:18,790 --> 01:00:22,460
+
+
+1289
+01:00:22,460 --> 01:00:24,860
+Is everyone clear on that so far?
+
+1290
+01:00:24,860 --> 01:00:25,918
+Yeah?
+
+1291
+01:00:25,918 --> 01:00:28,122
+AUDIENCE: I'm clear but
+just to be over clear--
+
+1292
+01:00:28,122 --> 01:00:28,705
+ANDI PENG: OK.
+
+1293
+01:00:28,705 --> 01:00:29,246
+Totally fine.
+
+1294
+01:00:29,246 --> 01:00:32,176
+AUDIENCE: --size of is [INAUDIBLE]
+can actually [INAUDIBLE]
+
+1295
+01:00:32,176 --> 01:00:34,384
+and it will actually do the
+thing that we want it to.
+
+1296
+01:00:34,384 --> 01:00:35,380
+It's not some pseudocode.
+
+1297
+01:00:35,380 --> 01:00:35,878
+ANDI PENG: No.
+
+1298
+01:00:35,878 --> 01:00:36,874
+AUDIENCE: It's like a real thing--
+
+1299
+01:00:36,874 --> 01:00:37,372
+ANDI PENG: This is real code.
+
+1300
+01:00:37,372 --> 01:00:38,455
+AUDIENCE: --we can use it.
+
+1301
+01:00:38,455 --> 01:00:39,862
+It's actual.
+
+1302
+01:00:39,862 --> 01:00:40,418
+Cool.
+
+1303
+01:00:40,418 --> 01:00:41,751
+ANDI PENG: Size of comes with C.
+
+1304
+01:00:41,751 --> 01:00:43,475
+AUDIENCE: That makes my life happier.
+
+1305
+01:00:43,475 --> 01:00:45,550
+ANDI PENG: Yeah.
+
+1306
+01:00:45,550 --> 01:00:48,610
+So if you're a lazy programmer
+like I kind of am sometimes,
+
+1307
+01:00:48,610 --> 01:00:50,402
+I don't like memorizing
+what size of an int
+
+1308
+01:00:50,402 --> 01:00:52,734
+is, I don't like memorizing
+with the size of a float is.
+
+1309
+01:00:52,734 --> 01:00:55,160
+Size of just tells you what
+it is and that's a lot easier.
+
+1310
+01:00:55,160 --> 01:00:59,880
+
+
+1311
+01:00:59,880 --> 01:01:00,440
+All right.
+
+1312
+01:01:00,440 --> 01:01:02,160
+So an important thing
+that you guys all want
+
+1313
+01:01:02,160 --> 01:01:04,620
+to keep in mind when you're
+using malloc is that you always
+
+1314
+01:01:04,620 --> 01:01:06,400
+have to check to see if it's null.
+
+1315
+01:01:06,400 --> 01:01:08,630
+So like I said, back to
+that picture of the heap.
+
+1316
+01:01:08,630 --> 01:01:11,390
+The heap is just this giant
+stack of memory that you've got.
+
+1317
+01:01:11,390 --> 01:01:16,740
+And you want to be able to take chunks
+of memory from it and use it, right?
+
+1318
+01:01:16,740 --> 01:01:19,750
+But what if you have no
+more memory in that heap?
+
+1319
+01:01:19,750 --> 01:01:23,650
+What if I've already used all
+of it and I try to malloc more?
+
+1320
+01:01:23,650 --> 01:01:24,864
+That doesn't exist.
+
+1321
+01:01:24,864 --> 01:01:26,780
+Well, that's why you're
+going to get an error.
+
+1322
+01:01:26,780 --> 01:01:29,220
+You're going to seg fault. You're going
+to have a segmentation fault where you
+
+1323
+01:01:29,220 --> 01:01:30,940
+try to access things that aren't there.
+
+1324
+01:01:30,940 --> 01:01:33,180
+And so the way we do
+that and the way that we
+
+1325
+01:01:33,180 --> 01:01:36,120
+prevent that is that we check
+to see if the pointer's null.
+
+1326
+01:01:36,120 --> 01:01:41,650
+So if I were to malloc something
+and I had no more memory,
+
+1327
+01:01:41,650 --> 01:01:45,501
+that would print an error because the
+pointer returned to you is just null.
+
+1328
+01:01:45,501 --> 01:01:47,750
+And so the way we do this--
+this is just great design,
+
+1329
+01:01:47,750 --> 01:01:52,140
+just memorize this-- is that any
+time you try to malloc anything,
+
+1330
+01:01:52,140 --> 01:01:55,300
+you're going to need to
+check to see if it's null.
+
+1331
+01:01:55,300 --> 01:01:58,257
+Because whenever you try to
+obtain memory from the heap,
+
+1332
+01:01:58,257 --> 01:02:00,340
+you always have to make
+sure that you have memory.
+
+1333
+01:02:00,340 --> 01:02:01,350
+That's all it is.
+
+1334
+01:02:01,350 --> 01:02:04,980
+So pretty much those three
+lines of code, memorize.
+
+1335
+01:02:04,980 --> 01:02:06,830
+Every time you malloc, plop them in.
+
+1336
+01:02:06,830 --> 01:02:08,190
+You're going to need them.
+
+1337
+01:02:08,190 --> 01:02:10,540
+Because I guarantee you, we're going
+to test you on a case and your computer
+
+1338
+01:02:10,540 --> 01:02:13,498
+is going to explode because you're
+going to try to access memory that's
+
+1339
+01:02:13,498 --> 01:02:16,680
+not there and things are going to
+crash and it's not going to be good.
+
+1340
+01:02:16,680 --> 01:02:19,290
+So just drill that into your brain.
+
+1341
+01:02:19,290 --> 01:02:21,370
+Malloc, null.
+
+1342
+01:02:21,370 --> 01:02:22,360
+Good.
+
+1343
+01:02:22,360 --> 01:02:22,860
+All right.
+
+1344
+01:02:22,860 --> 01:02:26,280
+
+
+1345
+01:02:26,280 --> 01:02:28,340
+Then this begets the
+question of what happens
+
+1346
+01:02:28,340 --> 01:02:30,550
+after we're done using that memory.
+
+1347
+01:02:30,550 --> 01:02:32,390
+Because the whole idea
+of having malloc was
+
+1348
+01:02:32,390 --> 01:02:36,460
+that we have this heap that we can take
+memory from and then we can use it.
+
+1349
+01:02:36,460 --> 01:02:37,220
+Right?
+
+1350
+01:02:37,220 --> 01:02:40,550
+And then what we have to remember
+is that, after we're done with it,
+
+1351
+01:02:40,550 --> 01:02:41,900
+we can then free it.
+
+1352
+01:02:41,900 --> 01:02:42,400
+Let it go.
+
+1353
+01:02:42,400 --> 01:02:43,979
+We can let it go.
+
+1354
+01:02:43,979 --> 01:02:47,020
+Or else you're also going to leak
+memory and more bad things will happen.
+
+1355
+01:02:47,020 --> 01:02:49,010
+Essentially, whenever
+you're touching memory,
+
+1356
+01:02:49,010 --> 01:02:51,800
+bad things will happen if you
+don't do things correctly.
+
+1357
+01:02:51,800 --> 01:02:55,150
+So you have to check to see, first,
+if you have the memory available.
+
+1358
+01:02:55,150 --> 01:02:58,700
+And then after you're done, you want to
+free it and allow your operating system
+
+1359
+01:02:58,700 --> 01:03:00,690
+to take it back.
+
+1360
+01:03:00,690 --> 01:03:04,870
+So the way we do that is just that
+function, void free, and the pointer
+
+1361
+01:03:04,870 --> 01:03:06,370
+to that heap of memory.
+
+1362
+01:03:06,370 --> 01:03:08,680
+So the example is free pointer.
+
+1363
+01:03:08,680 --> 01:03:11,580
+It's pretty easy, simple,
+don't want to forget it.
+
+1364
+01:03:11,580 --> 01:03:14,687
+So check to see if it's null, free.
+
+1365
+01:03:14,687 --> 01:03:15,270
+Everyone good?
+
+1366
+01:03:15,270 --> 01:03:22,660
+
+
+1367
+01:03:22,660 --> 01:03:27,325
+So once again, code that you guys
+can kind of quickly take a glance at.
+
+1368
+01:03:27,325 --> 01:03:34,964
+
+
+1369
+01:03:34,964 --> 01:03:37,880
+I know it's a lot of new syntax and
+it's all right if you're like, ah,
+
+1370
+01:03:37,880 --> 01:03:38,963
+what does that mean again?
+
+1371
+01:03:38,963 --> 01:03:40,250
+No worries.
+
+1372
+01:03:40,250 --> 01:03:46,785
+All this was meant to be is displaying
+an action, how all of these things
+
+1373
+01:03:46,785 --> 01:03:47,660
+can be used together.
+
+1374
+01:03:47,660 --> 01:03:52,190
+
+
+1375
+01:03:52,190 --> 01:03:54,190
+So that is put together
+like a bunch of the past
+
+1376
+01:03:54,190 --> 01:03:56,532
+slides we just went
+through into one program.
+
+1377
+01:03:56,532 --> 01:03:58,240
+AUDIENCE: In a way
+that we can actually--
+
+1378
+01:03:58,240 --> 01:03:59,570
+ANDI PENG: In a way that
+we can actually use.
+
+1379
+01:03:59,570 --> 01:04:02,379
+You could plop that into your ID,
+you can run it and it would work.
+
+1380
+01:04:02,379 --> 01:04:02,920
+AUDIENCE: OK.
+
+1381
+01:04:02,920 --> 01:04:04,140
+So that's real?
+
+1382
+01:04:04,140 --> 01:04:05,580
+ANDI PENG: That's real.
+
+1383
+01:04:05,580 --> 01:04:06,430
+Yeah.
+
+1384
+01:04:06,430 --> 01:04:08,690
+I try to make it so the
+fonts are different so
+
+1385
+01:04:08,690 --> 01:04:11,770
+that whenever I type real
+code the font is font code
+
+1386
+01:04:11,770 --> 01:04:15,471
+and that my note code is different, but
+I don't know if that actually works.
+
+1387
+01:04:15,471 --> 01:04:16,012
+AUDIENCE: No.
+
+1388
+01:04:16,012 --> 01:04:17,190
+I think that--
+
+1389
+01:04:17,190 --> 01:04:18,213
+ANDI PENG: OK.
+
+1390
+01:04:18,213 --> 01:04:20,578
+AUDIENCE: --sometimes
+[INAUDIBLE] and I'm
+
+1391
+01:04:20,578 --> 01:04:23,416
+like, that would be really cute
+if it was actually a usable thing
+
+1392
+01:04:23,416 --> 01:04:24,812
+but then it's not a usable thing.
+
+1393
+01:04:24,812 --> 01:04:26,270
+I like that this is a usable thing.
+
+1394
+01:04:26,270 --> 01:04:27,010
+ANDI PENG: OK.
+
+1395
+01:04:27,010 --> 01:04:27,510
+Yeah.
+
+1396
+01:04:27,510 --> 01:04:28,430
+I'll pass that along.
+
+1397
+01:04:28,430 --> 01:04:33,266
+Be like, David, kids are really
+sad when you write fake code.
+
+1398
+01:04:33,266 --> 01:04:34,240
+All right.
+
+1399
+01:04:34,240 --> 01:04:34,740
+Yeah?
+
+1400
+01:04:34,740 --> 01:04:37,686
+AUDIENCE: So the ptr here
+is not actually a pointer,
+
+1401
+01:04:37,686 --> 01:04:41,130
+it's a block of memory?
+
+1402
+01:04:41,130 --> 01:04:45,130
+ANDI PENG: So are you talking about
+the first line or the one down here?
+
+1403
+01:04:45,130 --> 01:04:48,170
+Are you talking about this one here?
+
+1404
+01:04:48,170 --> 01:04:50,910
+AUDIENCE: The ptr is
+different things in--
+
+1405
+01:04:50,910 --> 01:04:53,230
+ANDI PENG: Well, so up here
+what I'm doing-- actually,
+
+1406
+01:04:53,230 --> 01:04:54,660
+let's just go through here.
+
+1407
+01:04:54,660 --> 01:04:57,120
+This kind of ties in
+nicely all of the concepts.
+
+1408
+01:04:57,120 --> 01:05:01,840
+So here we have int star ptr.
+
+1409
+01:05:01,840 --> 01:05:04,160
+So int pointer, that's where
+we're actually creating
+
+1410
+01:05:04,160 --> 01:05:06,550
+a pointer that points to an integer.
+
+1411
+01:05:06,550 --> 01:05:08,230
+Well, it's going to point to an integer.
+
+1412
+01:05:08,230 --> 01:05:12,135
+And we're going to malloc, or
+give it, enough memory allotted
+
+1413
+01:05:12,135 --> 01:05:13,200
+to store an integer.
+
+1414
+01:05:13,200 --> 01:05:14,910
+So four bytes in this case.
+
+1415
+01:05:14,910 --> 01:05:18,024
+And then if that equals null-- equals
+equals null-- we're going to print.
+
+1416
+01:05:18,024 --> 01:05:20,440
+Oh, you have an error because
+you're out of memory, right?
+
+1417
+01:05:20,440 --> 01:05:22,814
+Otherwise the returning one,
+that just tells your program
+
+1418
+01:05:22,814 --> 01:05:24,170
+that you've got an error.
+
+1419
+01:05:24,170 --> 01:05:26,850
+And then if you do
+have that memory, it's
+
+1420
+01:05:26,850 --> 01:05:33,230
+going to store whatever get
+int gives you into the location
+
+1421
+01:05:33,230 --> 01:05:35,460
+and set it as the value of the pointer.
+
+1422
+01:05:35,460 --> 01:05:38,500
+So it's actually going to
+physically erase this value
+
+1423
+01:05:38,500 --> 01:05:41,702
+and put whatever get int returns.
+
+1424
+01:05:41,702 --> 01:05:43,910
+And then you're going to
+print whatever they entered.
+
+1425
+01:05:43,910 --> 01:05:46,080
+AUDIENCE: And that's
+going to be in the heap?
+
+1426
+01:05:46,080 --> 01:05:47,060
+ANDI PENG: That's going
+to be in the heap.
+
+1427
+01:05:47,060 --> 01:05:48,768
+AUDIENCE: And so that
+will be accessible.
+
+1428
+01:05:48,768 --> 01:05:51,220
+ANDI PENG: Exactly.
+
+1429
+01:05:51,220 --> 01:05:52,600
+Nice.
+
+1430
+01:05:52,600 --> 01:05:53,756
+Good.
+
+1431
+01:05:53,756 --> 01:05:59,289
+AUDIENCE: So when we free ptr at this
+final step, we are freeing the pointer
+
+1432
+01:05:59,289 --> 01:06:00,724
+or we're freeing the block?
+
+1433
+01:06:00,724 --> 01:06:01,390
+ANDI PENG: Yeah.
+
+1434
+01:06:01,390 --> 01:06:05,570
+So we're freeing the pointer--
+well, freeing the block of memory.
+
+1435
+01:06:05,570 --> 01:06:08,780
+So the only way we can even access
+the memory is by having the pointer.
+
+1436
+01:06:08,780 --> 01:06:10,730
+If you don't have the pointer, you're
+like, oh, I don't know where it is,
+
+1437
+01:06:10,730 --> 01:06:11,290
+right?
+
+1438
+01:06:11,290 --> 01:06:13,956
+So if you free it, you're essentially
+freeing that entire block.
+
+1439
+01:06:13,956 --> 01:06:16,500
+Then your computer knows, oh,
+there's nothing usable here,
+
+1440
+01:06:16,500 --> 01:06:19,396
+I can just put garbage
+values back into it again.
+
+1441
+01:06:19,396 --> 01:06:21,590
+AUDIENCE: So integers do exist on that?
+
+1442
+01:06:21,590 --> 01:06:23,481
+ANDI PENG: Do integers exist?
+
+1443
+01:06:23,481 --> 01:06:23,980
+Sorry.
+
+1444
+01:06:23,980 --> 01:06:25,271
+Can you rephrase your question?
+
+1445
+01:06:25,271 --> 01:06:28,330
+AUDIENCE: I meant, after you free the
+pointer, the integer that you get,
+
+1446
+01:06:28,330 --> 01:06:29,990
+will that still exist?
+
+1447
+01:06:29,990 --> 01:06:31,360
+ANDI PENG: No, it won't.
+
+1448
+01:06:31,360 --> 01:06:34,070
+
+
+1449
+01:06:34,070 --> 01:06:37,550
+Or at least it'll exist in your
+memory before your computer does
+
+1450
+01:06:37,550 --> 01:06:40,231
+whatever with it, but there's
+no way for you to get that.
+
+1451
+01:06:40,231 --> 01:06:41,480
+Because you freed the pointer.
+
+1452
+01:06:41,480 --> 01:06:43,150
+You don't know where it is anymore.
+
+1453
+01:06:43,150 --> 01:06:43,650
+Yeah.
+
+1454
+01:06:43,650 --> 01:06:46,500
+
+
+1455
+01:06:46,500 --> 01:06:48,560
+I'm going to move on here.
+
+1456
+01:06:48,560 --> 01:06:49,060
+Phew.
+
+1457
+01:06:49,060 --> 01:06:53,012
+So we're through a lot of the conceptual
+difficulties of memory management
+
+1458
+01:06:53,012 --> 01:06:54,720
+and we're just going
+to essentially spend
+
+1459
+01:06:54,720 --> 01:06:57,090
+5, 10 minutes going
+over syntax things that
+
+1460
+01:06:57,090 --> 01:07:03,240
+will be usable and useful for you guys,
+but nothing too conceptually out there.
+
+1461
+01:07:03,240 --> 01:07:03,740
+OK.
+
+1462
+01:07:03,740 --> 01:07:06,930
+So we're completely changing gears here.
+
+1463
+01:07:06,930 --> 01:07:09,360
+Memory management, difficult.
+Pointers, difficult. Yes.
+
+1464
+01:07:09,360 --> 01:07:10,530
+It's really, really hard.
+
+1465
+01:07:10,530 --> 01:07:11,270
+Totally fine.
+
+1466
+01:07:11,270 --> 01:07:13,800
+That's why your piece is
+going to be really hard.
+
+1467
+01:07:13,800 --> 01:07:17,740
+But if you go and do
+the things that we're
+
+1468
+01:07:17,740 --> 01:07:19,860
+supposed to do, make
+sure things are null,
+
+1469
+01:07:19,860 --> 01:07:21,830
+make sure to check if things are
+null, make sure to free memory,
+
+1470
+01:07:21,830 --> 01:07:23,910
+make sure things aren't
+leaking, you'll be good.
+
+1471
+01:07:23,910 --> 01:07:25,761
+You will be set.
+
+1472
+01:07:25,761 --> 01:07:26,260
+All right.
+
+1473
+01:07:26,260 --> 01:07:30,870
+So we're going to move into this
+completely new concept of redirection.
+
+1474
+01:07:30,870 --> 01:07:33,201
+And so before now, the
+main way that we've
+
+1475
+01:07:33,201 --> 01:07:35,700
+been interacting with our
+programs is through standard input
+
+1476
+01:07:35,700 --> 01:07:36,533
+and standard output.
+
+1477
+01:07:36,533 --> 01:07:37,040
+Right?
+
+1478
+01:07:37,040 --> 01:07:39,230
+We as the user input
+things and the computer
+
+1479
+01:07:39,230 --> 01:07:42,090
+spits it back to us in the terminal.
+
+1480
+01:07:42,090 --> 01:07:44,770
+But there are other
+ways for us to interact
+
+1481
+01:07:44,770 --> 01:07:47,810
+with the computer with our
+programs that aren't just me
+
+1482
+01:07:47,810 --> 01:07:50,245
+physically typing things
+in when I'm prompted.
+
+1483
+01:07:50,245 --> 01:07:52,620
+And the way we do that is
+through the greater than carrot
+
+1484
+01:07:52,620 --> 01:07:53,453
+and the pipe symbol.
+
+1485
+01:07:53,453 --> 01:07:55,970
+
+
+1486
+01:07:55,970 --> 01:07:58,630
+So we can also read and
+write to files using that.
+
+1487
+01:07:58,630 --> 01:08:03,230
+So the way that we do this is the
+greater than carrot, all that is doing
+
+1488
+01:08:03,230 --> 01:08:07,410
+is writing whatever your
+file has to a separate file.
+
+1489
+01:08:07,410 --> 01:08:11,870
+So for example, if I
+wanted to run hello world
+
+1490
+01:08:11,870 --> 01:08:14,330
+and I wanted the output to
+be saved in another file
+
+1491
+01:08:14,330 --> 01:08:17,359
+and not just printed out to me, I
+can just do greater than carrot,
+
+1492
+01:08:17,359 --> 01:08:18,410
+output.txt.
+
+1493
+01:08:18,410 --> 01:08:22,609
+So all that's doing is taking
+my hello.world program,
+
+1494
+01:08:22,609 --> 01:08:26,359
+and whatever the output is, it's
+saving in a file called output.txt.
+
+1495
+01:08:26,359 --> 01:08:29,850
+So the way that David did the
+.csv with names of students,
+
+1496
+01:08:29,850 --> 01:08:32,310
+it's the same that you guys can do.
+
+1497
+01:08:32,310 --> 01:08:35,137
+And what's especially
+useful here are the greater
+
+1498
+01:08:35,137 --> 01:08:38,220
+than-- the two greater than carrot
+signs which you can append to an output
+
+1499
+01:08:38,220 --> 01:08:40,795
+file, which means that you
+can just add on top of it.
+
+1500
+01:08:40,795 --> 01:08:43,420
+You can just keep adding to
+output.txt of each additional thing
+
+1501
+01:08:43,420 --> 01:08:44,490
+that you're doing.
+
+1502
+01:08:44,490 --> 01:08:48,010
+Or, if you start getting into more
+complicated programs, the two greater
+
+1503
+01:08:48,010 --> 01:08:50,939
+than carrot, that just prints
+out the error messages.
+
+1504
+01:08:50,939 --> 01:08:53,340
+So say you have a giant
+amount of error messages
+
+1505
+01:08:53,340 --> 01:08:54,810
+and you want to read
+through all of them and you
+
+1506
+01:08:54,810 --> 01:08:56,450
+don't want to have to scroll
+through your terminal,
+
+1507
+01:08:56,450 --> 01:08:58,651
+you can actually just do
+greater than output.txt
+
+1508
+01:08:58,651 --> 01:09:00,359
+and it's going to save
+all of your errors
+
+1509
+01:09:00,359 --> 01:09:02,900
+in a file called output.txt that
+you can go through and read.
+
+1510
+01:09:02,900 --> 01:09:04,622
+AUDIENCE: Where is the text file saved?
+
+1511
+01:09:04,622 --> 01:09:07,330
+ANDI PENG: It's saved in the same
+directory that your program is.
+
+1512
+01:09:07,330 --> 01:09:09,830
+So you just go back and look for it.
+
+1513
+01:09:09,830 --> 01:09:11,930
+And the same thing we
+can do for input is
+
+1514
+01:09:11,930 --> 01:09:14,300
+that we can actually take
+the contents of some file
+
+1515
+01:09:14,300 --> 01:09:16,380
+and we can input that into our program.
+
+1516
+01:09:16,380 --> 01:09:19,930
+So rather than having to do command
+line arguments of where you physically
+
+1517
+01:09:19,930 --> 01:09:21,680
+have to type things
+every single time, you
+
+1518
+01:09:21,680 --> 01:09:27,890
+can actually just have a file called
+input.txt that just puts it all in.
+
+1519
+01:09:27,890 --> 01:09:31,970
+And then pipe is specially cool because
+it can take the output of one program
+
+1520
+01:09:31,970 --> 01:09:34,170
+and use it as the input
+of another program.
+
+1521
+01:09:34,170 --> 01:09:38,430
+So for example, in your guys' Vigenere,
+there is this line of code that you
+
+1522
+01:09:38,430 --> 01:09:42,010
+guys are running that you maybe perhaps
+didn't really know what it was doing--
+
+1523
+01:09:42,010 --> 01:09:46,910
+this ./generate 1000 pipe ./42.
+
+1524
+01:09:46,910 --> 01:09:47,510
+Right?
+
+1525
+01:09:47,510 --> 01:09:51,100
+So all that's doing, if we just
+take a look at this step by step,
+
+1526
+01:09:51,100 --> 01:09:55,870
+the ./generate, that means I'm
+running my program generate.
+
+1527
+01:09:55,870 --> 01:09:58,850
+That is taking in 1,000 at its input.
+
+1528
+01:09:58,850 --> 01:10:03,330
+So I want to generate 1,000 random
+numbers and I'm going to pipe that--
+
+1529
+01:10:03,330 --> 01:10:07,790
+or I'm going to use that-- output
+as input for my program called find.
+
+1530
+01:10:07,790 --> 01:10:12,110
+And I'm going to try to find 42 out of
+the numbers generated from those 1,000
+
+1531
+01:10:12,110 --> 01:10:13,130
+numbers.
+
+1532
+01:10:13,130 --> 01:10:15,410
+Does that line of code makes
+sense to everyone else?
+
+1533
+01:10:15,410 --> 01:10:17,820
+So in this way we're saving
+ourselves a ton of steps.
+
+1534
+01:10:17,820 --> 01:10:21,880
+We don't have to run generate, save
+the file and then put it into find.
+
+1535
+01:10:21,880 --> 01:10:23,800
+We can just do it all in one line.
+
+1536
+01:10:23,800 --> 01:10:28,080
+So whatever generate is outputting,
+plop it right back in to find.
+
+1537
+01:10:28,080 --> 01:10:28,580
+Yeah?
+
+1538
+01:10:28,580 --> 01:10:32,484
+AUDIENCE: And in terms of command
+line arguments, is that-- that's
+
+1539
+01:10:32,484 --> 01:10:33,948
+three command line arguments?
+
+1540
+01:10:33,948 --> 01:10:38,340
+It's generate, find-- no, four--
+generate, 1,000, find and 42?
+
+1541
+01:10:38,340 --> 01:10:39,134
+Or is the--
+
+1542
+01:10:39,134 --> 01:10:42,050
+ANDI PENG: So the pipe doesn't really
+count as a command line argument
+
+1543
+01:10:42,050 --> 01:10:44,590
+because the compiler or the
+terminal knows that pipe,
+
+1544
+01:10:44,590 --> 01:10:48,590
+oh, I know that I must look before
+the pipe because that's my output
+
+1545
+01:10:48,590 --> 01:10:51,220
+and I must look after the
+pipe because that's my input.
+
+1546
+01:10:51,220 --> 01:10:54,520
+So it knows that-- the
+./generate and 1,000,
+
+1547
+01:10:54,520 --> 01:10:57,390
+those are two command then arguments
+just for the first program.
+
+1548
+01:10:57,390 --> 01:11:01,760
+And then the ./find 42 are two command
+line arguments for the second program.
+
+1549
+01:11:01,760 --> 01:11:02,980
+Yeah.
+
+1550
+01:11:02,980 --> 01:11:06,150
+Everyone good on this?
+
+1551
+01:11:06,150 --> 01:11:10,610
+So just real quick, what do
+these three lines of code do?
+
+1552
+01:11:10,610 --> 01:11:11,606
+Fairly simple.
+
+1553
+01:11:11,606 --> 01:11:13,605
+Anyone want to tell me
+what the first line does?
+
+1554
+01:11:13,605 --> 01:11:18,201
+
+
+1555
+01:11:18,201 --> 01:11:19,117
+AUDIENCE: [INAUDIBLE].
+
+1556
+01:11:19,117 --> 01:11:23,540
+
+
+1557
+01:11:23,540 --> 01:11:26,534
+ANDI PENG: Think of it as just--
+what does the greater than carrot do?
+
+1558
+01:11:26,534 --> 01:11:29,299
+AUDIENCE: It puts something
+into the next line.
+
+1559
+01:11:29,299 --> 01:11:31,090
+ANDI PENG: So what is
+the opposite of that?
+
+1560
+01:11:31,090 --> 01:11:33,514
+AUDIENCE: It puts the next
+thing into the first thing.
+
+1561
+01:11:33,514 --> 01:11:34,180
+ANDI PENG: Yeah.
+
+1562
+01:11:34,180 --> 01:11:37,550
+So all that's doing is you're
+running a program .hello--
+
+1563
+01:11:37,550 --> 01:11:40,010
+you're running a program named hello.
+
+1564
+01:11:40,010 --> 01:11:42,960
+You're going to give it
+an input called input.txt.
+
+1565
+01:11:42,960 --> 01:11:43,460
+Right?
+
+1566
+01:11:43,460 --> 01:11:46,250
+Because think of it as just
+physically going into hello.
+
+1567
+01:11:46,250 --> 01:11:50,632
+And then you're going to save the
+output in a file called output.txt.
+
+1568
+01:11:50,632 --> 01:11:51,715
+How about the second line?
+
+1569
+01:11:51,715 --> 01:11:54,164
+Want to tell me what
+the second line does?
+
+1570
+01:11:54,164 --> 01:11:55,080
+AUDIENCE: [INAUDIBLE].
+
+1571
+01:11:55,080 --> 01:12:00,522
+
+
+1572
+01:12:00,522 --> 01:12:01,230
+ANDI PENG: Sorry.
+
+1573
+01:12:01,230 --> 01:12:03,560
+Say that again.
+
+1574
+01:12:03,560 --> 01:12:04,060
+Elliot.
+
+1575
+01:12:04,060 --> 01:12:06,560
+AUDIENCE: So it puts a
+list of numbers into find.
+
+1576
+01:12:06,560 --> 01:12:07,540
+ANDI PENG: Yeah.
+
+1577
+01:12:07,540 --> 01:12:10,790
+So find, remember, in
+order to run find you
+
+1578
+01:12:10,790 --> 01:12:13,209
+need to know where you're searching.
+
+1579
+01:12:13,209 --> 01:12:15,500
+And so all that it's doing
+here is that it's giving you
+
+1580
+01:12:15,500 --> 01:12:18,720
+a pre assigned set of
+numbers, then find is going
+
+1581
+01:12:18,720 --> 01:12:21,680
+to search those for the number of 42.
+
+1582
+01:12:21,680 --> 01:12:23,620
+And then 15.
+
+1583
+01:12:23,620 --> 01:12:25,870
+Remember, you guys ran this
+when you tested your code.
+
+1584
+01:12:25,870 --> 01:12:27,590
+Now do you understand what it was doing?
+
+1585
+01:12:27,590 --> 01:12:31,069
+
+
+1586
+01:12:31,069 --> 01:12:33,520
+AUDIENCE: It's putting in
+the set of instructions
+
+1587
+01:12:33,520 --> 01:12:38,860
+to [INAUDIBLE] through a three by
+three to get the-- to win the game.
+
+1588
+01:12:38,860 --> 01:12:39,560
+ANDI PENG: Yeah.
+
+1589
+01:12:39,560 --> 01:12:41,480
+AUDIENCE: It inputs those
+instructions into the program.
+
+1590
+01:12:41,480 --> 01:12:42,438
+ANDI PENG: Pretty much.
+
+1591
+01:12:42,438 --> 01:12:47,840
+So the tilde CS50./pset3/3x3, all that
+was doing was that we created a text
+
+1592
+01:12:47,840 --> 01:12:50,700
+file that had all the
+titles ready for you guys.
+
+1593
+01:12:50,700 --> 01:12:56,020
+And so for your game to play, you just--
+we just put that into your program.
+
+1594
+01:12:56,020 --> 01:12:58,230
+So we had created this
+board and then we're
+
+1595
+01:12:58,230 --> 01:13:02,890
+putting that board into your program
+that ran it and created a tile of three
+
+1596
+01:13:02,890 --> 01:13:03,390
+by three.
+
+1597
+01:13:03,390 --> 01:13:04,730
+That's all that it was doing.
+
+1598
+01:13:04,730 --> 01:13:07,331
+And so there was actually magic
+going on behind the scenes
+
+1599
+01:13:07,331 --> 01:13:09,330
+that you guys didn't
+program that we programmed.
+
+1600
+01:13:09,330 --> 01:13:13,120
+But now you guys understand why
+we did that so it's all good.
+
+1601
+01:13:13,120 --> 01:13:15,750
+All right.
+
+1602
+01:13:15,750 --> 01:13:22,200
+So while redirection is a very
+useful, C has a general mechanism
+
+1603
+01:13:22,200 --> 01:13:25,030
+for reading and writing
+files of its own.
+
+1604
+01:13:25,030 --> 01:13:26,780
+Nothing conceptually
+difficult here so I'm
+
+1605
+01:13:26,780 --> 01:13:28,330
+just going to go through
+really, really quick.
+
+1606
+01:13:28,330 --> 01:13:30,621
+All it is is some memorization
+and making sure you guys
+
+1607
+01:13:30,621 --> 01:13:32,680
+are syntactically using it correctly.
+
+1608
+01:13:32,680 --> 01:13:35,640
+The way that we'd do that is
+create a reference to the file,
+
+1609
+01:13:35,640 --> 01:13:38,473
+we'd open the file, and then we
+would do all the reading and writing
+
+1610
+01:13:38,473 --> 01:13:39,929
+and then close the file.
+
+1611
+01:13:39,929 --> 01:13:41,720
+When thing you guys
+want to keep in mind is
+
+1612
+01:13:41,720 --> 01:13:47,360
+that while doing this, because
+we are closing and opening files,
+
+1613
+01:13:47,360 --> 01:13:51,230
+all of those commands are included
+in the standard-- the standard I/O
+
+1614
+01:13:51,230 --> 01:13:51,730
+library.
+
+1615
+01:13:51,730 --> 01:13:54,410
+So make sure whenever you're
+doing this that you've included--
+
+1616
+01:13:54,410 --> 01:13:59,020
+#included-- standard I/O dot h.
+
+1617
+01:13:59,020 --> 01:14:01,691
+So real quickly.
+
+1618
+01:14:01,691 --> 01:14:03,940
+Step one, you want to create
+a reference to that file.
+
+1619
+01:14:03,940 --> 01:14:07,670
+And now that we've done pointers, you
+guys can tell me what that line of code
+
+1620
+01:14:07,670 --> 01:14:08,630
+is doing.
+
+1621
+01:14:08,630 --> 01:14:10,250
+Right?
+
+1622
+01:14:10,250 --> 01:14:15,397
+All that it's doing is creating a
+pointer named file of type file.
+
+1623
+01:14:15,397 --> 01:14:17,980
+Because you know that it's going
+to point to a file and you're
+
+1624
+01:14:17,980 --> 01:14:20,460
+going to open the file.
+
+1625
+01:14:20,460 --> 01:14:23,320
+Then you're f open-- all
+it does is open the file.
+
+1626
+01:14:23,320 --> 01:14:24,560
+This is the file name.
+
+1627
+01:14:24,560 --> 01:14:26,060
+And there's three things you can do.
+
+1628
+01:14:26,060 --> 01:14:28,195
+You can read, write or append.
+
+1629
+01:14:28,195 --> 01:14:30,320
+Most generally, you guys
+will be reading or writing
+
+1630
+01:14:30,320 --> 01:14:33,195
+because you're either going to be
+inputting a file or outputting one.
+
+1631
+01:14:33,195 --> 01:14:36,500
+So pretty much r and w are the two
+things you're going to be using most.
+
+1632
+01:14:36,500 --> 01:14:41,722
+So in this case, all I've done is
+create a pointer to a file called file.
+
+1633
+01:14:41,722 --> 01:14:47,900
+I'm opening it and I'm reading-- I'm
+opening this file called file.txt
+
+1634
+01:14:47,900 --> 01:14:49,020
+and I'm reading it.
+
+1635
+01:14:49,020 --> 01:14:51,730
+That's all I'm doing at this point.
+
+1636
+01:14:51,730 --> 01:14:55,270
+And then these are just functions in
+which you can read different things
+
+1637
+01:14:55,270 --> 01:14:57,750
+or write different things
+or skip to different places
+
+1638
+01:14:57,750 --> 01:14:59,420
+where you want to look.
+
+1639
+01:14:59,420 --> 01:15:01,200
+All of these are online.
+
+1640
+01:15:01,200 --> 01:15:02,960
+All of these you can just Google.
+
+1641
+01:15:02,960 --> 01:15:04,280
+No need to memorize them.
+
+1642
+01:15:04,280 --> 01:15:07,160
+They're just there,
+disposable for your use
+
+1643
+01:15:07,160 --> 01:15:09,360
+if you would like to
+be able to use them.
+
+1644
+01:15:09,360 --> 01:15:13,210
+So if I wanted to just read
+in one character at a time,
+
+1645
+01:15:13,210 --> 01:15:15,360
+I would do file fgetc.
+
+1646
+01:15:15,360 --> 01:15:18,850
+Or if I wanted to read in a line of
+text at a time, I would do fgets.
+
+1647
+01:15:18,850 --> 01:15:19,840
+And so on and so forth.
+
+1648
+01:15:19,840 --> 01:15:23,640
+All of these just do different
+things you guys can use.
+
+1649
+01:15:23,640 --> 01:15:25,920
+And then lastly, after I'm
+done reading or writing,
+
+1650
+01:15:25,920 --> 01:15:27,770
+I'm just going to fclose that file.
+
+1651
+01:15:27,770 --> 01:15:31,760
+And remember, this is one
+of those, remember, please
+
+1652
+01:15:31,760 --> 01:15:34,220
+do this or else your file
+is not going to work.
+
+1653
+01:15:34,220 --> 01:15:36,130
+Always open a file before
+reading or reading,
+
+1654
+01:15:36,130 --> 01:15:38,310
+you have to always
+close it if you open it.
+
+1655
+01:15:38,310 --> 01:15:40,210
+Same thing with memory, right?
+
+1656
+01:15:40,210 --> 01:15:42,390
+You have to always take
+memory and free it.
+
+1657
+01:15:42,390 --> 01:15:45,200
+Here you have to always open a
+file before trying to read it
+
+1658
+01:15:45,200 --> 01:15:47,360
+and you always have to
+close it after you open it.
+
+1659
+01:15:47,360 --> 01:15:50,650
+
+
+1660
+01:15:50,650 --> 01:15:52,190
+So this is also online.
+
+1661
+01:15:52,190 --> 01:15:55,590
+I'm going to challenge you guys to
+kind of write a program that prints
+
+1662
+01:15:55,590 --> 01:15:57,080
+hello.world to a file.
+
+1663
+01:15:57,080 --> 01:15:58,280
+It's really simple.
+
+1664
+01:15:58,280 --> 01:16:00,854
+It essentially just involves
+the few lines of code
+
+1665
+01:16:00,854 --> 01:16:02,270
+that were just written previously.
+
+1666
+01:16:02,270 --> 01:16:04,311
+You're going to put them
+together and write that.
+
+1667
+01:16:04,311 --> 01:16:06,630
+
+
+1668
+01:16:06,630 --> 01:16:10,950
+So some important things to keep in mind
+while you guys are trying to use this.
+
+1669
+01:16:10,950 --> 01:16:14,410
+If this is all very useful
+for your pset this week,
+
+1670
+01:16:14,410 --> 01:16:18,000
+is that fopen creates a file pointer.
+
+1671
+01:16:18,000 --> 01:16:19,500
+It's not actually the physical file.
+
+1672
+01:16:19,500 --> 01:16:22,260
+All it is pointing to the
+file you want to open.
+
+1673
+01:16:22,260 --> 01:16:26,070
+And you're essentially, whenever
+you're using any of the other functions
+
+1674
+01:16:26,070 --> 01:16:30,130
+like fread or fwrite
+or fgetc or fgets, is
+
+1675
+01:16:30,130 --> 01:16:33,380
+that you're just passing around this
+pointer to all of those functions.
+
+1676
+01:16:33,380 --> 01:16:36,510
+So you're not actually taking that
+file and using it for your functions,
+
+1677
+01:16:36,510 --> 01:16:39,540
+you're just taking the pointer
+and putting it to those functions
+
+1678
+01:16:39,540 --> 01:16:41,620
+so that you can use.
+
+1679
+01:16:41,620 --> 01:16:45,360
+And if you forget to close
+your file after you use it,
+
+1680
+01:16:45,360 --> 01:16:47,710
+your program is going to leak memory.
+
+1681
+01:16:47,710 --> 01:16:50,700
+Essentially, all that means
+is that bad things will happen
+
+1682
+01:16:50,700 --> 01:16:52,960
+and your program will
+not function correctly.
+
+1683
+01:16:52,960 --> 01:16:54,880
+And so on the pset in
+the beginning, I think
+
+1684
+01:16:54,880 --> 01:16:59,180
+there's a short where he explained--
+Nate explained-- what Valgrind was.
+
+1685
+01:16:59,180 --> 01:17:02,350
+All Valgrind is is a way for you to
+make sure you're not leaking memory.
+
+1686
+01:17:02,350 --> 01:17:04,433
+So you guys want to make
+sure you watch that short
+
+1687
+01:17:04,433 --> 01:17:08,771
+because that explains it
+really well what happens.
+
+1688
+01:17:08,771 --> 01:17:09,270
+OK.
+
+1689
+01:17:09,270 --> 01:17:11,260
+So I went through that really,
+really quickly because I really
+
+1690
+01:17:11,260 --> 01:17:13,870
+want to get to talking about
+the pset before you guys leave.
+
+1691
+01:17:13,870 --> 01:17:16,690
+Does anyone have questions conceptually?
+
+1692
+01:17:16,690 --> 01:17:20,060
+Mostly all this is just syntax that
+you can use to read or write files.
+
+1693
+01:17:20,060 --> 01:17:25,090
+
+
+1694
+01:17:25,090 --> 01:17:28,140
+Finally, everyone's favorite.
+
+1695
+01:17:28,140 --> 01:17:31,760
+We're going to talk about the pset now.
+
+1696
+01:17:31,760 --> 01:17:35,990
+So, show of hands, how many of
+you guys read the spec this week?
+
+1697
+01:17:35,990 --> 01:17:36,660
+Oh, that's half.
+
+1698
+01:17:36,660 --> 01:17:38,000
+That's good.
+
+1699
+01:17:38,000 --> 01:17:41,430
+So this is actually a really,
+really fun pset in the sense
+
+1700
+01:17:41,430 --> 01:17:43,889
+that you feel like a
+detective because you're
+
+1701
+01:17:43,889 --> 01:17:46,930
+doing all these really cool things
+that you didn't know that you could do
+
+1702
+01:17:46,930 --> 01:17:49,050
+but now it's really cool
+that you can do them.
+
+1703
+01:17:49,050 --> 01:17:52,400
+And it's actually a lot
+simpler than you guys think.
+
+1704
+01:17:52,400 --> 01:17:56,640
+So the basic halves of
+this program are you're
+
+1705
+01:17:56,640 --> 01:18:00,330
+going to download source code or
+distribution code written by us.
+
+1706
+01:18:00,330 --> 01:18:03,540
+And you're going to have one folder
+called BMP and another folder
+
+1707
+01:18:03,540 --> 01:18:05,550
+called JPG.
+
+1708
+01:18:05,550 --> 01:18:08,370
+Within your BMP, you're
+going to have three programs.
+
+1709
+01:18:08,370 --> 01:18:10,400
+One of them is already written for you.
+
+1710
+01:18:10,400 --> 01:18:12,477
+So copy.c is a program
+we've already written
+
+1711
+01:18:12,477 --> 01:18:14,060
+for you that you're going to download.
+
+1712
+01:18:14,060 --> 01:18:19,440
+All that does is take as input a picture
+and makes a copy of it as output.
+
+1713
+01:18:19,440 --> 01:18:22,150
+That's all that file is doing.
+
+1714
+01:18:22,150 --> 01:18:25,260
+But what you want to do for
+whodunit-- so how many of you
+
+1715
+01:18:25,260 --> 01:18:30,450
+guys remember in fifth grade or maybe--
+you're younger-- maybe third grade,
+
+1716
+01:18:30,450 --> 01:18:33,945
+when you guys had secret messages and
+you had to put a piece of paper over it
+
+1717
+01:18:33,945 --> 01:18:35,440
+to decode the message?
+
+1718
+01:18:35,440 --> 01:18:36,000
+Yeah?
+
+1719
+01:18:36,000 --> 01:18:39,580
+So that's all we're doing
+except this time for a computer.
+
+1720
+01:18:39,580 --> 01:18:41,832
+So we've given you this lovely image.
+
+1721
+01:18:41,832 --> 01:18:43,540
+Doesn't look like
+anything but underneath
+
+1722
+01:18:43,540 --> 01:18:49,660
+it is a clue that's going to help you
+with answering the question we ask you.
+
+1723
+01:18:49,660 --> 01:18:54,170
+Essentially what you want
+to do is input that file,
+
+1724
+01:18:54,170 --> 01:18:56,610
+tweak some things around,
+maybe adjust the colors,
+
+1725
+01:18:56,610 --> 01:19:00,730
+shift things, so that whatever
+the message is can come through.
+
+1726
+01:19:00,730 --> 01:19:03,740
+So inside there are hidden
+pixels and information
+
+1727
+01:19:03,740 --> 01:19:07,140
+that if you write your code correctly
+is going to decode and tell you
+
+1728
+01:19:07,140 --> 01:19:08,500
+what this clue is.
+
+1729
+01:19:08,500 --> 01:19:12,480
+And so some helpful hints as to how
+you'd go about approaching this.
+
+1730
+01:19:12,480 --> 01:19:15,180
+You really want to familiarize
+yourself with file I/O
+
+1731
+01:19:15,180 --> 01:19:18,760
+because we're reading from
+files and writing to files.
+
+1732
+01:19:18,760 --> 01:19:19,260
+Right?
+
+1733
+01:19:19,260 --> 01:19:21,430
+And so whenever we do
+that, that involves
+
+1734
+01:19:21,430 --> 01:19:25,170
+file I/O. You're going to
+have to familiarize yourself
+
+1735
+01:19:25,170 --> 01:19:27,450
+with, how do you open up pictures files?
+
+1736
+01:19:27,450 --> 01:19:29,960
+How do you write to files as pictures?
+
+1737
+01:19:29,960 --> 01:19:31,640
+How do you do all of those things?
+
+1738
+01:19:31,640 --> 01:19:33,660
+That's going to be really useful.
+
+1739
+01:19:33,660 --> 01:19:36,190
+Secondly, how are you
+going to be able to change
+
+1740
+01:19:36,190 --> 01:19:38,140
+the colors that clear up this picture?
+
+1741
+01:19:38,140 --> 01:19:43,660
+It's probably going to involve
+adjusting your pixels or your RGB values
+
+1742
+01:19:43,660 --> 01:19:45,390
+somewhere in there, essentially.
+
+1743
+01:19:45,390 --> 01:19:47,800
+There's no right way of
+solving this as long as you
+
+1744
+01:19:47,800 --> 01:19:52,560
+can-- as long as you can kind of
+adjust those pixels to make it
+
+1745
+01:19:52,560 --> 01:19:54,640
+look like something that you care about.
+
+1746
+01:19:54,640 --> 01:19:56,207
+That's all we care about as well.
+
+1747
+01:19:56,207 --> 01:19:57,540
+So there's many ways to do this.
+
+1748
+01:19:57,540 --> 01:20:00,039
+Just play around with it until
+you get something that works.
+
+1749
+01:20:00,039 --> 01:20:02,900
+And you would be really
+surprised how few lines of code
+
+1750
+01:20:02,900 --> 01:20:04,510
+you need to actually do this.
+
+1751
+01:20:04,510 --> 01:20:08,700
+I'm talking like three
+lines of code total
+
+1752
+01:20:08,700 --> 01:20:11,310
+that you need to write
+in order to do this.
+
+1753
+01:20:11,310 --> 01:20:15,470
+So if you find yourself
+writing 40, 30 lines of code,
+
+1754
+01:20:15,470 --> 01:20:16,960
+you're probably doing it wrong.
+
+1755
+01:20:16,960 --> 01:20:19,390
+All you have to do is kind of
+play around with the colors
+
+1756
+01:20:19,390 --> 01:20:22,960
+and see how that works out.
+
+1757
+01:20:22,960 --> 01:20:27,040
+So then we head into a bit
+to harder of a problem.
+
+1758
+01:20:27,040 --> 01:20:30,190
+Here we have resize
+where we're asking you
+
+1759
+01:20:30,190 --> 01:20:34,210
+to-- we're giving you as input
+a picture and your resizing
+
+1760
+01:20:34,210 --> 01:20:36,710
+this image into something
+larger or something smaller
+
+1761
+01:20:36,710 --> 01:20:38,500
+depending on the dimensions we give you.
+
+1762
+01:20:38,500 --> 01:20:41,260
+So remember in lecture
+that David quickly
+
+1763
+01:20:41,260 --> 01:20:45,780
+glanced over how information
+is detected by your computers
+
+1764
+01:20:45,780 --> 01:20:47,590
+to mean it's a type of file.
+
+1765
+01:20:47,590 --> 01:20:50,530
+So a Word file has special
+characters in front of that
+
+1766
+01:20:50,530 --> 01:20:52,040
+tell your computer it's a Word file.
+
+1767
+01:20:52,040 --> 01:20:53,090
+Same thing with a JPEG.
+
+1768
+01:20:53,090 --> 01:20:55,131
+In this case we're going
+to give you a JPEG file.
+
+1769
+01:20:55,131 --> 01:20:58,300
+All we know is that JPEG
+file is a picture, right?
+
+1770
+01:20:58,300 --> 01:21:01,430
+But the computer distinguishes
+it in very specific ways.
+
+1771
+01:21:01,430 --> 01:21:04,070
+So at the beginning of
+any JPEG file, you're
+
+1772
+01:21:04,070 --> 01:21:08,210
+going to have what's called the bitmap
+info header and the bitmap file header.
+
+1773
+01:21:08,210 --> 01:21:11,080
+All those are are
+different pieces of data
+
+1774
+01:21:11,080 --> 01:21:14,870
+that tell your computer, hey,
+listen up, a JPEGs coming up
+
+1775
+01:21:14,870 --> 01:21:17,820
+and these are the dimensions or
+characteristics of that JPEG.
+
+1776
+01:21:17,820 --> 01:21:21,280
+So you guys really want to know
+what information is stored inside
+
+1777
+01:21:21,280 --> 01:21:23,560
+of those headers and
+what is the size of them.
+
+1778
+01:21:23,560 --> 01:21:25,640
+Because when you're running
+through your program,
+
+1779
+01:21:25,640 --> 01:21:27,370
+you're going to want to
+skip over that amount.
+
+1780
+01:21:27,370 --> 01:21:27,940
+Right?
+
+1781
+01:21:27,940 --> 01:21:29,910
+Because you don't care
+about modifying the header,
+
+1782
+01:21:29,910 --> 01:21:31,493
+you care about modifying what's after.
+
+1783
+01:21:31,493 --> 01:21:32,450
+Right?
+
+1784
+01:21:32,450 --> 01:21:36,040
+So make sure you guys know
+how large those things are.
+
+1785
+01:21:36,040 --> 01:21:39,065
+Secondly, before you begin
+trying to resize your image,
+
+1786
+01:21:39,065 --> 01:21:41,940
+you're probably going to want to
+save the dimensions of the original.
+
+1787
+01:21:41,940 --> 01:21:42,520
+Right?
+
+1788
+01:21:42,520 --> 01:21:45,550
+Because if I tell you this picture
+is 100 pixels by 100 pixels,
+
+1789
+01:21:45,550 --> 01:21:47,630
+and I want you to make
+it four times bigger,
+
+1790
+01:21:47,630 --> 01:21:50,460
+you know that you have to
+multiply those dimensions by four.
+
+1791
+01:21:50,460 --> 01:21:54,960
+So then you want an output file
+400 by 400 pixels, for example.
+
+1792
+01:21:54,960 --> 01:21:58,300
+So it's really useful for you guys to
+save the dimensions of the original.
+
+1793
+01:21:58,300 --> 01:22:00,780
+And then afterwards, after
+you're done resizing,
+
+1794
+01:22:00,780 --> 01:22:06,270
+you can write new headers with
+those new dimensions after resizing.
+
+1795
+01:22:06,270 --> 01:22:10,750
+And the way that you physically
+can create in large pixels
+
+1796
+01:22:10,750 --> 01:22:13,380
+is that you can write
+new RGB-- remember, RGB,
+
+1797
+01:22:13,380 --> 01:22:17,784
+all that stands for is red, green,
+and blue-- pixels to an out file.
+
+1798
+01:22:17,784 --> 01:22:20,200
+And you're going to want to
+have different amounts of what
+
+1799
+01:22:20,200 --> 01:22:21,200
+we call padding.
+
+1800
+01:22:21,200 --> 01:22:24,780
+All padding is are spaces
+before and after pictures
+
+1801
+01:22:24,780 --> 01:22:29,265
+that tell your-- essentially that
+tell your picture how large it
+
+1802
+01:22:29,265 --> 01:22:30,589
+should be taking up.
+
+1803
+01:22:30,589 --> 01:22:33,630
+This is very abstract for a lot of
+you if you haven't read the pset spec,
+
+1804
+01:22:33,630 --> 01:22:35,410
+but it's going to be
+very useful for when
+
+1805
+01:22:35,410 --> 01:22:36,460
+you're actually reading through it.
+
+1806
+01:22:36,460 --> 01:22:38,126
+You're like, oh, yeah, that makes sense.
+
+1807
+01:22:38,126 --> 01:22:39,310
+Why do I have to do this?
+
+1808
+01:22:39,310 --> 01:22:41,830
+Makes sense.
+
+1809
+01:22:41,830 --> 01:22:46,900
+Lastly, this is probably one of
+the most frustrating programs
+
+1810
+01:22:46,900 --> 01:22:51,160
+ever just because you can't
+tell if it's working or not.
+
+1811
+01:22:51,160 --> 01:22:54,980
+All this program, recover, is
+doing is that, if run properly,
+
+1812
+01:22:54,980 --> 01:22:59,290
+it should be able to suddenly
+recover 50 images that
+
+1813
+01:22:59,290 --> 01:23:01,025
+were lost on our hard drive.
+
+1814
+01:23:01,025 --> 01:23:03,900
+And so the problem with this program
+is that you can't really test it
+
+1815
+01:23:03,900 --> 01:23:06,220
+because either you recovered
+them or you didn't.
+
+1816
+01:23:06,220 --> 01:23:09,122
+And so you kind of just
+have to play around with it,
+
+1817
+01:23:09,122 --> 01:23:11,080
+and if your program is
+working properly, you'll
+
+1818
+01:23:11,080 --> 01:23:12,829
+suddenly see that in
+your directory you've
+
+1819
+01:23:12,829 --> 01:23:17,400
+got a giant amount of
+pictures that are now there.
+
+1820
+01:23:17,400 --> 01:23:20,490
+So how I would approach
+this problem is, we're
+
+1821
+01:23:20,490 --> 01:23:22,860
+going to give you what's
+called a card.raw file.
+
+1822
+01:23:22,860 --> 01:23:25,020
+Essentially, that's
+just a corrupted file
+
+1823
+01:23:25,020 --> 01:23:28,870
+with all the pictures stored that
+you're going to need to recover from.
+
+1824
+01:23:28,870 --> 01:23:32,330
+So you're probably going to want
+to input your card.raw, or open,
+
+1825
+01:23:32,330 --> 01:23:35,510
+your card.raw file and you're
+going to want to manipulate
+
+1826
+01:23:35,510 --> 01:23:37,840
+it to be able to store JPEGs.
+
+1827
+01:23:37,840 --> 01:23:42,830
+So I would start by tracking and storing
+each individual JPEG as you find it.
+
+1828
+01:23:42,830 --> 01:23:47,180
+You're not going to individually all
+of a sudden just create all 50 JPEGs.
+
+1829
+01:23:47,180 --> 01:23:50,190
+You're going to want to keep
+track of how many you're opening.
+
+1830
+01:23:50,190 --> 01:23:52,015
+And then you want to
+make sure, when you're
+
+1831
+01:23:52,015 --> 01:23:54,640
+writing to a buffer-- you guys
+will know what I'm talking about
+
+1832
+01:23:54,640 --> 01:23:57,806
+once you read the spec-- you want to
+make sure that you're using an unsigned
+
+1833
+01:23:57,806 --> 01:23:59,370
+char buffer.
+
+1834
+01:23:59,370 --> 01:24:01,790
+And then you want to ask
+yourself the question of,
+
+1835
+01:24:01,790 --> 01:24:05,797
+how many bytes are in a
+CF-- are in a card file?
+
+1836
+01:24:05,797 --> 01:24:08,380
+That's how many you're going to
+want to read into your buffer.
+
+1837
+01:24:08,380 --> 01:24:11,130
+You're going to want to make sure
+the two align because then you
+
+1838
+01:24:11,130 --> 01:24:12,850
+won't have random memory leaking out.
+
+1839
+01:24:12,850 --> 01:24:15,370
+You know exactly how many
+bytes you need and how many
+
+1840
+01:24:15,370 --> 01:24:18,270
+bytes that you want them to have.
+
+1841
+01:24:18,270 --> 01:24:21,510
+And then finally, you want to
+use a function called sprint--
+
+1842
+01:24:21,510 --> 01:24:26,160
+s print f-- to generate custom file
+names for every new JPEG that you find.
+
+1843
+01:24:26,160 --> 01:24:29,129
+So as you create and
+find JPEGs in your card,
+
+1844
+01:24:29,129 --> 01:24:31,170
+you're going to want to
+store them and name them.
+
+1845
+01:24:31,170 --> 01:24:31,700
+Right?
+
+1846
+01:24:31,700 --> 01:24:33,700
+And so you're going to
+want to use that function
+
+1847
+01:24:33,700 --> 01:24:36,770
+to create the names that
+can store all of your JPEGs.
+
+1848
+01:24:36,770 --> 01:24:41,062
+And lastly, don't forget to close
+each JPEG after you're done.
+
+1849
+01:24:41,062 --> 01:24:42,770
+Because what you're
+going to do is you're
+
+1850
+01:24:42,770 --> 01:24:44,728
+going to probably have
+some sort of a loop that
+
+1851
+01:24:44,728 --> 01:24:46,470
+iterates through all of your JPEGs.
+
+1852
+01:24:46,470 --> 01:24:50,460
+You're going to write a JPEG
+and rename it as you find it.
+
+1853
+01:24:50,460 --> 01:24:52,870
+But after you're done
+with every single JPEG,
+
+1854
+01:24:52,870 --> 01:24:56,630
+you need to close it so you can start
+over and move on to the next picture.
+
+1855
+01:24:56,630 --> 01:24:58,880
+And so something that's
+really fun that we like to do,
+
+1856
+01:24:58,880 --> 01:25:03,430
+because this is such a weird problem set
+but also a weirdly satisfying problem
+
+1857
+01:25:03,430 --> 01:25:08,380
+set, is that all of the pictures we
+have for you, if you recover properly,
+
+1858
+01:25:08,380 --> 01:25:11,910
+all the pictures are pictures of
+your wonderful teaching staff, both
+
+1859
+01:25:11,910 --> 01:25:14,240
+of Harvard, at here-- and here at Yale.
+
+1860
+01:25:14,240 --> 01:25:17,260
+And if you happen to
+recover all these pictures
+
+1861
+01:25:17,260 --> 01:25:20,020
+and identify the staff
+members in those cards,
+
+1862
+01:25:20,020 --> 01:25:23,040
+and take selfies with us if
+you find us around campus,
+
+1863
+01:25:23,040 --> 01:25:28,270
+for every photo you submit to us, we'll
+give you a gigabyte of Dropbox space.
+
+1864
+01:25:28,270 --> 01:25:30,060
+So let's do the math here.
+
+1865
+01:25:30,060 --> 01:25:33,010
+If there's 50 pictures and
+50 teaching staff members,
+
+1866
+01:25:33,010 --> 01:25:37,160
+if you happen to find all 50 of
+us, that's 50 gigabytes of Dropbox,
+
+1867
+01:25:37,160 --> 01:25:39,000
+basically, we'll be giving you guys.
+
+1868
+01:25:39,000 --> 01:25:42,380
+So some extra added incentives
+if you guys didn't just
+
+1869
+01:25:42,380 --> 01:25:44,480
+care about recovering lost images.
+
+1870
+01:25:44,480 --> 01:25:46,867
+There's also some added incentives.
+
+1871
+01:25:46,867 --> 01:25:47,825
+It's a fun problem set.
+
+1872
+01:25:47,825 --> 01:25:48,390
+It really is.
+
+1873
+01:25:48,390 --> 01:25:51,980
+It's kind of frustrating but then it
+becomes really fun when you realize,
+
+1874
+01:25:51,980 --> 01:25:54,230
+wow, it's working and now I
+have all of these pictures
+
+1875
+01:25:54,230 --> 01:25:55,604
+that I've just created by myself.
+
+1876
+01:25:55,604 --> 01:25:58,800
+
+
+1877
+01:25:58,800 --> 01:26:00,075
+Any questions on the pset?
+
+1878
+01:26:00,075 --> 01:26:02,408
+For anyone who's already
+started, if you have questions,
+
+1879
+01:26:02,408 --> 01:26:06,510
+I'll be here for a couple minutes after
+section if you want to talk to me.
+
+1880
+01:26:06,510 --> 01:26:07,320
+Well done, guys.
+
+1881
+01:26:07,320 --> 01:26:10,520
+I'm sorry, I information
+dumped on you guys.
+
+1882
+01:26:10,520 --> 01:26:13,670
+Pointers are really, really
+challenging and frustrating.
+
+1883
+01:26:13,670 --> 01:26:16,187
+And I'm really glad that
+you guys stayed with me.
+
+1884
+01:26:16,187 --> 01:26:18,020
+We'll talk more in depth
+about the next week
+
+1885
+01:26:18,020 --> 01:26:21,330
+as we start doing hash tables and
+more functions that involve them.
+
+1886
+01:26:21,330 --> 01:26:23,821
+
+
+1887
+01:26:23,821 --> 01:26:24,320
+Yeah.
+
+1888
+01:26:24,320 --> 01:26:26,278
+So if anyone has any
+questions, I'll be around.
+
+1889
+01:26:26,278 --> 01:26:29,330
+Thanks for coming and take more
+candy because there's more candy.
+
+1890
+01:26:29,330 --> 01:26:32,220
+
+
+1891
+01:26:32,220 --> 01:26:33,770
+Cool.
+
+1892
+01:26:33,770 --> 01:26:35,765

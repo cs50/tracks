@@ -1,0 +1,4874 @@
+1
+00:00:00,000 --> 00:00:00,940
+
+2
+00:00:00,940 --> 00:00:05,440
+>> [MUSIC PLAYING]
+
+3
+00:00:05,440 --> 00:00:11,577
+
+4
+00:00:11,577 --> 00:00:12,660
+DAVID J. MALAN: All right.
+
+5
+00:00:12,660 --> 00:00:15,590
+This is CS50, and this
+is the start of week two.
+
+6
+00:00:15,590 --> 00:00:19,120
+So let us begin today with a bug.
+
+7
+00:00:19,120 --> 00:00:20,974
+A bug, of course, is a
+mistake in a program,
+
+8
+00:00:20,974 --> 00:00:22,890
+and you'll get very
+familiar with this concept
+
+9
+00:00:22,890 --> 00:00:26,050
+if you've never programmed
+before. pset0 and now pset1.
+
+10
+00:00:26,050 --> 00:00:29,280
+But let's consider something
+a little simple at first.
+
+11
+00:00:29,280 --> 00:00:32,189
+This program here that I
+threw together in advance,
+
+12
+00:00:32,189 --> 00:00:37,280
+and I claim that this should print
+10 stars on the screen using printf,
+
+13
+00:00:37,280 --> 00:00:41,020
+but it's apparently buggy in some way.
+
+14
+00:00:41,020 --> 00:00:45,370
+>> Given that specification that
+it should print 10 stars,
+
+15
+00:00:45,370 --> 00:00:50,230
+but it doesn't apparently, what
+would you claim is the bug?
+
+16
+00:00:50,230 --> 00:00:52,004
+Yeah?
+
+17
+00:00:52,004 --> 00:00:54,420
+So it's an off by one error,
+and what do you mean by that?
+
+18
+00:00:54,420 --> 00:01:00,991
+
+19
+00:01:00,991 --> 00:01:01,490
+OK.
+
+20
+00:01:01,490 --> 00:01:09,820
+
+21
+00:01:09,820 --> 00:01:10,410
+Excellent.
+
+22
+00:01:10,410 --> 00:01:13,930
+So we've specified a
+start value of zero for i,
+
+23
+00:01:13,930 --> 00:01:18,399
+and we've specified an n value of 10,
+but we've used less than or equal to.
+
+24
+00:01:18,399 --> 00:01:21,190
+And the reason that this is two
+characters and not just one symbol,
+
+25
+00:01:21,190 --> 00:01:22,630
+like in a math book,
+is that you don't have
+
+26
+00:01:22,630 --> 00:01:24,880
+a way of expressing the
+one character equivalent.
+
+27
+00:01:24,880 --> 00:01:28,450
+>> So that means less than, but
+if you start counting at zero,
+
+28
+00:01:28,450 --> 00:01:31,690
+but you count all the way
+up through and equal to 10,
+
+29
+00:01:31,690 --> 00:01:34,170
+you're of course going to
+count 11 things in total.
+
+30
+00:01:34,170 --> 00:01:35,900
+And so you're going to print 11 stars.
+
+31
+00:01:35,900 --> 00:01:37,990
+So what might be a fix for this?
+
+32
+00:01:37,990 --> 00:01:39,970
+Yeah?
+
+33
+00:01:39,970 --> 00:01:43,980
+>> So just adjust the less than
+or equal to just be less than,
+
+34
+00:01:43,980 --> 00:01:46,250
+and there's, I claim, perhaps
+another solution, too.
+
+35
+00:01:46,250 --> 00:01:47,210
+What might else you do?
+
+36
+00:01:47,210 --> 00:01:48,590
+Yeah?
+
+37
+00:01:48,590 --> 00:01:53,660
+>> So start equaling it to 1, and
+leave the less than or equal to.
+
+38
+00:01:53,660 --> 00:01:56,187
+And frankly I would claim
+that, for a typical human,
+
+39
+00:01:56,187 --> 00:01:57,770
+this is probably more straightforward.
+
+40
+00:01:57,770 --> 00:02:00,280
+Start counting at 1 and
+count up through 10.
+
+41
+00:02:00,280 --> 00:02:01,690
+Essentially do what you mean.
+
+42
+00:02:01,690 --> 00:02:04,010
+>> But the reality is in
+programming, as we've seen,
+
+43
+00:02:04,010 --> 00:02:07,598
+computer scientists and programmers
+generally do start counting at zero.
+
+44
+00:02:07,598 --> 00:02:09,389
+And so that's fine once
+you get used to it.
+
+45
+00:02:09,389 --> 00:02:12,640
+Your condition will generally
+be something like less than.
+
+46
+00:02:12,640 --> 00:02:14,910
+So simply a logical
+error that we could now
+
+47
+00:02:14,910 --> 00:02:17,990
+fix and ultimately recompile
+this and get just 10.
+
+48
+00:02:17,990 --> 00:02:19,610
+>> Well how about this bug here?
+
+49
+00:02:19,610 --> 00:02:24,200
+Here, again, I claim that I have
+a goal of printing 10 stars--
+
+50
+00:02:24,200 --> 00:02:28,140
+one per line this time, but it doesn't.
+
+51
+00:02:28,140 --> 00:02:30,940
+Before we propose what
+the fix is, what does this
+
+52
+00:02:30,940 --> 00:02:34,640
+print visually if I were to compile
+and run this program do you think?
+
+53
+00:02:34,640 --> 00:02:35,140
+Yeah?
+
+54
+00:02:35,140 --> 00:02:38,360
+
+55
+00:02:38,360 --> 00:02:38,860
+>> Star.
+
+56
+00:02:38,860 --> 00:02:41,690
+So all the stars on the
+same line is what I heard,
+
+57
+00:02:41,690 --> 00:02:43,391
+and then the new line character.
+
+58
+00:02:43,391 --> 00:02:44,140
+So let's try that.
+
+59
+00:02:44,140 --> 00:02:48,710
+So make buggy-1, enter,
+and I see the clang command
+
+60
+00:02:48,710 --> 00:02:50,090
+that we talked about last time.
+
+61
+00:02:50,090 --> 00:02:55,180
+./buggy-1, and indeed I see all 10 stars
+on the same line even though I claim
+
+62
+00:02:55,180 --> 00:02:58,690
+in my specification just a comment atop
+the code that I intended to do one per
+
+63
+00:02:58,690 --> 00:02:59,230
+line.
+
+64
+00:02:59,230 --> 00:03:00,580
+But this looks right.
+
+65
+00:03:00,580 --> 00:03:04,620
+>> Now line 15 it looks like I'm
+printing a star, and then line 16
+
+66
+00:03:04,620 --> 00:03:06,620
+it looks like I'm printing
+a new line character,
+
+67
+00:03:06,620 --> 00:03:09,560
+and they're both indented so
+I'm inside of the loop clearly.
+
+68
+00:03:09,560 --> 00:03:13,610
+So shouldn't I be doing star, new
+line, star, new line, star, new line?
+
+69
+00:03:13,610 --> 00:03:14,110
+Yes?
+
+70
+00:03:14,110 --> 00:03:18,430
+
+71
+00:03:18,430 --> 00:03:21,240
+>> Yeah, unlike a language like
+Python, if you're familiar,
+
+72
+00:03:21,240 --> 00:03:23,540
+indentation doesn't
+matter to the computer.
+
+73
+00:03:23,540 --> 00:03:25,280
+It only matters to the human.
+
+74
+00:03:25,280 --> 00:03:29,860
+So whereas here I've invented lines
+15 and 16-- that looks beautiful,
+
+75
+00:03:29,860 --> 00:03:31,330
+but the computer doesn't care.
+
+76
+00:03:31,330 --> 00:03:34,640
+The computer cares about
+actually having curly braces
+
+77
+00:03:34,640 --> 00:03:36,310
+around these lines of code.
+
+78
+00:03:36,310 --> 00:03:39,520
+>> So that it's clear-- just like in
+Scratch-- that those two lines of code
+
+79
+00:03:39,520 --> 00:03:40,450
+should be executed.
+
+80
+00:03:40,450 --> 00:03:44,390
+Like one of those yellow Scratch puzzle
+pieces again and again and again.
+
+81
+00:03:44,390 --> 00:03:50,920
+>> So now if I re-run this
+program-- ./buggy-2-- Hm.
+
+82
+00:03:50,920 --> 00:03:51,770
+I have an error now.
+
+83
+00:03:51,770 --> 00:03:54,212
+What did I forget to do?
+
+84
+00:03:54,212 --> 00:03:55,420
+Yeah, so I didn't compile it.
+
+85
+00:03:55,420 --> 00:03:56,740
+So make buggy-2.
+
+86
+00:03:56,740 --> 00:03:59,840
+No such file because I didn't
+actually compile the second version.
+
+87
+00:03:59,840 --> 00:04:04,860
+So now interesting
+undeclared variable-- not 2.
+
+88
+00:04:04,860 --> 00:04:05,510
+We're doing 1.
+
+89
+00:04:05,510 --> 00:04:11,050
+Make buggy-1-- ./buggy-1-- and now
+each of them is on the same line.
+
+90
+00:04:11,050 --> 00:04:13,880
+>> Now there is an exception to
+this supposed claim of mine
+
+91
+00:04:13,880 --> 00:04:15,520
+that you need these curly braces.
+
+92
+00:04:15,520 --> 00:04:20,160
+When is it actually OK-- if you've
+noticed in section or textbooks--
+
+93
+00:04:20,160 --> 00:04:22,130
+to omit the curly braces?
+
+94
+00:04:22,130 --> 00:04:22,630
+Yeah?
+
+95
+00:04:22,630 --> 00:04:26,290
+
+96
+00:04:26,290 --> 00:04:26,870
+>> Exactly.
+
+97
+00:04:26,870 --> 00:04:28,940
+When there's only one
+line of code that you
+
+98
+00:04:28,940 --> 00:04:32,830
+want to be associated with the
+loop as in our first example.
+
+99
+00:04:32,830 --> 00:04:36,380
+It is perfectly legitimate
+to omit the curly braces
+
+100
+00:04:36,380 --> 00:04:40,310
+just as sort of a convenience
+from the compiler to you.
+
+101
+00:04:40,310 --> 00:04:40,810
+Yeah?
+
+102
+00:04:40,810 --> 00:04:43,347
+
+103
+00:04:43,347 --> 00:04:43,930
+Good question.
+
+104
+00:04:43,930 --> 00:04:45,500
+Would it be considered a style error?
+
+105
+00:04:45,500 --> 00:04:49,340
+We would promote-- as in CS50
+style guide, the URL for which
+
+106
+00:04:49,340 --> 00:04:51,926
+is in pset1-- that always
+use the curly braces.
+
+107
+00:04:51,926 --> 00:04:53,550
+Certainly if you're new to programming.
+
+108
+00:04:53,550 --> 00:04:56,800
+The reality is we're not
+going to prohibit you
+
+109
+00:04:56,800 --> 00:04:58,680
+from doing these conveniences.
+
+110
+00:04:58,680 --> 00:05:00,846
+But if you're just getting
+into the swing of things,
+
+111
+00:05:00,846 --> 00:05:04,020
+absolutely just always use the curly
+braces until you get the hang of it.
+
+112
+00:05:04,020 --> 00:05:04,640
+Good question.
+
+113
+00:05:04,640 --> 00:05:05,320
+>> All right.
+
+114
+00:05:05,320 --> 00:05:07,660
+So that then was a bug.
+
+115
+00:05:07,660 --> 00:05:09,190
+At least in something fairly simple.
+
+116
+00:05:09,190 --> 00:05:11,260
+And yet you might think this
+is fairly rudimentary, right?
+
+117
+00:05:11,260 --> 00:05:13,635
+This is sort of the first week
+of looking at the language
+
+118
+00:05:13,635 --> 00:05:14,890
+like, see your bugs therein.
+
+119
+00:05:14,890 --> 00:05:17,250
+But the reality these are
+actually representative
+
+120
+00:05:17,250 --> 00:05:20,310
+of some pretty frightening problems
+that can arise in the real world.
+
+121
+00:05:20,310 --> 00:05:23,530
+>> So some of you might recall
+if you follow tech news,
+
+122
+00:05:23,530 --> 00:05:25,740
+or maybe even caught
+wind of this in February
+
+123
+00:05:25,740 --> 00:05:29,434
+of this past year that Apple had
+made a bit of a mistake in both iOS,
+
+124
+00:05:29,434 --> 00:05:31,350
+the operating system on
+their phones, and also
+
+125
+00:05:31,350 --> 00:05:34,220
+Mac OS, the operating system
+on their desktops and laptops.
+
+126
+00:05:34,220 --> 00:05:36,480
+And you saw such headlines as this.
+
+127
+00:05:36,480 --> 00:05:41,120
+And thereafter, Apple
+promised to fix this bug,
+
+128
+00:05:41,120 --> 00:05:45,950
+and very quickly did fix it in iOS,
+but then ultimately fixed it in Mac OS
+
+129
+00:05:45,950 --> 00:05:46,810
+as well.
+
+130
+00:05:46,810 --> 00:05:50,370
+>> Now none of these headlines alone really
+reveal what the underlying problem was,
+
+131
+00:05:50,370 --> 00:05:55,640
+but the bug was ultimately reduced to
+a bug in SSL, secure sockets layer.
+
+132
+00:05:55,640 --> 00:05:57,390
+And long story short,
+this is the software
+
+133
+00:05:57,390 --> 00:06:01,030
+that our browsers and other
+software used to do what?
+
+134
+00:06:01,030 --> 00:06:04,090
+
+135
+00:06:04,090 --> 00:06:06,860
+>> If I said that SSL is
+involved, whenever you
+
+136
+00:06:06,860 --> 00:06:13,920
+visit a URL that starts with HTTPS,
+what then might SSL be related to?
+
+137
+00:06:13,920 --> 00:06:14,580
+Encryption.
+
+138
+00:06:14,580 --> 00:06:16,470
+So we'll talk about
+this in the coming days.
+
+139
+00:06:16,470 --> 00:06:18,750
+Encryption, the art of
+scrambling information.
+
+140
+00:06:18,750 --> 00:06:22,200
+>> But long story short, Apple
+sometime ago had made a mistake
+
+141
+00:06:22,200 --> 00:06:25,970
+in their implementation of SSL, the
+software that ultimately implements
+
+142
+00:06:25,970 --> 00:06:30,120
+URLs like HTTPS or max
+connections there too.
+
+143
+00:06:30,120 --> 00:06:32,850
+The result of which is that your
+connections could potentially
+
+144
+00:06:32,850 --> 00:06:33,920
+be intercepted.
+
+145
+00:06:33,920 --> 00:06:37,130
+And your connections were
+not necessarily encrypted
+
+146
+00:06:37,130 --> 00:06:40,350
+if you had some bad guy in between
+you and the destination website who
+
+147
+00:06:40,350 --> 00:06:42,170
+knew how to take advantage of this.
+
+148
+00:06:42,170 --> 00:06:45,090
+>> Now Apple ultimately posted
+a fix for this finally,
+
+149
+00:06:45,090 --> 00:06:46,920
+and the description
+of their fix was this.
+
+150
+00:06:46,920 --> 00:06:49,878
+Secure transport failed to validate
+the authenticity of the connection.
+
+151
+00:06:49,878 --> 00:06:52,920
+The issue was addressed by
+restoring missing validation steps.
+
+152
+00:06:52,920 --> 00:06:57,250
+>> So this is a very hand wavy explanation
+for simply saying that we screwed up.
+
+153
+00:06:57,250 --> 00:07:00,920
+There is literally one
+line of code that was buggy
+
+154
+00:07:00,920 --> 00:07:05,130
+in their implementation of SSL, and
+if you go online and search for this
+
+155
+00:07:05,130 --> 00:07:07,210
+you can actually find
+the original source code.
+
+156
+00:07:07,210 --> 00:07:11,960
+For instance, this is a screen shot of
+just a portion of a fairly large file,
+
+157
+00:07:11,960 --> 00:07:15,965
+but this is a function apparently called
+SSL verify sign server key exchange.
+
+158
+00:07:15,965 --> 00:07:17,840
+And it takes a bunch of
+arguments and inputs.
+
+159
+00:07:17,840 --> 00:07:20,298
+And we're not going to focus
+too much on the minutia there,
+
+160
+00:07:20,298 --> 00:07:24,390
+but if you focus on the code inside
+of that topmost function-- let's
+
+161
+00:07:24,390 --> 00:07:25,590
+zoom in on that.
+
+162
+00:07:25,590 --> 00:07:28,140
+You might already suspect
+what the error might
+
+163
+00:07:28,140 --> 00:07:31,230
+be even if you have no idea
+ultimately what you're looking at.
+
+164
+00:07:31,230 --> 00:07:35,924
+There's kind of an anomaly
+here, which is what?
+
+165
+00:07:35,924 --> 00:07:38,940
+>> Yeah, I don't really like
+the look of two goto fails.
+
+166
+00:07:38,940 --> 00:07:42,060
+Frankly, I don't really know what goto
+fail means, but having two of them
+
+167
+00:07:42,060 --> 00:07:42,810
+back to back.
+
+168
+00:07:42,810 --> 00:07:45,290
+That just kind of rubs me
+intellectually the wrong way,
+
+169
+00:07:45,290 --> 00:07:48,910
+and indeed if we zoom in on
+just those lines, this is C.
+
+170
+00:07:48,910 --> 00:07:52,220
+>> So a lot of Apple's code
+is itself written in C,
+
+171
+00:07:52,220 --> 00:07:55,780
+and this apparently
+is really equivalent--
+
+172
+00:07:55,780 --> 00:07:59,060
+not to that pretty indentation
+version, but if you recognize the fact
+
+173
+00:07:59,060 --> 00:08:02,560
+that there's no curly braces, what
+Apple really wrote was code that looks
+
+174
+00:08:02,560 --> 00:08:03,540
+like this.
+
+175
+00:08:03,540 --> 00:08:07,080
+So I've zoomed out and I just
+fixed the indentation in the sense
+
+176
+00:08:07,080 --> 00:08:10,690
+that if there's no curly braces, that
+second goto fail that's in yellow
+
+177
+00:08:10,690 --> 00:08:12,500
+is going to execute no matter what.
+
+178
+00:08:12,500 --> 00:08:15,540
+It's not associated with
+the if condition above it.
+
+179
+00:08:15,540 --> 00:08:19,590
+>> So even again, if you don't quite
+understand what this could possibly
+
+180
+00:08:19,590 --> 00:08:23,230
+be doing, know that each of these
+conditions-- each of these lines
+
+181
+00:08:23,230 --> 00:08:26,180
+is a very important step
+in the process of checking
+
+182
+00:08:26,180 --> 00:08:28,350
+if your data is in fact encrypted.
+
+183
+00:08:28,350 --> 00:08:31,710
+So skipping one of these
+steps, not the best idea.
+
+184
+00:08:31,710 --> 00:08:34,840
+>> But because we have this
+second goto fail in yellow,
+
+185
+00:08:34,840 --> 00:08:36,840
+and because once we
+sort of aesthetically
+
+186
+00:08:36,840 --> 00:08:40,480
+move it to the left where it
+logically is at the moment, what
+
+187
+00:08:40,480 --> 00:08:43,230
+does this mean for the line
+of code below that second goto
+
+188
+00:08:43,230 --> 00:08:46,480
+fail would you think?
+
+189
+00:08:46,480 --> 00:08:48,860
+It's always going to be skipped.
+
+190
+00:08:48,860 --> 00:08:52,100
+So gotos are generally frowned upon
+for reasons we won't really go into,
+
+191
+00:08:52,100 --> 00:08:54,940
+and indeed in CS50 we tend not
+to teach this statement goto,
+
+192
+00:08:54,940 --> 00:08:58,130
+but you can think of goto
+fail as meaning go jump
+
+193
+00:08:58,130 --> 00:08:59,600
+to some other part of the code.
+
+194
+00:08:59,600 --> 00:09:03,120
+>> In other words jump over
+this last line altogether,
+
+195
+00:09:03,120 --> 00:09:07,420
+and so the result of this stupid
+simple mistake that was just
+
+196
+00:09:07,420 --> 00:09:10,330
+a result of probably someone
+copying and pasting one too
+
+197
+00:09:10,330 --> 00:09:14,150
+many times was that the entire
+security of iOS and Mac OS
+
+198
+00:09:14,150 --> 00:09:18,240
+was vulnerable to interception
+by bad guys for quite some time.
+
+199
+00:09:18,240 --> 00:09:19,940
+Until Apple finally fixed this.
+
+200
+00:09:19,940 --> 00:09:23,100
+>> Now if some of you are actually
+running old versions of iOS or Mac OS,
+
+201
+00:09:23,100 --> 00:09:27,250
+you can go to gotofail.com which
+is a website that someone set up
+
+202
+00:09:27,250 --> 00:09:29,190
+to essentially determine
+programmatically
+
+203
+00:09:29,190 --> 00:09:30,980
+if your computer is still vulnerable.
+
+204
+00:09:30,980 --> 00:09:33,600
+And frankly, if it is,
+it's probably a good idea
+
+205
+00:09:33,600 --> 00:09:36,870
+to update your phone or
+your Mac at this point.
+
+206
+00:09:36,870 --> 00:09:40,120
+But there, just testament to just how
+an appreciation of these lower level
+
+207
+00:09:40,120 --> 00:09:42,400
+details and fairly
+simple ideas can really
+
+208
+00:09:42,400 --> 00:09:44,590
+translate into decisions
+and problems that
+
+209
+00:09:44,590 --> 00:09:47,320
+affected-- in this case--
+millions of people.
+
+210
+00:09:47,320 --> 00:09:49,107
+>> Now a word on administration.
+
+211
+00:09:49,107 --> 00:09:50,690
+Section will start this coming Sunday.
+
+212
+00:09:50,690 --> 00:09:53,360
+You will receive an email by the
+weekend about section, at which point
+
+213
+00:09:53,360 --> 00:09:55,290
+the resectioning process
+will begin if you've
+
+214
+00:09:55,290 --> 00:09:56,998
+realized you now have
+some new conflicts.
+
+215
+00:09:56,998 --> 00:10:00,180
+So this happens every year, and we
+will accommodate in the days to come.
+
+216
+00:10:00,180 --> 00:10:02,430
+>> Office hours-- do keep an
+eye on this schedule here.
+
+217
+00:10:02,430 --> 00:10:05,100
+Changes a little bit this week,
+particularly the start time
+
+218
+00:10:05,100 --> 00:10:08,180
+and the location, so do consult
+that before heading to office hours
+
+219
+00:10:08,180 --> 00:10:09,520
+any of the next four nights.
+
+220
+00:10:09,520 --> 00:10:12,680
+And now a word on assessment,
+particularly as you dive into problem
+
+221
+00:10:12,680 --> 00:10:14,350
+sets one and beyond.
+
+222
+00:10:14,350 --> 00:10:17,070
+>> So per the specification,
+these are generally
+
+223
+00:10:17,070 --> 00:10:20,360
+the axes along which
+we evaluate your work.
+
+224
+00:10:20,360 --> 00:10:23,170
+Scope refers to what
+extent your code implements
+
+225
+00:10:23,170 --> 00:10:25,690
+the features required
+by our specification.
+
+226
+00:10:25,690 --> 00:10:28,290
+In other words, how much of
+a piece set did you bite off.
+
+227
+00:10:28,290 --> 00:10:30,440
+Did you do a third of it,
+a half of it, 100% of it.
+
+228
+00:10:30,440 --> 00:10:33,000
+Even if it's not correct,
+how much did you attempt?
+
+229
+00:10:33,000 --> 00:10:35,290
+So that captures the level
+of effort and the amount
+
+230
+00:10:35,290 --> 00:10:38,260
+to which you bit off the
+problem set's problems.
+
+231
+00:10:38,260 --> 00:10:40,690
+>> Correctness-- this one, to
+what extent, is your code
+
+232
+00:10:40,690 --> 00:10:43,150
+consistent with our
+specifications and free of bugs.
+
+233
+00:10:43,150 --> 00:10:44,770
+So does it work correctly?
+
+234
+00:10:44,770 --> 00:10:48,700
+If we give it some input, does it
+give us the output that we expect?
+
+235
+00:10:48,700 --> 00:10:52,570
+Design-- now this is the first of
+the particularly qualitative ones,
+
+236
+00:10:52,570 --> 00:10:56,180
+or the ones that require human judgment.
+
+237
+00:10:56,180 --> 00:10:59,690
+And indeed, this is why we have a staff
+of so many teaching fellows and course
+
+238
+00:10:59,690 --> 00:11:00,350
+assistants.
+
+239
+00:11:00,350 --> 00:11:03,480
+To what extent is your
+code written well?
+
+240
+00:11:03,480 --> 00:11:05,810
+>> And again this is a very
+qualitative assessment
+
+241
+00:11:05,810 --> 00:11:09,100
+that will work with you on
+bi-directionally in the weeks to come.
+
+242
+00:11:09,100 --> 00:11:12,060
+So that when you get not
+only numeric scores, but also
+
+243
+00:11:12,060 --> 00:11:16,682
+a written scores, or typed feedback,
+or written feedback in English words.
+
+244
+00:11:16,682 --> 00:11:19,640
+That's what we'll use to drive you
+toward actually writing better code.
+
+245
+00:11:19,640 --> 00:11:23,320
+And in lecture and section, we'll try
+to point out-- as often as we can--
+
+246
+00:11:23,320 --> 00:11:26,420
+what makes a program not only
+correct and functionally good,
+
+247
+00:11:26,420 --> 00:11:28,200
+but also well designed.
+
+248
+00:11:28,200 --> 00:11:31,850
+The most efficient it could be, or
+even the most beautiful it can be.
+
+249
+00:11:31,850 --> 00:11:33,100
+>> Which leads us to style.
+
+250
+00:11:33,100 --> 00:11:36,876
+Style ultimately is
+an aesthetic judgment.
+
+251
+00:11:36,876 --> 00:11:38,750
+Did you choose good
+names for your variables?
+
+252
+00:11:38,750 --> 00:11:40,330
+Have you indented your code properly?
+
+253
+00:11:40,330 --> 00:11:44,010
+Does it look good, and therefore,
+is it easy for another human being
+
+254
+00:11:44,010 --> 00:11:46,550
+to read your respective
+of its correctness.
+
+255
+00:11:46,550 --> 00:11:50,300
+>> Now generally per the syllabus, we score
+these things on a five point scale.
+
+256
+00:11:50,300 --> 00:11:53,640
+And let me hammer home the point
+that a three is indeed good.
+
+257
+00:11:53,640 --> 00:11:55,550
+Very quickly do folks
+start doing arithmetic.
+
+258
+00:11:55,550 --> 00:11:58,133
+When they get a three out of
+five on correctness for some pset
+
+259
+00:11:58,133 --> 00:12:02,040
+and they think damn, I going to 60%
+which is essentially a D or an E.
+
+260
+00:12:02,040 --> 00:12:03,980
+>> That's not the way we
+think of these numbers.
+
+261
+00:12:03,980 --> 00:12:06,880
+A three is indeed good, and what we
+generally expect at the beginning
+
+262
+00:12:06,880 --> 00:12:09,820
+of the term is that if you're getting
+a bunch of three's-- maybe a couple
+
+263
+00:12:09,820 --> 00:12:12,540
+of fairs, a couple of fours-- or
+a couple twos, a couple of fours--
+
+264
+00:12:12,540 --> 00:12:13,748
+that's a good place to start.
+
+265
+00:12:13,748 --> 00:12:16,320
+And so long as we see an
+upward trajectory over time,
+
+266
+00:12:16,320 --> 00:12:18,540
+you're in a particularly good place.
+
+267
+00:12:18,540 --> 00:12:20,752
+>> The formula we use to
+weight things is essentially
+
+268
+00:12:20,752 --> 00:12:22,710
+this per the syllabus,
+which just means that we
+
+269
+00:12:22,710 --> 00:12:24,750
+give more weight to correctness.
+
+270
+00:12:24,750 --> 00:12:27,930
+Because it's very often correctness
+that takes the most time.
+
+271
+00:12:27,930 --> 00:12:28,760
+Trust me now.
+
+272
+00:12:28,760 --> 00:12:31,190
+You will find-- at least
+in one pset-- that you
+
+273
+00:12:31,190 --> 00:12:36,790
+spend 90% of your time
+working on 10% of the problem.
+
+274
+00:12:36,790 --> 00:12:39,320
+>> And everything sort of works
+except for one or two bugs,
+
+275
+00:12:39,320 --> 00:12:41,570
+and those are the bugs that
+keep you up late at night.
+
+276
+00:12:41,570 --> 00:12:43,380
+Those are the ones that
+sort of escape you.
+
+277
+00:12:43,380 --> 00:12:45,560
+But after sleeping on it,
+or attending office hours
+
+278
+00:12:45,560 --> 00:12:48,844
+or asking questions online, is
+when you get to that 100% goal,
+
+279
+00:12:48,844 --> 00:12:50,760
+and that's why we weight
+correctness the most.
+
+280
+00:12:50,760 --> 00:12:54,102
+Design a little less, and
+style a little less than that.
+
+281
+00:12:54,102 --> 00:12:56,060
+But keep in mind-- style
+is perhaps the easiest
+
+282
+00:12:56,060 --> 00:12:58,890
+of these to bite off
+as per the style guide.
+
+283
+00:12:58,890 --> 00:13:01,580
+>> And now, a more serious
+note on academic honesty.
+
+284
+00:13:01,580 --> 00:13:05,000
+CS50 has the unfortunate distinction of
+being the largest producer of Ad Board
+
+285
+00:13:05,000 --> 00:13:07,330
+cases almost every year historically.
+
+286
+00:13:07,330 --> 00:13:11,012
+This is not because students cheat in
+CS50 any more so than any other class,
+
+287
+00:13:11,012 --> 00:13:13,720
+but because by nature of the work,
+the fact that it's electronic,
+
+288
+00:13:13,720 --> 00:13:16,636
+the fact that we look for it, and
+the fact we are computer scientists,
+
+289
+00:13:16,636 --> 00:13:20,570
+I can say we are unfortunately
+very good at detecting it.
+
+290
+00:13:20,570 --> 00:13:22,710
+>> So what does this mean in real terms?
+
+291
+00:13:22,710 --> 00:13:24,820
+So it, per the syllabus,
+the course's philosophy
+
+292
+00:13:24,820 --> 00:13:28,090
+really does boil down to be reasonable.
+
+293
+00:13:28,090 --> 00:13:31,684
+There is this line between
+doing one's work on your own
+
+294
+00:13:31,684 --> 00:13:34,100
+and getting a little bit of
+reasonable help from a friend,
+
+295
+00:13:34,100 --> 00:13:38,020
+and outright doing that work for your
+friend, or sending him or her your code
+
+296
+00:13:38,020 --> 00:13:41,080
+so that he or she can simply
+take or borrow it out right.
+
+297
+00:13:41,080 --> 00:13:43,580
+And that crosses the line
+that we drawn in the class.
+
+298
+00:13:43,580 --> 00:13:45,410
+>> See, the syllabus
+ultimately for the lines
+
+299
+00:13:45,410 --> 00:13:48,209
+that we draw as being reasonable
+and unreasonable behavior,
+
+300
+00:13:48,209 --> 00:13:50,000
+but it really does boil
+down to the essence
+
+301
+00:13:50,000 --> 00:13:53,980
+of your work needing to
+be your own in the end.
+
+302
+00:13:53,980 --> 00:13:56,230
+Now with that said,
+there is a heuristic.
+
+303
+00:13:56,230 --> 00:13:58,980
+Because as you might imagine--
+from office hours and the visuals
+
+304
+00:13:58,980 --> 00:14:01,060
+and the videos we've
+shown thus far-- CS50
+
+305
+00:14:01,060 --> 00:14:04,530
+is indeed meant to be as collaborative
+and as cooperative and as social
+
+306
+00:14:04,530 --> 00:14:06,450
+as possible.
+
+307
+00:14:06,450 --> 00:14:08,570
+As collaborative as it is rigorous.
+
+308
+00:14:08,570 --> 00:14:11,314
+>> But with this said, the heuristic,
+as you'll see in the syllabus,
+
+309
+00:14:11,314 --> 00:14:12,980
+is that when you're having some problem.
+
+310
+00:14:12,980 --> 00:14:16,470
+You have some bug in your code that you
+can't solve, it is reasonable for you
+
+311
+00:14:16,470 --> 00:14:18,039
+to show your code to someone else.
+
+312
+00:14:18,039 --> 00:14:21,080
+A friend even in the class, a friend
+sitting next to you at office hours,
+
+313
+00:14:21,080 --> 00:14:22,680
+or a member of the staff.
+
+314
+00:14:22,680 --> 00:14:25,810
+But they may not show their code to you.
+
+315
+00:14:25,810 --> 00:14:27,710
+>> In other words, an
+answer to your question--
+
+316
+00:14:27,710 --> 00:14:29,940
+I need help-- is not oh, here's my code.
+
+317
+00:14:29,940 --> 00:14:32,440
+Take a look at this and
+deduce from it what you will.
+
+318
+00:14:32,440 --> 00:14:34,580
+Now, of course, there's
+a way clearly to game
+
+319
+00:14:34,580 --> 00:14:37,760
+this system whereby I'll show you
+my code before having a question.
+
+320
+00:14:37,760 --> 00:14:40,150
+You show me my your code
+before having a question.
+
+321
+00:14:40,150 --> 00:14:45,870
+But see the syllabus again for the
+finer details of where this line is.
+
+322
+00:14:45,870 --> 00:14:50,606
+>> Just to now paint the picture and
+share as transparently as possible
+
+323
+00:14:50,606 --> 00:14:53,480
+where we are at in recent years,
+this is the number of Ad Board cases
+
+324
+00:14:53,480 --> 00:14:56,260
+that CS50 has had over
+the past seven years.
+
+325
+00:14:56,260 --> 00:14:58,717
+With 14 cases this most recent fall.
+
+326
+00:14:58,717 --> 00:15:01,300
+In terms of the students involved,
+it was 20 some odd students
+
+327
+00:15:01,300 --> 00:15:02,490
+this past fall.
+
+328
+00:15:02,490 --> 00:15:05,670
+There was a peak of 33
+students some years ago.
+
+329
+00:15:05,670 --> 00:15:08,830
+Many of whom are unfortunately
+no longer here on campus.
+
+330
+00:15:08,830 --> 00:15:13,100
+>> Students involved as a percentage of the
+class has historically ranged from 0%
+
+331
+00:15:13,100 --> 00:15:17,300
+to 5.3%, which is only to say
+this is annually a challenge.
+
+332
+00:15:17,300 --> 00:15:20,390
+And toward that end, what
+we want to do is convey one
+
+333
+00:15:20,390 --> 00:15:24,310
+that we dd-- just FYI-- compare at
+a fairness to those students who
+
+334
+00:15:24,310 --> 00:15:26,520
+are following the line accordingly.
+
+335
+00:15:26,520 --> 00:15:29,620
+We do compare all current
+submissions against all past missions
+
+336
+00:15:29,620 --> 00:15:30,840
+from the past many years.
+
+337
+00:15:30,840 --> 00:15:33,620
+>> We know too how to Google around
+and find code repositories
+
+338
+00:15:33,620 --> 00:15:36,360
+online, discussion forums
+online, job sites online.
+
+339
+00:15:36,360 --> 00:15:41,580
+If a student can find it, we can surely
+find it as much as we regretfully do.
+
+340
+00:15:41,580 --> 00:15:45,330
+So what you'll see in the syllabus
+though is this regret clause.
+
+341
+00:15:45,330 --> 00:15:47,500
+I can certainly
+appreciate, and we all has
+
+342
+00:15:47,500 --> 00:15:50,870
+staff having done the course like
+this, or this one itself over time,
+
+343
+00:15:50,870 --> 00:15:53,997
+certainly know what it's like when
+life gets in the way when you have
+
+344
+00:15:53,997 --> 00:15:56,080
+some late night deadline--
+not only in this class,
+
+345
+00:15:56,080 --> 00:15:58,660
+but another-- when you're
+completely exhausted, stressed out,
+
+346
+00:15:58,660 --> 00:16:00,659
+have an inordinate number
+of other things to do.
+
+347
+00:16:00,659 --> 00:16:03,660
+You will make at some point in
+life certainly a bad, perhaps late
+
+348
+00:16:03,660 --> 00:16:04,620
+night decision.
+
+349
+00:16:04,620 --> 00:16:06,520
+>> So per the syllabus,
+there is this clause,
+
+350
+00:16:06,520 --> 00:16:10,629
+such that if within 72 hours of making
+some poor decision, you own up to it
+
+351
+00:16:10,629 --> 00:16:12,670
+and reach out to me and
+one of the course's heads
+
+352
+00:16:12,670 --> 00:16:14,300
+and we will have a conversation.
+
+353
+00:16:14,300 --> 00:16:16,220
+We will handle things
+internally in hopes
+
+354
+00:16:16,220 --> 00:16:18,770
+of it becoming more of a
+teaching moment or life lesson,
+
+355
+00:16:18,770 --> 00:16:22,120
+and not something with
+particularly drastic ramifications
+
+356
+00:16:22,120 --> 00:16:24,570
+as you might see on these charts here.
+
+357
+00:16:24,570 --> 00:16:26,540
+>> So that's a very serious tone.
+
+358
+00:16:26,540 --> 00:16:29,960
+Let us pause for just a few
+seconds to break the tension.
+
+359
+00:16:29,960 --> 00:16:34,442
+>> [MUSIC PLAYING]
+
+360
+00:16:34,442 --> 00:17:17,768
+
+361
+00:17:17,768 --> 00:17:20,250
+>> DAVID J. MALAN: All right,
+so how was that for a segue?
+
+362
+00:17:20,250 --> 00:17:22,059
+To today's primary topics.
+
+363
+00:17:22,059 --> 00:17:23,859
+The first of which is abstraction.
+
+364
+00:17:23,859 --> 00:17:26,900
+Another of which is going to be the
+representation of data, which frankly
+
+365
+00:17:26,900 --> 00:17:31,640
+is a really dry way of saying how can we
+go about solving problems and thinking
+
+366
+00:17:31,640 --> 00:17:33,250
+about solving problems?
+
+367
+00:17:33,250 --> 00:17:37,285
+So you've seen in Scratch, and you've
+seen perhaps already in pset1 with C
+
+368
+00:17:37,285 --> 00:17:39,930
+that you not only can use
+functions, like printf,
+
+369
+00:17:39,930 --> 00:17:42,770
+that other people in
+years past wrote for you.
+
+370
+00:17:42,770 --> 00:17:45,340
+You can also write your own functions.
+
+371
+00:17:45,340 --> 00:17:48,440
+>> And even though you might not have
+done this in C, and frankly in pset1
+
+372
+00:17:48,440 --> 00:17:51,866
+you don't really need to write your
+own function because the problem--
+
+373
+00:17:51,866 --> 00:17:53,990
+while perhaps daunting at
+first glance-- you'll see
+
+374
+00:17:53,990 --> 00:17:57,910
+can ultimately be solved with
+not all that many lines of code.
+
+375
+00:17:57,910 --> 00:18:01,140
+But with that said, in terms
+of writing your own function,
+
+376
+00:18:01,140 --> 00:18:03,570
+realize that C does give
+you this capability.
+
+377
+00:18:03,570 --> 00:18:06,940
+>> I'm going to go in today's source code,
+which is available already online,
+
+378
+00:18:06,940 --> 00:18:10,900
+and I'm going to go ahead and open
+up a program called function 0.C,
+
+379
+00:18:10,900 --> 00:18:14,620
+and in function zero
+we'll see a few things.
+
+380
+00:18:14,620 --> 00:18:19,160
+In first lines 18 through
+23 is my main function.
+
+381
+00:18:19,160 --> 00:18:22,414
+And now that we're beginning to read
+code that we're not writing on the fly,
+
+382
+00:18:22,414 --> 00:18:25,080
+but instead I've written in advance
+or that you in a problem set
+
+383
+00:18:25,080 --> 00:18:27,910
+might receive having
+been written in advance.
+
+384
+00:18:27,910 --> 00:18:30,040
+A good way to start
+reading someone else's code
+
+385
+00:18:30,040 --> 00:18:31,400
+is look for the main function.
+
+386
+00:18:31,400 --> 00:18:34,420
+Figure out where that entry
+point is to running the program,
+
+387
+00:18:34,420 --> 00:18:36,580
+and then follow it logically from there.
+
+388
+00:18:36,580 --> 00:18:40,190
+>> So this program apparently prints
+your name followed by a colon.
+
+389
+00:18:40,190 --> 00:18:42,490
+We then use GetString
+from the CS50 library
+
+390
+00:18:42,490 --> 00:18:46,050
+to get a string, or a word or phrase
+from the user at the keyboard.
+
+391
+00:18:46,050 --> 00:18:48,390
+And then there's this
+thing here-- PrintName.
+
+392
+00:18:48,390 --> 00:18:51,420
+>> Now PrintName is not a
+function that comes with C.
+
+393
+00:18:51,420 --> 00:18:52,970
+It's not in standard io.h.
+
+394
+00:18:52,970 --> 00:18:55,570
+It's not in CS50.h.
+
+395
+00:18:55,570 --> 00:18:57,880
+It's rather in the same file.
+
+396
+00:18:57,880 --> 00:19:01,000
+Notice if I scroll down
+a bit-- lines 25 to 27--
+
+397
+00:19:01,000 --> 00:19:05,330
+it's just a pretty way of commenting
+your code using the stars and slashes.
+
+398
+00:19:05,330 --> 00:19:07,320
+This is a multi-line
+comment, and this is just
+
+399
+00:19:07,320 --> 00:19:10,570
+my description in blue of
+what this function does.
+
+400
+00:19:10,570 --> 00:19:14,530
+>> Because in lines 28 through 31,
+I've written a super simple function
+
+401
+00:19:14,530 --> 00:19:16,280
+whose name is PrintName.
+
+402
+00:19:16,280 --> 00:19:19,560
+It takes how many
+arguments would you say?
+
+403
+00:19:19,560 --> 00:19:25,120
+So one argument-- because there's one
+argument listed inside the parentheses.
+
+404
+00:19:25,120 --> 00:19:27,000
+The type of which is String.
+
+405
+00:19:27,000 --> 00:19:30,240
+Which is to say PrintName
+is like this black box
+
+406
+00:19:30,240 --> 00:19:32,910
+or function that takes
+as input a string.
+
+407
+00:19:32,910 --> 00:19:35,730
+>> And the name of that String
+conveniently will be Name.
+
+408
+00:19:35,730 --> 00:19:37,840
+Not S, not N, but Name.
+
+409
+00:19:37,840 --> 00:19:41,090
+So what does PrintName do?
+
+410
+00:19:41,090 --> 00:19:42,210
+It's nice simple.
+
+411
+00:19:42,210 --> 00:19:45,390
+Just as one line of code for
+the printf, but apparently it
+
+412
+00:19:45,390 --> 00:19:47,950
+prints out "Hello," so and so.
+
+413
+00:19:47,950 --> 00:19:50,070
+Where the so and so
+comes from the argument.
+
+414
+00:19:50,070 --> 00:19:52,300
+>> Now this is not a huge innovation here.
+
+415
+00:19:52,300 --> 00:19:56,710
+Really, I've taken a program that could
+have been written with one line of code
+
+416
+00:19:56,710 --> 00:20:00,190
+by putting this up here,
+and changed it to something
+
+417
+00:20:00,190 --> 00:20:04,920
+that involves some six or seven or so
+lines of code all the way down here.
+
+418
+00:20:04,920 --> 00:20:08,190
+>> But it's the practicing of a
+principle known as abstraction.
+
+419
+00:20:08,190 --> 00:20:12,550
+Kind of encapsulating inside of a new
+function that has a name, and better
+
+420
+00:20:12,550 --> 00:20:14,590
+yet that name literally
+says what it does.
+
+421
+00:20:14,590 --> 00:20:16,880
+I mean printf-- that's not
+particularly descriptive.
+
+422
+00:20:16,880 --> 00:20:18,932
+If I want to create a
+puzzle piece, or if I
+
+423
+00:20:18,932 --> 00:20:21,140
+want to create a function
+that prints someone's name,
+
+424
+00:20:21,140 --> 00:20:23,230
+the beauty of doing this
+is that I can actually
+
+425
+00:20:23,230 --> 00:20:27,170
+give that function a name
+that describes what it does.
+
+426
+00:20:27,170 --> 00:20:29,844
+>> Now it takes in an input that
+I've arbitrarily called name,
+
+427
+00:20:29,844 --> 00:20:32,760
+but that too is wonderfully descriptive
+instead of being a little more
+
+428
+00:20:32,760 --> 00:20:36,140
+generic like S. And
+void, for now, just means
+
+429
+00:20:36,140 --> 00:20:38,330
+that this function doesn't
+hand me back anything.
+
+430
+00:20:38,330 --> 00:20:41,127
+It's not like GetString that
+literally hands me back a string
+
+431
+00:20:41,127 --> 00:20:43,960
+like we did with the pieces of paper
+with your classmates last week,
+
+432
+00:20:43,960 --> 00:20:45,990
+but rather it just has a side effect.
+
+433
+00:20:45,990 --> 00:20:48,080
+It prints something to the screen.
+
+434
+00:20:48,080 --> 00:20:53,880
+>> So at the end of the day, if I
+do make function-0, ./function-0,
+
+435
+00:20:53,880 --> 00:20:55,450
+we'll see that it asks for my name.
+
+436
+00:20:55,450 --> 00:20:58,150
+I type David, and it types out my name.
+
+437
+00:20:58,150 --> 00:21:01,080
+If I do it again with Rob,
+it's going to say "Hello, Rob."
+
+438
+00:21:01,080 --> 00:21:04,280
+So a simple idea, but perhaps
+extrapolate from this mentally
+
+439
+00:21:04,280 --> 00:21:06,750
+that as your programs get
+a little more complicated,
+
+440
+00:21:06,750 --> 00:21:10,290
+and you want to write a chunk of
+code and call that code-- invoke
+
+441
+00:21:10,290 --> 00:21:13,270
+that code-- by some descriptive
+name like PrintName,
+
+442
+00:21:13,270 --> 00:21:15,600
+C does afford us this capability.
+
+443
+00:21:15,600 --> 00:21:17,660
+>> Here's another simple example.
+
+444
+00:21:17,660 --> 00:21:22,940
+For instance, if I open up a
+file from today called return.c,
+
+445
+00:21:22,940 --> 00:21:24,270
+notice what I've done here.
+
+446
+00:21:24,270 --> 00:21:26,330
+Most of this main function is printf.
+
+447
+00:21:26,330 --> 00:21:30,360
+I first arbitrarily initialize a
+variable called x to the number 2.
+
+448
+00:21:30,360 --> 00:21:34,110
+I then print out "x is now
+%i" passing in the value of x.
+
+449
+00:21:34,110 --> 00:21:35,500
+So I'm just saying what it is.
+
+450
+00:21:35,500 --> 00:21:37,208
+>> Now I'm just boldly
+claiming with printf.
+
+451
+00:21:37,208 --> 00:21:42,050
+I am cubing that value x, and I'm
+doing so by calling a function
+
+452
+00:21:42,050 --> 00:21:45,590
+called cube passing
+in x as the argument,
+
+453
+00:21:45,590 --> 00:21:49,300
+and then saving the output
+in the variable itself, x.
+
+454
+00:21:49,300 --> 00:21:51,340
+So I'm clobbering the value of x.
+
+455
+00:21:51,340 --> 00:21:53,380
+I'm overriding the
+value of x with whatever
+
+456
+00:21:53,380 --> 00:21:56,510
+the result of calling
+this cube function is.
+
+457
+00:21:56,510 --> 00:21:59,530
+And then I just print out some
+fluffy stuff here saying what I did.
+
+458
+00:21:59,530 --> 00:22:01,600
+>> So what then is cube?
+
+459
+00:22:01,600 --> 00:22:03,510
+Notice what's fundamentally
+different here.
+
+460
+00:22:03,510 --> 00:22:05,540
+I've given the function
+a name as before.
+
+461
+00:22:05,540 --> 00:22:08,270
+I've specified a name for an argument.
+
+462
+00:22:08,270 --> 00:22:11,650
+This time it's called n instead of name,
+but I could call it anything I want.
+
+463
+00:22:11,650 --> 00:22:12,650
+But this is different.
+
+464
+00:22:12,650 --> 00:22:14,080
+This thing on the left.
+
+465
+00:22:14,080 --> 00:22:16,290
+Previously it was what keyword?
+
+466
+00:22:16,290 --> 00:22:16,870
+Boys.
+
+467
+00:22:16,870 --> 00:22:18,580
+Now it's obviously int.
+
+468
+00:22:18,580 --> 00:22:20,630
+>> So what's perhaps the take away?
+
+469
+00:22:20,630 --> 00:22:24,090
+Whereas void signifies sort of
+nothingness, and that was the case.
+
+470
+00:22:24,090 --> 00:22:25,970
+PrintName returned nothing.
+
+471
+00:22:25,970 --> 00:22:27,942
+It did something, but
+it didn't hand me back
+
+472
+00:22:27,942 --> 00:22:30,650
+something that I could put on the
+left hand side of an equal sign
+
+473
+00:22:30,650 --> 00:22:32,460
+like I've done here on line 22.
+
+474
+00:22:32,460 --> 00:22:36,780
+>> So if I say into on line 30,
+what's that probably implying
+
+475
+00:22:36,780 --> 00:22:38,610
+about what cube does for me?
+
+476
+00:22:38,610 --> 00:22:41,110
+Yeah?
+
+477
+00:22:41,110 --> 00:22:42,310
+It returns an integer.
+
+478
+00:22:42,310 --> 00:22:44,590
+So it hands me back, for
+instance, a piece of paper
+
+479
+00:22:44,590 --> 00:22:46,580
+on which it has written the answer.
+
+480
+00:22:46,580 --> 00:22:50,130
+2 cubed, or 3 cubed, or 4
+cubed-- whatever I passed in,
+
+481
+00:22:50,130 --> 00:22:51,540
+and how did I implement this?
+
+482
+00:22:51,540 --> 00:22:54,810
+Well, just n times n times n
+is how I might cube a value.
+
+483
+00:22:54,810 --> 00:22:57,110
+So again, super simple
+idea, but demonstrative
+
+484
+00:22:57,110 --> 00:23:00,100
+now how we can write functions
+that actually had us back
+
+485
+00:23:00,100 --> 00:23:02,380
+values that might be of interest.
+
+486
+00:23:02,380 --> 00:23:05,740
+>> Let's look at one last example
+here called function one.
+
+487
+00:23:05,740 --> 00:23:08,530
+In this example, it starts
+to get more compelling.
+
+488
+00:23:08,530 --> 00:23:12,400
+So in function one, this
+program-- notice ultimately
+
+489
+00:23:12,400 --> 00:23:14,920
+calls a function called GetPositiveInt.
+
+490
+00:23:14,920 --> 00:23:17,800
+GetPositiveInt is not a
+function in the CS50 library,
+
+491
+00:23:17,800 --> 00:23:20,400
+but we decided we
+would like it to exist.
+
+492
+00:23:20,400 --> 00:23:24,550
+>> So if we scroll down later in the file,
+notice how I went about implementing
+
+493
+00:23:24,550 --> 00:23:26,560
+get positive int, and I
+say it's more compelling
+
+494
+00:23:26,560 --> 00:23:28,992
+because this is a decent
+number of lines of code.
+
+495
+00:23:28,992 --> 00:23:30,700
+It's not just a silly
+little toy program.
+
+496
+00:23:30,700 --> 00:23:33,870
+It's actually got some error checking
+and doing something more useful.
+
+497
+00:23:33,870 --> 00:23:38,470
+>> So if you've not seen the walkthrough
+videos that we have embedded in pset1,
+
+498
+00:23:38,470 --> 00:23:42,350
+know that this is a type of
+loop in C, similar in spirit
+
+499
+00:23:42,350 --> 00:23:44,270
+to the kinds of things Scratch can do.
+
+500
+00:23:44,270 --> 00:23:46,320
+And do says do this.
+
+501
+00:23:46,320 --> 00:23:47,500
+Print this out.
+
+502
+00:23:47,500 --> 00:23:51,860
+Then go ahead and get n--
+get an int and store it in n,
+
+503
+00:23:51,860 --> 00:23:55,760
+and keep doing this again and again and
+again so long as n is less than one.
+
+504
+00:23:55,760 --> 00:23:58,720
+>> So n is going to be less than one
+only if the human's not cooperating.
+
+505
+00:23:58,720 --> 00:24:01,980
+If he or she is typing
+in 0 or -1 or -50,
+
+506
+00:24:01,980 --> 00:24:04,790
+this loop is going to keep
+executing again and again.
+
+507
+00:24:04,790 --> 00:24:07,549
+And ultimately notice, I
+simply return the value.
+
+508
+00:24:07,549 --> 00:24:09,590
+So now we have a function
+that would've been nice
+
+509
+00:24:09,590 --> 00:24:14,040
+if CS50 would implement in
+CS50.h and CS50.c for you,
+
+510
+00:24:14,040 --> 00:24:16,520
+but here we can now
+implement this ourselves.
+
+511
+00:24:16,520 --> 00:24:19,230
+>> But two comments on some key details.
+
+512
+00:24:19,230 --> 00:24:24,390
+One-- why did I declare int
+n, do you think, on line 29
+
+513
+00:24:24,390 --> 00:24:27,139
+instead of just doing
+this here, which is
+
+514
+00:24:27,139 --> 00:24:28,930
+more consistent with
+what we did last week?
+
+515
+00:24:28,930 --> 00:24:29,430
+Yeah?
+
+516
+00:24:29,430 --> 00:24:34,485
+
+517
+00:24:34,485 --> 00:24:35,110
+A good thought.
+
+518
+00:24:35,110 --> 00:24:37,080
+So if we were to put it
+here, it's as though we
+
+519
+00:24:37,080 --> 00:24:39,110
+keep declaring it again and again.
+
+520
+00:24:39,110 --> 00:24:42,000
+That in and of itself is
+not problematic, per se,
+
+521
+00:24:42,000 --> 00:24:43,940
+because we only need
+the value once and then
+
+522
+00:24:43,940 --> 00:24:45,330
+we're going to get a new one anyway.
+
+523
+00:24:45,330 --> 00:24:45,940
+But a good thought.
+
+524
+00:24:45,940 --> 00:24:46,440
+Yeah?
+
+525
+00:24:46,440 --> 00:24:52,770
+
+526
+00:24:52,770 --> 00:24:53,330
+>> Close.
+
+527
+00:24:53,330 --> 00:24:59,030
+So because I've declared n on
+line 29 outside of the loop,
+
+528
+00:24:59,030 --> 00:25:01,390
+it's accessible throughout
+this entire function.
+
+529
+00:25:01,390 --> 00:25:05,400
+Not the other functions because
+n is still inside of these curly
+
+530
+00:25:05,400 --> 00:25:06,470
+braces here.
+
+531
+00:25:06,470 --> 00:25:07,940
+So-- sure.
+
+532
+00:25:07,940 --> 00:25:12,430
+
+533
+00:25:12,430 --> 00:25:12,940
+>> Exactly.
+
+534
+00:25:12,940 --> 00:25:14,356
+So this is even more to the point.
+
+535
+00:25:14,356 --> 00:25:18,600
+If we instead declared
+n right here on line 32,
+
+536
+00:25:18,600 --> 00:25:22,340
+it's problematic because guess
+where else I need to access it?
+
+537
+00:25:22,340 --> 00:25:25,620
+On line 34, and the
+simple rule of thumb is
+
+538
+00:25:25,620 --> 00:25:30,060
+that you can only use a variable
+inside of the most recent curly braces
+
+539
+00:25:30,060 --> 00:25:31,420
+in which you declared it.
+
+540
+00:25:31,420 --> 00:25:35,230
+>> Unfortunately, line 34
+is one line too late,
+
+541
+00:25:35,230 --> 00:25:38,560
+because I've already closed
+the curly brace on line 33
+
+542
+00:25:38,560 --> 00:25:41,220
+that corresponds to the
+curly brace on line 30.
+
+543
+00:25:41,220 --> 00:25:44,180
+And so this is a way of saying
+that this variable int is scoped,
+
+544
+00:25:44,180 --> 00:25:46,970
+so to speak, to only inside
+of those curly braces.
+
+545
+00:25:46,970 --> 00:25:48,910
+It just doesn't exist outside of them.
+
+546
+00:25:48,910 --> 00:25:51,580
+>> So indeed, if I do this
+wrong, let me save the code
+
+547
+00:25:51,580 --> 00:25:53,530
+as it is-- incorrectly written.
+
+548
+00:25:53,530 --> 00:25:57,990
+Let me go ahead and do make
+function-1, and notice-- error.
+
+549
+00:25:57,990 --> 00:26:03,502
+Use of undeclared identifier n
+on line 35, which is right here.
+
+550
+00:26:03,502 --> 00:26:05,210
+And if we scroll up
+further, another one.
+
+551
+00:26:05,210 --> 00:26:08,750
+Use of undeclared
+identifier n on line 34.
+
+552
+00:26:08,750 --> 00:26:11,200
+>> So the compiler, Clang,
+is noticing that it just
+
+553
+00:26:11,200 --> 00:26:13,720
+doesn't exist even though
+clearly it's there visually.
+
+554
+00:26:13,720 --> 00:26:16,090
+So a simple fix is declaring it there.
+
+555
+00:26:16,090 --> 00:26:18,790
+>> Now let me scroll to
+the top of the file.
+
+556
+00:26:18,790 --> 00:26:21,080
+What jumps out at you as
+being a little different
+
+557
+00:26:21,080 --> 00:26:23,070
+from the stuff we looked at last week?
+
+558
+00:26:23,070 --> 00:26:26,990
+Not only do I have name, not only do
+I have some sharp includes up top,
+
+559
+00:26:26,990 --> 00:26:29,340
+I have something I'm
+calling a prototype.
+
+560
+00:26:29,340 --> 00:26:36,100
+Now that looks awfully similar to what
+we just saw a moment ago on line 27.
+
+561
+00:26:36,100 --> 00:26:39,230
+>> So let's infer from a different
+error message why I've done this.
+
+562
+00:26:39,230 --> 00:26:42,050
+Let me go ahead and
+delete these lines there.
+
+563
+00:26:42,050 --> 00:26:44,240
+And so we know nothing about prototype.
+
+564
+00:26:44,240 --> 00:26:45,430
+Remake this file.
+
+565
+00:26:45,430 --> 00:26:46,890
+Make function one.
+
+566
+00:26:46,890 --> 00:26:48,090
+And now, damn, four errors.
+
+567
+00:26:48,090 --> 00:26:50,220
+Let's scroll up to the first one.
+
+568
+00:26:50,220 --> 00:26:55,070
+>> Implicit declaration of function
+get positive int is invalid in C99.
+
+569
+00:26:55,070 --> 00:26:57,780
+C99 just means the 1999
+version of the language
+
+570
+00:26:57,780 --> 00:26:59,710
+C, which is what we're indeed using.
+
+571
+00:26:59,710 --> 00:27:01,050
+So what does this mean?
+
+572
+00:27:01,050 --> 00:27:05,250
+Well C-- and more specifically C
+compilers-- are pretty dumb programs.
+
+573
+00:27:05,250 --> 00:27:07,420
+They only know what you've
+told them, and that's
+
+574
+00:27:07,420 --> 00:27:08,960
+actually thematic from last week.
+
+575
+00:27:08,960 --> 00:27:12,910
+>> The problem is that if I go
+about implementing name up here,
+
+576
+00:27:12,910 --> 00:27:17,640
+and I call a function called
+GetPositiveInt here on line 20,
+
+577
+00:27:17,640 --> 00:27:22,520
+that function technically doesn't
+exist until the compiler sees line 27.
+
+578
+00:27:22,520 --> 00:27:25,450
+Unfortunately, the compiler is
+doing things top, down, left, right,
+
+579
+00:27:25,450 --> 00:27:29,580
+so because it has not seen the
+implementation of GetPositiveInt,
+
+580
+00:27:29,580 --> 00:27:32,400
+but it sees you trying
+to use it up here,
+
+581
+00:27:32,400 --> 00:27:35,810
+it's just going to bail-- yell at
+you with an error message-- perhaps
+
+582
+00:27:35,810 --> 00:27:38,440
+cryptic, and not actually
+compile the file.
+
+583
+00:27:38,440 --> 00:27:41,940
+>> So a so-called prototype up
+here is admittedly redundant.
+
+584
+00:27:41,940 --> 00:27:47,870
+Literally, I went down here and I copied
+and pasted this, and I put it up here.
+
+585
+00:27:47,870 --> 00:27:51,020
+Void would be more proper, so we'll
+literally copy and paste it this time.
+
+586
+00:27:51,020 --> 00:27:52,854
+I literally copied and pasted it.
+
+587
+00:27:52,854 --> 00:27:54,270
+Really just as like a bread crumb.
+
+588
+00:27:54,270 --> 00:27:56,260
+>> A little clue to the compiler.
+
+589
+00:27:56,260 --> 00:27:58,860
+I don't know what this does
+yet, but I'm promising to you
+
+590
+00:27:58,860 --> 00:28:00,260
+that it will exist eventually.
+
+591
+00:28:00,260 --> 00:28:04,010
+And that's why this line-- in
+line 16-- ends with a semicolon.
+
+592
+00:28:04,010 --> 00:28:05,486
+It is redundant by design.
+
+593
+00:28:05,486 --> 00:28:05,986
+Yes?
+
+594
+00:28:05,986 --> 00:28:11,340
+
+595
+00:28:11,340 --> 00:28:14,360
+>> If you didn't link your library
+to the-- oh, good question.
+
+596
+00:28:14,360 --> 00:28:17,350
+Sharp includes header file inclusions.
+
+597
+00:28:17,350 --> 00:28:20,040
+Need to be-- should almost
+always be at the very top
+
+598
+00:28:20,040 --> 00:28:23,270
+of the file for a similar-- for
+exactly the same reason, yes.
+
+599
+00:28:23,270 --> 00:28:26,430
+Because in standard
+io.h is literally a line
+
+600
+00:28:26,430 --> 00:28:30,560
+like this, but with the word printf, and
+with its arguments and its return type.
+
+601
+00:28:30,560 --> 00:28:33,310
+And so by doing sharp include up
+here, what you're literally doing
+
+602
+00:28:33,310 --> 00:28:36,380
+is copying and pasting the contents
+of someone else wrote up top.
+
+603
+00:28:36,380 --> 00:28:39,660
+Thereby cluing your code in to the
+fact that those functions do exist.
+
+604
+00:28:39,660 --> 00:28:40,160
+Yeah?
+
+605
+00:28:40,160 --> 00:28:47,520
+
+606
+00:28:47,520 --> 00:28:48,260
+>> Absolutely.
+
+607
+00:28:48,260 --> 00:28:51,690
+So a very clever and correct
+solution would be, you know what?
+
+608
+00:28:51,690 --> 00:28:53,760
+I don't know what a
+prototype is, but I know
+
+609
+00:28:53,760 --> 00:28:56,390
+if I understand that C is just
+dumb and rethinks top to bottom.
+
+610
+00:28:56,390 --> 00:28:57,820
+Well let's give it what it wants.
+
+611
+00:28:57,820 --> 00:29:01,650
+Let's cut that code, paste it up
+top, and now push main down below.
+
+612
+00:29:01,650 --> 00:29:03,470
+This too would solve the problem.
+
+613
+00:29:03,470 --> 00:29:07,409
+>> But you could very easily come up with
+a scenario in which A need to call B,
+
+614
+00:29:07,409 --> 00:29:10,075
+and maybe B calls back to A. This
+is something called recursion,
+
+615
+00:29:10,075 --> 00:29:11,370
+and we'll come back to that.
+
+616
+00:29:11,370 --> 00:29:13,911
+And it may or may not be a good
+thing, but you can definitely
+
+617
+00:29:13,911 --> 00:29:15,110
+break this solution.
+
+618
+00:29:15,110 --> 00:29:17,690
+>> And moreover, I would
+claim stylistically,
+
+619
+00:29:17,690 --> 00:29:20,760
+especially when your programs
+become this long and this long,
+
+620
+00:29:20,760 --> 00:29:23,064
+it's just super convenient
+to put main at the top
+
+621
+00:29:23,064 --> 00:29:25,730
+because it's the thing most
+programmers are going to care about.
+
+622
+00:29:25,730 --> 00:29:28,150
+And so it's a little cleaner,
+arguably, to do it the way
+
+623
+00:29:28,150 --> 00:29:30,380
+I originally did it
+with a prototype even
+
+624
+00:29:30,380 --> 00:29:33,396
+though it looks a little
+redundant at first glance.
+
+625
+00:29:33,396 --> 00:29:33,895
+Yeah?
+
+626
+00:29:33,895 --> 00:29:36,472
+
+627
+00:29:36,472 --> 00:29:37,680
+Sorry, can you say it louder?
+
+628
+00:29:37,680 --> 00:29:45,650
+
+629
+00:29:45,650 --> 00:29:49,580
+>> If you switch the locations of the
+implementation and the prototype?
+
+630
+00:29:49,580 --> 00:29:51,270
+So that's a good question.
+
+631
+00:29:51,270 --> 00:29:53,780
+If you re-declare this down
+here, let's see what happens.
+
+632
+00:29:53,780 --> 00:29:55,530
+So if I put this down
+here, you're saying.
+
+633
+00:29:55,530 --> 00:29:57,860
+
+634
+00:29:57,860 --> 00:29:58,360
+Oh, sorry.
+
+635
+00:29:58,360 --> 00:29:58,859
+Louder?
+
+636
+00:29:58,859 --> 00:30:02,000
+
+637
+00:30:02,000 --> 00:30:04,011
+Even louder.
+
+638
+00:30:04,011 --> 00:30:04,760
+Oh, good question.
+
+639
+00:30:04,760 --> 00:30:05,860
+Would it invalidate the function?
+
+640
+00:30:05,860 --> 00:30:08,901
+You know, after all these years, I
+have never put a prototype afterwards.
+
+641
+00:30:08,901 --> 00:30:13,810
+So let's do make function-1
+after doing that.
+
+642
+00:30:13,810 --> 00:30:15,279
+>> [MUTTERING]
+
+643
+00:30:15,279 --> 00:30:16,320
+DAVID J. MALAN: Oh, wait.
+
+644
+00:30:16,320 --> 00:30:17,944
+We still have to put everything up top.
+
+645
+00:30:17,944 --> 00:30:21,400
+So let's do this up here, if I'm
+understanding your question correctly.
+
+646
+00:30:21,400 --> 00:30:24,700
+I'm putting everything, including
+the prototype above main,
+
+647
+00:30:24,700 --> 00:30:28,180
+but I'm putting the prototype
+below the implementation.
+
+648
+00:30:28,180 --> 00:30:33,190
+>> So if I make one, I'm getting
+back an error-- unused variable n.
+
+649
+00:30:33,190 --> 00:30:37,280
+
+650
+00:30:37,280 --> 00:30:37,860
+Oh, there.
+
+651
+00:30:37,860 --> 00:30:38,360
+Thank you.
+
+652
+00:30:38,360 --> 00:30:39,430
+Let's see, we get rid of this.
+
+653
+00:30:39,430 --> 00:30:41,304
+That's a different bug,
+so let's ignore that.
+
+654
+00:30:41,304 --> 00:30:43,910
+Let's really quickly remake this.
+
+655
+00:30:43,910 --> 00:30:48,100
+>> OK, so data argument not
+used by format String
+
+656
+00:30:48,100 --> 00:30:52,310
+n-- oh, that's because
+I changed to these here.
+
+657
+00:30:52,310 --> 00:30:55,885
+All right, we know what the answer
+is going to-- all right, here we go.
+
+658
+00:30:55,885 --> 00:31:00,560
+Ah, thanks for the positive.
+
+659
+00:31:00,560 --> 00:31:03,430
+All right, I will fix this code
+after-- ignore this particular bug
+
+660
+00:31:03,430 --> 00:31:08,300
+since this was-- it works is the answer.
+
+661
+00:31:08,300 --> 00:31:11,560
+>> So it doesn't overwrite
+what you've just done.
+
+662
+00:31:11,560 --> 00:31:14,800
+I suspect the compiler
+is written in such a way
+
+663
+00:31:14,800 --> 00:31:18,420
+that it is ignoring your prototype
+because the body, so to speak,
+
+664
+00:31:18,420 --> 00:31:20,922
+of the function has already
+been implemented higher up.
+
+665
+00:31:20,922 --> 00:31:23,380
+I would have to actually consult
+the manual of the compiler
+
+666
+00:31:23,380 --> 00:31:26,171
+to understand if there's any other
+implication, but at first glance
+
+667
+00:31:26,171 --> 00:31:29,290
+just by trying and experimenting,
+there seems to be no impact.
+
+668
+00:31:29,290 --> 00:31:30,730
+Good question.
+
+669
+00:31:30,730 --> 00:31:33,660
+>> So let's forge ahead now, moving
+away from side effects which
+
+670
+00:31:33,660 --> 00:31:36,660
+are functions that do something like
+visually on the screen with printf,
+
+671
+00:31:36,660 --> 00:31:38,090
+but don't return a value.
+
+672
+00:31:38,090 --> 00:31:41,550
+And functions that have return
+values like we just saw a few of.
+
+673
+00:31:41,550 --> 00:31:45,350
+We already saw this notion of scope,
+and we'll see this again and again.
+
+674
+00:31:45,350 --> 00:31:47,210
+But for now, again,
+use the rule of thumb
+
+675
+00:31:47,210 --> 00:31:51,410
+that a variable can only be used
+inside of the most recently opened
+
+676
+00:31:51,410 --> 00:31:54,350
+and closed curly braces as we
+saw in that particular example.
+
+677
+00:31:54,350 --> 00:31:56,910
+>> And as you pointed out,
+there is an ability--
+
+678
+00:31:56,910 --> 00:32:00,040
+you could solve some of these problems
+by putting a variable globally
+
+679
+00:32:00,040 --> 00:32:01,290
+at the very top of a file.
+
+680
+00:32:01,290 --> 00:32:03,630
+But in almost all cases
+we would frown upon that,
+
+681
+00:32:03,630 --> 00:32:06,170
+and indeed not even go
+into that solution for now.
+
+682
+00:32:06,170 --> 00:32:09,890
+So for now, the takeaway is that
+variables have this notion of scope.
+
+683
+00:32:09,890 --> 00:32:13,430
+>> But now let's look at another
+dry way of actually looking
+
+684
+00:32:13,430 --> 00:32:15,810
+at some pretty interesting
+implementation details.
+
+685
+00:32:15,810 --> 00:32:17,810
+How we might represent information.
+
+686
+00:32:17,810 --> 00:32:20,370
+And we already looked at this
+in the first week of the class.
+
+687
+00:32:20,370 --> 00:32:23,320
+Looking at binaries, and
+reminding ourselves of decimal.
+
+688
+00:32:23,320 --> 00:32:28,310
+>> But recall from last week that C has
+different data types and bunches more,
+
+689
+00:32:28,310 --> 00:32:30,600
+but the most useful ones
+for now might be these.
+
+690
+00:32:30,600 --> 00:32:36,030
+A char, or character, which happens
+to be one byte, or eight bits total.
+
+691
+00:32:36,030 --> 00:32:40,060
+And that's to say that the size
+of a char is just one byte.
+
+692
+00:32:40,060 --> 00:32:45,370
+A byte is eight bits, so this means that
+we can represent how many characters.
+
+693
+00:32:45,370 --> 00:32:47,320
+How many letters or
+symbols on the keyboard
+
+694
+00:32:47,320 --> 00:32:49,210
+if we have one byte or eight bits.
+
+695
+00:32:49,210 --> 00:32:51,546
+Think back to week zero.
+
+696
+00:32:51,546 --> 00:32:53,420
+If you have eight bits,
+how many total values
+
+697
+00:32:53,420 --> 00:32:55,503
+can you represent with
+patterns of zeros and ones?
+
+698
+00:32:55,503 --> 00:32:58,170
+
+699
+00:32:58,170 --> 00:33:00,260
+One-- more than that.
+
+700
+00:33:00,260 --> 00:33:03,490
+So 256 total if you
+start counting from zero.
+
+701
+00:33:03,490 --> 00:33:07,120
+So if you have eight bits-- so if we
+had our binary bulbs up here again,
+
+702
+00:33:07,120 --> 00:33:12,180
+we could turn those light bulbs on
+and off in any of 256 unique patterns.
+
+703
+00:33:12,180 --> 00:33:13,640
+>> Now this is a bit problematic.
+
+704
+00:33:13,640 --> 00:33:16,857
+Not so much for English and
+romance languages, but certainly
+
+705
+00:33:16,857 --> 00:33:19,190
+when you introduce, for
+instance, Asian languages, which
+
+706
+00:33:19,190 --> 00:33:22,580
+have far more symbols than like
+26 letters of the alphabet.
+
+707
+00:33:22,580 --> 00:33:24,390
+We actually might need
+more than one byte.
+
+708
+00:33:24,390 --> 00:33:28,240
+And thankfully in
+recent years has society
+
+709
+00:33:28,240 --> 00:33:31,040
+adopted other standards that use
+more than one byte per charge.
+
+710
+00:33:31,040 --> 00:33:34,210
+>> But for now in C, the default
+is just one byte or eight bits.
+
+711
+00:33:34,210 --> 00:33:38,195
+An integer, meanwhile, is four
+bytes, otherwise known as 32 bits.
+
+712
+00:33:38,195 --> 00:33:41,320
+Which means what's the largest possible
+number we can represent with an int
+
+713
+00:33:41,320 --> 00:33:41,820
+apparently?
+
+714
+00:33:41,820 --> 00:33:44,426
+
+715
+00:33:44,426 --> 00:33:45,050
+With a billion.
+
+716
+00:33:45,050 --> 00:33:46,760
+So it's four billion give or take.
+
+717
+00:33:46,760 --> 00:33:49,840
+2 to the 32th power, if we
+assume no negative numbers
+
+718
+00:33:49,840 --> 00:33:52,530
+and just use all positive
+numbers, it's four billion
+
+719
+00:33:52,530 --> 00:33:53,730
+give or take possibilities.
+
+720
+00:33:53,730 --> 00:33:57,890
+A float, meanwhile, is a different type
+of data type in C. It's still a number,
+
+721
+00:33:57,890 --> 00:33:58,990
+but it's a real number.
+
+722
+00:33:58,990 --> 00:34:00,660
+Something with a decimal point.
+
+723
+00:34:00,660 --> 00:34:03,000
+And it turns out that
+C also uses four bytes
+
+724
+00:34:03,000 --> 00:34:05,340
+to represent floating point values.
+
+725
+00:34:05,340 --> 00:34:09,420
+>> Unfortunately how many floating
+point values are there in the world?
+
+726
+00:34:09,420 --> 00:34:11,582
+How many real numbers are there?
+
+727
+00:34:11,582 --> 00:34:13,540
+There's an infinite
+number, and for that matter
+
+728
+00:34:13,540 --> 00:34:15,164
+there's an infinite number of integers.
+
+729
+00:34:15,164 --> 00:34:18,070
+So we're already kind of
+digging ourselves a hole here.
+
+730
+00:34:18,070 --> 00:34:21,780
+Whereby apparently in computers-- at
+least programs written in C on them--
+
+731
+00:34:21,780 --> 00:34:24,110
+can only count as high as
+four billion give or take,
+
+732
+00:34:24,110 --> 00:34:26,260
+and floating point values
+can only apparently
+
+733
+00:34:26,260 --> 00:34:28,330
+have some finite amount of precision.
+
+734
+00:34:28,330 --> 00:34:30,810
+Only so many digits after
+their decimal point.
+
+735
+00:34:30,810 --> 00:34:32,822
+>> Because, of course, if
+you only have 32 bits,
+
+736
+00:34:32,822 --> 00:34:36,030
+I don't know how we're going to go about
+representing real numbers-- probably
+
+737
+00:34:36,030 --> 00:34:37,409
+with different types of patterns.
+
+738
+00:34:37,409 --> 00:34:40,030
+But there's surely a finite
+number of such patterns,
+
+739
+00:34:40,030 --> 00:34:41,830
+so here, too, this is problematic.
+
+740
+00:34:41,830 --> 00:34:43,710
+>> Now we can avoid the problem slightly.
+
+741
+00:34:43,710 --> 00:34:45,710
+If you don't use a float,
+you could use a double
+
+742
+00:34:45,710 --> 00:34:50,230
+in C, which gives you eight bytes, which
+is way more possible patterns of zeros
+
+743
+00:34:50,230 --> 00:34:50,730
+and ones.
+
+744
+00:34:50,730 --> 00:34:55,199
+But it's still finite, which is going
+to be problematic if you write software
+
+745
+00:34:55,199 --> 00:34:57,670
+for graphics or for fancy
+mathematical formulas.
+
+746
+00:34:57,670 --> 00:35:00,410
+So you might actually want
+to count up bigger than that.
+
+747
+00:35:00,410 --> 00:35:05,640
+A long long-- stupidly named--
+is also eight bytes, or 64 bits,
+
+748
+00:35:05,640 --> 00:35:10,260
+and this is twice as long as an int,
+and it's for a long integer value.
+
+749
+00:35:10,260 --> 00:35:15,655
+>> Fun fact-- if an int is four bytes,
+how long is a long in C typically?
+
+750
+00:35:15,655 --> 00:35:18,290
+
+751
+00:35:18,290 --> 00:35:21,560
+Also four bytes, but a
+long long is eight bytes,
+
+752
+00:35:21,560 --> 00:35:23,050
+and this is for historical reasons.
+
+753
+00:35:23,050 --> 00:35:26,450
+>> But the takeaway now
+is just that data has
+
+754
+00:35:26,450 --> 00:35:29,625
+to be represented in a computer-- that's
+a physical device with electricity,
+
+755
+00:35:29,625 --> 00:35:32,190
+it's generally driving
+those zeros and ones--
+
+756
+00:35:32,190 --> 00:35:34,320
+with finite amounts of precision.
+
+757
+00:35:34,320 --> 00:35:35,620
+So what's the problem then?
+
+758
+00:35:35,620 --> 00:35:37,480
+>> Well there's a problem
+of integer overflow.
+
+759
+00:35:37,480 --> 00:35:39,780
+Not just in C, but in
+computers in general.
+
+760
+00:35:39,780 --> 00:35:42,590
+For instance, if this
+is a byte worth a bit--
+
+761
+00:35:42,590 --> 00:35:45,120
+so if this is eight bit-- all
+of which are the number one.
+
+762
+00:35:45,120 --> 00:35:47,300
+What number is this
+representing if we assume
+
+763
+00:35:47,300 --> 00:35:50,730
+it's all positive values in binary?
+
+764
+00:35:50,730 --> 00:35:54,410
+>> 255, and it's not 256, because
+zero is the lowest number.
+
+765
+00:35:54,410 --> 00:35:56,760
+So 255 is the highest
+one, but the problem
+
+766
+00:35:56,760 --> 00:36:00,330
+is suppose that I wanted to
+increment this variable that
+
+767
+00:36:00,330 --> 00:36:04,030
+is using eight bits total
+if I want to increment it.
+
+768
+00:36:04,030 --> 00:36:07,160
+>> Well as soon as I add a
+one to all of these ones,
+
+769
+00:36:07,160 --> 00:36:10,500
+you can perhaps imagine visually-- just
+like carrying the one using decimals--
+
+770
+00:36:10,500 --> 00:36:12,300
+something's going to flow to the left.
+
+771
+00:36:12,300 --> 00:36:15,590
+And indeed, if I add the number
+one to this, what happens in binary
+
+772
+00:36:15,590 --> 00:36:17,670
+is that it overflows back to zero.
+
+773
+00:36:17,670 --> 00:36:21,730
+>> So if you only use-- not an int,
+but a single byte to count integers
+
+774
+00:36:21,730 --> 00:36:27,170
+in a program, by default-- as soon as
+you get to 250, 251, 252, 253, 254,
+
+775
+00:36:27,170 --> 00:36:32,710
+255-- 0 comes after 255,
+which is probably not what
+
+776
+00:36:32,710 --> 00:36:34,790
+a user is going to expect.
+
+777
+00:36:34,790 --> 00:36:39,620
+>> Now meanwhile in floating point world,
+you also have a similar problem.
+
+778
+00:36:39,620 --> 00:36:42,670
+Not so much with the largest number--
+although that's still an issue.
+
+779
+00:36:42,670 --> 00:36:45,360
+But with the amount of precision
+that you can represent.
+
+780
+00:36:45,360 --> 00:36:49,490
+So let's take a look at this example
+here also from today's source code--
+
+781
+00:36:49,490 --> 00:36:52,070
+float-0.c.
+
+782
+00:36:52,070 --> 00:36:54,280
+>> And notice it's a super
+simple program that
+
+783
+00:36:54,280 --> 00:36:56,580
+should apparently print out what value?
+
+784
+00:36:56,580 --> 00:37:00,777
+
+785
+00:37:00,777 --> 00:37:04,110
+What do you wager this is going to print
+even though there's a bit of new syntax
+
+786
+00:37:04,110 --> 00:37:05,540
+here?
+
+787
+00:37:05,540 --> 00:37:06,700
+So hopefully 0.1.
+
+788
+00:37:06,700 --> 00:37:10,000
+So the equivalent of one-tenth
+because I'm doing 1 divided by 10.
+
+789
+00:37:10,000 --> 00:37:12,430
+I'm storing the answer
+in a variable called f.
+
+790
+00:37:12,430 --> 00:37:15,850
+That variable is of type float, which
+is a keyword I just proposed existed.
+
+791
+00:37:15,850 --> 00:37:18,910
+>> We've not seen this before, but
+this is kind of a neat way in printf
+
+792
+00:37:18,910 --> 00:37:22,110
+to specify how many digits you
+want to see after a decimal point.
+
+793
+00:37:22,110 --> 00:37:25,020
+So this notation just means
+that here's a placeholder.
+
+794
+00:37:25,020 --> 00:37:27,900
+It's for a floating point
+value, and oh, by the way,
+
+795
+00:37:27,900 --> 00:37:31,389
+show it with the decimal point with
+one number after the decimal point.
+
+796
+00:37:31,389 --> 00:37:33,180
+So that's the number
+of significant digits,
+
+797
+00:37:33,180 --> 00:37:34,650
+so to speak, that you might want.
+
+798
+00:37:34,650 --> 00:37:40,450
+>> So let me go ahead and do
+make float-0, ./float-0,
+
+799
+00:37:40,450 --> 00:37:46,660
+and apparently 1 divided by 10 is 0.0.
+
+800
+00:37:46,660 --> 00:37:47,760
+Now why is this?
+
+801
+00:37:47,760 --> 00:37:51,380
+>> Well again, the computer is taking
+me literally, and I have written 1
+
+802
+00:37:51,380 --> 00:37:56,680
+and I written 10, and take a guess what
+is the assumed data type for those two
+
+803
+00:37:56,680 --> 00:37:58,440
+values?
+
+804
+00:37:58,440 --> 00:38:00,970
+An int, it's technically
+something a little different.
+
+805
+00:38:00,970 --> 00:38:04,150
+It's typically a long, but it's
+ultimately an integral value.
+
+806
+00:38:04,150 --> 00:38:06,030
+Not a floating point value.
+
+807
+00:38:06,030 --> 00:38:09,456
+>> Which is to say that if this
+is an int and this is an int,
+
+808
+00:38:09,456 --> 00:38:11,830
+the problem is that the computer
+doesn't have the ability
+
+809
+00:38:11,830 --> 00:38:13,680
+to even store that decimal point.
+
+810
+00:38:13,680 --> 00:38:16,430
+So when you do 1 divided
+by 10 using integers
+
+811
+00:38:16,430 --> 00:38:20,950
+for both the numerator and the
+denominator, the answer should be 0.1.
+
+812
+00:38:20,950 --> 00:38:24,930
+But the computer-- because
+those are integers--
+
+813
+00:38:24,930 --> 00:38:27,430
+doesn't know what to do with the 0.1.
+
+814
+00:38:27,430 --> 00:38:30,010
+>> So what is it clearly doing?
+
+815
+00:38:30,010 --> 00:38:33,120
+It's just throwing it away,
+and what I'm seeing ultimately
+
+816
+00:38:33,120 --> 00:38:38,830
+is 0.0 only because I insisted that
+printf show me one decimal point.
+
+817
+00:38:38,830 --> 00:38:41,740
+But the problem is that if you
+divide an integer by an integer,
+
+818
+00:38:41,740 --> 00:38:44,347
+you will get-- by definition
+of C-- an integer.
+
+819
+00:38:44,347 --> 00:38:46,680
+And it's not going to do
+something nice and conveniently
+
+820
+00:38:46,680 --> 00:38:49,040
+like round it up to the
+nearest one up or down.
+
+821
+00:38:49,040 --> 00:38:51,860
+It's going to truncate
+everything after the decimal.
+
+822
+00:38:51,860 --> 00:38:54,030
+>> So just intuitively,
+what's probably a fix?
+
+823
+00:38:54,030 --> 00:38:55,351
+What's the simplest fix here?
+
+824
+00:38:55,351 --> 00:38:55,850
+Yeah?
+
+825
+00:38:55,850 --> 00:39:00,570
+
+826
+00:39:00,570 --> 00:39:01,100
+Exactly.
+
+827
+00:39:01,100 --> 00:39:04,200
+Why don't we just treat these as
+floating point values effectively
+
+828
+00:39:04,200 --> 00:39:05,860
+turning them into floats or doubles.
+
+829
+00:39:05,860 --> 00:39:10,500
+And now if I do make floats-0,
+or if I compile floats-1,
+
+830
+00:39:10,500 --> 00:39:12,570
+which is identical to
+what was just proposed.
+
+831
+00:39:12,570 --> 00:39:16,400
+And now I do floats-0, now I get my 0.1.
+
+832
+00:39:16,400 --> 00:39:17,234
+>> Now this is amazing.
+
+833
+00:39:17,234 --> 00:39:19,441
+But now I'm going to do
+something a little different.
+
+834
+00:39:19,441 --> 00:39:22,280
+I'm curious to see what's really
+going on underneath the hood,
+
+835
+00:39:22,280 --> 00:39:26,050
+and I'm going to print this
+out to 28 decimal places.
+
+836
+00:39:26,050 --> 00:39:29,730
+I want to really see
+0.1000-- an infinite--
+
+837
+00:39:29,730 --> 00:39:32,710
+[INAUDIBLE] 27 zeros after that 0.1.
+
+838
+00:39:32,710 --> 00:39:34,740
+>> Well let's see if that's
+what I indeed get.
+
+839
+00:39:34,740 --> 00:39:39,430
+Make floats-0 same file.
+
+840
+00:39:39,430 --> 00:39:41,150
+./floats-0.
+
+841
+00:39:41,150 --> 00:39:44,380
+Let's zoom in on the dramatic answer.
+
+842
+00:39:44,380 --> 00:39:49,980
+All this time, you've been thinking
+1 divided by 10 is 10%, or 0.1.
+
+843
+00:39:49,980 --> 00:39:50,810
+It's not.
+
+844
+00:39:50,810 --> 00:39:53,210
+At least so far as the
+computer's concerned.
+
+845
+00:39:53,210 --> 00:39:57,060
+>> Now why-- OK, that's complete
+lie 1 divided by 10 is 0.1.
+
+846
+00:39:57,060 --> 00:39:59,710
+But why-- that is not
+the takeaway today.
+
+847
+00:39:59,710 --> 00:40:04,010
+So why does the computer think,
+unlike all of us in the room,
+
+848
+00:40:04,010 --> 00:40:06,870
+that 1 divided by 10 is
+actually that crazy value?
+
+849
+00:40:06,870 --> 00:40:10,620
+What's the computer doing apparently?
+
+850
+00:40:10,620 --> 00:40:12,490
+What's that?
+
+851
+00:40:12,490 --> 00:40:13,785
+>> It's not overflow, per se.
+
+852
+00:40:13,785 --> 00:40:15,910
+Overflow is typically when
+you wrap around a value.
+
+853
+00:40:15,910 --> 00:40:18,970
+It's this issue of imprecision
+in a floating point value
+
+854
+00:40:18,970 --> 00:40:22,220
+where you only have 32
+or maybe even 64 bit.
+
+855
+00:40:22,220 --> 00:40:25,230
+But if there's an infinite
+number of real numbers--
+
+856
+00:40:25,230 --> 00:40:27,940
+numbers with decimal points
+and numbers thereafter-- surely
+
+857
+00:40:27,940 --> 00:40:29,380
+you can't represent all of them.
+
+858
+00:40:29,380 --> 00:40:32,870
+So the computer has given
+us the closest match
+
+859
+00:40:32,870 --> 00:40:37,090
+to the value it can represent using that
+many bits to the value I actually want,
+
+860
+00:40:37,090 --> 00:40:38,690
+which is 0.1.
+
+861
+00:40:38,690 --> 00:40:40,685
+>> Unfortunately, if you
+start doing math, or you
+
+862
+00:40:40,685 --> 00:40:44,360
+start involving these kinds of floating
+point values in important programs--
+
+863
+00:40:44,360 --> 00:40:46,770
+financial software,
+military software-- anything
+
+864
+00:40:46,770 --> 00:40:49,090
+where perception is
+probably pretty important.
+
+865
+00:40:49,090 --> 00:40:51,520
+And you start adding
+numbers like this, and start
+
+866
+00:40:51,520 --> 00:40:54,050
+running that software
+with really large inputs
+
+867
+00:40:54,050 --> 00:40:56,890
+or for lots of hours or lots
+of days or lots of years,
+
+868
+00:40:56,890 --> 00:41:01,060
+these tiny little mistakes
+surely can add up over time.
+
+869
+00:41:01,060 --> 00:41:04,252
+>> Now as an aside, if you've ever
+seen Superman 3 or Office Space
+
+870
+00:41:04,252 --> 00:41:05,960
+and you might recall
+how those guys stole
+
+871
+00:41:05,960 --> 00:41:08,668
+a lot of money from their computer
+by using floating point values
+
+872
+00:41:08,668 --> 00:41:11,290
+and adding up the little
+remainders, hopefully that movie
+
+873
+00:41:11,290 --> 00:41:12,390
+now makes more sense.
+
+874
+00:41:12,390 --> 00:41:14,930
+This is what they were
+alluding to in that movie.
+
+875
+00:41:14,930 --> 00:41:16,710
+The fact that most
+companies wouldn't look
+
+876
+00:41:16,710 --> 00:41:18,600
+after a certain number
+of decimal places,
+
+877
+00:41:18,600 --> 00:41:20,009
+but those are fractions of cents.
+
+878
+00:41:20,009 --> 00:41:22,550
+So you start adding them up,
+you start to make a lot of money
+
+879
+00:41:22,550 --> 00:41:23,424
+in your bank account.
+
+880
+00:41:23,424 --> 00:41:25,160
+So that's Office Space explained.
+
+881
+00:41:25,160 --> 00:41:28,220
+>> Now unfortunately beyond
+Office Space, there
+
+882
+00:41:28,220 --> 00:41:31,794
+are some legitimately troubling
+and significant impacts
+
+883
+00:41:31,794 --> 00:41:33,710
+of these kinds of
+underlying design decisions,
+
+884
+00:41:33,710 --> 00:41:35,990
+and indeed one of the reasons
+we use C in the course
+
+885
+00:41:35,990 --> 00:41:39,640
+is so that you really have this ground
+up understanding of how computers work,
+
+886
+00:41:39,640 --> 00:41:42,440
+how software works, and don't
+take anything for granted.
+
+887
+00:41:42,440 --> 00:41:45,820
+>> And indeed unfortunately, even with
+that fundamental understanding,
+
+888
+00:41:45,820 --> 00:41:47,370
+we humans make mistakes.
+
+889
+00:41:47,370 --> 00:41:51,310
+And what I thought I'd share is
+this eight minute video here taken
+
+890
+00:41:51,310 --> 00:41:56,980
+from a Modern Marvels episode, which is
+an educational show on how things work
+
+891
+00:41:56,980 --> 00:42:00,370
+that paints two pictures
+of when an improper use
+
+892
+00:42:00,370 --> 00:42:02,540
+and understanding of
+floating point values
+
+893
+00:42:02,540 --> 00:42:05,610
+led to some significant
+unfortunate results.
+
+894
+00:42:05,610 --> 00:42:06,363
+Let's take a look.
+
+895
+00:42:06,363 --> 00:42:07,029
+[VIDEO PLAYBACK]
+
+896
+00:42:07,029 --> 00:42:11,290
+-We now return to "Engineering
+Disasters" on Modern Marvels.
+
+897
+00:42:11,290 --> 00:42:12,940
+Computers.
+
+898
+00:42:12,940 --> 00:42:15,580
+We've all come to accept the
+often frustrating problems that
+
+899
+00:42:15,580 --> 00:42:20,960
+got with them-- bugs, viruses, and
+software glitches-- for small prices
+
+900
+00:42:20,960 --> 00:42:23,100
+to pay for the convenience.
+
+901
+00:42:23,100 --> 00:42:27,770
+But in high tech and high speed
+military and space program applications,
+
+902
+00:42:27,770 --> 00:42:32,780
+the smallest problem can
+be magnified into disaster.
+
+903
+00:42:32,780 --> 00:42:38,880
+>> On June 4, 1996, scientists prepared
+to launch an unmanned Ariane 5 rocket.
+
+904
+00:42:38,880 --> 00:42:41,190
+It was carrying scientific
+satellites designed
+
+905
+00:42:41,190 --> 00:42:44,570
+to establish precisely how the
+Earth's magnetic field interacts
+
+906
+00:42:44,570 --> 00:42:47,380
+with solar winds.
+
+907
+00:42:47,380 --> 00:42:50,580
+The rocket was built for
+the European Space Agency,
+
+908
+00:42:50,580 --> 00:42:54,400
+and lifted off from its facility
+on the coast of French Guiana.
+
+909
+00:42:54,400 --> 00:42:57,520
+>> -At about 37 seconds into
+the flight, they first
+
+910
+00:42:57,520 --> 00:42:59,070
+noticed something was going wrong.
+
+911
+00:42:59,070 --> 00:43:02,240
+That the nozzles were swiveling
+in a way they really shouldn't.
+
+912
+00:43:02,240 --> 00:43:06,550
+Around 40 seconds into the flight,
+clearly the vehicle was in trouble,
+
+913
+00:43:06,550 --> 00:43:08,820
+and that's when they made
+the decision to destroy it.
+
+914
+00:43:08,820 --> 00:43:12,370
+The range safety officer, with
+tremendous guts, pressed the button
+
+915
+00:43:12,370 --> 00:43:18,030
+and blew up the rocket before it could
+become a hazard to public safety.
+
+916
+00:43:18,030 --> 00:43:21,010
+>> -This was the maiden
+voyage of the Ariane 5,
+
+917
+00:43:21,010 --> 00:43:23,920
+and its destruction took
+place because of the flaw
+
+918
+00:43:23,920 --> 00:43:25,932
+embedded in the rocket's software.
+
+919
+00:43:25,932 --> 00:43:27,640
+-The problem on the
+Ariane was that there
+
+920
+00:43:27,640 --> 00:43:30,500
+was a number that required
+64 bits to express,
+
+921
+00:43:30,500 --> 00:43:33,560
+and they wanted to convert
+it to a 16-bit number.
+
+922
+00:43:33,560 --> 00:43:36,820
+They assumed that the number
+was never going to be very big.
+
+923
+00:43:36,820 --> 00:43:40,940
+That most of those digits in
+the 64-bit number were zeros.
+
+924
+00:43:40,940 --> 00:43:42,450
+They were wrong.
+
+925
+00:43:42,450 --> 00:43:45,000
+>> -The inability of one
+software program to accept
+
+926
+00:43:45,000 --> 00:43:49,460
+the kind of number generated by
+another was at the root of the failure.
+
+927
+00:43:49,460 --> 00:43:54,260
+Software development had become a
+very costly part of new technology.
+
+928
+00:43:54,260 --> 00:43:57,060
+The Ariane 4 rocket had
+been very successful.
+
+929
+00:43:57,060 --> 00:44:01,600
+So much of the software created for
+it was also used in the Ariane 5.
+
+930
+00:44:01,600 --> 00:44:04,790
+>> -The basic problem
+was that the Ariane 5.
+
+931
+00:44:04,790 --> 00:44:11,200
+Was faster-- accelerated faster, and
+the software hadn't accounted for that.
+
+932
+00:44:11,200 --> 00:44:14,910
+>> -The destruction of the rocket
+was a huge financial disaster.
+
+933
+00:44:14,910 --> 00:44:18,630
+All due to a minute software error.
+
+934
+00:44:18,630 --> 00:44:21,160
+But this wasn't the first
+time data conversion problems
+
+935
+00:44:21,160 --> 00:44:24,770
+had plagued modern rocket technology.
+
+936
+00:44:24,770 --> 00:44:28,020
+>> -In 1991 with the start
+of the first Gulf War,
+
+937
+00:44:28,020 --> 00:44:30,540
+the Patriot missile
+experienced a similar kind
+
+938
+00:44:30,540 --> 00:44:32,465
+of a number conversion problem.
+
+939
+00:44:32,465 --> 00:44:36,760
+And as a result 28 people-- 28
+American soldiers-- were killed,
+
+940
+00:44:36,760 --> 00:44:39,010
+and about a hundred others wounded.
+
+941
+00:44:39,010 --> 00:44:42,830
+When the Patriot, which was supposed
+to protect against incoming Scuds,
+
+942
+00:44:42,830 --> 00:44:45,780
+failed to fire a missile.
+
+943
+00:44:45,780 --> 00:44:51,610
+>> -When Iraq invaded Kuwait, and America
+launched Desert Storm in early 1991,
+
+944
+00:44:51,610 --> 00:44:55,720
+Patriot missile batteries were deployed
+to protect Saudi Arabia and Israel
+
+945
+00:44:55,720 --> 00:44:59,180
+from Iraqi Scud missile attacks.
+
+946
+00:44:59,180 --> 00:45:03,080
+The Patriot is a US medium-range
+surface-to-air system
+
+947
+00:45:03,080 --> 00:45:06,530
+manufactured by the Raytheon company.
+
+948
+00:45:06,530 --> 00:45:09,500
+>> -The size of the Patriot
+interceptor itself--
+
+949
+00:45:09,500 --> 00:45:14,705
+it's about roughly 20 feet long,
+and it weighs about 2,000 pounds.
+
+950
+00:45:14,705 --> 00:45:19,090
+And it carries a warhead of about,
+I think it's roughly 150 pounds.
+
+951
+00:45:19,090 --> 00:45:23,880
+And the warhead itself is
+a high explosive, which
+
+952
+00:45:23,880 --> 00:45:26,700
+has fragments around him.
+
+953
+00:45:26,700 --> 00:45:31,630
+So the casing of the warhead is
+designed to act like a buckshot.
+
+954
+00:45:31,630 --> 00:45:34,040
+>> -The missiles are carried
+four per container,
+
+955
+00:45:34,040 --> 00:45:37,170
+and are transported by a semi trailer.
+
+956
+00:45:37,170 --> 00:45:44,880
+>> -The Patriot anti-missile system
+goes back at least 20 years now.
+
+957
+00:45:44,880 --> 00:45:48,380
+It was originally designed
+as an air defense missile
+
+958
+00:45:48,380 --> 00:45:50,810
+to shoot down enemy airplanes.
+
+959
+00:45:50,810 --> 00:45:54,410
+In the first Gulf War
+when that war came on,
+
+960
+00:45:54,410 --> 00:45:59,650
+the Army wanted to use it to
+shoot down Scuds, not airplanes.
+
+961
+00:45:59,650 --> 00:46:03,580
+The Iraqi Air Force was
+not so much of a problem,
+
+962
+00:46:03,580 --> 00:46:06,590
+but the Army was worried about Scuds.
+
+963
+00:46:06,590 --> 00:46:10,120
+And so they tried to
+upgrade the Patriot.
+
+964
+00:46:10,120 --> 00:46:12,740
+>> -Intercepting an enemy
+missile traveling at Mach 5
+
+965
+00:46:12,740 --> 00:46:15,670
+was going to be challenging enough.
+
+966
+00:46:15,670 --> 00:46:18,440
+But when the Patriot
+was rushed into service,
+
+967
+00:46:18,440 --> 00:46:22,580
+the Army was not aware of
+an Iraqi modification that
+
+968
+00:46:22,580 --> 00:46:25,880
+made their scuds nearly
+impossible to it.
+
+969
+00:46:25,880 --> 00:46:30,690
+>> -What happened is the Scuds that
+were coming in were unstable.
+
+970
+00:46:30,690 --> 00:46:32,000
+They were wobbly.
+
+971
+00:46:32,000 --> 00:46:37,210
+The reason for this was the Iraqis--
+in order to get 600 kilometers out
+
+972
+00:46:37,210 --> 00:46:41,680
+of a 300-kilometer range missile--
+took weight out of the front warhead,
+
+973
+00:46:41,680 --> 00:46:43,340
+and made the warhead lighter.
+
+974
+00:46:43,340 --> 00:46:48,490
+So now the Patriot's trying to come
+at the Scud, and most of the time--
+
+975
+00:46:48,490 --> 00:46:52,880
+the overwhelming majority of the
+time-- it would just fly by the Scud.
+
+976
+00:46:52,880 --> 00:46:57,120
+>> -Once the Patriot system operators
+realized the Patriot missed its target,
+
+977
+00:46:57,120 --> 00:47:01,630
+they detonated the Patriot's warhead
+to avoid possible casualties if it
+
+978
+00:47:01,630 --> 00:47:04,440
+was allowed to fall to the ground.
+
+979
+00:47:04,440 --> 00:47:08,700
+>> -That was what most people saw
+as big fireballs in the sky,
+
+980
+00:47:08,700 --> 00:47:14,180
+and misunderstood as
+intercepts of Scud warheads.
+
+981
+00:47:14,180 --> 00:47:18,020
+>> -Although in the night skies, Patriots
+appeared to be successfully destroying
+
+982
+00:47:18,020 --> 00:47:23,280
+Scuds, at Dhahran there could be
+no mistake about its performance.
+
+983
+00:47:23,280 --> 00:47:27,930
+There the Patriot's radar system
+lost track of an incoming Scud
+
+984
+00:47:27,930 --> 00:47:30,260
+and never launched due
+to a software flaw.
+
+985
+00:47:30,260 --> 00:47:34,060
+
+986
+00:47:34,060 --> 00:47:38,880
+>> It was the Israelis who first discovered
+that the longer the system was on,
+
+987
+00:47:38,880 --> 00:47:41,130
+the greater the time discrepancy became.
+
+988
+00:47:41,130 --> 00:47:44,770
+Due to a clock embedded
+in the system's computer.
+
+989
+00:47:44,770 --> 00:47:48,190
+>> -About two weeks before
+the tragedy in Dhahran,
+
+990
+00:47:48,190 --> 00:47:50,720
+the Israelis reported to
+the Defense Department
+
+991
+00:47:50,720 --> 00:47:52,410
+that the system was losing time.
+
+992
+00:47:52,410 --> 00:47:54,410
+After about eight hours
+of running, they noticed
+
+993
+00:47:54,410 --> 00:47:57,690
+that the system's becoming
+noticeably less accurate.
+
+994
+00:47:57,690 --> 00:48:01,850
+The Defense Department responded by
+telling all of the Patriot batteries
+
+995
+00:48:01,850 --> 00:48:04,800
+to not leave the systems
+on for a long time.
+
+996
+00:48:04,800 --> 00:48:06,980
+They never said what a long time was.
+
+997
+00:48:06,980 --> 00:48:09,140
+8 hours, 10 hours, a thousand hours.
+
+998
+00:48:09,140 --> 00:48:11,300
+Nobody knew.
+
+999
+00:48:11,300 --> 00:48:13,320
+>> -The Patriot battery
+stationed at the barracks
+
+1000
+00:48:13,320 --> 00:48:18,310
+at Dhahran and its flawed internal
+clock had been on for over 100 hours
+
+1001
+00:48:18,310 --> 00:48:21,520
+on the night of February 25.
+
+1002
+00:48:21,520 --> 00:48:25,792
+>> -It tracked time to an accuracy
+of about a tenth of a second.
+
+1003
+00:48:25,792 --> 00:48:27,950
+Now a tenth of a second
+is an interesting number
+
+1004
+00:48:27,950 --> 00:48:31,850
+because it can't be expressed
+in binary exactly, which
+
+1005
+00:48:31,850 --> 00:48:36,500
+means it can't be expressed exactly
+in any modern digital computer.
+
+1006
+00:48:36,500 --> 00:48:41,070
+It's hard to believe, but
+use this as an example.
+
+1007
+00:48:41,070 --> 00:48:43,420
+>> Let's take the number one third.
+
+1008
+00:48:43,420 --> 00:48:47,330
+One third cannot be
+expressed in decimal exactly.
+
+1009
+00:48:47,330 --> 00:48:52,060
+One third is 0.333
+going on for infinity.
+
+1010
+00:48:52,060 --> 00:48:56,420
+There's no way to do that with
+absolute accuracy in a decimal.
+
+1011
+00:48:56,420 --> 00:48:59,530
+That's exactly the kind of problem
+that happened in the Patriot.
+
+1012
+00:48:59,530 --> 00:49:04,040
+The longer the system ran, the
+worse the time error became.
+
+1013
+00:49:04,040 --> 00:49:08,840
+>> -After 100 hours of operation, the
+error in time was only about one third
+
+1014
+00:49:08,840 --> 00:49:10,440
+of a second.
+
+1015
+00:49:10,440 --> 00:49:14,150
+But in terms of targeting a
+missile traveling at Mach 5,
+
+1016
+00:49:14,150 --> 00:49:18,560
+it resulted in a tracking
+error of over 600 meters.
+
+1017
+00:49:18,560 --> 00:49:21,870
+It would be a fatal error
+for the soldiers at Dhahran.
+
+1018
+00:49:21,870 --> 00:49:28,455
+>> -What happened is a Scud launch was
+detected by early warning satellites,
+
+1019
+00:49:28,455 --> 00:49:32,710
+and they knew a Scud was coming
+in their general direction.
+
+1020
+00:49:32,710 --> 00:49:35,150
+They didn't know where it was coming.
+
+1021
+00:49:35,150 --> 00:49:38,210
+It was now up to the radar
+component of the Patriot system
+
+1022
+00:49:38,210 --> 00:49:43,150
+defending Dhahran to locate and keep
+track of the incoming enemy missile.
+
+1023
+00:49:43,150 --> 00:49:44,561
+>> -The radar was very smart.
+
+1024
+00:49:44,561 --> 00:49:46,560
+It would actually track
+the position of the Scud
+
+1025
+00:49:46,560 --> 00:49:48,930
+and then predict where
+it probably would be
+
+1026
+00:49:48,930 --> 00:49:51,380
+the next time the
+radar sent a pulse out.
+
+1027
+00:49:51,380 --> 00:49:53,040
+That was called the range gate.
+
+1028
+00:49:53,040 --> 00:49:57,620
+>> -Then once the Patriot
+decides enough time has
+
+1029
+00:49:57,620 --> 00:50:02,400
+passed to go back and check the next
+location for this detected object
+
+1030
+00:50:02,400 --> 00:50:03,550
+it goes back.
+
+1031
+00:50:03,550 --> 00:50:07,820
+So when it went back to the wrong
+place, it then sees no object.
+
+1032
+00:50:07,820 --> 00:50:10,360
+And it decides that there was no object.
+
+1033
+00:50:10,360 --> 00:50:13,630
+That there was a false detection
+and it drops the track.
+
+1034
+00:50:13,630 --> 00:50:16,970
+>> -The incoming Scud disappeared
+from the radar screen,
+
+1035
+00:50:16,970 --> 00:50:20,200
+and seconds later, it
+slammed into the barracks.
+
+1036
+00:50:20,200 --> 00:50:22,570
+The Scud killed 28.
+
+1037
+00:50:22,570 --> 00:50:26,110
+It was the last one fired
+during the first Gulf War.
+
+1038
+00:50:26,110 --> 00:50:31,920
+Tragically, the updated software
+arrived at dawn on the following day.
+
+1039
+00:50:31,920 --> 00:50:34,870
+The software flaw had
+been fixed, closing
+
+1040
+00:50:34,870 --> 00:50:39,150
+one chapter in the troubled
+history of the Patriot missile.
+
+1041
+00:50:39,150 --> 00:50:40,030
+>> [END VIDEO PLAYBACK]
+
+1042
+00:50:40,030 --> 00:50:41,488
+>> DAVID J. MALAN: That's it for CS50.
+
+1043
+00:50:41,488 --> 00:50:42,820
+We will see you on Wednesday.
+
+1044
+00:50:42,820 --> 00:50:46,420
+
+1045
+00:50:46,420 --> 00:50:50,370
+>> [MUSIC PLAYING]
+
+1046
+00:50:50,370 --> 00:54:23,446

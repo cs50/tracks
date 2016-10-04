@@ -1,0 +1,2614 @@
+1
+00:00:00,000 --> 00:00:06,030
+>> [MUSIC PLAYING]
+
+2
+00:00:06,030 --> 00:00:08,390
+>> DOUG LLOYD: Pointers, here we are.
+
+3
+00:00:08,390 --> 00:00:11,080
+This is probably going to
+be the most difficult topic
+
+4
+00:00:11,080 --> 00:00:12,840
+that we talk about in CS50.
+
+5
+00:00:12,840 --> 00:00:15,060
+And if you've read
+anything about pointers
+
+6
+00:00:15,060 --> 00:00:19,080
+before you might be a little bit
+intimidating going into this video.
+
+7
+00:00:19,080 --> 00:00:21,260
+It's true the pointers
+do allow you the ability
+
+8
+00:00:21,260 --> 00:00:23,740
+to perhaps screw up
+pretty badly when you're
+
+9
+00:00:23,740 --> 00:00:27,450
+working with variables, and data,
+and causing your program to crash.
+
+10
+00:00:27,450 --> 00:00:30,490
+But they're actually really useful
+and they allow us a really great way
+
+11
+00:00:30,490 --> 00:00:33,340
+to pass data back and
+forth between functions,
+
+12
+00:00:33,340 --> 00:00:35,490
+that we're otherwise unable to do.
+
+13
+00:00:35,490 --> 00:00:37,750
+>> And so what we really
+want to do here is train
+
+14
+00:00:37,750 --> 00:00:41,060
+you to have good pointer discipline, so
+that you can use pointers effectively
+
+15
+00:00:41,060 --> 00:00:43,850
+to make your programs that much better.
+
+16
+00:00:43,850 --> 00:00:48,220
+As I said pointers give us a different
+way to pass data between functions.
+
+17
+00:00:48,220 --> 00:00:50,270
+Now if you recall from
+an earlier video, when
+
+18
+00:00:50,270 --> 00:00:53,720
+we were talking about
+variable scope, I mentioned
+
+19
+00:00:53,720 --> 00:01:00,610
+that all the data that we pass between
+functions in C is passed by value.
+
+20
+00:01:00,610 --> 00:01:03,070
+And I may not have used that
+term, what I meant there
+
+21
+00:01:03,070 --> 00:01:07,170
+was that we are passing copies of data.
+
+22
+00:01:07,170 --> 00:01:12,252
+When we pass a variable to a function,
+we're not actually passing the variable
+
+23
+00:01:12,252 --> 00:01:13,210
+to the function, right?
+
+24
+00:01:13,210 --> 00:01:17,670
+We're passing a copy of
+that data to the function.
+
+25
+00:01:17,670 --> 00:01:20,760
+The function does what it will
+and it calculates some value,
+
+26
+00:01:20,760 --> 00:01:23,180
+and maybe we use that value
+when it gives it back.
+
+27
+00:01:23,180 --> 00:01:26,700
+>> There was one exception to
+this rule of passing by value,
+
+28
+00:01:26,700 --> 00:01:31,210
+and we'll come back to what that
+is a little later on in this video.
+
+29
+00:01:31,210 --> 00:01:34,880
+If we use pointers instead
+of using variables,
+
+30
+00:01:34,880 --> 00:01:38,180
+or instead of using the variables
+themselves or copies of the variables,
+
+31
+00:01:38,180 --> 00:01:43,790
+we can now pass the variables around
+between functions in a different way.
+
+32
+00:01:43,790 --> 00:01:46,550
+This means that if we make
+a change in one function,
+
+33
+00:01:46,550 --> 00:01:49,827
+that change will actually take
+effect in a different function.
+
+34
+00:01:49,827 --> 00:01:52,160
+Again, this is something that
+we couldn't do previously,
+
+35
+00:01:52,160 --> 00:01:56,979
+and if you've ever tried to swap the
+value of two variables in a function,
+
+36
+00:01:56,979 --> 00:01:59,270
+you've noticed this problem
+sort of creeping up, right?
+
+37
+00:01:59,270 --> 00:02:04,340
+>> If we want to swap X and Y, and we
+pass them to a function called swap,
+
+38
+00:02:04,340 --> 00:02:08,680
+inside of the function swap the
+variables do exchange values.
+
+39
+00:02:08,680 --> 00:02:12,600
+One becomes two, two becomes
+one, but we don't actually
+
+40
+00:02:12,600 --> 00:02:16,890
+change anything in the original
+function, in the caller.
+
+41
+00:02:16,890 --> 00:02:19,550
+Because we can't, we're only
+working with copies of them.
+
+42
+00:02:19,550 --> 00:02:24,760
+With pointers though, we can
+actually pass X and Y to a function.
+
+43
+00:02:24,760 --> 00:02:26,960
+That function can do
+something with them.
+
+44
+00:02:26,960 --> 00:02:29,250
+And those variables values
+can actually change.
+
+45
+00:02:29,250 --> 00:02:33,710
+So that's quite a change in
+our ability to work with data.
+
+46
+00:02:33,710 --> 00:02:36,100
+>> Before we dive into
+pointers, I think it's worth
+
+47
+00:02:36,100 --> 00:02:38,580
+taking a few minutes to
+go back to basics here.
+
+48
+00:02:38,580 --> 00:02:41,000
+And have a look at how
+computer memory works
+
+49
+00:02:41,000 --> 00:02:45,340
+because these two subjects are going
+to actually be pretty interrelated.
+
+50
+00:02:45,340 --> 00:02:48,480
+As you probably know,
+on your computer system
+
+51
+00:02:48,480 --> 00:02:51,310
+you have a hard drive or
+perhaps a solid state drive,
+
+52
+00:02:51,310 --> 00:02:54,430
+some sort of file storage location.
+
+53
+00:02:54,430 --> 00:02:57,950
+It's usually somewhere in the
+neighborhood of 250 gigabytes
+
+54
+00:02:57,950 --> 00:02:59,810
+to maybe a couple of terabytes now.
+
+55
+00:02:59,810 --> 00:03:02,270
+And it's where all of your
+files ultimately live,
+
+56
+00:03:02,270 --> 00:03:04,870
+even when your computer is shut
+off, you can turn it back on
+
+57
+00:03:04,870 --> 00:03:09,190
+and you'll find your files are there
+again when you reboot your system.
+
+58
+00:03:09,190 --> 00:03:14,820
+But disk drives, like a hard disk drive,
+an HDD, or a solid state drive, an SSD,
+
+59
+00:03:14,820 --> 00:03:16,050
+are just storage space.
+
+60
+00:03:16,050 --> 00:03:20,400
+>> We can't actually do anything with
+the data that is in hard disk,
+
+61
+00:03:20,400 --> 00:03:22,080
+or in a solid state drive.
+
+62
+00:03:22,080 --> 00:03:24,950
+In order to actually change
+data or move it around,
+
+63
+00:03:24,950 --> 00:03:28,800
+we have to move it to
+RAM, random access memory.
+
+64
+00:03:28,800 --> 00:03:31,170
+Now RAM, you have a lot
+less of in your computer.
+
+65
+00:03:31,170 --> 00:03:34,185
+You may have somewhere in the
+neighborhood of 512 megabytes
+
+66
+00:03:34,185 --> 00:03:38,850
+if you have an older computer,
+to maybe two, four, eight, 16,
+
+67
+00:03:38,850 --> 00:03:41,820
+possibly even a little
+more, gigabytes of RAM.
+
+68
+00:03:41,820 --> 00:03:46,390
+So that's much smaller, but that's
+where all of the volatile data exists.
+
+69
+00:03:46,390 --> 00:03:48,270
+That's where we can change things.
+
+70
+00:03:48,270 --> 00:03:53,350
+But when we turn our computer off,
+all of the data in RAM is destroyed.
+
+71
+00:03:53,350 --> 00:03:57,150
+>> So that's why we need to have hard disk
+for the more permanent location of it,
+
+72
+00:03:57,150 --> 00:03:59,720
+so that it exists- it would
+be really bad if every time we
+
+73
+00:03:59,720 --> 00:04:03,310
+turned our computer off, every
+file in our system was obliterated.
+
+74
+00:04:03,310 --> 00:04:05,600
+So we work inside of RAM.
+
+75
+00:04:05,600 --> 00:04:09,210
+And every time we're talking about
+memory, pretty much, in CS50,
+
+76
+00:04:09,210 --> 00:04:15,080
+we're talking about RAM, not hard disk.
+
+77
+00:04:15,080 --> 00:04:18,657
+>> So when we move things into memory,
+it takes up a certain amount of space.
+
+78
+00:04:18,657 --> 00:04:20,740
+All of the data types that
+we've been working with
+
+79
+00:04:20,740 --> 00:04:23,480
+take up different
+amounts of space in RAM.
+
+80
+00:04:23,480 --> 00:04:27,600
+So every time you create an integer
+variable, four bytes of memory
+
+81
+00:04:27,600 --> 00:04:30,750
+are set aside in RAM so you
+can work with that integer.
+
+82
+00:04:30,750 --> 00:04:34,260
+You can declare the integer,
+change it, assign it
+
+83
+00:04:34,260 --> 00:04:36,700
+to a value 10 incremented
+by one, so on and so on.
+
+84
+00:04:36,700 --> 00:04:39,440
+All that needs to happen in
+RAM, and you get four bytes
+
+85
+00:04:39,440 --> 00:04:42,550
+to work with for every
+integer that you create.
+
+86
+00:04:42,550 --> 00:04:45,410
+>> Every character you
+create gets one byte.
+
+87
+00:04:45,410 --> 00:04:48,160
+That's just how much space is
+needed to store a character.
+
+88
+00:04:48,160 --> 00:04:51,310
+Every float, a real
+number, gets four bytes
+
+89
+00:04:51,310 --> 00:04:53,390
+unless it's a double
+precision floating point
+
+90
+00:04:53,390 --> 00:04:56,510
+number, which allows you to
+have more precise or more digits
+
+91
+00:04:56,510 --> 00:04:59,300
+after the decimal point
+without losing precision,
+
+92
+00:04:59,300 --> 00:05:01,820
+which take up eight bytes of memory.
+
+93
+00:05:01,820 --> 00:05:06,730
+Long longs, really big integers,
+also take up eight bytes of memory.
+
+94
+00:05:06,730 --> 00:05:09,000
+How many bytes of memory
+do strings take up?
+
+95
+00:05:09,000 --> 00:05:12,990
+Well let's put a pin in that question
+for now, but we'll come back to it.
+
+96
+00:05:12,990 --> 00:05:17,350
+>> So back to this idea of memory as
+a big array of byte-sized cells.
+
+97
+00:05:17,350 --> 00:05:20,871
+That's really all it is, it's
+just a huge array of cells,
+
+98
+00:05:20,871 --> 00:05:23,370
+just like any other array that
+you're familiar with and see,
+
+99
+00:05:23,370 --> 00:05:26,430
+except every element is one byte wide.
+
+100
+00:05:26,430 --> 00:05:30,030
+And just like an array,
+every element has an address.
+
+101
+00:05:30,030 --> 00:05:32,120
+Every element of an array
+has an index, and we
+
+102
+00:05:32,120 --> 00:05:36,302
+can use that index to do so-called
+random access on the array.
+
+103
+00:05:36,302 --> 00:05:38,510
+We don't have to start at
+the beginning of the array,
+
+104
+00:05:38,510 --> 00:05:40,569
+iterate through every
+single element thereof,
+
+105
+00:05:40,569 --> 00:05:41,860
+to find what we're looking for.
+
+106
+00:05:41,860 --> 00:05:45,790
+We can just say, I want to get to the
+15th element or the 100th element.
+
+107
+00:05:45,790 --> 00:05:49,930
+And you can just pass in that number
+and get the value you're looking for.
+
+108
+00:05:49,930 --> 00:05:54,460
+>> Similarly every location
+in memory has an address.
+
+109
+00:05:54,460 --> 00:05:57,320
+So your memory might
+look something like this.
+
+110
+00:05:57,320 --> 00:06:01,420
+Here's a very small chunk of
+memory, this is 20 bytes of memory.
+
+111
+00:06:01,420 --> 00:06:04,060
+The first 20 bytes because my
+addresses there at the bottom
+
+112
+00:06:04,060 --> 00:06:08,890
+are 0, 1, 2, 3, and so
+on all the way up to 19.
+
+113
+00:06:08,890 --> 00:06:13,190
+And when I declare variables and
+when I start to work with them,
+
+114
+00:06:13,190 --> 00:06:15,470
+the system is going to set
+aside some space for me
+
+115
+00:06:15,470 --> 00:06:17,595
+in this memory to work
+with my variables.
+
+116
+00:06:17,595 --> 00:06:21,610
+So I might say, char c equals capital
+H. And what's going to happen?
+
+117
+00:06:21,610 --> 00:06:23,880
+Well the system is going to
+set aside for me one byte.
+
+118
+00:06:23,880 --> 00:06:27,870
+In this case it chose byte number
+four, the byte at address four,
+
+119
+00:06:27,870 --> 00:06:31,310
+and it's going to store the
+letter capital H in there for me.
+
+120
+00:06:31,310 --> 00:06:34,350
+If I then say int speed
+limit equals 65, it's
+
+121
+00:06:34,350 --> 00:06:36,806
+going to set aside four
+bytes of memory for me.
+
+122
+00:06:36,806 --> 00:06:39,180
+And it's going to treat those
+four bytes as a single unit
+
+123
+00:06:39,180 --> 00:06:41,305
+because what we're working
+with is an integer here.
+
+124
+00:06:41,305 --> 00:06:44,350
+And it's going to store 65 in there.
+
+125
+00:06:44,350 --> 00:06:47,000
+>> Now already I'm kind of
+telling you a bit of a lie,
+
+126
+00:06:47,000 --> 00:06:50,150
+right, because we know that
+computers work in binary.
+
+127
+00:06:50,150 --> 00:06:53,100
+They don't understand
+necessarily what a capital H is
+
+128
+00:06:53,100 --> 00:06:57,110
+or what a 65 is, they only
+understand binary, zeros and ones.
+
+129
+00:06:57,110 --> 00:06:59,000
+And so actually what
+we're storing in there
+
+130
+00:06:59,000 --> 00:07:03,450
+is not the letter H and the number 65,
+but rather the binary representations
+
+131
+00:07:03,450 --> 00:07:06,980
+thereof, which look a
+little something like this.
+
+132
+00:07:06,980 --> 00:07:10,360
+And in particular in the
+context of the integer variable,
+
+133
+00:07:10,360 --> 00:07:13,559
+it's not going to just spit it into,
+it's not going to treat it as one four
+
+134
+00:07:13,559 --> 00:07:15,350
+byte chunk necessarily,
+it's actually going
+
+135
+00:07:15,350 --> 00:07:19,570
+to treat it as four one byte chunks,
+which might look something like this.
+
+136
+00:07:19,570 --> 00:07:22,424
+And even this isn't
+entirely true either,
+
+137
+00:07:22,424 --> 00:07:24,840
+because of something called
+an endianness, which we're not
+
+138
+00:07:24,840 --> 00:07:26,965
+going to get into now, but
+if you're curious about,
+
+139
+00:07:26,965 --> 00:07:29,030
+you can read up on little
+and big endianness.
+
+140
+00:07:29,030 --> 00:07:31,640
+But for the sake of this argument,
+for the sake of this video,
+
+141
+00:07:31,640 --> 00:07:34,860
+let's just assume that is, in
+fact, how the number 65 would
+
+142
+00:07:34,860 --> 00:07:36,970
+be represented in
+memory on every system,
+
+143
+00:07:36,970 --> 00:07:38,850
+although it's not entirely true.
+
+144
+00:07:38,850 --> 00:07:41,700
+>> But let's actually just get
+rid of all binary entirely,
+
+145
+00:07:41,700 --> 00:07:44,460
+and just think about as H
+and 65, it's a lot easier
+
+146
+00:07:44,460 --> 00:07:47,900
+to think about it like
+that as a human being.
+
+147
+00:07:47,900 --> 00:07:51,420
+All right, so it also seems maybe a
+little random that I've- my system
+
+148
+00:07:51,420 --> 00:07:55,130
+didn't give me bytes 5, 6, 7,
+and 8 to store the integer.
+
+149
+00:07:55,130 --> 00:07:58,580
+There's a reason for that, too, which
+we won't get into right now, but suffice
+
+150
+00:07:58,580 --> 00:08:00,496
+it to say that what the
+computer is doing here
+
+151
+00:08:00,496 --> 00:08:02,810
+is probably a good move on its part.
+
+152
+00:08:02,810 --> 00:08:06,020
+To not give me memory that's
+necessarily back to back.
+
+153
+00:08:06,020 --> 00:08:10,490
+Although it's going to do it now
+if I want to get another string,
+
+154
+00:08:10,490 --> 00:08:13,080
+called surname, and I want
+to put Lloyd in there.
+
+155
+00:08:13,080 --> 00:08:18,360
+I'm going to need to fit one
+character, each letter of that's
+
+156
+00:08:18,360 --> 00:08:21,330
+going to require one
+character, one byte of memory.
+
+157
+00:08:21,330 --> 00:08:26,230
+So if I could put Lloyd into my array
+like this I'm pretty good to go, right?
+
+158
+00:08:26,230 --> 00:08:28,870
+What's missing?
+
+159
+00:08:28,870 --> 00:08:31,840
+>> Remember that every string we work
+with in C ends with backslash zero,
+
+160
+00:08:31,840 --> 00:08:33,339
+and we can't omit that here, either.
+
+161
+00:08:33,339 --> 00:08:36,090
+We need to set aside one byte
+of memory to hold that so we
+
+162
+00:08:36,090 --> 00:08:39,130
+know when our string has ended.
+
+163
+00:08:39,130 --> 00:08:41,049
+So again this arrangement
+of the way things
+
+164
+00:08:41,049 --> 00:08:42,799
+appear in memory might
+be a little random,
+
+165
+00:08:42,799 --> 00:08:44,870
+but it actually is how
+most systems are designed.
+
+166
+00:08:44,870 --> 00:08:48,330
+To line them up on multiples
+of four, for reasons again
+
+167
+00:08:48,330 --> 00:08:50,080
+that we don't need to
+get into right now.
+
+168
+00:08:50,080 --> 00:08:53,060
+But this, so suffice it to say that
+after these three lines of code,
+
+169
+00:08:53,060 --> 00:08:54,810
+this is what memory might look like.
+
+170
+00:08:54,810 --> 00:08:58,930
+If I need memory locations
+4, 8, and 12 to hold my data,
+
+171
+00:08:58,930 --> 00:09:01,100
+this is what my memory might look like.
+
+172
+00:09:01,100 --> 00:09:04,062
+>> And just be particularly
+pedantic here, when
+
+173
+00:09:04,062 --> 00:09:06,020
+we're talking about memory
+addresses we usually
+
+174
+00:09:06,020 --> 00:09:08,390
+do so using hexadecimal notations.
+
+175
+00:09:08,390 --> 00:09:12,030
+So why don't we convert all of these
+from decimal to hexadecimal notation
+
+176
+00:09:12,030 --> 00:09:15,010
+just because that's generally
+how we refer to memory.
+
+177
+00:09:15,010 --> 00:09:17,880
+So instead of being 0 through
+19, what we have is zero
+
+178
+00:09:17,880 --> 00:09:20,340
+x zero through zero x1 three.
+
+179
+00:09:20,340 --> 00:09:23,790
+Those are the 20 bytes of memory that we
+have or we're looking at in this image
+
+180
+00:09:23,790 --> 00:09:25,540
+right here.
+
+181
+00:09:25,540 --> 00:09:29,310
+>> So all of that being said, let's
+step away from memory for a second
+
+182
+00:09:29,310 --> 00:09:30,490
+and back to pointers.
+
+183
+00:09:30,490 --> 00:09:32,420
+Here is the most important
+thing to remember
+
+184
+00:09:32,420 --> 00:09:34,070
+as we start working with pointers.
+
+185
+00:09:34,070 --> 00:09:36,314
+A pointer is nothing
+more than an address.
+
+186
+00:09:36,314 --> 00:09:38,230
+I'll say it again because
+it's that important,
+
+187
+00:09:38,230 --> 00:09:42,730
+a pointer is nothing
+more than an address.
+
+188
+00:09:42,730 --> 00:09:47,760
+Pointers are addresses to locations
+in memory where variables live.
+
+189
+00:09:47,760 --> 00:09:52,590
+Knowing that it becomes hopefully a
+little bit easier to work with them.
+
+190
+00:09:52,590 --> 00:09:54,550
+Another thing I like
+to do is to have sort
+
+191
+00:09:54,550 --> 00:09:58,510
+of diagrams visually representing what's
+happening with various lines of code.
+
+192
+00:09:58,510 --> 00:10:00,660
+And we'll do this a couple
+of times in pointers,
+
+193
+00:10:00,660 --> 00:10:03,354
+and when we talk about dynamic
+memory allocation as well.
+
+194
+00:10:03,354 --> 00:10:06,020
+Because I think that these diagrams
+can be particularly helpful.
+
+195
+00:10:06,020 --> 00:10:09,540
+>> So if I say for example, int k
+in my code, what is happening?
+
+196
+00:10:09,540 --> 00:10:12,524
+Well what's basically happening is
+I'm getting memory set aside for me,
+
+197
+00:10:12,524 --> 00:10:14,690
+but I don't even like to
+think about it like that, I
+
+198
+00:10:14,690 --> 00:10:16,300
+like to think about it like a box.
+
+199
+00:10:16,300 --> 00:10:20,090
+I have a box and it's
+colored green because I
+
+200
+00:10:20,090 --> 00:10:21,750
+can put integers in green boxes.
+
+201
+00:10:21,750 --> 00:10:23,666
+If it was a character I
+might have a blue box.
+
+202
+00:10:23,666 --> 00:10:27,290
+But I always say, if I'm creating
+a box that can hold integers
+
+203
+00:10:27,290 --> 00:10:28,950
+that box is colored green.
+
+204
+00:10:28,950 --> 00:10:33,020
+And I take a permanent marker
+and I write k on the side of it.
+
+205
+00:10:33,020 --> 00:10:37,590
+So I have a box called k,
+into which I can put integers.
+
+206
+00:10:37,590 --> 00:10:41,070
+So when I say int k, that's
+what happens in my head.
+
+207
+00:10:41,070 --> 00:10:43,140
+If I say k equals five, what am I doing?
+
+208
+00:10:43,140 --> 00:10:45,110
+Well, I'm putting five
+in the box, right.
+
+209
+00:10:45,110 --> 00:10:48,670
+This is pretty straightforward, if
+I say int k, create a box called k.
+
+210
+00:10:48,670 --> 00:10:52,040
+If I say k equals 5,
+put five into the box.
+
+211
+00:10:52,040 --> 00:10:53,865
+Hopefully that's not too much of a leap.
+
+212
+00:10:53,865 --> 00:10:55,990
+Here's where things go a
+little interesting though.
+
+213
+00:10:55,990 --> 00:11:02,590
+If I say int*pk, well even if I don't
+know what this necessarily means,
+
+214
+00:11:02,590 --> 00:11:06,150
+it's clearly got something
+to do with an integer.
+
+215
+00:11:06,150 --> 00:11:08,211
+So I'm going to color
+this box green-ish,
+
+216
+00:11:08,211 --> 00:11:10,210
+I know it's got something
+to do with an integer,
+
+217
+00:11:10,210 --> 00:11:13,400
+but it's not an integer itself,
+because it's an int star.
+
+218
+00:11:13,400 --> 00:11:15,390
+There's something slightly
+different about it.
+
+219
+00:11:15,390 --> 00:11:17,620
+So an integer's involved,
+but otherwise it's
+
+220
+00:11:17,620 --> 00:11:19,830
+not too different from
+what we were talking about.
+
+221
+00:11:19,830 --> 00:11:24,240
+It's a box, its got a label,
+it's wearing a label pk,
+
+222
+00:11:24,240 --> 00:11:27,280
+and it's capable of holding
+int stars, whatever those are.
+
+223
+00:11:27,280 --> 00:11:29,894
+They have something to do
+with integers, clearly.
+
+224
+00:11:29,894 --> 00:11:31,060
+Here's the last line though.
+
+225
+00:11:31,060 --> 00:11:37,650
+If I say pk=&k, whoa,
+what just happened, right?
+
+226
+00:11:37,650 --> 00:11:41,820
+So this random number, seemingly random
+number, gets thrown into the box there.
+
+227
+00:11:41,820 --> 00:11:44,930
+All that is, is pk
+gets the address of k.
+
+228
+00:11:44,930 --> 00:11:52,867
+So I'm sticking where k lives in memory,
+its address, the address of its bytes.
+
+229
+00:11:52,867 --> 00:11:55,200
+All I'm doing is I'm saying
+that value is what I'm going
+
+230
+00:11:55,200 --> 00:11:59,430
+to put inside of my box called pk.
+
+231
+00:11:59,430 --> 00:12:02,080
+And because these things are
+pointers, and because looking
+
+232
+00:12:02,080 --> 00:12:04,955
+at a string like zero x
+eight zero c seven four eight
+
+233
+00:12:04,955 --> 00:12:07,790
+two zero is probably
+not very meaningful.
+
+234
+00:12:07,790 --> 00:12:12,390
+When we generally visualize pointers,
+we actually do so as pointers.
+
+235
+00:12:12,390 --> 00:12:17,000
+Pk gives us the information
+we need to find k in memory.
+
+236
+00:12:17,000 --> 00:12:19,120
+So basically pk has an arrow in it.
+
+237
+00:12:19,120 --> 00:12:21,670
+And if we walk the length
+of that arrow, imagine
+
+238
+00:12:21,670 --> 00:12:25,280
+it's something you can walk on, if we
+walk along the length of the arrow,
+
+239
+00:12:25,280 --> 00:12:29,490
+at the very tip of that arrow, we
+will find the location in memory
+
+240
+00:12:29,490 --> 00:12:31,390
+where k lives.
+
+241
+00:12:31,390 --> 00:12:34,360
+And that's really important
+because once we know where k lives,
+
+242
+00:12:34,360 --> 00:12:37,870
+we can start to work with the data
+inside of that memory location.
+
+243
+00:12:37,870 --> 00:12:40,780
+Though we're getting a teeny
+bit ahead of ourselves for now.
+
+244
+00:12:40,780 --> 00:12:42,240
+>> So what is a pointer?
+
+245
+00:12:42,240 --> 00:12:45,590
+A pointer is a data item whose
+value is a memory address.
+
+246
+00:12:45,590 --> 00:12:49,740
+That was that zero x eight zero stuff
+going on, that was a memory address.
+
+247
+00:12:49,740 --> 00:12:52,060
+That was a location in memory.
+
+248
+00:12:52,060 --> 00:12:55,080
+And the type of a pointer
+describes the kind
+
+249
+00:12:55,080 --> 00:12:56,930
+of data you'll find at
+that memory address.
+
+250
+00:12:56,930 --> 00:12:58,810
+So there's the int star part right.
+
+251
+00:12:58,810 --> 00:13:03,690
+If I follow that arrow, it's
+going to lead me to a location.
+
+252
+00:13:03,690 --> 00:13:06,980
+And that location, what I
+will find there in my example,
+
+253
+00:13:06,980 --> 00:13:08,240
+is a green colored box.
+
+254
+00:13:08,240 --> 00:13:12,650
+It's an integer, that's what I
+will find if I go to that address.
+
+255
+00:13:12,650 --> 00:13:14,830
+The data type of a
+pointer describes what
+
+256
+00:13:14,830 --> 00:13:17,936
+you will find at that memory address.
+
+257
+00:13:17,936 --> 00:13:19,560
+So here's the really cool thing though.
+
+258
+00:13:19,560 --> 00:13:25,090
+Pointers allow us to pass
+variables between functions.
+
+259
+00:13:25,090 --> 00:13:28,520
+And actually pass variables
+and not pass copies of them.
+
+260
+00:13:28,520 --> 00:13:32,879
+Because if we know exactly where
+in memory to find a variable,
+
+261
+00:13:32,879 --> 00:13:35,670
+we don't need to make a copy of
+it, we can just go to that location
+
+262
+00:13:35,670 --> 00:13:37,844
+and work with that variable.
+
+263
+00:13:37,844 --> 00:13:40,260
+So in essence pointers sort
+of make a computer environment
+
+264
+00:13:40,260 --> 00:13:42,360
+a lot more like the real world, right.
+
+265
+00:13:42,360 --> 00:13:44,640
+>> So here's an analogy.
+
+266
+00:13:44,640 --> 00:13:48,080
+Let's say that I have a notebook,
+right, and it's full of notes.
+
+267
+00:13:48,080 --> 00:13:50,230
+And I would like you to update it.
+
+268
+00:13:50,230 --> 00:13:53,960
+You are a function that
+updates notes, right.
+
+269
+00:13:53,960 --> 00:13:56,390
+In the way we've been
+working so far, what
+
+270
+00:13:56,390 --> 00:14:02,370
+happens is you will take my notebook,
+you'll go to the copy store,
+
+271
+00:14:02,370 --> 00:14:06,410
+you'll make a Xerox copy of
+every page of the notebook.
+
+272
+00:14:06,410 --> 00:14:09,790
+You'll leave my notebook back
+on my desk when you're done,
+
+273
+00:14:09,790 --> 00:14:14,600
+you'll go and cross out things in my
+notebook that are out of date or wrong,
+
+274
+00:14:14,600 --> 00:14:19,280
+and then you'll pass back to
+me the stack of Xerox pages
+
+275
+00:14:19,280 --> 00:14:22,850
+that is a replica of my notebook with
+the changes that you've made to it.
+
+276
+00:14:22,850 --> 00:14:27,040
+And at that point, it's up to me as
+the calling function, as the caller,
+
+277
+00:14:27,040 --> 00:14:30,582
+to decide to take your notes and
+integrate them back into my notebook.
+
+278
+00:14:30,582 --> 00:14:32,540
+So there's a lot of steps
+involved here, right.
+
+279
+00:14:32,540 --> 00:14:34,850
+Like wouldn't it be better
+if I just say, hey, can you
+
+280
+00:14:34,850 --> 00:14:38,370
+update my notebook for
+me, hand you my notebook,
+
+281
+00:14:38,370 --> 00:14:40,440
+and you take things and
+literally cross them out
+
+282
+00:14:40,440 --> 00:14:42,810
+and update my notes in my notebook.
+
+283
+00:14:42,810 --> 00:14:45,140
+And then give me my notebook back.
+
+284
+00:14:45,140 --> 00:14:47,320
+That's kind of what
+pointers allow us to do,
+
+285
+00:14:47,320 --> 00:14:51,320
+they make this environment a lot
+more like how we operate in reality.
+
+286
+00:14:51,320 --> 00:14:54,640
+>> All right so that's what
+a pointer is, let's talk
+
+287
+00:14:54,640 --> 00:14:58,040
+about how pointers work in C, and
+how we can start to work with them.
+
+288
+00:14:58,040 --> 00:15:02,550
+So there's a very simple pointer
+in C called the null pointer.
+
+289
+00:15:02,550 --> 00:15:04,830
+The null pointer points to nothing.
+
+290
+00:15:04,830 --> 00:15:08,310
+This probably seems like it's
+actually not a very useful thing,
+
+291
+00:15:08,310 --> 00:15:10,500
+but as we'll see a
+little later on, the fact
+
+292
+00:15:10,500 --> 00:15:15,410
+that this null pointer exists
+actually really can come in handy.
+
+293
+00:15:15,410 --> 00:15:19,090
+And whenever you create a pointer, and
+you don't set its value immediately-
+
+294
+00:15:19,090 --> 00:15:21,060
+an example of setting
+its value immediately
+
+295
+00:15:21,060 --> 00:15:25,401
+will be a couple slides back
+where I said pk equals & k,
+
+296
+00:15:25,401 --> 00:15:28,740
+pk gets k's address, as
+we'll see what that means,
+
+297
+00:15:28,740 --> 00:15:32,990
+we'll see how to code that shortly-
+if we don't set its value to something
+
+298
+00:15:32,990 --> 00:15:35,380
+meaningful immediately,
+you should always
+
+299
+00:15:35,380 --> 00:15:37,480
+set your pointer to point to null.
+
+300
+00:15:37,480 --> 00:15:40,260
+You should set it to point to nothing.
+
+301
+00:15:40,260 --> 00:15:43,614
+>> That's very different than
+just leaving the value as it is
+
+302
+00:15:43,614 --> 00:15:45,530
+and then declaring a
+pointer and just assuming
+
+303
+00:15:45,530 --> 00:15:48,042
+it's null because that's rarely true.
+
+304
+00:15:48,042 --> 00:15:50,000
+So you should always set
+the value of a pointer
+
+305
+00:15:50,000 --> 00:15:55,690
+to null if you don't set its value
+to something meaningful immediately.
+
+306
+00:15:55,690 --> 00:15:59,090
+You can check whether a pointer's value
+is null using the equality operator
+
+307
+00:15:59,090 --> 00:16:05,450
+(==), just like you compare any integer
+values or character values using (==)
+
+308
+00:16:05,450 --> 00:16:06,320
+as well.
+
+309
+00:16:06,320 --> 00:16:10,994
+It's a special sort of constant
+value that you can use to test.
+
+310
+00:16:10,994 --> 00:16:13,160
+So that was a very simple
+pointer, the null pointer.
+
+311
+00:16:13,160 --> 00:16:15,320
+Another way to create
+a pointer is to extract
+
+312
+00:16:15,320 --> 00:16:18,240
+the address of a variable
+you've already created,
+
+313
+00:16:18,240 --> 00:16:22,330
+and you do this using the &
+operator address extraction.
+
+314
+00:16:22,330 --> 00:16:26,720
+Which we've already seen previously
+in the first diagram example I showed.
+
+315
+00:16:26,720 --> 00:16:31,450
+So if x is a variable that we've
+already created of type integer,
+
+316
+00:16:31,450 --> 00:16:35,110
+then &x is a pointer to an integer.
+
+317
+00:16:35,110 --> 00:16:39,810
+&x is- remember, & is going to extract
+the address of the thing on the right.
+
+318
+00:16:39,810 --> 00:16:45,350
+And since a pointer is just an address,
+than &x is a pointer to an integer
+
+319
+00:16:45,350 --> 00:16:48,560
+whose value is where in memory x lives.
+
+320
+00:16:48,560 --> 00:16:50,460
+It's x's address.
+
+321
+00:16:50,460 --> 00:16:53,296
+So &x is the address of x.
+
+322
+00:16:53,296 --> 00:16:55,670
+Let's take this one step
+further and connect to something
+
+323
+00:16:55,670 --> 00:16:58,380
+I alluded to in a prior video.
+
+324
+00:16:58,380 --> 00:17:06,730
+If arr is an array of doubles, then
+&arr square bracket i is a pointer
+
+325
+00:17:06,730 --> 00:17:08,109
+to a double.
+
+326
+00:17:08,109 --> 00:17:08,970
+OK.
+
+327
+00:17:08,970 --> 00:17:12,160
+arr square bracket i, if
+arr is an array of doubles,
+
+328
+00:17:12,160 --> 00:17:19,069
+then arr square bracket i is
+the i-th element of that array,
+
+329
+00:17:19,069 --> 00:17:29,270
+and &arr square bracket i is where in
+memory the i-th element of arr exists.
+
+330
+00:17:29,270 --> 00:17:31,790
+>> So what's the implication here?
+
+331
+00:17:31,790 --> 00:17:34,570
+An arrays name, the implication
+of this whole thing,
+
+332
+00:17:34,570 --> 00:17:39,290
+is that an array's name is
+actually itself a pointer.
+
+333
+00:17:39,290 --> 00:17:41,170
+You've been working
+with pointers all along
+
+334
+00:17:41,170 --> 00:17:45,290
+every time that you've used an array.
+
+335
+00:17:45,290 --> 00:17:49,090
+Remember from the example
+on variable scope,
+
+336
+00:17:49,090 --> 00:17:53,420
+near the end of the video I present
+an example where we have a function
+
+337
+00:17:53,420 --> 00:17:56,890
+called set int and a
+function called set array.
+
+338
+00:17:56,890 --> 00:18:00,490
+And your challenge to determine
+whether or not, or what the
+
+339
+00:18:00,490 --> 00:18:03,220
+values that we printed out
+the end of the function,
+
+340
+00:18:03,220 --> 00:18:05,960
+at the end of the main program.
+
+341
+00:18:05,960 --> 00:18:08,740
+>> If you recall from that example
+or if you've watched the video,
+
+342
+00:18:08,740 --> 00:18:13,080
+you know that when you- the call to
+set int effectively does nothing.
+
+343
+00:18:13,080 --> 00:18:16,390
+But the call to set array does.
+
+344
+00:18:16,390 --> 00:18:19,280
+And I sort of glossed over why
+that was the case at the time.
+
+345
+00:18:19,280 --> 00:18:22,363
+I just said, well it's an array, it's
+special, you know, there's a reason.
+
+346
+00:18:22,363 --> 00:18:25,020
+The reason is that an array's
+name is really just a pointer,
+
+347
+00:18:25,020 --> 00:18:28,740
+and there's this special
+square bracket syntax that
+
+348
+00:18:28,740 --> 00:18:30,510
+make things a lot nicer to work with.
+
+349
+00:18:30,510 --> 00:18:34,410
+And they make the idea of a
+pointer a lot less intimidating,
+
+350
+00:18:34,410 --> 00:18:36,800
+and that's why they're sort
+of presented in that way.
+
+351
+00:18:36,800 --> 00:18:38,600
+But really arrays are just pointers.
+
+352
+00:18:38,600 --> 00:18:41,580
+And that's why when we
+made a change to the array,
+
+353
+00:18:41,580 --> 00:18:44,880
+when we passed an array as a parameter
+to a function or as an argument
+
+354
+00:18:44,880 --> 00:18:50,110
+to a function, the contents of the array
+actually changed in both the callee
+
+355
+00:18:50,110 --> 00:18:51,160
+and in the caller.
+
+356
+00:18:51,160 --> 00:18:55,846
+Which for every other kind of
+variable we saw was not the case.
+
+357
+00:18:55,846 --> 00:18:58,970
+So that's just something to keep in
+mind when you're working with pointers,
+
+358
+00:18:58,970 --> 00:19:01,610
+is that the name of an
+array actually a pointer
+
+359
+00:19:01,610 --> 00:19:04,750
+to the first element of that array.
+
+360
+00:19:04,750 --> 00:19:08,930
+>> OK so now we have all these
+facts, let's keep going, right.
+
+361
+00:19:08,930 --> 00:19:11,370
+Why do we care about
+where something lives.
+
+362
+00:19:11,370 --> 00:19:14,120
+Well like I said, it's pretty
+useful to know where something lives
+
+363
+00:19:14,120 --> 00:19:17,240
+so you can go there and change it.
+
+364
+00:19:17,240 --> 00:19:19,390
+Work with it and actually
+have the thing that you
+
+365
+00:19:19,390 --> 00:19:23,710
+want to do to that variable take effect,
+and not take effect on some copy of it.
+
+366
+00:19:23,710 --> 00:19:26,150
+This is called dereferencing.
+
+367
+00:19:26,150 --> 00:19:28,690
+We go to the reference and
+we change the value there.
+
+368
+00:19:28,690 --> 00:19:32,660
+So if we have a pointer and it's called
+pc, and it points to a character,
+
+369
+00:19:32,660 --> 00:19:40,610
+then we can say *pc and *pc is the
+name of what we'll find if we go
+
+370
+00:19:40,610 --> 00:19:42,910
+to the address pc.
+
+371
+00:19:42,910 --> 00:19:47,860
+What we'll find there is a character and
+*pc is how we refer to the data at that
+
+372
+00:19:47,860 --> 00:19:48,880
+location.
+
+373
+00:19:48,880 --> 00:19:54,150
+So we could say something like
+*pc=D or something like that,
+
+374
+00:19:54,150 --> 00:19:59,280
+and that means that whatever
+was at memory address pc,
+
+375
+00:19:59,280 --> 00:20:07,040
+whatever character was previously
+there, is now D, if we say *pc=D.
+
+376
+00:20:07,040 --> 00:20:10,090
+>> So here we go again with
+some weird C stuff, right.
+
+377
+00:20:10,090 --> 00:20:14,560
+So we've seen * previously as being
+somehow part of the data type,
+
+378
+00:20:14,560 --> 00:20:17,160
+and now it's being used in
+a slightly different context
+
+379
+00:20:17,160 --> 00:20:19,605
+to access the data at a location.
+
+380
+00:20:19,605 --> 00:20:22,480
+I know it's a little confusing and
+that's actually part of this whole
+
+381
+00:20:22,480 --> 00:20:25,740
+like, why pointers have this mythology
+around them as being so complex,
+
+382
+00:20:25,740 --> 00:20:28,250
+is kind of a syntax problem, honestly.
+
+383
+00:20:28,250 --> 00:20:31,810
+But * is used in both contexts,
+both as part of the type name,
+
+384
+00:20:31,810 --> 00:20:34,100
+and we'll see a little
+later something else, too.
+
+385
+00:20:34,100 --> 00:20:36,490
+And right now is the
+dereference operator.
+
+386
+00:20:36,490 --> 00:20:38,760
+So it goes to the reference,
+it accesses the data
+
+387
+00:20:38,760 --> 00:20:43,000
+at the location of the pointer, and
+allows you to manipulate it at will.
+
+388
+00:20:43,000 --> 00:20:45,900
+>> Now this is very similar to
+visiting your neighbor, right.
+
+389
+00:20:45,900 --> 00:20:48,710
+If you know what your
+neighbor lives, you're
+
+390
+00:20:48,710 --> 00:20:50,730
+not hanging out with your neighbor.
+
+391
+00:20:50,730 --> 00:20:53,510
+You know you happen to
+know where they live,
+
+392
+00:20:53,510 --> 00:20:56,870
+but that doesn't mean that by
+virtue of having that knowledge
+
+393
+00:20:56,870 --> 00:20:59,170
+you are interacting with them.
+
+394
+00:20:59,170 --> 00:21:01,920
+If you want to interact with them,
+you have to go to their house,
+
+395
+00:21:01,920 --> 00:21:03,760
+you have to go to where they live.
+
+396
+00:21:03,760 --> 00:21:07,440
+And once you do that,
+then you can interact
+
+397
+00:21:07,440 --> 00:21:09,420
+with them just like you'd want to.
+
+398
+00:21:09,420 --> 00:21:12,730
+And similarly with variables,
+you need to go to their address
+
+399
+00:21:12,730 --> 00:21:15,320
+if you want to interact them,
+you can't just know the address.
+
+400
+00:21:15,320 --> 00:21:21,495
+And the way you go to the address is
+to use *, the dereference operator.
+
+401
+00:21:21,495 --> 00:21:23,620
+What do you think happens
+if we try and dereference
+
+402
+00:21:23,620 --> 00:21:25,260
+a pointer whose value is null?
+
+403
+00:21:25,260 --> 00:21:28,470
+Recall that the null
+pointer points to nothing.
+
+404
+00:21:28,470 --> 00:21:34,110
+So if you try and dereference
+nothing or go to an address nothing,
+
+405
+00:21:34,110 --> 00:21:36,800
+what do you think happens?
+
+406
+00:21:36,800 --> 00:21:39,630
+Well if you guessed segmentation
+fault, you'd be right.
+
+407
+00:21:39,630 --> 00:21:41,390
+If you try and dereference
+a null pointer,
+
+408
+00:21:41,390 --> 00:21:43,140
+you suffer a segmentation
+fault. But wait,
+
+409
+00:21:43,140 --> 00:21:45,820
+didn't I tell you, that
+if you're not going
+
+410
+00:21:45,820 --> 00:21:49,220
+to set your value of your
+pointer to something meaningful,
+
+411
+00:21:49,220 --> 00:21:51,000
+you should set to null?
+
+412
+00:21:51,000 --> 00:21:55,290
+I did and actually the segmentation
+fault is kind of a good behavior.
+
+413
+00:21:55,290 --> 00:21:58,680
+>> Have you ever declared a variable and
+not assigned its value immediately?
+
+414
+00:21:58,680 --> 00:22:02,680
+So you just say int x; you don't
+actually assign it to anything
+
+415
+00:22:02,680 --> 00:22:05,340
+and then later on in your code,
+you print out the value of x,
+
+416
+00:22:05,340 --> 00:22:07,650
+having still not
+assigned it to anything.
+
+417
+00:22:07,650 --> 00:22:10,370
+Frequently you'll get
+zero, but sometimes you
+
+418
+00:22:10,370 --> 00:22:15,000
+might get some random number, and
+you have no idea where it came from.
+
+419
+00:22:15,000 --> 00:22:16,750
+Similarly can things
+happen with pointers.
+
+420
+00:22:16,750 --> 00:22:20,110
+When you declare a pointer
+int*pk for example,
+
+421
+00:22:20,110 --> 00:22:23,490
+and you don't assign it to a value,
+you get four bytes for memory.
+
+422
+00:22:23,490 --> 00:22:25,950
+Whatever four bytes of
+memory the system can
+
+423
+00:22:25,950 --> 00:22:28,970
+find that have some meaningful value.
+
+424
+00:22:28,970 --> 00:22:31,760
+And there might have been
+something already there that
+
+425
+00:22:31,760 --> 00:22:34,190
+is no longer needed by another
+function, so you just have
+
+426
+00:22:34,190 --> 00:22:35,900
+whatever data was there.
+
+427
+00:22:35,900 --> 00:22:40,570
+>> What if you tried to do dereference
+some address that you don't- there were
+
+428
+00:22:40,570 --> 00:22:43,410
+already bytes and information in
+there, that's now in your pointer.
+
+429
+00:22:43,410 --> 00:22:47,470
+If you try and dereference that pointer,
+you might be messing with some memory
+
+430
+00:22:47,470 --> 00:22:49,390
+that you didn't intend
+to mess with it all.
+
+431
+00:22:49,390 --> 00:22:51,639
+And in fact you could do
+something really devastating,
+
+432
+00:22:51,639 --> 00:22:54,880
+like break another program,
+or break another function,
+
+433
+00:22:54,880 --> 00:22:58,289
+or do something malicious that
+you didn't intend to do at all.
+
+434
+00:22:58,289 --> 00:23:00,080
+And so that's why it's
+actually a good idea
+
+435
+00:23:00,080 --> 00:23:04,030
+to set your pointers to null if you
+don't set them to something meaningful.
+
+436
+00:23:04,030 --> 00:23:06,760
+It's probably better at the
+end of the day for your program
+
+437
+00:23:06,760 --> 00:23:09,840
+to crash then for it to do
+something that screws up
+
+438
+00:23:09,840 --> 00:23:12,400
+another program or another function.
+
+439
+00:23:12,400 --> 00:23:15,207
+That behavior is probably even
+less ideal than just crashing.
+
+440
+00:23:15,207 --> 00:23:17,040
+And so that's why it's
+actually a good habit
+
+441
+00:23:17,040 --> 00:23:20,920
+to get into to set your pointers
+to null if you don't set them
+
+442
+00:23:20,920 --> 00:23:24,540
+to a meaningful value
+immediately, a value that you know
+
+443
+00:23:24,540 --> 00:23:27,260
+and that you can safely the dereference.
+
+444
+00:23:27,260 --> 00:23:32,240
+>> So let's come back now and take a look
+at the overall syntax of the situation.
+
+445
+00:23:32,240 --> 00:23:37,400
+If I say int *p;, what have I just done?
+
+446
+00:23:37,400 --> 00:23:38,530
+What I've done is this.
+
+447
+00:23:38,530 --> 00:23:43,290
+I know the value of p is an address
+because all pointers are just
+
+448
+00:23:43,290 --> 00:23:44,660
+addresses.
+
+449
+00:23:44,660 --> 00:23:47,750
+I can dereference p
+using the * operator.
+
+450
+00:23:47,750 --> 00:23:51,250
+In this context here, at the very
+top recall the * is part of the type.
+
+451
+00:23:51,250 --> 00:23:53,510
+Int * is the data type.
+
+452
+00:23:53,510 --> 00:23:56,150
+But I can dereference
+p using the * operator,
+
+453
+00:23:56,150 --> 00:24:01,897
+and if I do so, if I go to that address,
+what will I find at that address?
+
+454
+00:24:01,897 --> 00:24:02,855
+I will find an integer.
+
+455
+00:24:02,855 --> 00:24:05,910
+So int*p is basically
+saying, p is an address.
+
+456
+00:24:05,910 --> 00:24:09,500
+I can dereference p and if
+I do, I will find an integer
+
+457
+00:24:09,500 --> 00:24:11,920
+at that memory location.
+
+458
+00:24:11,920 --> 00:24:14,260
+>> OK so I said there was another
+annoying thing with stars
+
+459
+00:24:14,260 --> 00:24:17,060
+and here's where that
+annoying thing with stars is.
+
+460
+00:24:17,060 --> 00:24:21,640
+Have you ever tried to declare
+multiple variables of the same type
+
+461
+00:24:21,640 --> 00:24:24,409
+on the same line of code?
+
+462
+00:24:24,409 --> 00:24:27,700
+So for a second, pretend that the line,
+the code I actually have there in green
+
+463
+00:24:27,700 --> 00:24:29,366
+isn't there and it just says int x,y,z;.
+
+464
+00:24:29,366 --> 00:24:31,634
+
+465
+00:24:31,634 --> 00:24:34,550
+What that would do is actually create
+three integer variables for you,
+
+466
+00:24:34,550 --> 00:24:36,930
+one called x, one called
+y, and one called z.
+
+467
+00:24:36,930 --> 00:24:41,510
+It's a way to do it without
+having to split onto three lines.
+
+468
+00:24:41,510 --> 00:24:43,890
+>> Here's where stars get
+annoying again though,
+
+469
+00:24:43,890 --> 00:24:49,200
+because the * is actually part
+of both the type name and part
+
+470
+00:24:49,200 --> 00:24:50,320
+of the variable name.
+
+471
+00:24:50,320 --> 00:24:56,430
+And so if I say int *px,py,pz, what I
+actually get is a pointer to an integer
+
+472
+00:24:56,430 --> 00:25:01,650
+called px and two integers, py and pz.
+
+473
+00:25:01,650 --> 00:25:04,950
+And that's probably not what
+we want, that's not good.
+
+474
+00:25:04,950 --> 00:25:09,290
+>> So if I want to create multiple pointers
+on the same line, of the same type,
+
+475
+00:25:09,290 --> 00:25:12,140
+and stars, what I actually need
+to do is say int *pa,*pb,*pc.
+
+476
+00:25:12,140 --> 00:25:17,330
+
+477
+00:25:17,330 --> 00:25:20,300
+Now having just said that
+and now telling you this,
+
+478
+00:25:20,300 --> 00:25:22,170
+you probably will never do this.
+
+479
+00:25:22,170 --> 00:25:25,170
+And it's probably a good thing honestly,
+because you might inadvertently
+
+480
+00:25:25,170 --> 00:25:26,544
+omit a star, something like that.
+
+481
+00:25:26,544 --> 00:25:29,290
+It's probably best to maybe declare
+pointers on individual lines,
+
+482
+00:25:29,290 --> 00:25:31,373
+but it's just another one
+of those annoying syntax
+
+483
+00:25:31,373 --> 00:25:35,310
+things with stars that make
+pointers so difficult to work with.
+
+484
+00:25:35,310 --> 00:25:39,480
+Because it's just this syntactic
+mess you have to work through.
+
+485
+00:25:39,480 --> 00:25:41,600
+With practice it does
+really become second nature.
+
+486
+00:25:41,600 --> 00:25:45,410
+I still make mistakes with it still
+after programming for 10 years,
+
+487
+00:25:45,410 --> 00:25:49,630
+so don't be upset if something happens
+to you, it's pretty common honestly.
+
+488
+00:25:49,630 --> 00:25:52,850
+It's really kind of
+a flaw of the syntax.
+
+489
+00:25:52,850 --> 00:25:54,900
+>> OK so I kind of promised
+that we would revisit
+
+490
+00:25:54,900 --> 00:25:59,370
+the concept of how large is a string.
+
+491
+00:25:59,370 --> 00:26:02,750
+Well if I told you that a
+string, we've really kind of
+
+492
+00:26:02,750 --> 00:26:04,140
+been lying to you the whole time.
+
+493
+00:26:04,140 --> 00:26:06,181
+There's no data type called
+string, and in fact I
+
+494
+00:26:06,181 --> 00:26:09,730
+mentioned this in one of our
+earliest videos on data types,
+
+495
+00:26:09,730 --> 00:26:13,820
+that string was a data type that
+was created for you in CS50.h.
+
+496
+00:26:13,820 --> 00:26:17,050
+You have to #include
+CS50.h in order to use it.
+
+497
+00:26:17,050 --> 00:26:19,250
+>> Well string is really just
+an alias for something
+
+498
+00:26:19,250 --> 00:26:23,600
+called the char *, a
+pointer to a character.
+
+499
+00:26:23,600 --> 00:26:26,010
+Well pointers, recall,
+are just addresses.
+
+500
+00:26:26,010 --> 00:26:28,780
+So what is the size
+in bytes of a string?
+
+501
+00:26:28,780 --> 00:26:29,796
+Well it's four or eight.
+
+502
+00:26:29,796 --> 00:26:32,170
+And the reason I say four or
+eight is because it actually
+
+503
+00:26:32,170 --> 00:26:36,730
+depends on the system, If you're using
+CS50 ide, char * is the size of a char
+
+504
+00:26:36,730 --> 00:26:39,340
+* is eight, it's a 64-bit system.
+
+505
+00:26:39,340 --> 00:26:43,850
+Every address in memory is 64 bits long.
+
+506
+00:26:43,850 --> 00:26:48,270
+If you're using CS50 appliance
+or using any 32-bit machine,
+
+507
+00:26:48,270 --> 00:26:51,640
+and you've heard that term 32-bit
+machine, what is a 32-bit machine?
+
+508
+00:26:51,640 --> 00:26:56,090
+Well it just means that every
+address in memory is 32 bits long.
+
+509
+00:26:56,090 --> 00:26:59,140
+And so 32 bits is four bytes.
+
+510
+00:26:59,140 --> 00:27:02,710
+So a char * is four or eight
+bytes depending on your system.
+
+511
+00:27:02,710 --> 00:27:06,100
+And indeed any data types,
+and a pointer to any data
+
+512
+00:27:06,100 --> 00:27:12,030
+type, since all pointers are just
+addresses, are four or eight bytes.
+
+513
+00:27:12,030 --> 00:27:14,030
+So let's revisit this
+diagram and let's conclude
+
+514
+00:27:14,030 --> 00:27:18,130
+this video with a little exercise here.
+
+515
+00:27:18,130 --> 00:27:21,600
+So here's the diagram we left off with
+at the very beginning of the video.
+
+516
+00:27:21,600 --> 00:27:23,110
+So what happens now if I say *pk=35?
+
+517
+00:27:23,110 --> 00:27:26,370
+
+518
+00:27:26,370 --> 00:27:30,530
+So what does it mean when I say, *pk=35?
+
+519
+00:27:30,530 --> 00:27:32,420
+Take a second.
+
+520
+00:27:32,420 --> 00:27:34,990
+*pk.
+
+521
+00:27:34,990 --> 00:27:39,890
+In context here, * is
+dereference operator.
+
+522
+00:27:39,890 --> 00:27:42,110
+So when the dereference
+operator is used,
+
+523
+00:27:42,110 --> 00:27:48,520
+we go to the address pointed to
+by pk, and we change what we find.
+
+524
+00:27:48,520 --> 00:27:55,270
+So *pk=35 effectively
+does this to the picture.
+
+525
+00:27:55,270 --> 00:27:58,110
+So it's basically syntactically
+identical to of having said k=35.
+
+526
+00:27:58,110 --> 00:28:00,740
+
+527
+00:28:00,740 --> 00:28:01,930
+>> One more.
+
+528
+00:28:01,930 --> 00:28:05,510
+If I say int m, I create
+a new variable called m.
+
+529
+00:28:05,510 --> 00:28:08,260
+A new box, it's a green box because
+it's going to hold an integer,
+
+530
+00:28:08,260 --> 00:28:09,840
+and it's labeled m.
+
+531
+00:28:09,840 --> 00:28:14,960
+If I say m=4, I put an
+integer into that box.
+
+532
+00:28:14,960 --> 00:28:20,290
+If say pk=&m, how does
+this diagram change?
+
+533
+00:28:20,290 --> 00:28:28,760
+Pk=&m, do you recall what the
+& operator does or is called?
+
+534
+00:28:28,760 --> 00:28:34,430
+Remember that & some variable name
+is the address of a variable name.
+
+535
+00:28:34,430 --> 00:28:38,740
+So what we're saying is
+pk gets the address of m.
+
+536
+00:28:38,740 --> 00:28:42,010
+And so effectively what happens the
+diagram is that pk no longer points
+
+537
+00:28:42,010 --> 00:28:46,420
+to k, but points to m.
+
+538
+00:28:46,420 --> 00:28:48,470
+>> Again pointers are very
+tricky to work with
+
+539
+00:28:48,470 --> 00:28:50,620
+and they take a lot of
+practice, but because
+
+540
+00:28:50,620 --> 00:28:54,150
+of their ability to allow you
+to pass data between functions
+
+541
+00:28:54,150 --> 00:28:56,945
+and actually have those
+changes take effect,
+
+542
+00:28:56,945 --> 00:28:58,820
+getting your head around
+is really important.
+
+543
+00:28:58,820 --> 00:29:02,590
+It probably is the most complicated
+topic we discuss in CS50,
+
+544
+00:29:02,590 --> 00:29:05,910
+but the value that you
+get from using pointers
+
+545
+00:29:05,910 --> 00:29:09,200
+far outweighs the complications
+that come from learning them.
+
+546
+00:29:09,200 --> 00:29:12,690
+So I wish you the best of
+luck learning about pointers.
+
+547
+00:29:12,690 --> 00:29:15,760
+I'm Doug Lloyd, this is CS50.
+
+548
+00:29:15,760 --> 00:29:17,447

@@ -1,0 +1,982 @@
+1
+00:00:00,000 --> 00:00:03,346
+>> [MUSIC PLAYING]
+
+2
+00:00:03,346 --> 00:00:05,258
+
+3
+00:00:05,258 --> 00:00:06,220
+>> DOUG LLOYD: All right.
+
+4
+00:00:06,220 --> 00:00:08,140
+So binary search is an
+algorithm we can use
+
+5
+00:00:08,140 --> 00:00:10,530
+to find an element inside of an array.
+
+6
+00:00:10,530 --> 00:00:14,710
+Unlike linear search, it requires a
+special condition be met beforehand,
+
+7
+00:00:14,710 --> 00:00:19,020
+but it's so much more efficient if
+that condition is, in fact, met.
+
+8
+00:00:19,020 --> 00:00:20,470
+>> So what's the idea here?
+
+9
+00:00:20,470 --> 00:00:21,780
+it's divide and conquer.
+
+10
+00:00:21,780 --> 00:00:25,100
+We want to reduce the size of
+the search area by half each time
+
+11
+00:00:25,100 --> 00:00:27,240
+in order to find a target number.
+
+12
+00:00:27,240 --> 00:00:29,520
+This is where that condition
+comes into play, though.
+
+13
+00:00:29,520 --> 00:00:32,740
+We can only leverage the power of
+eliminating half of the elements
+
+14
+00:00:32,740 --> 00:00:36,070
+without even looking at
+them if the array is sorted.
+
+15
+00:00:36,070 --> 00:00:39,200
+>> If it's a complete mix up,
+we can't just out of hand
+
+16
+00:00:39,200 --> 00:00:42,870
+discard half of the elements, because
+we don't know what we're discarding.
+
+17
+00:00:42,870 --> 00:00:45,624
+But if the array is sorted,
+we can do that, because we
+
+18
+00:00:45,624 --> 00:00:48,040
+know that everything to the
+left of where we currently are
+
+19
+00:00:48,040 --> 00:00:50,500
+must be lower than the
+value we're currently at.
+
+20
+00:00:50,500 --> 00:00:52,300
+And everything to the
+right of where we are
+
+21
+00:00:52,300 --> 00:00:55,040
+must be greater than the value
+we're currently looking at.
+
+22
+00:00:55,040 --> 00:00:58,710
+>> So what's the pseudocode
+steps for binary search?
+
+23
+00:00:58,710 --> 00:01:02,310
+We repeat this process until the
+array or, as we proceed through,
+
+24
+00:01:02,310 --> 00:01:07,740
+sub arrays, smaller pieces of
+the original array, is of size 0.
+
+25
+00:01:07,740 --> 00:01:10,960
+Calculate the midpoint
+of the current sub array.
+
+26
+00:01:10,960 --> 00:01:14,460
+>> If the value you're looking for is
+in that element of the array, stop.
+
+27
+00:01:14,460 --> 00:01:15,030
+You found it.
+
+28
+00:01:15,030 --> 00:01:16,550
+That's great.
+
+29
+00:01:16,550 --> 00:01:19,610
+Otherwise, if the target is
+less than what's at the middle,
+
+30
+00:01:19,610 --> 00:01:23,430
+so if the value we're looking
+for is lower than what we see,
+
+31
+00:01:23,430 --> 00:01:26,780
+repeat this process again, but
+change the end point, instead
+
+32
+00:01:26,780 --> 00:01:29,300
+of being the original
+complete full array,
+
+33
+00:01:29,300 --> 00:01:34,110
+to be just to the left
+of where we just looked.
+
+34
+00:01:34,110 --> 00:01:38,940
+>> We knew that the middle was too high,
+or the target was less than the middle,
+
+35
+00:01:38,940 --> 00:01:42,210
+and so it must exist, if it
+exists at all in the array,
+
+36
+00:01:42,210 --> 00:01:44,660
+somewhere to the left of the midpoint.
+
+37
+00:01:44,660 --> 00:01:48,120
+And so we'll set the array
+location just to the left
+
+38
+00:01:48,120 --> 00:01:51,145
+of the midpoint as the new end point.
+
+39
+00:01:51,145 --> 00:01:53,770
+Conversely, if the target is
+greater than what's at the middle,
+
+40
+00:01:53,770 --> 00:01:55,750
+we do the exact same
+process, but instead we
+
+41
+00:01:55,750 --> 00:01:59,520
+change the start point to be
+just to the right of the midpoint
+
+42
+00:01:59,520 --> 00:02:00,680
+we just calculated.
+
+43
+00:02:00,680 --> 00:02:03,220
+And then, we begin the process again.
+
+44
+00:02:03,220 --> 00:02:05,220
+>> Let's visualize this, OK?
+
+45
+00:02:05,220 --> 00:02:08,620
+So there's a lot going and on here,
+but here's an array of the 15 elements.
+
+46
+00:02:08,620 --> 00:02:11,400
+And we're going to be keeping track
+of a lot more stuff this time.
+
+47
+00:02:11,400 --> 00:02:13,870
+So in linear search, we were
+just caring about a target.
+
+48
+00:02:13,870 --> 00:02:15,869
+But this time we want to
+care about where are we
+
+49
+00:02:15,869 --> 00:02:18,480
+starting to look, where
+are we stopping looking,
+
+50
+00:02:18,480 --> 00:02:21,876
+and what's the midpoint
+of the current array.
+
+51
+00:02:21,876 --> 00:02:23,250
+So here we go with binary search.
+
+52
+00:02:23,250 --> 00:02:25,290
+We're pretty much good to go, right?
+
+53
+00:02:25,290 --> 00:02:28,650
+I'm just going to put down
+below here a set of indices.
+
+54
+00:02:28,650 --> 00:02:32,430
+This is basically just what element
+of the array we're talking about.
+
+55
+00:02:32,430 --> 00:02:34,500
+With linear search, we
+care, inasmuch as we
+
+56
+00:02:34,500 --> 00:02:36,800
+need to know how many
+elements we're iterating over,
+
+57
+00:02:36,800 --> 00:02:40,010
+but we don't actually care what
+element we're currently looking at.
+
+58
+00:02:40,010 --> 00:02:41,014
+In binary search, we do.
+
+59
+00:02:41,014 --> 00:02:42,930
+And so those are just
+there as a little guide.
+
+60
+00:02:42,930 --> 00:02:44,910
+>> So we can start, right?
+
+61
+00:02:44,910 --> 00:02:46,240
+Well, not quite.
+
+62
+00:02:46,240 --> 00:02:48,160
+Remember what I said
+about binary search?
+
+63
+00:02:48,160 --> 00:02:50,955
+We can't do it on an
+unsorted array or else,
+
+64
+00:02:50,955 --> 00:02:55,820
+we are not guaranteeing that the
+certain elements or values aren't
+
+65
+00:02:55,820 --> 00:02:57,650
+being accidentally
+discarded when we just
+
+66
+00:02:57,650 --> 00:02:59,920
+decide to ignore half of the array.
+
+67
+00:02:59,920 --> 00:03:02,574
+>> So step one with binary search
+is you must have a sorted array.
+
+68
+00:03:02,574 --> 00:03:05,240
+And you can use any of the sorting
+algorithms we've talked about
+
+69
+00:03:05,240 --> 00:03:06,700
+to get you to that position.
+
+70
+00:03:06,700 --> 00:03:10,370
+So now, we're in a position where
+we can perform binary search.
+
+71
+00:03:10,370 --> 00:03:12,560
+>> So let's repeat the process
+step by step and keep
+
+72
+00:03:12,560 --> 00:03:14,830
+track of what's happening as we go.
+
+73
+00:03:14,830 --> 00:03:17,980
+So the first we need to do is calculate
+the midpoint of the current array.
+
+74
+00:03:17,980 --> 00:03:20,620
+Well, we'll say we're, first of
+all, looking for the value 19.
+
+75
+00:03:20,620 --> 00:03:22,290
+We're trying to find the number 19.
+
+76
+00:03:22,290 --> 00:03:25,380
+The first element of this
+array is located at index zero,
+
+77
+00:03:25,380 --> 00:03:28,880
+and the last element of this
+array is located at index 14.
+
+78
+00:03:28,880 --> 00:03:31,430
+And so we'll call those start and end.
+
+79
+00:03:31,430 --> 00:03:35,387
+>> So we calculate the midpoint by
+adding 0 plus 14 divided by 2;
+
+80
+00:03:35,387 --> 00:03:36,720
+pretty straightforward midpoint.
+
+81
+00:03:36,720 --> 00:03:40,190
+And we can say that
+the midpoint is now 7.
+
+82
+00:03:40,190 --> 00:03:43,370
+So is 15 what we're looking for?
+
+83
+00:03:43,370 --> 00:03:43,940
+No, it's not.
+
+84
+00:03:43,940 --> 00:03:45,270
+We're looking for 19.
+
+85
+00:03:45,270 --> 00:03:49,400
+But we know that 19 is greater
+than what we found at the middle.
+
+86
+00:03:49,400 --> 00:03:52,470
+>> So what we can do is
+change the start point
+
+87
+00:03:52,470 --> 00:03:57,280
+to be just to the right of the
+midpoint, and repeat the process again.
+
+88
+00:03:57,280 --> 00:04:01,690
+And when we do that, we now say the
+new start point is array location 8.
+
+89
+00:04:01,690 --> 00:04:07,220
+What we've effectively done is
+ignored everything to the left of 15.
+
+90
+00:04:07,220 --> 00:04:09,570
+We've eliminated half
+of the problem, and now,
+
+91
+00:04:09,570 --> 00:04:13,510
+instead of having to search
+over 15 elements in our array,
+
+92
+00:04:13,510 --> 00:04:15,610
+we only have to search over 7.
+
+93
+00:04:15,610 --> 00:04:17,706
+So 8 is the new start point.
+
+94
+00:04:17,706 --> 00:04:19,600
+14 is still the end point.
+
+95
+00:04:19,600 --> 00:04:21,430
+>> And now, we go over this again.
+
+96
+00:04:21,430 --> 00:04:22,810
+We calculate the new midpoint.
+
+97
+00:04:22,810 --> 00:04:27,130
+8 plus 14 is 22, divided by 2 is 11.
+
+98
+00:04:27,130 --> 00:04:28,660
+Is this what we're looking for?
+
+99
+00:04:28,660 --> 00:04:30,110
+No, it's not.
+
+100
+00:04:30,110 --> 00:04:32,930
+We're looking for a value that's
+less than what we just found.
+
+101
+00:04:32,930 --> 00:04:34,721
+So we're going to repeat
+the process again.
+
+102
+00:04:34,721 --> 00:04:38,280
+We're going to change the end point to
+be just to the left of the midpoint.
+
+103
+00:04:38,280 --> 00:04:41,800
+So the new end point becomes 10.
+
+104
+00:04:41,800 --> 00:04:44,780
+And now, that's the only part of
+the array we have to sort through.
+
+105
+00:04:44,780 --> 00:04:48,460
+So we have now eliminated
+12 of the 15 elements.
+
+106
+00:04:48,460 --> 00:04:51,550
+We know that if 19
+exists in the array, it
+
+107
+00:04:51,550 --> 00:04:57,210
+must exist somewhere between element
+number 8 and element number 10.
+
+108
+00:04:57,210 --> 00:04:59,400
+>> So we calculate the new midpoint again.
+
+109
+00:04:59,400 --> 00:05:02,900
+8 plus 10 is 18, divided by 2 is 9.
+
+110
+00:05:02,900 --> 00:05:05,074
+And in this case, look, the
+target is at the middle.
+
+111
+00:05:05,074 --> 00:05:06,740
+We found exactly what we're looking for.
+
+112
+00:05:06,740 --> 00:05:07,780
+We can stop.
+
+113
+00:05:07,780 --> 00:05:10,561
+We successfully completed
+a binary search.
+
+114
+00:05:10,561 --> 00:05:11,060
+All right.
+
+115
+00:05:11,060 --> 00:05:13,930
+So we know this algorithm
+works if the target is
+
+116
+00:05:13,930 --> 00:05:16,070
+somewhere inside of the array.
+
+117
+00:05:16,070 --> 00:05:19,060
+Does this algorithm work if
+the target is not in the array?
+
+118
+00:05:19,060 --> 00:05:20,810
+Well, let's start it
+again, and this time,
+
+119
+00:05:20,810 --> 00:05:23,380
+let's look for the element
+16, which visually we can see
+
+120
+00:05:23,380 --> 00:05:25,620
+does not exist anywhere in the array.
+
+121
+00:05:25,620 --> 00:05:27,110
+>> The start point is again 0.
+
+122
+00:05:27,110 --> 00:05:28,590
+The end point is again 14.
+
+123
+00:05:28,590 --> 00:05:32,490
+Those are the indices of the first and
+last elements of the complete array.
+
+124
+00:05:32,490 --> 00:05:36,057
+And we'll go through the process we just
+went through again, trying to find 16,
+
+125
+00:05:36,057 --> 00:05:39,140
+even though visually, we can already
+tell that it's not going to be there.
+
+126
+00:05:39,140 --> 00:05:43,450
+We just want to make sure this algorithm
+will, in fact, still work in some way
+
+127
+00:05:43,450 --> 00:05:46,310
+and not just leave us
+stuck in an infinite loop.
+
+128
+00:05:46,310 --> 00:05:48,190
+>> So what's the step first?
+
+129
+00:05:48,190 --> 00:05:50,230
+Calculate the midpoint
+of the current array.
+
+130
+00:05:50,230 --> 00:05:52,790
+What's the midpoint
+of the current array?
+
+131
+00:05:52,790 --> 00:05:54,410
+Well, it's 7, right?
+
+132
+00:05:54,410 --> 00:05:57,560
+14 plus 0 divided by 2 is 7.
+
+133
+00:05:57,560 --> 00:05:59,280
+Is 15 what we're looking for?
+
+134
+00:05:59,280 --> 00:05:59,780
+No.
+
+135
+00:05:59,780 --> 00:06:02,930
+It's pretty close, but we're looking
+for a value slightly bigger than that.
+
+136
+00:06:02,930 --> 00:06:06,310
+>> So we know that it's going to
+be nowhere to the left of 15.
+
+137
+00:06:06,310 --> 00:06:08,540
+The target is greater than
+what's in the midpoint.
+
+138
+00:06:08,540 --> 00:06:12,450
+And so we set the new start point to
+be just to the right of the middle.
+
+139
+00:06:12,450 --> 00:06:16,130
+The midpoint is currently 7, so
+let's say the new start point is 8.
+
+140
+00:06:16,130 --> 00:06:18,130
+And what we've effectively
+done again is ignored
+
+141
+00:06:18,130 --> 00:06:21,150
+the entire left half of the array.
+
+142
+00:06:21,150 --> 00:06:23,750
+>> Now, we repeat the
+process one more time.
+
+143
+00:06:23,750 --> 00:06:24,910
+Calculate the new midpoint.
+
+144
+00:06:24,910 --> 00:06:29,350
+8 plus 14 is 22, divided by 2 is 11.
+
+145
+00:06:29,350 --> 00:06:31,060
+Is 23 what we're looking for?
+
+146
+00:06:31,060 --> 00:06:31,870
+Unfortunately, no.
+
+147
+00:06:31,870 --> 00:06:34,930
+We're looking for a value
+that is less than 23.
+
+148
+00:06:34,930 --> 00:06:37,850
+And so in this case, we're going
+to change the end point to be just
+
+149
+00:06:37,850 --> 00:06:40,035
+to the left of the current midpoint.
+
+150
+00:06:40,035 --> 00:06:43,440
+The current midpoint is 11, and
+so we'll set the new end point
+
+151
+00:06:43,440 --> 00:06:46,980
+for the next time we go
+through this process to 10.
+
+152
+00:06:46,980 --> 00:06:48,660
+>> Again, we go through the process again.
+
+153
+00:06:48,660 --> 00:06:49,640
+Calculate the midpoint.
+
+154
+00:06:49,640 --> 00:06:53,100
+8 plus 10 divided by 2 is 9.
+
+155
+00:06:53,100 --> 00:06:54,750
+Is 19 what we're looking for?
+
+156
+00:06:54,750 --> 00:06:55,500
+Unfortunately, no.
+
+157
+00:06:55,500 --> 00:06:58,050
+We're still looking for
+a number less than that.
+
+158
+00:06:58,050 --> 00:07:02,060
+So we'll change the end point this time
+to be just to the left of the midpoint.
+
+159
+00:07:02,060 --> 00:07:05,532
+The midpoint is currently 9,
+so the end point will be 8.
+
+160
+00:07:05,532 --> 00:07:07,920
+And now, we're just looking
+at a single element array.
+
+161
+00:07:07,920 --> 00:07:10,250
+>> What's the midpoint of this array?
+
+162
+00:07:10,250 --> 00:07:13,459
+Well, it starts at 8, it
+ends at 8, the midpoint is 8.
+
+163
+00:07:13,459 --> 00:07:14,750
+Is that what we're looking for?
+
+164
+00:07:14,750 --> 00:07:16,339
+Are we looking for 17?
+
+165
+00:07:16,339 --> 00:07:17,380
+No, we're looking for 16.
+
+166
+00:07:17,380 --> 00:07:20,160
+So if it exists in the array,
+it must exist somewhere
+
+167
+00:07:20,160 --> 00:07:21,935
+to the left of where we currently are.
+
+168
+00:07:21,935 --> 00:07:23,060
+So what are we going to do?
+
+169
+00:07:23,060 --> 00:07:26,610
+Well, we'll set the end point to be just
+to the left of the current midpoint.
+
+170
+00:07:26,610 --> 00:07:29,055
+So we'll change the end point to 7.
+
+171
+00:07:29,055 --> 00:07:32,120
+Do you see what just
+happened here, though?
+
+172
+00:07:32,120 --> 00:07:33,370
+Look up here now.
+
+173
+00:07:33,370 --> 00:07:35,970
+>> Start is now greater than end.
+
+174
+00:07:35,970 --> 00:07:39,620
+Effectively, the two ends
+of our array have crossed,
+
+175
+00:07:39,620 --> 00:07:42,252
+and the start point is
+now after the end point.
+
+176
+00:07:42,252 --> 00:07:43,960
+Well, that doesn't
+make any sense, right?
+
+177
+00:07:43,960 --> 00:07:47,960
+So now, what we can say is we
+have a sub array of size 0.
+
+178
+00:07:47,960 --> 00:07:50,110
+And once we're gotten to
+this point, we can now
+
+179
+00:07:50,110 --> 00:07:53,940
+guarantee that element 16
+does not exist in the array,
+
+180
+00:07:53,940 --> 00:07:56,280
+because the start point
+and end point have crossed.
+
+181
+00:07:56,280 --> 00:07:58,340
+And so it's not there.
+
+182
+00:07:58,340 --> 00:08:01,340
+Now, notice that this is slightly
+different than the start point and end
+
+183
+00:08:01,340 --> 00:08:02,900
+point being the same.
+
+184
+00:08:02,900 --> 00:08:05,030
+If we had been looking
+for 17, it would have
+
+185
+00:08:05,030 --> 00:08:08,870
+been in the array, and the start point
+and end point of that last iteration
+
+186
+00:08:08,870 --> 00:08:11,820
+before those points crossed,
+we would have found 17 there.
+
+187
+00:08:11,820 --> 00:08:15,510
+It's only when they cross that we can
+guarantee that the element does not
+
+188
+00:08:15,510 --> 00:08:17,180
+exist in the array.
+
+189
+00:08:17,180 --> 00:08:20,260
+>> So let's take a lot fewer
+steps than linear search.
+
+190
+00:08:20,260 --> 00:08:23,250
+In the worst case scenario, we had
+to split up a list of n elements
+
+191
+00:08:23,250 --> 00:08:27,770
+repeatedly in half to find the target,
+either because the target element
+
+192
+00:08:27,770 --> 00:08:33,110
+will be somewhere in the last
+division, or it doesn't exist at all.
+
+193
+00:08:33,110 --> 00:08:37,830
+So in the worst case, we have to
+split up the array-- do you know?
+
+194
+00:08:37,830 --> 00:08:40,510
+Log of n times; we
+have to cut the problem
+
+195
+00:08:40,510 --> 00:08:42,610
+in half a certain number of times.
+
+196
+00:08:42,610 --> 00:08:45,160
+That number of times is log n.
+
+197
+00:08:45,160 --> 00:08:46,510
+>> What's the best case scenario?
+
+198
+00:08:46,510 --> 00:08:48,899
+Well, the first time we
+calculate the midpoint,
+
+199
+00:08:48,899 --> 00:08:50,190
+we find what we're looking for.
+
+200
+00:08:50,190 --> 00:08:52,150
+In all the previous
+examples on binary search
+
+201
+00:08:52,150 --> 00:08:55,489
+we've just gone over, if we had
+been looking for the element 15,
+
+202
+00:08:55,489 --> 00:08:57,030
+we would have found that immediately.
+
+203
+00:08:57,030 --> 00:08:58,321
+That was at the very beginning.
+
+204
+00:08:58,321 --> 00:09:01,200
+That was the midpoint of
+the first attempt at a split
+
+205
+00:09:01,200 --> 00:09:03,950
+of a division in binary search.
+
+206
+00:09:03,950 --> 00:09:06,350
+>> And so in the worst
+case, binary search runs
+
+207
+00:09:06,350 --> 00:09:11,580
+in log n, which is substantially better
+than linear search, in the worst case.
+
+208
+00:09:11,580 --> 00:09:16,210
+In the best case, binary
+search runs in omega of 1.
+
+209
+00:09:16,210 --> 00:09:18,990
+So binary search is a lot
+better than linear search,
+
+210
+00:09:18,990 --> 00:09:23,270
+but you have to deal with the process of
+sorting your array first before you can
+
+211
+00:09:23,270 --> 00:09:26,140
+leverage the power of binary search.
+
+212
+00:09:26,140 --> 00:09:27,130
+>> I'm Doug Lloyd.
+
+213
+00:09:27,130 --> 00:09:29,470
+This is CS 50.
+
+214
+00:09:29,470 --> 00:09:31,070

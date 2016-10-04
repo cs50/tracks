@@ -1,0 +1,1438 @@
+1
+00:00:00,000 --> 00:00:05,204
+
+2
+00:00:05,204 --> 00:00:07,370
+DOUG LLOYD: So if you've
+watched the video on stack,
+
+3
+00:00:07,370 --> 00:00:09,870
+this is probably going to feel
+like a little bit of deja vu.
+
+4
+00:00:09,870 --> 00:00:13,850
+It's going to a very similar concept,
+just with a slight twist on it.
+
+5
+00:00:13,850 --> 00:00:15,530
+We're going to talk now about queues.
+
+6
+00:00:15,530 --> 00:00:19,350
+So a queue, similar to a stack,
+is another kind of data structure
+
+7
+00:00:19,350 --> 00:00:22,412
+that we can use to maintain
+data in an organized way.
+
+8
+00:00:22,412 --> 00:00:24,120
+Similar to a stack,
+it can be implemented
+
+9
+00:00:24,120 --> 00:00:27,000
+as an array or a linked list.
+
+10
+00:00:27,000 --> 00:00:30,320
+Unlike a stack, the rules
+that we use to determine
+
+11
+00:00:30,320 --> 00:00:34,210
+when things get added and removed from
+a queue are a little bit different.
+
+12
+00:00:34,210 --> 00:00:36,590
+>> Unlike a stack, which
+is a LIFO structure,
+
+13
+00:00:36,590 --> 00:00:45,610
+last in, first out, a queue is a FIFO
+structure, FIFO, first in, first out.
+
+14
+00:00:45,610 --> 00:00:49,320
+Now queues, you probably
+have an analogy to queues.
+
+15
+00:00:49,320 --> 00:00:52,820
+If you've ever been in line at
+an amusement park or at a bank,
+
+16
+00:00:52,820 --> 00:00:56,430
+there's sort of a fairness
+implementing structure.
+
+17
+00:00:56,430 --> 00:00:59,160
+The first person in line at
+the bank is the first person
+
+18
+00:00:59,160 --> 00:01:00,760
+who gets to speak to the teller.
+
+19
+00:01:00,760 --> 00:01:03,522
+>> It would be sort of a race
+to the bottom if the only way
+
+20
+00:01:03,522 --> 00:01:06,730
+you got to speak to the teller at the
+bank was to be the last person in line.
+
+21
+00:01:06,730 --> 00:01:09,146
+Everybody would always want
+to be the last person in line,
+
+22
+00:01:09,146 --> 00:01:12,580
+and the person who was there first
+who has been waiting for a while,
+
+23
+00:01:12,580 --> 00:01:14,715
+could be there for hours,
+and hours, and hours
+
+24
+00:01:14,715 --> 00:01:17,590
+before they have a chance to actually
+withdraw any money at the bank.
+
+25
+00:01:17,590 --> 00:01:22,510
+And so queues are sort of the
+fairness implementing structure.
+
+26
+00:01:22,510 --> 00:01:25,780
+But that doesn't necessarily mean
+that stacks are a bad thing, just
+
+27
+00:01:25,780 --> 00:01:28,160
+that queues are another way to do it.
+
+28
+00:01:28,160 --> 00:01:32,420
+So again a queue is first in, first
+out, versus a stack which last in,
+
+29
+00:01:32,420 --> 00:01:34,440
+first out.
+
+30
+00:01:34,440 --> 00:01:36,190
+Similar to a stack,
+we have two operations
+
+31
+00:01:36,190 --> 00:01:38,470
+that we can perform on queues.
+
+32
+00:01:38,470 --> 00:01:43,910
+The names are enqueue, which is to add
+a new element to the end of the queue,
+
+33
+00:01:43,910 --> 00:01:47,330
+and dequeue, which is
+to remove the oldest
+
+34
+00:01:47,330 --> 00:01:49,670
+element from the front of the queue.
+
+35
+00:01:49,670 --> 00:01:53,600
+So we're going to add elements
+onto the end of the queue,
+
+36
+00:01:53,600 --> 00:01:57,220
+and we're going to remove elements
+from the front of the queue.
+
+37
+00:01:57,220 --> 00:02:00,790
+Again, with the stack, we were adding
+elements to the top of the stack
+
+38
+00:02:00,790 --> 00:02:03,380
+and removing elements
+from the top of the stack.
+
+39
+00:02:03,380 --> 00:02:07,570
+So with enqueue, it's adding to
+the end, removing from the front.
+
+40
+00:02:07,570 --> 00:02:10,639
+So the oldest thing in there
+is always the next thing
+
+41
+00:02:10,639 --> 00:02:13,620
+to come out if we try
+and dequeue something.
+
+42
+00:02:13,620 --> 00:02:18,330
+>> So again, with queues, we can
+array-based implementations
+
+43
+00:02:18,330 --> 00:02:20,110
+and linked-list based implementations.
+
+44
+00:02:20,110 --> 00:02:24,620
+We'll start again with
+array-based implementations.
+
+45
+00:02:24,620 --> 00:02:27,070
+The structure definition
+looks pretty similar.
+
+46
+00:02:27,070 --> 00:02:30,720
+We have another array
+there of data type value,
+
+47
+00:02:30,720 --> 00:02:32,690
+so it can hold arbitrary data types.
+
+48
+00:02:32,690 --> 00:02:35,570
+We're again going to use
+integers in this example.
+
+49
+00:02:35,570 --> 00:02:39,830
+>> And just like with our
+array-based stack implementation,
+
+50
+00:02:39,830 --> 00:02:42,340
+because we're using an
+array, we necessarily
+
+51
+00:02:42,340 --> 00:02:46,850
+have that limitation that C kind
+of enforces on us, which is we
+
+52
+00:02:46,850 --> 00:02:51,670
+don't have any dynamism in our
+ability to grow and shrink the array.
+
+53
+00:02:51,670 --> 00:02:55,710
+We have to decide at the beginning
+what is the maximum number of things
+
+54
+00:02:55,710 --> 00:02:59,300
+that we can put into this
+queue, and in this case,
+
+55
+00:02:59,300 --> 00:03:02,070
+capacity would be some pound
+defined constant in our code.
+
+56
+00:03:02,070 --> 00:03:05,430
+And for the purposes of this
+video, capacity is going to be 10.
+
+57
+00:03:05,430 --> 00:03:07,690
+>> We need to keep track of
+the front of the queue
+
+58
+00:03:07,690 --> 00:03:11,160
+so we know which element
+we want to dequeue,
+
+59
+00:03:11,160 --> 00:03:15,070
+and we also need to keep track of
+something else-- the number of elements
+
+60
+00:03:15,070 --> 00:03:16,690
+that we have in our queue.
+
+61
+00:03:16,690 --> 00:03:19,360
+Notice we're not keeping track
+of the end of the queue, just
+
+62
+00:03:19,360 --> 00:03:21,150
+the size of the queue.
+
+63
+00:03:21,150 --> 00:03:24,310
+And the reason for that will hopefully
+become a bit clearer in a moment.
+
+64
+00:03:24,310 --> 00:03:26,143
+Once we have completed
+this type definition,
+
+65
+00:03:26,143 --> 00:03:29,080
+we have a new data type
+called queue, which we can now
+
+66
+00:03:29,080 --> 00:03:30,630
+declare variables of that data type.
+
+67
+00:03:30,630 --> 00:03:35,350
+And somewhat confusingly, I've decided
+to call this queue q, the letter
+
+68
+00:03:35,350 --> 00:03:38,090
+q instead of the data type q.
+
+69
+00:03:38,090 --> 00:03:39,600
+>> So here is our queue.
+
+70
+00:03:39,600 --> 00:03:40,700
+It is a structure.
+
+71
+00:03:40,700 --> 00:03:45,730
+It contains three members or three
+fields, an array of size CAPACITY.
+
+72
+00:03:45,730 --> 00:03:47,340
+In this case, CAPACITY is 10.
+
+73
+00:03:47,340 --> 00:03:49,580
+And this array is
+going to hold integers.
+
+74
+00:03:49,580 --> 00:03:55,240
+In green is the front of our queue, the
+next element to be removed, and in red
+
+75
+00:03:55,240 --> 00:03:58,610
+will be the size of the queue,
+how many elements are currently
+
+76
+00:03:58,610 --> 00:04:01,190
+existing in the queue.
+
+77
+00:04:01,190 --> 00:04:05,300
+So if we say q.front equals
+0, and q.size size equals 0--
+
+78
+00:04:05,300 --> 00:04:07,120
+we're putting 0s into those fields.
+
+79
+00:04:07,120 --> 00:04:11,070
+And at this point, we're pretty much
+ready to begin working with our queue.
+
+80
+00:04:11,070 --> 00:04:14,140
+>> So the first operation we can
+perform is to enqueue something,
+
+81
+00:04:14,140 --> 00:04:16,860
+to add a new element to
+the end of the queue.
+
+82
+00:04:16,860 --> 00:04:19,089
+Well what do we need to
+do in the general case?
+
+83
+00:04:19,089 --> 00:04:23,690
+Well this function enqueue needs
+to accept a pointer to our queue.
+
+84
+00:04:23,690 --> 00:04:26,370
+Again, if we had declared
+our queue globally,
+
+85
+00:04:26,370 --> 00:04:29,490
+we wouldn't need to do this
+necessarily, but in general, we
+
+86
+00:04:29,490 --> 00:04:32,330
+need to accept pointers
+to data structures
+
+87
+00:04:32,330 --> 00:04:35,040
+like this, because otherwise,
+we're passing by value-- we're
+
+88
+00:04:35,040 --> 00:04:38,140
+passing in copies of the queue,
+and so we're not actually changing
+
+89
+00:04:38,140 --> 00:04:41,050
+the queue that we intend to change.
+
+90
+00:04:41,050 --> 00:04:44,860
+>> The other thing it needs to do is accept
+a data element of the appropriate type.
+
+91
+00:04:44,860 --> 00:04:46,818
+Again, in this case, it's
+going to be integers,
+
+92
+00:04:46,818 --> 00:04:49,330
+but you could arbitrarily
+declare the data type as value
+
+93
+00:04:49,330 --> 00:04:51,160
+and use this more generally.
+
+94
+00:04:51,160 --> 00:04:56,030
+That's the element we want to enqueue,
+we want to add to the end of the queue.
+
+95
+00:04:56,030 --> 00:04:58,573
+Then we actually want to
+place that data in the queue.
+
+96
+00:04:58,573 --> 00:05:01,490
+In this case, placing it in the
+correct location of our array,
+
+97
+00:05:01,490 --> 00:05:05,040
+and then we want to change the size
+of the queue, how many elements we
+
+98
+00:05:05,040 --> 00:05:07,050
+currently have.
+
+99
+00:05:07,050 --> 00:05:07,990
+>> So let's get started.
+
+100
+00:05:07,990 --> 00:05:10,890
+Here is, again, that general
+form function declaration
+
+101
+00:05:10,890 --> 00:05:13,980
+for what enqueue might look like.
+
+102
+00:05:13,980 --> 00:05:14,910
+And here we go.
+
+103
+00:05:14,910 --> 00:05:18,335
+Let's enqueue the number
+28 into the queue.
+
+104
+00:05:18,335 --> 00:05:19,460
+So what are we going to do?
+
+105
+00:05:19,460 --> 00:05:23,390
+Well, the front of our queue is
+at 0, and the size of our queue
+
+106
+00:05:23,390 --> 00:05:29,680
+is at 0, and so we probably want to put
+the number 28 in array element number
+
+107
+00:05:29,680 --> 00:05:31,124
+0, right?
+
+108
+00:05:31,124 --> 00:05:32,540
+So we've now placed that in there.
+
+109
+00:05:32,540 --> 00:05:34,820
+So now what do we need to change?
+
+110
+00:05:34,820 --> 00:05:37,090
+We don't want to change
+the front of the queue,
+
+111
+00:05:37,090 --> 00:05:40,850
+because we want to know what element
+we might need to dequeue later.
+
+112
+00:05:40,850 --> 00:05:44,020
+So the reason we have front there
+is sort of an indicator of what's
+
+113
+00:05:44,020 --> 00:05:46,439
+the oldest thing in the array.
+
+114
+00:05:46,439 --> 00:05:49,730
+Well the oldest thing in the array-- in
+fact, the only thing in the array right
+
+115
+00:05:49,730 --> 00:05:53,540
+now-- is 28, which is
+at array location 0.
+
+116
+00:05:53,540 --> 00:05:56,160
+So we don't want to
+change that green number,
+
+117
+00:05:56,160 --> 00:05:57,910
+because that's the oldest element.
+
+118
+00:05:57,910 --> 00:06:00,510
+Rather, we want to change the size.
+
+119
+00:06:00,510 --> 00:06:04,110
+So in this case, we'll
+increment size to 1.
+
+120
+00:06:04,110 --> 00:06:08,430
+>> Now a general sort of idea of where the
+next element is going to go in a queue
+
+121
+00:06:08,430 --> 00:06:12,310
+is to add those two numbers
+together, front and size,
+
+122
+00:06:12,310 --> 00:06:16,390
+and that'll tell you where the next
+element in the queue is going to go.
+
+123
+00:06:16,390 --> 00:06:18,130
+So now let's enqueue another number.
+
+124
+00:06:18,130 --> 00:06:20,250
+Let's enqueue 33.
+
+125
+00:06:20,250 --> 00:06:24,480
+So 33 is going to go into
+array location 0 plus 1.
+
+126
+00:06:24,480 --> 00:06:26,840
+So in this case, it's going
+to go into array location 1,
+
+127
+00:06:26,840 --> 00:06:29,500
+and now the size of our queue is 2.
+
+128
+00:06:29,500 --> 00:06:31,840
+>> Again, we're not changing
+the front of our queue,
+
+129
+00:06:31,840 --> 00:06:34,730
+because 28 is still the
+oldest element, and we
+
+130
+00:06:34,730 --> 00:06:38,220
+want to-- when we eventually get
+to dequeuing, removing elements
+
+131
+00:06:38,220 --> 00:06:43,300
+from this queue, we want to know
+where the oldest element is.
+
+132
+00:06:43,300 --> 00:06:48,620
+And so we always need to maintain
+some indicator of where that is.
+
+133
+00:06:48,620 --> 00:06:50,410
+So that's what the 0 is there for.
+
+134
+00:06:50,410 --> 00:06:52,910
+That's what front is there for.
+
+135
+00:06:52,910 --> 00:06:55,022
+>> Let's in enqueue one more element, 19.
+
+136
+00:06:55,022 --> 00:06:56,980
+I'm sure you can guess
+where 19 is going to go.
+
+137
+00:06:56,980 --> 00:06:59,860
+It's going to go into
+array location number 2.
+
+138
+00:06:59,860 --> 00:07:01,570
+That's 0 plus 2.
+
+139
+00:07:01,570 --> 00:07:03,199
+And now the size of our queue is 3.
+
+140
+00:07:03,199 --> 00:07:04,240
+We have 3 elements in it.
+
+141
+00:07:04,240 --> 00:07:08,490
+So if we were to, and we're not going
+to right now, enqueue another element,
+
+142
+00:07:08,490 --> 00:07:11,370
+it would go into array location
+number 3, and the size of our queue
+
+143
+00:07:11,370 --> 00:07:13,160
+would be 4.
+
+144
+00:07:13,160 --> 00:07:15,279
+So we've enqueued several elements now.
+
+145
+00:07:15,279 --> 00:07:16,570
+Now let's start to remove them.
+
+146
+00:07:16,570 --> 00:07:19,450
+Let's dequeue them from the queue.
+
+147
+00:07:19,450 --> 00:07:23,340
+>> So similar to pop, which is sort
+of the analog of this for stacks,
+
+148
+00:07:23,340 --> 00:07:26,180
+dequeue needs to accept a
+pointer to the queue-- again,
+
+149
+00:07:26,180 --> 00:07:28,140
+unless it's globally declared.
+
+150
+00:07:28,140 --> 00:07:31,610
+Now we want to change the location
+of the front of the queue.
+
+151
+00:07:31,610 --> 00:07:35,050
+This is where it sort of comes
+into play, that front variable,
+
+152
+00:07:35,050 --> 00:07:37,310
+because once we remove
+an element, we want
+
+153
+00:07:37,310 --> 00:07:40,720
+to move it to the next oldest element.
+
+154
+00:07:40,720 --> 00:07:44,180
+>> Then we want to decrease
+the size of the queue,
+
+155
+00:07:44,180 --> 00:07:47,130
+and then we want to return the value
+that was removed from the queue.
+
+156
+00:07:47,130 --> 00:07:48,921
+Again, we don't want to just discard it.
+
+157
+00:07:48,921 --> 00:07:51,170
+We presumably are extracting
+it from the queue-- we're
+
+158
+00:07:51,170 --> 00:07:54,170
+dequeuing it because we care about it.
+
+159
+00:07:54,170 --> 00:08:01,080
+So we want this function to return
+a data element of type value.
+
+160
+00:08:01,080 --> 00:08:04,360
+Again, in this case, value is integer.
+
+161
+00:08:04,360 --> 00:08:05,670
+>> So now let's dequeue something.
+
+162
+00:08:05,670 --> 00:08:09,310
+Let's remove an element from the queue.
+
+163
+00:08:09,310 --> 00:08:15,970
+If we say int x equals &q, ampersand q--
+again that's a pointer to this q data
+
+164
+00:08:15,970 --> 00:08:20,177
+structure-- what element
+is going to be dequeued?
+
+165
+00:08:20,177 --> 00:08:23,840
+
+166
+00:08:23,840 --> 00:08:29,480
+In this case, because it is a first
+in, first out data structure, FIFO,
+
+167
+00:08:29,480 --> 00:08:33,690
+the first thing we put into this
+queue was 28, and so in this case,
+
+168
+00:08:33,690 --> 00:08:37,245
+we're going to take 28 out of
+the queue, not 19, which is what
+
+169
+00:08:37,245 --> 00:08:38,870
+we would have done if this was a stack.
+
+170
+00:08:38,870 --> 00:08:42,220
+We're going to take 28 out of the queue.
+
+171
+00:08:42,220 --> 00:08:44,960
+>> Similar to what we did with
+a stack, we're not actually
+
+172
+00:08:44,960 --> 00:08:47,345
+going to delete 28
+from the queue itself,
+
+173
+00:08:47,345 --> 00:08:49,470
+we're just going to kind
+of pretend it isn't there.
+
+174
+00:08:49,470 --> 00:08:51,678
+So it's going to stay there
+in memory, but we're just
+
+175
+00:08:51,678 --> 00:08:57,820
+going to kind of ignore it by moving
+the other two fields of our q data
+
+176
+00:08:57,820 --> 00:08:58,830
+structure.
+
+177
+00:08:58,830 --> 00:09:00,230
+We're going to change the front.
+
+178
+00:09:00,230 --> 00:09:04,290
+Q.front is now going to
+be 1, because that is now
+
+179
+00:09:04,290 --> 00:09:07,740
+the oldest element we have in our
+queue, because we've already removed 28,
+
+180
+00:09:07,740 --> 00:09:10,460
+which was the former oldest element.
+
+181
+00:09:10,460 --> 00:09:13,540
+>> And now, we want to change
+the size of the queue
+
+182
+00:09:13,540 --> 00:09:15,780
+to two elements instead of three.
+
+183
+00:09:15,780 --> 00:09:20,450
+Now remember earlier I said when we
+want to add elements to the queue,
+
+184
+00:09:20,450 --> 00:09:26,000
+we put it in an array location
+which is the sum of front and size.
+
+185
+00:09:26,000 --> 00:09:29,050
+So in this case, we're still putting
+it, the next element in the queue,
+
+186
+00:09:29,050 --> 00:09:33,360
+into array location 3, and
+we'll see that in a second.
+
+187
+00:09:33,360 --> 00:09:35,730
+>> So we've now dequeued our
+first element from the queue.
+
+188
+00:09:35,730 --> 00:09:36,480
+Let's do it again.
+
+189
+00:09:36,480 --> 00:09:38,696
+Let's remove another
+element from the queue.
+
+190
+00:09:38,696 --> 00:09:42,400
+In the case, the current oldest
+element is array location 1.
+
+191
+00:09:42,400 --> 00:09:44,220
+That's what q.front tells us.
+
+192
+00:09:44,220 --> 00:09:46,980
+That green box tells us that
+that's the oldest element.
+
+193
+00:09:46,980 --> 00:09:49,310
+And so, x will become 33.
+
+194
+00:09:49,310 --> 00:09:52,130
+We'll just kind of forget
+that 33 exists in the array,
+
+195
+00:09:52,130 --> 00:09:55,100
+and we'll say that now, the
+new oldest element in the queue
+
+196
+00:09:55,100 --> 00:09:58,900
+is at array location 2, and the size
+of the queue, the number of elements
+
+197
+00:09:58,900 --> 00:10:02,152
+we have in the queue, is 1.
+
+198
+00:10:02,152 --> 00:10:05,110
+Now let's enqueue something, and I
+sort of gave this away a second ago,
+
+199
+00:10:05,110 --> 00:10:10,340
+but if we want to put 40 into the
+queue, where's 40 going to go?
+
+200
+00:10:10,340 --> 00:10:12,880
+
+201
+00:10:12,880 --> 00:10:17,730
+Well we've been putting it
+in q.front plus queue size,
+
+202
+00:10:17,730 --> 00:10:20,850
+and so it makes sense to
+actually to put 40 here.
+
+203
+00:10:20,850 --> 00:10:22,840
+Now notice that at
+some point, we're going
+
+204
+00:10:22,840 --> 00:10:27,980
+to get to the end of
+our array inside of q,
+
+205
+00:10:27,980 --> 00:10:32,010
+but that faded out 28 and 33--
+they're actually, technically
+
+206
+00:10:32,010 --> 00:10:33,300
+open spaces, right?
+
+207
+00:10:33,300 --> 00:10:36,040
+And so, we may eventually--
+that rule of adding
+
+208
+00:10:36,040 --> 00:10:40,390
+those two together-- we may eventually
+need to mod by the size of capacity
+
+209
+00:10:40,390 --> 00:10:41,410
+so we can wrap around.
+
+210
+00:10:41,410 --> 00:10:43,620
+>> So if we get to element
+number 10, if we're
+
+211
+00:10:43,620 --> 00:10:48,790
+replacing it in element number 10, we'd
+actually put it in array location 0.
+
+212
+00:10:48,790 --> 00:10:50,997
+And if we were going to
+array location-- excuse me,
+
+213
+00:10:50,997 --> 00:10:53,080
+if we added them up together,
+and we got to number
+
+214
+00:10:53,080 --> 00:10:56,330
+11 would be where we would have to put
+it, which doesn't exist in this array--
+
+215
+00:10:56,330 --> 00:10:58,200
+it would be going out of bounds.
+
+216
+00:10:58,200 --> 00:11:03,367
+We could mod by 10 and put
+it in array location 1.
+
+217
+00:11:03,367 --> 00:11:04,450
+So that's how queues work.
+
+218
+00:11:04,450 --> 00:11:08,540
+They're always going to go from left
+to right and possibly wrap around.
+
+219
+00:11:08,540 --> 00:11:11,280
+And you know that they're
+full if size, that red box,
+
+220
+00:11:11,280 --> 00:11:13,710
+becomes equal to capacity.
+
+221
+00:11:13,710 --> 00:11:16,720
+And so after we've added 40 to the
+queue, well what do we need to do?
+
+222
+00:11:16,720 --> 00:11:19,890
+Well, the oldest element
+in the queue is still 19,
+
+223
+00:11:19,890 --> 00:11:21,990
+so we don't want to change
+the front of the queue,
+
+224
+00:11:21,990 --> 00:11:23,820
+but now we have two
+elements in the queue,
+
+225
+00:11:23,820 --> 00:11:28,710
+and so we want to increase
+our size from 1 to 2.
+
+226
+00:11:28,710 --> 00:11:31,820
+>> That's pretty much it with
+working with array-based queues,
+
+227
+00:11:31,820 --> 00:11:33,630
+and similar to stack,
+there is also a way
+
+228
+00:11:33,630 --> 00:11:36,450
+to implement a queue as a linked list.
+
+229
+00:11:36,450 --> 00:11:40,150
+Now if this data structure type
+looks familiar to you, it is.
+
+230
+00:11:40,150 --> 00:11:43,780
+It's not a singly linked list,
+it's a doubly linked list.
+
+231
+00:11:43,780 --> 00:11:46,790
+And now, as an aside, it is
+actually possible to implement
+
+232
+00:11:46,790 --> 00:11:50,160
+a queue as a singly linked list, but
+I think in terms of visualisation,
+
+233
+00:11:50,160 --> 00:11:53,350
+it actually might help to view
+this as a doubly linked list.
+
+234
+00:11:53,350 --> 00:11:56,850
+But it is definitely possible to
+do this as a singly linked list.
+
+235
+00:11:56,850 --> 00:12:00,110
+>> So let's have a look at
+what this might look like.
+
+236
+00:12:00,110 --> 00:12:02,750
+If we want to enquue--
+so now, again we're
+
+237
+00:12:02,750 --> 00:12:05,360
+switching to a linked-list
+based model here.
+
+238
+00:12:05,360 --> 00:12:08,420
+If we want to enqueue, we want
+to add a new element, well
+
+239
+00:12:08,420 --> 00:12:09,730
+what do we need to do?
+
+240
+00:12:09,730 --> 00:12:12,770
+Well, first of all, because
+we're adding to the end
+
+241
+00:12:12,770 --> 00:12:15,520
+and removing from the
+beginning, we probably
+
+242
+00:12:15,520 --> 00:12:20,050
+want to maintain pointers to both the
+head and the tail of the linked list?
+
+243
+00:12:20,050 --> 00:12:22,660
+Tail being another term for
+the end of the linked list,
+
+244
+00:12:22,660 --> 00:12:24,496
+the last element in the linked list.
+
+245
+00:12:24,496 --> 00:12:26,620
+And these will probably,
+again, be beneficial to us
+
+246
+00:12:26,620 --> 00:12:28,477
+if they are global variables.
+
+247
+00:12:28,477 --> 00:12:31,060
+But now if we want to add a new
+element what do we have to do?
+
+248
+00:12:31,060 --> 00:12:35,262
+What we just [? malak ?] or dynamically
+allocate our new node for ourselves.
+
+249
+00:12:35,262 --> 00:12:38,220
+And then, just like when we add any
+element to a doubly linked list we,
+
+250
+00:12:38,220 --> 00:12:40,410
+just have to sort of--
+those last three steps here
+
+251
+00:12:40,410 --> 00:12:43,330
+are just all about moving the
+pointers in the correct way
+
+252
+00:12:43,330 --> 00:12:46,710
+so that the element gets added to
+the chain without breaking the chain
+
+253
+00:12:46,710 --> 00:12:49,580
+or making some sort of mistake
+or having some sort of accident
+
+254
+00:12:49,580 --> 00:12:54,505
+happen whereby we accidentally
+orphan some elements of our queue.
+
+255
+00:12:54,505 --> 00:12:55,880
+Here's what this might look like.
+
+256
+00:12:55,880 --> 00:13:00,980
+We want to add the element
+10 to the end of this queue.
+
+257
+00:13:00,980 --> 00:13:03,380
+So the oldest element here
+is represented by head.
+
+258
+00:13:03,380 --> 00:13:06,800
+That's the first thing we put
+into this hypothetical queue here.
+
+259
+00:13:06,800 --> 00:13:10,430
+And tail, 13, is the most
+recently added element.
+
+260
+00:13:10,430 --> 00:13:17,030
+And so if we want to enqueue 10 into
+this queue, we want to put it after 13.
+
+261
+00:13:17,030 --> 00:13:19,860
+And so we're going to dynamically
+allocate space for a new node
+
+262
+00:13:19,860 --> 00:13:23,280
+and check for null to make sure
+we don't have a memory failure.
+
+263
+00:13:23,280 --> 00:13:27,040
+Then we're going to
+place 10 into that node,
+
+264
+00:13:27,040 --> 00:13:30,030
+and now we need to be careful
+about how we organize pointers
+
+265
+00:13:30,030 --> 00:13:32,180
+so we don't break the chain.
+
+266
+00:13:32,180 --> 00:13:38,910
+>> We can set 10's previous field
+to point back to the old tail,
+
+267
+00:13:38,910 --> 00:13:41,620
+and since '10 will be the
+new tail at some point
+
+268
+00:13:41,620 --> 00:13:44,459
+by the time all of these
+chains are connected,
+
+269
+00:13:44,459 --> 00:13:46,250
+nothing's going to come
+after 10 right now.
+
+270
+00:13:46,250 --> 00:13:49,880
+And so 10's next pointer
+will point to null,
+
+271
+00:13:49,880 --> 00:13:53,580
+and then after we do this, after we've
+connected 10 backwards to the chain,
+
+272
+00:13:53,580 --> 00:13:57,780
+we can take the old head, or, excuse
+me, the old tail of the queue.
+
+273
+00:13:57,780 --> 00:14:02,980
+The old end of the queue,
+13, and make it point to 10.
+
+274
+00:14:02,980 --> 00:14:08,220
+And now, at this point, we have
+enqueued the number 10 into this queue.
+
+275
+00:14:08,220 --> 00:14:14,740
+All we need to do now is just move the
+tail to point to 10 instead of to 13.
+
+276
+00:14:14,740 --> 00:14:17,630
+>> Dequeuing is actually
+very similar to popping
+
+277
+00:14:17,630 --> 00:14:21,710
+from a stack that is
+implemented as a linked list
+
+278
+00:14:21,710 --> 00:14:24,040
+if you've seen the stacks video.
+
+279
+00:14:24,040 --> 00:14:27,280
+All we need to do is start at the
+beginning, find the second element,
+
+280
+00:14:27,280 --> 00:14:30,480
+free the first element,
+and then move the head
+
+281
+00:14:30,480 --> 00:14:32,930
+to point to the second element.
+
+282
+00:14:32,930 --> 00:14:37,920
+Probably better to visualize it
+just to be extra clear about it.
+
+283
+00:14:37,920 --> 00:14:39,230
+So here's our queue again.
+
+284
+00:14:39,230 --> 00:14:42,600
+12 is the oldest element
+in our queue, the head.
+
+285
+00:14:42,600 --> 00:14:46,210
+10 is the newest element
+in our queue, our tail.
+
+286
+00:14:46,210 --> 00:14:49,310
+>> And so when we want
+to dequeue an element,
+
+287
+00:14:49,310 --> 00:14:52,202
+we want to remove the oldest element.
+
+288
+00:14:52,202 --> 00:14:52,910
+So what do we do?
+
+289
+00:14:52,910 --> 00:14:55,243
+Well we set a traversal pointer
+that starts at the head,
+
+290
+00:14:55,243 --> 00:14:57,840
+and we move it so that it
+points to the second element
+
+291
+00:14:57,840 --> 00:15:02,290
+of this queue-- something by saying trav
+equals trav arrow next, for example,
+
+292
+00:15:02,290 --> 00:15:07,170
+would move trav there to point to
+15, which, after we dequeue 12,
+
+293
+00:15:07,170 --> 00:15:13,030
+or after we remove 12, will
+become the then-oldest element.
+
+294
+00:15:13,030 --> 00:15:16,360
+>> Now we've got a hold on the first
+element via the pointer head
+
+295
+00:15:16,360 --> 00:15:19,440
+and the second element
+via the pointer trav.
+
+296
+00:15:19,440 --> 00:15:25,170
+We can now free head, and then we can
+say nothing comes before 15 anymore.
+
+297
+00:15:25,170 --> 00:15:29,990
+So we can change 15's previous
+pointer to point to null,
+
+298
+00:15:29,990 --> 00:15:31,874
+and we just move the head over.
+
+299
+00:15:31,874 --> 00:15:32,540
+And there we go.
+
+300
+00:15:32,540 --> 00:15:35,840
+Now we have successfully
+dequeued 12, and now we
+
+301
+00:15:35,840 --> 00:15:39,180
+have another queue of 4 elements.
+
+302
+00:15:39,180 --> 00:15:41,700
+That's pretty much all
+there is to queues,
+
+303
+00:15:41,700 --> 00:15:45,810
+both array-based and linked-list based.
+
+304
+00:15:45,810 --> 00:15:46,860
+I'm Doug Lloyd.
+
+305
+00:15:46,860 --> 00:15:49,100
+This is CS 50.
+
+306
+00:15:49,100 --> 00:15:50,763

@@ -1,0 +1,1204 @@
+1
+00:00:00,000 --> 00:00:05,177
+
+2
+00:00:05,177 --> 00:00:07,010
+DOUG LLOYD: Sometimes
+when we're programming
+
+3
+00:00:07,010 --> 00:00:10,620
+we do things so commonly, so
+frequently, and so many people
+
+4
+00:00:10,620 --> 00:00:14,920
+do the same idea-- or the same
+thing, that it has a name.
+
+5
+00:00:14,920 --> 00:00:16,780
+MVC is exactly one such thing.
+
+6
+00:00:16,780 --> 00:00:19,130
+It's called a programming paradigm.
+
+7
+00:00:19,130 --> 00:00:21,830
+It's sort of like a best practices
+that have been distilled down
+
+8
+00:00:21,830 --> 00:00:24,100
+by people trying to do something.
+
+9
+00:00:24,100 --> 00:00:26,770
+In this case, implement
+a system of pages
+
+10
+00:00:26,770 --> 00:00:29,700
+that a user interacts with
+on a more complex website.
+
+11
+00:00:29,700 --> 00:00:32,430
+And it's done so commonly that
+it's recommended as a standard
+
+12
+00:00:32,430 --> 00:00:35,721
+that other people might like to follow,
+and there's a very specific set of ways
+
+13
+00:00:35,721 --> 00:00:37,500
+that one could follow this paradigm.
+
+14
+00:00:37,500 --> 00:00:42,580
+>> So, MVC is a paradigm, and the reason
+we use it is to abstract away details
+
+15
+00:00:42,580 --> 00:00:43,560
+from the user.
+
+16
+00:00:43,560 --> 00:00:45,700
+Some things the user
+doesn't really need to see.
+
+17
+00:00:45,700 --> 00:00:47,616
+They just want to have
+a good user experience,
+
+18
+00:00:47,616 --> 00:00:50,590
+and we don't need to have them
+access every single file that
+
+19
+00:00:50,590 --> 00:00:52,750
+exists on our web server, perhaps.
+
+20
+00:00:52,750 --> 00:00:56,160
+There might be some files that are just
+used to bolster the user experience,
+
+21
+00:00:56,160 --> 00:00:57,644
+and so we can abstract those away.
+
+22
+00:00:57,644 --> 00:01:00,060
+We can sort of hide them so
+the user can't work with them,
+
+23
+00:01:00,060 --> 00:01:02,480
+but our pages-- our pages--
+know how to deal with them
+
+24
+00:01:02,480 --> 00:01:05,840
+and call them or perhaps require,
+wants them, or something like that.
+
+25
+00:01:05,840 --> 00:01:09,130
+>> The primary motivation
+for MVC is data security,
+
+26
+00:01:09,130 --> 00:01:12,415
+because MVC usually comes up in the
+context of working with databases.
+
+27
+00:01:12,415 --> 00:01:14,480
+And in particular we
+want to prevent users
+
+28
+00:01:14,480 --> 00:01:17,900
+from directly impacting databases.
+
+29
+00:01:17,900 --> 00:01:21,520
+We only want to do it indirectly,
+through our filtration.
+
+30
+00:01:21,520 --> 00:01:24,780
+Or making sure that everything's OK by
+us doing a little bit of error checking
+
+31
+00:01:24,780 --> 00:01:27,930
+or safety proofing before we
+send it to the database, where
+
+32
+00:01:27,930 --> 00:01:32,850
+things could go wrong, perhaps
+really wrong, if we're not careful.
+
+33
+00:01:32,850 --> 00:01:35,630
+>> So MVC stands for Model View Controller.
+
+34
+00:01:35,630 --> 00:01:36,870
+What do each of these mean?
+
+35
+00:01:36,870 --> 00:01:38,742
+Basically, model is your database.
+
+36
+00:01:38,742 --> 00:01:40,700
+It's where all the
+important data for your site
+
+37
+00:01:40,700 --> 00:01:42,790
+lives-- usernames, logins, passwords.
+
+38
+00:01:42,790 --> 00:01:46,400
+And you can update it, refer to it,
+pretty much everything like that.
+
+39
+00:01:46,400 --> 00:01:49,490
+You'd query a database, you'd ask
+information from the database.
+
+40
+00:01:49,490 --> 00:01:54,810
+That's the model-- all of the
+data where your site lives.
+
+41
+00:01:54,810 --> 00:01:57,930
+>> The view is kind of like
+the user experience.
+
+42
+00:01:57,930 --> 00:02:02,090
+It's the pages they see after
+they have requested information.
+
+43
+00:02:02,090 --> 00:02:04,280
+So maybe they submit
+their login information--
+
+44
+00:02:04,280 --> 00:02:07,280
+which they would do in a controller,
+which we'll talk about in a second.
+
+45
+00:02:07,280 --> 00:02:10,020
+They maybe submit their
+login information,
+
+46
+00:02:10,020 --> 00:02:12,320
+and the database is queried.
+
+47
+00:02:12,320 --> 00:02:16,489
+Information is requested and
+pulled from the database.
+
+48
+00:02:16,489 --> 00:02:19,030
+And then once the user's logged
+in, they see their home page.
+
+49
+00:02:19,030 --> 00:02:21,470
+That's a view, OK?
+
+50
+00:02:21,470 --> 00:02:24,655
+>> And then the controller is what's
+called the business logic of your site.
+
+51
+00:02:24,655 --> 00:02:26,530
+And business logic is
+one of those terms that
+
+52
+00:02:26,530 --> 00:02:30,900
+is sort of wishy-washy-- like,
+what does business logic mean?
+
+53
+00:02:30,900 --> 00:02:33,650
+Basically your business
+logic is your PHP.
+
+54
+00:02:33,650 --> 00:02:36,260
+Your user doesn't need
+to directly see your PHP,
+
+55
+00:02:36,260 --> 00:02:40,600
+but your PHP is probably what's going
+to be making requests to the database.
+
+56
+00:02:40,600 --> 00:02:43,310
+>> So the user will input
+information in a view,
+
+57
+00:02:43,310 --> 00:02:46,120
+which will integrate a controller.
+
+58
+00:02:46,120 --> 00:02:48,130
+Like, they'll type into a form.
+
+59
+00:02:48,130 --> 00:02:50,910
+How that form processes
+information is the controller.
+
+60
+00:02:50,910 --> 00:02:55,159
+That's the PHP that's actually
+making the request to the model.
+
+61
+00:02:55,159 --> 00:02:57,200
+And then the model gives
+information to the view,
+
+62
+00:02:57,200 --> 00:03:00,540
+which gives it to the user,
+perhaps best visualized as follows.
+
+63
+00:03:00,540 --> 00:03:01,240
+>> So here we are.
+
+64
+00:03:01,240 --> 00:03:05,760
+Here's us on the left, and our Model
+View Controller paradigm arrangement.
+
+65
+00:03:05,760 --> 00:03:06,810
+How does it work?
+
+66
+00:03:06,810 --> 00:03:09,460
+>> The user-- us-- makes a
+request to the controller.
+
+67
+00:03:09,460 --> 00:03:13,700
+We submit information
+such as by an HTTP form.
+
+68
+00:03:13,700 --> 00:03:16,080
+Based on that, the controller's
+job is to make sure
+
+69
+00:03:16,080 --> 00:03:20,124
+that what the user has given is not
+something that would damage the model.
+
+70
+00:03:20,124 --> 00:03:22,790
+And so the controller's going to
+make sure that everything's OK.
+
+71
+00:03:22,790 --> 00:03:23,720
+It's going to look very carefully.
+
+72
+00:03:23,720 --> 00:03:27,030
+If there's any errors, it'll stop things
+so the user can't get to the model.
+
+73
+00:03:27,030 --> 00:03:29,470
+>> But assuming everything's
+OK and it's a valid query,
+
+74
+00:03:29,470 --> 00:03:33,660
+the controller will query the model--
+it'll ask it to provide information.
+
+75
+00:03:33,660 --> 00:03:36,490
+The model will provide that
+information to a page that's a view,
+
+76
+00:03:36,490 --> 00:03:39,150
+it'll transmit it that
+way, and then the view
+
+77
+00:03:39,150 --> 00:03:42,620
+will populate the information
+requested from the model.
+
+78
+00:03:42,620 --> 00:03:46,110
+>> So, for example, if we're talking
+about logging into your Facebook page,
+
+79
+00:03:46,110 --> 00:03:46,870
+for example.
+
+80
+00:03:46,870 --> 00:03:49,570
+The view would be the data
+that came out of the model that
+
+81
+00:03:49,570 --> 00:03:52,070
+refers to your friends and the news
+feed or stuff like that, right?
+
+82
+00:03:52,070 --> 00:03:53,380
+But you wouldn't see somebody else's.
+
+83
+00:03:53,380 --> 00:03:55,088
+>> You'd be getting-- so
+you submit a query,
+
+84
+00:03:55,088 --> 00:03:59,400
+you login to the model-- excuse
+me, you login to the page.
+
+85
+00:03:59,400 --> 00:04:01,240
+The controller uses
+your login information
+
+86
+00:04:01,240 --> 00:04:04,920
+to make a request to the model to make
+sure that you are who you say you are.
+
+87
+00:04:04,920 --> 00:04:07,450
+The model's like, OK, yes,
+you are who you say you are,
+
+88
+00:04:07,450 --> 00:04:09,030
+so let me give you your news feed.
+
+89
+00:04:09,030 --> 00:04:11,730
+I'll give you the raw data for
+your news feed to the view,
+
+90
+00:04:11,730 --> 00:04:14,063
+and then the view makes it
+pretty, processes it in a way
+
+91
+00:04:14,063 --> 00:04:17,560
+that we're used to, displaying
+that information to the user.
+
+92
+00:04:17,560 --> 00:04:20,579
+>> Notice the connection that's
+not existing on this diagram.
+
+93
+00:04:20,579 --> 00:04:24,750
+There's no direct connection
+between you and the model.
+
+94
+00:04:24,750 --> 00:04:29,420
+There's always this buffer of
+the controller on the input side,
+
+95
+00:04:29,420 --> 00:04:31,840
+and there's a buffer of the
+view on the output side.
+
+96
+00:04:31,840 --> 00:04:33,850
+>> Maybe you're a good
+person, and so maybe you
+
+97
+00:04:33,850 --> 00:04:36,310
+wouldn't do any damage to the
+model, but maybe you're not.
+
+98
+00:04:36,310 --> 00:04:38,990
+Or maybe there's somebody who's
+a malicious user who would maybe
+
+99
+00:04:38,990 --> 00:04:42,640
+want to damage your database, maybe
+delete everything from your database,
+
+100
+00:04:42,640 --> 00:04:45,080
+which could be very expensive.
+
+101
+00:04:45,080 --> 00:04:48,300
+Obviously, having user data is--
+there's value to having user data.
+
+102
+00:04:48,300 --> 00:04:53,290
+And so if we didn't put this buffer
+zone between the user and the database--
+
+103
+00:04:53,290 --> 00:04:58,070
+the user and the model-- things
+might not be going so well for us.
+
+104
+00:04:58,070 --> 00:05:00,232
+>> And so it's important to
+have this paradigm where
+
+105
+00:05:00,232 --> 00:05:03,440
+the user can interact with the database,
+sure, but they have to go through us
+
+106
+00:05:03,440 --> 00:05:04,750
+to do it.
+
+107
+00:05:04,750 --> 00:05:06,530
+And that's basically the idea with MVC.
+
+108
+00:05:06,530 --> 00:05:08,290
+It's trying to implement data security.
+
+109
+00:05:08,290 --> 00:05:13,130
+It's trying to protect the model
+from inadvertently or intentionally
+
+110
+00:05:13,130 --> 00:05:15,430
+malicious users.
+
+111
+00:05:15,430 --> 00:05:17,392
+>> So what happens when
+we apply this paradigm?
+
+112
+00:05:17,392 --> 00:05:19,850
+Well, we're separating the data
+required from our website--
+
+113
+00:05:19,850 --> 00:05:23,320
+the model-- from the logic
+that implements our website's
+
+114
+00:05:23,320 --> 00:05:27,160
+functionality-- the controller-- and
+from the simple aesthetics and page
+
+115
+00:05:27,160 --> 00:05:31,497
+templates that comprise our
+user experience-- the view.
+
+116
+00:05:31,497 --> 00:05:32,330
+What does this mean?
+
+117
+00:05:32,330 --> 00:05:35,830
+Well, it means you can make
+views visible to the user.
+
+118
+00:05:35,830 --> 00:05:37,800
+You can hide the model away.
+
+119
+00:05:37,800 --> 00:05:41,450
+And controllers-- the user
+can't maybe directly manipulate.
+
+120
+00:05:41,450 --> 00:05:43,230
+They don't need to access your PHP code.
+
+121
+00:05:43,230 --> 00:05:45,646
+They just need to see a form
+where they can type stuff in.
+
+122
+00:05:45,646 --> 00:05:47,605
+So maybe the form is
+a view, the controller
+
+123
+00:05:47,605 --> 00:05:52,835
+is the PHP that the form submits to, the
+controller makes a query to the model,
+
+124
+00:05:52,835 --> 00:05:55,210
+the model gives more information
+to a different view that
+
+125
+00:05:55,210 --> 00:05:57,400
+displays information to you.
+
+126
+00:05:57,400 --> 00:05:59,640
+>> Your programs can access
+all of your business logic,
+
+127
+00:05:59,640 --> 00:06:02,940
+but your users cannot directly
+access your business logic.
+
+128
+00:06:02,940 --> 00:06:07,600
+And one particularly, perhaps,
+visible illustration of this
+
+129
+00:06:07,600 --> 00:06:11,370
+is you've ever received
+a 403 Forbidden error.
+
+130
+00:06:11,370 --> 00:06:14,070
+Have you ever gone to a web
+page and seen 403 Forbidden?
+
+131
+00:06:14,070 --> 00:06:16,200
+It's sort of like 404 Not Found.
+
+132
+00:06:16,200 --> 00:06:20,590
+>> 403 Forbidden means you tried to access
+a page that you don't have access to.
+
+133
+00:06:20,590 --> 00:06:23,790
+Perhaps that site is
+using MVC separation
+
+134
+00:06:23,790 --> 00:06:28,600
+to hide away its business logic that
+needs to exist on the server in order
+
+135
+00:06:28,600 --> 00:06:32,220
+for the page to work, but doesn't
+want you to directly access it.
+
+136
+00:06:32,220 --> 00:06:33,990
+So you might get a 403 Forbidden error.
+
+137
+00:06:33,990 --> 00:06:36,073
+>> And it wouldn't even matter
+if you were logged in.
+
+138
+00:06:36,073 --> 00:06:38,570
+No user can touch this dot PHP file.
+
+139
+00:06:38,570 --> 00:06:41,080
+They can only touch
+this one, and this one--
+
+140
+00:06:41,080 --> 00:06:48,140
+the one that they can touch-- perhaps
+can interact with the locked-down file
+
+141
+00:06:48,140 --> 00:06:52,330
+more indirectly than the user.
+
+142
+00:06:52,330 --> 00:06:57,610
+>> So, we sometimes see this permissions
+error, this 403 Forbidden.
+
+143
+00:06:57,610 --> 00:07:01,360
+How do we change permissions so
+that things can or cannot be seen?
+
+144
+00:07:01,360 --> 00:07:06,910
+When we do this typically is to use a
+Linux command called chmod-- C-H-mod.
+
+145
+00:07:06,910 --> 00:07:11,080
+>> To do this, the format is pretty
+simple-- chmod, permissions,
+
+146
+00:07:11,080 --> 00:07:13,710
+and whatever file you want
+to apply that change to.
+
+147
+00:07:13,710 --> 00:07:17,380
+So, maybe you'd see something
+like this-- chmod 600 helpers.php.
+
+148
+00:07:17,380 --> 00:07:21,870
+Or maybe you'd see this-- chmod
+a plus x that includes directory.
+
+149
+00:07:21,870 --> 00:07:23,112
+Was does this mean though?
+
+150
+00:07:23,112 --> 00:07:25,570
+So, there's two different ways
+that permissions are usually
+
+151
+00:07:25,570 --> 00:07:26,920
+applied using chmod.
+
+152
+00:07:26,920 --> 00:07:29,350
+The first is called the
+octal numbers method.
+
+153
+00:07:29,350 --> 00:07:32,160
+This usually applies permissions
+to three different categories
+
+154
+00:07:32,160 --> 00:07:34,300
+of users at the same time.
+
+155
+00:07:34,300 --> 00:07:40,120
+So chmod 711 file would allow you
+the right to read, write, and execute
+
+156
+00:07:40,120 --> 00:07:43,050
+your file, would allow
+others-- specifically
+
+157
+00:07:43,050 --> 00:07:46,469
+your group and the world--
+to only execute the file.
+
+158
+00:07:46,469 --> 00:07:47,760
+That's what this translates to.
+
+159
+00:07:47,760 --> 00:07:50,150
+The first number there
+is what you can do,
+
+160
+00:07:50,150 --> 00:07:52,370
+the second number is
+what your group can do,
+
+161
+00:07:52,370 --> 00:07:54,470
+and the third is what the world can do.
+
+162
+00:07:54,470 --> 00:07:57,930
+Anybody who's visiting your
+page, that's the world.
+
+163
+00:07:57,930 --> 00:08:01,130
+>> What are these numbers
+actually translate to though?
+
+164
+00:08:01,130 --> 00:08:03,130
+So these basically translate like this.
+
+165
+00:08:03,130 --> 00:08:06,300
+If the permission is
+zero, nothing can happen.
+
+166
+00:08:06,300 --> 00:08:10,239
+If it's one, you can execute the
+file-- if that's your permission.
+
+167
+00:08:10,239 --> 00:08:13,030
+If it's two, you can write the file
+but you can't do anything else.
+
+168
+00:08:13,030 --> 00:08:14,967
+If it's three, you
+can write and execute.
+
+169
+00:08:14,967 --> 00:08:16,050
+And so on, as you can see.
+
+170
+00:08:16,050 --> 00:08:19,320
+And seven means you can do everything.
+
+171
+00:08:19,320 --> 00:08:21,760
+>> So why are these called octal numbers?
+
+172
+00:08:21,760 --> 00:08:24,537
+Well, if you think about it,
+here's like noes and yeses,
+
+173
+00:08:24,537 --> 00:08:26,620
+and if we think about them
+as red and green boxes,
+
+174
+00:08:26,620 --> 00:08:28,161
+maybe that makes it a little clearer.
+
+175
+00:08:28,161 --> 00:08:31,410
+But if we think about those red boxes
+as zeros and the green boxes as ones,
+
+176
+00:08:31,410 --> 00:08:33,659
+these are actually just sets
+of binary numbers, right?
+
+177
+00:08:33,659 --> 00:08:42,510
+000 translates to decimal 0; 001,
+decimal 1; 010 is decimal 2, and so on.
+
+178
+00:08:42,510 --> 00:08:44,840
+And so we call these octal
+numbers because there
+
+179
+00:08:44,840 --> 00:08:46,410
+are eight different possibilities.
+
+180
+00:08:46,410 --> 00:08:48,118
+There are eight
+different digits if we're
+
+181
+00:08:48,118 --> 00:08:50,220
+talking about three
+bits of information--
+
+182
+00:08:50,220 --> 00:08:52,940
+the read bit, the write
+bit, and the execute bit.
+
+183
+00:08:52,940 --> 00:08:56,910
+So now you can speak binary,
+decimal, hex, and octal.
+
+184
+00:08:56,910 --> 00:09:00,250
+So you know how to communicate with
+computers in four different number
+
+185
+00:09:00,250 --> 00:09:02,640
+systems, so that's pretty cool.
+
+186
+00:09:02,640 --> 00:09:05,200
+>> So, besides the octal
+permission scheme, there's
+
+187
+00:09:05,200 --> 00:09:08,520
+also the symbolic permission
+scheme, which is slightly different
+
+188
+00:09:08,520 --> 00:09:13,290
+and usually is used best to apply or
+remove a permission across the board.
+
+189
+00:09:13,290 --> 00:09:17,070
+So chmod a plus x file
+might add the right
+
+190
+00:09:17,070 --> 00:09:20,270
+to execute to all three
+categories of users--
+
+191
+00:09:20,270 --> 00:09:22,890
+yourself, your group, and the world.
+
+192
+00:09:22,890 --> 00:09:26,060
+That plus is the adding part.
+
+193
+00:09:26,060 --> 00:09:28,430
+The right to execute, that's the x.
+
+194
+00:09:28,430 --> 00:09:34,330
+And the fact that it applies to all
+three groups of users would be the a.
+
+195
+00:09:34,330 --> 00:09:39,330
+>> So this-- a plus x-- is probably going
+to be exactly the same as chmod 711
+
+196
+00:09:39,330 --> 00:09:44,970
+file, because if you go back and
+look at the octal number scheme,
+
+197
+00:09:44,970 --> 00:09:47,990
+ones and sevens give us the
+right to execute a file.
+
+198
+00:09:47,990 --> 00:09:49,880
+So this is probably the same.
+
+199
+00:09:49,880 --> 00:09:53,280
+>> And you can use this
+reference guide for what
+
+200
+00:09:53,280 --> 00:09:59,430
+the various things in the
+symbolic chmod-ing structure are.
+
+201
+00:09:59,430 --> 00:10:03,522
+The green items here would be
+where all the green colored example
+
+202
+00:10:03,522 --> 00:10:04,230
+was a second ago.
+
+203
+00:10:04,230 --> 00:10:05,740
+The blue would be the blue.
+
+204
+00:10:05,740 --> 00:10:07,450
+The orange would be the orange.
+
+205
+00:10:07,450 --> 00:10:10,360
+So you can apply things to your
+group, to others, to the user,
+
+206
+00:10:10,360 --> 00:10:11,510
+or to everybody.
+
+207
+00:10:11,510 --> 00:10:13,670
+You can give them read,
+write, and execute access,
+
+208
+00:10:13,670 --> 00:10:17,130
+and you can add or remove
+or assign exactly a set
+
+209
+00:10:17,130 --> 00:10:20,310
+of permissions using this model.
+
+210
+00:10:20,310 --> 00:10:22,530
+>> How do we check what a
+file permission scheme is?
+
+211
+00:10:22,530 --> 00:10:25,770
+Before we change it, it's
+probably good to actually know
+
+212
+00:10:25,770 --> 00:10:27,800
+what the file permissions are.
+
+213
+00:10:27,800 --> 00:10:31,370
+One way to do this is to run ls
+but just tweak it a little bit.
+
+214
+00:10:31,370 --> 00:10:35,570
+So if I type ls dash l--
+that's a lowercase l-- maybe
+
+215
+00:10:35,570 --> 00:10:36,870
+I'll see something like this.
+
+216
+00:10:36,870 --> 00:10:39,490
+It looks a little bit cryptic, but
+the part that we really care about
+
+217
+00:10:39,490 --> 00:10:41,000
+is the stuff on the left over there.
+
+218
+00:10:41,000 --> 00:10:43,380
+That actually specifies
+a file permission scheme.
+
+219
+00:10:43,380 --> 00:10:47,470
+And you can probably tell because it's
+got r's, w's, and x's interspersed.
+
+220
+00:10:47,470 --> 00:10:49,750
+>> Those first three--
+ignoring the first one
+
+221
+00:10:49,750 --> 00:10:51,870
+for a second, which
+we'll double back to.
+
+222
+00:10:51,870 --> 00:10:54,080
+Those first three after
+the first-- so the second,
+
+223
+00:10:54,080 --> 00:10:56,700
+third, and fourth characters
+of that 10 character string
+
+224
+00:10:56,700 --> 00:10:59,150
+are the permissions that you have.
+
+225
+00:10:59,150 --> 00:11:02,390
+So apparently I can read,
+write, and execute PHP.
+
+226
+00:11:02,390 --> 00:11:04,870
+I can read, write, and
+execute PHP WebDev,
+
+227
+00:11:04,870 --> 00:11:07,786
+and I can read and write test.php.
+
+228
+00:11:07,786 --> 00:11:11,020
+>> My group can do this.
+
+229
+00:11:11,020 --> 00:11:14,960
+So apparently with the PHP
+and PHP WebDev directories,
+
+230
+00:11:14,960 --> 00:11:18,330
+my group can write to
+them but nothing else.
+
+231
+00:11:18,330 --> 00:11:20,210
+And the world can't do anything.
+
+232
+00:11:20,210 --> 00:11:22,115
+So these files are not
+publicly accessible
+
+233
+00:11:22,115 --> 00:11:23,990
+and if I tried to
+access them and I wasn't
+
+234
+00:11:23,990 --> 00:11:29,160
+running Apache to make them accessible,
+then I would get a 403 error.
+
+235
+00:11:29,160 --> 00:11:29,950
+It's a failure.
+
+236
+00:11:29,950 --> 00:11:32,916
+I tried to access a file but I
+don't have permissions to do it.
+
+237
+00:11:32,916 --> 00:11:34,290
+And what is that first character?
+
+238
+00:11:34,290 --> 00:11:39,120
+Well, you can probably extrapolate
+here that the d's refer to directories
+
+239
+00:11:39,120 --> 00:11:42,080
+and the dash refers to
+so-called "regular files."
+
+240
+00:11:42,080 --> 00:11:45,430
+And maybe you've seen this when you've
+tried to remove a file using rm.
+
+241
+00:11:45,430 --> 00:11:49,310
+You've seen the cryptic message
+"remove regular file"-- in this case,
+
+242
+00:11:49,310 --> 00:11:51,020
+it'd be test.php.
+
+243
+00:11:51,020 --> 00:11:53,900
+Regular file is just something
+that's not a directory.
+
+244
+00:11:53,900 --> 00:11:56,191
+There are a couple of others
+here, but generally you're
+
+245
+00:11:56,191 --> 00:11:59,179
+going to see d's for directories
+and nothing for the first element.
+
+246
+00:11:59,179 --> 00:12:00,720
+But that's really all there is to it.
+
+247
+00:12:00,720 --> 00:12:03,210
+You can check file
+permissions using ls dash l,
+
+248
+00:12:03,210 --> 00:12:05,100
+you can change them using chmod.
+
+249
+00:12:05,100 --> 00:12:09,430
+And, of course, use these--
+changing the permissions
+
+250
+00:12:09,430 --> 00:12:14,180
+to enforce this MVC paradigm to
+protect the data on your website
+
+251
+00:12:14,180 --> 00:12:16,180
+and not allow users
+to access everything,
+
+252
+00:12:16,180 --> 00:12:19,120
+but only the stuff that they need
+to access in order for your page
+
+253
+00:12:19,120 --> 00:12:22,110
+to work the way you want it to work.
+
+254
+00:12:22,110 --> 00:12:23,040
+>> I'm Doug Lloyd.
+
+255
+00:12:23,040 --> 00:12:24,880
+This is CS50.
+
+256
+00:12:24,880 --> 00:12:27,286

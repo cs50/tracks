@@ -1,0 +1,5518 @@
+1
+00:00:00,000 --> 00:00:03,332
+>> [MUSIC PLAYING]
+
+2
+00:00:03,332 --> 00:00:06,200
+
+3
+00:00:06,200 --> 00:00:09,590
+>> DAN AMRMENDARIZ: Everyone,
+welcome to the CS50 seminar,
+
+4
+00:00:09,590 --> 00:00:11,690
+iOS App Development with Swift.
+
+5
+00:00:11,690 --> 00:00:15,690
+I'm Dan Armendariz, and I'm a preceptor
+of computer science here at Harvard.
+
+6
+00:00:15,690 --> 00:00:21,510
+>> And the next hour is going to be
+a whirlwind tour of as much stuff
+
+7
+00:00:21,510 --> 00:00:25,160
+about this topic as we can fit.
+
+8
+00:00:25,160 --> 00:00:29,170
+I will post all of the source code
+that you will see today online.
+
+9
+00:00:29,170 --> 00:00:31,990
+We might not be able to
+actually go over everything
+
+10
+00:00:31,990 --> 00:00:34,810
+that I'm that I'm
+showing you in this hour.
+
+11
+00:00:34,810 --> 00:00:37,580
+But at least hopefully through
+the comments of the source code,
+
+12
+00:00:37,580 --> 00:00:40,830
+you'll be able to try to figure out what
+exactly is happening for those things
+
+13
+00:00:40,830 --> 00:00:42,950
+that we don't quite get to.
+
+14
+00:00:42,950 --> 00:00:46,970
+>> Overall, the structure of
+today's talk will be as follows.
+
+15
+00:00:46,970 --> 00:00:52,820
+We'll start out doing some basic
+syntax with the Swift language,
+
+16
+00:00:52,820 --> 00:00:56,290
+going into some of the more advanced
+syntax of the Swift language.
+
+17
+00:00:56,290 --> 00:00:59,560
+Because the language
+is really modern and it
+
+18
+00:00:59,560 --> 00:01:02,110
+has a lot of high level
+features, things that we haven't
+
+19
+00:01:02,110 --> 00:01:06,600
+seen in C throughout CS50, or
+even some the other languages
+
+20
+00:01:06,600 --> 00:01:09,310
+that we've started
+using in CS50 like PHP,
+
+21
+00:01:09,310 --> 00:01:12,670
+so I am going to have to try to
+introduce also some topics that
+
+22
+00:01:12,670 --> 00:01:18,580
+are related to higher level languages
+that you may not see in depth in CS50,
+
+23
+00:01:18,580 --> 00:01:21,380
+but you will see in later
+computer science classes.
+
+24
+00:01:21,380 --> 00:01:25,290
+So it's going to be a
+tightly packed hour.
+
+25
+00:01:25,290 --> 00:01:28,897
+And please feel free to let me
+know if you have any questions.
+
+26
+00:01:28,897 --> 00:01:30,730
+So if you're interested
+in doing development
+
+27
+00:01:30,730 --> 00:01:34,442
+with Swift, or really
+any iOS app development,
+
+28
+00:01:34,442 --> 00:01:35,900
+there are a couple of requirements.
+
+29
+00:01:35,900 --> 00:01:39,940
+First of all, you have to be using
+a Mac, running in the examples
+
+30
+00:01:39,940 --> 00:01:43,880
+that we are going to be using today,
+a relatively new version of OS
+
+31
+00:01:43,880 --> 00:01:46,580
+X. In this case, I'm running X 10.5.
+
+32
+00:01:46,580 --> 00:01:48,600
+You can be running 10.11 if you want.
+
+33
+00:01:48,600 --> 00:01:52,430
+But everything that you're going to
+see is involving Xcode 7 and later,
+
+34
+00:01:52,430 --> 00:01:56,271
+which has the latest version
+of Swift, which is Swift 2.0.
+
+35
+00:01:56,271 --> 00:01:58,270
+This is actually a pretty
+important distinction.
+
+36
+00:01:58,270 --> 00:02:01,510
+A lot of the syntax has
+changed pretty significantly
+
+37
+00:02:01,510 --> 00:02:05,890
+in some cases from Swift 1.0,
+which was released last year,
+
+38
+00:02:05,890 --> 00:02:08,514
+to Swift 2.0, which
+just came out this fall.
+
+39
+00:02:08,514 --> 00:02:09,889
+So we're going to show Swift 2.0.
+
+40
+00:02:09,889 --> 00:02:13,020
+A lot of the things that
+you search for online
+
+41
+00:02:13,020 --> 00:02:18,040
+when you're trying to get additional
+information about a variety of things,
+
+42
+00:02:18,040 --> 00:02:20,710
+you may want to explicitly
+search for Swift 2
+
+43
+00:02:20,710 --> 00:02:24,950
+rather than just plain old Swift to make
+sure that you get the syntax correct.
+
+44
+00:02:24,950 --> 00:02:26,920
+>> In fact, this is generally true.
+
+45
+00:02:26,920 --> 00:02:31,210
+There's a rapid amount of development
+happening in the Swift language
+
+46
+00:02:31,210 --> 00:02:35,110
+ever since Apple released it, I think
+what, it's been a little over a year
+
+47
+00:02:35,110 --> 00:02:36,370
+now.
+
+48
+00:02:36,370 --> 00:02:39,080
+And things have changed
+dramatically in that time.
+
+49
+00:02:39,080 --> 00:02:42,160
+And so don't be frustrated
+if, when you're looking around
+
+50
+00:02:42,160 --> 00:02:48,310
+for topics on Swift or how to accomplish
+something using some example code
+
+51
+00:02:48,310 --> 00:02:51,210
+or something that it doesn't
+actually work on Swift 2.0.
+
+52
+00:02:51,210 --> 00:02:53,790
+Make sure you are looking
+specifically for that version
+
+53
+00:02:53,790 --> 00:02:58,690
+to try to minimize effects of different
+versions and those sorts of things.
+
+54
+00:02:58,690 --> 00:03:02,470
+>> I'll try to point out just some things
+that are different to older versions.
+
+55
+00:03:02,470 --> 00:03:03,970
+But it's something to watch out for.
+
+56
+00:03:03,970 --> 00:03:06,770
+That's probably going to be
+one of the biggest headaches
+
+57
+00:03:06,770 --> 00:03:11,010
+that you will have with Swift is finding
+example code that is older, even just
+
+58
+00:03:11,010 --> 00:03:14,050
+by a few months, trying to use
+it in your more modern project.
+
+59
+00:03:14,050 --> 00:03:15,430
+And it just simply doesn't work.
+
+60
+00:03:15,430 --> 00:03:18,530
+You're getting compiler errors, syntax
+errors, all sorts of crazy stuff.
+
+61
+00:03:18,530 --> 00:03:21,580
+So just be patient with
+that, and you will hopefully
+
+62
+00:03:21,580 --> 00:03:24,200
+have a pretty nice experience
+with Swift overall.
+
+63
+00:03:24,200 --> 00:03:28,430
+>> Now you can actually join-- and I hope
+we actually still have this this year--
+
+64
+00:03:28,430 --> 00:03:30,910
+CS 50's Apple app
+development team, which
+
+65
+00:03:30,910 --> 00:03:34,680
+will allow you to install any apps
+which you create on your iOS devices.
+
+66
+00:03:34,680 --> 00:03:39,190
+So take a look at this URL if
+you are interested in doing that.
+
+67
+00:03:39,190 --> 00:03:41,450
+>> So just a couple of
+things about Swift itself.
+
+68
+00:03:41,450 --> 00:03:43,580
+It is a compiled language.
+
+69
+00:03:43,580 --> 00:03:45,870
+But you will see that some
+of the features that we use
+
+70
+00:03:45,870 --> 00:03:50,650
+allow it to be used also in a bit
+like an interpreted way as well.
+
+71
+00:03:50,650 --> 00:03:56,350
+>> A lot of the syntax is borrowed
+from C. It's based and written in C.
+
+72
+00:03:56,350 --> 00:04:00,400
+And so we will see that
+there are a lot of takeaways
+
+73
+00:04:00,400 --> 00:04:04,450
+from your existing knowledge
+from C that we can port to Swift.
+
+74
+00:04:04,450 --> 00:04:07,290
+>> But there are things that
+make it very different from C.
+
+75
+00:04:07,290 --> 00:04:08,860
+It is very strongly typed.
+
+76
+00:04:08,860 --> 00:04:10,380
+There's automatic memory management.
+
+77
+00:04:10,380 --> 00:04:13,170
+You're not going to have to
+use malloc or free anywhere.
+
+78
+00:04:13,170 --> 00:04:15,110
+It's designed for generality.
+
+79
+00:04:15,110 --> 00:04:19,480
+So in other words, you can use it in
+all sorts of contexts, from Apple Watch
+
+80
+00:04:19,480 --> 00:04:26,290
+to iPhone all the way up to OS X, and
+even some servers, even some scripting.
+
+81
+00:04:26,290 --> 00:04:28,400
+But we'll see that the
+support for scripting
+
+82
+00:04:28,400 --> 00:04:31,360
+isn't quite there yet as
+it is in other languages.
+
+83
+00:04:31,360 --> 00:04:34,930
+So most likely you'll be using
+this exclusively for development
+
+84
+00:04:34,930 --> 00:04:37,060
+on your Mac or your iPhone.
+
+85
+00:04:37,060 --> 00:04:40,150
+>> And it has a lot of modern features.
+
+86
+00:04:40,150 --> 00:04:43,380
+And a lot of these things are stuff that
+we're going to try to address today,
+
+87
+00:04:43,380 --> 00:04:47,590
+but also our topics that frankly,
+we can devote entire courses.
+
+88
+00:04:47,590 --> 00:04:50,140
+In fact, CS 51, which is
+offered next semester,
+
+89
+00:04:50,140 --> 00:04:53,990
+focuses a lot on these topics
+that are described below.
+
+90
+00:04:53,990 --> 00:04:56,781
+So you can spend an entire semester
+understanding these things.
+
+91
+00:04:56,781 --> 00:04:58,530
+But we're going to try
+to get through them
+
+92
+00:04:58,530 --> 00:05:00,800
+at least enough that you
+can understand what's
+
+93
+00:05:00,800 --> 00:05:03,700
+going on when you look
+at a Swift program
+
+94
+00:05:03,700 --> 00:05:07,310
+and be able to hack your way
+through it for the final project.
+
+95
+00:05:07,310 --> 00:05:10,780
+>> Now one of the best ways that you can
+get additional information on this
+
+96
+00:05:10,780 --> 00:05:14,700
+is frankly just through Apple's
+provided documentation for Swift.
+
+97
+00:05:14,700 --> 00:05:16,930
+There's a lot of APIs
+that are available.
+
+98
+00:05:16,930 --> 00:05:21,170
+And this is a good home base for you
+to look for, specific things that you
+
+99
+00:05:21,170 --> 00:05:23,020
+want to do with an API involving iOS.
+
+100
+00:05:23,020 --> 00:05:26,350
+If you want to use the camera for
+example, you can start looking here,
+
+101
+00:05:26,350 --> 00:05:32,540
+and also use Google and Stack
+Overflow as you would normally.
+
+102
+00:05:32,540 --> 00:05:36,670
+>> Any questions on this
+before we jump right in?
+
+103
+00:05:36,670 --> 00:05:37,880
+All right.
+
+104
+00:05:37,880 --> 00:05:38,700
+Let's move on.
+
+105
+00:05:38,700 --> 00:05:42,620
+>> So first, I have a
+number of example files.
+
+106
+00:05:42,620 --> 00:05:46,040
+And I'm going to try to step
+through them relatively quickly.
+
+107
+00:05:46,040 --> 00:05:49,190
+This is the Hello World file for Swift.
+
+108
+00:05:49,190 --> 00:05:51,050
+It's very simple.
+
+109
+00:05:51,050 --> 00:05:54,360
+There's way more comments
+than there are actual code.
+
+110
+00:05:54,360 --> 00:05:57,100
+Notice the actual code is at
+the very bottom on line 14.
+
+111
+00:05:57,100 --> 00:05:57,980
+It says print.
+
+112
+00:05:57,980 --> 00:05:59,820
+And then it's a function call.
+
+113
+00:05:59,820 --> 00:06:03,010
+We're passing into it a
+string called Hello cs50.
+
+114
+00:06:03,010 --> 00:06:04,750
+Notice that there's no semicolons.
+
+115
+00:06:04,750 --> 00:06:07,010
+Notice that there's no int main.
+
+116
+00:06:07,010 --> 00:06:10,392
+There's none of the
+cruft that we had with C.
+
+117
+00:06:10,392 --> 00:06:15,020
+When we are using Swift in this way,
+which is just written in a text file
+
+118
+00:06:15,020 --> 00:06:18,340
+and stored on my computer, then
+I can compile it and run it.
+
+119
+00:06:18,340 --> 00:06:20,920
+>> Notice that here I'm
+not using the CS50 IDE.
+
+120
+00:06:20,920 --> 00:06:24,460
+This assumes that I am
+running and that I'm on OS X,
+
+121
+00:06:24,460 --> 00:06:27,870
+and that I have Xcode already installed
+on this machine in order for this
+
+122
+00:06:27,870 --> 00:06:29,080
+to actually function.
+
+123
+00:06:29,080 --> 00:06:33,349
+But this is just a normal text file
+that we can then compile and edit.
+
+124
+00:06:33,349 --> 00:06:34,890
+So let's see how this actually works.
+
+125
+00:06:34,890 --> 00:06:37,430
+What if I want to compile it?
+
+126
+00:06:37,430 --> 00:06:40,450
+swiftc 1.swift.
+
+127
+00:06:40,450 --> 00:06:42,960
+After a moment or two, it
+will see that we have now
+
+128
+00:06:42,960 --> 00:06:45,360
+compiled this into a file called 1.
+
+129
+00:06:45,360 --> 00:06:51,090
+And now we have printed our CS50,
+our Hello World application rather.
+
+130
+00:06:51,090 --> 00:06:54,690
+>> Notice one other thing as
+well is that by default,
+
+131
+00:06:54,690 --> 00:07:00,090
+we didn't have to input
+a /n to print a new line.
+
+132
+00:07:00,090 --> 00:07:05,315
+By default, the print function in
+Swift will print a new line for you.
+
+133
+00:07:05,315 --> 00:07:09,284
+You can pass an optional additional
+parameter to tell it not to do so.
+
+134
+00:07:09,284 --> 00:07:10,950
+But Google for more information on that.
+
+135
+00:07:10,950 --> 00:07:13,450
+By default, it will do the print line.
+
+136
+00:07:13,450 --> 00:07:16,420
+>> All right, so let's move on
+then to some other things.
+
+137
+00:07:16,420 --> 00:07:18,620
+So how can we actually define variables?
+
+138
+00:07:18,620 --> 00:07:21,960
+We can do that's using
+one of two methods.
+
+139
+00:07:21,960 --> 00:07:26,122
+And the one that I want to tell you
+about first is this let definition.
+
+140
+00:07:26,122 --> 00:07:27,830
+And this is important
+because effectively
+
+141
+00:07:27,830 --> 00:07:30,240
+what we're doing is defining a constant.
+
+142
+00:07:30,240 --> 00:07:34,010
+We are going to create a variable,
+or rather a constant called name,
+
+143
+00:07:34,010 --> 00:07:38,200
+provide to it some data-- in
+this case, the string Dan.
+
+144
+00:07:38,200 --> 00:07:40,630
+But by using this let
+keyword, we are saying
+
+145
+00:07:40,630 --> 00:07:43,860
+that this variable-- or
+again constant-- called
+
+146
+00:07:43,860 --> 00:07:46,220
+name is never going to be changed.
+
+147
+00:07:46,220 --> 00:07:50,120
+It's going to be immutable throughout
+the duration of this program
+
+148
+00:07:50,120 --> 00:07:53,100
+or throughout the
+duration of the context
+
+149
+00:07:53,100 --> 00:07:55,390
+that that variable is available.
+
+150
+00:07:55,390 --> 00:08:00,096
+>> This is really important that when
+you have some data that is not
+
+151
+00:08:00,096 --> 00:08:02,970
+going to change in your program,
+and you'll see a variety of examples
+
+152
+00:08:02,970 --> 00:08:06,790
+about when we want to use
+let versus the other syntax,
+
+153
+00:08:06,790 --> 00:08:11,040
+it's important that you use let
+wherever possible because this notifies
+
+154
+00:08:11,040 --> 00:08:13,740
+the language that it is
+not going to be changed,
+
+155
+00:08:13,740 --> 00:08:16,590
+and it can actually perform
+a lot of optimizations
+
+156
+00:08:16,590 --> 00:08:19,560
+to improve the speed and
+the safety of your program.
+
+157
+00:08:19,560 --> 00:08:24,480
+And by safety, I mean not let
+it crash with crazy errors
+
+158
+00:08:24,480 --> 00:08:27,910
+that we might be
+accustomed to seeing in C.
+
+159
+00:08:27,910 --> 00:08:32,460
+>> Then we can use string interpolation
+to encapsulate this within a string.
+
+160
+00:08:32,460 --> 00:08:35,200
+So we can see in this
+print line, print hello,
+
+161
+00:08:35,200 --> 00:08:38,950
+and then using backslash open parens,
+and then the name of my variable,
+
+162
+00:08:38,950 --> 00:08:41,809
+in this case constant,
+close the parentheses.
+
+163
+00:08:41,809 --> 00:08:46,400
+I'm essentially then putting the
+contents of this variable called name
+
+164
+00:08:46,400 --> 00:08:50,240
+inside of the string and then
+printing the result there.
+
+165
+00:08:50,240 --> 00:08:54,070
+>> There's one other change to this file
+which is that I have, at the very top,
+
+166
+00:08:54,070 --> 00:08:57,340
+put in a shebang line, which
+basically just specifies
+
+167
+00:08:57,340 --> 00:09:00,180
+that I want to use the
+Swift interpreter, which
+
+168
+00:09:00,180 --> 00:09:04,190
+means that I no longer have to
+compile this particular program.
+
+169
+00:09:04,190 --> 00:09:06,567
+I can just run it like its own script.
+
+170
+00:09:06,567 --> 00:09:09,400
+But this is, in this case, behind
+the scenes being compiled and then
+
+171
+00:09:09,400 --> 00:09:10,030
+being run.
+
+172
+00:09:10,030 --> 00:09:13,540
+It's just invisible to us.
+
+173
+00:09:13,540 --> 00:09:15,880
+>> All right, so let's move on.
+
+174
+00:09:15,880 --> 00:09:19,650
+So there's a bit of trickery
+that just happened before.
+
+175
+00:09:19,650 --> 00:09:23,230
+I showed you that I
+could define a constant.
+
+176
+00:09:23,230 --> 00:09:25,490
+And I could provide some data to do it.
+
+177
+00:09:25,490 --> 00:09:29,240
+But in this case, notice that I didn't
+actually specify the type of data
+
+178
+00:09:29,240 --> 00:09:29,820
+that it is.
+
+179
+00:09:29,820 --> 00:09:32,780
+And that's because the
+compiler, Swift can
+
+180
+00:09:32,780 --> 00:09:36,910
+infer the type of data just based
+on the data that I put into it.
+
+181
+00:09:36,910 --> 00:09:41,760
+Because it knows that by evaluating this
+variable right here, this data right
+
+182
+00:09:41,760 --> 00:09:43,370
+here, it knows that it is a string.
+
+183
+00:09:43,370 --> 00:09:48,690
+And so this constant name is therefore
+going to be a string as well.
+
+184
+00:09:48,690 --> 00:09:52,730
+>> But we can also be explicit
+about the type that's
+
+185
+00:09:52,730 --> 00:09:55,790
+we are going to use for
+constants or variables
+
+186
+00:09:55,790 --> 00:10:01,590
+by using this syntax instead--
+let name colon String equals
+
+187
+00:10:01,590 --> 00:10:05,530
+Dan, which in this case means we're
+going to define a constant called name.
+
+188
+00:10:05,530 --> 00:10:07,150
+It's going to be of type String.
+
+189
+00:10:07,150 --> 00:10:10,550
+And the value is going to be Dan.
+
+190
+00:10:10,550 --> 00:10:12,550
+Now the other way that
+we can create variables--
+
+191
+00:10:12,550 --> 00:10:15,549
+and these are mutable variables, which
+means that we are, in fact, going
+
+192
+00:10:15,549 --> 00:10:19,670
+to change their contents sometime
+in the duration of the context
+
+193
+00:10:19,670 --> 00:10:23,890
+that that variable is defined-- we
+use the var keyword instead of let.
+
+194
+00:10:23,890 --> 00:10:27,400
+But again, by default, unless you know
+that you need to manipulate that data,
+
+195
+00:10:27,400 --> 00:10:30,510
+try to use let for
+performance improvements.
+
+196
+00:10:30,510 --> 00:10:33,740
+>> In this case, I can then
+specify the type of data
+
+197
+00:10:33,740 --> 00:10:37,650
+that we expect to be inside of
+this new variable called label.
+
+198
+00:10:37,650 --> 00:10:38,800
+It's going to be a string.
+
+199
+00:10:38,800 --> 00:10:43,030
+And we're going to then concatenate
+two strings together, the string hello,
+
+200
+00:10:43,030 --> 00:10:48,070
+and the string represented by the
+variable, or rather the constant name.
+
+201
+00:10:48,070 --> 00:10:50,660
+>> So this is nice because this
+is somewhat PHP like in that we
+
+202
+00:10:50,660 --> 00:10:52,250
+have very easy string concatenation.
+
+203
+00:10:52,250 --> 00:10:56,350
+We don't have to automatically
+use any sort of memory management
+
+204
+00:10:56,350 --> 00:11:00,580
+to increase the size and do
+any sort of funny things there.
+
+205
+00:11:00,580 --> 00:11:05,040
+This works as we would actually expect.
+
+206
+00:11:05,040 --> 00:11:09,370
+>> All right, any questions on this?
+
+207
+00:11:09,370 --> 00:11:12,520
+>> Now the other reason that
+we need you have the ability
+
+208
+00:11:12,520 --> 00:11:15,490
+to be able to define what
+type of data variables are
+
+209
+00:11:15,490 --> 00:11:18,170
+is because sometimes we don't
+want to initialize variables
+
+210
+00:11:18,170 --> 00:11:21,080
+with some data at the
+point of definition.
+
+211
+00:11:21,080 --> 00:11:23,500
+So in this case, let's say
+that I want to start inputting
+
+212
+00:11:23,500 --> 00:11:25,040
+some grades into a grade book.
+
+213
+00:11:25,040 --> 00:11:27,530
+Well I know that one of the
+variables that I want to be
+
+214
+00:11:27,530 --> 00:11:30,280
+is going to be a mutable grade.
+
+215
+00:11:30,280 --> 00:11:33,010
+And we also know that we
+want it to be an integer.
+
+216
+00:11:33,010 --> 00:11:36,030
+But maybe we don't yet
+have that grade available.
+
+217
+00:11:36,030 --> 00:11:39,570
+>> In Swift, you have to
+define the type of data
+
+218
+00:11:39,570 --> 00:11:44,000
+that is associated with a
+variable or a let constant
+
+219
+00:11:44,000 --> 00:11:47,840
+before you can actually
+use that variable.
+
+220
+00:11:47,840 --> 00:11:51,170
+Because it is strongly typed,
+you have to associate a type
+
+221
+00:11:51,170 --> 00:11:52,890
+with these variables.
+
+222
+00:11:52,890 --> 00:11:56,120
+>> So in this case, if I've not properly
+initialized the first with some value,
+
+223
+00:11:56,120 --> 00:12:00,520
+then I need to tell Swift what
+I expect the data type to be.
+
+224
+00:12:00,520 --> 00:12:02,650
+And it's going to remain
+that same data type
+
+225
+00:12:02,650 --> 00:12:05,780
+throughout the history of this program.
+
+226
+00:12:05,780 --> 00:12:10,050
+>> Now you might be tempted as soon as
+I have created this grade variable
+
+227
+00:12:10,050 --> 00:12:13,530
+and provided it an
+integer of 100, now if I
+
+228
+00:12:13,530 --> 00:12:18,540
+want to try to concatenate
+a string with that integer,
+
+229
+00:12:18,540 --> 00:12:21,610
+might be tempted to still use
+that string concatenation operator
+
+230
+00:12:21,610 --> 00:12:24,500
+like we did just a few lines before.
+
+231
+00:12:24,500 --> 00:12:26,460
+But unfortunately,
+this will actually not
+
+232
+00:12:26,460 --> 00:12:29,270
+work, because you are
+essentially performing
+
+233
+00:12:29,270 --> 00:12:32,380
+an operation on two different types.
+
+234
+00:12:32,380 --> 00:12:36,856
+>> Now this is very different from other
+languages like PHP which are really
+
+235
+00:12:36,856 --> 00:12:38,480
+loosey goosey with their sort of types.
+
+236
+00:12:38,480 --> 00:12:40,030
+They're just like, yeah,
+whatever, I don't care.
+
+237
+00:12:40,030 --> 00:12:42,710
+Just give me one type, and
+maybe I'll do the right thing.
+
+238
+00:12:42,710 --> 00:12:46,060
+>> In this case, Swift is
+extremely strict about the types
+
+239
+00:12:46,060 --> 00:12:47,350
+that you are dealing with.
+
+240
+00:12:47,350 --> 00:12:50,700
+This summation operator
+or concatenation operator
+
+241
+00:12:50,700 --> 00:12:54,400
+has essentially a couple of
+different possible options.
+
+242
+00:12:54,400 --> 00:12:56,970
+You can do summation
+with integers, or you
+
+243
+00:12:56,970 --> 00:13:00,870
+can do string concatenation, and
+perhaps some other things as well.
+
+244
+00:13:00,870 --> 00:13:05,550
+But if that operator doesn't recognize
+what is on either side of it,
+
+245
+00:13:05,550 --> 00:13:10,452
+or rather the combination of those
+two types, isn't what it's expecting,
+
+246
+00:13:10,452 --> 00:13:11,910
+then it's going to cause a failure.
+
+247
+00:13:11,910 --> 00:13:16,690
+>> So in this case, what does it mean
+to have a string plus an integer?
+
+248
+00:13:16,690 --> 00:13:18,880
+Well in the context of
+this, we probably want
+
+249
+00:13:18,880 --> 00:13:21,990
+to do a string concatenation operation.
+
+250
+00:13:21,990 --> 00:13:26,420
+But of course the computer
+doesn't have that sort of context.
+
+251
+00:13:26,420 --> 00:13:29,950
+And so we need to provide
+that additional information
+
+252
+00:13:29,950 --> 00:13:32,390
+to let it know what it
+is that we want to do.
+
+253
+00:13:32,390 --> 00:13:36,860
+>> So in other words, the fact
+that Swift is strongly typed
+
+254
+00:13:36,860 --> 00:13:39,520
+means you have to do a
+little bit of additional work
+
+255
+00:13:39,520 --> 00:13:42,100
+to get it to operate the
+way that you would want.
+
+256
+00:13:42,100 --> 00:13:43,710
+But as a result, it is safer.
+
+257
+00:13:43,710 --> 00:13:46,290
+And once you have take
+into account those types,
+
+258
+00:13:46,290 --> 00:13:49,300
+things just frankly start
+to work pretty well.
+
+259
+00:13:49,300 --> 00:13:52,520
+>> So in this case, we then would
+perform string concatenation
+
+260
+00:13:52,520 --> 00:13:56,040
+by explicitly casting
+the integer to a string
+
+261
+00:13:56,040 --> 00:13:58,490
+by wrapping it in this
+capital S String function,
+
+262
+00:13:58,490 --> 00:14:03,510
+and then using the string concatenation
+operator to modify our label variable,
+
+263
+00:14:03,510 --> 00:14:06,280
+and then print it out.
+
+264
+00:14:06,280 --> 00:14:08,420
+>> So far, so good?
+
+265
+00:14:08,420 --> 00:14:12,020
+All right, let's move on.
+
+266
+00:14:12,020 --> 00:14:16,300
+>> Now there are a variety of data
+types that we can use in Swift.
+
+267
+00:14:16,300 --> 00:14:21,620
+As you have become accustomed to,
+we can create a mutable array.
+
+268
+00:14:21,620 --> 00:14:26,140
+And that array can only
+contain a single type.
+
+269
+00:14:26,140 --> 00:14:30,360
+>> So in this case, we're going to create
+a mutable arrays of integers, which
+
+270
+00:14:30,360 --> 00:14:34,800
+we will call grades, and we will be able
+to store that in this square bracket
+
+271
+00:14:34,800 --> 00:14:38,650
+format as you've grown accustomed
+to in a variety of other languages.
+
+272
+00:14:38,650 --> 00:14:41,150
+But notice that here we're
+defining a couple of things.
+
+273
+00:14:41,150 --> 00:14:45,350
+grades is a mutable variable--
+we not use the let keyword.
+
+274
+00:14:45,350 --> 00:14:49,620
+So that means we can then modify
+the contents of this array.
+
+275
+00:14:49,620 --> 00:14:53,420
+It is of type Array Int,
+and we can tell that
+
+276
+00:14:53,420 --> 00:14:56,260
+based on these square brackets here.
+
+277
+00:14:56,260 --> 00:14:58,930
+>> Now one of the nice things
+about this is that we
+
+278
+00:14:58,930 --> 00:15:02,310
+have access to a lot of
+additional information
+
+279
+00:15:02,310 --> 00:15:07,110
+about the array just using
+some simple dot notation.
+
+280
+00:15:07,110 --> 00:15:10,500
+So for example,
+grades.count provides to us
+
+281
+00:15:10,500 --> 00:15:14,820
+the number of items that exist in that
+array, which we can then access pretty
+
+282
+00:15:14,820 --> 00:15:19,090
+easily simply using that dot notation.
+
+283
+00:15:19,090 --> 00:15:21,830
+>> If you want to add additional
+items to this array,
+
+284
+00:15:21,830 --> 00:15:27,220
+you cannot do the PHP style
+where you just explicitly define,
+
+285
+00:15:27,220 --> 00:15:30,910
+at a given index, some value
+that you want to insert.
+
+286
+00:15:30,910 --> 00:15:37,210
+Instead, use the append
+method in the array type
+
+287
+00:15:37,210 --> 00:15:40,920
+to append that item, 95, to this list.
+
+288
+00:15:40,920 --> 00:15:45,990
+>> So now this array has the following
+contents-- 100, 0, 90, 85.
+
+289
+00:15:45,990 --> 00:15:49,270
+And now we've appended
+95 to that as well.
+
+290
+00:15:49,270 --> 00:15:51,830
+>> There are other ways
+we can append things.
+
+291
+00:15:51,830 --> 00:15:55,030
+You can actually use
+a summation operator,
+
+292
+00:15:55,030 --> 00:15:59,200
+which will be interpreted as
+an array append operation.
+
+293
+00:15:59,200 --> 00:16:04,680
+And you can then append another
+array, whose contents are 70 and 80,
+
+294
+00:16:04,680 --> 00:16:05,560
+to that array.
+
+295
+00:16:05,560 --> 00:16:08,250
+So now we have the
+contents in this variable
+
+296
+00:16:08,250 --> 00:16:17,220
+grades-- 100, 0, 90, 85, 95, 70, and 80.
+
+297
+00:16:17,220 --> 00:16:21,850
+This is just a nice little syntactic
+sugar that Swift provides to us.
+
+298
+00:16:21,850 --> 00:16:23,850
+>> So if we want to sum the
+grades, we're perhaps
+
+299
+00:16:23,850 --> 00:16:27,340
+going to want to iterate
+over every item in this loop.
+
+300
+00:16:27,340 --> 00:16:32,150
+And we do have, in Swift, the notion
+of a for loop as you would expect.
+
+301
+00:16:32,150 --> 00:16:35,350
+But the way that we indicate
+a range is slightly different.
+
+302
+00:16:35,350 --> 00:16:37,790
+So in this case, to
+sum everything, we'll
+
+303
+00:16:37,790 --> 00:16:40,650
+going to create a temporary
+variable called sum in order for us
+
+304
+00:16:40,650 --> 00:16:42,580
+to maintain this count.
+
+305
+00:16:42,580 --> 00:16:44,430
+>> And notice our for
+loop construction here.
+
+306
+00:16:44,430 --> 00:16:46,820
+For index in 0..<grade.count.
+
+307
+00:16:46,820 --> 00:16:51,480
+
+308
+00:16:51,480 --> 00:16:57,390
+So this construction, 0..<grades.count
+is a range operation where we are
+
+309
+00:16:57,390 --> 00:17:01,860
+saying that we are going to create
+a range of integers from 0 up
+
+310
+00:17:01,860 --> 00:17:05,750
+to but excluding grades.count.
+
+311
+00:17:05,750 --> 00:17:09,577
+So this will be 0, 1, 2, 3, 4,
+5, up until however many one
+
+312
+00:17:09,577 --> 00:17:10,410
+before grades.count.
+
+313
+00:17:10,410 --> 00:17:14,160
+>> So this is different than how we
+would typically used for loops
+
+314
+00:17:14,160 --> 00:17:18,569
+where you would have some index
+variable, set it equal to 0 at first,
+
+315
+00:17:18,569 --> 00:17:25,480
+and then integrate that until some
+value less than the count of items
+
+316
+00:17:25,480 --> 00:17:27,140
+in that array.
+
+317
+00:17:27,140 --> 00:17:29,820
+>> So there is a modification
+to this, actually,
+
+318
+00:17:29,820 --> 00:17:35,010
+which allows us to very easily
+set different types of ranges.
+
+319
+00:17:35,010 --> 00:17:40,570
+If you change this range to
+three dots, 0...grade.count,
+
+320
+00:17:40,570 --> 00:17:45,120
+this represents the range 0
+to grades.count inclusive,
+
+321
+00:17:45,120 --> 00:17:49,260
+meaning that that number is also
+then included in that range.
+
+322
+00:17:49,260 --> 00:17:52,110
+>> But this is very handy
+for these exact things,
+
+323
+00:17:52,110 --> 00:17:54,590
+when we have to perform
+iterations over loop
+
+324
+00:17:54,590 --> 00:17:59,630
+because those indexes are zero indexed,
+as we have seen in other languages
+
+325
+00:17:59,630 --> 00:18:02,360
+as well.
+
+326
+00:18:02,360 --> 00:18:05,210
+Any questions on this for loop?
+
+327
+00:18:05,210 --> 00:18:10,660
+>> So there's implicit definition
+of this index variable,
+
+328
+00:18:10,660 --> 00:18:14,350
+whose value begins at 0, and
+continues at every loop iteration
+
+329
+00:18:14,350 --> 00:18:17,950
+to increase by 1 up until a point
+that is equal to grades.count,
+
+330
+00:18:17,950 --> 00:18:20,380
+at which point, the loop aborts.
+
+331
+00:18:20,380 --> 00:18:23,730
+>> Notice that in our string
+interpolation here,
+
+332
+00:18:23,730 --> 00:18:26,910
+we can actually perform some simple
+manipulations to those values.
+
+333
+00:18:26,910 --> 00:18:31,230
+So index plus 1 will actually
+perform a summation of that value
+
+334
+00:18:31,230 --> 00:18:34,780
+because index is, in
+this case, an integer.
+
+335
+00:18:34,780 --> 00:18:37,810
+And at that point, it will
+then be converted into a string
+
+336
+00:18:37,810 --> 00:18:42,230
+and interpolated into this string here,
+and printed out as we would expect. .
+
+337
+00:18:42,230 --> 00:18:44,520
+>> And the nice thing
+about the arrays here is
+
+338
+00:18:44,520 --> 00:18:50,730
+that we are also able to have
+fetching values and setting values
+
+339
+00:18:50,730 --> 00:18:54,080
+using the square bracket notation as
+we've seen in other languages as well.
+
+340
+00:18:54,080 --> 00:18:57,130
+
+341
+00:18:57,130 --> 00:19:01,030
+>> All right, so from here, we now
+compute our sum of all of our grades.
+
+342
+00:19:01,030 --> 00:19:02,780
+Now sort of the next
+logical step would be
+
+343
+00:19:02,780 --> 00:19:07,580
+to do a division operation to find
+out the average of those grades.
+
+344
+00:19:07,580 --> 00:19:10,150
+But something important
+here is happening which
+
+345
+00:19:10,150 --> 00:19:15,020
+is that this sum is perhaps an integer.
+
+346
+00:19:15,020 --> 00:19:18,020
+But we need to perform some
+sort of double division.
+
+347
+00:19:18,020 --> 00:19:20,600
+And this is going to be
+extremely important when
+
+348
+00:19:20,600 --> 00:19:24,140
+we want to perform this operation,
+because what we are saying
+
+349
+00:19:24,140 --> 00:19:28,430
+is that we need to actually
+perform division on two doubles.
+
+350
+00:19:28,430 --> 00:19:31,370
+And again, because Swift
+is very strongly typed,
+
+351
+00:19:31,370 --> 00:19:36,760
+we must explicitly set all of the
+items to doubles before we actually
+
+352
+00:19:36,760 --> 00:19:38,300
+perform that operation.
+
+353
+00:19:38,300 --> 00:19:40,550
+>> So in order for us to
+perform double division,
+
+354
+00:19:40,550 --> 00:19:43,730
+it's not sufficient for just one
+of those items to be a double.
+
+355
+00:19:43,730 --> 00:19:46,400
+Both of them have to be a
+double in order for swift
+
+356
+00:19:46,400 --> 00:19:50,860
+to be sure that this
+is what we want to do.
+
+357
+00:19:50,860 --> 00:19:54,360
+So we will then explicitly typecast
+the sum which we've computed above
+
+358
+00:19:54,360 --> 00:19:58,970
+and the count of grades to doubles, and
+then perform that operation and store
+
+359
+00:19:58,970 --> 00:20:02,390
+that into this new variable, or rather
+this new constant called average,
+
+360
+00:20:02,390 --> 00:20:06,810
+which will have what type, you imagine?
+
+361
+00:20:06,810 --> 00:20:07,587
+Double, yeah.
+
+362
+00:20:07,587 --> 00:20:09,420
+So in this case, we
+don't have to specify it
+
+363
+00:20:09,420 --> 00:20:13,450
+because it can be inferred from the
+operation what type of data average
+
+364
+00:20:13,450 --> 00:20:14,730
+will be.
+
+365
+00:20:14,730 --> 00:20:19,025
+And Swift is generally pretty good
+about being able to infer the types.
+
+366
+00:20:19,025 --> 00:20:22,116
+
+367
+00:20:22,116 --> 00:20:24,200
+>> Do you want to see this
+run, or can I move on?
+
+368
+00:20:24,200 --> 00:20:25,640
+I want to keep going.
+
+369
+00:20:25,640 --> 00:20:28,130
+Any questions on any of this?
+
+370
+00:20:28,130 --> 00:20:28,630
+Great.
+
+371
+00:20:28,630 --> 00:20:31,160
+
+372
+00:20:31,160 --> 00:20:35,010
+>> Now we're going to start to get to
+the good stuff-- defining functions,
+
+373
+00:20:35,010 --> 00:20:39,090
+and a couple of other types that are
+unique to Swift that you have not
+
+374
+00:20:39,090 --> 00:20:41,620
+seen in other languages
+up until this point,
+
+375
+00:20:41,620 --> 00:20:46,290
+but they are present in other
+languages that you might find later on.
+
+376
+00:20:46,290 --> 00:20:48,210
+So first if you want
+to define a function,
+
+377
+00:20:48,210 --> 00:20:52,170
+you define it with the funky word
+function, and then the function name,
+
+378
+00:20:52,170 --> 00:20:56,710
+and then in parentheses, the arguments
+that you want that function to accept.
+
+379
+00:20:56,710 --> 00:21:00,280
+The arguments must also
+specify-- generally--
+
+380
+00:21:00,280 --> 00:21:05,010
+must also specify the type of data that
+they are, unless they can be inferred.
+
+381
+00:21:05,010 --> 00:21:07,500
+And we'll see that little
+caveat in just a little bit.
+
+382
+00:21:07,500 --> 00:21:09,920
+>> So in this case we have a
+function called printGradeCount.
+
+383
+00:21:09,920 --> 00:21:12,840
+We're going to accept a
+variable-- or rather in this case,
+
+384
+00:21:12,840 --> 00:21:14,450
+a constant-- called gradebook.
+
+385
+00:21:14,450 --> 00:21:18,517
+And it is going to be of
+type array of integers.
+
+386
+00:21:18,517 --> 00:21:20,600
+Now there's something
+that's really important here
+
+387
+00:21:20,600 --> 00:21:21,849
+that I want you to understand.
+
+388
+00:21:21,849 --> 00:21:27,560
+That is that by default, these arguments
+that are inputs to this function are
+
+389
+00:21:27,560 --> 00:21:34,380
+defined with an implicit let keyword,
+which means that I cannot modify this
+
+390
+00:21:34,380 --> 00:21:39,850
+gradebook variable here.
+
+391
+00:21:39,850 --> 00:21:43,360
+And that sort of makes sense,
+because you're passing data in.
+
+392
+00:21:43,360 --> 00:21:45,860
+And you perhaps don't want it
+to be changed from under you.
+
+393
+00:21:45,860 --> 00:21:50,800
+It is possible to explicitly mention
+that this is a variable by putting
+
+394
+00:21:50,800 --> 00:21:52,070
+the var keyword here.
+
+395
+00:21:52,070 --> 00:21:56,832
+But that is a gotcha that we've
+noticed people have done in the past
+
+396
+00:21:56,832 --> 00:21:59,790
+is that they assumed that it's going
+to be a variable when, in fact, it
+
+397
+00:21:59,790 --> 00:22:02,640
+is a constant.
+
+398
+00:22:02,640 --> 00:22:07,340
+>> All right, so here then, in this case,
+we are not specifying any return type.
+
+399
+00:22:07,340 --> 00:22:09,460
+We'll show you how to do
+that in just a moment.
+
+400
+00:22:09,460 --> 00:22:12,340
+But notice that here we have
+just a simple if condition.
+
+401
+00:22:12,340 --> 00:22:14,560
+If the gradebook is
+empty, which in this case
+
+402
+00:22:14,560 --> 00:22:19,310
+is just the property of this integer
+array, then we print out something.
+
+403
+00:22:19,310 --> 00:22:23,100
+Otherwise we do something else.
+
+404
+00:22:23,100 --> 00:22:25,000
+>> Pretty straightforward so far I think.
+
+405
+00:22:25,000 --> 00:22:27,960
+But stop me if you have any questions.
+
+406
+00:22:27,960 --> 00:22:33,350
+>> Now this function, average, also takes
+some arguments, or rather one argument,
+
+407
+00:22:33,350 --> 00:22:37,507
+which is the gradebook, and this time
+is going to return a double type.
+
+408
+00:22:37,507 --> 00:22:39,340
+Because it is computing
+the average and it's
+
+409
+00:22:39,340 --> 00:22:45,010
+going to actually return that
+computed average to the calling line.
+
+410
+00:22:45,010 --> 00:22:50,070
+>> In this case, we specify the
+return type after an arrow.
+
+411
+00:22:50,070 --> 00:22:53,260
+And this might feel
+kind of weird at first.
+
+412
+00:22:53,260 --> 00:22:55,610
+You've grown accustomed
+to setting the return
+
+413
+00:22:55,610 --> 00:22:57,720
+type before the name of the function.
+
+414
+00:22:57,720 --> 00:23:00,310
+But if you think of this
+in terms of mathematics,
+
+415
+00:23:00,310 --> 00:23:03,320
+like when you have mathematics
+that define a function,
+
+416
+00:23:03,320 --> 00:23:06,807
+you have a function with some
+inputs, and it produces an output.
+
+417
+00:23:06,807 --> 00:23:08,890
+And that's exactly what
+this is supposed to mimic.
+
+418
+00:23:08,890 --> 00:23:12,460
+And there's a couple of other languages
+that have similar syntax as well,
+
+419
+00:23:12,460 --> 00:23:15,674
+but probably none that
+you've seen in CS50.
+
+420
+00:23:15,674 --> 00:23:17,090
+But still don't be confused by it.
+
+421
+00:23:17,090 --> 00:23:21,650
+The arrow means what is going
+to be returned in this case.
+
+422
+00:23:21,650 --> 00:23:23,650
+OK, so how are we going
+to compute this average?
+
+423
+00:23:23,650 --> 00:23:25,649
+Well, if the gradebook
+is empty, well then we're
+
+424
+00:23:25,649 --> 00:23:30,731
+going to return 0, which maybe
+a reasonable way to treat this.
+
+425
+00:23:30,731 --> 00:23:32,980
+I don't know, let's come
+back to that in a little bit.
+
+426
+00:23:32,980 --> 00:23:34,688
+This may not actually
+be a reasonable way
+
+427
+00:23:34,688 --> 00:23:38,310
+to compute an average if
+we have an empty gradebook.
+
+428
+00:23:38,310 --> 00:23:41,260
+>> Then we'll just perform our summation.
+
+429
+00:23:41,260 --> 00:23:43,900
+Notice that here we actually
+have an alternate version of a
+
+430
+00:23:43,900 --> 00:23:49,190
+for loop, which allows us to iterate
+over every single item in an array
+
+431
+00:23:49,190 --> 00:23:53,630
+and place each element
+into its own variable.
+
+432
+00:23:53,630 --> 00:23:56,200
+By specifying for grade in
+gradebook, what we are saying
+
+433
+00:23:56,200 --> 00:24:00,560
+is that we're going to implicitly
+create a new constant called
+
+434
+00:24:00,560 --> 00:24:05,180
+grade that is going to represent
+every unique item in the gradebook
+
+435
+00:24:05,180 --> 00:24:06,769
+every time that the for loop iterates.
+
+436
+00:24:06,769 --> 00:24:08,560
+So the first time that
+it's run, grade will
+
+437
+00:24:08,560 --> 00:24:09,800
+be the first item in the gradebook.
+
+438
+00:24:09,800 --> 00:24:12,300
+The second time it'll be the
+second item, so on and so forth
+
+439
+00:24:12,300 --> 00:24:15,970
+until gradebook has
+exhausted itself of elements.
+
+440
+00:24:15,970 --> 00:24:20,390
+Then we will be able to sum that
+grade into our summation variable
+
+441
+00:24:20,390 --> 00:24:22,570
+and return our average
+as we've seen before.
+
+442
+00:24:22,570 --> 00:24:25,670
+
+443
+00:24:25,670 --> 00:24:26,950
+OK, any questions?
+
+444
+00:24:26,950 --> 00:24:27,699
+Yes?
+
+445
+00:24:27,699 --> 00:24:28,990
+AUDIENCE: I have two questions.
+
+446
+00:24:28,990 --> 00:24:33,586
+Number one, hypothetically, can
+you run integer on this one?
+
+447
+00:24:33,586 --> 00:24:35,604
+Doesn't have to be a
+double, is that correct?
+
+448
+00:24:35,604 --> 00:24:37,520
+DAN AMRMENDARIZ: Can you
+repeat that question?
+
+449
+00:24:37,520 --> 00:24:39,587
+AUDIENCE: Can I do
+integer as the average?
+
+450
+00:24:39,587 --> 00:24:41,670
+DAN AMRMENDARIZ: Can you
+do integer as an average?
+
+451
+00:24:41,670 --> 00:24:45,015
+So return an integer
+average instead of a double?
+
+452
+00:24:45,015 --> 00:24:48,204
+>> AUDIENCE: Return-- you
+have that right now below.
+
+453
+00:24:48,204 --> 00:24:49,870
+DAN AMRMENDARIZ: Right here, return 0.0?
+
+454
+00:24:49,870 --> 00:24:51,790
+AUDIENCE: Yeah, just return 0.
+
+455
+00:24:51,790 --> 00:24:56,590
+So it will be either
+80 or 85, but not 85.2.
+
+456
+00:24:56,590 --> 00:24:59,465
+>> DAN AMRMENDARIZ: So in that case,
+so there's a couple different ways
+
+457
+00:24:59,465 --> 00:25:00,090
+to answer that.
+
+458
+00:25:00,090 --> 00:25:02,760
+Let me answer them in order.
+
+459
+00:25:02,760 --> 00:25:06,740
+So if I just make this return
+0, a 0 is an integer value.
+
+460
+00:25:06,740 --> 00:25:09,730
+And so that will cause a
+type error for this case
+
+461
+00:25:09,730 --> 00:25:13,210
+because it is expecting a double
+but is then returning an integer.
+
+462
+00:25:13,210 --> 00:25:16,770
+If I want to return an integer, I can.
+
+463
+00:25:16,770 --> 00:25:20,450
+I can set the return type
+to int, return 0 here,
+
+464
+00:25:20,450 --> 00:25:22,047
+and not perform double division.
+
+465
+00:25:22,047 --> 00:25:23,880
+But then we would be
+doing integer division.
+
+466
+00:25:23,880 --> 00:25:27,080
+And so we then wouldn't get the
+average that we would possibly expect.
+
+467
+00:25:27,080 --> 00:25:29,210
+But yes we can modify
+the types in that way.
+
+468
+00:25:29,210 --> 00:25:32,598
+>> AUDIENCE: And secondly, you
+have the one Double on the top.
+
+469
+00:25:32,598 --> 00:25:35,502
+But down below, when you
+do return Double Double,
+
+470
+00:25:35,502 --> 00:25:38,280
+that's already automatically
+returning Double format.
+
+471
+00:25:38,280 --> 00:25:42,278
+Why do you still need to define it
+with arrow on top with a Double?
+
+472
+00:25:42,278 --> 00:25:45,010
+>> DAN AMRMENDARIZ: So
+in case, this is part
+
+473
+00:25:45,010 --> 00:25:50,580
+of the-- so to repeat the question,
+because it's implicit from the return
+
+474
+00:25:50,580 --> 00:25:56,030
+types here, what type this actually
+is, we need to be explicit with Swift
+
+475
+00:25:56,030 --> 00:25:59,970
+about what we want to
+return out of this function
+
+476
+00:25:59,970 --> 00:26:02,690
+so that when it performs type
+checking, it can make sure
+
+477
+00:26:02,690 --> 00:26:05,850
+that what we have actually written
+down below actually conforms to that.
+
+478
+00:26:05,850 --> 00:26:10,225
+So it's sort of like a check
+with yourself sort of situation.
+
+479
+00:26:10,225 --> 00:26:11,050
+But there are--
+
+480
+00:26:11,050 --> 00:26:12,560
+>> AUDIENCE: [INAUDIBLE] arrow?
+
+481
+00:26:12,560 --> 00:26:19,490
+>> DAN AMRMENDARIZ: There are cases when
+we can specify that we can implicitly
+
+482
+00:26:19,490 --> 00:26:21,550
+set the return type.
+
+483
+00:26:21,550 --> 00:26:23,940
+But in this case, I don't
+think that would work.
+
+484
+00:26:23,940 --> 00:26:26,190
+There's some other syntax
+that we'll see later.
+
+485
+00:26:26,190 --> 00:26:30,320
+
+486
+00:26:30,320 --> 00:26:35,280
+>> All right, so this source
+code is a little bit different
+
+487
+00:26:35,280 --> 00:26:41,839
+because this parses arguments from
+the function that we're calling.
+
+488
+00:26:41,839 --> 00:26:44,130
+Let me show you how it works
+before we actually move on
+
+489
+00:26:44,130 --> 00:26:48,050
+to some interesting things
+that's happening in Swift.
+
+490
+00:26:48,050 --> 00:26:51,870
+>> So in this case, if I just run this
+code, notice that what it is doing
+
+491
+00:26:51,870 --> 00:26:54,900
+is-- while, it kind of
+gives me a weird error.
+
+492
+00:26:54,900 --> 00:26:59,730
+I need to pass it a couple of
+integers as a command line argument.
+
+493
+00:26:59,730 --> 00:27:06,220
+So let's see, 150 and 80, and hit Enter
+to find out what it's actually doing.
+
+494
+00:27:06,220 --> 00:27:09,890
+It's accepting each of
+these values as integers.
+
+495
+00:27:09,890 --> 00:27:12,040
+It's inputting them into a gradebook.
+
+496
+00:27:12,040 --> 00:27:14,470
+And then it's performing
+that average calculation
+
+497
+00:27:14,470 --> 00:27:16,650
+and outputting that as we would expect.
+
+498
+00:27:16,650 --> 00:27:19,950
+>> But obviously there's something going
+on with this rejecting something
+
+499
+00:27:19,950 --> 00:27:23,300
+something as an integer.
+
+500
+00:27:23,300 --> 00:27:27,300
+As you might recall from when we were
+dealing with command line arguments
+
+501
+00:27:27,300 --> 00:27:32,640
+in C and other languages, the very first
+0-th item in that command line argument
+
+502
+00:27:32,640 --> 00:27:35,774
+list is the name of the command
+that we actually executed.
+
+503
+00:27:35,774 --> 00:27:38,690
+So in this case, I'm just looping
+over all the command line arguments.
+
+504
+00:27:38,690 --> 00:27:41,650
+But I'm not doing any sort of fancy
+check to skip over that first one.
+
+505
+00:27:41,650 --> 00:27:45,920
+I'm just explicitly or I'm implicitly
+checking which of these types
+
+506
+00:27:45,920 --> 00:27:49,900
+are integers before I actually
+perform this computation.
+
+507
+00:27:49,900 --> 00:27:52,420
+>> And that's essentially
+what's happening here.
+
+508
+00:27:52,420 --> 00:27:55,860
+For every argument in
+the process's arguments,
+
+509
+00:27:55,860 --> 00:27:59,210
+I'm going to perform some check.
+
+510
+00:27:59,210 --> 00:28:01,970
+And in this case, I'm going
+to try to first convert
+
+511
+00:28:01,970 --> 00:28:07,620
+that argument into an integer by
+performing an explicit typecast,
+
+512
+00:28:07,620 --> 00:28:12,310
+because it is, on input, a string
+and not in fact an integer.
+
+513
+00:28:12,310 --> 00:28:18,140
+>> But this is kind of a weird syntax,
+if let grade equals Int(argument).
+
+514
+00:28:18,140 --> 00:28:21,120
+What is actually happening
+here is extremely
+
+515
+00:28:21,120 --> 00:28:24,390
+important to your using Swift.
+
+516
+00:28:24,390 --> 00:28:27,610
+This is using what's
+called an optional type.
+
+517
+00:28:27,610 --> 00:28:34,790
+>> So this function, Int(argument),
+returns not just an integer, but returns
+
+518
+00:28:34,790 --> 00:28:37,470
+what's called an optional integer.
+
+519
+00:28:37,470 --> 00:28:41,200
+And so this is sort of
+a type on top of a type.
+
+520
+00:28:41,200 --> 00:28:45,900
+You can sort of imagine it like
+it's returning like a package.
+
+521
+00:28:45,900 --> 00:28:47,750
+And when you open that
+package, it either
+
+522
+00:28:47,750 --> 00:28:53,930
+has an integer, which is the result, or
+it has absolutely nothing in it at all.
+
+523
+00:28:53,930 --> 00:28:58,140
+And this is useful as an error checking
+mechanism, because in this case
+
+524
+00:28:58,140 --> 00:29:02,080
+we can find out, was this
+type conversion successful?
+
+525
+00:29:02,080 --> 00:29:05,810
+If it was, then it is in fact
+going to have an integer inside.
+
+526
+00:29:05,810 --> 00:29:08,750
+Otherwise it's going to have some
+value that we'll call nil, which
+
+527
+00:29:08,750 --> 00:29:10,920
+is representative of no integer at all.
+
+528
+00:29:10,920 --> 00:29:13,270
+It's really representative of nothing.
+
+529
+00:29:13,270 --> 00:29:18,130
+>> And so this if construction
+allows us to unwrap that package,
+
+530
+00:29:18,130 --> 00:29:19,850
+that optional binding.
+
+531
+00:29:19,850 --> 00:29:25,560
+And if we are able to unwrap that
+package and find an integer inside,
+
+532
+00:29:25,560 --> 00:29:27,720
+then what we are saying
+here is that we will then
+
+533
+00:29:27,720 --> 00:29:33,090
+allow that value to be set into
+this constant called grade.
+
+534
+00:29:33,090 --> 00:29:36,590
+And this portion of the if statement,
+the top portion of the if statement
+
+535
+00:29:36,590 --> 00:29:40,390
+will run, because that
+unwrap was successful.
+
+536
+00:29:40,390 --> 00:29:43,290
+>> If it just so happens that
+there was an error perhaps
+
+537
+00:29:43,290 --> 00:29:47,040
+in this explicit type conversion
+from a string to an integer, maybe
+
+538
+00:29:47,040 --> 00:29:49,160
+it's the value ABC for example.
+
+539
+00:29:49,160 --> 00:29:52,120
+And that's actually not going
+to convert to an integer.
+
+540
+00:29:52,120 --> 00:29:55,520
+Then it will return nil,
+which is not an integer.
+
+541
+00:29:55,520 --> 00:29:57,570
+And this if statement well then fail.
+
+542
+00:29:57,570 --> 00:30:01,930
+grade will not exist because
+it has no integer content.
+
+543
+00:30:01,930 --> 00:30:06,391
+And it will run this else block instead.
+
+544
+00:30:06,391 --> 00:30:06,890
+Yes?
+
+545
+00:30:06,890 --> 00:30:09,652
+>> AUDIENCE: Nil is N-I-L?
+
+546
+00:30:09,652 --> 00:30:11,110
+DAN AMRMENDARIZ: nil is N-I-L, yes.
+
+547
+00:30:11,110 --> 00:30:14,970
+
+548
+00:30:14,970 --> 00:30:20,310
+>> So this is maybe one of the
+hardest things about Swift,
+
+549
+00:30:20,310 --> 00:30:23,690
+especially when you're in
+the weeds on an iOS app
+
+550
+00:30:23,690 --> 00:30:27,442
+and you're actually trying
+to do some development there.
+
+551
+00:30:27,442 --> 00:30:29,400
+It's going to be yelling
+at you about optional.
+
+552
+00:30:29,400 --> 00:30:33,050
+It's going to be asking you for
+question marks and exclamation points.
+
+553
+00:30:33,050 --> 00:30:37,100
+But once you figure out-- if you
+devote some time to figuring out
+
+554
+00:30:37,100 --> 00:30:41,990
+what is going on with optional types,
+you'll save yourself a lot of headache
+
+555
+00:30:41,990 --> 00:30:46,040
+as you are trying to
+write an app in Swift.
+
+556
+00:30:46,040 --> 00:30:47,660
+>> It's actually a very powerful feature.
+
+557
+00:30:47,660 --> 00:30:49,826
+And you'll just have to
+take my word for it for now.
+
+558
+00:30:49,826 --> 00:30:52,620
+But we'll see this construction
+and some others like it
+
+559
+00:30:52,620 --> 00:30:56,740
+in some of the other source code that
+we'll show you in just a little bit.
+
+560
+00:30:56,740 --> 00:31:00,440
+>> Are there any initial questions here?
+
+561
+00:31:00,440 --> 00:31:03,790
+
+562
+00:31:03,790 --> 00:31:08,690
+So the important takeaway is that an
+optional type is sort of a metatype.
+
+563
+00:31:08,690 --> 00:31:12,500
+It either has a value,
+and if it does, then it
+
+564
+00:31:12,500 --> 00:31:18,110
+will perhaps have that value associated
+with it, or it has no value whatsoever,
+
+565
+00:31:18,110 --> 00:31:19,620
+and it is represented by nil.
+
+566
+00:31:19,620 --> 00:31:24,210
+
+567
+00:31:24,210 --> 00:31:28,870
+The rest of this is perhaps
+as you would expect.
+
+568
+00:31:28,870 --> 00:31:32,900
+>> So let's ramp up the
+difficulty yet again.
+
+569
+00:31:32,900 --> 00:31:37,070
+And this time, let's take a look at some
+other data types that actually exist.
+
+570
+00:31:37,070 --> 00:31:41,290
+One of them is dictionaries, which is
+very similar to Python dictionaries.
+
+571
+00:31:41,290 --> 00:31:48,270
+It's somewhat similar to a hash table in
+C. It is essentially a mapping of keys
+
+572
+00:31:48,270 --> 00:31:49,820
+where keys can be strings.
+
+573
+00:31:49,820 --> 00:31:52,670
+And when you look up those keys,
+those keys will have a value.
+
+574
+00:31:52,670 --> 00:31:56,020
+So it's not quite an array, but
+instead, more closely associated
+
+575
+00:31:56,020 --> 00:31:58,810
+to a hash map or a hash table.
+
+576
+00:31:58,810 --> 00:32:02,420
+>> Let's see how this is supposed
+to work before we actually
+
+577
+00:32:02,420 --> 00:32:05,210
+go into the source code itself.
+
+578
+00:32:05,210 --> 00:32:07,680
+If I just run this,
+nothing really happens.
+
+579
+00:32:07,680 --> 00:32:12,430
+It's telling me that I'm expecting
+some parameters of the following type.
+
+580
+00:32:12,430 --> 00:32:16,050
+So I'm going to provide to
+it some problem set names,
+
+581
+00:32:16,050 --> 00:32:18,490
+so pset0, maybe I got 100.
+
+582
+00:32:18,490 --> 00:32:20,790
+And pset1, I got a 5.
+
+583
+00:32:20,790 --> 00:32:24,630
+And then on the exam, I
+did really well and got 30.
+
+584
+00:32:24,630 --> 00:32:27,180
+And oops, I hit a space here.
+
+585
+00:32:27,180 --> 00:32:30,940
+>> When I hit Enter, you can see
+it performs some computation.
+
+586
+00:32:30,940 --> 00:32:33,740
+It says gradebook is three
+grades, pset1, pset0, exam.
+
+587
+00:32:33,740 --> 00:32:36,120
+And the gradebook has
+this specific average.
+
+588
+00:32:36,120 --> 00:32:38,370
+So again, we're working
+with this gradebook idea,
+
+589
+00:32:38,370 --> 00:32:44,650
+but we're going to continue iterating
+with the complexity of our function.
+
+590
+00:32:44,650 --> 00:32:47,650
+>> So at the onset, we're just
+going to create a function that
+
+591
+00:32:47,650 --> 00:32:49,390
+is responsible for printing the usage.
+
+592
+00:32:49,390 --> 00:32:51,920
+And there's this exit
+function which will just
+
+593
+00:32:51,920 --> 00:32:53,710
+forcibly quit the application.
+
+594
+00:32:53,710 --> 00:32:56,530
+This is not something that
+you will use in iOS app.
+
+595
+00:32:56,530 --> 00:32:59,750
+This is only, in this case,
+with a command line argument.
+
+596
+00:32:59,750 --> 00:33:01,990
+Next we'll start moving towards Xcode.
+
+597
+00:33:01,990 --> 00:33:07,760
+But this is specific to a command
+line style program in Swift.
+
+598
+00:33:07,760 --> 00:33:11,490
+>> Let's take a look at some of
+the interesting things here.
+
+599
+00:33:11,490 --> 00:33:15,150
+Let's see, only a couple of
+interesting things to mention perhaps
+
+600
+00:33:15,150 --> 00:33:19,930
+is that in my function of
+printing the number of grades,
+
+601
+00:33:19,930 --> 00:33:26,090
+you might recall that I had that list
+of items-- pset1, pset0, and exam.
+
+602
+00:33:26,090 --> 00:33:29,130
+You can actually quickly
+and easily do this
+
+603
+00:33:29,130 --> 00:33:34,490
+by taking the gradebook, which is a
+dictionary which has keys and values.
+
+604
+00:33:34,490 --> 00:33:38,730
+Find all of the key is through
+the dot keys method here,
+
+605
+00:33:38,730 --> 00:33:43,180
+and then use this joinWithSeparator,
+which will then take all of the keys
+
+606
+00:33:43,180 --> 00:33:48,590
+that we had typed in, pset1-- or
+sorry, pset0, pset1, and exam--
+
+607
+00:33:48,590 --> 00:33:53,030
+and concatenate them together
+using a comma and a space
+
+608
+00:33:53,030 --> 00:33:55,400
+to create one long string.
+
+609
+00:33:55,400 --> 00:34:00,190
+This join operation is just phenomenally
+useful in a variety of contexts.
+
+610
+00:34:00,190 --> 00:34:03,450
+And so it is this joinWithSeparator.
+
+611
+00:34:03,450 --> 00:34:06,939
+>> And this is one thing that's
+changed from Swift 1 to Swift 2.
+
+612
+00:34:06,939 --> 00:34:08,730
+There used to be a
+Python style-- if you're
+
+613
+00:34:08,730 --> 00:34:13,219
+familiar with Python-- a Python
+style join method on strings.
+
+614
+00:34:13,219 --> 00:34:15,699
+But that is no longer
+the case in Swift 2.
+
+615
+00:34:15,699 --> 00:34:19,400
+You want to use this if you want
+to concatenate an array of stuff
+
+616
+00:34:19,400 --> 00:34:23,380
+together with a string.
+
+617
+00:34:23,380 --> 00:34:27,889
+>> So perhaps then in our
+discussion of average before,
+
+618
+00:34:27,889 --> 00:34:32,659
+it makes a little bit more sense
+for us to set the average function
+
+619
+00:34:32,659 --> 00:34:36,610
+to be an optional double rather
+than just an explicit double.
+
+620
+00:34:36,610 --> 00:34:39,239
+Because we had that
+unusual condition where,
+
+621
+00:34:39,239 --> 00:34:41,550
+what if gradebook actually
+has no values within it?
+
+622
+00:34:41,550 --> 00:34:44,280
+What should the average return?
+
+623
+00:34:44,280 --> 00:34:46,350
+>> Well maybe in C you
+would have done something
+
+624
+00:34:46,350 --> 00:34:50,040
+like provided a sentinel value, like
+0.0, or maybe a negative number,
+
+625
+00:34:50,040 --> 00:34:53,690
+or something just representing the fact
+that there was some error condition
+
+626
+00:34:53,690 --> 00:34:57,910
+and you perhaps do not actually have
+the ability to compute that average.
+
+627
+00:34:57,910 --> 00:35:05,590
+Well the beauty of specifying an
+optional type would be to do that.
+
+628
+00:35:05,590 --> 00:35:09,540
+And I'm now saying all these words, but
+this actually does not use optionals.
+
+629
+00:35:09,540 --> 00:35:12,970
+But we'll see that in just
+minutes where we can set average
+
+630
+00:35:12,970 --> 00:35:17,230
+to be an optional data type so that
+if it actually returns some data, then
+
+631
+00:35:17,230 --> 00:35:18,470
+we will return that data.
+
+632
+00:35:18,470 --> 00:35:20,570
+Otherwise we will return
+nil, saying that this
+
+633
+00:35:20,570 --> 00:35:22,200
+has no meaningful computation.
+
+634
+00:35:22,200 --> 00:35:25,650
+
+635
+00:35:25,650 --> 00:35:28,570
+>> Let's move on to something else.
+
+636
+00:35:28,570 --> 00:35:35,910
+So from here, we've been looking at
+all these examples in the command line.
+
+637
+00:35:35,910 --> 00:35:39,470
+But really what you're going
+to be dealing with is Xcode.
+
+638
+00:35:39,470 --> 00:35:43,720
+And one of the nice things about
+Xcode is, and specifically in Swift,
+
+639
+00:35:43,720 --> 00:35:47,450
+is that we have this
+thing called a Playground.
+
+640
+00:35:47,450 --> 00:35:51,470
+And a Playground is
+not at all an iOS app.
+
+641
+00:35:51,470 --> 00:35:54,751
+But it allows you to experiment
+with Swift in a very easy way.
+
+642
+00:35:54,751 --> 00:35:56,000
+You can type all of your code.
+
+643
+00:35:56,000 --> 00:35:58,140
+It's nicely syntax highlighted here.
+
+644
+00:35:58,140 --> 00:36:01,600
+When you create a new file, it will ask
+you if you want to create a Playground.
+
+645
+00:36:01,600 --> 00:36:08,720
+But the nice thing about the Playground
+is that on the right of your window,
+
+646
+00:36:08,720 --> 00:36:12,020
+does it actually show you
+output from your code.
+
+647
+00:36:12,020 --> 00:36:16,110
+So if I scroll down, we can see what
+the output of various lines of code
+
+648
+00:36:16,110 --> 00:36:17,200
+actually happens to be.
+
+649
+00:36:17,200 --> 00:36:19,850
+
+650
+00:36:19,850 --> 00:36:26,790
+>> So in this case, we're going to
+change directions just a little bit
+
+651
+00:36:26,790 --> 00:36:30,960
+and talk about something that's really
+important to this high level way
+
+652
+00:36:30,960 --> 00:36:34,020
+that Swift operates, and it
+is this idea of closures.
+
+653
+00:36:34,020 --> 00:36:36,960
+And you've probably seen this
+a little bit in JavaScript.
+
+654
+00:36:36,960 --> 00:36:40,770
+For those of you that
+are in CS50, closures
+
+655
+00:36:40,770 --> 00:36:47,240
+are very popular, very good way of doing
+high level things in modern languages.
+
+656
+00:36:47,240 --> 00:36:50,270
+But it's also kind of difficult to
+wrap your head around the first time.
+
+657
+00:36:50,270 --> 00:36:52,269
+So if you looking at this
+first time, that's OK.
+
+658
+00:36:52,269 --> 00:36:56,740
+Just look at the source code and see
+if you can figure it out at home.
+
+659
+00:36:56,740 --> 00:37:01,050
+>> So in this case, let's say that we
+want to create a lot of exponents
+
+660
+00:37:01,050 --> 00:37:04,134
+with some fixed value.
+
+661
+00:37:04,134 --> 00:37:05,800
+So in this case I can create a function.
+
+662
+00:37:05,800 --> 00:37:09,270
+I'm going to call it power of
+2 whose sole purpose in life
+
+663
+00:37:09,270 --> 00:37:15,770
+is to take some input and double
+it, and return that value.
+
+664
+00:37:15,770 --> 00:37:21,210
+Notice that here I am
+accepting one type of data.
+
+665
+00:37:21,210 --> 00:37:23,137
+It's going to be a variable called x.
+
+666
+00:37:23,137 --> 00:37:23,970
+It's of type Double.
+
+667
+00:37:23,970 --> 00:37:26,190
+And I'm going to return a Double here.
+
+668
+00:37:26,190 --> 00:37:29,100
+And I'm just going to do
+a very, frankly, pretty
+
+669
+00:37:29,100 --> 00:37:32,650
+naive way of doubling this value.
+
+670
+00:37:32,650 --> 00:37:35,600
+And I'll show you why this
+is useful in just a second.
+
+671
+00:37:35,600 --> 00:37:40,418
+>> Notice that here we have this range
+again. for something in 1, dot
+
+672
+00:37:40,418 --> 00:37:44,130
+dot dot, 2, which means that
+this loop will run twice.
+
+673
+00:37:44,130 --> 00:37:46,480
+But this represents a dummy variable.
+
+674
+00:37:46,480 --> 00:37:49,650
+It means I'm not really going to
+be using that variable anywhere
+
+675
+00:37:49,650 --> 00:37:51,070
+inside of this loop.
+
+676
+00:37:51,070 --> 00:37:55,380
+I just want this line
+of code to run twice,
+
+677
+00:37:55,380 --> 00:37:58,980
+without needing to know
+the value of that range.
+
+678
+00:37:58,980 --> 00:38:02,570
+>> So in this case I'm running result
+times x twice, which essentially
+
+679
+00:38:02,570 --> 00:38:06,560
+means that I'm squaring this value.
+
+680
+00:38:06,560 --> 00:38:10,230
+And this happens to
+work as we would expect.
+
+681
+00:38:10,230 --> 00:38:16,410
+Power of 2, passing a value of
+2.0 gives us an output of 4.
+
+682
+00:38:16,410 --> 00:38:18,810
+3.2 works for 10.24.
+
+683
+00:38:18,810 --> 00:38:22,660
+>> Now we can do a similar
+thing for power of 3.
+
+684
+00:38:22,660 --> 00:38:25,330
+But now change only the range.
+
+685
+00:38:25,330 --> 00:38:28,840
+For dummy variable in 1
+through 3, multiply 3 times,
+
+686
+00:38:28,840 --> 00:38:29,830
+and do the same thing.
+
+687
+00:38:29,830 --> 00:38:32,240
+>> So this might feel a little contrived.
+
+688
+00:38:32,240 --> 00:38:34,270
+But there's an important
+thing here which
+
+689
+00:38:34,270 --> 00:38:37,770
+is that looking at these
+two functions, there's
+
+690
+00:38:37,770 --> 00:38:43,600
+only one thing that's different,
+which is this value in the range.
+
+691
+00:38:43,600 --> 00:38:46,910
+Everything else about these two
+functions, power of 3 and power of 2,
+
+692
+00:38:46,910 --> 00:38:50,440
+are, in fact, identical because
+they work in the same way.
+
+693
+00:38:50,440 --> 00:38:53,460
+>> So at this point, a little
+alarm bell should be going off.
+
+694
+00:38:53,460 --> 00:38:56,200
+Hopefully what you're saying,
+you know, this feels a little bit
+
+695
+00:38:56,200 --> 00:38:59,250
+like duplication of effort.
+
+696
+00:38:59,250 --> 00:39:02,950
+Perhaps there's a way that I would
+be able to encapsulate all of this
+
+697
+00:39:02,950 --> 00:39:06,630
+and provide a function
+or create a function that
+
+698
+00:39:06,630 --> 00:39:11,550
+does exactly what I want without
+needing to type it out explicitly.
+
+699
+00:39:11,550 --> 00:39:15,732
+And this is what the power
+of a closure allows us to do.
+
+700
+00:39:15,732 --> 00:39:16,940
+So let's take a look at this.
+
+701
+00:39:16,940 --> 00:39:18,700
+And I'll spend a couple
+minutes on this, because this
+
+702
+00:39:18,700 --> 00:39:20,310
+is pretty important for Swift.
+
+703
+00:39:20,310 --> 00:39:22,900
+We see this all the time.
+
+704
+00:39:22,900 --> 00:39:24,550
+We're going to define a function.
+
+705
+00:39:24,550 --> 00:39:26,380
+It's going to be called powerOf.
+
+706
+00:39:26,380 --> 00:39:29,470
+It's going to accept a
+parameter called y of type Int.
+
+707
+00:39:29,470 --> 00:39:32,220
+But take a look at the return type.
+
+708
+00:39:32,220 --> 00:39:38,730
+The return type is, in
+parentheses, Double arrow Double.
+
+709
+00:39:38,730 --> 00:39:43,370
+Which means that this function,
+this function powerOf,
+
+710
+00:39:43,370 --> 00:39:46,550
+is returning a function.
+
+711
+00:39:46,550 --> 00:39:50,845
+That is accepting a Double
+and returning a Double.
+
+712
+00:39:50,845 --> 00:39:53,720
+So that might sound kind of crazy,
+but let's scroll down a little bit
+
+713
+00:39:53,720 --> 00:39:55,060
+and look to see what happens.
+
+714
+00:39:55,060 --> 00:39:57,910
+We're inside of this function powerOf.
+
+715
+00:39:57,910 --> 00:40:00,760
+We're creating a new function
+called exponentiator,
+
+716
+00:40:00,760 --> 00:40:02,900
+but it doesn't matter what it is.
+
+717
+00:40:02,900 --> 00:40:06,410
+>> Notice that this has
+an input value of x.
+
+718
+00:40:06,410 --> 00:40:09,910
+And it is taking in a Double
+and returning a Double.
+
+719
+00:40:09,910 --> 00:40:16,320
+And this is the same code that we
+saw above, except that the value of 2
+
+720
+00:40:16,320 --> 00:40:20,060
+or the value of 3, that
+upper bound in that range,
+
+721
+00:40:20,060 --> 00:40:23,210
+has been replaced with
+this value of y, which
+
+722
+00:40:23,210 --> 00:40:27,230
+was the initial parameter
+of our powerOf function.
+
+723
+00:40:27,230 --> 00:40:31,700
+And at this point, we
+return exponentiator.
+
+724
+00:40:31,700 --> 00:40:33,345
+We're returning the function.
+
+725
+00:40:33,345 --> 00:40:36,300
+
+726
+00:40:36,300 --> 00:40:39,550
+>> It's kind of like a little mind blowing.
+
+727
+00:40:39,550 --> 00:40:44,360
+But let's imagine what happens
+when I call this function powerOf
+
+728
+00:40:44,360 --> 00:40:47,610
+and pass into it some value like 2.
+
+729
+00:40:47,610 --> 00:40:50,020
+What this means is that
+I now have the value
+
+730
+00:40:50,020 --> 00:40:55,130
+2 for y, which means that this value
+y in this exponentiator function
+
+731
+00:40:55,130 --> 00:40:56,410
+will be that value 2.
+
+732
+00:40:56,410 --> 00:41:01,290
+But I'm returning this
+exponentiator function.
+
+733
+00:41:01,290 --> 00:41:05,900
+>> So notice what Swift says I
+have created in this case.
+
+734
+00:41:05,900 --> 00:41:10,550
+let square is a definition, it's
+a function that accepts a Double
+
+735
+00:41:10,550 --> 00:41:12,610
+and returns a Double.
+
+736
+00:41:12,610 --> 00:41:16,590
+I have created a function
+that squares something
+
+737
+00:41:16,590 --> 00:41:19,782
+using this mechanism right here.
+
+738
+00:41:19,782 --> 00:41:22,490
+And really what's happening is
+that it is returning this function
+
+739
+00:41:22,490 --> 00:41:26,390
+exponentiator, but this value
+y is wrapped inside of it.
+
+740
+00:41:26,390 --> 00:41:31,080
+And so now every time I use this
+variable or this constant called
+
+741
+00:41:31,080 --> 00:41:35,180
+square, it it's going
+to behave as a function.
+
+742
+00:41:35,180 --> 00:41:39,960
+And so I can then call that variable
+like I would call a function,
+
+743
+00:41:39,960 --> 00:41:43,830
+and pass into it a number,
+like in this case 3.
+
+744
+00:41:43,830 --> 00:41:45,910
+And I will then square this value.
+
+745
+00:41:45,910 --> 00:41:53,340
+So 3 squared will then
+become 9, as we can see here.
+
+746
+00:41:53,340 --> 00:41:56,530
+>> Really crazy, but this now
+allows me the opportunity
+
+747
+00:41:56,530 --> 00:41:59,040
+to create other powerOf functions.
+
+748
+00:41:59,040 --> 00:42:03,680
+Like I can say, OK, well now I want
+to create a new function, powerOf(3),
+
+749
+00:42:03,680 --> 00:42:06,290
+and store that into a
+constant called cube.
+
+750
+00:42:06,290 --> 00:42:10,220
+And now cube is going to be a
+separate function that will then
+
+751
+00:42:10,220 --> 00:42:14,800
+take some value as input and cube that
+value as we can see in the bottom line
+
+752
+00:42:14,800 --> 00:42:16,420
+here.
+
+753
+00:42:16,420 --> 00:42:18,590
+cube of 2 is going to result in 8.
+
+754
+00:42:18,590 --> 00:42:21,330
+
+755
+00:42:21,330 --> 00:42:22,680
+>> Hopefully pretty neat stuff.
+
+756
+00:42:22,680 --> 00:42:25,920
+You've never seen this before.
+
+757
+00:42:25,920 --> 00:42:29,990
+I encourage you to look into closures
+and investigate this a little bit more.
+
+758
+00:42:29,990 --> 00:42:33,570
+It's really powerful stuff we see a lot
+in JavaScript and some other languages.
+
+759
+00:42:33,570 --> 00:42:37,160
+It's really vital to
+understanding APIs as well
+
+760
+00:42:37,160 --> 00:42:38,620
+that we'll get to in just a second.
+
+761
+00:42:38,620 --> 00:42:39,456
+Yes?
+
+762
+00:42:39,456 --> 00:42:43,740
+>> AUDIENCE: When you do
+powerOf(2), parenthesis, and then
+
+763
+00:42:43,740 --> 00:42:48,764
+another parenthesis, another input--
+you're basically replacing the square.
+
+764
+00:42:48,764 --> 00:42:50,930
+DAN AMRMENDARIZ: So look
+at the very last line here.
+
+765
+00:42:50,930 --> 00:42:55,930
+It is actually totally possible to
+do that chaining as you suggested.
+
+766
+00:42:55,930 --> 00:43:00,990
+So powerOf(5) means that we're going
+to have an exponentiator of 5 up here.
+
+767
+00:43:00,990 --> 00:43:04,160
+So this is essentially going to be the
+same thing as 4 to the fifth power,
+
+768
+00:43:04,160 --> 00:43:07,200
+because we've created an exponentiating
+function to the fifth power,
+
+769
+00:43:07,200 --> 00:43:09,920
+and we're passing into
+that function the value 4.
+
+770
+00:43:09,920 --> 00:43:12,619
+And we get that value
+that we expect, 1024.
+
+771
+00:43:12,619 --> 00:43:14,785
+AUDIENCE: And it's not a
+name, so it makes it easier
+
+772
+00:43:14,785 --> 00:43:16,570
+to read, the square whatever.
+
+773
+00:43:16,570 --> 00:43:17,903
+>> DAN AMRMENDARIZ: Right, exactly.
+
+774
+00:43:17,903 --> 00:43:21,120
+So before I just put it
+into a constant here so
+
+775
+00:43:21,120 --> 00:43:23,808
+that it made it easy to use that name.
+
+776
+00:43:23,808 --> 00:43:24,308
+Yes?
+
+777
+00:43:24,308 --> 00:43:26,942
+>> AUDIENCE: In this context
+powerOf, it's part
+
+778
+00:43:26,942 --> 00:43:30,774
+of the programming language
+as opposed to the way you
+
+779
+00:43:30,774 --> 00:43:33,952
+think of powerOf in [INAUDIBLE]?
+
+780
+00:43:33,952 --> 00:43:35,660
+DAN AMRMENDARIZ: So
+in this case, powerOf
+
+781
+00:43:35,660 --> 00:43:39,280
+is simply the name of the
+function that I defined up here.
+
+782
+00:43:39,280 --> 00:43:41,801
+So it's not inherent
+to the language itself,
+
+783
+00:43:41,801 --> 00:43:43,550
+but instead, it's just
+a function that has
+
+784
+00:43:43,550 --> 00:43:45,628
+that name because I give it that name.
+
+785
+00:43:45,628 --> 00:43:48,770
+
+786
+00:43:48,770 --> 00:43:51,920
+Any other questions?
+
+787
+00:43:51,920 --> 00:43:52,800
+All right.
+
+788
+00:43:52,800 --> 00:43:54,750
+>> Now this is great.
+
+789
+00:43:54,750 --> 00:43:58,170
+But you're not going to see a
+lot of closure functions that
+
+790
+00:43:58,170 --> 00:44:03,440
+are like this where you define, inside
+of one function, another function.
+
+791
+00:44:03,440 --> 00:44:04,320
+And you can do it.
+
+792
+00:44:04,320 --> 00:44:06,430
+But it's kind of not
+really necessary, right?
+
+793
+00:44:06,430 --> 00:44:09,189
+Like why do I define this
+function called exponentiator
+
+794
+00:44:09,189 --> 00:44:10,480
+and then immediately return it.
+
+795
+00:44:10,480 --> 00:44:15,220
+Why can't I just immediately
+return this function?
+
+796
+00:44:15,220 --> 00:44:18,890
+>> And in fact, this is precisely
+the idea behind a concept called
+
+797
+00:44:18,890 --> 00:44:22,410
+anonymous functions, where
+anonymous functions do not actually
+
+798
+00:44:22,410 --> 00:44:25,270
+have a name because they
+don't need to have one.
+
+799
+00:44:25,270 --> 00:44:28,700
+And so in this case, in 7B,
+we can find precisely that.
+
+800
+00:44:28,700 --> 00:44:31,470
+It's all the same code,
+does exactly the same thing,
+
+801
+00:44:31,470 --> 00:44:35,570
+but now we've changed it slightly so
+that this powerOf function immediately
+
+802
+00:44:35,570 --> 00:44:37,750
+returns a function.
+
+803
+00:44:37,750 --> 00:44:44,150
+Notice that after return,
+there's an open curly bracket.
+
+804
+00:44:44,150 --> 00:44:46,410
+It's expecting this input Double.
+
+805
+00:44:46,410 --> 00:44:48,560
+It's expecting that output Double.
+
+806
+00:44:48,560 --> 00:44:52,175
+And then the in keyword
+separates the code itself.
+
+807
+00:44:52,175 --> 00:44:53,550
+So this is an anonymous function.
+
+808
+00:44:53,550 --> 00:44:57,030
+It doesn't actually have a name, whereas
+before it was called exponentiator.
+
+809
+00:44:57,030 --> 00:45:00,229
+But as we saw, just really
+didn't refer to exponentiator
+
+810
+00:45:00,229 --> 00:45:01,270
+outside of that function.
+
+811
+00:45:01,270 --> 00:45:02,470
+So it didn't matter.
+
+812
+00:45:02,470 --> 00:45:06,300
+So this anonymous function is
+so-called because it is nameless,
+
+813
+00:45:06,300 --> 00:45:09,107
+but it's still being used
+in the context of this code.
+
+814
+00:45:09,107 --> 00:45:13,690
+
+815
+00:45:13,690 --> 00:45:16,079
+>> The next couple ones I'm
+going to continue hopefully
+
+816
+00:45:16,079 --> 00:45:17,370
+blowing your mind a little bit.
+
+817
+00:45:17,370 --> 00:45:20,410
+We can simplify this even more.
+
+818
+00:45:20,410 --> 00:45:24,490
+Because as was astutely
+pointed out earlier,
+
+819
+00:45:24,490 --> 00:45:29,100
+perhaps we actually know, by
+inferring from this code, what
+
+820
+00:45:29,100 --> 00:45:31,750
+the output of this code is going to be.
+
+821
+00:45:31,750 --> 00:45:38,180
+And in fact, in this anonymous function,
+we can in fact infer the types of data.
+
+822
+00:45:38,180 --> 00:45:41,650
+>> So in this one, we no longer
+need to explicitly define
+
+823
+00:45:41,650 --> 00:45:44,850
+the type of data that's being
+input and output from this function
+
+824
+00:45:44,850 --> 00:45:45,890
+for a couple of reasons.
+
+825
+00:45:45,890 --> 00:45:51,390
+One is that we've defined, up at the
+prototype of the enclosing function,
+
+826
+00:45:51,390 --> 00:45:55,770
+what type of data this anonymous
+function should input and output.
+
+827
+00:45:55,770 --> 00:45:57,900
+And from the other, we
+can infer from the code
+
+828
+00:45:57,900 --> 00:46:01,930
+down here that we are accepting
+input that is of type Double
+
+829
+00:46:01,930 --> 00:46:03,670
+and returning a Double.
+
+830
+00:46:03,670 --> 00:46:07,890
+>> Notice that here we have not explicitly
+defined the names of the arguments
+
+831
+00:46:07,890 --> 00:46:11,220
+that this function is accepting.
+
+832
+00:46:11,220 --> 00:46:16,180
+And so we see we can refer to
+those parameters using $0, $1,
+
+833
+00:46:16,180 --> 00:46:20,140
+so on and so forth, depending on
+the number of that parameter used
+
+834
+00:46:20,140 --> 00:46:20,850
+in this function.
+
+835
+00:46:20,850 --> 00:46:23,370
+
+836
+00:46:23,370 --> 00:46:29,740
+>> This is something that you are going
+to see a lot is this open curly bracket
+
+837
+00:46:29,740 --> 00:46:32,797
+definition followed by a
+$0, and then some operation,
+
+838
+00:46:32,797 --> 00:46:34,130
+and then a closed curly bracket.
+
+839
+00:46:34,130 --> 00:46:38,630
+That is an anonymous function
+that performs this operation.
+
+840
+00:46:38,630 --> 00:46:42,940
+It has this parameter where
+it's type is inferred.
+
+841
+00:46:42,940 --> 00:46:44,860
+That first parameter is $0.
+
+842
+00:46:44,860 --> 00:46:49,010
+And some operation is
+happening on that $0.
+
+843
+00:46:49,010 --> 00:46:52,100
+>> AUDIENCE: So the dollar sign
+means parameter basically,
+
+844
+00:46:52,100 --> 00:46:53,429
+and 0 means the first one?
+
+845
+00:46:53,429 --> 00:46:54,720
+DAN ARMENDARIZ: That's correct.
+
+846
+00:46:54,720 --> 00:46:59,100
+So the dollar sign basically means
+parameter, and 0 means the first one.
+
+847
+00:46:59,100 --> 00:47:02,760
+But it works specifically in
+this case where I have not named
+
+848
+00:47:02,760 --> 00:47:07,940
+the arguments in my anonymous function.
+
+849
+00:47:07,940 --> 00:47:11,119
+>> AUDIENCE: Does Perl or something have
+this dollar sign, dollar 0 in there?
+
+850
+00:47:11,119 --> 00:47:12,702
+DAN ARMENDARIZ: Does which, I'm sorry?
+
+851
+00:47:12,702 --> 00:47:15,360
+AUDIENCE: Does Perl have
+this dollar 0, dollar 1--
+
+852
+00:47:15,360 --> 00:47:17,318
+DAN ARMENDARIZ: I'm not
+too familiar with Perl,
+
+853
+00:47:17,318 --> 00:47:21,340
+but PHP what defines variables
+based on dollar signs.
+
+854
+00:47:21,340 --> 00:47:26,120
+And there may be some languages
+that have features like this.
+
+855
+00:47:26,120 --> 00:47:28,240
+In fact, Swift borrows a
+lot of features like this
+
+856
+00:47:28,240 --> 00:47:29,489
+from a lot of other languages.
+
+857
+00:47:29,489 --> 00:47:32,380
+We see hints of Python in it.
+
+858
+00:47:32,380 --> 00:47:35,800
+This definition of type
+seems to come from OCaml.
+
+859
+00:47:35,800 --> 00:47:38,932
+And we have just a whole bunch of
+stuff from lots of different languages.
+
+860
+00:47:38,932 --> 00:47:40,640
+That's one of the nice
+things about Swift
+
+861
+00:47:40,640 --> 00:47:43,390
+is that it takes a lot of the best
+ideas from a bunch of languages
+
+862
+00:47:43,390 --> 00:47:47,229
+and shoehorns them all together
+into one super language.
+
+863
+00:47:47,229 --> 00:47:49,520
+In fact, if you allow me to
+continue blowing your mind,
+
+864
+00:47:49,520 --> 00:47:51,000
+so we've been doing all of this.
+
+865
+00:47:51,000 --> 00:47:56,690
+We can perhaps simplify this a little
+bit by realizing that, of course,
+
+866
+00:47:56,690 --> 00:48:02,120
+Swift has an exponentiating
+function built in.
+
+867
+00:48:02,120 --> 00:48:04,660
+If I import Darwin, which
+is just the library that
+
+868
+00:48:04,660 --> 00:48:09,680
+features this function called pow, now
+I can simplify my power of function
+
+869
+00:48:09,680 --> 00:48:11,830
+to be the following.
+
+870
+00:48:11,830 --> 00:48:15,860
+It is going to be returning
+this anonymous function.
+
+871
+00:48:15,860 --> 00:48:17,950
+>> But look at how simple this is now.
+
+872
+00:48:17,950 --> 00:48:22,780
+This is an anonymous function that
+is accepting some type of data,
+
+873
+00:48:22,780 --> 00:48:26,600
+and it is going to be one
+argument specifically,
+
+874
+00:48:26,600 --> 00:48:29,320
+referenced at $0 that is of type Double.
+
+875
+00:48:29,320 --> 00:48:32,680
+It is going to return a type Double.
+
+876
+00:48:32,680 --> 00:48:35,760
+But the return statement
+is now implicit.
+
+877
+00:48:35,760 --> 00:48:39,990
+>> And it is this exact style that
+is very, very prevalent in Swift,
+
+878
+00:48:39,990 --> 00:48:40,790
+all over the place.
+
+879
+00:48:40,790 --> 00:48:43,190
+We're going to see this
+all the time in Swift.
+
+880
+00:48:43,190 --> 00:48:46,150
+So I'm showing all of this to
+you because of this syntax.
+
+881
+00:48:46,150 --> 00:48:49,070
+This is very common
+to see, which means it
+
+882
+00:48:49,070 --> 00:48:51,420
+is an anonymous function
+that is performing
+
+883
+00:48:51,420 --> 00:48:54,640
+some operation on these arguments.
+
+884
+00:48:54,640 --> 00:48:56,940
+And there is an implicit return.
+
+885
+00:48:56,940 --> 00:49:01,850
+So it is absolutely the same thing
+for us to say this, right here.
+
+886
+00:49:01,850 --> 00:49:05,730
+
+887
+00:49:05,730 --> 00:49:08,150
+>> Because this curly
+bracket is a function,
+
+888
+00:49:08,150 --> 00:49:10,480
+we're perform this operation
+on the first argument.
+
+889
+00:49:10,480 --> 00:49:12,170
+We're going to return that.
+
+890
+00:49:12,170 --> 00:49:14,815
+But this outer return is
+returning that whole function,
+
+891
+00:49:14,815 --> 00:49:19,855
+that whole anonymous function
+that we've just created.
+
+892
+00:49:19,855 --> 00:49:21,689
+Any other questions?
+
+893
+00:49:21,689 --> 00:49:23,980
+All right, I don't know if
+you guys are ready for this,
+
+894
+00:49:23,980 --> 00:49:27,455
+but we can go even crazier with Swift.
+
+895
+00:49:27,455 --> 00:49:28,560
+You ready?
+
+896
+00:49:28,560 --> 00:49:29,930
+OK, this is great.
+
+897
+00:49:29,930 --> 00:49:35,310
+>> Now we actually have the ability
+to, in Swift, because of how modular
+
+898
+00:49:35,310 --> 00:49:39,650
+and how protocol based it is, to
+define our own freaking operators.
+
+899
+00:49:39,650 --> 00:49:44,060
+Like in this case, we had no
+operator for exponentiation-- well,
+
+900
+00:49:44,060 --> 00:49:47,990
+for performing powers of something.
+
+901
+00:49:47,990 --> 00:49:53,632
+But I can, in Swift, define a new
+operator that does precisely that.
+
+902
+00:49:53,632 --> 00:49:55,590
+So in this case there's
+a bunch of syntax here.
+
+903
+00:49:55,590 --> 00:49:59,980
+And I'll allow you to look at it
+at home when you look at this.
+
+904
+00:49:59,980 --> 00:50:06,890
+But we are defining this infix
+operator, **, which will then allow us,
+
+905
+00:50:06,890 --> 00:50:09,840
+by defining what that
+function ** actually
+
+906
+00:50:09,840 --> 00:50:15,010
+does, to accept a left hand
+side and a right hand side,
+
+907
+00:50:15,010 --> 00:50:21,190
+and then to return the exponent of that
+left hand side to the right hand side.
+
+908
+00:50:21,190 --> 00:50:24,850
+>> And so now all of a sudden I
+have created a new numerator.
+
+909
+00:50:24,850 --> 00:50:29,490
+So 2**3 means 2 to the third power.
+
+910
+00:50:29,490 --> 00:50:34,420
+[MIND BLOWING SOUND] This by
+itself should make you be like,
+
+911
+00:50:34,420 --> 00:50:37,960
+OK, screw C. I'm going
+Swift all the way.
+
+912
+00:50:37,960 --> 00:50:38,740
+This is great.
+
+913
+00:50:38,740 --> 00:50:40,140
+This is pretty fantastic.
+
+914
+00:50:40,140 --> 00:50:42,240
+>> Though this is a great example.
+
+915
+00:50:42,240 --> 00:50:45,570
+But I have never once outside
+of this example actually
+
+916
+00:50:45,570 --> 00:50:46,800
+defined my own operator.
+
+917
+00:50:46,800 --> 00:50:49,710
+But still, it shows a
+lot of the power of Swift
+
+918
+00:50:49,710 --> 00:50:54,050
+and why this is actually
+really very cool.
+
+919
+00:50:54,050 --> 00:50:55,832
+OK, yes?
+
+920
+00:50:55,832 --> 00:50:57,790
+AUDIENCE: If you're
+defining your own operator,
+
+921
+00:50:57,790 --> 00:51:02,940
+how do you know you don't accidentally
+try and create an operator that's
+
+922
+00:51:02,940 --> 00:51:06,040
+in somewhere in C, like
+hidden somewhere in Swift,
+
+923
+00:51:06,040 --> 00:51:12,210
+like an obscure one that you
+may not have seen before.
+
+924
+00:51:12,210 --> 00:51:15,050
+>> DAN ARMENDARIZ: So if you're trying
+to define your own operators,
+
+925
+00:51:15,050 --> 00:51:20,970
+there is the risk of defining
+one over an existing operator.
+
+926
+00:51:20,970 --> 00:51:24,870
+That goes into a level of detail that
+I don't think we have time to go over.
+
+927
+00:51:24,870 --> 00:51:27,620
+But that is a risk.
+
+928
+00:51:27,620 --> 00:51:31,320
+And that is in fact the very reason why
+I didn't use the caret symbol, which
+
+929
+00:51:31,320 --> 00:51:36,210
+when we're typing out power, we usually
+use 4 little caret 5 or something
+
+930
+00:51:36,210 --> 00:51:40,560
+like that, just when we're
+Gchatting buddies or whatever.
+
+931
+00:51:40,560 --> 00:51:43,660
+But in that case, that actually
+would have caused a collision.
+
+932
+00:51:43,660 --> 00:51:46,450
+And so I avoided it just because
+I happened to know in this case
+
+933
+00:51:46,450 --> 00:51:50,430
+that that would cause that collision.
+
+934
+00:51:50,430 --> 00:51:52,270
+>> All right.
+
+935
+00:51:52,270 --> 00:51:55,080
+Now unfortunately, for
+the last seven minutes,
+
+936
+00:51:55,080 --> 00:51:57,410
+I have to keep blowing
+your minds a little bit.
+
+937
+00:51:57,410 --> 00:52:00,230
+So allow me to show you
+some other things as well.
+
+938
+00:52:00,230 --> 00:52:03,710
+>> We've shown you this idea of
+having these anonymous functions,
+
+939
+00:52:03,710 --> 00:52:07,040
+these closures that allow you to
+kind of pass functions around.
+
+940
+00:52:07,040 --> 00:52:08,100
+You can return them.
+
+941
+00:52:08,100 --> 00:52:09,490
+You can manipulate them.
+
+942
+00:52:09,490 --> 00:52:11,790
+You can do all sorts of crazy stuff.
+
+943
+00:52:11,790 --> 00:52:14,850
+>> But one other thing that
+happens to be useful
+
+944
+00:52:14,850 --> 00:52:19,740
+is the ability to, as opposed
+to returning those functions
+
+945
+00:52:19,740 --> 00:52:25,146
+in a function, to pass a function
+as a parameter to another function.
+
+946
+00:52:25,146 --> 00:52:30,430
+You might be thinking well why on Earth
+would I want to do something like that?
+
+947
+00:52:30,430 --> 00:52:33,660
+>> Well, let's say that I want
+to take this operator that I
+
+948
+00:52:33,660 --> 00:52:40,260
+worked so hard to create and apply
+it to a bunch of different numbers
+
+949
+00:52:40,260 --> 00:52:41,770
+in an array.
+
+950
+00:52:41,770 --> 00:52:46,700
+So in this case I have an array of
+integers-- 1, 4, 7, 2, 5, 10, 56.
+
+951
+00:52:46,700 --> 00:52:48,080
+And I want to double them all.
+
+952
+00:52:48,080 --> 00:52:50,430
+The way that we would typically
+do it is to just write
+
+953
+00:52:50,430 --> 00:52:53,440
+a simple for loop that
+iterates over all of them
+
+954
+00:52:53,440 --> 00:52:57,140
+and perform some sort of
+square operation over them,
+
+955
+00:52:57,140 --> 00:53:02,700
+inputting those new values into a new
+variable, or rather, a new array here.
+
+956
+00:53:02,700 --> 00:53:07,370
+And the value of the output of
+result is then all of those arrays,
+
+957
+00:53:07,370 --> 00:53:10,200
+or rather all of those
+elements now squared.
+
+958
+00:53:10,200 --> 00:53:12,680
+>> And we could do the same
+thing for cubing it,
+
+959
+00:53:12,680 --> 00:53:15,360
+but a little alarm bell
+should be going off
+
+960
+00:53:15,360 --> 00:53:17,360
+saying that maybe there's
+some way that we would
+
+961
+00:53:17,360 --> 00:53:19,860
+be able to simplify this a little bit.
+
+962
+00:53:19,860 --> 00:53:21,130
+And in fact there is.
+
+963
+00:53:21,130 --> 00:53:25,320
+What if we could create
+a function that allows us
+
+964
+00:53:25,320 --> 00:53:28,350
+to accept, as a predator, a function?
+
+965
+00:53:28,350 --> 00:53:30,350
+So in this case, take a
+look at these arguments.
+
+966
+00:53:30,350 --> 00:53:33,220
+We're going to accept a list of doubles.
+
+967
+00:53:33,220 --> 00:53:35,030
+And then we're going
+to accept a function
+
+968
+00:53:35,030 --> 00:53:40,990
+in a variable called f that is going
+to take a Double and return a Double.
+
+969
+00:53:40,990 --> 00:53:43,320
+And the whole output
+of this entire function
+
+970
+00:53:43,320 --> 00:53:47,310
+called mapper is going to
+return an array called double.
+
+971
+00:53:47,310 --> 00:53:52,380
+>> What this would then allow me to
+do is to iterate over that list
+
+972
+00:53:52,380 --> 00:53:56,350
+and do the same thing, but now
+apply that function on each
+
+973
+00:53:56,350 --> 00:53:58,970
+of the individual values in that list.
+
+974
+00:53:58,970 --> 00:54:00,750
+So I don't really know what f is.
+
+975
+00:54:00,750 --> 00:54:02,010
+It doesn't matter to me.
+
+976
+00:54:02,010 --> 00:54:06,530
+But so long as it takes in a Double,
+performs some operation on it,
+
+977
+00:54:06,530 --> 00:54:08,640
+and then returns a
+Double, I would then be
+
+978
+00:54:08,640 --> 00:54:13,415
+able to map that function across
+every single element in the list.
+
+979
+00:54:13,415 --> 00:54:16,270
+
+980
+00:54:16,270 --> 00:54:20,930
+>> And this type of programming is
+called higher order functions,
+
+981
+00:54:20,930 --> 00:54:24,440
+where we're passing functions
+around as parameters
+
+982
+00:54:24,440 --> 00:54:26,430
+and doing things with functions.
+
+983
+00:54:26,430 --> 00:54:29,640
+It's sort of like taking all of these
+ideas that we've learned in CS50
+
+984
+00:54:29,640 --> 00:54:31,390
+and taking them sort
+of to the next level.
+
+985
+00:54:31,390 --> 00:54:34,140
+And this is all CS51 style stuff.
+
+986
+00:54:34,140 --> 00:54:37,080
+And so we'll go in depth
+more in classes like that.
+
+987
+00:54:37,080 --> 00:54:38,930
+>> But this is also
+important here because we
+
+988
+00:54:38,930 --> 00:54:42,010
+see a lot of functions
+that are used in Swift
+
+989
+00:54:42,010 --> 00:54:45,590
+that essentially does
+this, where we have
+
+990
+00:54:45,590 --> 00:54:48,300
+some numbers, some array of numbers.
+
+991
+00:54:48,300 --> 00:54:50,850
+We're going to pass that
+array into our mapper.
+
+992
+00:54:50,850 --> 00:54:55,770
+And we're also going to
+pass some function, which
+
+993
+00:54:55,770 --> 00:54:57,950
+we've already defined up here.
+
+994
+00:54:57,950 --> 00:54:59,690
+It's going to be square.
+
+995
+00:54:59,690 --> 00:55:02,220
+And we're going to then
+square all of those numbers
+
+996
+00:55:02,220 --> 00:55:04,710
+and store that into this result here.
+
+997
+00:55:04,710 --> 00:55:07,280
+
+998
+00:55:07,280 --> 00:55:11,000
+>> So this case we've defined our
+own function called mapper.
+
+999
+00:55:11,000 --> 00:55:15,370
+But this exact thing is,
+in fact, built into Swift.
+
+1000
+00:55:15,370 --> 00:55:18,960
+There are a variety of
+functions called map.
+
+1001
+00:55:18,960 --> 00:55:21,520
+There's a map function,
+there's a reduce function,
+
+1002
+00:55:21,520 --> 00:55:25,630
+and there's a filter function,
+which essentially apply functions
+
+1003
+00:55:25,630 --> 00:55:30,782
+to every single element in a
+list to modify them in some way.
+
+1004
+00:55:30,782 --> 00:55:34,510
+>> AUDIENCE: So since you are transforming
+the data into another format
+
+1005
+00:55:34,510 --> 00:55:36,134
+through a function--
+
+1006
+00:55:36,134 --> 00:55:37,050
+DAN ARMENDARIZ: Right.
+
+1007
+00:55:37,050 --> 00:55:39,420
+Yeah, so the function
+that we're accepting
+
+1008
+00:55:39,420 --> 00:55:41,790
+is transforming the data in some way.
+
+1009
+00:55:41,790 --> 00:55:44,700
+In this case, we were either
+squaring it, or we were cubing it,
+
+1010
+00:55:44,700 --> 00:55:50,060
+or really, we could perform
+no operation on it at all.
+
+1011
+00:55:50,060 --> 00:55:54,150
+>> But let me show you then how this
+is going to look in practice.
+
+1012
+00:55:54,150 --> 00:55:56,681
+And again, I'm running a
+bit of time. so I'm not
+
+1013
+00:55:56,681 --> 00:55:59,430
+going to be able to go over all
+of the source code here in detail.
+
+1014
+00:55:59,430 --> 00:56:00,721
+But I encourage you to do that.
+
+1015
+00:56:00,721 --> 00:56:03,850
+We'll post it as soon as
+possible after this talk.
+
+1016
+00:56:03,850 --> 00:56:07,610
+>> But if you take a look at this,
+assume that we have a list of numbers,
+
+1017
+00:56:07,610 --> 00:56:10,260
+an array of numbers in this
+variable called numbers.
+
+1018
+00:56:10,260 --> 00:56:16,670
+Then we want to perform this
+filter operation on those numbers.
+
+1019
+00:56:16,670 --> 00:56:19,730
+So filter is a higher
+order function that
+
+1020
+00:56:19,730 --> 00:56:24,660
+accepts an array and also a function.
+
+1021
+00:56:24,660 --> 00:56:28,760
+And on every element in that
+array, it performs that function.
+
+1022
+00:56:28,760 --> 00:56:31,990
+>> If that function returns
+true, it keeps that item.
+
+1023
+00:56:31,990 --> 00:56:36,100
+If that function returns false,
+it throws away that item.
+
+1024
+00:56:36,100 --> 00:56:40,480
+And then it returns a list
+that is then made up all
+
+1025
+00:56:40,480 --> 00:56:44,360
+of those items that have been filtered.
+
+1026
+00:56:44,360 --> 00:56:47,150
+>> So in another words, this is
+the same idea, the gradebook.
+
+1027
+00:56:47,150 --> 00:56:50,800
+We might have a variety of grades
+into this value called numbers.
+
+1028
+00:56:50,800 --> 00:56:55,590
+Could be 100, and 70, and
+40, so on and so forth.
+
+1029
+00:56:55,590 --> 00:56:59,110
+What this filter does is notice
+that this is that syntactic sugar
+
+1030
+00:56:59,110 --> 00:57:01,310
+for an anonymous function.
+
+1031
+00:57:01,310 --> 00:57:05,980
+This is an anonymous function saying
+that the parameter that I'm accepting
+
+1032
+00:57:05,980 --> 00:57:09,690
+is going to be, if it
+is greater than 70,
+
+1033
+00:57:09,690 --> 00:57:15,837
+then this will return true, meaning that
+that item will be kept in this filter.
+
+1034
+00:57:15,837 --> 00:57:17,920
+So let's be a little bit
+more concrete about this.
+
+1035
+00:57:17,920 --> 00:57:25,760
+If I have this array of numbers
+and it consists of 100, 70, and 40,
+
+1036
+00:57:25,760 --> 00:57:29,730
+I perform this filter
+operation on each one of those.
+
+1037
+00:57:29,730 --> 00:57:33,270
+So that first one is this value of 100.
+
+1038
+00:57:33,270 --> 00:57:36,770
+100 greater than or equal
+to 70 is true, which
+
+1039
+00:57:36,770 --> 00:57:41,950
+means that 100 is kept in
+this new copy of this array.
+
+1040
+00:57:41,950 --> 00:57:44,290
+70 also passes.
+
+1041
+00:57:44,290 --> 00:57:46,020
+But 40 does not.
+
+1042
+00:57:46,020 --> 00:57:54,290
+So what is returned in passingCount
+is the array of elements 100 and 70--
+
+1043
+00:57:54,290 --> 00:57:57,410
+100, comma, 70.
+
+1044
+00:57:57,410 --> 00:57:59,870
+Those were the only two
+items that were kept.
+
+1045
+00:57:59,870 --> 00:58:03,740
+And so the reason I quickly went through
+a lot of these kind of high order
+
+1046
+00:58:03,740 --> 00:58:08,680
+things are because this is that common
+thing that you will see in Swift pretty
+
+1047
+00:58:08,680 --> 00:58:16,810
+frequently, is performing some operation
+using this anonymous function syntax.
+
+1048
+00:58:16,810 --> 00:58:18,450
+>> There's some cool stuff.
+
+1049
+00:58:18,450 --> 00:58:24,730
+Switches are really powerful in Swift,
+I mean just like crazy, crazy powerful.
+
+1050
+00:58:24,730 --> 00:58:28,250
+You can use switch, and
+you can actually apply them
+
+1051
+00:58:28,250 --> 00:58:33,160
+to ranges, which is kind of crazy,
+and do fancy stuff like that.
+
+1052
+00:58:33,160 --> 00:58:37,540
+>> But in the last few minutes,
+I want to skip ahead quite far
+
+1053
+00:58:37,540 --> 00:58:46,940
+and show you a specific example of how
+we can create in iOS app using Swift.
+
+1054
+00:58:46,940 --> 00:58:49,040
+So when you're doing
+this, you'll have to take
+
+1055
+00:58:49,040 --> 00:58:51,990
+a look at-- on Apple's
+documentation, they
+
+1056
+00:58:51,990 --> 00:58:56,084
+have a lot of really good tutorials
+for creating your first application.
+
+1057
+00:58:56,084 --> 00:58:58,250
+And I encourage you to do
+that because they take you
+
+1058
+00:58:58,250 --> 00:59:04,110
+through all the steps of what exactly to
+click on to create an iOS application.
+
+1059
+00:59:04,110 --> 00:59:07,290
+>> But here we have this iOS app.
+
+1060
+00:59:07,290 --> 00:59:10,960
+And it's a pretty simple app really.
+
+1061
+00:59:10,960 --> 00:59:13,840
+If I run this, let me show
+you what it looks like.
+
+1062
+00:59:13,840 --> 00:59:19,480
+All it essentially does is it
+pulls from the internet a JSON file
+
+1063
+00:59:19,480 --> 00:59:22,300
+that I have stored on a server.
+
+1064
+00:59:22,300 --> 00:59:26,310
+And that JSON file
+defines images that allow
+
+1065
+00:59:26,310 --> 00:59:31,680
+me to then cycle through, on my
+app, images from my web server.
+
+1066
+00:59:31,680 --> 00:59:32,880
+>> So I have here getNextImage.
+
+1067
+00:59:32,880 --> 00:59:37,100
+It loads an image from the internet,
+and then displays it on the screen.
+
+1068
+00:59:37,100 --> 00:59:38,200
+>> So it's pretty simple.
+
+1069
+00:59:38,200 --> 00:59:41,550
+But the goal here is to show
+you how we can combine things
+
+1070
+00:59:41,550 --> 00:59:47,820
+from the latter few weeks of CS50
+into an actual iOS application.
+
+1071
+00:59:47,820 --> 00:59:53,140
+In other words, perhaps one of the
+things that you will want to do
+
+1072
+00:59:53,140 --> 00:59:56,340
+is to have an iOS application that
+can pull data from the internet
+
+1073
+00:59:56,340 --> 00:59:59,070
+and show the user some information.
+
+1074
+00:59:59,070 --> 01:00:03,130
+That is entirely the point
+of this source code here.
+
+1075
+01:00:03,130 --> 01:00:07,890
+>> So there's a lot to be said about
+how to do actual iOS development.
+
+1076
+01:00:07,890 --> 01:00:12,860
+There is a lot of crazy syntax
+that we haven't seen quite yet
+
+1077
+01:00:12,860 --> 01:00:15,580
+like a class, what a class actually is.
+
+1078
+01:00:15,580 --> 01:00:19,470
+We can largely ignore
+that for the time being.
+
+1079
+01:00:19,470 --> 01:00:23,250
+>> But notice that we have contained
+within this a variety of things
+
+1080
+01:00:23,250 --> 01:00:27,720
+that we've already seen like
+functions that have specific names.
+
+1081
+01:00:27,720 --> 01:00:32,650
+And when we give those
+functions the correct names
+
+1082
+01:00:32,650 --> 01:00:36,530
+that are expected by iOS, in fact
+this feels a little bit magical.
+
+1083
+01:00:36,530 --> 01:00:40,300
+But when you create an
+iOS application, there
+
+1084
+01:00:40,300 --> 01:00:47,590
+are specific function names that
+are called by the phone itself
+
+1085
+01:00:47,590 --> 01:00:52,440
+as the application is loading to try
+to create the process that actually
+
+1086
+01:00:52,440 --> 01:00:54,787
+runs your application.
+
+1087
+01:00:54,787 --> 01:00:58,120
+So again, there's a lot of things that I
+have to gloss over here in order for us
+
+1088
+01:00:58,120 --> 01:01:00,570
+to talk about this specifically.
+
+1089
+01:01:00,570 --> 01:01:06,050
+But I encourage you to look at perhaps
+the other iOS seminar, but also some
+
+1090
+01:01:06,050 --> 01:01:09,290
+of the tutorials online which do
+a much better job of describing
+
+1091
+01:01:09,290 --> 01:01:11,030
+the specific information.
+
+1092
+01:01:11,030 --> 01:01:15,760
+>> But we can see a couple of things that
+are interesting from the code here.
+
+1093
+01:01:15,760 --> 01:01:17,950
+Notice that we have if statements.
+
+1094
+01:01:17,950 --> 01:01:20,400
+By the way, one important
+thing about if statements
+
+1095
+01:01:20,400 --> 01:01:24,860
+is that the parentheses around the
+Boolean expression are optional.
+
+1096
+01:01:24,860 --> 01:01:30,800
+But the curly braces are not optional,
+no matter how few or many lines of code
+
+1097
+01:01:30,800 --> 01:01:32,360
+you have in an if statement.
+
+1098
+01:01:32,360 --> 01:01:38,670
+You cannot have an if statements
+without curly braces in Swift.
+
+1099
+01:01:38,670 --> 01:01:41,000
+>> And this is, well, sort of silly.
+
+1100
+01:01:41,000 --> 01:01:43,910
+But there's historical reasons for that.
+
+1101
+01:01:43,910 --> 01:01:46,180
+It's supposed to save you from yourself.
+
+1102
+01:01:46,180 --> 01:01:49,899
+Like this for example, you cannot
+eliminate the curly braces around that
+
+1103
+01:01:49,899 --> 01:01:50,440
+if statement.
+
+1104
+01:01:50,440 --> 01:01:52,730
+Those are in fact required.
+
+1105
+01:01:52,730 --> 01:01:54,480
+So I encourage you to
+take a look at this.
+
+1106
+01:01:54,480 --> 01:01:56,230
+But there's one more
+construct that I want
+
+1107
+01:01:56,230 --> 01:02:02,640
+to show you about Swift that
+is new to Swift 2.0 compared
+
+1108
+01:02:02,640 --> 01:02:08,460
+to older versions of Swift,
+which is the following.
+
+1109
+01:02:08,460 --> 01:02:11,620
+Let's see where did I put it here?
+
+1110
+01:02:11,620 --> 01:02:16,630
+>> So in this function called
+fetchJSON, this function
+
+1111
+01:02:16,630 --> 01:02:23,450
+is responsible for pulling that JSON
+file from a URL, which just so happens
+
+1112
+01:02:23,450 --> 01:02:26,310
+to be running on my CS50 IDE.
+
+1113
+01:02:26,310 --> 01:02:28,580
+I just started Apache,
+put my JSON file there,
+
+1114
+01:02:28,580 --> 01:02:32,110
+and I'm able to then pull that
+data from the internet using
+
+1115
+01:02:32,110 --> 01:02:36,430
+this function and this URL,
+which is provided by the phone.
+
+1116
+01:02:36,430 --> 01:02:40,490
+It's provided by a
+library that you use when
+
+1117
+01:02:40,490 --> 01:02:43,140
+you're doing some iOS app development.
+
+1118
+01:02:43,140 --> 01:02:49,690
+>> Notice here that there is this unusual
+syntactical construct called guard.
+
+1119
+01:02:49,690 --> 01:02:53,530
+And really all this is in
+Swift is a way of verifying
+
+1120
+01:02:53,530 --> 01:02:56,870
+that some things have
+been met before you
+
+1121
+01:02:56,870 --> 01:03:00,000
+proceed with the rest of the function.
+
+1122
+01:03:00,000 --> 01:03:04,260
+So I could have, using
+this optional type,
+
+1123
+01:03:04,260 --> 01:03:10,530
+I could have found the URL by
+running this NSURL function
+
+1124
+01:03:10,530 --> 01:03:16,640
+and storing that into a URL
+constant, and then checking
+
+1125
+01:03:16,640 --> 01:03:20,820
+to see if URL was nil, because it
+was going to return an optional type.
+
+1126
+01:03:20,820 --> 01:03:25,660
+And if it was nil, then I would
+print out an error and then return.
+
+1127
+01:03:25,660 --> 01:03:29,970
+>> But instead, what guard lets
+us do is that very thing,
+
+1128
+01:03:29,970 --> 01:03:34,550
+but ensure that it is
+actually the case that url
+
+1129
+01:03:34,550 --> 01:03:38,020
+has been properly set by NSURL.
+
+1130
+01:03:38,020 --> 01:03:41,810
+And if it is, then it
+skips over this, and it
+
+1131
+01:03:41,810 --> 01:03:46,110
+will allow you to proceed with
+url having been properly defined.
+
+1132
+01:03:46,110 --> 01:03:48,830
+But if it is the case that
+url is not properly defined,
+
+1133
+01:03:48,830 --> 01:03:52,550
+if this function returns an error
+or some other unexpected thing
+
+1134
+01:03:52,550 --> 01:03:58,030
+actually occurs, this guard construct
+allows us to then output that error
+
+1135
+01:03:58,030 --> 01:04:00,390
+and return immediately.
+
+1136
+01:04:00,390 --> 01:04:00,890
+Yes?
+
+1137
+01:04:00,890 --> 01:04:04,839
+>> AUDIENCE: So it's kind
+of like an if then else?
+
+1138
+01:04:04,839 --> 01:04:07,130
+DAN ARMENDARIZ: It's kind of
+like an if then else, yes,
+
+1139
+01:04:07,130 --> 01:04:14,200
+except that this url is then
+defined for everything below this.
+
+1140
+01:04:14,200 --> 01:04:20,420
+If it passes this guard, then it
+will actually be filled with data
+
+1141
+01:04:20,420 --> 01:04:29,500
+and usable in the remaining
+source code in your function.
+
+1142
+01:04:29,500 --> 01:04:33,790
+So I suspect that you're going to
+start to see this guard as well.
+
+1143
+01:04:33,790 --> 01:04:36,670
+And be mindful of that.
+
+1144
+01:04:36,670 --> 01:04:46,270
+>> So just looking at a couple of other
+things, this right here is what,
+
+1145
+01:04:46,270 --> 01:04:53,377
+do you think, just based on what
+we were talking about before?
+
+1146
+01:04:53,377 --> 01:04:56,650
+>> AUDIENCE: Think it'll run in the list?
+
+1147
+01:04:56,650 --> 01:04:59,100
+>> DAN ARMENDARIZ: So that's close.
+
+1148
+01:04:59,100 --> 01:05:02,360
+This is a function that we are defining.
+
+1149
+01:05:02,360 --> 01:05:07,240
+And we are inputting that function
+as an argument to this function here.
+
+1150
+01:05:07,240 --> 01:05:09,120
+>> AUDIENCE: [INAUDIBLE] if not nil.
+
+1151
+01:05:09,120 --> 01:05:11,470
+So it's in the list, right?
+
+1152
+01:05:11,470 --> 01:05:15,450
+>> DAN ARMENDARIZ: If error is not nil,
+so that is-- so I have to scroll.
+
+1153
+01:05:15,450 --> 01:05:18,060
+Well, let's see, I can't really
+scroll to the right here.
+
+1154
+01:05:18,060 --> 01:05:23,161
+error is an argument that is being
+passed to this anonymous function.
+
+1155
+01:05:23,161 --> 01:05:24,410
+This is an anonymous function.
+
+1156
+01:05:24,410 --> 01:05:25,480
+It has no name.
+
+1157
+01:05:25,480 --> 01:05:29,850
+But we are accepting these three
+arguments, data, response, and error.
+
+1158
+01:05:29,850 --> 01:05:33,590
+And it is going to return void, so
+it's not going to return anything.
+
+1159
+01:05:33,590 --> 01:05:37,910
+And this is the contents
+of that function.
+
+1160
+01:05:37,910 --> 01:05:41,961
+And then we have access inside that
+function to each of these arguments.
+
+1161
+01:05:41,961 --> 01:05:45,650
+
+1162
+01:05:45,650 --> 01:05:48,679
+>> So it's a whirlwind
+tour of the language.
+
+1163
+01:05:48,679 --> 01:05:50,470
+But I hope with this,
+hopefully as you take
+
+1164
+01:05:50,470 --> 01:05:54,490
+a look at some of the tutorials
+specific to iOS development with Swift,
+
+1165
+01:05:54,490 --> 01:05:57,481
+especially if you go to
+Apple's developer web page--
+
+1166
+01:05:57,481 --> 01:05:59,980
+they have a lot of really good
+tutorials to get you started.
+
+1167
+01:05:59,980 --> 01:06:05,010
+But hopefully just this hour of talking
+about the syntax itself has given
+
+1168
+01:06:05,010 --> 01:06:08,760
+you enough to get started with that.
+
+1169
+01:06:08,760 --> 01:06:12,950
+>> We will post all of this source
+code on the seminar website
+
+1170
+01:06:12,950 --> 01:06:17,800
+as soon as possible, and also the slides
+so you have a reference for all those.
+
+1171
+01:06:17,800 --> 01:06:20,530
+But good luck with your projects.
+
+1172
+01:06:20,530 --> 01:06:23,640
+And thank you all very much for coming.
+
+1173
+01:06:23,640 --> 01:06:26,990
+>> [APPLAUSE]
+
+1174
+01:06:26,990 --> 01:06:28,026

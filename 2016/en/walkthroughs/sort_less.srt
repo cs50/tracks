@@ -1,0 +1,502 @@
+1
+00:00:00,000 --> 00:00:00,220
+
+
+2
+00:00:00,220 --> 00:00:01,428
+ZAMYLA CHAN: Congratulations.
+
+3
+00:00:01,428 --> 00:00:03,750
+You've implemented a fast binary search.
+
+4
+00:00:03,750 --> 00:00:06,100
+And now we can move on to sort.
+
+5
+00:00:06,100 --> 00:00:08,250
+In the sort, you have the
+option of implementing
+
+6
+00:00:08,250 --> 00:00:10,350
+a selection sort or a bubble sort.
+
+7
+00:00:10,350 --> 00:00:12,860
+So let's look at selection sort first.
+
+8
+00:00:12,860 --> 00:00:16,400
+In selection sort, we start by
+going to the beginning of the array,
+
+9
+00:00:16,400 --> 00:00:19,580
+and then following through to
+replace the beginning of the array
+
+10
+00:00:19,580 --> 00:00:21,540
+with the minimum value found.
+
+11
+00:00:21,540 --> 00:00:22,670
+How does that work?
+
+12
+00:00:22,670 --> 00:00:24,420
+Let's go through this example.
+
+13
+00:00:24,420 --> 00:00:27,700
+In this example, I have a
+short list of five integers.
+
+14
+00:00:27,700 --> 00:00:30,770
+We're going to start by replacing
+index 0 with the minimum value
+
+15
+00:00:30,770 --> 00:00:32,670
+that we find in this array.
+
+16
+00:00:32,670 --> 00:00:36,430
+So knowing that I start at 0, I'm
+going to put my i index there.
+
+17
+00:00:36,430 --> 00:00:38,900
+Then I'm going to look
+at the rest of the list.
+
+18
+00:00:38,900 --> 00:00:41,820
+So starting at index
+1, I have the value 5.
+
+19
+00:00:41,820 --> 00:00:44,450
+Now, I haven't looked at any
+other values in this array.
+
+20
+00:00:44,450 --> 00:00:48,540
+So for right now, let's say that
+this value 5 is the minimum.
+
+21
+00:00:48,540 --> 00:00:52,770
+Then we progress to index 2, where
+the value 2 there is less than 5.
+
+22
+00:00:52,770 --> 00:00:55,800
+So that becomes where
+the new minimum is.
+
+23
+00:00:55,800 --> 00:00:59,540
+Progressing to index 3, we
+find that 1 is less than 2.
+
+24
+00:00:59,540 --> 00:01:02,790
+So then that becomes the
+location of the new minimum.
+
+25
+00:01:02,790 --> 00:01:05,990
+Going to index 4, we find that,
+well, 4 is greater than 1.
+
+26
+00:01:05,990 --> 00:01:09,160
+So when we were at index 3,
+we actually found the minimum.
+
+27
+00:01:09,160 --> 00:01:12,600
+So then now that we found that,
+we switch those two values
+
+28
+00:01:12,600 --> 00:01:14,930
+from the beginning to
+where we found the minimum.
+
+29
+00:01:14,930 --> 00:01:17,540
+So now we have an
+array that's definitely
+
+30
+00:01:17,540 --> 00:01:21,500
+sorted for the very first value,
+but not for the remaining four.
+
+31
+00:01:21,500 --> 00:01:25,670
+So then we advance our i indicator
+for the remaining four in the list.
+
+32
+00:01:25,670 --> 00:01:27,990
+We don't need to worry
+about that first value
+
+33
+00:01:27,990 --> 00:01:30,480
+because we know that
+it's the minimum value.
+
+34
+00:01:30,480 --> 00:01:32,760
+So then we do the same
+process as before,
+
+35
+00:01:32,760 --> 00:01:35,230
+where we search the
+remaining three elements
+
+36
+00:01:35,230 --> 00:01:37,640
+in that list for the minimum value.
+
+37
+00:01:37,640 --> 00:01:41,860
+In this case, we find that it's actually
+the first one we checked, at index 2.
+
+38
+00:01:41,860 --> 00:01:44,950
+So then what we do is we
+switch the 2 with the 5.
+
+39
+00:01:44,950 --> 00:01:47,810
+So now the first two elements
+of the list are sorted.
+
+40
+00:01:47,810 --> 00:01:50,440
+And now we look at the remaining three.
+
+41
+00:01:50,440 --> 00:01:54,200
+For the remaining three, we find
+that the minimum is, well, 3.
+
+42
+00:01:54,200 --> 00:01:57,980
+And so we switch that with the
+5, and continue that process
+
+43
+00:01:57,980 --> 00:02:01,019
+until we have a completely sorted list.
+
+44
+00:02:01,019 --> 00:02:04,310
+Now that we've gone through an example,
+let's look at what the pseudocode looks
+
+45
+00:02:04,310 --> 00:02:05,550
+like.
+
+46
+00:02:05,550 --> 00:02:10,229
+So for i equals 0 to n minus 2--
+that is, from the very first element
+
+47
+00:02:10,229 --> 00:02:14,050
+all the way to the penultimate one--
+that is, not the last one, but the one
+
+48
+00:02:14,050 --> 00:02:18,630
+right before that-- we want to find
+the smallest element from i plus 1
+
+49
+00:02:18,630 --> 00:02:22,350
+to n minus 1-- so from the
+second element of the array
+
+50
+00:02:22,350 --> 00:02:23,750
+all the way to the end.
+
+51
+00:02:23,750 --> 00:02:26,920
+From there, I exchange the
+smallest element with the element
+
+52
+00:02:26,920 --> 00:02:28,690
+that I had at i.
+
+53
+00:02:28,690 --> 00:02:32,280
+Now, by incrementing i
+every time, essentially what
+
+54
+00:02:32,280 --> 00:02:36,310
+we do is we make sure that in order from
+the beginning all the way to the end,
+
+55
+00:02:36,310 --> 00:02:39,320
+we find the minimum value of the array.
+
+56
+00:02:39,320 --> 00:02:43,920
+And that way, we have an array
+sorted in incremental order.
+
+57
+00:02:43,920 --> 00:02:47,630
+We've finished talking about selection
+sort, so let's talk about bubble sort.
+
+58
+00:02:47,630 --> 00:02:51,810
+In bubble sort, we iterate over a
+list, comparing adjacent elements.
+
+59
+00:02:51,810 --> 00:02:55,380
+Now, if those elements are in the
+wrong order, then we swap them.
+
+60
+00:02:55,380 --> 00:02:58,780
+This way, the largest element
+will sort of bubble to the end.
+
+61
+00:02:58,780 --> 00:03:00,320
+That's how it gets its name.
+
+62
+00:03:00,320 --> 00:03:02,360
+And then we repeat
+that for the whole list
+
+63
+00:03:02,360 --> 00:03:05,030
+until no elements have been swapped.
+
+64
+00:03:05,030 --> 00:03:08,000
+Then we consider the list
+as successfully sorted.
+
+65
+00:03:08,000 --> 00:03:10,300
+Let's take a look at an example.
+
+66
+00:03:10,300 --> 00:03:12,120
+Here in my five-element
+array, we're going
+
+67
+00:03:12,120 --> 00:03:15,380
+to start at the beginning
+at index 0 and index 1.
+
+68
+00:03:15,380 --> 00:03:19,130
+Comparing these, I see that the
+3 and 5 are, in fact, in order.
+
+69
+00:03:19,130 --> 00:03:21,260
+3 is less than 5.
+
+70
+00:03:21,260 --> 00:03:25,080
+So then I proceed to
+compare index 1 and 2.
+
+71
+00:03:25,080 --> 00:03:26,430
+Now, 5 and 2 are out of order.
+
+72
+00:03:26,430 --> 00:03:27,840
+So I'm going to swap those.
+
+73
+00:03:27,840 --> 00:03:29,770
+And then I compare 2 and 3.
+
+74
+00:03:29,770 --> 00:03:32,620
+5 is greater than 1,
+so I swap those again.
+
+75
+00:03:32,620 --> 00:03:35,650
+And then continuing on, I swap 5 and 4.
+
+76
+00:03:35,650 --> 00:03:40,640
+So you see how 5 started out at the
+second element, and now is at the end,
+
+77
+00:03:40,640 --> 00:03:43,190
+being the largest element in the list.
+
+78
+00:03:43,190 --> 00:03:46,910
+Now that 5's bubbled through, I go
+back to the beginning of my list.
+
+79
+00:03:46,910 --> 00:03:50,690
+I look at indices 0 and 1, and
+find that 3 is out of order
+
+80
+00:03:50,690 --> 00:03:52,580
+because it's greater than 2.
+
+81
+00:03:52,580 --> 00:03:55,230
+So I swap those, and then continue on.
+
+82
+00:03:55,230 --> 00:03:59,310
+3 then bubbles through
+to element 2, but find
+
+83
+00:03:59,310 --> 00:04:03,840
+that when we advance to comparing 3
+and 4, those are actually in order.
+
+84
+00:04:03,840 --> 00:04:07,490
+So the 3 bubbled its way, but
+not all the way to the end.
+
+85
+00:04:07,490 --> 00:04:10,170
+Now that 5's bubbled its
+way to the end of the list,
+
+86
+00:04:10,170 --> 00:04:12,220
+we go back to the beginning again.
+
+87
+00:04:12,220 --> 00:04:16,700
+So we compare indices 0 and 1,
+and find that 3 is larger than 2.
+
+88
+00:04:16,700 --> 00:04:17,649
+It's out of order.
+
+89
+00:04:17,649 --> 00:04:19,029
+So we swap those.
+
+90
+00:04:19,029 --> 00:04:21,709
+Then proceeding on, we compare 3 and 1.
+
+91
+00:04:21,709 --> 00:04:24,610
+And 3 is larger than 1,
+so we swap that again.
+
+92
+00:04:24,610 --> 00:04:28,030
+So so far, 3's bubbled its way
+from the beginning all the way
+
+93
+00:04:28,030 --> 00:04:29,500
+to the middle of the list.
+
+94
+00:04:29,500 --> 00:04:34,170
+But 3 isn't greater than 4, so
+we actually don't swap those.
+
+95
+00:04:34,170 --> 00:04:37,720
+We don't need to make one last
+comparison because 5 already
+
+96
+00:04:37,720 --> 00:04:40,780
+bubbled its way to the end of
+the list in the first iteration.
+
+97
+00:04:40,780 --> 00:04:42,890
+So we can just go to
+the beginning again.
+
+98
+00:04:42,890 --> 00:04:45,310
+We look at index 0 and index 1.
+
+99
+00:04:45,310 --> 00:04:47,650
+And we swap 2 and 1, and then proceed.
+
+100
+00:04:47,650 --> 00:04:49,610
+And we don't need to swap 2 and 3.
+
+101
+00:04:49,610 --> 00:04:51,790
+So then 3 is set.
+
+102
+00:04:51,790 --> 00:04:55,490
+Then comparing 1 and 2,
+no swaps need to be made.
+
+103
+00:04:55,490 --> 00:04:59,300
+So then that means that we
+finished sorting our list.
+
+104
+00:04:59,300 --> 00:05:00,590
+That was bubble sort.
+
+105
+00:05:00,590 --> 00:05:02,660
+And we already talked
+about selection sort.
+
+106
+00:05:02,660 --> 00:05:03,940
+So there you have it.
+
+107
+00:05:03,940 --> 00:05:08,010
+Now you can sort an array
+and do a binary search on it.
+
+108
+00:05:08,010 --> 00:05:12,270
+My name is Zamyla, and this was find.
+
+109
+00:05:12,270 --> 00:05:13,886

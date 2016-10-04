@@ -1,0 +1,1367 @@
+1
+00:00:00,000 --> 00:00:05,660
+>> [MUSIC PLAYING]
+
+2
+00:00:05,660 --> 00:00:08,740
+>> DOUG LLOYD: So let's take one more
+video to talk about one more language.
+
+3
+00:00:08,740 --> 00:00:10,800
+This time we'll talk about CSS.
+
+4
+00:00:10,800 --> 00:00:13,460
+So CSS, which is short for
+Cascading Style Sheets,
+
+5
+00:00:13,460 --> 00:00:16,149
+is another language we use
+when constructing websites.
+
+6
+00:00:16,149 --> 00:00:17,190
+Think about it like this.
+
+7
+00:00:17,190 --> 00:00:20,900
+If HTML is what we use to organize the
+content we want to put on our page,
+
+8
+00:00:20,900 --> 00:00:25,390
+CSS is the tool that we generally use
+to customize how our websites look,
+
+9
+00:00:25,390 --> 00:00:30,410
+and how the user experience really
+is, interacting with our website.
+
+10
+00:00:30,410 --> 00:00:32,535
+>> Similar to HTML, CSS is
+not a programming language.
+
+11
+00:00:32,535 --> 00:00:33,451
+It doesn't have logic.
+
+12
+00:00:33,451 --> 00:00:34,595
+It doesn't have variables.
+
+13
+00:00:34,595 --> 00:00:38,890
+It doesn't have any sort of that
+flow related things that C does.
+
+14
+00:00:38,890 --> 00:00:40,150
+It's a styling language.
+
+15
+00:00:40,150 --> 00:00:42,810
+And its syntax is pretty
+simple, and just describes
+
+16
+00:00:42,810 --> 00:00:46,240
+how the elements of our
+page have certain HTML
+
+17
+00:00:46,240 --> 00:00:48,190
+elements should be modified.
+
+18
+00:00:48,190 --> 00:00:51,170
+To that end, if you haven't
+yet watched our video on HTML,
+
+19
+00:00:51,170 --> 00:00:53,290
+or are unfamiliar with
+HTML generally, you
+
+20
+00:00:53,290 --> 00:00:57,430
+may want to take a look at that
+first, because this discussion of CSS
+
+21
+00:00:57,430 --> 00:01:00,700
+is going to depend on
+some knowledge of HTML.
+
+22
+00:01:00,700 --> 00:01:03,740
+>> So here's a really
+simple CSS stylesheet.
+
+23
+00:01:03,740 --> 00:01:06,480
+Even if you've never
+programmed with CSS before,
+
+24
+00:01:06,480 --> 00:01:10,624
+I'm pretty sure you can figure out
+exactly what this stylesheet does.
+
+25
+00:01:10,624 --> 00:01:11,290
+What does it do?
+
+26
+00:01:11,290 --> 00:01:15,470
+Well, applied to the body of our web
+page, everything between body tags
+
+27
+00:01:15,470 --> 00:01:19,631
+on our HTML, and it sets the
+background color of that page to blue.
+
+28
+00:01:19,631 --> 00:01:21,130
+Well, it's a very simple stylesheet.
+
+29
+00:01:21,130 --> 00:01:23,269
+It's actually very human
+friendly language, CSS.
+
+30
+00:01:23,269 --> 00:01:26,560
+So even if you've never used it before,
+you probably could guess what that did.
+
+31
+00:01:26,560 --> 00:01:30,140
+In fact, if we loaded a page, where
+this stylesheet was embedded somehow,
+
+32
+00:01:30,140 --> 00:01:36,240
+the background color of our page would
+be blue, and not the standard white.
+
+33
+00:01:36,240 --> 00:01:37,670
+>> So how do we build stylesheets?
+
+34
+00:01:37,670 --> 00:01:39,700
+Well first, we have to
+identify a selector.
+
+35
+00:01:39,700 --> 00:01:42,970
+In the last example,
+that selector was body.
+
+36
+00:01:42,970 --> 00:01:45,050
+Then we have an open
+curly brace, and we're
+
+37
+00:01:45,050 --> 00:01:48,410
+going to begin defining the
+stylesheet for that selector.
+
+38
+00:01:48,410 --> 00:01:51,800
+In between the curly braces, we
+just have a list of key value pairs.
+
+39
+00:01:51,800 --> 00:01:56,205
+The previous value pair was
+background color blue semicolon,
+
+40
+00:01:56,205 --> 00:01:57,830
+but we could do more and more of these.
+
+41
+00:01:57,830 --> 00:02:02,330
+You could have multiple things applying
+to that tag, that selector body.
+
+42
+00:02:02,330 --> 00:02:05,960
+Each one of them is separated by a
+semicolon, and we call each one of them
+
+43
+00:02:05,960 --> 00:02:08,949
+a declaration, a CSS declaration.
+
+44
+00:02:08,949 --> 00:02:12,410
+When we're done with all the styling we
+want to apply to that particular tag,
+
+45
+00:02:12,410 --> 00:02:15,300
+we just have a closing curly
+brace to end the stylesheet,
+
+46
+00:02:15,300 --> 00:02:19,640
+and we're done defining the stylesheet
+for that particular selector.
+
+47
+00:02:19,640 --> 00:02:21,341
+>> What are some common CSS properties?
+
+48
+00:02:21,341 --> 00:02:23,590
+Well, maybe you want to put
+a border around something.
+
+49
+00:02:23,590 --> 00:02:26,850
+So you can say, border,
+that would be your key,
+
+50
+00:02:26,850 --> 00:02:29,460
+and then your values would be,
+what style, color, and width
+
+51
+00:02:29,460 --> 00:02:30,209
+you want it to be.
+
+52
+00:02:30,209 --> 00:02:33,530
+So the style could be a solid
+line, a dotted line, a dashed line,
+
+53
+00:02:33,530 --> 00:02:36,020
+a ridge line, which would be wavy line.
+
+54
+00:02:36,020 --> 00:02:38,790
+Maybe you want to have it
+be blue or black or green.
+
+55
+00:02:38,790 --> 00:02:41,490
+Maybe you want it to be
+1 or 2 or 10 pixels wide.
+
+56
+00:02:41,490 --> 00:02:43,254
+You can specify all of those things.
+
+57
+00:02:43,254 --> 00:02:46,420
+Maybe you want to set the background
+color of your page in a particular way.
+
+58
+00:02:46,420 --> 00:02:49,215
+We already saw that, setting the
+background of the body to be blue.
+
+59
+00:02:49,215 --> 00:02:52,080
+>> Then you can use a key word,
+so CSS has certain colors
+
+60
+00:02:52,080 --> 00:02:55,950
+that are built into it, blue, green,
+black, a very simple colors we know.
+
+61
+00:02:55,950 --> 00:02:59,110
+But you can also specify any
+hex color that you'd like.
+
+62
+00:02:59,110 --> 00:03:05,190
+Recall that colors can be identified
+by a set of three hex numbers
+
+63
+00:03:05,190 --> 00:03:08,500
+from 0 to 255, rg and b, the
+red, green, and blue component.
+
+64
+00:03:08,500 --> 00:03:10,590
+And so we can specify
+any color we want by,
+
+65
+00:03:10,590 --> 00:03:15,520
+instead of using blue or green or black,
+using pound and then six digits of hex,
+
+66
+00:03:15,520 --> 00:03:18,310
+and that would give us
+the six digit color.
+
+67
+00:03:18,310 --> 00:03:19,850
+So that's the background color.
+
+68
+00:03:19,850 --> 00:03:21,975
+>> We also have the foreground
+color, which is usually
+
+69
+00:03:21,975 --> 00:03:24,140
+going to be the text of your page.
+
+70
+00:03:24,140 --> 00:03:28,850
+And you could similarly do that
+with key word and or six digit hex.
+
+71
+00:03:28,850 --> 00:03:32,140
+So you can specify any color you
+want for the text of your page
+
+72
+00:03:32,140 --> 00:03:36,370
+against a particular
+background color, up above.
+
+73
+00:03:36,370 --> 00:03:39,100
+You can also change and deal
+with font, and the way text
+
+74
+00:03:39,100 --> 00:03:40,400
+is rendered on the page.
+
+75
+00:03:40,400 --> 00:03:42,010
+>> So you can change your font size.
+
+76
+00:03:42,010 --> 00:03:46,320
+You can use key words, such as extra,
+extra small, or xx small, or medium,
+
+77
+00:03:46,320 --> 00:03:47,660
+large, and so on.
+
+78
+00:03:47,660 --> 00:03:50,750
+You can use fixed points, 10
+point, 12 point, and so on.
+
+79
+00:03:50,750 --> 00:03:55,850
+You can use percentages, 80%, 20%,
+where 100% is the default font
+
+80
+00:03:55,850 --> 00:03:59,220
+size, which is usually going to
+be something like 11 or 12 points.
+
+81
+00:03:59,220 --> 00:04:01,659
+Or you can even base it off
+of the most recent font size.
+
+82
+00:04:01,659 --> 00:04:04,950
+If you just wrote something and you know
+what you want is for it to be smaller,
+
+83
+00:04:04,950 --> 00:04:08,241
+but you don't know exactly what size you
+want it to be, well, you can just say,
+
+84
+00:04:08,241 --> 00:04:09,330
+font size smaller.
+
+85
+00:04:09,330 --> 00:04:14,344
+And it will base off of the,
+just up above, it's font size.
+
+86
+00:04:14,344 --> 00:04:15,760
+And you can get smaller or larger.
+
+87
+00:04:15,760 --> 00:04:18,390
+So there's a lot of different
+ways to specify font size.
+
+88
+00:04:18,390 --> 00:04:20,690
+>> You can also specify what
+font family you want.
+
+89
+00:04:20,690 --> 00:04:23,360
+If you have a particular
+name, there's a way in CSS--
+
+90
+00:04:23,360 --> 00:04:27,270
+we're not going to talk about it
+here-- to define a very specific font
+
+91
+00:04:27,270 --> 00:04:28,980
+and embed it into your page.
+
+92
+00:04:28,980 --> 00:04:30,620
+You can also use generic names.
+
+93
+00:04:30,620 --> 00:04:33,540
+There's a lot of web safe fonts
+that are pre-defined in CSS.
+
+94
+00:04:33,540 --> 00:04:36,352
+And if you are a user of Microsoft
+Office in the last 20 years,
+
+95
+00:04:36,352 --> 00:04:38,810
+you're probably familiar with
+a lot of these web safe fonts
+
+96
+00:04:38,810 --> 00:04:44,640
+already, Times New Roman, Arial,
+Courier New, Georgia, Tahoma, Verdana,
+
+97
+00:04:44,640 --> 00:04:45,470
+and so on.
+
+98
+00:04:45,470 --> 00:04:47,170
+Those are all considered web safe fonts.
+
+99
+00:04:47,170 --> 00:04:49,169
+And actually, part of the
+reason they came to be
+
+100
+00:04:49,169 --> 00:04:54,140
+was to be used to make web-- every page
+had access to this default set of fonts
+
+101
+00:04:54,140 --> 00:04:58,480
+with various serifs, and all this
+font stuff we won't get into,
+
+102
+00:04:58,480 --> 00:05:01,130
+but these are usually
+accessible in your CSS,
+
+103
+00:05:01,130 --> 00:05:04,029
+even if you don't
+otherwise define the fonts.
+
+104
+00:05:04,029 --> 00:05:07,070
+Lastly, you can align your text,
+instead of it being, by default, aligned
+
+105
+00:05:07,070 --> 00:05:09,310
+to the left, you could
+align it to the right,
+
+106
+00:05:09,310 --> 00:05:13,740
+or you could align it centered, or
+justified so that it hit both margins.
+
+107
+00:05:13,740 --> 00:05:16,800
+So those are all options you can use
+to change what your text looks like,
+
+108
+00:05:16,800 --> 00:05:20,120
+and how it's displayed on your page.
+
+109
+00:05:20,120 --> 00:05:22,180
+>> Your selectors don't
+have to be tags only.
+
+110
+00:05:22,180 --> 00:05:25,539
+We previously saw a body tag
+selector, and tag selector
+
+111
+00:05:25,539 --> 00:05:26,580
+does look just like that.
+
+112
+00:05:26,580 --> 00:05:30,020
+You name a tag, and then you
+define a stylesheet for that tag.
+
+113
+00:05:30,020 --> 00:05:32,660
+But you can also do something
+called an ID selector.
+
+114
+00:05:32,660 --> 00:05:34,390
+An ID selector looks pretty similar.
+
+115
+00:05:34,390 --> 00:05:38,100
+But notice, that now I'm not using
+an HTML tag, I'm using, in this case,
+
+116
+00:05:38,100 --> 00:05:40,720
+#unique, or hash unique.
+
+117
+00:05:40,720 --> 00:05:42,930
+If you recall from our
+video on HTML, we talked
+
+118
+00:05:42,930 --> 00:05:45,620
+about how tags can have attributes.
+
+119
+00:05:45,620 --> 00:05:48,340
+>> And one attribute that applies
+to pretty much all HTML tags,
+
+120
+00:05:48,340 --> 00:05:51,440
+but we didn't talk about it,
+is something called an ID tag.
+
+121
+00:05:51,440 --> 00:05:55,250
+So this particular CSS would
+apply only to HTML tag that has
+
+122
+00:05:55,250 --> 00:05:58,530
+a very specific ID, that you've named.
+
+123
+00:05:58,530 --> 00:06:01,000
+So if you have somewhere
+in your code, somewhere
+
+124
+00:06:01,000 --> 00:06:06,090
+in your HTML file, a tag and you
+specify as an attribute to that tag,
+
+125
+00:06:06,090 --> 00:06:09,060
+ID equals unique, this
+particular stylesheet
+
+126
+00:06:09,060 --> 00:06:15,030
+here will only apply in between
+that tag with the ID of unique.
+
+127
+00:06:15,030 --> 00:06:17,180
+>> You can also do something
+called a class selector.
+
+128
+00:06:17,180 --> 00:06:19,920
+So in addition to having
+ID attributes, you can also
+
+129
+00:06:19,920 --> 00:06:23,130
+add a class attribute to HTML tags.
+
+130
+00:06:23,130 --> 00:06:27,140
+And when you use a class attribute,
+it can be applied to multiple tags.
+
+131
+00:06:27,140 --> 00:06:31,880
+So if you have several things that
+are similar, maybe you want to say,
+
+132
+00:06:31,880 --> 00:06:35,890
+open tag blah, blah, blah,
+blah, class equals students.
+
+133
+00:06:35,890 --> 00:06:38,190
+And then this particular
+stylesheet would apply
+
+134
+00:06:38,190 --> 00:06:42,041
+to every tag whose class is students.
+
+135
+00:06:42,041 --> 00:06:44,290
+In this case, we'd set the
+background color to yellow,
+
+136
+00:06:44,290 --> 00:06:46,706
+and we'd set opacity, which
+is a tag we didn't talk about,
+
+137
+00:06:46,706 --> 00:06:52,510
+but just deals with how transparent
+something is, to 70%, in this case.
+
+138
+00:06:52,510 --> 00:06:54,430
+>> There's two options for
+writing stylesheets.
+
+139
+00:06:54,430 --> 00:06:56,680
+You can write them
+directly into your HTML
+
+140
+00:06:56,680 --> 00:06:59,690
+by placing the stylesheets
+in between style tags.
+
+141
+00:06:59,690 --> 00:07:03,850
+And those style tags go inside of
+the head tags of your web page.
+
+142
+00:07:03,850 --> 00:07:08,240
+The perhaps more preferred way to do
+it is to write a separate .css file,
+
+143
+00:07:08,240 --> 00:07:12,360
+and then link it into your
+document using link tags.
+
+144
+00:07:12,360 --> 00:07:14,690
+Link tags, again, are
+different from hyperlinks,
+
+145
+00:07:14,690 --> 00:07:16,760
+if you recall from our video an HTML.
+
+146
+00:07:16,760 --> 00:07:19,030
+And link tags are how we
+pull in separate files.
+
+147
+00:07:19,030 --> 00:07:23,900
+It sort of like the equivalent of
+the #include for web programming.
+
+148
+00:07:23,900 --> 00:07:27,140
+>> So let's take a look at table.HTML.
+
+149
+00:07:27,140 --> 00:07:29,380
+If you recall from our
+HTML video, I showed
+
+150
+00:07:29,380 --> 00:07:32,000
+an example of a very
+simple multiplication
+
+151
+00:07:32,000 --> 00:07:35,160
+table that looked pretty
+ugly, and maybe there's
+
+152
+00:07:35,160 --> 00:07:38,650
+a way to make it better with
+CSS, to make it actually look
+
+153
+00:07:38,650 --> 00:07:41,120
+more like a multiplication
+table, or something
+
+154
+00:07:41,120 --> 00:07:43,730
+that isn't just stuck together
+with no actual division
+
+155
+00:07:43,730 --> 00:07:45,532
+between the rows and the columns.
+
+156
+00:07:45,532 --> 00:07:47,490
+So let's head over to
+CS50 IDE, and take a look
+
+157
+00:07:47,490 --> 00:07:50,780
+at how CSS can, sort of, tweak
+what we started with before,
+
+158
+00:07:50,780 --> 00:07:53,290
+and make it something a lot better.
+
+159
+00:07:53,290 --> 00:07:55,650
+>> So we're in CS50 IDE
+now, and if unfamiliar,
+
+160
+00:07:55,650 --> 00:07:58,710
+we'll pull up in this
+table that HTML page.
+
+161
+00:07:58,710 --> 00:08:01,090
+Table.HTML basically
+just defines the contents
+
+162
+00:08:01,090 --> 00:08:05,044
+of a multiple-- it was supposed to be
+a four by four multiplication table.
+
+163
+00:08:05,044 --> 00:08:06,210
+It's pretty straightforward.
+
+164
+00:08:06,210 --> 00:08:09,410
+And we would think that it would
+look pretty well organized.
+
+165
+00:08:09,410 --> 00:08:15,277
+But in fact, when we preview this page,
+we see that it's kind of ugly, right?
+
+166
+00:08:15,277 --> 00:08:16,860
+Clearly we have rows and columns here.
+
+167
+00:08:16,860 --> 00:08:18,350
+There some sort of separation.
+
+168
+00:08:18,350 --> 00:08:20,040
+But it's not a meaningful separation.
+
+169
+00:08:20,040 --> 00:08:23,105
+We're not actually getting
+too much information here.
+
+170
+00:08:23,105 --> 00:08:25,730
+And there's no separation between
+the rows and columns in terms
+
+171
+00:08:25,730 --> 00:08:28,460
+of horizontal or vertical rules.
+
+172
+00:08:28,460 --> 00:08:31,530
+We could probably make this
+look a little bit better.
+
+173
+00:08:31,530 --> 00:08:32,934
+So let's try.
+
+174
+00:08:32,934 --> 00:08:34,559
+So I'm going to close this tab up here.
+
+175
+00:08:34,559 --> 00:08:37,434
+And I'm going to close my table.HTML,
+and I have another version here
+
+176
+00:08:37,434 --> 00:08:39,490
+called table2.HTML.
+
+177
+00:08:39,490 --> 00:08:40,655
+We'll open that up.
+
+178
+00:08:40,655 --> 00:08:42,530
+The body of the page is
+pretty much the same,
+
+179
+00:08:42,530 --> 00:08:44,238
+but I've changed a
+little bit at the top.
+
+180
+00:08:44,238 --> 00:08:47,132
+And I'll scroll up here.
+
+181
+00:08:47,132 --> 00:08:49,340
+Notice that this time, I'm
+using embedded style tags.
+
+182
+00:08:49,340 --> 00:08:53,550
+I've opened a style tag, and I'm now
+defining a CSS stylesheet just inside
+
+183
+00:08:53,550 --> 00:08:54,310
+of it.
+
+184
+00:08:54,310 --> 00:08:56,310
+I have a stylesheet that says, table.
+
+185
+00:08:56,310 --> 00:08:58,170
+That's my tag selector.
+
+186
+00:08:58,170 --> 00:09:01,340
+I'm not using dot or hash,
+which I would be doing if I
+
+187
+00:09:01,340 --> 00:09:03,710
+was using an ID or a class selector.
+
+188
+00:09:03,710 --> 00:09:06,190
+I have a tag selector here-- table.
+
+189
+00:09:06,190 --> 00:09:10,090
+This style is going to
+apply to every table tag.
+
+190
+00:09:10,090 --> 00:09:14,950
+Apparently I want to put a one
+pixel wide, solid blue border,
+
+191
+00:09:14,950 --> 00:09:15,779
+inside my table.
+
+192
+00:09:15,779 --> 00:09:18,320
+That sounds like it would probably
+help the situation, right?
+
+193
+00:09:18,320 --> 00:09:20,320
+We're going to have
+things look a lot better.
+
+194
+00:09:20,320 --> 00:09:21,190
+So this is fine.
+
+195
+00:09:21,190 --> 00:09:23,540
+Stylistically, I've just
+embedded my stylesheet in here.
+
+196
+00:09:23,540 --> 00:09:25,100
+It's certainly an
+acceptable way to do it.
+
+197
+00:09:25,100 --> 00:09:26,391
+Let's see what this looks like.
+
+198
+00:09:26,391 --> 00:09:29,790
+So I'll go back down here, and
+I'll will preview my table2.HTML.
+
+199
+00:09:29,790 --> 00:09:32,430
+
+200
+00:09:32,430 --> 00:09:36,470
+Well, that's not quite what I wanted,
+but it is exactly what we asked for.
+
+201
+00:09:36,470 --> 00:09:39,530
+We said that this style is
+going to apply to our table.
+
+202
+00:09:39,530 --> 00:09:43,810
+Our table now has a one pixel
+wide, solid blue border around it.
+
+203
+00:09:43,810 --> 00:09:46,237
+We're not actually getting
+at the table cells.
+
+204
+00:09:46,237 --> 00:09:47,570
+We're just getting at the table.
+
+205
+00:09:47,570 --> 00:09:49,310
+So CSS worked.
+
+206
+00:09:49,310 --> 00:09:51,890
+It has applied a
+stylesheet to our table.
+
+207
+00:09:51,890 --> 00:09:53,981
+But didn't quite do
+what we wanted it to do.
+
+208
+00:09:53,981 --> 00:09:55,730
+How do we get to do
+what we want it to do?
+
+209
+00:09:55,730 --> 00:09:59,287
+>> Well, let's take a look at one more
+version of this in table3.HTML.
+
+210
+00:09:59,287 --> 00:10:00,870
+So I'm just going to close these tabs.
+
+211
+00:10:00,870 --> 00:10:03,890
+I'm going to go back over here to my
+file tree, and open up table3.HTML.
+
+212
+00:10:03,890 --> 00:10:07,680
+
+213
+00:10:07,680 --> 00:10:10,350
+Again, it's going to look pretty
+similar here at the beginning.
+
+214
+00:10:10,350 --> 00:10:14,460
+But notice, this time, instead of using
+a stylesheet embedded right in there,
+
+215
+00:10:14,460 --> 00:10:18,870
+I'm going to link in a
+stylesheet using the link tag.
+
+216
+00:10:18,870 --> 00:10:22,480
+So I'm apparently linking in a
+stylesheet called tables.CSS,
+
+217
+00:10:22,480 --> 00:10:25,090
+and this well equals
+stylesheet just means-- well,
+
+218
+00:10:25,090 --> 00:10:28,645
+what is this file relative to what
+I'm doing-- is a stylesheet that I'm
+
+219
+00:10:28,645 --> 00:10:29,821
+using for my page.
+
+220
+00:10:29,821 --> 00:10:32,320
+So if I really want to see what
+I'm doing with the CSS here,
+
+221
+00:10:32,320 --> 00:10:35,010
+I need to go open that
+table.CSS file as well.
+
+222
+00:10:35,010 --> 00:10:37,490
+So we'll go back over here
+again to our file tree.
+
+223
+00:10:37,490 --> 00:10:38,660
+There's table.CSS.
+
+224
+00:10:38,660 --> 00:10:40,490
+We'll pop it open.
+
+225
+00:10:40,490 --> 00:10:43,070
+Now we're seeing a little of the CSS.
+
+226
+00:10:43,070 --> 00:10:45,630
+Apparently, I have a couple
+of things going on here.
+
+227
+00:10:45,630 --> 00:10:48,950
+I apparently want to put a five
+pixel wide, solid red border,
+
+228
+00:10:48,950 --> 00:10:50,287
+around my table.
+
+229
+00:10:50,287 --> 00:10:52,870
+We already know that that's going
+to just go on the perimeter.
+
+230
+00:10:52,870 --> 00:10:56,180
+We saw that in table2.HTML.
+
+231
+00:10:56,180 --> 00:10:58,770
+With each row, I
+apparently want to specify
+
+232
+00:10:58,770 --> 00:11:01,950
+that the row height is 50 pixels high.
+
+233
+00:11:01,950 --> 00:11:05,680
+So for every row, remember
+that's what the tr tag does,
+
+234
+00:11:05,680 --> 00:11:08,550
+I'm making it 50 pixels high.
+
+235
+00:11:08,550 --> 00:11:09,804
+>> Lastly, I have this comment.
+
+236
+00:11:09,804 --> 00:11:11,470
+And this is how we make comments in CSS.
+
+237
+00:11:11,470 --> 00:11:16,174
+It's very similar to seize block
+comments syntax slash star.
+
+238
+00:11:16,174 --> 00:11:17,090
+All the text you want.
+
+239
+00:11:17,090 --> 00:11:19,470
+There's no slash slash though in CSS.
+
+240
+00:11:19,470 --> 00:11:23,400
+For short inline comments, we have
+to use this particular format here.
+
+241
+00:11:23,400 --> 00:11:26,830
+It looks like I'm doing a
+lot of things in my td tags.
+
+242
+00:11:26,830 --> 00:11:29,710
+Remember td tags, or table
+data, which really are just
+
+243
+00:11:29,710 --> 00:11:32,210
+the columns inside of
+our rows, and apparently
+
+244
+00:11:32,210 --> 00:11:35,090
+for each piece of data
+in my table, I want
+
+245
+00:11:35,090 --> 00:11:38,850
+to set the background color to
+be black, the color to be white,
+
+246
+00:11:38,850 --> 00:11:40,320
+color is foreground color.
+
+247
+00:11:40,320 --> 00:11:42,360
+So this is going to be
+the text of my page.
+
+248
+00:11:42,360 --> 00:11:45,140
+I want big font, 22
+point font, and I want
+
+249
+00:11:45,140 --> 00:11:47,001
+it to be of the font family, Georgia.
+
+250
+00:11:47,001 --> 00:11:48,750
+So I'm not going to
+have the default font.
+
+251
+00:11:48,750 --> 00:11:51,820
+I'm going to specify Georgia, which
+is one of those web safe fonts
+
+252
+00:11:51,820 --> 00:11:53,830
+that we've seen before.
+
+253
+00:11:53,830 --> 00:11:57,284
+I want my text to be aligned
+centrally, in the middle of the box,
+
+254
+00:11:57,284 --> 00:11:59,450
+I don't want it to be left
+aligned or right aligned.
+
+255
+00:11:59,450 --> 00:12:03,461
+And I want my column width
+to be 50 pixels wide as well.
+
+256
+00:12:03,461 --> 00:12:05,210
+Let's take a look at
+what this looks like,
+
+257
+00:12:05,210 --> 00:12:07,470
+and see if this is maybe an improvement.
+
+258
+00:12:07,470 --> 00:12:12,890
+So I'm going to go to table3.HTML, which
+recall, includes table.CSS as a link,
+
+259
+00:12:12,890 --> 00:12:14,830
+and we'll preview it.
+
+260
+00:12:14,830 --> 00:12:16,800
+That's a lot better, right?
+
+261
+00:12:16,800 --> 00:12:20,004
+This is actually starting to look a
+lot more like a multiplication table.
+
+262
+00:12:20,004 --> 00:12:21,920
+I have that red border
+around my table but now
+
+263
+00:12:21,920 --> 00:12:26,700
+I also have specified that
+each row is 50 pixels wide,
+
+264
+00:12:26,700 --> 00:12:30,220
+or it's 50 pixels tall-- excuse
+me-- each column is 50 pixels wide.
+
+265
+00:12:30,220 --> 00:12:34,251
+The data in each column, and only
+the data, has a black background.
+
+266
+00:12:34,251 --> 00:12:36,000
+So that's why those
+white lines are there.
+
+267
+00:12:36,000 --> 00:12:38,836
+Because the space in
+between all of those cells,
+
+268
+00:12:38,836 --> 00:12:40,710
+it's not a border in
+and of itself, it's just
+
+269
+00:12:40,710 --> 00:12:43,170
+I'm only filling in the
+cells, which actually
+
+270
+00:12:43,170 --> 00:12:46,310
+makes the borders of the table, which
+apparently did exist all along, it
+
+271
+00:12:46,310 --> 00:12:47,887
+was just thin white lines.
+
+272
+00:12:47,887 --> 00:12:48,720
+Now they're visible.
+
+273
+00:12:48,720 --> 00:12:50,380
+Now they pop off on the screen.
+
+274
+00:12:50,380 --> 00:12:52,920
+And so this is a very simple
+stylesheet that I've applied,
+
+275
+00:12:52,920 --> 00:12:56,850
+and now my table looks a lot more like
+a four by four multiplication table,
+
+276
+00:12:56,850 --> 00:13:00,950
+instead of a just jumbled mess, where
+everything is clearly rows and columns,
+
+277
+00:13:00,950 --> 00:13:03,717
+but not super well organized.
+
+278
+00:13:03,717 --> 00:13:06,800
+We're really just scratching the surface
+of what you can do with CSS here.
+
+279
+00:13:06,800 --> 00:13:10,330
+Fortunately the CSS documentation
+is pretty straightforward.
+
+280
+00:13:10,330 --> 00:13:14,000
+You'll use several of its
+attributes, fairly frequently.
+
+281
+00:13:14,000 --> 00:13:16,087
+The ones we talked about
+earlier in this video.
+
+282
+00:13:16,087 --> 00:13:18,170
+There are several that you
+probably won't use all.
+
+283
+00:13:18,170 --> 00:13:19,469
+And that's fine, too.
+
+284
+00:13:19,469 --> 00:13:22,010
+But just know, that there's a
+lot of documentation out there.
+
+285
+00:13:22,010 --> 00:13:25,110
+So even if we didn't cover everything,
+you're certainly not left on your own.
+
+286
+00:13:25,110 --> 00:13:26,780
+But CSS is really fun
+to experiment with.
+
+287
+00:13:26,780 --> 00:13:29,040
+And I would strongly encourage you
+to play around with your web pages,
+
+288
+00:13:29,040 --> 00:13:32,180
+and see how you can make them
+look and feel to improve the user
+
+289
+00:13:32,180 --> 00:13:34,790
+experience of visiting your page.
+
+290
+00:13:34,790 --> 00:13:35,710
+I'm Doug Lloyd.
+
+291
+00:13:35,710 --> 00:13:37,980
+This is CS50.
+
+292
+00:13:37,980 --> 00:13:40,151

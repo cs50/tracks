@@ -1,0 +1,5658 @@
+1
+00:00:00,000 --> 00:00:10,075
+>> [MUSIC PLAYING]
+
+2
+00:00:10,075 --> 00:00:11,629
+
+3
+00:00:11,629 --> 00:00:14,420
+ALLISON BUCHHOLTZ-AU: All right,
+everyone, welcome back to section.
+
+4
+00:00:14,420 --> 00:00:17,420
+Hopefully you all had a great
+Halloween weekend, or Halloweekend,
+
+5
+00:00:17,420 --> 00:00:20,009
+as I like to say, all
+rested and recovered.
+
+6
+00:00:20,009 --> 00:00:21,675
+And thankfully it's not snowing anymore.
+
+7
+00:00:21,675 --> 00:00:23,230
+It's actually sunny outside.
+
+8
+00:00:23,230 --> 00:00:25,040
+I was real happy about that.
+
+9
+00:00:25,040 --> 00:00:28,420
+Not ready to drag out my winter boots.
+
+10
+00:00:28,420 --> 00:00:31,820
+Hopefully, pset6 went pretty well.
+
+11
+00:00:31,820 --> 00:00:35,040
+>> If you are tired of C, I'm happy
+to say you're done with C for now.
+
+12
+00:00:35,040 --> 00:00:37,550
+We have fully transitioned
+into web programming,
+
+13
+00:00:37,550 --> 00:00:42,030
+so you'll be working in HTML, PHP,
+maybe a little bit of JavaScript.
+
+14
+00:00:42,030 --> 00:00:44,650
+I don't know what next week's
+pset is, so I can't guarantee
+
+15
+00:00:44,650 --> 00:00:47,820
+what your next pset will
+be, but this week's pset
+
+16
+00:00:47,820 --> 00:00:52,290
+is CS50 Finance, which is basically
+implementing the sort of web page
+
+17
+00:00:52,290 --> 00:00:57,222
+that allows you to buy and sell
+stock, and keep track of them.
+
+18
+00:00:57,222 --> 00:00:59,930
+And it's pretty cool, because all
+of it is dynamically generated.
+
+19
+00:00:59,930 --> 00:01:02,320
+You can have different users who
+each have their own information,
+
+20
+00:01:02,320 --> 00:01:04,580
+and you're going to be
+implementing all of that.
+
+21
+00:01:04,580 --> 00:01:05,970
+It takes a while.
+
+22
+00:01:05,970 --> 00:01:13,030
+I definitely think this is easier
+than C psets, but it takes longer.
+
+23
+00:01:13,030 --> 00:01:17,370
+You're learning a new language,
+PHP, which is very similar to C,
+
+24
+00:01:17,370 --> 00:01:21,390
+but of course is going to require
+you to look up syntax and understand
+
+25
+00:01:21,390 --> 00:01:23,360
+how to convert between the languages.
+
+26
+00:01:23,360 --> 00:01:27,960
+>> But I don't think there's anything
+super conceptually hard about this pset.
+
+27
+00:01:27,960 --> 00:01:30,087
+It's just learning the
+new language and getting
+
+28
+00:01:30,087 --> 00:01:31,420
+through all these little pieces.
+
+29
+00:01:31,420 --> 00:01:34,850
+If you guys have read through
+the spec, it's pretty long.
+
+30
+00:01:34,850 --> 00:01:38,200
+I think this one is like 21
+pages, if I remember correctly.
+
+31
+00:01:38,200 --> 00:01:40,130
+It's a long spec.
+
+32
+00:01:40,130 --> 00:01:42,218
+So if you haven't read it-- 22.
+
+33
+00:01:42,218 --> 00:01:43,520
+32.
+
+34
+00:01:43,520 --> 00:01:44,410
+>> Wow.
+
+35
+00:01:44,410 --> 00:01:46,280
+So I was off by 50% there.
+
+36
+00:01:46,280 --> 00:01:48,550
+So, 32 pages.
+
+37
+00:01:48,550 --> 00:01:49,820
+So it's long.
+
+38
+00:01:49,820 --> 00:01:54,070
+There are lots of pieces, but none
+of the pieces should be that bad.
+
+39
+00:01:54,070 --> 00:01:55,650
+It's just a lot.
+
+40
+00:01:55,650 --> 00:02:00,310
+So definitely get started early
+if possible, as per usual,
+
+41
+00:02:00,310 --> 00:02:05,480
+but I think it should feel a little
+nicer than especially the psets like
+
+42
+00:02:05,480 --> 00:02:10,250
+recover and resize that are just
+very hard to wrap your head around.
+
+43
+00:02:10,250 --> 00:02:12,550
+>> So with that, we're going to dive in.
+
+44
+00:02:12,550 --> 00:02:14,840
+I don't have your agenda
+slide today, but we're
+
+45
+00:02:14,840 --> 00:02:17,920
+going to be talking about PHP.
+
+46
+00:02:17,920 --> 00:02:20,790
+I'll be giving you kind of a
+crash course on some things
+
+47
+00:02:20,790 --> 00:02:23,040
+that you might want to know about PHP.
+
+48
+00:02:23,040 --> 00:02:26,470
+Different syntax things,
+things to look out for.
+
+49
+00:02:26,470 --> 00:02:29,400
+We're going to be talking
+a little bit about SQL.
+
+50
+00:02:29,400 --> 00:02:33,020
+Just very simple things
+there, and then also MVC
+
+51
+00:02:33,020 --> 00:02:36,380
+is Model View Controller, which
+is how your pset is set up,
+
+52
+00:02:36,380 --> 00:02:39,801
+so understanding how that
+works will be super useful.
+
+53
+00:02:39,801 --> 00:02:40,300
+All right.
+
+54
+00:02:40,300 --> 00:02:42,030
+So PHP.
+
+55
+00:02:42,030 --> 00:02:45,050
+You guys should have done
+something very, very simple
+
+56
+00:02:45,050 --> 00:02:48,680
+with PHP, which is
+this bottom thing here,
+
+57
+00:02:48,680 --> 00:02:53,700
+where you submitted some form on the
+top here that had some name that you
+
+58
+00:02:53,700 --> 00:02:58,860
+input, and it would say like hello, Ben,
+or hello, Allison, and it would pop up.
+
+59
+00:02:58,860 --> 00:03:02,570
+So this is actually what it
+should've looked like from your pset,
+
+60
+00:03:02,570 --> 00:03:06,040
+in case you guys wanted to know
+or didn't quite figure it out.
+
+61
+00:03:06,040 --> 00:03:14,520
+>> But we have these question marks
+here that indicate that this is PHP.
+
+62
+00:03:14,520 --> 00:03:18,850
+They wrap it, and then
+htmlspecialcharge, remember, is just,
+
+63
+00:03:18,850 --> 00:03:22,450
+make sure that you're safe
+from any crazy injection attack
+
+64
+00:03:22,450 --> 00:03:26,550
+or if someone tries to put
+crazy malicious characters
+
+65
+00:03:26,550 --> 00:03:30,780
+into your name field, it doesn't
+like up your server or whatnot.
+
+66
+00:03:30,780 --> 00:03:37,590
+>> And then if we notice, this HTML
+form had a method of $_GET, which,
+
+67
+00:03:37,590 --> 00:03:42,050
+if we remember our superglobals
+from PHP, $_GET, $_POST,
+
+68
+00:03:42,050 --> 00:03:44,530
+we'll be going into
+those in a little bit.
+
+69
+00:03:44,530 --> 00:03:50,390
+But we know that we have some name
+here that corresponds to the name
+
+70
+00:03:50,390 --> 00:03:51,920
+that we submitted.
+
+71
+00:03:51,920 --> 00:03:56,930
+So this is just kind of like the
+very simple PHP HTML collaboration
+
+72
+00:03:56,930 --> 00:04:00,080
+that you guys had from pset six.
+
+73
+00:04:00,080 --> 00:04:02,410
+>> But that doesn't really
+answer what is PHP.
+
+74
+00:04:02,410 --> 00:04:04,850
+Obviously it's a language,
+but we haven't really
+
+75
+00:04:04,850 --> 00:04:08,260
+talked about it in this section,
+so there's a little bit more
+
+76
+00:04:08,260 --> 00:04:09,740
+about what PHP actually is.
+
+77
+00:04:09,740 --> 00:04:14,270
+So PHP is just PHP
+hypertext preprocessor.
+
+78
+00:04:14,270 --> 00:04:16,399
+>> It's actually considered
+a programming language
+
+79
+00:04:16,399 --> 00:04:20,500
+because it has logic, whereas if
+we remember talking about HTML,
+
+80
+00:04:20,500 --> 00:04:24,980
+we called that a markup language versus
+a programming language because HTML
+
+81
+00:04:24,980 --> 00:04:27,790
+is strictly modifying how
+things look on the page.
+
+82
+00:04:27,790 --> 00:04:30,650
+It's just modifying
+whether something's bold,
+
+83
+00:04:30,650 --> 00:04:35,280
+or whether it's a form,
+element, or something like that.
+
+84
+00:04:35,280 --> 00:04:36,750
+It doesn't have any logic.
+
+85
+00:04:36,750 --> 00:04:38,770
+It doesn't have loops or conditions.
+
+86
+00:04:38,770 --> 00:04:40,940
+You can't error check things.
+
+87
+00:04:40,940 --> 00:04:44,810
+You would either display things
+in a certain way or ask for things
+
+88
+00:04:44,810 --> 00:04:45,490
+from the user.
+
+89
+00:04:45,490 --> 00:04:47,180
+That's it.
+
+90
+00:04:47,180 --> 00:04:51,780
+>> So with PHP, it actually does allow us
+to do all of these more logical things,
+
+91
+00:04:51,780 --> 00:04:56,840
+like validate the input or
+manipulate it in some way.
+
+92
+00:04:56,840 --> 00:05:02,570
+We can combine it with HTML, as we just
+saw in your last pset and right now,
+
+93
+00:05:02,570 --> 00:05:05,280
+and it allows us to create
+these dynamic web pages.
+
+94
+00:05:05,280 --> 00:05:08,900
+So if you guys ever-- I don't know if
+you were like me, but in middle school
+
+95
+00:05:08,900 --> 00:05:13,820
+they had us take this IT class where
+we created just HTML web pages,
+
+96
+00:05:13,820 --> 00:05:20,160
+and they were static and click around
+to other things, but they never changed.
+
+97
+00:05:20,160 --> 00:05:25,960
+>> With dynamic ones, what we can
+do is, like with CS50 Finance,
+
+98
+00:05:25,960 --> 00:05:27,870
+you're going to have different users.
+
+99
+00:05:27,870 --> 00:05:30,992
+Depending on those users'
+preferences, and what they're buying
+
+100
+00:05:30,992 --> 00:05:32,700
+or what they're selling
+for their stocks,
+
+101
+00:05:32,700 --> 00:05:35,050
+you're going to display
+different things.
+
+102
+00:05:35,050 --> 00:05:38,110
+So if there's some
+identifying characteristic
+
+103
+00:05:38,110 --> 00:05:41,990
+for your user using this
+web page, we can dynamically
+
+104
+00:05:41,990 --> 00:05:44,720
+decide what to display for them.
+
+105
+00:05:44,720 --> 00:05:49,720
+It's not the same thing for every single
+person, which if we just had HTML,
+
+106
+00:05:49,720 --> 00:05:52,400
+the page would be the same for
+every single person who visited.
+
+107
+00:05:52,400 --> 00:05:55,790
+PHP allows us to personalize pages.
+
+108
+00:05:55,790 --> 00:06:01,670
+>> And then we can either put them in
+the same file, which, as in the case
+
+109
+00:06:01,670 --> 00:06:06,670
+before here, we saw that
+we have HTML all here
+
+110
+00:06:06,670 --> 00:06:09,760
+and then we have this little bit of PHP.
+
+111
+00:06:09,760 --> 00:06:12,690
+We can do like that,
+or with CS50 Finance,
+
+112
+00:06:12,690 --> 00:06:16,310
+if you guys have looked at the
+files-- and we should have time
+
+113
+00:06:16,310 --> 00:06:19,541
+to step through a couple of them
+together at the end of the section-- we
+
+114
+00:06:19,541 --> 00:06:21,540
+can see how you can
+actually keep them separate,
+
+115
+00:06:21,540 --> 00:06:24,720
+which is actually a better thing to do.
+
+116
+00:06:24,720 --> 00:06:26,550
+>> So.
+
+117
+00:06:26,550 --> 00:06:27,680
+Crash course.
+
+118
+00:06:27,680 --> 00:06:32,860
+All the quick simple things
+you might need to know for PHP.
+
+119
+00:06:32,860 --> 00:06:34,470
+Declaring variables.
+
+120
+00:06:34,470 --> 00:06:37,970
+That blue's a little annoying,
+but hopefully you guys can see it.
+
+121
+00:06:37,970 --> 00:06:39,850
+If not, I'll write it
+on the chalk board.
+
+122
+00:06:39,850 --> 00:06:41,370
+The declaring variables.
+
+123
+00:06:41,370 --> 00:06:46,710
+One thing to know is that, unlike C,
+PHP is loosely or dynamically typed,
+
+124
+00:06:46,710 --> 00:06:50,870
+which means that you don't need to
+tell a variable what type it is.
+
+125
+00:06:50,870 --> 00:06:55,710
+You can just simply say some variable
+is equal to whatever you want it to,
+
+126
+00:06:55,710 --> 00:07:00,440
+and it will decide the type of
+that variable at run time for you.
+
+127
+00:07:00,440 --> 00:07:05,410
+>> As you'll see, this can create
+some very interesting things.
+
+128
+00:07:05,410 --> 00:07:09,130
+But for most purposes, you
+don't need to specify the type.
+
+129
+00:07:09,130 --> 00:07:12,580
+You can, and you can type
+cast things like you normally
+
+130
+00:07:12,580 --> 00:07:15,900
+wouldn't see if you want to
+force it to be a certain type,
+
+131
+00:07:15,900 --> 00:07:17,090
+but you don't have to.
+
+132
+00:07:17,090 --> 00:07:19,810
+It's not going to yell at you
+if you just declare a variable
+
+133
+00:07:19,810 --> 00:07:21,910
+and don't specify a type for it.
+
+134
+00:07:21,910 --> 00:07:25,199
+>> So in case you can't read
+this-- I know it's not the best.
+
+135
+00:07:25,199 --> 00:07:28,490
+I thought it would show up better-- the
+way you initialize any variable is just
+
+136
+00:07:28,490 --> 00:07:31,270
+with a dollar sign, what
+you want it to be called,
+
+137
+00:07:31,270 --> 00:07:33,240
+and then what you're assigning it.
+
+138
+00:07:33,240 --> 00:07:36,520
+So in this case, this is some $var = 3.
+
+139
+00:07:36,520 --> 00:07:40,450
+So if we ever use $var
+somewhere, it will just
+
+140
+00:07:40,450 --> 00:07:42,760
+be the same as putting 3 there.
+
+141
+00:07:42,760 --> 00:07:43,650
+OK?
+
+142
+00:07:43,650 --> 00:07:46,480
+>> So, any variable, just
+dollar sign, whatever
+
+143
+00:07:46,480 --> 00:07:50,210
+you want to call your variable,
+and whatever you want it to equal.
+
+144
+00:07:50,210 --> 00:07:51,430
+Little cooler.
+
+145
+00:07:51,430 --> 00:07:56,156
+Less to write for initializing
+a variable, right?
+
+146
+00:07:56,156 --> 00:07:57,530
+Does that make sense to everyone?
+
+147
+00:07:57,530 --> 00:08:02,280
+Just quick syntax difference
+between C and PHP.
+
+148
+00:08:02,280 --> 00:08:06,440
+>> Arrays are much cooler in PHP.
+
+149
+00:08:06,440 --> 00:08:09,620
+We can give them keys.
+
+150
+00:08:09,620 --> 00:08:13,180
+So the way to think about
+it is that, if we ever
+
+151
+00:08:13,180 --> 00:08:16,610
+wanted to access an
+element within an array,
+
+152
+00:08:16,610 --> 00:08:19,290
+we needed to know the
+index of it, right?
+
+153
+00:08:19,290 --> 00:08:24,290
+So we know that with C, we
+could access the first element
+
+154
+00:08:24,290 --> 00:08:28,650
+by doing array bracket zero, or if we
+want the first element, array bracket
+
+155
+00:08:28,650 --> 00:08:29,360
+one.
+
+156
+00:08:29,360 --> 00:08:31,910
+And if we wanted something
+in there, we might just
+
+157
+00:08:31,910 --> 00:08:35,850
+have to iterate through, unless
+we actually knew the index.
+
+158
+00:08:35,850 --> 00:08:38,320
+>> One thing that is really
+cool with PHP arrays
+
+159
+00:08:38,320 --> 00:08:40,850
+is that they're what
+we call associative.
+
+160
+00:08:40,850 --> 00:08:44,970
+So we can associate
+some key to some value,
+
+161
+00:08:44,970 --> 00:08:47,340
+and we're actually going
+to-- I will show you
+
+162
+00:08:47,340 --> 00:08:50,370
+how we can use this in a second.
+
+163
+00:08:50,370 --> 00:08:54,330
+But basically, if you ever want
+to initialize an array like that,
+
+164
+00:08:54,330 --> 00:08:56,020
+you have some $array.
+
+165
+00:08:56,020 --> 00:08:59,622
+>> So in the same way, it's just
+some variable that we're creating.
+
+166
+00:08:59,622 --> 00:09:01,330
+This could be called
+whatever you wanted.
+
+167
+00:09:01,330 --> 00:09:03,310
+This could be $example.
+
+168
+00:09:03,310 --> 00:09:04,930
+Just another variable.
+
+169
+00:09:04,930 --> 00:09:09,510
+What makes it an array is the
+bracket syntax that we have here.
+
+170
+00:09:09,510 --> 00:09:14,560
+Just like normal C. And we
+have some key to some value.
+
+171
+00:09:14,560 --> 00:09:19,480
+So key1 goes to value1,
+key2 two goes to value2.
+
+172
+00:09:19,480 --> 00:09:25,080
+These pairs are separated with a
+comma, just like normal arrays.
+
+173
+00:09:25,080 --> 00:09:25,810
+>> However.
+
+174
+00:09:25,810 --> 00:09:26,520
+Big one.
+
+175
+00:09:26,520 --> 00:09:27,270
+Keys are optional.
+
+176
+00:09:27,270 --> 00:09:28,510
+You don't have to use them.
+
+177
+00:09:28,510 --> 00:09:30,850
+And if you don't, then it's just normal.
+
+178
+00:09:30,850 --> 00:09:32,030
+Question?
+
+179
+00:09:32,030 --> 00:09:33,540
+Or, oh.
+
+180
+00:09:33,540 --> 00:09:37,829
+>> AUDIENCE: Well, about the right.
+
+181
+00:09:37,829 --> 00:09:39,120
+Where's the memory coming from?
+
+182
+00:09:39,120 --> 00:09:43,425
+Can it also be the same like
+[INAUDIBLE] and from the stack?
+
+183
+00:09:43,425 --> 00:09:45,277
+Is that also using PHP?
+
+184
+00:09:45,277 --> 00:09:46,485
+Like when we're linking them?
+
+185
+00:09:46,485 --> 00:09:49,070
+>> ALLISON BUCHHOLTZ-AU:
+With PHP, We don't tend
+
+186
+00:09:49,070 --> 00:09:52,670
+to worry about where our
+memory's coming from.
+
+187
+00:09:52,670 --> 00:09:54,670
+We don't spend a lot of
+time talking about that,
+
+188
+00:09:54,670 --> 00:09:58,450
+so it's not really anything
+you need to worry about.
+
+189
+00:09:58,450 --> 00:10:00,620
+So keys are optional.
+
+190
+00:10:00,620 --> 00:10:04,780
+In the same way, if you don't
+want to make this associated,
+
+191
+00:10:04,780 --> 00:10:09,910
+you just want a normal array where
+array zero is the first element
+
+192
+00:10:09,910 --> 00:10:13,190
+and array one is the second
+element, you can do it exactly
+
+193
+00:10:13,190 --> 00:10:17,886
+as you would in C. You have some
+variable that's going to be your array,
+
+194
+00:10:17,886 --> 00:10:20,110
+and it equals these brackets here.
+
+195
+00:10:20,110 --> 00:10:20,610
+Yes.
+
+196
+00:10:20,610 --> 00:10:22,693
+>> AUDIENCE: Does it have the
+same point to notation.
+
+197
+00:10:22,693 --> 00:10:26,250
+Like, I can do like a array++,
+and that points to the second one.
+
+198
+00:10:26,250 --> 00:10:30,260
+>> ALLISON BUCHHOLTZ-AU: You can do--
+Well, you can have some iterator, i,
+
+199
+00:10:30,260 --> 00:10:34,300
+that you can do i++ and do a
+array of i in the same way.
+
+200
+00:10:34,300 --> 00:10:35,680
+But that's it.
+
+201
+00:10:35,680 --> 00:10:39,630
+So, like in this case,
+array of 1 would equal 20.
+
+202
+00:10:39,630 --> 00:10:42,530
+Same sort of indexing notation.
+
+203
+00:10:42,530 --> 00:10:51,330
+This is basically just an implicit thing
+here, where it says zero, zero to 10,
+
+204
+00:10:51,330 --> 00:10:54,640
+to 1 to 20, 2 to 30.
+
+205
+00:10:54,640 --> 00:10:56,760
+It's just implicit keys for it.
+
+206
+00:10:56,760 --> 00:10:59,990
+What changes with PHP is
+that you now have the power
+
+207
+00:10:59,990 --> 00:11:02,660
+to reassign those keys to
+do whatever you'd like.
+
+208
+00:11:02,660 --> 00:11:13,820
+>> So one thing is here.
+
+209
+00:11:13,820 --> 00:11:18,230
+So I have just some examples
+here that I wrote up for you guys
+
+210
+00:11:18,230 --> 00:11:22,010
+because I feel like examples always
+help more than just the abstract.
+
+211
+00:11:22,010 --> 00:11:26,590
+So, in this case here, we
+have some associative array
+
+212
+00:11:26,590 --> 00:11:31,990
+that is my first name,
+my last name, and I
+
+213
+00:11:31,990 --> 00:11:35,390
+am echoing, which is just
+for all purposes here
+
+214
+00:11:35,390 --> 00:11:38,500
+going to print out to the output here.
+
+215
+00:11:38,500 --> 00:11:39,300
+>> And it says, OK.
+
+216
+00:11:39,300 --> 00:11:46,680
+Print out the value that
+corresponds to array at key Allison.
+
+217
+00:11:46,680 --> 00:11:50,860
+And I can also send you guys
+all this code after class.
+
+218
+00:11:50,860 --> 00:11:53,700
+So, when we run this, what do
+you think is going to happen?
+
+219
+00:11:53,700 --> 00:11:56,239
+What's going to print out?
+
+220
+00:11:56,239 --> 00:11:57,280
+AUDIENCE: Your last name.
+
+221
+00:11:57,280 --> 00:11:58,738
+ALLISON BUCHHOLTZ-AU: My last name.
+
+222
+00:11:58,738 --> 00:12:00,000
+It does.
+
+223
+00:12:00,000 --> 00:12:00,960
+Right here.
+
+224
+00:12:00,960 --> 00:12:02,400
+Print out.
+
+225
+00:12:02,400 --> 00:12:07,000
+So if we were to change this and we
+were to add someone else to our list--
+
+226
+00:12:07,000 --> 00:12:11,919
+So let's say we have Emma here,
+and we associate your last name--
+
+227
+00:12:11,919 --> 00:12:13,252
+Let's see if I spell this right.
+
+228
+00:12:13,252 --> 00:12:13,714
+>> AUDIENCE: Yeah.
+
+229
+00:12:13,714 --> 00:12:14,640
+>> ALLISON BUCHHOLTZ-AU: Yes.
+
+230
+00:12:14,640 --> 00:12:15,010
+>> AUDIENCE: Good job.
+
+231
+00:12:15,010 --> 00:12:16,218
+>> ALLISON BUCHHOLTZ-AU: Lovely.
+
+232
+00:12:16,218 --> 00:12:25,370
+So now if we have this here and
+we wanted to find your last name,
+
+233
+00:12:25,370 --> 00:12:26,290
+you have it there.
+
+234
+00:12:26,290 --> 00:12:31,270
+So you can just think of it
+as replacing this key here.
+
+235
+00:12:31,270 --> 00:12:33,190
+You're just replacing the index.
+
+236
+00:12:33,190 --> 00:12:36,845
+So it allows you to just search
+through an array much easier.
+
+237
+00:12:36,845 --> 00:12:38,220
+You don't need to know the index.
+
+238
+00:12:38,220 --> 00:12:43,470
+As long as this key that you're looking
+for exists somewhere in the array,
+
+239
+00:12:43,470 --> 00:12:47,660
+PHP will find it and it will return
+the value associated with it.
+
+240
+00:12:47,660 --> 00:12:49,840
+So it gives you a lot more
+power with your arrays.
+
+241
+00:12:49,840 --> 00:12:50,340
+Yes.
+
+242
+00:12:50,340 --> 00:12:53,131
+>> AUDIENCE: If you have two keys the
+same, will it give you an error?
+
+243
+00:12:53,131 --> 00:12:55,830
+ALLISON BUCHHOLTZ-AU: It
+should give you an error, yeah.
+
+244
+00:12:55,830 --> 00:12:58,520
+Does that make a little
+more sense for you guys?
+
+245
+00:12:58,520 --> 00:13:07,640
+And in the same way, we have an array
+here that doesn't have any keys.
+
+246
+00:13:07,640 --> 00:13:10,910
+Also this is a syntax
+that you might want
+
+247
+00:13:10,910 --> 00:13:13,550
+to be aware of, because you'll
+have to use this in your pset.
+
+248
+00:13:13,550 --> 00:13:17,317
+>> Whenever you're doing an
+echo, you have these quotes,
+
+249
+00:13:17,317 --> 00:13:19,400
+and whenever you're referring
+to part of an array,
+
+250
+00:13:19,400 --> 00:13:22,180
+you have to have these
+curly braces around them.
+
+251
+00:13:22,180 --> 00:13:25,630
+It's kind of annoying, but
+you just have to do it.
+
+252
+00:13:25,630 --> 00:13:28,010
+So just something to keep in mind.
+
+253
+00:13:28,010 --> 00:13:31,490
+If you're running into errors of,
+I know that this exists in my array
+
+254
+00:13:31,490 --> 00:13:34,523
+but it's throwing errors at me,
+try putting braces around it
+
+255
+00:13:34,523 --> 00:13:37,180
+and it should work.
+
+256
+00:13:37,180 --> 00:13:40,810
+>> So in this case here, this is a
+normal C array that we're used to.
+
+257
+00:13:40,810 --> 00:13:45,810
+Has three, five, and six, and we just
+want to print out the first element,
+
+258
+00:13:45,810 --> 00:13:47,850
+so this should print out three.
+
+259
+00:13:47,850 --> 00:13:51,830
+And I did run all these, so
+hopefully nothing changed.
+
+260
+00:13:51,830 --> 00:13:54,460
+We see at the bottom here,
+it just prints out three.
+
+261
+00:13:54,460 --> 00:13:57,050
+
+262
+00:13:57,050 --> 00:13:58,040
+Cool.
+
+263
+00:13:58,040 --> 00:14:00,000
+That make sense for everyone?
+
+264
+00:14:00,000 --> 00:14:01,280
+Associative arrays.
+
+265
+00:14:01,280 --> 00:14:03,150
+Much cooler than normal arrays.
+
+266
+00:14:03,150 --> 00:14:09,640
+>> This is why-- Did David show you
+the PHP implementation of pset6
+
+267
+00:14:09,640 --> 00:14:11,751
+during lecture at all?
+
+268
+00:14:11,751 --> 00:14:12,250
+OK.
+
+269
+00:14:12,250 --> 00:14:13,300
+So, I'll show you.
+
+270
+00:14:13,300 --> 00:14:13,770
+I don't know it off the t--
+
+271
+00:14:13,770 --> 00:14:14,680
+>> AUDIENCE: He did last week.
+
+272
+00:14:14,680 --> 00:14:15,560
+>> ALLISON BUCHHOLTZ-AU: Was it last week?
+
+273
+00:14:15,560 --> 00:14:15,870
+>> AUDIENCE: Yeah.
+
+274
+00:14:15,870 --> 00:14:16,995
+>> ALLISON BUCHHOLTZ-AU: Yeah.
+
+275
+00:14:16,995 --> 00:14:20,800
+So speller can be done in like six lines
+with PHP, and part of the power of that
+
+276
+00:14:20,800 --> 00:14:25,640
+is this associative array where
+you can just load each word in,
+
+277
+00:14:25,640 --> 00:14:28,290
+and you have it equal to true or false.
+
+278
+00:14:28,290 --> 00:14:31,410
+And so you can say, oh.
+
+279
+00:14:31,410 --> 00:14:39,130
+Return dictionary at some word, and
+if it's there, it will return true.
+
+280
+00:14:39,130 --> 00:14:42,130
+Otherwise, it won't find
+it and it'll return false.
+
+281
+00:14:42,130 --> 00:14:45,810
+So kind of a cool little thing.
+
+282
+00:14:45,810 --> 00:14:46,750
+>> All right.
+
+283
+00:14:46,750 --> 00:14:48,990
+So those are associative arrays.
+
+284
+00:14:48,990 --> 00:14:50,150
+They're pretty cool.
+
+285
+00:14:50,150 --> 00:14:51,830
+I really like them.
+
+286
+00:14:51,830 --> 00:14:55,340
+And obviously this-- Ah.
+
+287
+00:14:55,340 --> 00:14:56,290
+OK.
+
+288
+00:14:56,290 --> 00:14:57,880
+Now it's working.
+
+289
+00:14:57,880 --> 00:15:00,700
+Maybe.
+
+290
+00:15:00,700 --> 00:15:01,537
+OK.
+
+291
+00:15:01,537 --> 00:15:02,120
+Another thing.
+
+292
+00:15:02,120 --> 00:15:07,680
+So, with equality, just a
+cool thing to keep in mind.
+
+293
+00:15:07,680 --> 00:15:12,140
+With PHP, because it
+is dynamically typed,
+
+294
+00:15:12,140 --> 00:15:16,110
+the type can change depending on when
+you run it, how you're running it.
+
+295
+00:15:16,110 --> 00:15:19,890
+I actually have some cool
+examples that I'll show you guys.
+
+296
+00:15:19,890 --> 00:15:23,350
+>> But == just checks for
+equality after type juggling.
+
+297
+00:15:23,350 --> 00:15:28,890
+So if you have something that's
+like the character 1 and number 1,
+
+298
+00:15:28,890 --> 00:15:31,890
+PHP would tell you that
+those are equal because it
+
+299
+00:15:31,890 --> 00:15:35,990
+can juggle the types of the
+two of them until it's equal,
+
+300
+00:15:35,990 --> 00:15:38,480
+which maybe for your case is fine.
+
+301
+00:15:38,480 --> 00:15:44,170
+>> If you need to see if they are the
+same kind of value and the same type,
+
+302
+00:15:44,170 --> 00:15:45,305
+you want this ===.
+
+303
+00:15:45,305 --> 00:15:48,150
+And I don't think you have any
+case where you need to use that
+
+304
+00:15:48,150 --> 00:15:52,570
+in your pset, but for a lot of
+you who will go on to do web pages
+
+305
+00:15:52,570 --> 00:15:57,340
+for your final projects and things, it's
+a good thing to know that == and ===
+
+306
+00:15:57,340 --> 00:16:01,690
+are different, and it's a good
+distinction to understand.
+
+307
+00:16:01,690 --> 00:16:02,400
+>> OK.
+
+308
+00:16:02,400 --> 00:16:02,980
+So.
+
+309
+00:16:02,980 --> 00:16:04,460
+Foreach loops.
+
+310
+00:16:04,460 --> 00:16:07,920
+They are a way to
+iterate through an array.
+
+311
+00:16:07,920 --> 00:16:11,714
+So, just like arrays became
+so much cooler in PHP,
+
+312
+00:16:11,714 --> 00:16:13,630
+your way to iterate
+through an array, I think,
+
+313
+00:16:13,630 --> 00:16:16,250
+also becomes much cooler
+and much more powerful.
+
+314
+00:16:16,250 --> 00:16:22,710
+So instead of having to create
+some for i equals 0 and whatever,
+
+315
+00:16:22,710 --> 00:16:24,890
+and then update that
+i as you go through,
+
+316
+00:16:24,890 --> 00:16:27,730
+we have this awesome foreach loop.
+
+317
+00:16:27,730 --> 00:16:36,340
+>> So here's the standard general
+structure of these two.
+
+318
+00:16:36,340 --> 00:16:41,180
+So you either have foreach some array
+as the value you want to iterate as.
+
+319
+00:16:41,180 --> 00:16:46,750
+So this is the name of the array
+variable that you want to reference,
+
+320
+00:16:46,750 --> 00:16:50,600
+and this is what you want
+to call it within the loop.
+
+321
+00:16:50,600 --> 00:16:51,420
+OK?
+
+322
+00:16:51,420 --> 00:16:56,810
+So this corresponds to
+each element of the array,
+
+323
+00:16:56,810 --> 00:16:59,500
+and you use this value within this loop.
+
+324
+00:16:59,500 --> 00:17:00,675
+>> I have an example.
+
+325
+00:17:00,675 --> 00:17:02,930
+I know examples are so much better.
+
+326
+00:17:02,930 --> 00:17:05,119
+And so this is if there are
+no keys, so this is like
+
+327
+00:17:05,119 --> 00:17:11,170
+if we just have one where the keys
+are the normal indices for your array.
+
+328
+00:17:11,170 --> 00:17:14,770
+Or this is also in the case if
+you have no use for the keys.
+
+329
+00:17:14,770 --> 00:17:16,690
+If you don't care about
+the keys and you just
+
+330
+00:17:16,690 --> 00:17:20,260
+want to iterate through with the values
+for each of those in whatever order,
+
+331
+00:17:20,260 --> 00:17:20,950
+that's fine.
+
+332
+00:17:20,950 --> 00:17:22,609
+>> You can use the structure.
+
+333
+00:17:22,609 --> 00:17:28,640
+Otherwise, if there are keys, our
+$value just changes to $key value.
+
+334
+00:17:28,640 --> 00:17:30,660
+So it just changes to a key value pair.
+
+335
+00:17:30,660 --> 00:17:34,780
+And then we can refer to $key
+and $value within our loop.
+
+336
+00:17:34,780 --> 00:17:35,900
+OK?
+
+337
+00:17:35,900 --> 00:17:36,660
+So.
+
+338
+00:17:36,660 --> 00:17:37,810
+Example.
+
+339
+00:17:37,810 --> 00:17:38,610
+Make it nicer.
+
+340
+00:17:38,610 --> 00:17:48,910
+
+341
+00:17:48,910 --> 00:17:49,410
+OK.
+
+342
+00:17:49,410 --> 00:17:56,780
+>> So we have this one
+here, which we have some
+
+343
+00:17:56,780 --> 00:18:01,460
+are-- You can also
+create an array like this
+
+344
+00:18:01,460 --> 00:18:05,690
+by having some variable equal
+to array with parentheses,
+
+345
+00:18:05,690 --> 00:18:08,340
+or you can just do bracket.
+
+346
+00:18:08,340 --> 00:18:11,890
+You should do the bracket, but
+this is another way to do it.
+
+347
+00:18:11,890 --> 00:18:16,220
+So here we have some array of three
+elements of one, two, and three,
+
+348
+00:18:16,220 --> 00:18:18,300
+and we have our foreach.
+
+349
+00:18:18,300 --> 00:18:23,510
+>> Notice this one corresponds to the
+array that we're iterating over,
+
+350
+00:18:23,510 --> 00:18:28,330
+and this is what we're calling
+each thing in our array.
+
+351
+00:18:28,330 --> 00:18:32,670
+And all this is doing is it's
+going to print out each value.
+
+352
+00:18:32,670 --> 00:18:45,590
+So if we run it, we notice that we
+have value one, value two, value three.
+
+353
+00:18:45,590 --> 00:18:54,080
+>> And in the same way that typically
+arrays need to be of one type,
+
+354
+00:18:54,080 --> 00:18:57,570
+arrays don't have to all
+be the same type here.
+
+355
+00:18:57,570 --> 00:18:58,690
+So now we have some int.
+
+356
+00:18:58,690 --> 00:19:00,910
+We have two strings.
+
+357
+00:19:00,910 --> 00:19:05,332
+So your arrays can
+get much more powerful
+
+358
+00:19:05,332 --> 00:19:07,040
+and maybe a little
+bit messier, depending
+
+359
+00:19:07,040 --> 00:19:08,500
+on the way you want to look at it.
+
+360
+00:19:08,500 --> 00:19:10,970
+So we can change this
+to whatever we want.
+
+361
+00:19:10,970 --> 00:19:12,860
+We use value.
+
+362
+00:19:12,860 --> 00:19:14,630
+That's just the standard thing we use.
+
+363
+00:19:14,630 --> 00:19:19,650
+But, just important to know that we can
+call this like counter if we wanted.
+
+364
+00:19:19,650 --> 00:19:25,070
+And as long as they match up,
+obviously everyone's happy.
+
+365
+00:19:25,070 --> 00:19:30,600
+If you ever want to run a PHP
+run something like this command
+
+366
+00:19:30,600 --> 00:19:33,800
+line you know this
+here, you just do PHP,
+
+367
+00:19:33,800 --> 00:19:36,090
+and then whatever file you want to run.
+
+368
+00:19:36,090 --> 00:19:39,130
+>> So if you want to mess around
+with PHP, and more the logic
+
+369
+00:19:39,130 --> 00:19:42,710
+and you don't really need to
+see like in a web browser,
+
+370
+00:19:42,710 --> 00:19:44,830
+you can just run it in
+the command line like that
+
+371
+00:19:44,830 --> 00:19:48,290
+and echo will print
+out whatever you like.
+
+372
+00:19:48,290 --> 00:19:50,880
+OK.
+
+373
+00:19:50,880 --> 00:20:00,640
+The other way that we have is like this.
+
+374
+00:20:00,640 --> 00:20:06,974
+So this is a case where maybe you want
+to use both the key and the value,
+
+375
+00:20:06,974 --> 00:20:08,890
+I know these are like
+super contrived examples
+
+376
+00:20:08,890 --> 00:20:11,950
+but I hope they make
+it a little clearer.
+
+377
+00:20:11,950 --> 00:20:14,940
+So here we have some array
+again, but this time,
+
+378
+00:20:14,940 --> 00:20:19,450
+instead of just having
+you know there's no key.
+
+379
+00:20:19,450 --> 00:20:20,870
+We have keys for each of these.
+
+380
+00:20:20,870 --> 00:20:24,670
+So a is gonna be one, b will correspond
+to two, and c will correspond to three.
+
+381
+00:20:24,670 --> 00:20:27,030
+And in this case, if
+we write it this way,
+
+382
+00:20:27,030 --> 00:20:31,580
+we have access to both key
+and value for each of these.
+
+383
+00:20:31,580 --> 00:20:36,570
+>> So when we run this,
+we get each of those.
+
+384
+00:20:36,570 --> 00:20:41,530
+So it prints out our keys
+and corresponding values.
+
+385
+00:20:41,530 --> 00:20:46,940
+Another cool thing is that, and I know
+said like this one didn't have keys,
+
+386
+00:20:46,940 --> 00:20:51,540
+but it always implicitly has a
+key because if you don't delegate
+
+387
+00:20:51,540 --> 00:20:54,050
+a key, of course, your
+keys are just your indexes
+
+388
+00:20:54,050 --> 00:20:59,230
+or indices so we could
+always also do this one.
+
+389
+00:20:59,230 --> 00:20:59,730
+Like this.
+
+390
+00:20:59,730 --> 00:21:02,500
+
+391
+00:21:02,500 --> 00:21:03,400
+I will print out.
+
+392
+00:21:03,400 --> 00:21:09,240
+
+393
+00:21:09,240 --> 00:21:13,420
+So in this case, if you notice,
+we have our implicit keys
+
+394
+00:21:13,420 --> 00:21:15,930
+of zero, one, and two here.
+
+395
+00:21:15,930 --> 00:21:20,020
+
+396
+00:21:20,020 --> 00:21:25,600
+>> And the same way with this one,
+you can always just say r as value,
+
+397
+00:21:25,600 --> 00:21:27,910
+and you just have access to the value.
+
+398
+00:21:27,910 --> 00:21:30,685
+You don't care about your
+keys, even if your has keys,
+
+399
+00:21:30,685 --> 00:21:32,810
+if you don't care about
+them, you don't necessarily
+
+400
+00:21:32,810 --> 00:21:35,970
+need to put them in your foreach loop.
+
+401
+00:21:35,970 --> 00:21:37,953
+Does that makes sense for everyone?
+
+402
+00:21:37,953 --> 00:21:39,764
+>> AUDIENCE: Can you just
+call the keys, too?
+
+403
+00:21:39,764 --> 00:21:42,180
+ALLISON BUCHHOLTZ-AU: Yeah you
+could totally do that, too.
+
+404
+00:21:42,180 --> 00:21:44,945
+
+405
+00:21:44,945 --> 00:21:45,570
+Actually, wait.
+
+406
+00:21:45,570 --> 00:21:45,840
+Hold on.
+
+407
+00:21:45,840 --> 00:21:46,630
+would it-- No.
+
+408
+00:21:46,630 --> 00:21:49,663
+If you want the key, then
+you need to do key to value.
+
+409
+00:21:49,663 --> 00:21:50,496
+AUDIENCE: Add value.
+
+410
+00:21:50,496 --> 00:21:50,870
+ALLISON BUCHHOLTZ-AU: Yeah.
+
+411
+00:21:50,870 --> 00:21:52,530
+And you just never use value is all.
+
+412
+00:21:52,530 --> 00:21:53,236
+>> AUDIENCE: OK.
+
+413
+00:21:53,236 --> 00:21:55,610
+ALLISON BUCHHOLTZ-AU: If you
+just put one thing in there,
+
+414
+00:21:55,610 --> 00:22:00,010
+it's going to assume that you're
+talking about the value, not the key.
+
+415
+00:22:00,010 --> 00:22:02,070
+Great question.
+
+416
+00:22:02,070 --> 00:22:02,600
+All right.
+
+417
+00:22:02,600 --> 00:22:06,390
+
+418
+00:22:06,390 --> 00:22:08,170
+Cool.
+
+419
+00:22:08,170 --> 00:22:09,032
+Actually, hold on.
+
+420
+00:22:09,032 --> 00:22:09,990
+Let me see what I have.
+
+421
+00:22:09,990 --> 00:22:13,600
+
+422
+00:22:13,600 --> 00:22:18,260
+So before we get into post and get, I
+just want to show you guys a little bit
+
+423
+00:22:18,260 --> 00:22:23,680
+about how it's dynamically
+typed, which is kind of cool.
+
+424
+00:22:23,680 --> 00:22:24,450
+I have all these.
+
+425
+00:22:24,450 --> 00:22:28,160
+I have like four examples up here,
+and I will send you all this code
+
+426
+00:22:28,160 --> 00:22:30,580
+after class.
+
+427
+00:22:30,580 --> 00:22:34,440
+>> So here we have some variable a.
+
+428
+00:22:34,440 --> 00:22:36,500
+That's just 1 plus 1, right?
+
+429
+00:22:36,500 --> 00:22:40,930
+And we're going to print out what that's
+equal to, and then we have some type.
+
+430
+00:22:40,930 --> 00:22:46,066
+And anyone have any guesses
+about what type it's going to be?
+
+431
+00:22:46,066 --> 00:22:46,890
+>> AUDIENCE: An int.
+
+432
+00:22:46,890 --> 00:22:48,560
+>> ALLISON BUCHHOLTZ-AU: Yeah, it's an int.
+
+433
+00:22:48,560 --> 00:22:49,890
+So it just adds them together.
+
+434
+00:22:49,890 --> 00:22:51,671
+It's an int.
+
+435
+00:22:51,671 --> 00:22:52,170
+All good.
+
+436
+00:22:52,170 --> 00:22:56,440
+
+437
+00:22:56,440 --> 00:23:05,590
+So this next one, we have
+what look like strings.
+
+438
+00:23:05,590 --> 00:23:11,000
+When we run this, it thinks, oh.
+
+439
+00:23:11,000 --> 00:23:13,720
+You're actually trying
+to just add things.
+
+440
+00:23:13,720 --> 00:23:15,140
+You just got confused.
+
+441
+00:23:15,140 --> 00:23:17,410
+So I'm just going to fix it for you.
+
+442
+00:23:17,410 --> 00:23:18,090
+You meant int.
+
+443
+00:23:18,090 --> 00:23:19,160
+I know you meant int.
+
+444
+00:23:19,160 --> 00:23:25,190
+>> So this is one of the ways you can
+see, PHP has a mind of its own.
+
+445
+00:23:25,190 --> 00:23:28,800
+Even though we explicitly said,
+look, these ones are strings.
+
+446
+00:23:28,800 --> 00:23:30,120
+I mean the string one.
+
+447
+00:23:30,120 --> 00:23:32,160
+But it says, oh, but
+you're trying to add them,
+
+448
+00:23:32,160 --> 00:23:34,460
+so you must mean it's an integer.
+
+449
+00:23:34,460 --> 00:23:35,950
+Just trust me on this.
+
+450
+00:23:35,950 --> 00:23:38,920
+So it says it's an integer,
+and it adds them like normal.
+
+451
+00:23:38,920 --> 00:23:42,460
+So kind of cool if you're going
+to get lazy with your things,
+
+452
+00:23:42,460 --> 00:23:45,470
+or you want to add something.
+
+453
+00:23:45,470 --> 00:23:48,690
+>> A great thing is that, if
+you think back to pset2,
+
+454
+00:23:48,690 --> 00:23:51,840
+something that was user
+inputted, right, that we think
+
+455
+00:23:51,840 --> 00:23:54,010
+is a char or a string at first.
+
+456
+00:23:54,010 --> 00:23:57,950
+Now we don't have to explicitly
+say, oh, make this an int.
+
+457
+00:23:57,950 --> 00:23:59,790
+PHP would just be like, oh yeah.
+
+458
+00:23:59,790 --> 00:24:01,215
+I know you meant an int.
+
+459
+00:24:01,215 --> 00:24:01,830
+Silly you.
+
+460
+00:24:01,830 --> 00:24:04,640
+You didn't mean a string.
+
+461
+00:24:04,640 --> 00:24:12,596
+>> So in that case, now
+that we have this, what
+
+462
+00:24:12,596 --> 00:24:14,330
+do you guys think it's going to do here?
+
+463
+00:24:14,330 --> 00:24:17,220
+
+464
+00:24:17,220 --> 00:24:20,495
+We have a string and an int now.
+
+465
+00:24:20,495 --> 00:24:21,980
+>> AUDIENCE: It's still an int.
+
+466
+00:24:21,980 --> 00:24:24,040
+>> ALLISON BUCHHOLTZ-AU: It's still an int.
+
+467
+00:24:24,040 --> 00:24:26,790
+And the reason is-- I would put
+more examples, but this one's fun.
+
+468
+00:24:26,790 --> 00:24:30,110
+The reason it's doing it is because
+it's like you're trying to add things.
+
+469
+00:24:30,110 --> 00:24:33,310
+So if you're trying to add
+things, I'm going to assume,
+
+470
+00:24:33,310 --> 00:24:36,030
+reasonably, you have something
+reasonable that you could add.
+
+471
+00:24:36,030 --> 00:24:40,032
+I'm just going to make it an int, and
+we're just going to add it, like usual.
+
+472
+00:24:40,032 --> 00:24:42,240
+And then the same way, I
+think you guys get the idea.
+
+473
+00:24:42,240 --> 00:24:47,400
+We also have this one here, which is
+just chars, and it does the same thing.
+
+474
+00:24:47,400 --> 00:24:49,210
+It's like, you silly user.
+
+475
+00:24:49,210 --> 00:24:51,400
+you know you want an int.
+
+476
+00:24:51,400 --> 00:24:54,491
+>> AUDIENCE: If we put a letter, will
+it do the [INAUDIBLE] value or not?
+
+477
+00:24:54,491 --> 00:24:56,532
+ALLISON BUCHHOLTZ-AU: Oh,
+that's a good question.
+
+478
+00:24:56,532 --> 00:24:57,518
+Let's see.
+
+479
+00:24:57,518 --> 00:25:00,480
+
+480
+00:25:00,480 --> 00:25:03,430
+Nope, still is an int.
+
+481
+00:25:03,430 --> 00:25:06,700
+So it's a little crazy.
+
+482
+00:25:06,700 --> 00:25:12,170
+This is just kind of to show you PHP
+can sometimes behave in irrational-- Not
+
+483
+00:25:12,170 --> 00:25:16,670
+totally irrational, but it might behave
+in ways that you don't really expect.
+
+484
+00:25:16,670 --> 00:25:18,970
+So, when in doubt, check
+the types of things.
+
+485
+00:25:18,970 --> 00:25:22,570
+This function gettype
+can be super useful.
+
+486
+00:25:22,570 --> 00:25:26,930
+>> Typically, if you're doing anything with
+plusses or any mathematical operators,
+
+487
+00:25:26,930 --> 00:25:32,010
+it's going to assume anything
+reasonable is just an int.
+
+488
+00:25:32,010 --> 00:25:36,530
+So, you have char 1, or a
+string 1, or the actual int 1,
+
+489
+00:25:36,530 --> 00:25:38,200
+it's going to assume that.
+
+490
+00:25:38,200 --> 00:25:41,410
+If you want to typecast
+anything, you totally can.
+
+491
+00:25:41,410 --> 00:25:46,540
+You could do something like
+double here, I believe.
+
+492
+00:25:46,540 --> 00:25:50,370
+
+493
+00:25:50,370 --> 00:25:53,420
+And in that case, it's going to say, oh.
+
+494
+00:25:53,420 --> 00:25:56,550
+I'll make this a double because
+you explicitly said it's a double.
+
+495
+00:25:56,550 --> 00:26:00,370
+You can always explicitly
+make PHP do something, but.
+
+496
+00:26:00,370 --> 00:26:02,174
+>> AUDIENCE: Wait, why is A plus 1 there?
+
+497
+00:26:02,174 --> 00:26:03,215
+>> ALLISON BUCHHOLTZ-AU: Oh.
+
+498
+00:26:03,215 --> 00:26:06,512
+
+499
+00:26:06,512 --> 00:26:07,490
+There.
+
+500
+00:26:07,490 --> 00:26:08,400
+It was just an echo.
+
+501
+00:26:08,400 --> 00:26:10,820
+That was my fault.
+
+502
+00:26:10,820 --> 00:26:14,240
+So, you can explicitly tell it to
+make something of a certain type,
+
+503
+00:26:14,240 --> 00:26:17,980
+but most of the time, it's going to
+dynamically decide that at runtime.
+
+504
+00:26:17,980 --> 00:26:20,730
+So it's going to keep going through
+and it's going to be like, OK.
+
+505
+00:26:20,730 --> 00:26:23,229
+What makes the most
+sense for this to be?
+
+506
+00:26:23,229 --> 00:26:24,520
+Should it actually be a string?
+
+507
+00:26:24,520 --> 00:26:25,090
+Should it be an int?
+
+508
+00:26:25,090 --> 00:26:25,770
+Should it be a float?
+
+509
+00:26:25,770 --> 00:26:26,810
+Should it be a double?
+
+510
+00:26:26,810 --> 00:26:29,456
+And it will decide that for you.
+
+511
+00:26:29,456 --> 00:26:31,980
+>> You can force it to do
+what you want, but--
+
+512
+00:26:31,980 --> 00:26:35,032
+>> AUDIENCE: Does that make it slower?
+
+513
+00:26:35,032 --> 00:26:37,365
+ALLISON BUCHHOLTZ-AU: Well,
+I mean, C is very efficient.
+
+514
+00:26:37,365 --> 00:26:41,760
+I think it's definitely slower because
+it has to the process as it's going.
+
+515
+00:26:41,760 --> 00:26:45,200
+C, I'm almost sure is faster.
+
+516
+00:26:45,200 --> 00:26:47,620
+But obviously there's a
+lot of cool things in here
+
+517
+00:26:47,620 --> 00:26:49,190
+that we don't have to worry about.
+
+518
+00:26:49,190 --> 00:26:50,981
+So, if we're searching
+through an array, we
+
+519
+00:26:50,981 --> 00:26:54,290
+don't have to actually create
+some search through the array.
+
+520
+00:26:54,290 --> 00:26:56,920
+We can just ask for the key
+and PHP will take care of it.
+
+521
+00:26:56,920 --> 00:26:59,510
+
+522
+00:26:59,510 --> 00:27:00,630
+>> Cool.
+
+523
+00:27:00,630 --> 00:27:01,130
+Awesome.
+
+524
+00:27:01,130 --> 00:27:03,937
+Looks like the end of my examples.
+
+525
+00:27:03,937 --> 00:27:05,770
+You guys are never going
+to forget that now.
+
+526
+00:27:05,770 --> 00:27:08,450
+You're going to be like, oh, PHP is just
+like that mom who's like no, no, no.
+
+527
+00:27:08,450 --> 00:27:09,325
+I know what you mean.
+
+528
+00:27:09,325 --> 00:27:11,000
+I know what you want.
+
+529
+00:27:11,000 --> 00:27:11,580
+OK.
+
+530
+00:27:11,580 --> 00:27:15,040
+So this is, hopefully, useful for your
+pset, at least in the very beginning,
+
+531
+00:27:15,040 --> 00:27:20,290
+because you are all about dealing
+with forms and things from the user.
+
+532
+00:27:20,290 --> 00:27:24,460
+>> So there are two ways that we
+pass around info with PHP and HTML
+
+533
+00:27:24,460 --> 00:27:26,700
+when we're passing
+between those two things.
+
+534
+00:27:26,700 --> 00:27:32,330
+So we have $_GET, which is passed
+through the URL, and we have $_POST,
+
+535
+00:27:32,330 --> 00:27:36,600
+which is passed in the message
+body, and so we consider it hidden.
+
+536
+00:27:36,600 --> 00:27:41,660
+But one thing to understand is that
+neither of these are considered secure.
+
+537
+00:27:41,660 --> 00:27:45,580
+>> If you have someone who is
+intercepting the messages going
+
+538
+00:27:45,580 --> 00:27:49,180
+back and forth between you and the
+server, they can still get this data.
+
+539
+00:27:49,180 --> 00:27:50,810
+They just have to look a little harder.
+
+540
+00:27:50,810 --> 00:27:54,690
+It's not really that-- it's
+just hidden from the URL.
+
+541
+00:27:54,690 --> 00:27:58,820
+It's still in the message body,
+though, so if they have access to that,
+
+542
+00:27:58,820 --> 00:27:59,920
+it's really just like--
+
+543
+00:27:59,920 --> 00:28:01,710
+>> It's like the difference
+between something
+
+544
+00:28:01,710 --> 00:28:05,010
+being written on the outside of
+an envelope and something being
+
+545
+00:28:05,010 --> 00:28:06,980
+written on a piece of paper inside.
+
+546
+00:28:06,980 --> 00:28:10,270
+It's not that hard to open the envelope
+and get the piece of paper inside.
+
+547
+00:28:10,270 --> 00:28:12,414
+Granted, it'd be much easier
+just read the outside.
+
+548
+00:28:12,414 --> 00:28:14,330
+But that's how you can
+kind of think of these.
+
+549
+00:28:14,330 --> 00:28:16,940
+Neither of these are
+really considered secure.
+
+550
+00:28:16,940 --> 00:28:17,790
+OK?
+
+551
+00:28:17,790 --> 00:28:19,750
+>> Granted, doesn't really
+matter for your pset
+
+552
+00:28:19,750 --> 00:28:22,050
+because you're not dealing
+with trade secrets,
+
+553
+00:28:22,050 --> 00:28:25,850
+but it's typically one
+thing that we really
+
+554
+00:28:25,850 --> 00:28:29,260
+like to emphasize because people
+think, oh, well, it's hidden.
+
+555
+00:28:29,260 --> 00:28:30,610
+It must be super secure.
+
+556
+00:28:30,610 --> 00:28:31,140
+No.
+
+557
+00:28:31,140 --> 00:28:32,570
+It's not secure.
+
+558
+00:28:32,570 --> 00:28:35,808
+It's just slightly
+less insecure, I guess.
+
+559
+00:28:35,808 --> 00:28:38,500
+Or unsecure.
+
+560
+00:28:38,500 --> 00:28:41,625
+>> So we actually have an example.
+
+561
+00:28:41,625 --> 00:28:43,500
+As you know, I love
+teach more with examples.
+
+562
+00:28:43,500 --> 00:28:45,070
+I feel like this helps better.
+
+563
+00:28:45,070 --> 00:28:49,590
+So, we have some simple form here
+which actually, if you guys are ever
+
+564
+00:28:49,590 --> 00:28:51,940
+confused about PHP,
+this is really small,
+
+565
+00:28:51,940 --> 00:28:55,630
+but php.net is actually
+really good documentation.
+
+566
+00:28:55,630 --> 00:28:56,500
+I really like it.
+
+567
+00:28:56,500 --> 00:29:02,900
+I was using it to prepare for this
+section, so I can vet it for you.
+
+568
+00:29:02,900 --> 00:29:07,760
+>> This is an example from them
+on how $_POST and $_GET work.
+
+569
+00:29:07,760 --> 00:29:09,970
+The only difference
+between the two of these,
+
+570
+00:29:09,970 --> 00:29:13,285
+besides where the information is
+displayed, whether it's in the URL
+
+571
+00:29:13,285 --> 00:29:16,430
+or in the body, is also
+what the method is.
+
+572
+00:29:16,430 --> 00:29:21,350
+So in your form for HTML-- This
+is a very simple HTML form.
+
+573
+00:29:21,350 --> 00:29:22,760
+Can anyone tell me what it does?
+
+574
+00:29:22,760 --> 00:29:29,471
+
+575
+00:29:29,471 --> 00:29:30,970
+AUDIENCE: Ask for your name and age.
+
+576
+00:29:30,970 --> 00:29:31,230
+ALLISON BUCHHOLTZ-AU: Exactly.
+
+577
+00:29:31,230 --> 00:29:33,330
+So we have some form actions.
+
+578
+00:29:33,330 --> 00:29:36,260
+That lets us know it's some act form.
+
+579
+00:29:36,260 --> 00:29:39,330
+And what's going to happen
+is, when we hit Submit,
+
+580
+00:29:39,330 --> 00:29:44,280
+it's going to call action.php,
+which is what this is,
+
+581
+00:29:44,280 --> 00:29:47,180
+and it's going to call it
+with a method of $_POST.
+
+582
+00:29:47,180 --> 00:29:51,340
+So in this case, your
+information is hidden.
+
+583
+00:29:51,340 --> 00:29:57,020
+and it's just your name, some
+input type called name, some age,
+
+584
+00:29:57,020 --> 00:30:01,270
+input type="text" that we also call age.
+
+585
+00:30:01,270 --> 00:30:05,110
+And then if we hit Submit,
+Submit will call action.php.
+
+586
+00:30:05,110 --> 00:30:09,800
+>> So when we actually hit Submit, we
+know that it has posted, per se,
+
+587
+00:30:09,800 --> 00:30:15,290
+and we'll actually see this in your
+problem set that hopefully we'll
+
+588
+00:30:15,290 --> 00:30:16,760
+get to walk through a little bit.
+
+589
+00:30:16,760 --> 00:30:21,690
+And all it's doing here is POST
+is some superglobal variable
+
+590
+00:30:21,690 --> 00:30:23,300
+that we talked about during lecture.
+
+591
+00:30:23,300 --> 00:30:30,170
+And how you can think about $_POST is
+that it's just an associative array.
+
+592
+00:30:30,170 --> 00:30:30,960
+OK?
+
+593
+00:30:30,960 --> 00:30:35,930
+So this is some key, this
+is some key, and whatever
+
+594
+00:30:35,930 --> 00:30:39,270
+the user input becomes a
+value for each of those.
+
+595
+00:30:39,270 --> 00:30:39,960
+OK?
+
+596
+00:30:39,960 --> 00:30:47,240
+>> So if we were to write what this array
+actually looked like right after we
+
+597
+00:30:47,240 --> 00:30:56,000
+submitted the form, we would
+have, this is our $_POST,
+
+598
+00:30:56,000 --> 00:31:04,380
+and some array where we have some name.
+
+599
+00:31:04,380 --> 00:31:17,670
+Let's just say we'll do my name,
+and then we have some age, 21.
+
+600
+00:31:17,670 --> 00:31:19,420
+Woo.
+
+601
+00:31:19,420 --> 00:31:23,550
+So this is all $_POST is. $_POST
+is just an associative array, OK?
+
+602
+00:31:23,550 --> 00:31:24,807
+>> It just says, OK.
+
+603
+00:31:24,807 --> 00:31:26,890
+What are the things we've
+asked for from the user?
+
+604
+00:31:26,890 --> 00:31:28,889
+What are the variables
+that we're passing around
+
+605
+00:31:28,889 --> 00:31:30,730
+that we've asked for in this form?
+
+606
+00:31:30,730 --> 00:31:33,830
+And then what are the
+values associated with that?
+
+607
+00:31:33,830 --> 00:31:38,750
+So in this case, if I submitted it
+with a name of Ally and an age of 21,
+
+608
+00:31:38,750 --> 00:31:40,890
+this is what $_POST looks like.
+
+609
+00:31:40,890 --> 00:31:41,570
+OK?
+
+610
+00:31:41,570 --> 00:31:45,150
+And this is what this
+PHP file has access to.
+
+611
+00:31:45,150 --> 00:31:46,680
+All right?
+
+612
+00:31:46,680 --> 00:31:51,730
+>> So in this case, this is just like
+getting any other thing from our array.
+
+613
+00:31:51,730 --> 00:31:55,370
+Instead of an index in our
+array, we have some key.
+
+614
+00:31:55,370 --> 00:32:00,790
+So this is going to give
+me the value at key name.
+
+615
+00:32:00,790 --> 00:32:05,400
+So this is going to be Ally, and
+this right here is going to give me
+
+616
+00:32:05,400 --> 00:32:08,840
+the value at $_POST where the
+key is age, which will be 21.
+
+617
+00:32:08,840 --> 00:32:12,541
+
+618
+00:32:12,541 --> 00:32:14,290
+You're going to be
+doing this quite a bit.
+
+619
+00:32:14,290 --> 00:32:18,920
+
+620
+00:32:18,920 --> 00:32:21,590
+Yeah, from which part?
+
+621
+00:32:21,590 --> 00:32:24,235
+>> AUDIENCE: When you were
+pointing at the bottom part.
+
+622
+00:32:24,235 --> 00:32:25,860
+ALLISON BUCHHOLTZ-AU: This bottom part?
+
+623
+00:32:25,860 --> 00:32:26,359
+OK.
+
+624
+00:32:26,359 --> 00:32:31,897
+So, you understand this is our HTML
+form, and we have some method $_POST,
+
+625
+00:32:31,897 --> 00:32:32,480
+which matters.
+
+626
+00:32:32,480 --> 00:32:35,410
+This could also be $_GET,
+but for this purpose,
+
+627
+00:32:35,410 --> 00:32:36,910
+we're just going to say it's $_POST.
+
+628
+00:32:36,910 --> 00:32:42,700
+When we submit this form, this is
+part of a PHP file that's called.
+
+629
+00:32:42,700 --> 00:32:48,530
+So this PHP file is now going to execute
+given the information from our HTML
+
+630
+00:32:48,530 --> 00:32:49,840
+form.
+
+631
+00:32:49,840 --> 00:32:52,670
+>> So what it's doing is, when we
+hit Submit on our HTML form,
+
+632
+00:32:52,670 --> 00:32:59,220
+it's passing you this superglobal,
+which is just an associative array.
+
+633
+00:32:59,220 --> 00:33:00,306
+It's this.
+
+634
+00:33:00,306 --> 00:33:02,840
+It's just like passing that to the file.
+
+635
+00:33:02,840 --> 00:33:04,540
+And what it says is, OK, here's $_POST.
+
+636
+00:33:04,540 --> 00:33:05,706
+It's your associative array.
+
+637
+00:33:05,706 --> 00:33:07,000
+Do with it what you want.
+
+638
+00:33:07,000 --> 00:33:08,980
+And we're saying, OK.
+
+639
+00:33:08,980 --> 00:33:13,620
+Give me the value at name,
+and give me the value at age.
+
+640
+00:33:13,620 --> 00:33:18,150
+>> So these are just keys,
+and this is our array.
+
+641
+00:33:18,150 --> 00:33:19,190
+Does that makes sense?
+
+642
+00:33:19,190 --> 00:33:19,815
+>> AUDIENCE: Mhmm.
+
+643
+00:33:19,815 --> 00:33:21,266
+ALLISON BUCHHOLTZ-AU: Awesome.
+
+644
+00:33:21,266 --> 00:33:24,432
+AUDIENCE: If you have to resubmit the
+form does it just write over the data?
+
+645
+00:33:24,432 --> 00:33:25,557
+ALLISON BUCHHOLTZ-AU: Yeah.
+
+646
+00:33:25,557 --> 00:33:26,160
+Mhmm?
+
+647
+00:33:26,160 --> 00:33:30,300
+>> AUDIENCE: Why do you have
+to specify that it's an int?
+
+648
+00:33:30,300 --> 00:33:34,950
+>> ALLISON BUCHHOLTZ-AU: In this case, the
+user is just forcing it to be an int.
+
+649
+00:33:34,950 --> 00:33:35,749
+>> AUDIENCE: OK.
+
+650
+00:33:35,749 --> 00:33:38,540
+ALLISON BUCHHOLTZ-AU: I don't know
+if you would actually need that,
+
+651
+00:33:38,540 --> 00:33:43,850
+but for their purposes, they decided
+that they wanted it to be an int.
+
+652
+00:33:43,850 --> 00:33:45,590
+They're just typecasting it.
+
+653
+00:33:45,590 --> 00:33:47,760
+Maybe they're using it as
+something else later on.
+
+654
+00:33:47,760 --> 00:33:49,872
+This is just one snippet.
+
+655
+00:33:49,872 --> 00:33:50,372
+Yes?
+
+656
+00:33:50,372 --> 00:33:57,246
+>> AUDIENCE: What if they typed
+12, T-W-E-L-V-E, for age?
+
+657
+00:33:57,246 --> 00:33:59,704
+ALLISON BUCHHOLTZ-AU: If they
+tried to type that as an int?
+
+658
+00:33:59,704 --> 00:34:00,160
+AUDIENCE: Yeah.
+
+659
+00:34:00,160 --> 00:34:02,076
+ALLISON BUCHHOLTZ-AU: I
+forget what that does.
+
+660
+00:34:02,076 --> 00:34:05,540
+I think it might try to convert
+the first character to an int,
+
+661
+00:34:05,540 --> 00:34:11,360
+or take the value and convert
+it, but I forget exactly what it.
+
+662
+00:34:11,360 --> 00:34:14,570
+Be a fun thing to write
+a program and try.
+
+663
+00:34:14,570 --> 00:34:16,389
+Do a couple lines.
+
+664
+00:34:16,389 --> 00:34:21,310
+OK, so this is one of the main
+things that you're going to be doing.
+
+665
+00:34:21,310 --> 00:34:23,969
+I'm going to hopefully walk
+through a couple of the files
+
+666
+00:34:23,969 --> 00:34:25,260
+from the pset with you guys.
+
+667
+00:34:25,260 --> 00:34:28,850
+It looks like we're going to
+have time, so we can do that.
+
+668
+00:34:28,850 --> 00:34:31,190
+>> But you're going to be
+doing a lot of things
+
+669
+00:34:31,190 --> 00:34:36,130
+like this, where you're passing
+things from an HTML form
+
+670
+00:34:36,130 --> 00:34:42,130
+into this PHP form that will then
+execute some set of instructions
+
+671
+00:34:42,130 --> 00:34:44,460
+on the data that was provided.
+
+672
+00:34:44,460 --> 00:34:46,864
+That's literally the gist of your pset.
+
+673
+00:34:46,864 --> 00:34:48,130
+Yeah.
+
+674
+00:34:48,130 --> 00:34:52,040
+>> AUDIENCE: The type="submit", that
+makes a button on the HTML form.
+
+675
+00:34:52,040 --> 00:34:54,280
+Is there way to call
+that button something?
+
+676
+00:34:54,280 --> 00:34:56,040
+So would you be like name="submit"?
+
+677
+00:34:56,040 --> 00:34:59,170
+Or is that button just going to be
+empty right now, because you only
+
+678
+00:34:59,170 --> 00:35:00,970
+gave it a type, not a name.
+
+679
+00:35:00,970 --> 00:35:03,803
+>> ALLISON BUCHHOLTZ-AU: I think it's
+just going to be empty right now.
+
+680
+00:35:03,803 --> 00:35:07,320
+We can definitely look in the
+pset, because we will definitely
+
+681
+00:35:07,320 --> 00:35:10,265
+be looking at the
+register kind of thing.
+
+682
+00:35:10,265 --> 00:35:14,610
+But yeah, you can definitely specify
+the text that you want on your button.
+
+683
+00:35:14,610 --> 00:35:17,560
+OK, so SQL.
+
+684
+00:35:17,560 --> 00:35:21,880
+>> When you're buying and selling stocks,
+you need to keep track of those.
+
+685
+00:35:21,880 --> 00:35:25,760
+So the way we're going to do that is
+with SQL, which is just a database.
+
+686
+00:35:25,760 --> 00:35:29,200
+Think of it as a table where
+you're keeping all this information
+
+687
+00:35:29,200 --> 00:35:30,649
+about your different users.
+
+688
+00:35:30,649 --> 00:35:32,940
+And you guys are actually
+going to create one of these.
+
+689
+00:35:32,940 --> 00:35:34,290
+It's pretty cool.
+
+690
+00:35:34,290 --> 00:35:38,470
+>> And there are just four main things
+that you need to know for this pset,
+
+691
+00:35:38,470 --> 00:35:43,120
+and they are update, so you
+basically update the data.
+
+692
+00:35:43,120 --> 00:35:45,190
+That assumes that it's already there.
+
+693
+00:35:45,190 --> 00:35:48,320
+If it's not there, it's going
+to hit you with an error,
+
+694
+00:35:48,320 --> 00:35:51,300
+so maybe you want to check.
+
+695
+00:35:51,300 --> 00:35:55,882
+And you will update on-- I
+should actually- I have time,
+
+696
+00:35:55,882 --> 00:35:57,090
+I'll write a couple of these.
+
+697
+00:35:57,090 --> 00:36:03,370
+I will actually give you guys a
+couple of sample, full SQL commands,
+
+698
+00:36:03,370 --> 00:36:06,530
+because these are just the main
+ones, but you can join them together.
+
+699
+00:36:06,530 --> 00:36:09,780
+So I'll do that and I'll send
+that out to you with these notes.
+
+700
+00:36:09,780 --> 00:36:14,580
+>> So if you want to update something,
+need to tell it what you're updating
+
+701
+00:36:14,580 --> 00:36:16,390
+and where you're updating it.
+
+702
+00:36:16,390 --> 00:36:27,770
+So a typical SQL command would be update
+ID where something equals something.
+
+703
+00:36:27,770 --> 00:36:31,490
+Or like update address
+where ID equals 3,
+
+704
+00:36:31,490 --> 00:36:37,040
+and this would update the address field
+of your user who has an ID of three.
+
+705
+00:36:37,040 --> 00:36:37,630
+OK?
+
+706
+00:36:37,630 --> 00:36:44,300
+>> So if you go to SQL and W3Schools,
+they have awesome examples.
+
+707
+00:36:44,300 --> 00:36:46,880
+In fact, I might pull
+some up in a little bit.
+
+708
+00:36:46,880 --> 00:36:49,810
+And then insert into, you're just
+inserting certain values there.
+
+709
+00:36:49,810 --> 00:36:56,810
+So if you're trying to create some new
+entry, so you're creating a new user,
+
+710
+00:36:56,810 --> 00:37:00,970
+you could do insert into
+whatever your database is called,
+
+711
+00:37:00,970 --> 00:37:03,540
+and you would have all these values.
+
+712
+00:37:03,540 --> 00:37:06,250
+>> Then you have select,
+select values to view.
+
+713
+00:37:06,250 --> 00:37:09,640
+So if you're trying to check to
+see if a user exists or you're
+
+714
+00:37:09,640 --> 00:37:12,030
+trying to grab specific
+information about a user
+
+715
+00:37:12,030 --> 00:37:13,790
+you're going to be using select.
+
+716
+00:37:13,790 --> 00:37:17,564
+And then delete, I think,
+is pretty simple there.
+
+717
+00:37:17,564 --> 00:37:19,480
+You're just deleting
+something from the table.
+
+718
+00:37:19,480 --> 00:37:25,960
+And in fact, let me actually pull
+up some examples for you guys.
+
+719
+00:37:25,960 --> 00:37:29,350
+Oh look, it's my 61 page.
+
+720
+00:37:29,350 --> 00:37:32,940
+>> So if we go to W3Schools,
+hopefully it's up again.
+
+721
+00:37:32,940 --> 00:37:35,640
+Yes, Love it.
+
+722
+00:37:35,640 --> 00:37:37,680
+We go to SQL.
+
+723
+00:37:37,680 --> 00:37:39,160
+So, this is something here.
+
+724
+00:37:39,160 --> 00:37:42,548
+So, this is a very simple SELECT.
+
+725
+00:37:42,548 --> 00:37:45,620
+Man, I love this function.
+
+726
+00:37:45,620 --> 00:37:50,030
+So, you can have SELECT
+some field FROM customers.
+
+727
+00:37:50,030 --> 00:37:55,340
+In this case, customers refers to the
+online database that you're using,
+
+728
+00:37:55,340 --> 00:38:00,480
+so whatever your table is called, and
+star just means select everything.
+
+729
+00:38:00,480 --> 00:38:01,710
+Give me every one.
+
+730
+00:38:01,710 --> 00:38:05,810
+
+731
+00:38:05,810 --> 00:38:10,720
+>> So, I just want to give you guys a
+couple of examples of where this is.
+
+732
+00:38:10,720 --> 00:38:15,570
+
+733
+00:38:15,570 --> 00:38:17,960
+So we have SELECT, UPDATE.
+
+734
+00:38:17,960 --> 00:38:21,460
+
+735
+00:38:21,460 --> 00:38:25,420
+So here is kind of the general syntax.
+
+736
+00:38:25,420 --> 00:38:31,080
+So UPDATE, whatever your
+table name is, and then SET
+
+737
+00:38:31,080 --> 00:38:35,060
+is where you're actually going
+to be what data you're changing.
+
+738
+00:38:35,060 --> 00:38:38,340
+So this could be-- Let
+me make an example here.
+
+739
+00:38:38,340 --> 00:38:44,146
+
+740
+00:38:44,146 --> 00:38:45,145
+So this is going to be--
+
+741
+00:38:45,145 --> 00:39:10,250
+
+742
+00:39:10,250 --> 00:39:10,750
+>> OK.
+
+743
+00:39:10,750 --> 00:39:13,585
+So I created a little database for us.
+
+744
+00:39:13,585 --> 00:39:16,260
+We're going to have some ID,
+some year, and some named.
+
+745
+00:39:16,260 --> 00:39:23,022
+So ID one going to be year '15,
+and we're just going to make it me.
+
+746
+00:39:23,022 --> 00:39:24,980
+Who wants to be the second
+person in our table?
+
+747
+00:39:24,980 --> 00:39:25,480
+Anyone.
+
+748
+00:39:25,480 --> 00:39:28,192
+
+749
+00:39:28,192 --> 00:39:30,525
+I'm just going to choose Emma
+because your name's quick.
+
+750
+00:39:30,525 --> 00:39:32,220
+Emma, what year are you?
+
+751
+00:39:32,220 --> 00:39:33,180
+>> AUDIENCE: What year?
+
+752
+00:39:33,180 --> 00:39:33,600
+>> ALLISON BUCHHOLTZ-AU: Yeah.
+
+753
+00:39:33,600 --> 00:39:34,183
+>> AUDIENCE: '16.
+
+754
+00:39:34,183 --> 00:39:35,780
+ALLISON BUCHHOLTZ-AU: '16.
+
+755
+00:39:35,780 --> 00:39:37,920
+You're just going to be
+my guinea pig for today.
+
+756
+00:39:37,920 --> 00:39:40,490
+OK, so we have these two people.
+
+757
+00:39:40,490 --> 00:39:42,194
+Actually, let me do this.
+
+758
+00:39:42,194 --> 00:39:45,110
+Let's say I heard her wrong, and I
+actually said she's a year younger.
+
+759
+00:39:45,110 --> 00:39:46,980
+She's '17.
+
+760
+00:39:46,980 --> 00:39:50,790
+What we want to do here, if we
+wanted to update Emma's year
+
+761
+00:39:50,790 --> 00:39:57,480
+to be correct using that, what we'd
+do is we'd say UPDATE data over here.
+
+762
+00:39:57,480 --> 00:40:05,140
+
+763
+00:40:05,140 --> 00:40:09,130
+>> And this can all be on one line, but
+since I'm compressed for space here,
+
+764
+00:40:09,130 --> 00:40:11,450
+I'm going to write here.
+
+765
+00:40:11,450 --> 00:40:12,740
+And we want to set.
+
+766
+00:40:12,740 --> 00:40:16,770
+So this is the table we're updating.
+
+767
+00:40:16,770 --> 00:40:21,600
+SET is going to be what column or
+what data are we actually changing.
+
+768
+00:40:21,600 --> 00:40:30,670
+What we're changing is year, so
+we're going to say SET year = 16,
+
+769
+00:40:30,670 --> 00:40:39,470
+and then WHERE tells us which user or
+what row are we actually updating this.
+
+770
+00:40:39,470 --> 00:40:40,980
+>> So where?
+
+771
+00:40:40,980 --> 00:40:42,600
+We have two options here.
+
+772
+00:40:42,600 --> 00:40:43,450
+What are the two?
+
+773
+00:40:43,450 --> 00:40:44,580
+These are unique, right?
+
+774
+00:40:44,580 --> 00:40:47,150
+So our names are unique
+and our ID is unique,
+
+775
+00:40:47,150 --> 00:40:50,880
+so what are the two options
+for where we could do this?
+
+776
+00:40:50,880 --> 00:40:51,970
+I'll give you one.
+
+777
+00:40:51,970 --> 00:40:57,450
+We could do WHERE ID =
+2, or we could do what
+
+778
+00:40:57,450 --> 00:41:00,920
+if we're going off this paradigm here.
+
+779
+00:41:00,920 --> 00:41:02,180
+>> AUDIENCE: [INAUDIBLE].
+
+780
+00:41:02,180 --> 00:41:03,430
+ALLISON BUCHHOLTZ-AU: Exactly.
+
+781
+00:41:03,430 --> 00:41:07,300
+So we could also do name = Emma.
+
+782
+00:41:07,300 --> 00:41:10,189
+
+783
+00:41:10,189 --> 00:41:11,480
+And either of these would work.
+
+784
+00:41:11,480 --> 00:41:14,040
+And we ran this, it'd be like, OK.
+
+785
+00:41:14,040 --> 00:41:15,300
+We'll change it.
+
+786
+00:41:15,300 --> 00:41:17,680
+You're actually 16, so
+now you're right again.
+
+787
+00:41:17,680 --> 00:41:21,410
+OK, so this would be
+super useful in your pset
+
+788
+00:41:21,410 --> 00:41:25,157
+where maybe someone decided
+to buy 100 shares of Apple,
+
+789
+00:41:25,157 --> 00:41:26,740
+and then they were like, just kidding.
+
+790
+00:41:26,740 --> 00:41:28,320
+I only want 90 shares.
+
+791
+00:41:28,320 --> 00:41:33,630
+And so they sell 10 of them, so you
+need to update the amount of stocks
+
+792
+00:41:33,630 --> 00:41:34,330
+that they have.
+
+793
+00:41:34,330 --> 00:41:39,050
+So, updating stocks, updating table.
+
+794
+00:41:39,050 --> 00:41:39,950
+>> OK.
+
+795
+00:41:39,950 --> 00:41:42,710
+So that's one example there.
+
+796
+00:41:42,710 --> 00:41:45,131
+That's the update syntax.
+
+797
+00:41:45,131 --> 00:41:45,630
+DELETE.
+
+798
+00:41:45,630 --> 00:41:50,391
+
+799
+00:41:50,391 --> 00:41:50,890
+Oh.
+
+800
+00:41:50,890 --> 00:41:53,580
+Insert into is our other one.
+
+801
+00:41:53,580 --> 00:41:57,950
+So, this one here is very similar.
+
+802
+00:41:57,950 --> 00:42:00,430
+We could just say, in this
+case let's add someone.
+
+803
+00:42:00,430 --> 00:42:02,310
+We can add Ben this time.
+
+804
+00:42:02,310 --> 00:42:13,300
+We do INSERT INTO, and we
+want the name of our table.
+
+805
+00:42:13,300 --> 00:42:16,580
+In this case it's data.
+
+806
+00:42:16,580 --> 00:42:25,790
+>> And then we just want, you're going to
+say VALUES, and what you're going to do
+
+807
+00:42:25,790 --> 00:42:29,147
+is, you actually need to make sure
+that you have something for each row
+
+808
+00:42:29,147 --> 00:42:29,730
+that you want.
+
+809
+00:42:29,730 --> 00:42:31,090
+You just put them in order.
+
+810
+00:42:31,090 --> 00:42:33,920
+So in this case, we would say 3.
+
+811
+00:42:33,920 --> 00:42:35,280
+You're 18, right Ben?
+
+812
+00:42:35,280 --> 00:42:36,439
+>> AUDIENCE: 19.
+
+813
+00:42:36,439 --> 00:42:37,480
+ALLISON BUCHHOLTZ-AU: 19?
+
+814
+00:42:37,480 --> 00:42:38,360
+AUDIENCE: 19.
+
+815
+00:42:38,360 --> 00:42:39,943
+ALLISON BUCHHOLTZ-AU: Your year's '19?
+
+816
+00:42:39,943 --> 00:42:41,459
+You graduate in '18, right?
+
+817
+00:42:41,459 --> 00:42:42,000
+AUDIENCE: Oh.
+
+818
+00:42:42,000 --> 00:42:42,870
+ALLISON BUCHHOLTZ-AU: Graduation year.
+
+819
+00:42:42,870 --> 00:42:43,842
+AUDIENCE: OK.
+
+820
+00:42:43,842 --> 00:42:46,070
+ALLISON BUCHHOLTZ-AU:
+I was like, are you
+
+821
+00:42:46,070 --> 00:42:48,550
+already planning to
+take a year off here?
+
+822
+00:42:48,550 --> 00:42:52,590
+So, '18, we have Ben.
+
+823
+00:42:52,590 --> 00:43:01,950
+So in this case, it would go through,
+it would create a new entry here.
+
+824
+00:43:01,950 --> 00:43:04,520
+
+825
+00:43:04,520 --> 00:43:05,750
+Cool.
+
+826
+00:43:05,750 --> 00:43:07,570
+Not too bad, right?
+
+827
+00:43:07,570 --> 00:43:09,850
+A lot of this is going to
+be syntax for you guys.
+
+828
+00:43:09,850 --> 00:43:13,280
+Concepts should come,
+hopefully, relatively easily.
+
+829
+00:43:13,280 --> 00:43:17,270
+The syntax is the only thing
+that can be a little tricky.
+
+830
+00:43:17,270 --> 00:43:20,590
+>> And then our last one is
+DELETE, and as you notice,
+
+831
+00:43:20,590 --> 00:43:22,260
+I highly recommend this website.
+
+832
+00:43:22,260 --> 00:43:24,110
+It's great.
+
+833
+00:43:24,110 --> 00:43:25,620
+There's a ton of stuff.
+
+834
+00:43:25,620 --> 00:43:30,550
+So, in the same way that we had
+some UPDATE, DELETE is very similar.
+
+835
+00:43:30,550 --> 00:43:33,800
+Instead we have Delete from Data.
+
+836
+00:43:33,800 --> 00:43:37,506
+So in this case, our last
+one I'll write down here.
+
+837
+00:43:37,506 --> 00:43:38,880
+Let's say we wanted to delete me.
+
+838
+00:43:38,880 --> 00:43:44,670
+
+839
+00:43:44,670 --> 00:43:48,750
+I cannot write today.
+
+840
+00:43:48,750 --> 00:43:51,720
+DELETE from whatever
+table we're in, data.
+
+841
+00:43:51,720 --> 00:43:56,160
+
+842
+00:43:56,160 --> 00:44:02,128
+And there are actually three ways
+we could choose to delete me.
+
+843
+00:44:02,128 --> 00:44:06,040
+
+844
+00:44:06,040 --> 00:44:09,780
+>> Can you guys tell me what the three
+ways are, how you could delete me?
+
+845
+00:44:09,780 --> 00:44:12,880
+
+846
+00:44:12,880 --> 00:44:15,400
+ID equals 1, where ID equals 1.
+
+847
+00:44:15,400 --> 00:44:19,470
+We could do where year equals
+15, or where name equals Allison.
+
+848
+00:44:19,470 --> 00:44:21,540
+of course, there are only
+three different ways,
+
+849
+00:44:21,540 --> 00:44:24,570
+because these are all unique.
+
+850
+00:44:24,570 --> 00:44:28,000
+Typically in your table,
+and especially in your pset,
+
+851
+00:44:28,000 --> 00:44:32,105
+you're going to set one of
+these columns to be unique.
+
+852
+00:44:32,105 --> 00:44:36,252
+>> It's probably going to be some unique ID
+number, because if you have-- actually,
+
+853
+00:44:36,252 --> 00:44:37,710
+it might actually let you have two.
+
+854
+00:44:37,710 --> 00:44:40,520
+I can't remember if it'll let
+you have two of the same thing.
+
+855
+00:44:40,520 --> 00:44:42,000
+>> AUDIENCE: Then it would
+change their behavior.
+
+856
+00:44:42,000 --> 00:44:43,291
+>> ALLISON BUCHHOLTZ-AU: It would.
+
+857
+00:44:43,291 --> 00:44:46,280
+It'll cause behavior that is unexpected,
+that you can't really predict.
+
+858
+00:44:46,280 --> 00:44:53,040
+So you will definitely have one column
+in your database that will be unique,
+
+859
+00:44:53,040 --> 00:44:55,760
+and it's typically you can set
+it so that it's like a unique ID,
+
+860
+00:44:55,760 --> 00:44:59,884
+and it will just update every
+time you insert into the table.
+
+861
+00:44:59,884 --> 00:45:02,050
+Any time you create a new
+row, it will automatically
+
+862
+00:45:02,050 --> 00:45:04,190
+increment and give it some unique ID.
+
+863
+00:45:04,190 --> 00:45:05,960
+So hint for your pset.
+
+864
+00:45:05,960 --> 00:45:08,560
+
+865
+00:45:08,560 --> 00:45:09,160
+OK.
+
+866
+00:45:09,160 --> 00:45:11,575
+So that is SQL.
+
+867
+00:45:11,575 --> 00:45:18,170
+
+868
+00:45:18,170 --> 00:45:22,140
+>> So now we're going to talk about
+the very last thing, which ties in
+
+869
+00:45:22,140 --> 00:45:24,770
+actually pretty well with your
+pset, if it would go forward.
+
+870
+00:45:24,770 --> 00:45:28,210
+So MVC, model view controller.
+
+871
+00:45:28,210 --> 00:45:32,480
+This is really just a way
+to keep things organized.
+
+872
+00:45:32,480 --> 00:45:36,910
+In the same way with C we ask you guys
+to create functions and separate things
+
+873
+00:45:36,910 --> 00:45:42,350
+out, this is just a way to separate out
+code when you're doing web development.
+
+874
+00:45:42,350 --> 00:45:46,850
+>> So it makes things much
+more elegant and simplified,
+
+875
+00:45:46,850 --> 00:45:49,310
+and this is actually the way
+that your pset is actually
+
+876
+00:45:49,310 --> 00:45:52,460
+set up, so whether you like it
+or not, you're going to learn it,
+
+877
+00:45:52,460 --> 00:45:54,251
+even if you don't think
+you're learning it.
+
+878
+00:45:54,251 --> 00:45:56,580
+
+879
+00:45:56,580 --> 00:46:01,950
+And one thing is, it also allows you to
+do much more like a user collaboration.
+
+880
+00:46:01,950 --> 00:46:05,770
+>> So when I took CS50, I did a
+website for my final project,
+
+881
+00:46:05,770 --> 00:46:09,190
+and I was like, I'll
+handle the database stuff.
+
+882
+00:46:09,190 --> 00:46:12,450
+I'll do back end stuff, and my
+roommate who I was taking with it
+
+883
+00:46:12,450 --> 00:46:14,270
+was very artsy.
+
+884
+00:46:14,270 --> 00:46:17,370
+She does stage design, and she
+wanted to make it all pretty.
+
+885
+00:46:17,370 --> 00:46:18,435
+So I'm like, OK.
+
+886
+00:46:18,435 --> 00:46:20,310
+You can take care of
+all the front end stuff.
+
+887
+00:46:20,310 --> 00:46:22,660
+>> And the thing is, as
+we'll see very soon,
+
+888
+00:46:22,660 --> 00:46:26,130
+that model view controller lets you
+completely separate that code so
+
+889
+00:46:26,130 --> 00:46:29,260
+that I could work on
+implementing our pages,
+
+890
+00:46:29,260 --> 00:46:31,266
+and manipulating information
+in our databases,
+
+891
+00:46:31,266 --> 00:46:34,140
+and she could just make things
+pretty, and we were both really happy,
+
+892
+00:46:34,140 --> 00:46:36,750
+because we got to do what
+we both wanted and we
+
+893
+00:46:36,750 --> 00:46:38,400
+didn't have to deal with the other one.
+
+894
+00:46:38,400 --> 00:46:40,377
+>> So we hung out together.
+
+895
+00:46:40,377 --> 00:46:41,210
+We like to hang out.
+
+896
+00:46:41,210 --> 00:46:45,649
+I just didn't want to deal with
+all the CSS and HTML stuff.
+
+897
+00:46:45,649 --> 00:46:46,940
+I was like, you make it pretty.
+
+898
+00:46:46,940 --> 00:46:49,420
+I'll deal with the database.
+
+899
+00:46:49,420 --> 00:46:52,620
+So we have this really
+cool, great little table.
+
+900
+00:46:52,620 --> 00:46:55,440
+I love tables.
+
+901
+00:46:55,440 --> 00:46:59,680
+And basically, the model you can
+think about is just your database.
+
+902
+00:46:59,680 --> 00:47:03,630
+>> I was the model person for my project.
+
+903
+00:47:03,630 --> 00:47:06,800
+It's all about the storage of
+information and organizing that data.
+
+904
+00:47:06,800 --> 00:47:09,790
+So it's what we like to call back end.
+
+905
+00:47:09,790 --> 00:47:13,260
+So you guys will be dealing with
+the SQL database and the data files.
+
+906
+00:47:13,260 --> 00:47:14,650
+That's your model.
+
+907
+00:47:14,650 --> 00:47:17,800
+>> Your view, as you might
+think, kind of makes sense,
+
+908
+00:47:17,800 --> 00:47:20,610
+is what your user actually sees.
+
+909
+00:47:20,610 --> 00:47:22,110
+It's the user interface.
+
+910
+00:47:22,110 --> 00:47:24,359
+It's that front facing component.
+
+911
+00:47:24,359 --> 00:47:26,650
+So that's what my roommate
+got to work on all the time.
+
+912
+00:47:26,650 --> 00:47:27,660
+She was super happy.
+
+913
+00:47:27,660 --> 00:47:31,580
+So that's all of the HTML,
+and there's very little PHP.
+
+914
+00:47:31,580 --> 00:47:34,420
+>> If you're just talking about
+what's being displayed to the user,
+
+915
+00:47:34,420 --> 00:47:36,576
+we're talking about hypertext.
+
+916
+00:47:36,576 --> 00:47:37,950
+We're talking about how it looks.
+
+917
+00:47:37,950 --> 00:47:41,400
+We're not talking about logic,
+or conditions, or whatnot.
+
+918
+00:47:41,400 --> 00:47:45,620
+All of that gets handled
+by the controller, OK?
+
+919
+00:47:45,620 --> 00:47:49,470
+So that handles the user requests
+and gets the information.
+
+920
+00:47:49,470 --> 00:47:54,750
+>> So one thing you should know about
+your pset is that, in your views,
+
+921
+00:47:54,750 --> 00:47:57,650
+anything that is actually
+displaying information
+
+922
+00:47:57,650 --> 00:48:00,530
+should never be making
+calls to your model.
+
+923
+00:48:00,530 --> 00:48:02,570
+All of that is handled
+in your controller.
+
+924
+00:48:02,570 --> 00:48:06,950
+Your controller is the one
+mediating between these two.
+
+925
+00:48:06,950 --> 00:48:10,280
+It will ask the model
+for certain information.
+
+926
+00:48:10,280 --> 00:48:12,610
+It can iterate over that
+information, figure out
+
+927
+00:48:12,610 --> 00:48:15,110
+what you actually need from
+it, what to do with it,
+
+928
+00:48:15,110 --> 00:48:17,860
+and then it will pass on
+just the information you
+
+929
+00:48:17,860 --> 00:48:24,670
+need to the view for you to print it
+out or display it to the user, OK?
+
+930
+00:48:24,670 --> 00:48:28,690
+>> Because we see the view as
+whatever is facing the user,
+
+931
+00:48:28,690 --> 00:48:31,340
+so it will be much easier
+for them to figure out,
+
+932
+00:48:31,340 --> 00:48:34,980
+oh, if you're making
+some call to your model
+
+933
+00:48:34,980 --> 00:48:39,152
+and you're asking for all users
+who start with the letter A,
+
+934
+00:48:39,152 --> 00:48:41,985
+and you're doing that in your view,
+anyone who can see your web page
+
+935
+00:48:41,985 --> 00:48:43,350
+could potentially access that.
+
+936
+00:48:43,350 --> 00:48:44,740
+>> You don't necessarily want that.
+
+937
+00:48:44,740 --> 00:48:48,560
+You don't want people to see
+more into the database than what
+
+938
+00:48:48,560 --> 00:48:49,800
+they should be seeing.
+
+939
+00:48:49,800 --> 00:48:51,560
+Just their specific preferences.
+
+940
+00:48:51,560 --> 00:48:53,840
+So the controller handles all of that.
+
+941
+00:48:53,840 --> 00:48:59,800
+So all of your .php files that we'll see
+you can consider your controller files.
+
+942
+00:48:59,800 --> 00:49:02,710
+And that's where you're
+really going to be
+
+943
+00:49:02,710 --> 00:49:06,500
+asking for things from your database,
+and iterating or manipulating
+
+944
+00:49:06,500 --> 00:49:10,670
+it as necessary before
+passing it on to be viewed.
+
+945
+00:49:10,670 --> 00:49:12,830
+>> It's a really cool pset, in my opinion.
+
+946
+00:49:12,830 --> 00:49:15,580
+I think it's a little more
+like instant gratification,
+
+947
+00:49:15,580 --> 00:49:17,990
+because you implement a
+lot of little tiny things,
+
+948
+00:49:17,990 --> 00:49:20,250
+and each thing should work on its own.
+
+949
+00:49:20,250 --> 00:49:24,180
+Not like, do everything
+and then see if it works.
+
+950
+00:49:24,180 --> 00:49:26,570
+Like with software
+where you're like, I'm
+
+951
+00:49:26,570 --> 00:49:28,910
+really hoping this is
+right, because if it's not,
+
+952
+00:49:28,910 --> 00:49:30,743
+there are a lot of
+places it could be wrong.
+
+953
+00:49:30,743 --> 00:49:34,220
+
+954
+00:49:34,220 --> 00:49:35,110
+>> All right.
+
+955
+00:49:35,110 --> 00:49:39,744
+Just making sure that I said
+everything I needed to say about MVC.
+
+956
+00:49:39,744 --> 00:49:40,680
+Yeah.
+
+957
+00:49:40,680 --> 00:49:41,347
+Cool.
+
+958
+00:49:41,347 --> 00:49:47,340
+>> So in CS50 Finance, we have
+our model, as I just said here.
+
+959
+00:49:47,340 --> 00:49:51,810
+It's going to be MySQL and phpMyAdmin.
+
+960
+00:49:51,810 --> 00:49:55,130
+I can definitely pull those up so
+you guys get a chance to look at it.
+
+961
+00:49:55,130 --> 00:49:59,250
+Like I said before, it your SQL
+database acts as your model,
+
+962
+00:49:59,250 --> 00:50:03,600
+and you can send what we call queries,
+which are just these sorts of things.
+
+963
+00:50:03,600 --> 00:50:04,914
+These are called a query.
+
+964
+00:50:04,914 --> 00:50:07,830
+This is a query, where you're just
+asking your database for something,
+
+965
+00:50:07,830 --> 00:50:09,810
+or you're changing your
+database in some way.
+
+966
+00:50:09,810 --> 00:50:11,470
+That's all it is.
+
+967
+00:50:11,470 --> 00:50:16,040
+And you do that with the
+functions we've given you here.
+
+968
+00:50:16,040 --> 00:50:20,500
+>> You can also manipulate
+them by hand via phpMyAdmin,
+
+969
+00:50:20,500 --> 00:50:22,170
+which we can definitely take a look at.
+
+970
+00:50:22,170 --> 00:50:25,160
+I'll create a sample
+database with you guys.
+
+971
+00:50:25,160 --> 00:50:25,660
+OK.
+
+972
+00:50:25,660 --> 00:50:26,680
+So, controller.
+
+973
+00:50:26,680 --> 00:50:30,730
+So in this case, if you
+notice, this is all PHP.
+
+974
+00:50:30,730 --> 00:50:33,430
+Notice that's kind of your
+main thing of your controller
+
+975
+00:50:33,430 --> 00:50:35,410
+is that it should be mostly PHP.
+
+976
+00:50:35,410 --> 00:50:39,590
+If you have HTML in your controller,
+not really sure what's going on there.
+
+977
+00:50:39,590 --> 00:50:42,495
+The same way as I said, if you
+manage to [INAUDIBLE] with HTML,
+
+978
+00:50:42,495 --> 00:50:43,810
+I'm real interested.
+
+979
+00:50:43,810 --> 00:50:49,150
+>> So what we have here
+is you have some query.
+
+980
+00:50:49,150 --> 00:50:53,700
+Query is a function that
+we built for you guys.
+
+981
+00:50:53,700 --> 00:50:56,935
+It's like a wrapper to make queries
+to your database a little easier.
+
+982
+00:50:56,935 --> 00:51:01,441
+If you didn't have that, the syntax for
+actually talking to your SQL database
+
+983
+00:51:01,441 --> 00:51:03,690
+would be different, so we
+just supply it for you guys.
+
+984
+00:51:03,690 --> 00:51:05,490
+We like to make life easy.
+
+985
+00:51:05,490 --> 00:51:09,050
+>> So in this case, can you guys
+tell me what this line is doing?
+
+986
+00:51:09,050 --> 00:51:11,860
+
+987
+00:51:11,860 --> 00:51:13,487
+SELECT * from some table.
+
+988
+00:51:13,487 --> 00:51:15,320
+AUDIENCE: Select
+everything from this table.
+
+989
+00:51:15,320 --> 00:51:16,570
+ALLISON BUCHHOLTZ-AU: Exactly.
+
+990
+00:51:16,570 --> 00:51:18,750
+So it's saying, give me
+everything from this table.
+
+991
+00:51:18,750 --> 00:51:22,430
+And it's storing it in
+some variable result.
+
+992
+00:51:22,430 --> 00:51:27,720
+And this says, if result is not equal
+to false, then we do each of this.
+
+993
+00:51:27,720 --> 00:51:32,390
+So if there's nothing here, if your
+table's empty or it just doesn't exist,
+
+994
+00:51:32,390 --> 00:51:33,640
+it's going to return false.
+
+995
+00:51:33,640 --> 00:51:36,431
+So in this case, we're just making
+sure that something was actually
+
+996
+00:51:36,431 --> 00:51:37,520
+returned to us.
+
+997
+00:51:37,520 --> 00:51:40,070
+>> And then here, we have
+our great foreach loop
+
+998
+00:51:40,070 --> 00:51:44,380
+that we're iterating over our
+result, and we're calling it row,
+
+999
+00:51:44,380 --> 00:51:51,080
+and we say render this template
+where your data is this result.
+
+1000
+00:51:51,080 --> 00:51:52,170
+OK?
+
+1001
+00:51:52,170 --> 00:51:54,440
+So it's just processing
+the row of the result.
+
+1002
+00:51:54,440 --> 00:51:56,790
+Otherwise, it yells.
+
+1003
+00:51:56,790 --> 00:51:59,770
+So, this is an example
+of the controller.
+
+1004
+00:51:59,770 --> 00:52:02,842
+As you see, this is the
+only place-- Yeah, sorry?
+
+1005
+00:52:02,842 --> 00:52:04,960
+>> AUDIENCE: Why is there
+an ampersand before row?
+
+1006
+00:52:04,960 --> 00:52:07,000
+>> ALLISON BUCHHOLTZ-AU:
+An ampersand before row.
+
+1007
+00:52:07,000 --> 00:52:11,000
+We are just iterating.
+
+1008
+00:52:11,000 --> 00:52:13,490
+That's also an address of--
+
+1009
+00:52:13,490 --> 00:52:16,400
+>> AUDIENCE: So it's like C referencing.
+
+1010
+00:52:16,400 --> 00:52:22,080
+>> ALLISON BUCHHOLTZ-AU: It's
+making sure that you're actually
+
+1011
+00:52:22,080 --> 00:52:24,730
+modifying the original and not a copy.
+
+1012
+00:52:24,730 --> 00:52:28,580
+It's in the same way with C where
+we're passing by reference here, just
+
+1013
+00:52:28,580 --> 00:52:30,449
+to make sure.
+
+1014
+00:52:30,449 --> 00:52:33,530
+>> AUDIENCE: Is it not ==
+instead of not = in PHP?
+
+1015
+00:52:33,530 --> 00:52:35,400
+>> ALLISON BUCHHOLTZ-AU: It's not the ==.
+
+1016
+00:52:35,400 --> 00:52:37,240
+>> AUDIENCE: Because equals in C is just--
+
+1017
+00:52:37,240 --> 00:52:37,970
+>> ALLISON BUCHHOLTZ-AU: It's just not =.
+
+1018
+00:52:37,970 --> 00:52:38,470
+Yeah, no.
+
+1019
+00:52:38,470 --> 00:52:39,656
+It's not ==.
+
+1020
+00:52:39,656 --> 00:52:45,610
+Because == in PHP checks for
+equality with toggling, granted,
+
+1021
+00:52:45,610 --> 00:52:47,650
+but extra quality.
+
+1022
+00:52:47,650 --> 00:52:51,050
+So, it's not == in PHP.
+
+1023
+00:52:51,050 --> 00:52:53,025
+It's one of the little
+syntax differences.
+
+1024
+00:52:53,025 --> 00:52:55,330
+
+1025
+00:52:55,330 --> 00:52:55,830
+Yeah.
+
+1026
+00:52:55,830 --> 00:52:57,538
+So we're just iterating
+through each row,
+
+1027
+00:52:57,538 --> 00:53:00,850
+and render, if you guys
+read through your spec,
+
+1028
+00:53:00,850 --> 00:53:05,360
+is just some other function that is
+actually going to process all the HTML
+
+1029
+00:53:05,360 --> 00:53:09,760
+and display it in your
+web browser for you.
+
+1030
+00:53:09,760 --> 00:53:10,610
+>> OK.
+
+1031
+00:53:10,610 --> 00:53:15,360
+So, we like to think of your controllers
+as what handles the business logic.
+
+1032
+00:53:15,360 --> 00:53:18,550
+As you see here, this is where we're
+taking our data from the table,
+
+1033
+00:53:18,550 --> 00:53:23,530
+we are processing it in some way,
+and then we're passing it off.
+
+1034
+00:53:23,530 --> 00:53:27,930
+When we do render some template,
+some template is our view,
+
+1035
+00:53:27,930 --> 00:53:31,810
+and we're passing it only
+the data that it should get.
+
+1036
+00:53:31,810 --> 00:53:33,340
+Not all the data.
+
+1037
+00:53:33,340 --> 00:53:35,340
+Just the data that we want it to get.
+
+1038
+00:53:35,340 --> 00:53:37,520
+OK?
+
+1039
+00:53:37,520 --> 00:53:40,270
+Basically the data after processing.
+
+1040
+00:53:40,270 --> 00:53:44,780
+>> So this is the view, this is
+the sum template that we have,
+
+1041
+00:53:44,780 --> 00:53:49,810
+and all this is doing is, you can
+have a little PHP in your view.
+
+1042
+00:53:49,810 --> 00:53:52,620
+It's not like a no PHP in view.
+
+1043
+00:53:52,620 --> 00:53:55,650
+You should just have
+very minimal PHP in view,
+
+1044
+00:53:55,650 --> 00:53:58,860
+and you should never be
+querying in your view.
+
+1045
+00:53:58,860 --> 00:54:01,580
+You should never be talking
+to your database in your view.
+
+1046
+00:54:01,580 --> 00:54:02,760
+That's the big difference.
+
+1047
+00:54:02,760 --> 00:54:07,886
+>> So what's going on here is, we have
+PHP that's iterating through the row.
+
+1048
+00:54:07,886 --> 00:54:10,260
+So in this case, since we were
+iterating through each row
+
+1049
+00:54:10,260 --> 00:54:14,370
+and rendering something, this was
+probably like a two dimensional array
+
+1050
+00:54:14,370 --> 00:54:18,240
+where we have some row that
+is, in itself, an array,
+
+1051
+00:54:18,240 --> 00:54:20,520
+because we're iterating
+through it again.
+
+1052
+00:54:20,520 --> 00:54:26,730
+And we're just printing out
+the row name, then end it.
+
+1053
+00:54:26,730 --> 00:54:28,470
+>> You shouldn't need this in the foreach.
+
+1054
+00:54:28,470 --> 00:54:30,560
+I've never seen that before actually.
+
+1055
+00:54:30,560 --> 00:54:33,160
+I just do foreach.
+
+1056
+00:54:33,160 --> 00:54:35,140
+OK, so that's the view.
+
+1057
+00:54:35,140 --> 00:54:40,170
+Let's see if we can walk through
+a little bit of your pset.
+
+1058
+00:54:40,170 --> 00:54:45,380
+We have 15 minutes, so I'm sure you
+guys would like that more than just
+
+1059
+00:54:45,380 --> 00:54:45,935
+ending early.
+
+1060
+00:54:45,935 --> 00:54:48,980
+
+1061
+00:54:48,980 --> 00:54:52,680
+Let me see if I can bring this up.
+
+1062
+00:54:52,680 --> 00:54:57,130
+>> So I don't know how many of you guys
+have downloaded it and whatnot yet,
+
+1063
+00:54:57,130 --> 00:55:00,660
+but we have username here,
+and we have some password.
+
+1064
+00:55:00,660 --> 00:55:05,310
+And unfortunately, right
+now the database is empty,
+
+1065
+00:55:05,310 --> 00:55:10,390
+so we actually need
+to create a database.
+
+1066
+00:55:10,390 --> 00:55:13,470
+Well, that's weird.
+
+1067
+00:55:13,470 --> 00:55:14,450
+Did not expect that.
+
+1068
+00:55:14,450 --> 00:55:15,375
+Technical errors.
+
+1069
+00:55:15,375 --> 00:55:17,139
+Technical difficulties.
+
+1070
+00:55:17,139 --> 00:55:17,930
+We have some pset7.
+
+1071
+00:55:17,930 --> 00:55:22,470
+
+1072
+00:55:22,470 --> 00:55:23,180
+Cool.
+
+1073
+00:55:23,180 --> 00:55:29,660
+>> So, one thing you can do is, with
+a query-- I'll create a table.
+
+1074
+00:55:29,660 --> 00:55:38,570
+So this is going to be users-- what
+you can do here is, if we have some--
+
+1075
+00:55:38,570 --> 00:55:39,830
+Really now?
+
+1076
+00:55:39,830 --> 00:55:40,330
+OK.
+
+1077
+00:55:40,330 --> 00:55:44,510
+Obviously I'm not doing so hot.
+
+1078
+00:55:44,510 --> 00:55:45,010
+Oh.
+
+1079
+00:55:45,010 --> 00:55:45,740
+I know why.
+
+1080
+00:55:45,740 --> 00:55:49,070
+Because I never created
+my actual tables.
+
+1081
+00:55:49,070 --> 00:55:52,400
+So when you first start with
+a database, you obviously
+
+1082
+00:55:52,400 --> 00:55:56,550
+have to decide what are the
+things I need to have in here?
+
+1083
+00:55:56,550 --> 00:56:00,850
+>> So if we just go off
+our data table here,
+
+1084
+00:56:00,850 --> 00:56:06,410
+we had some ID, which
+can just stay an int.
+
+1085
+00:56:06,410 --> 00:56:12,460
+And if we look over here, there's
+a cool thing that-- So index.
+
+1086
+00:56:12,460 --> 00:56:18,060
+If you do primary, it will make it the
+thing that your table is organized by,
+
+1087
+00:56:18,060 --> 00:56:19,410
+and it will also make it unique.
+
+1088
+00:56:19,410 --> 00:56:25,790
+So in this case, we'll make it primary,
+and I'm going to make this name,
+
+1089
+00:56:25,790 --> 00:56:34,500
+then we'll just make it a varchar
+of like 26 letters, because why not?
+
+1090
+00:56:34,500 --> 00:56:39,060
+>> And then you can go to Save, and then
+if you see, we have some users here.
+
+1091
+00:56:39,060 --> 00:56:42,950
+So if we wanted to do an
+insert, we could do it
+
+1092
+00:56:42,950 --> 00:56:51,807
+this way, or if you wanted practice
+with your queries-- Oh boy.
+
+1093
+00:56:51,807 --> 00:56:53,140
+I have not used this in forever.
+
+1094
+00:56:53,140 --> 00:56:53,980
+I take this back.
+
+1095
+00:56:53,980 --> 00:56:57,620
+
+1096
+00:56:57,620 --> 00:57:04,030
+>> You can edit this on your own either
+just by manually inserting information
+
+1097
+00:57:04,030 --> 00:57:08,270
+with something like, you
+can change any of these
+
+1098
+00:57:08,270 --> 00:57:13,730
+if you wanted to make-- If you want to
+suddenly get rid of name, you can drop,
+
+1099
+00:57:13,730 --> 00:57:15,220
+you can do all those things.
+
+1100
+00:57:15,220 --> 00:57:17,560
+If you need to ever
+manually change your table,
+
+1101
+00:57:17,560 --> 00:57:20,200
+I suggest doing it in
+phpMyAdmin versus trying
+
+1102
+00:57:20,200 --> 00:57:24,475
+to figure out the SQL
+queries in general.
+
+1103
+00:57:24,475 --> 00:57:27,350
+When you first start your pset,
+you're going to have to work in here,
+
+1104
+00:57:27,350 --> 00:57:29,650
+so get used to that.
+
+1105
+00:57:29,650 --> 00:57:35,650
+And then when you actually want
+to insert things into your table--
+
+1106
+00:57:35,650 --> 00:57:38,310
+I really wonder where that is,
+because there's-- Here it is.
+
+1107
+00:57:38,310 --> 00:57:39,310
+That's what I wanted.
+
+1108
+00:57:39,310 --> 00:57:44,320
+So if you go to SQL, you could
+actually see, as we see here,
+
+1109
+00:57:44,320 --> 00:57:45,870
+we have SQL queries.
+
+1110
+00:57:45,870 --> 00:57:54,100
+>> So if we wanted to select something
+or if we wanted to insert something,
+
+1111
+00:57:54,100 --> 00:58:00,320
+we can do insert into the users, right?
+
+1112
+00:58:00,320 --> 00:58:04,460
+
+1113
+00:58:04,460 --> 00:58:07,230
+I think you need the backslash.
+
+1114
+00:58:07,230 --> 00:58:10,210
+One thing to know is, if
+you're ever using this,
+
+1115
+00:58:10,210 --> 00:58:14,800
+you have to use these back
+apostrophes, which are typically,
+
+1116
+00:58:14,800 --> 00:58:16,790
+if you're on a Mac, right above tab.
+
+1117
+00:58:16,790 --> 00:58:17,840
+So a good thing to know.
+
+1118
+00:58:17,840 --> 00:58:23,330
+>> You could insert into users,
+and we have our values, right?
+
+1119
+00:58:23,330 --> 00:58:29,700
+So we have values, and our values
+in this case would just be,
+
+1120
+00:58:29,700 --> 00:58:33,910
+we only have an ID so we
+could do one if we wanted.
+
+1121
+00:58:33,910 --> 00:58:35,320
+That's weird.
+
+1122
+00:58:35,320 --> 00:58:36,730
+OK.
+
+1123
+00:58:36,730 --> 00:58:41,800
+So that's just like a brief
+little thing with SQL,
+
+1124
+00:58:41,800 --> 00:58:48,300
+but it might be more useful to actually
+look at some of the files in here.
+
+1125
+00:58:48,300 --> 00:58:50,985
+>> So go to Downloads.
+
+1126
+00:58:50,985 --> 00:58:51,950
+Oh, not Downloads.
+
+1127
+00:58:51,950 --> 00:58:55,260
+
+1128
+00:58:55,260 --> 00:58:58,690
+So, just a quick walkthrough of
+what's in each of these folders.
+
+1129
+00:58:58,690 --> 00:59:03,090
+It includes, we just have things
+that configure your browser,
+
+1130
+00:59:03,090 --> 00:59:05,370
+we have these constants,
+and we have these functions.
+
+1131
+00:59:05,370 --> 00:59:10,470
+If you're interested in any of them,
+I recommend looking at functions.
+
+1132
+00:59:10,470 --> 00:59:17,400
+One of them that is super useful,
+actually is this one here, dump.
+
+1133
+00:59:17,400 --> 00:59:20,020
+>> So if you use this,
+it will actually just
+
+1134
+00:59:20,020 --> 00:59:23,120
+print out whatever variable
+that you like it to.
+
+1135
+00:59:23,120 --> 00:59:29,000
+So if you are having trouble figuring
+out what this array looks like,
+
+1136
+00:59:29,000 --> 00:59:31,920
+or what this data actually,
+how it's formatted,
+
+1137
+00:59:31,920 --> 00:59:33,280
+this is a great thing to use.
+
+1138
+00:59:33,280 --> 00:59:39,889
+Especially when you have a
+user with multiple stock,
+
+1139
+00:59:39,889 --> 00:59:41,680
+this is going to be
+something great to use.
+
+1140
+00:59:41,680 --> 00:59:42,890
+Because it might be formatted--
+
+1141
+00:59:42,890 --> 00:59:45,806
+>> I know at least for me when I did
+this pset, it was formatted in a way
+
+1142
+00:59:45,806 --> 00:59:47,210
+that I didn't quite expect.
+
+1143
+00:59:47,210 --> 00:59:49,960
+So I was trying to iterate over
+it and trying to manipulate it,
+
+1144
+00:59:49,960 --> 00:59:52,350
+but I didn't really
+understand what I was doing.
+
+1145
+00:59:52,350 --> 00:59:56,830
+So if you just dump it, it will
+print it out to the browser,
+
+1146
+00:59:56,830 --> 00:59:59,220
+and you can see exactly
+how it's formatted.
+
+1147
+00:59:59,220 --> 01:00:03,530
+It'll typically print it out as an
+array with its keys and its values.
+
+1148
+01:00:03,530 --> 01:00:04,637
+So it can help there.
+
+1149
+01:00:04,637 --> 01:00:06,720
+It can also help to make
+sure that you're actually
+
+1150
+01:00:06,720 --> 01:00:09,070
+grabbing the data that
+you thought you were.
+
+1151
+01:00:09,070 --> 01:00:12,950
+So if you were like, my table definitely
+says there's a user with this ID,
+
+1152
+01:00:12,950 --> 01:00:15,260
+but when you go to dump the
+variable, it's not there,
+
+1153
+01:00:15,260 --> 01:00:17,551
+you obviously know that's
+where an error's going to be.
+
+1154
+01:00:17,551 --> 01:00:22,180
+This is one of the best tools
+for debugging, in my opinion.
+
+1155
+01:00:22,180 --> 01:00:24,480
+And then there's a
+couple other things here,
+
+1156
+01:00:24,480 --> 01:00:27,660
+but for the most part, that's the
+one I want to draw your attention to,
+
+1157
+01:00:27,660 --> 01:00:31,060
+because it is very helpful.
+
+1158
+01:00:31,060 --> 01:00:35,800
+>> Public, what we have here is,
+this is all of our CSS stuff.
+
+1159
+01:00:35,800 --> 01:00:40,520
+So CSS, fonts, our images, whatnot.
+
+1160
+01:00:40,520 --> 01:00:43,255
+This is all stuff that
+you don't have to modify.
+
+1161
+01:00:43,255 --> 01:00:46,070
+
+1162
+01:00:46,070 --> 01:00:50,080
+Can you guys think about if this
+has things like CSS in the fonts,
+
+1163
+01:00:50,080 --> 01:00:54,039
+would this be a model, or
+a view, or a controller?
+
+1164
+01:00:54,039 --> 01:00:54,914
+AUDIENCE: [INAUDIBLE]
+
+1165
+01:00:54,914 --> 01:00:57,080
+ALLISON BUCHHOLTZ-AU: It'd
+be more of a view, right?
+
+1166
+01:00:57,080 --> 01:01:00,510
+This is handling all
+things, how things look.
+
+1167
+01:01:00,510 --> 01:01:03,500
+So if we open this here, we see
+that all that's happening here
+
+1168
+01:01:03,500 --> 01:01:05,060
+is we're rendering something.
+
+1169
+01:01:05,060 --> 01:01:05,820
+OK?
+
+1170
+01:01:05,820 --> 01:01:09,710
+So this would very much
+qualify as a view for this.
+
+1171
+01:01:09,710 --> 01:01:14,810
+So this is just taking some,
+it's calling some portfolio.php
+
+1172
+01:01:14,810 --> 01:01:19,430
+that we have, and it's passing
+in title and portfolio.
+
+1173
+01:01:19,430 --> 01:01:20,696
+And it's just rendering that.
+
+1174
+01:01:20,696 --> 01:01:21,820
+Actually, I take that back.
+
+1175
+01:01:21,820 --> 01:01:27,890
+This is a controller, because
+render, remember, renders the view.
+
+1176
+01:01:27,890 --> 01:01:30,832
+So portfolio.php in this
+case would be your view.
+
+1177
+01:01:30,832 --> 01:01:32,480
+Sorry, guys.
+
+1178
+01:01:32,480 --> 01:01:36,160
+Portfolio.php is going to be
+your view, and this would just
+
+1179
+01:01:36,160 --> 01:01:38,730
+be your controller for that.
+
+1180
+01:01:38,730 --> 01:01:43,120
+And if we take a look at this
+last one here, templates,
+
+1181
+01:01:43,120 --> 01:01:47,330
+templates are all of your views here.
+
+1182
+01:01:47,330 --> 01:01:52,420
+So if we look, obviously
+we see a lot of HTML here.
+
+1183
+01:01:52,420 --> 01:01:58,920
+>> So this one is just showing you what
+the login page should look like.
+
+1184
+01:01:58,920 --> 01:02:04,810
+You notice we have some
+form groups, have submit.
+
+1185
+01:02:04,810 --> 01:02:08,510
+Here's how you decide what
+is displayed on there.
+
+1186
+01:02:08,510 --> 01:02:14,320
+You have some button type="submit",
+and then you have what you want it
+
+1187
+01:02:14,320 --> 01:02:16,670
+to display in button.
+
+1188
+01:02:16,670 --> 01:02:19,860
+So that's how you would make it
+show up as whatever you'd like.
+
+1189
+01:02:19,860 --> 01:02:24,520
+>> And we see here we have some
+username, some password,
+
+1190
+01:02:24,520 --> 01:02:30,590
+and when we actually hit Submit,
+it's going to be some post,
+
+1191
+01:02:30,590 --> 01:02:33,346
+and it's going to post to what?
+
+1192
+01:02:33,346 --> 01:02:35,430
+What's the controller for this view?
+
+1193
+01:02:35,430 --> 01:02:38,040
+
+1194
+01:02:38,040 --> 01:02:40,940
+When we hit Submit,
+what's going to be called?
+
+1195
+01:02:40,940 --> 01:02:42,990
+Do we know?
+
+1196
+01:02:42,990 --> 01:02:45,560
+It's right here, so login.php.
+
+1197
+01:02:45,560 --> 01:02:47,600
+Something you guys are
+going to implement.
+
+1198
+01:02:47,600 --> 01:02:50,580
+>> So you can always tell
+what's going to be
+
+1199
+01:02:50,580 --> 01:02:53,740
+called after you hit Submit
+by this first line here.
+
+1200
+01:02:53,740 --> 01:02:55,440
+What the form action is.
+
+1201
+01:02:55,440 --> 01:02:58,350
+When this form is submitted,
+what action do we take?
+
+1202
+01:02:58,350 --> 01:03:01,440
+We call login.php, and we
+call it with this method
+
+1203
+01:03:01,440 --> 01:03:05,500
+of post, which has the
+hidden information.
+
+1204
+01:03:05,500 --> 01:03:06,210
+OK?
+
+1205
+01:03:06,210 --> 01:03:14,485
+So this is your view, and then obviously
+if we went to login.php-- Do we have it
+
+1206
+01:03:14,485 --> 01:03:16,025
+yet?
+
+1207
+01:03:16,025 --> 01:03:17,970
+Yeah.
+
+1208
+01:03:17,970 --> 01:03:21,950
+>> So as we see here, this
+has a lot more logic.
+
+1209
+01:03:21,950 --> 01:03:23,570
+It's all our PHP here.
+
+1210
+01:03:23,570 --> 01:03:28,870
+We're trying to see if it was $_GET,
+if it was $_POST, validating things,
+
+1211
+01:03:28,870 --> 01:03:31,370
+querying, all this stuff.
+
+1212
+01:03:31,370 --> 01:03:34,950
+
+1213
+01:03:34,950 --> 01:03:40,200
+So those are just the three
+different things here.
+
+1214
+01:03:40,200 --> 01:03:43,750
+you don't have to change things.
+
+1215
+01:03:43,750 --> 01:03:46,540
+You'll be creating things
+in template, possibly,
+
+1216
+01:03:46,540 --> 01:03:51,350
+but as far as HTML or the
+styling of any of this goes,
+
+1217
+01:03:51,350 --> 01:03:54,550
+you can leave it as plain or
+as intricate as you'd like.
+
+1218
+01:03:54,550 --> 01:03:59,800
+>> Some people get really into it and
+make some pretty awesome websites.
+
+1219
+01:03:59,800 --> 01:04:00,940
+You don't have to do that.
+
+1220
+01:04:00,940 --> 01:04:03,750
+If you have time, it's
+a really cool thing.
+
+1221
+01:04:03,750 --> 01:04:08,260
+You can mess around with CSS and HTML
+and get a much better feel for it,
+
+1222
+01:04:08,260 --> 01:04:10,810
+but don't feel pressured to.
+
+1223
+01:04:10,810 --> 01:04:14,760
+There's plenty for you to do on the
+back end with implementing log in,
+
+1224
+01:04:14,760 --> 01:04:17,170
+and register, and all of these things.
+
+1225
+01:04:17,170 --> 01:04:20,490
+>> So hopefully that helps a little bit.
+
+1226
+01:04:20,490 --> 01:04:23,430
+do you guys have any questions
+about anything we've gone over,
+
+1227
+01:04:23,430 --> 01:04:25,690
+any other resources?
+
+1228
+01:04:25,690 --> 01:04:31,160
+I will definitely send all of
+my example PHP code to you guys,
+
+1229
+01:04:31,160 --> 01:04:35,020
+and then feel free to take
+pictures or whatnot of this.
+
+1230
+01:04:35,020 --> 01:04:36,180
+Also it's online.
+
+1231
+01:04:36,180 --> 01:04:39,010
+You can always just watch again.
+
+1232
+01:04:39,010 --> 01:04:42,190
+So if that's it, everyone good?
+
+1233
+01:04:42,190 --> 01:04:42,690
+Yes.
+
+1234
+01:04:42,690 --> 01:04:44,523
+>> AUDIENCE: I just want
+to confirm, when we're
+
+1235
+01:04:44,523 --> 01:04:47,447
+doing select in SQL, the
+star means everything, right?
+
+1236
+01:04:47,447 --> 01:04:48,530
+ALLISON BUCHHOLTZ-AU: Yes.
+
+1237
+01:04:48,530 --> 01:04:50,446
+AUDIENCE: And then if
+you don't have the star,
+
+1238
+01:04:50,446 --> 01:04:53,732
+if you want it to take from a specific
+row, then you just put the name of--
+
+1239
+01:04:53,732 --> 01:04:55,440
+ALLISON BUCHHOLTZ-AU:
+The name of the row
+
+1240
+01:04:55,440 --> 01:04:56,240
+and what you want you want the value of.
+
+1241
+01:04:56,240 --> 01:04:57,577
+>> AUDIENCE: And then the date.
+
+1242
+01:04:57,577 --> 01:04:59,910
+ALLISON BUCHHOLTZ-AU: Whatever
+you're looking for, yeah.
+
+1243
+01:04:59,910 --> 01:05:05,100
+In the same way, if you do DELETE * from
+some table, it'll delete everything.
+
+1244
+01:05:05,100 --> 01:05:08,896
+So, * is just a wild
+card for everything.
+
+1245
+01:05:08,896 --> 01:05:09,788
+>> AUDIENCE: OK.
+
+1246
+01:05:09,788 --> 01:05:10,930
+>> ALLISON BUCHHOLTZ-AU: Cool.
+
+1247
+01:05:10,930 --> 01:05:11,430
+Awesome.
+
+1248
+01:05:11,430 --> 01:05:12,800
+Well, have a great Monday, guys.
+
+1249
+01:05:12,800 --> 01:05:13,760
+I'll see you next week.
+
+1250
+01:05:13,760 --> 01:05:15,530
+Good luck on your pset.
+
+1251
+01:05:15,530 --> 01:05:16,992

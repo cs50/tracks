@@ -1,0 +1,3178 @@
+1
+00:00:00,000 --> 00:00:03,234
+>> [MUSIC PLAYING]
+
+2
+00:00:03,234 --> 00:00:05,275
+
+3
+00:00:05,275 --> 00:00:06,400
+ROBERT KRABEK: Hello, guys.
+
+4
+00:00:06,400 --> 00:00:09,980
+My name is Robert Krabek, and
+I will be teaching you guys
+
+5
+00:00:09,980 --> 00:00:15,470
+how to scrape the web with
+Nokogiri, which is a Ruby library,
+
+6
+00:00:15,470 --> 00:00:17,566
+and Kimono, which is a Chrome extension.
+
+7
+00:00:17,566 --> 00:00:20,940
+
+8
+00:00:20,940 --> 00:00:25,010
+>> So first there's a
+couple things that you
+
+9
+00:00:25,010 --> 00:00:28,790
+can do if maybe you've been
+doing all the psets so far
+
+10
+00:00:28,790 --> 00:00:31,170
+and your workspace is
+getting a little full.
+
+11
+00:00:31,170 --> 00:00:37,060
+We can actually just go and
+create a new workspace for you
+
+12
+00:00:37,060 --> 00:00:41,220
+to just do a brand new project in.
+
+13
+00:00:41,220 --> 00:00:46,160
+So if you do want to continue
+working in the CS50 template ID
+
+14
+00:00:46,160 --> 00:00:49,080
+that you currently have,
+feel free, and you can just
+
+15
+00:00:49,080 --> 00:00:54,700
+install Nokogiri with CFLAGS
+equals-- gem install nokogiri.
+
+16
+00:00:54,700 --> 00:00:56,930
+But otherwise I'll show you
+how to set a new one up.
+
+17
+00:00:56,930 --> 00:01:01,210
+And then this is essentially
+dropping more training wheels.
+
+18
+00:01:01,210 --> 00:01:07,120
+And you're coding as if you were
+just coding in Sublime or something.
+
+19
+00:01:07,120 --> 00:01:12,365
+So if we shift it over.
+
+20
+00:01:12,365 --> 00:01:14,930
+
+21
+00:01:14,930 --> 00:01:18,690
+>> So say this is your current CS 50 ID.
+
+22
+00:01:18,690 --> 00:01:21,490
+You can just go to Cloud9 here.
+
+23
+00:01:21,490 --> 00:01:22,725
+You can go to your dashboard.
+
+24
+00:01:22,725 --> 00:01:26,720
+
+25
+00:01:26,720 --> 00:01:29,950
+It should bring up Workspaces tab.
+
+26
+00:01:29,950 --> 00:01:32,980
+And then you can just click
+here, Create a New Workspace.
+
+27
+00:01:32,980 --> 00:01:37,600
+Name your new workspace,
+maybe test, or scraping.
+
+28
+00:01:37,600 --> 00:01:42,700
+And then click this custom tab here,
+instead of the CS50 templates tab.
+
+29
+00:01:42,700 --> 00:01:45,155
+And then you can just go
+and create a new workspace.
+
+30
+00:01:45,155 --> 00:01:48,280
+>> I've already created a workspace here.
+
+31
+00:01:48,280 --> 00:01:50,640
+So we'll be working with this.
+
+32
+00:01:50,640 --> 00:01:55,380
+And if you created a new
+workspace so with the Custom tab,
+
+33
+00:01:55,380 --> 00:02:04,560
+you can just type gem install
+nokogiri, which is not going here.
+
+34
+00:02:04,560 --> 00:02:06,230
+OK, it's a little frozen.
+
+35
+00:02:06,230 --> 00:02:08,979
+But you can type gem install nokogiri.
+
+36
+00:02:08,979 --> 00:02:15,970
+And that should be all that
+there is to the installation.
+
+37
+00:02:15,970 --> 00:02:20,590
+>> As I said before, if you're still
+working in your CS50 template ID,
+
+38
+00:02:20,590 --> 00:02:30,270
+you just need to type CFLAGS
+equals gem install nokogiri.
+
+39
+00:02:30,270 --> 00:02:33,130
+And I've already installed
+it here so I won't do that.
+
+40
+00:02:33,130 --> 00:02:38,500
+But for those following
+along, feel free to do so.
+
+41
+00:02:38,500 --> 00:02:46,000
+>> So once you've got your Nokogiri
+workspace or library installed,
+
+42
+00:02:46,000 --> 00:02:49,500
+I'm going to give you a little bit
+of a crash course in Ruby syntax
+
+43
+00:02:49,500 --> 00:02:53,380
+because Nokogiri is a Ruby library.
+
+44
+00:02:53,380 --> 00:03:03,710
+So you'll need to know some basic
+Ruby syntax for working with Nokogiri.
+
+45
+00:03:03,710 --> 00:03:08,750
+So some basic differences
+from what you're used to
+
+46
+00:03:08,750 --> 00:03:13,370
+perhaps if you've been working
+so far in just C and PHP,
+
+47
+00:03:13,370 --> 00:03:16,010
+you declare variables with no type.
+
+48
+00:03:16,010 --> 00:03:19,720
+You don't use semicolons,
+which is kind of a relief.
+
+49
+00:03:19,720 --> 00:03:25,480
+There's no parentheses now around
+for or while loops, for example.
+
+50
+00:03:25,480 --> 00:03:29,460
+You just have a block of code, and
+then you put end at the end of that.
+
+51
+00:03:29,460 --> 00:03:32,380
+There's no plus plus
+or minus minus, so just
+
+52
+00:03:32,380 --> 00:03:36,180
+know that for when
+you're doing for loops,
+
+53
+00:03:36,180 --> 00:03:38,620
+just plus equals and minus equals.
+
+54
+00:03:38,620 --> 00:03:43,310
+And instead of hash include,
+you'll use require and then
+
+55
+00:03:43,310 --> 00:03:47,755
+whatever library trying
+to load into your program.
+
+56
+00:03:47,755 --> 00:03:51,610
+
+57
+00:03:51,610 --> 00:03:53,430
+>> Ruby isn't a compiled language.
+
+58
+00:03:53,430 --> 00:03:55,550
+So that's another relief.
+
+59
+00:03:55,550 --> 00:03:59,350
+It's more similar to PHP where
+it's an interpreted language.
+
+60
+00:03:59,350 --> 00:04:03,570
+You can run any Ruby script that
+you write with Ruby followed
+
+61
+00:04:03,570 --> 00:04:07,380
+by the name of your script or program.
+
+62
+00:04:07,380 --> 00:04:13,000
+To signify that it's a Ruby program,
+you just end it with .rb instead of .c.
+
+63
+00:04:13,000 --> 00:04:17,440
+And there are variable
+sized arrays in Ruby,
+
+64
+00:04:17,440 --> 00:04:23,200
+which is super convenient when you're
+scraping and perhaps want to append
+
+65
+00:04:23,200 --> 00:04:26,090
+data that you've scraped into an array.
+
+66
+00:04:26,090 --> 00:04:31,960
+You don't have to malloc a new array and
+copy the old array into the new array.
+
+67
+00:04:31,960 --> 00:04:36,150
+You can just append with
+the two arrow signs.
+
+68
+00:04:36,150 --> 00:04:39,820
+And there are no chars, there
+just single letter strings.
+
+69
+00:04:39,820 --> 00:04:44,760
+So that should be a little easier.
+
+70
+00:04:44,760 --> 00:04:50,130
+>> So we'll just give you some
+examples of some basic Ruby syntax.
+
+71
+00:04:50,130 --> 00:04:57,100
+So here you can see that instead of
+the slash slash, to comment in Ruby,
+
+72
+00:04:57,100 --> 00:04:58,740
+you just use the pound sign.
+
+73
+00:04:58,740 --> 00:05:04,990
+And variable declaration, you
+just type the variable equals
+
+74
+00:05:04,990 --> 00:05:07,971
+whatever you want the variable to be.
+
+75
+00:05:07,971 --> 00:05:09,220
+They can be strings.
+
+76
+00:05:09,220 --> 00:05:14,120
+You can have array, which
+you populate with values.
+
+77
+00:05:14,120 --> 00:05:17,240
+puts and prints are similar.
+
+78
+00:05:17,240 --> 00:05:20,110
+For our purposes, the
+only difference is really
+
+79
+00:05:20,110 --> 00:05:25,500
+that puts, which stands for
+puts, just puts a new line
+
+80
+00:05:25,500 --> 00:05:27,440
+character at whatever you're printing.
+
+81
+00:05:27,440 --> 00:05:30,980
+>> So if we give a small
+demonstration here,
+
+82
+00:05:30,980 --> 00:05:41,800
+we can run this with--
+open a new terminal.
+
+83
+00:05:41,800 --> 00:05:46,020
+You can see all of these
+files that are in my terminal.
+
+84
+00:05:46,020 --> 00:05:50,960
+And if I just run
+Ruby, ruby intro.rb, it
+
+85
+00:05:50,960 --> 00:05:53,530
+puts out five Hello
+Mather, Quincy, Carrier.
+
+86
+00:05:53,530 --> 00:05:54,410
+Adams.
+
+87
+00:05:54,410 --> 00:05:59,295
+So that's all there is
+to declaring arrays.
+
+88
+00:05:59,295 --> 00:06:01,670
+AUDIENCE: Robert, can you make
+your font a little bigger?
+
+89
+00:06:01,670 --> 00:06:02,461
+ROBERT KRABEK: Yes.
+
+90
+00:06:02,461 --> 00:06:05,370
+
+91
+00:06:05,370 --> 00:06:12,280
+And I can zoom in because you can't
+zoom in to terminal fonts apparently.
+
+92
+00:06:12,280 --> 00:06:18,790
+
+93
+00:06:18,790 --> 00:06:24,630
+>> So that's how you print
+variables to your terminal.
+
+94
+00:06:24,630 --> 00:06:28,820
+You can also use
+variables inside a string.
+
+95
+00:06:28,820 --> 00:06:33,720
+So recently in PHP,
+you might have learned
+
+96
+00:06:33,720 --> 00:06:37,340
+that there is string interpolation.
+
+97
+00:06:37,340 --> 00:06:43,830
+So if you take a look here, if I
+declare three variables, name, library,
+
+98
+00:06:43,830 --> 00:06:49,700
+and language, and I puts, I
+write a string, hello my name is.
+
+99
+00:06:49,700 --> 00:06:54,190
+And then instead of the PHP
+version of string interpolation
+
+100
+00:06:54,190 --> 00:06:58,960
+which looks a little more like this,
+you have a pound sign, and then
+
+101
+00:06:58,960 --> 00:07:01,220
+a curly brace, and then
+the name of the variable.
+
+102
+00:07:01,220 --> 00:07:07,350
+And that's how you'd print, say,
+whatever the variable name is.
+
+103
+00:07:07,350 --> 00:07:10,140
+>> And then you can also
+concatenate strings.
+
+104
+00:07:10,140 --> 00:07:12,890
+Ruby makes it super
+easy with the plus sign.
+
+105
+00:07:12,890 --> 00:07:16,110
+You just have one string
+on the left plus a variable
+
+106
+00:07:16,110 --> 00:07:18,860
+or another string plus a string.
+
+107
+00:07:18,860 --> 00:07:23,500
+So if I print this out, it should
+just say Hello, my name is Robert.
+
+108
+00:07:23,500 --> 00:07:27,340
+I will be teaching you nokogiri in Ruby.
+
+109
+00:07:27,340 --> 00:07:35,370
+>> And let's just confirm that that
+is indeed the case-- ruby intro.
+
+110
+00:07:35,370 --> 00:07:36,480
+Hello, my name is Robert.
+
+111
+00:07:36,480 --> 00:07:40,160
+I will be teaching you nokogiri in Ruby.
+
+112
+00:07:40,160 --> 00:07:45,600
+>> Moving on, if else statements,
+it's a little different
+
+113
+00:07:45,600 --> 00:07:49,800
+from what you might be used to
+if you've been working in C.
+
+114
+00:07:49,800 --> 00:07:53,200
+You don't need the parentheses.
+
+115
+00:07:53,200 --> 00:07:55,220
+You don't need the curly braces.
+
+116
+00:07:55,220 --> 00:08:00,170
+And instead of else if,
+it's a concatenated elsif.
+
+117
+00:08:00,170 --> 00:08:07,260
+So in here, if I've declared x up
+here, as we can see, x is still 5.
+
+118
+00:08:07,260 --> 00:08:11,100
+So if x is less than 3, it'll put small.
+
+119
+00:08:11,100 --> 00:08:14,030
+If it's less than 7, medium, else large.
+
+120
+00:08:14,030 --> 00:08:17,340
+So 5 is a medium number.
+
+121
+00:08:17,340 --> 00:08:22,270
+And I end this block of code with end.
+
+122
+00:08:22,270 --> 00:08:24,920
+>> Here is my for loop.
+
+123
+00:08:24,920 --> 00:08:28,240
+And this syntax is also
+slightly different.
+
+124
+00:08:28,240 --> 00:08:33,500
+The 0 to five just essentially
+is declaring an arrays of 0 to 5.
+
+125
+00:08:33,500 --> 00:08:36,120
+So there's five slots in the array.
+
+126
+00:08:36,120 --> 00:08:40,500
+And then for each slot in that
+array, I will be incrementing i.
+
+127
+00:08:40,500 --> 00:08:46,080
+So this should print 0 to 5, or 0 to 4.
+
+128
+00:08:46,080 --> 00:08:49,630
+And this should print medium.
+
+129
+00:08:49,630 --> 00:08:51,370
+>> And I'll just blaze through.
+
+130
+00:08:51,370 --> 00:08:54,466
+You guys will have access
+to this code later on.
+
+131
+00:08:54,466 --> 00:08:55,965
+So you guys can run this yourselves.
+
+132
+00:08:55,965 --> 00:09:02,090
+
+133
+00:09:02,090 --> 00:09:06,620
+>> So this is your basic while loop.
+
+134
+00:09:06,620 --> 00:09:12,230
+This will just be printing j,
+incrementing by 1 until we hit 5.
+
+135
+00:09:12,230 --> 00:09:18,320
+>> Super quick Ruby crash course
+on how to write a function.
+
+136
+00:09:18,320 --> 00:09:24,460
+Instead of, say, int factorial
+number, we just have def.
+
+137
+00:09:24,460 --> 00:09:28,450
+And essentially you're
+defining a function here.
+
+138
+00:09:28,450 --> 00:09:30,600
+This is going to be the
+name of the function,
+
+139
+00:09:30,600 --> 00:09:34,280
+and this is any variables that you
+want to pass into the function.
+
+140
+00:09:34,280 --> 00:09:36,760
+You can have if statements within.
+
+141
+00:09:36,760 --> 00:09:38,030
+You can return.
+
+142
+00:09:38,030 --> 00:09:42,620
+In this case, we're
+defining a recursively
+
+143
+00:09:42,620 --> 00:09:45,000
+implemented factorial function.
+
+144
+00:09:45,000 --> 00:09:48,660
+So we just call functions
+in Ruby like this.
+
+145
+00:09:48,660 --> 00:09:54,700
+>> So if I've defined this, I
+can call factorial, pass in 3,
+
+146
+00:09:54,700 --> 00:09:59,700
+and then 3 will be the number variable
+that I can use within the function.
+
+147
+00:09:59,700 --> 00:10:08,010
+And this to_s is just turning the
+return value of factorial into a string.
+
+148
+00:10:08,010 --> 00:10:10,760
+Otherwise this will throw
+an error saying oh, I
+
+149
+00:10:10,760 --> 00:10:13,230
+can't print a string--
+because as you remember,
+
+150
+00:10:13,230 --> 00:10:18,230
+puts is put string-- because this
+factorial has returned a number.
+
+151
+00:10:18,230 --> 00:10:21,850
+So we can convert that
+to a string like such.
+
+152
+00:10:21,850 --> 00:10:27,856
+And conversely, you can also convert
+a string to an integer with to_i.
+
+153
+00:10:27,856 --> 00:10:32,650
+>> So making everything super simple,
+if I just comment this out, save
+
+154
+00:10:32,650 --> 00:10:36,250
+and run the factorial function.
+
+155
+00:10:36,250 --> 00:10:39,850
+We should be able to see
+that factorial of 3 is 6.
+
+156
+00:10:39,850 --> 00:10:42,790
+And that is indeed true.
+
+157
+00:10:42,790 --> 00:10:46,160
+>> So that's your crash course in Ruby.
+
+158
+00:10:46,160 --> 00:10:53,550
+And now that you know Ruby, we can go on
+to the basic Nokogiri scraping set up.
+
+159
+00:10:53,550 --> 00:10:58,190
+Essentially all you have to do is,
+in Ruby, require the libraries.
+
+160
+00:10:58,190 --> 00:11:04,390
+And for our purposes we'll be using the
+library OpenURI as well as Nokogiri.
+
+161
+00:11:04,390 --> 00:11:07,870
+And then what you do-- and it'll
+give you the syntax for this--
+
+162
+00:11:07,870 --> 00:11:16,010
+is you open the URL much as you would in
+a cURL request, which stands for C URL.
+
+163
+00:11:16,010 --> 00:11:20,330
+>> So you take the URL of
+the website in question.
+
+164
+00:11:20,330 --> 00:11:22,030
+You store it in a variable.
+
+165
+00:11:22,030 --> 00:11:27,400
+And then you can search through that
+variable for unique HTML tags using
+
+166
+00:11:27,400 --> 00:11:30,590
+the .css command.
+
+167
+00:11:30,590 --> 00:11:34,360
+And then you can output the
+content to wherever you want.
+
+168
+00:11:34,360 --> 00:11:35,720
+You can start in a database.
+
+169
+00:11:35,720 --> 00:11:42,040
+You can output in a file, or
+even just print it to the screen.
+
+170
+00:11:42,040 --> 00:11:47,290
+>> So we'll show you a basic scraper.
+
+171
+00:11:47,290 --> 00:11:52,570
+So up here you can see we have
+requiring nokogiri, require open-uri.
+
+172
+00:11:52,570 --> 00:11:57,150
+Your basic set up, let's
+call it document or doc,
+
+173
+00:11:57,150 --> 00:12:07,780
+equals Nokogiri::HTML open, which is the
+command provided to us by the OpenURI
+
+174
+00:12:07,780 --> 00:12:08,920
+library.
+
+175
+00:12:08,920 --> 00:12:14,000
+And we'll be searching, for those of
+you who might be living in the quad,
+
+176
+00:12:14,000 --> 00:12:21,270
+for bikes that are in Boston listed
+on the Boston Craigslist bike section
+
+177
+00:12:21,270 --> 00:12:22,020
+site.
+
+178
+00:12:22,020 --> 00:12:26,460
+>> So if you are unfamiliar
+with cURL, I'll just
+
+179
+00:12:26,460 --> 00:12:28,930
+show you real quick what cURL will do.
+
+180
+00:12:28,930 --> 00:12:38,350
+If I wanted to get all of the URL from
+the Craigslist site, if I type curl,
+
+181
+00:12:38,350 --> 00:12:44,950
+it just dumps all of the URL
+from the Craigslist bicycle site
+
+182
+00:12:44,950 --> 00:12:46,720
+onto my terminal.
+
+183
+00:12:46,720 --> 00:12:49,130
+That's not particularly
+useful because I don't
+
+184
+00:12:49,130 --> 00:12:53,330
+want to manually go through and
+find the thing I'm looking for.
+
+185
+00:12:53,330 --> 00:13:01,590
+But just so you can
+see that I'm actually
+
+186
+00:13:01,590 --> 00:13:13,966
+using the right code, if you look
+at the URL for Craigslist in bikes--
+
+187
+00:13:13,966 --> 00:13:17,460
+for some reason it's not found.
+
+188
+00:13:17,460 --> 00:13:20,340
+If you look at this page
+and you look at the URL,
+
+189
+00:13:20,340 --> 00:13:23,970
+this should be identical to the
+cURL request that I just send.
+
+190
+00:13:23,970 --> 00:13:27,700
+And indeed, that's what's being
+stored in the doc variable.
+
+191
+00:13:27,700 --> 00:13:36,540
+>> So when you go back to our code, we
+can then operate on this doc variable
+
+192
+00:13:36,540 --> 00:13:40,660
+by using .css.
+
+193
+00:13:40,660 --> 00:13:49,240
+So say I wanted to get all of
+the tags that are span.txt,
+
+194
+00:13:49,240 --> 00:13:51,740
+and all the a tags within that tag.
+
+195
+00:13:51,740 --> 00:13:56,150
+And why might we want to
+do this, I hear you cry?
+
+196
+00:13:56,150 --> 00:14:02,920
+>> If we Inspect Element, it gives you a
+breakdown of how the URL is structured.
+
+197
+00:14:02,920 --> 00:14:06,200
+If I scroll down through
+here, you can see
+
+198
+00:14:06,200 --> 00:14:08,770
+what each of these different
+elements represents.
+
+199
+00:14:08,770 --> 00:14:13,410
+So maybe I want to access
+this particular element.
+
+200
+00:14:13,410 --> 00:14:16,820
+So I'm using Chrome developer
+tools to Inspect Element.
+
+201
+00:14:16,820 --> 00:14:22,970
+I can see down here that this
+is an a tag within a span
+
+202
+00:14:22,970 --> 00:14:26,230
+tag with a class of txt.
+
+203
+00:14:26,230 --> 00:14:29,610
+>> So this gets to our
+first operation which
+
+204
+00:14:29,610 --> 00:14:37,330
+is doc.css span, which is the tag that
+I'm looking for within all this URL.
+
+205
+00:14:37,330 --> 00:14:43,650
+And then .txt operates much like CSS
+does when you're just writing CSS
+
+206
+00:14:43,650 --> 00:14:49,630
+in your HTML files by
+specifying a class.
+
+207
+00:14:49,630 --> 00:14:57,980
+So this particular operator will
+specify a span tag with class of txt.
+
+208
+00:14:57,980 --> 00:15:02,800
+And then if I leave a space,
+this will then go within that tag
+
+209
+00:15:02,800 --> 00:15:05,170
+and then find an a tag within that.
+
+210
+00:15:05,170 --> 00:15:10,750
+>> So if I just put this to
+the terminal, I should
+
+211
+00:15:10,750 --> 00:15:21,630
+be able to see essentially everything
+that is within this span of class txt.
+
+212
+00:15:21,630 --> 00:15:22,890
+So we'll give that a go.
+
+213
+00:15:22,890 --> 00:15:25,870
+
+214
+00:15:25,870 --> 00:15:27,756
+ruby craigslist-scraper.
+
+215
+00:15:27,756 --> 00:15:31,850
+
+216
+00:15:31,850 --> 00:15:37,250
+And indeed that gives us all of these
+tags of the various listings that
+
+217
+00:15:37,250 --> 00:15:40,400
+are on the Craigslist page.
+
+218
+00:15:40,400 --> 00:15:45,670
+>> So if we go back, we can turn this
+into something a little more useful.
+
+219
+00:15:45,670 --> 00:15:51,050
+Maybe we want just the links.
+
+220
+00:15:51,050 --> 00:15:58,790
+Because within this tag, I'll also
+have the hyperlink of the path
+
+221
+00:15:58,790 --> 00:16:00,590
+that this page goes to.
+
+222
+00:16:00,590 --> 00:16:09,100
+So if you look at this code here,
+what I'll do is instead of .css,
+
+223
+00:16:09,100 --> 00:16:12,380
+I can go at_css.
+
+224
+00:16:12,380 --> 00:16:16,820
+And this will just get the first
+element of all of those things.
+
+225
+00:16:16,820 --> 00:16:20,890
+So if I were to do that up in the
+code I just previously demonstrated,
+
+226
+00:16:20,890 --> 00:16:23,800
+instead of returning all
+of this, it would just
+
+227
+00:16:23,800 --> 00:16:26,850
+return the first one of those.
+
+228
+00:16:26,850 --> 00:16:31,310
+So that's how the at_css operator works.
+
+229
+00:16:31,310 --> 00:16:39,460
+>> So we want to store the
+path all of the first a tag.
+
+230
+00:16:39,460 --> 00:16:47,430
+And because a will give us a--
+so we're still going to use .css.
+
+231
+00:16:47,430 --> 00:16:53,830
+But because this is going to give
+us back an entire array of tags,
+
+232
+00:16:53,830 --> 00:16:55,710
+we are going to access
+the first element.
+
+233
+00:16:55,710 --> 00:17:01,700
+So this is another way that you can
+access any particular element if you
+
+234
+00:17:01,700 --> 00:17:04,810
+have an array of elements
+that is returned,
+
+235
+00:17:04,810 --> 00:17:11,930
+because you can treat anything that
+.css returns as an array, essentially.
+
+236
+00:17:11,930 --> 00:17:16,880
+And then we're going to access the
+hypertext reference attribute of this.
+
+237
+00:17:16,880 --> 00:17:24,810
+>> So if you take a look, if
+you looked really close here,
+
+238
+00:17:24,810 --> 00:17:28,270
+if you just essentially
+look at the URL bar,
+
+239
+00:17:28,270 --> 00:17:33,880
+this is the path that
+you're going to be scraping.
+
+240
+00:17:33,880 --> 00:17:41,565
+So if we just run this again,
+and make sure we've saved it.
+
+241
+00:17:41,565 --> 00:17:47,040
+
+242
+00:17:47,040 --> 00:17:48,300
+You can check at home.
+
+243
+00:17:48,300 --> 00:17:51,430
+This actually matches up with this link.
+
+244
+00:17:51,430 --> 00:17:55,950
+>> So why might we want to use this?
+
+245
+00:17:55,950 --> 00:17:57,870
+If you want to scrape
+the page and it has
+
+246
+00:17:57,870 --> 00:18:00,270
+a page of links like
+Craigslist does, you
+
+247
+00:18:00,270 --> 00:18:03,210
+might want to go then
+into each of those links
+
+248
+00:18:03,210 --> 00:18:05,120
+and then scrape the
+content of that, which
+
+249
+00:18:05,120 --> 00:18:08,520
+is exactly what we're going to do.
+
+250
+00:18:08,520 --> 00:18:11,660
+>> So once you have path as a
+variable, I no longer really
+
+251
+00:18:11,660 --> 00:18:13,200
+care about printing it out.
+
+252
+00:18:13,200 --> 00:18:15,420
+I just need to store it as a variable.
+
+253
+00:18:15,420 --> 00:18:20,980
+And then I can access another
+page the same way I access
+
+254
+00:18:20,980 --> 00:18:22,260
+doc in the first place.
+
+255
+00:18:22,260 --> 00:18:25,920
+Except with the URL, we're going
+to use string interpolation
+
+256
+00:18:25,920 --> 00:18:29,180
+like I was describing in
+Ruby earlier on to append
+
+257
+00:18:29,180 --> 00:18:32,010
+the path to the end of the root.
+
+258
+00:18:32,010 --> 00:18:38,970
+>> So what this is going to do is
+this is going to put on the path
+
+259
+00:18:38,970 --> 00:18:42,360
+that I scraped previously
+and then turn that
+
+260
+00:18:42,360 --> 00:18:49,580
+into a new item, whatever you want to
+call it-- first_listing, for example.
+
+261
+00:18:49,580 --> 00:18:52,900
+But I'm going to leave
+it on item for now,
+
+262
+00:18:52,900 --> 00:18:55,420
+because that is what I'm using here.
+
+263
+00:18:55,420 --> 00:19:02,900
+>> So say I wanted to get the description
+of the first posting in Craigslist.
+
+264
+00:19:02,900 --> 00:19:04,740
+So I would go down here.
+
+265
+00:19:04,740 --> 00:19:10,660
+I would click on Inspect Element
+again, because this is the description.
+
+266
+00:19:10,660 --> 00:19:14,350
+I'd go down here and see
+if I can find how I might
+
+267
+00:19:14,350 --> 00:19:16,530
+be able to search for this unique tag.
+
+268
+00:19:16,530 --> 00:19:19,530
+And in this case, it has
+an ID, which leads us
+
+269
+00:19:19,530 --> 00:19:26,810
+to our next way of searching for
+tags, which is with a hashtag.
+
+270
+00:19:26,810 --> 00:19:30,670
+>> So for classes, you can
+use the dot operator.
+
+271
+00:19:30,670 --> 00:19:38,610
+So .txt is specifying a class of txt,
+whereas the hash specifies an ID.
+
+272
+00:19:38,610 --> 00:19:43,720
+So in this case, the tag is
+section, and the ID is postingbody.
+
+273
+00:19:43,720 --> 00:19:47,780
+>> So this goes and finds
+the first-- because we're
+
+274
+00:19:47,780 --> 00:19:51,200
+using at_css-- this goes and
+finds the first element that
+
+275
+00:19:51,200 --> 00:19:57,180
+comes up with the tag of section
+and the ID of postingbody.
+
+276
+00:19:57,180 --> 00:20:02,636
+And then you can access the text element
+of that item returned with .text.
+
+277
+00:20:02,636 --> 00:20:06,230
+And then we can store
+that in the description.
+
+278
+00:20:06,230 --> 00:20:09,370
+>> So now that we have a
+variable description,
+
+279
+00:20:09,370 --> 00:20:14,850
+we might be able to do, say,
+file I/O. So file I/O in Ruby
+
+280
+00:20:14,850 --> 00:20:21,310
+is very similar to file I/O
+in C where we open a file.
+
+281
+00:20:21,310 --> 00:20:23,260
+We might write to it.
+
+282
+00:20:23,260 --> 00:20:25,060
+And then we'll close that file.
+
+283
+00:20:25,060 --> 00:20:29,660
+>> So here, we're just naming the
+file, some arbitrary variable.
+
+284
+00:20:29,660 --> 00:20:33,120
+We could also have just put this here.
+
+285
+00:20:33,120 --> 00:20:39,630
+We have a variable that we're storing
+the open file as with File.open.
+
+286
+00:20:39,630 --> 00:20:46,370
+And we're writing to this file,
+so we open it with the w operator.
+
+287
+00:20:46,370 --> 00:20:54,280
+And then we put string into the
+file with the .puts operator.
+
+288
+00:20:54,280 --> 00:20:58,310
+And then we put the variable that we
+want to write to the file within that.
+
+289
+00:20:58,310 --> 00:21:00,200
+And then we just close the file.
+
+290
+00:21:00,200 --> 00:21:04,000
+>> So if we go ahead and run this,
+this should produce a document
+
+291
+00:21:04,000 --> 00:21:10,840
+with description.txt which will
+have this description within it.
+
+292
+00:21:10,840 --> 00:21:14,015
+So if I run it-- no.
+
+293
+00:21:14,015 --> 00:21:17,520
+
+294
+00:21:17,520 --> 00:21:23,330
+It's produced a text file with,
+hopefully, the same thing.
+
+295
+00:21:23,330 --> 00:21:25,850
+
+296
+00:21:25,850 --> 00:21:33,290
+So there might have been a new posting
+that's come up while I've been talking.
+
+297
+00:21:33,290 --> 00:21:36,580
+And indeed it looks like there has been.
+
+298
+00:21:36,580 --> 00:21:43,380
+So if we go to this classic bike,
+1962 to 1966, that seems to match.
+
+299
+00:21:43,380 --> 00:21:45,620
+And there you go.
+
+300
+00:21:45,620 --> 00:21:51,250
+>> So that's the most basic
+functionality of scraping.
+
+301
+00:21:51,250 --> 00:21:57,510
+We could have instead of
+just writing to this file,
+
+302
+00:21:57,510 --> 00:21:59,930
+we can add things to an array.
+
+303
+00:21:59,930 --> 00:22:03,770
+So if I declare three arrays,
+title, price, and description.
+
+304
+00:22:03,770 --> 00:22:06,310
+
+305
+00:22:06,310 --> 00:22:13,790
+And we're operating on the doc item now.
+
+306
+00:22:13,790 --> 00:22:16,940
+We can go through and
+find all of the span.txt.
+
+307
+00:22:16,940 --> 00:22:21,710
+And remember, this returns an array
+of all the items that it finds.
+
+308
+00:22:21,710 --> 00:22:27,300
+And then in Ruby, you can just use
+.each to iterate through every item
+
+309
+00:22:27,300 --> 00:22:28,410
+of the array.
+
+310
+00:22:28,410 --> 00:22:31,330
+And then for each item,
+I'm just going to call it
+
+311
+00:22:31,330 --> 00:22:34,620
+a link, because that's
+essentially what it is.
+
+312
+00:22:34,620 --> 00:22:46,830
+>> So if I put each link.css dot a.hdrlnk,
+this is actually going to the link
+
+313
+00:22:46,830 --> 00:22:58,280
+and finding within that link another
+HTML element and corresponding class.
+
+314
+00:22:58,280 --> 00:23:04,990
+So if we remember what
+this was, the span.txt,
+
+315
+00:23:04,990 --> 00:23:13,160
+you can see- let me just go back
+real quick-- within span.txt
+
+316
+00:23:13,160 --> 00:23:17,490
+we have a lot of other classes.
+
+317
+00:23:17,490 --> 00:23:27,180
+So inside span.txt, we're looking
+for an a tag with a class hdrlnk.
+
+318
+00:23:27,180 --> 00:23:29,890
+So let me just find that
+for you guys real quick.
+
+319
+00:23:29,890 --> 00:23:37,390
+
+320
+00:23:37,390 --> 00:23:42,850
+>> So you can see here, this is an a tag
+that's within the span of class txt
+
+321
+00:23:42,850 --> 00:23:44,920
+that has the class hdrlnk.
+
+322
+00:23:44,920 --> 00:23:47,610
+And that's indeed what
+we're trying to get.
+
+323
+00:23:47,610 --> 00:23:54,680
+>> So we're now trying to store all
+of those links inside the title.
+
+324
+00:23:54,680 --> 00:23:59,545
+And then we're going to print
+out each of those links.
+
+325
+00:23:59,545 --> 00:24:00,360
+No, sorry.
+
+326
+00:24:00,360 --> 00:24:04,530
+We're going to print out
+the price of each of those.
+
+327
+00:24:04,530 --> 00:24:09,350
+So let's run this really
+quick and see what it does.
+
+328
+00:24:09,350 --> 00:24:14,680
+
+329
+00:24:14,680 --> 00:24:17,720
+>> So this just basically went
+through each of the links
+
+330
+00:24:17,720 --> 00:24:27,310
+in turn, accessed the tag in question,
+and then pulled out the price.
+
+331
+00:24:27,310 --> 00:24:33,910
+And it did that because after
+you have everything in the title,
+
+332
+00:24:33,910 --> 00:24:37,260
+we've just stored the title there.
+
+333
+00:24:37,260 --> 00:24:40,180
+We've just stored the link
+within the array title.
+
+334
+00:24:40,180 --> 00:24:47,720
+And in this for loop operation,
+where instead of going to a.hdrlnk,
+
+335
+00:24:47,720 --> 00:24:50,490
+we're looking for a span.price.
+
+336
+00:24:50,490 --> 00:24:56,500
+So if I can just really quickly find
+the price, if you inspect the element,
+
+337
+00:24:56,500 --> 00:25:00,610
+you'll see that it is a span
+with the class of price.
+
+338
+00:25:00,610 --> 00:25:04,670
+And that's essentially how
+we're getting the price there.
+
+339
+00:25:04,670 --> 00:25:10,040
+>> So that's the really
+basic case of scraping.
+
+340
+00:25:10,040 --> 00:25:13,550
+That's how you get all
+the elements on a page
+
+341
+00:25:13,550 --> 00:25:16,510
+that, say, you already know the URL of.
+
+342
+00:25:16,510 --> 00:25:21,050
+>> So if we want to get a
+little more in depth,
+
+343
+00:25:21,050 --> 00:25:23,950
+we can scrape pages within pages.
+
+344
+00:25:23,950 --> 00:25:28,480
+And for this example, I'll
+be outputting to a CSV file.
+
+345
+00:25:28,480 --> 00:25:39,510
+So I'm requiring csv up here
+because Ruby doesn't, inside itself,
+
+346
+00:25:39,510 --> 00:25:42,350
+have the functionality
+to just output CSV files.
+
+347
+00:25:42,350 --> 00:25:45,030
+So that's super simple.
+
+348
+00:25:45,030 --> 00:25:48,710
+Let me just go to the next.
+
+349
+00:25:48,710 --> 00:25:51,640
+
+350
+00:25:51,640 --> 00:25:57,170
+We covered file I/O. So this
+is similar to how it is in C.
+
+351
+00:25:57,170 --> 00:26:00,870
+And before we move on to Kimono,
+I'll just show you really quick how
+
+352
+00:26:00,870 --> 00:26:02,790
+to scrape sites within sights.
+
+353
+00:26:02,790 --> 00:26:10,040
+>> So we already learned how
+to declare arrays in Ruby.
+
+354
+00:26:10,040 --> 00:26:13,280
+So I'm just declaring a
+bunch of arbitrary arrays
+
+355
+00:26:13,280 --> 00:26:16,310
+that I will be storing data within.
+
+356
+00:26:16,310 --> 00:26:20,680
+doc is operating the same way
+as it did in the previous file.
+
+357
+00:26:20,680 --> 00:26:23,580
+We're going in, finding
+each of the span.txt's.
+
+358
+00:26:23,580 --> 00:26:25,040
+We already know that.
+
+359
+00:26:25,040 --> 00:26:32,130
+That is the container within which each
+link has all of the data that we want.
+
+360
+00:26:32,130 --> 00:26:40,800
+>> So here what we're doing is for each
+link of span class txt, we're going in
+
+361
+00:26:40,800 --> 00:26:45,720
+and we're finding the a tag,
+finding the first element of that.
+
+362
+00:26:45,720 --> 00:26:49,937
+Remember, .css returns an array,
+so you can't just access it as is.
+
+363
+00:26:49,937 --> 00:26:51,520
+We're going to find the first element.
+
+364
+00:26:51,520 --> 00:26:56,430
+Even if it's an array of one
+item, you have to use this syntax,
+
+365
+00:26:56,430 --> 00:26:58,800
+and then pull out the href attribute.
+
+366
+00:26:58,800 --> 00:27:01,800
+>> So we did this earlier.
+
+367
+00:27:01,800 --> 00:27:04,440
+So this should look familiar.
+
+368
+00:27:04,440 --> 00:27:14,330
+And so now we have an array
+called paths of all of our links
+
+369
+00:27:14,330 --> 00:27:16,590
+that we're going to want to use.
+
+370
+00:27:16,590 --> 00:27:21,350
+So if we have this array of all
+of the paths that we want to use,
+
+371
+00:27:21,350 --> 00:27:26,840
+we can then create an item for each
+of those pages when we open that page.
+
+372
+00:27:26,840 --> 00:27:31,150
+So as we also saw on
+the syntax before, where
+
+373
+00:27:31,150 --> 00:27:37,450
+doing string interpolation with the path
+here, so the syntax is just for path.
+
+374
+00:27:37,450 --> 00:27:41,450
+And I could name this
+variable any arbitrary name.
+
+375
+00:27:41,450 --> 00:27:43,070
+>> This is the important one.
+
+376
+00:27:43,070 --> 00:27:46,650
+This is the array that you'll
+be accessing each element.
+
+377
+00:27:46,650 --> 00:27:52,400
+But when you say for path in paths,
+this means for each element in paths,
+
+378
+00:27:52,400 --> 00:27:55,150
+call it path, and use that.
+
+379
+00:27:55,150 --> 00:27:59,266
+This is essentially like when you
+do a for loop and you use int i.
+
+380
+00:27:59,266 --> 00:28:04,000
+So you can treat the path as the
+variable that's incrementing.
+
+381
+00:28:04,000 --> 00:28:07,820
+>> And then for each of those,
+go into each of those links.
+
+382
+00:28:07,820 --> 00:28:11,710
+Because we're storing it in item page,
+so we're creating a new page every time
+
+383
+00:28:11,710 --> 00:28:13,330
+we access it.
+
+384
+00:28:13,330 --> 00:28:20,560
+And then within that new page, find
+span.postingtitletext, span.price,
+
+385
+00:28:20,560 --> 00:28:22,240
+and then section#postingbody.
+
+386
+00:28:22,240 --> 00:28:28,430
+We already covered section#postingbody
+when we looked at the description.
+
+387
+00:28:28,430 --> 00:28:34,890
+>> So we can go see in the Craigslist post,
+if you're just looking at the title,
+
+388
+00:28:34,890 --> 00:28:38,810
+you can see it up here,
+span postingtitletext.
+
+389
+00:28:38,810 --> 00:28:41,390
+And that's why it's there.
+
+390
+00:28:41,390 --> 00:28:49,120
+And then for the price, you can
+access it with span class of price.
+
+391
+00:28:49,120 --> 00:28:54,480
+>> So we also perhaps might
+want to store the URL.
+
+392
+00:28:54,480 --> 00:28:58,580
+So we'll just run this
+again, store it in an array,
+
+393
+00:28:58,580 --> 00:29:01,150
+because if you're looking
+on Craigslist, you're
+
+394
+00:29:01,150 --> 00:29:05,290
+probably going to want a way to, if
+you see something that interests you,
+
+395
+00:29:05,290 --> 00:29:06,620
+go back to that site.
+
+396
+00:29:06,620 --> 00:29:10,480
+So you just want to store
+the URL for references sake.
+
+397
+00:29:10,480 --> 00:29:13,840
+
+398
+00:29:13,840 --> 00:29:19,630
+>> This is just essentially
+another syntax for the for loop.
+
+399
+00:29:19,630 --> 00:29:26,360
+I could just do paths.each instead
+of for path in paths with index.
+
+400
+00:29:26,360 --> 00:29:31,280
+And this syntax is Ruby for--
+path is what we did up here,
+
+401
+00:29:31,280 --> 00:29:33,920
+declaring a variable for each item.
+
+402
+00:29:33,920 --> 00:29:38,540
+And index behaves like
+the i in C for loops.
+
+403
+00:29:38,540 --> 00:29:41,280
+So you can keep track
+of what the index is.
+
+404
+00:29:41,280 --> 00:29:45,200
+>> So here is just a
+little convenient thing
+
+405
+00:29:45,200 --> 00:29:46,950
+for when you're running the scraper.
+
+406
+00:29:46,950 --> 00:29:50,580
+If you're scraping hundreds of pages,
+to make sure that it's not hanging,
+
+407
+00:29:50,580 --> 00:29:53,320
+it will just output,
+I'm accessing this page,
+
+408
+00:29:53,320 --> 00:29:55,960
+and making sure that
+it's still continuing.
+
+409
+00:29:55,960 --> 00:29:59,250
+But for our purposes, because
+there's a hundred items,
+
+410
+00:29:59,250 --> 00:30:08,000
+I'm going to access just three of them
+so that we don't run out of time here.
+
+411
+00:30:08,000 --> 00:30:13,040
+>> But before we get to that, I'm just
+going to show you really quick,
+
+412
+00:30:13,040 --> 00:30:16,940
+I will be outputting the title,
+price, description, and URL
+
+413
+00:30:16,940 --> 00:30:19,600
+of each of the links that I've scraped.
+
+414
+00:30:19,600 --> 00:30:23,720
+And then this is just the
+syntax for the CSV library.
+
+415
+00:30:23,720 --> 00:30:25,240
+You open a CSV.
+
+416
+00:30:25,240 --> 00:30:27,070
+This is what I'm going to call it.
+
+417
+00:30:27,070 --> 00:30:29,430
+Open it with write do.
+
+418
+00:30:29,430 --> 00:30:33,830
+And then CSV will be the file that
+you're inputting everything into.
+
+419
+00:30:33,830 --> 00:30:37,800
+This is just a sanity check for
+me to know that it's running.
+
+420
+00:30:37,800 --> 00:30:41,240
+And this is my sanity check
+to know that it's completed.
+
+421
+00:30:41,240 --> 00:30:46,670
+So I'm putting title into a row in
+the CSV, price, url, description,
+
+422
+00:30:46,670 --> 00:30:49,420
+all into rows in the CSV.
+
+423
+00:30:49,420 --> 00:30:53,410
+>> So if we go and run
+this now-- and I just
+
+424
+00:30:53,410 --> 00:31:04,710
+make sure that I've saved it-- instead
+of just outputting it to the terminal,
+
+425
+00:31:04,710 --> 00:31:09,750
+we should have a CSV
+file that's produced.
+
+426
+00:31:09,750 --> 00:31:13,500
+So here we can see the CSV
+file that's been produced.
+
+427
+00:31:13,500 --> 00:31:19,330
+This is the output of the
+scape that I just ran.
+
+428
+00:31:19,330 --> 00:31:23,030
+As you can see here,
+accessing page 0, 1, 2, 3.
+
+429
+00:31:23,030 --> 00:31:27,400
+These are the titles,
+prices, descriptions.
+
+430
+00:31:27,400 --> 00:31:31,710
+And if we look at this CSV
+file that we've generated,
+
+431
+00:31:31,710 --> 00:31:35,700
+you can see its outputted here.
+
+432
+00:31:35,700 --> 00:31:40,350
+This isn't Excel, so it's not
+formatted in rows and columns.
+
+433
+00:31:40,350 --> 00:31:45,140
+But you can imagine how
+it might be formatted.
+
+434
+00:31:45,140 --> 00:31:47,740
+>> CSV stands for comma separated values.
+
+435
+00:31:47,740 --> 00:31:50,090
+So you can imagine this might be a row.
+
+436
+00:31:50,090 --> 00:31:54,700
+And each comma would
+indicate a separate column.
+
+437
+00:31:54,700 --> 00:32:00,010
+Just a word of caution--
+sometimes you're
+
+438
+00:32:00,010 --> 00:32:02,260
+scraping things with a lot of commas.
+
+439
+00:32:02,260 --> 00:32:05,100
+So if you're outputting
+it to a CSV file,
+
+440
+00:32:05,100 --> 00:32:10,340
+it might not output the
+way you might think.
+
+441
+00:32:10,340 --> 00:32:16,770
+>> So that's essentially all
+there is to scraping basic HTML
+
+442
+00:32:16,770 --> 00:32:20,110
+pages with Nokogiri.
+
+443
+00:32:20,110 --> 00:32:26,000
+>> So the internet being
+innovative as it has come up
+
+444
+00:32:26,000 --> 00:32:33,220
+with a more automated and GUI
+version, albeit less robust
+
+445
+00:32:33,220 --> 00:32:35,540
+version of scraping various websites.
+
+446
+00:32:35,540 --> 00:32:39,060
+And for our purposes
+I'll be demonstrating
+
+447
+00:32:39,060 --> 00:32:42,920
+a Chrome extension called Kimono.
+
+448
+00:32:42,920 --> 00:32:46,690
+And all you have to do is you navigate
+to the page that you want to scrape.
+
+449
+00:32:46,690 --> 00:32:48,590
+You click on a field of interest.
+
+450
+00:32:48,590 --> 00:32:51,510
+You calibrate the fields,
+because it will automatically
+
+451
+00:32:51,510 --> 00:32:54,360
+detect what it thinks
+you want to be scraping,
+
+452
+00:32:54,360 --> 00:32:56,280
+and then you just create an API.
+
+453
+00:32:56,280 --> 00:33:03,700
+>> So if we were to demonstrate it on
+Craigslist, it actually wouldn't work.
+
+454
+00:33:03,700 --> 00:33:08,290
+And this is what I was going back to
+saying about it not being as robust.
+
+455
+00:33:08,290 --> 00:33:10,320
+It has trouble creating the API.
+
+456
+00:33:10,320 --> 00:33:13,400
+But as a demonstration
+of what it would do,
+
+457
+00:33:13,400 --> 00:33:17,460
+if you install the Chrome extension,
+all you do is you click on it.
+
+458
+00:33:17,460 --> 00:33:21,750
+It Kimonofies the page, and then you
+click on the thing you want to script.
+
+459
+00:33:21,750 --> 00:33:24,480
+>> So if I were to click on
+that, it would highlight
+
+460
+00:33:24,480 --> 00:33:28,130
+what it thinks I want to
+be scraping off that page.
+
+461
+00:33:28,130 --> 00:33:33,660
+So maybe I call this listings.
+
+462
+00:33:33,660 --> 00:33:36,430
+This is how many items I have selected.
+
+463
+00:33:36,430 --> 00:33:43,810
+And I can just confirm or deny some
+of the other suggested listings
+
+464
+00:33:43,810 --> 00:33:49,600
+to get it to add to
+what will be scraped.
+
+465
+00:33:49,600 --> 00:33:52,330
+>> So now we can see there's
+a hundred items selected.
+
+466
+00:33:52,330 --> 00:33:58,060
+If I want to have another field that I
+also scrape which is related to this,
+
+467
+00:33:58,060 --> 00:34:02,540
+say I want to scrape the price
+as well, then I can do the same.
+
+468
+00:34:02,540 --> 00:34:06,190
+
+469
+00:34:06,190 --> 00:34:11,550
+>> So here's a demonstration of how it's
+much less robust, because now it's
+
+470
+00:34:11,550 --> 00:34:15,050
+picking up the city instead
+of just the price that I want.
+
+471
+00:34:15,050 --> 00:34:16,989
+And now it's picked up 200 things.
+
+472
+00:34:16,989 --> 00:34:19,880
+You can go back and delete.
+
+473
+00:34:19,880 --> 00:34:21,449
+You can try again.
+
+474
+00:34:21,449 --> 00:34:24,250
+But no guarantees.
+
+475
+00:34:24,250 --> 00:34:29,909
+This is how this works sometimes.
+
+476
+00:34:29,909 --> 00:34:32,969
+As you see here, now it says 96 up here.
+
+477
+00:34:32,969 --> 00:34:37,000
+It's picked up most of the links
+that you want to scrape, but not
+
+478
+00:34:37,000 --> 00:34:39,280
+necessarily all of them.
+
+479
+00:34:39,280 --> 00:34:43,909
+>> Another useful tool of Kimono though
+is you can go to Advanced Features
+
+480
+00:34:43,909 --> 00:34:47,980
+here, go to Advanced,
+and it will show you
+
+481
+00:34:47,980 --> 00:34:53,139
+the breakdown of the unique
+way to access the HTML
+
+482
+00:34:53,139 --> 00:34:54,909
+tags that you want to scrape.
+
+483
+00:34:54,909 --> 00:35:01,450
+So for listings, if you look at here,
+if you access div p span span a,
+
+484
+00:35:01,450 --> 00:35:06,030
+you can actually just use
+this in your Nokogiri code,
+
+485
+00:35:06,030 --> 00:35:10,780
+where before we had span.txt
+to access each of the listings.
+
+486
+00:35:10,780 --> 00:35:13,270
+If I just want the text
+within the listings,
+
+487
+00:35:13,270 --> 00:35:18,950
+I could input div space p
+space span space span space a,
+
+488
+00:35:18,950 --> 00:35:21,570
+and it would achieve the same effect.
+
+489
+00:35:21,570 --> 00:35:26,320
+And for those of you who are interested
+in using regular expressions,
+
+490
+00:35:26,320 --> 00:35:31,670
+it happens to also give you the regular
+expression sort of string to input
+
+491
+00:35:31,670 --> 00:35:34,900
+to find the things
+you're trying to find.
+
+492
+00:35:34,900 --> 00:35:44,130
+>> So there's another cool feature
+of Kimono where you can paginate,
+
+493
+00:35:44,130 --> 00:35:47,780
+which is not only can I scrape
+the results of this page,
+
+494
+00:35:47,780 --> 00:35:50,890
+I can click on this little
+button here, Pagination,
+
+495
+00:35:50,890 --> 00:35:55,580
+specify the button that would
+take me to the next page,
+
+496
+00:35:55,580 --> 00:35:59,500
+and then it will just know that
+it can iterate to the next page,
+
+497
+00:35:59,500 --> 00:36:04,120
+and then scrape all of the-- as long
+as it's the same format of course--
+
+498
+00:36:04,120 --> 00:36:06,110
+scape all of those links as well.
+
+499
+00:36:06,110 --> 00:36:15,230
+>> So because Kimono doesn't want to
+work with Craigslist, what we've done
+
+500
+00:36:15,230 --> 00:36:19,790
+is I've Kimonofied the Harvard Crimson.
+
+501
+00:36:19,790 --> 00:36:29,380
+I've pulled out some of the sort of
+top featured articles, confirm here.
+
+502
+00:36:29,380 --> 00:36:33,090
+Say all of these.
+
+503
+00:36:33,090 --> 00:36:35,830
+I've compiled this API
+for you ahead of time.
+
+504
+00:36:35,830 --> 00:36:38,990
+But otherwise what you would do
+is you would just click Done.
+
+505
+00:36:38,990 --> 00:36:40,940
+Enter in your API details.
+
+506
+00:36:40,940 --> 00:36:45,260
+Set it to either
+automated or manual crawl.
+
+507
+00:36:45,260 --> 00:36:48,460
+So you could update your
+data every 15 minutes,
+
+508
+00:36:48,460 --> 00:36:50,330
+weekly, daily, whatever you want.
+
+509
+00:36:50,330 --> 00:36:51,160
+Name your API.
+
+510
+00:36:51,160 --> 00:36:52,790
+Create the API.
+
+511
+00:36:52,790 --> 00:36:58,460
+For your benefit, I've created the
+Crimson front page API already.
+
+512
+00:36:58,460 --> 00:37:02,480
+>> So you just create an
+account on Kimono, and it
+
+513
+00:37:02,480 --> 00:37:06,240
+will store all your APIs for you.
+
+514
+00:37:06,240 --> 00:37:10,330
+So essentially that's all your
+separate different scrapes.
+
+515
+00:37:10,330 --> 00:37:18,250
+>> So if we look here, this is the
+opinions links that I've collected.
+
+516
+00:37:18,250 --> 00:37:21,290
+These are the featured
+links that I've collected.
+
+517
+00:37:21,290 --> 00:37:24,090
+And these are the most read
+links that I've collected
+
+518
+00:37:24,090 --> 00:37:27,120
+from this most recent API scape.
+
+519
+00:37:27,120 --> 00:37:30,790
+>> So if you can see here,
+these would be the featured,
+
+520
+00:37:30,790 --> 00:37:34,130
+these would be the opinions,
+which in this example,
+
+521
+00:37:34,130 --> 00:37:38,150
+I've combined them all
+into one collection.
+
+522
+00:37:38,150 --> 00:37:42,780
+But if you just play around with it
+a little bit, you can split it up
+
+523
+00:37:42,780 --> 00:37:45,090
+and divide it up however
+you want to as long
+
+524
+00:37:45,090 --> 00:37:47,520
+as the formatting is slightly different.
+
+525
+00:37:47,520 --> 00:37:51,320
+>> Just to play around with this, the
+crawl set up, one of the downsides
+
+526
+00:37:51,320 --> 00:37:58,120
+is you can only crawl up
+to 25 pages at a time.
+
+527
+00:37:58,120 --> 00:38:00,430
+That's one of the limiting factors.
+
+528
+00:38:00,430 --> 00:38:03,060
+But here, if you set it
+to manual crawl, this
+
+529
+00:38:03,060 --> 00:38:06,100
+is how you can tell it
+to update your data.
+
+530
+00:38:06,100 --> 00:38:11,010
+And here you can see your crawl history
+of everything that you've crawled.
+
+531
+00:38:11,010 --> 00:38:16,000
+And you guys can go back, sign up,
+play around with all the different ways
+
+532
+00:38:16,000 --> 00:38:20,340
+that you can modify and use your data.
+
+533
+00:38:20,340 --> 00:38:24,580
+>> Kimono can be set up to
+scrape links within links.
+
+534
+00:38:24,580 --> 00:38:29,700
+And you would do so by first
+scraping a list of links,
+
+535
+00:38:29,700 --> 00:38:35,390
+and then using that API as a
+jump off point for another API
+
+536
+00:38:35,390 --> 00:38:36,710
+that you create the script.
+
+537
+00:38:36,710 --> 00:38:42,040
+But that's more complicated than
+what we're going to get into today.
+
+538
+00:38:42,040 --> 00:38:44,270
+>> So that's Kimono.
+
+539
+00:38:44,270 --> 00:38:46,980
+We'll talk about the pros and
+cons of Nokogiri and Kimono.
+
+540
+00:38:46,980 --> 00:38:50,380
+>> Nokogiri, it's really fast.
+
+541
+00:38:50,380 --> 00:38:51,640
+It's easy to test.
+
+542
+00:38:51,640 --> 00:38:55,910
+You can just puts anything to
+console, easy to configure.
+
+543
+00:38:55,910 --> 00:39:00,400
+You can decide exactly what
+you want to scrape and store.
+
+544
+00:39:00,400 --> 00:39:02,060
+There are no page limits.
+
+545
+00:39:02,060 --> 00:39:08,010
+I actually used it to scrape like
+1800 South African school websites
+
+546
+00:39:08,010 --> 00:39:10,870
+for emails for an internship that I did.
+
+547
+00:39:10,870 --> 00:39:16,060
+>> So that's possible, though best practice
+would be to split up the script.
+
+548
+00:39:16,060 --> 00:39:19,310
+Because if it fails, then
+you don't get anything.
+
+549
+00:39:19,310 --> 00:39:22,790
+But if you do a hundred,
+maybe 200 pages at a time,
+
+550
+00:39:22,790 --> 00:39:27,840
+then you have some chance of at least
+getting it piecemeal, especially
+
+551
+00:39:27,840 --> 00:39:30,280
+if you have bad internet.
+
+552
+00:39:30,280 --> 00:39:32,720
+>> Unfortunately it can only scrape HTML.
+
+553
+00:39:32,720 --> 00:39:35,190
+So if you have
+dynamically loaded pages--
+
+554
+00:39:35,190 --> 00:39:39,480
+and I'll show you an example
+like Kayak in a second--
+
+555
+00:39:39,480 --> 00:39:42,270
+Nokogiri unfortunately
+cannot scrape that.
+
+556
+00:39:42,270 --> 00:39:45,700
+>> But Kimono is also easy to use.
+
+557
+00:39:45,700 --> 00:39:48,330
+As you saw, it's essentially
+a point and click.
+
+558
+00:39:48,330 --> 00:39:50,260
+It can scrape JavaScript.
+
+559
+00:39:50,260 --> 00:39:53,790
+Unfortunately, there's a maximum
+to how many pages you can scrape.
+
+560
+00:39:53,790 --> 00:39:55,710
+Sometimes it's a little
+hard to configure.
+
+561
+00:39:55,710 --> 00:39:57,240
+It gets confused.
+
+562
+00:39:57,240 --> 00:40:00,920
+But it's definitely
+something to consider
+
+563
+00:40:00,920 --> 00:40:05,930
+if you're not trying to have a
+super robust maintainable scrape.
+
+564
+00:40:05,930 --> 00:40:09,010
+If you just want to get
+everything off of a page quickly,
+
+565
+00:40:09,010 --> 00:40:10,970
+then Kimono is a really
+good tool to use.
+
+566
+00:40:10,970 --> 00:40:16,490
+And as I mentioned before, there's
+the advanced feature of Kimono
+
+567
+00:40:16,490 --> 00:40:19,260
+that shows you how to
+access the unique HTML
+
+568
+00:40:19,260 --> 00:40:24,210
+element, which is super useful even
+if you are working in Nokogiri.
+
+569
+00:40:24,210 --> 00:40:30,370
+>> So if we go to the Kayak site, for
+example, you can see there is--
+
+570
+00:40:30,370 --> 00:40:31,750
+or maybe you can't see.
+
+571
+00:40:31,750 --> 00:40:38,910
+But if I show you the URL for Kayak,
+this actually is just the source URL.
+
+572
+00:40:38,910 --> 00:40:43,800
+This is the URL prior to being
+modified by whatever JavaScript scripts
+
+573
+00:40:43,800 --> 00:40:45,350
+that they have going on.
+
+574
+00:40:45,350 --> 00:40:52,420
+And it's going to look different
+from inspecting the element.
+
+575
+00:40:52,420 --> 00:40:55,940
+>> So if you go through and you
+match up the Inspect Element
+
+576
+00:40:55,940 --> 00:41:00,340
+code to the source code, it's
+actually going to be different.
+
+577
+00:41:00,340 --> 00:41:05,640
+And this is essentially why Nokogiri
+can't scrape dynamically loaded sites.
+
+578
+00:41:05,640 --> 00:41:08,810
+Because Nokogiri is
+scraping the source URL,
+
+579
+00:41:08,810 --> 00:41:16,310
+whereas Kimono is actually
+scraping what you're essentially
+
+580
+00:41:16,310 --> 00:41:18,260
+seeing in Select Element.
+
+581
+00:41:18,260 --> 00:41:23,880
+>> So if I go through and I
+try and Kimonofy Kayak,
+
+582
+00:41:23,880 --> 00:41:26,600
+I can actually go through
+and select the price.
+
+583
+00:41:26,600 --> 00:41:32,360
+It's a little harder,
+and in this case, it's
+
+584
+00:41:32,360 --> 00:41:36,600
+actually seeing this price
+as different from these.
+
+585
+00:41:36,600 --> 00:41:41,110
+So whereas you can configure-- or
+if this weren't dynamically loaded,
+
+586
+00:41:41,110 --> 00:41:43,620
+you could configure Nokogiri
+to get all of these.
+
+587
+00:41:43,620 --> 00:41:48,230
+>> Because the formatting is slightly
+different for this listing
+
+588
+00:41:48,230 --> 00:41:51,280
+as it is compared to the rest
+of them, and you can see here
+
+589
+00:41:51,280 --> 00:41:54,830
+it's actually gone and
+selected all the flight prices.
+
+590
+00:41:54,830 --> 00:42:01,200
+Maybe I want to select
+time of flight as well.
+
+591
+00:42:01,200 --> 00:42:04,700
+And I can go through and
+sort of configure that.
+
+592
+00:42:04,700 --> 00:42:06,950
+I don't want that.
+
+593
+00:42:06,950 --> 00:42:10,200
+I just want the next flight's time.
+
+594
+00:42:10,200 --> 00:42:17,030
+And then after a couple of these
+going through, it gets the picture.
+
+595
+00:42:17,030 --> 00:42:19,080
+So Kimono's pretty smart.
+
+596
+00:42:19,080 --> 00:42:21,900
+It's just not quite as robust.
+
+597
+00:42:21,900 --> 00:42:26,710
+>> There are some other
+alternatives that you can use.
+
+598
+00:42:26,710 --> 00:42:31,600
+And I'll show you them here.
+
+599
+00:42:31,600 --> 00:42:35,790
+If you are more comfortable in
+Python instead of Ruby maybe,
+
+600
+00:42:35,790 --> 00:42:39,290
+there is a library
+called Beautiful Soup.
+
+601
+00:42:39,290 --> 00:42:40,430
+You can use that.
+
+602
+00:42:40,430 --> 00:42:42,270
+It's very similar to Nokogiri.
+
+603
+00:42:42,270 --> 00:42:44,620
+It has a few more features.
+
+604
+00:42:44,620 --> 00:42:52,160
+You can find an HTML tag and
+then move up or move sideways.
+
+605
+00:42:52,160 --> 00:42:54,690
+>> There's PyQt.
+
+606
+00:42:54,690 --> 00:42:57,820
+This can actually scrape dynamic
+sites, because it's sort of
+
+607
+00:42:57,820 --> 00:43:02,540
+is a WebKit that pretends to be
+a browser without there actually
+
+608
+00:43:02,540 --> 00:43:03,670
+being a browser.
+
+609
+00:43:03,670 --> 00:43:07,490
+So it would wait for all the
+JavaScript to load first, and then
+
+610
+00:43:07,490 --> 00:43:09,560
+go in and try and scrape the site.
+
+611
+00:43:09,560 --> 00:43:13,560
+>> If you want to stick with Ruby, you
+can go one level up from Nokogiri.
+
+612
+00:43:13,560 --> 00:43:17,650
+You can use Capybara with
+a Poltergeist wrapper.
+
+613
+00:43:17,650 --> 00:43:22,910
+And this can actually
+essentially do the same thing
+
+614
+00:43:22,910 --> 00:43:26,610
+as PyQt, which is it is a WebKit.
+
+615
+00:43:26,610 --> 00:43:29,610
+It waits for the
+JavaScript to load first.
+
+616
+00:43:29,610 --> 00:43:33,340
+If you fiddle around with it enough,
+you can even get it to click on things.
+
+617
+00:43:33,340 --> 00:43:42,780
+>> So if there's a link that
+isn't a classic href where
+
+618
+00:43:42,780 --> 00:43:46,350
+the path is easily accessible, and
+it's some JavaScript thing that detects
+
+619
+00:43:46,350 --> 00:43:49,490
+a click, you can actually do that.
+
+620
+00:43:49,490 --> 00:43:53,430
+The more popular library
+to simulate a user
+
+621
+00:43:53,430 --> 00:43:56,390
+is in JavaScript, which is PhantomJS.
+
+622
+00:43:56,390 --> 00:44:01,010
+This can obviously scrape dynamic
+sites because this is essentially
+
+623
+00:44:01,010 --> 00:44:04,270
+pretending to be Chrome
+without the user interface.
+
+624
+00:44:04,270 --> 00:44:09,970
+>> And then, of course the most
+robust, but slowest option,
+
+625
+00:44:09,970 --> 00:44:13,260
+is a Selenium browser automation.
+
+626
+00:44:13,260 --> 00:44:15,550
+And unfortunately,
+you're not going to be
+
+627
+00:44:15,550 --> 00:44:19,770
+able to do this within your CS50 IDE.
+
+628
+00:44:19,770 --> 00:44:24,140
+Because essentially what it
+does is it boots up your Chrome,
+
+629
+00:44:24,140 --> 00:44:27,090
+Firefox, whatever browser
+that you want to use,
+
+630
+00:44:27,090 --> 00:44:32,570
+and it tracks maybe your mouse
+movement, whatever you type in,
+
+631
+00:44:32,570 --> 00:44:35,170
+and it just sort of
+automates this process.
+
+632
+00:44:35,170 --> 00:44:42,070
+So it was developed as a sort of
+website automation testing tool.
+
+633
+00:44:42,070 --> 00:44:45,910
+But a lot of people use
+Selenium to scrape websites
+
+634
+00:44:45,910 --> 00:44:49,990
+that they otherwise have a
+lot of difficulty scraping
+
+635
+00:44:49,990 --> 00:44:53,700
+with some of these other, faster tools.
+
+636
+00:44:53,700 --> 00:44:57,530
+>> So that's all I've got for web scraping.
+
+637
+00:44:57,530 --> 00:44:58,090
+Have fun.
+
+638
+00:44:58,090 --> 00:45:01,762
+
+639
+00:45:01,762 --> 00:45:02,680
+>> AUDIENCE: Question.
+
+640
+00:45:02,680 --> 00:45:04,016
+>> ROBERT KRABEK: Yes.
+
+641
+00:45:04,016 --> 00:45:12,840
+>> AUDIENCE: Is there a mechanism to hash
+the website so you could basically
+
+642
+00:45:12,840 --> 00:45:14,207
+go through it later on.
+
+643
+00:45:14,207 --> 00:45:15,040
+ROBERT KRABEK: Yeah.
+
+644
+00:45:15,040 --> 00:45:21,530
+So we put the, in our
+example, for both of them,
+
+645
+00:45:21,530 --> 00:45:24,980
+we put the entire website into doc.
+
+646
+00:45:24,980 --> 00:45:31,260
+And so you could actually just take the
+variable doc and write it to a file.
+
+647
+00:45:31,260 --> 00:45:35,490
+So if I wanted to, I could
+write it out as an HTML file,
+
+648
+00:45:35,490 --> 00:45:39,280
+and then instead of using
+OpenURI and a cURL request,
+
+649
+00:45:39,280 --> 00:45:43,520
+then I could just open up doc
+HTML and then search for that.
+
+650
+00:45:43,520 --> 00:45:47,960
+>> AUDIENCE: But can you preserve
+the sort of online experience
+
+651
+00:45:47,960 --> 00:45:48,930
+while you do offline.
+
+652
+00:45:48,930 --> 00:45:51,013
+For example. when you're
+flying for several hours,
+
+653
+00:45:51,013 --> 00:45:54,070
+I want to basically archive
+the whole website. [INAUDIBLE]
+
+654
+00:45:54,070 --> 00:45:58,780
+>> ROBERT KRABEK: Yeah, that's exactly--
+so literally what this is doing
+
+655
+00:45:58,780 --> 00:46:03,010
+is it's taking everything
+that would be at this URL.
+
+656
+00:46:03,010 --> 00:46:11,280
+So if we ran cURL, it's
+taking all of this HTML,
+
+657
+00:46:11,280 --> 00:46:14,590
+and it's storing it
+inside the variable doc.
+
+658
+00:46:14,590 --> 00:46:17,290
+So then you can do whatever
+you want to do with doc.
+
+659
+00:46:17,290 --> 00:46:18,575
+You can output it to a file.
+
+660
+00:46:18,575 --> 00:46:19,950
+AUDIENCE: But it's not linked up.
+
+661
+00:46:19,950 --> 00:46:20,780
+It's not dynamic.
+
+662
+00:46:20,780 --> 00:46:22,770
+It's not recursive, right?
+
+663
+00:46:22,770 --> 00:46:24,016
+You see what I mean?
+
+664
+00:46:24,016 --> 00:46:28,359
+I'm trying to basically sort of a hash
+the whole website on my hard drive
+
+665
+00:46:28,359 --> 00:46:31,150
+so that I could basically do it
+for several hours without internet.
+
+666
+00:46:31,150 --> 00:46:32,025
+>> ROBERT KRABEK: Right.
+
+667
+00:46:32,025 --> 00:46:37,140
+So if I had-- so where's my file I/O?
+
+668
+00:46:37,140 --> 00:46:47,766
+So this is the file I/O. So say instead
+of this, I call this craigslist.html.
+
+669
+00:46:47,766 --> 00:46:52,620
+
+670
+00:46:52,620 --> 00:46:53,940
+I'd open that up.
+
+671
+00:46:53,940 --> 00:46:59,020
+I'd puts doc into it.
+
+672
+00:46:59,020 --> 00:47:00,470
+I close the file.
+
+673
+00:47:00,470 --> 00:47:05,410
+And then just because the CS50 IDE
+is on the cloud, that's whatever.
+
+674
+00:47:05,410 --> 00:47:07,710
+I can go here.
+
+675
+00:47:07,710 --> 00:47:09,320
+I can download the file.
+
+676
+00:47:09,320 --> 00:47:11,830
+And then that would be on my hard drive.
+
+677
+00:47:11,830 --> 00:47:13,930
+So you can do it that way.
+
+678
+00:47:13,930 --> 00:47:18,830
+Or if you're at home, not using the
+CS50 IDE, like Sublime or something,
+
+679
+00:47:18,830 --> 00:47:21,900
+this is even easier, because
+this is all available locally,
+
+680
+00:47:21,900 --> 00:47:23,020
+not tied to the internet.
+
+681
+00:47:23,020 --> 00:47:24,720
+>> AUDIENCE: I see.
+
+682
+00:47:24,720 --> 00:47:26,580
+This is for one particular problem.
+
+683
+00:47:26,580 --> 00:47:30,410
+Can you do it recursively so that you
+go several layers deep kind of thing?
+
+684
+00:47:30,410 --> 00:47:33,801
+>> ROBERT KRABEK: I can download folders
+as well, if that's what you're asking.
+
+685
+00:47:33,801 --> 00:47:34,426
+AUDIENCE: Yeah.
+
+686
+00:47:34,426 --> 00:47:39,890
+
+687
+00:47:39,890 --> 00:47:41,440
+>> ROBERT KRABEK: Cool.
+
+688
+00:47:41,440 --> 00:47:43,182

@@ -1,0 +1,7309 @@
+1
+00:00:00,000 --> 00:00:03,332
+>> [MUSIC PLAYING]
+
+2
+00:00:03,332 --> 00:00:06,490
+>> ANDI PENG: Welcome to week 3 of section.
+
+3
+00:00:06,490 --> 00:00:09,550
+Thanks, you guys, for all coming
+to this earlier start time today.
+
+4
+00:00:09,550 --> 00:00:11,466
+We've got a nice, little
+intimate group today.
+
+5
+00:00:11,466 --> 00:00:14,570
+So hopefully we'll get to
+finish, perhaps, early,
+
+6
+00:00:14,570 --> 00:00:15,780
+a little bit early today.
+
+7
+00:00:15,780 --> 00:00:22,057
+So quickly, just some
+announcements for the agenda today.
+
+8
+00:00:22,057 --> 00:00:23,890
+Before we start, we're
+going to just go over
+
+9
+00:00:23,890 --> 00:00:28,910
+some brief logistical issues, pset
+questions, debrief, things like that.
+
+10
+00:00:28,910 --> 00:00:30,250
+And then we'll dive right in.
+
+11
+00:00:30,250 --> 00:00:34,710
+We'll use a debugger called GDB to
+start debunking our code, which David
+
+12
+00:00:34,710 --> 00:00:36,550
+explained in lecture the other day.
+
+13
+00:00:36,550 --> 00:00:39,420
+We'll go over the four types of sorts.
+
+14
+00:00:39,420 --> 00:00:42,310
+We'll go over them pretty quickly
+since they're pretty intensive.
+
+15
+00:00:42,310 --> 00:00:45,710
+But know that all the slides and
+source code are always online.
+
+16
+00:00:45,710 --> 00:00:50,810
+So feel free, at your perusal, to
+go back and take a look at that.
+
+17
+00:00:50,810 --> 00:00:53,930
+>> We'll go through
+asymptotic notation, which
+
+18
+00:00:53,930 --> 00:00:55,944
+is just a fancy way
+of saying "runtimes,"
+
+19
+00:00:55,944 --> 00:00:58,360
+where we have the big O, which
+David explained in lecture.
+
+20
+00:00:58,360 --> 00:01:01,550
+And we also have Omega, which
+is the lower bound runtime.
+
+21
+00:01:01,550 --> 00:01:06,450
+And we'll talk a bit more
+in-depth regarding how those work.
+
+22
+00:01:06,450 --> 00:01:10,160
+And lastly, we'll go over binary search,
+because a lot of you who have already
+
+23
+00:01:10,160 --> 00:01:15,190
+glanced at your psets probably know that
+that is a question that's in your pset.
+
+24
+00:01:15,190 --> 00:01:17,470
+So you'll all be happy
+that we cover this today.
+
+25
+00:01:17,470 --> 00:01:20,610
+>> And lastly, per your
+section feedback, I actually
+
+26
+00:01:20,610 --> 00:01:23,000
+left about 15 minutes at
+the end to just go over
+
+27
+00:01:23,000 --> 00:01:27,730
+logistics of pset3, any questions,
+maybe a bit of guidance, if you will,
+
+28
+00:01:27,730 --> 00:01:28,990
+before we start programming.
+
+29
+00:01:28,990 --> 00:01:30,890
+So let's try to get through
+the material pretty quickly.
+
+30
+00:01:30,890 --> 00:01:33,880
+And then we can spend some time
+taking more questions for the pset.
+
+31
+00:01:33,880 --> 00:01:35,230
+OK.
+
+32
+00:01:35,230 --> 00:01:39,570
+>> Quickly, so just a few
+announcements before we start today.
+
+33
+00:01:39,570 --> 00:01:45,410
+Firstly, welcome to making
+it through two of your psets.
+
+34
+00:01:45,410 --> 00:01:49,432
+I took a look at your-- yeah, let's
+get a round of applause for that one.
+
+35
+00:01:49,432 --> 00:01:51,140
+Actually, I was really,
+really impressed.
+
+36
+00:01:51,140 --> 00:01:55,800
+I graded the first pset for you guys
+last week and you guys did incredible.
+
+37
+00:01:55,800 --> 00:01:58,290
+>> Style was on point
+besides a few comments.
+
+38
+00:01:58,290 --> 00:02:00,660
+Make sure you're always
+commenting your code.
+
+39
+00:02:00,660 --> 00:02:03,040
+But your psets were on point.
+
+40
+00:02:03,040 --> 00:02:05,549
+And keep it up.
+
+41
+00:02:05,549 --> 00:02:08,090
+And it's good for the grader to
+see that you guys are putting
+
+42
+00:02:08,090 --> 00:02:10,704
+in as much effort in your style
+and your design in your code
+
+43
+00:02:10,704 --> 00:02:12,120
+that we would like for you to see.
+
+44
+00:02:12,120 --> 00:02:16,450
+So I'm passing along my gratitude
+for the rest of the TAs.
+
+45
+00:02:16,450 --> 00:02:19,210
+>> However there are a
+few debrief questions
+
+46
+00:02:19,210 --> 00:02:22,010
+I just want to go over that
+would make both my life
+
+47
+00:02:22,010 --> 00:02:24,900
+and a lot of the other
+TAs' lives a bit easier.
+
+48
+00:02:24,900 --> 00:02:28,220
+Firstly, I've noticed this
+past week-- how many of you
+
+49
+00:02:28,220 --> 00:02:32,301
+have been running check50 on
+your code before you submit?
+
+50
+00:02:32,301 --> 00:02:32,800
+OK.
+
+51
+00:02:32,800 --> 00:02:36,690
+So everyone should be doing check50,
+because-- a secret-- we actually
+
+52
+00:02:36,690 --> 00:02:41,540
+run check50 as part of our correctness
+scripts for testing your code.
+
+53
+00:02:41,540 --> 00:02:45,480
+So if your code is failing
+check50, in all likelihood,
+
+54
+00:02:45,480 --> 00:02:47,570
+it's probably going to
+fail our check as well.
+
+55
+00:02:47,570 --> 00:02:49,320
+Sometimes you guys
+have the right answers.
+
+56
+00:02:49,320 --> 00:02:52,200
+Like, in greedy, some of
+you have the right numbers,
+
+57
+00:02:52,200 --> 00:02:53,960
+you just print out some extra stuff.
+
+58
+00:02:53,960 --> 00:02:55,940
+And that extra stuff
+actually fails the check,
+
+59
+00:02:55,940 --> 00:02:58,440
+because the computer doesn't
+really know what it's looking for.
+
+60
+00:02:58,440 --> 00:03:00,981
+And so it will just run through,
+see that your output doesn't
+
+61
+00:03:00,981 --> 00:03:03,810
+match what we expect the answer
+to be, and mark it is wrong.
+
+62
+00:03:03,810 --> 00:03:06,560
+>> And I know that happened in
+some of your cases this week.
+
+63
+00:03:06,560 --> 00:03:09,870
+So I went back and manually
+regraded everyone's code.
+
+64
+00:03:09,870 --> 00:03:12,780
+In the future though,
+please, please make sure
+
+65
+00:03:12,780 --> 00:03:14,570
+that you're running
+check 50 on your code.
+
+66
+00:03:14,570 --> 00:03:17,970
+Because it's kind of a pain for the TA
+to have to go back and manually regrade
+
+67
+00:03:17,970 --> 00:03:21,197
+every single pset for every
+single, little missed instance.
+
+68
+00:03:21,197 --> 00:03:22,530
+So I didn't take off any points.
+
+69
+00:03:22,530 --> 00:03:25,210
+I think I took off maybe
+one or two for design.
+
+70
+00:03:25,210 --> 00:03:27,710
+In the future though, if
+you're failing check50,
+
+71
+00:03:27,710 --> 00:03:31,330
+points will be taken
+off for correctness.
+
+72
+00:03:31,330 --> 00:03:35,020
+>> Furthermore, psets are
+due Fridays at noon.
+
+73
+00:03:35,020 --> 00:03:38,990
+I think there's a seven-minute
+late grace period that we give you.
+
+74
+00:03:38,990 --> 00:03:42,434
+Per Harvard time, they're allowed to
+be seven minutes late to everything.
+
+75
+00:03:42,434 --> 00:03:44,350
+So here at Yale, we'll
+adhere to that as well.
+
+76
+00:03:44,350 --> 00:03:47,910
+But pretty much, at 12:07,
+if your pset is not in,
+
+77
+00:03:47,910 --> 00:03:49,720
+it's going to be marked as late.
+
+78
+00:03:49,720 --> 00:03:53,160
+And so while it is marked
+as late, the TA-- I'm
+
+79
+00:03:53,160 --> 00:03:54,870
+still going to be grading your psets.
+
+80
+00:03:54,870 --> 00:03:56,760
+So you'll still see a grade appear.
+
+81
+00:03:56,760 --> 00:03:58,820
+However, know that at
+the end of the semester,
+
+82
+00:03:58,820 --> 00:04:02,270
+all late psets will just be
+automatically zeroed by the computer.
+
+83
+00:04:02,270 --> 00:04:04,490
+>> We do this for two reasons.
+
+84
+00:04:04,490 --> 00:04:09,220
+One, sometimes we get
+excused, like dean's excuses,
+
+85
+00:04:09,220 --> 00:04:10,762
+later on that I don't know about yet.
+
+86
+00:04:10,762 --> 00:04:13,761
+So we like to make sure we're grading
+everything just in case, like, I'm
+
+87
+00:04:13,761 --> 00:04:15,080
+missing a dean's excuse.
+
+88
+00:04:15,080 --> 00:04:17,000
+And secondly, keep in
+mind, you can still
+
+89
+00:04:17,000 --> 00:04:19,370
+drop one pset that
+has full scope points.
+
+90
+00:04:19,370 --> 00:04:21,430
+And so we like to grade
+all of your psets just
+
+91
+00:04:21,430 --> 00:04:24,730
+to make sure that your scope's
+there and you're trying them.
+
+92
+00:04:24,730 --> 00:04:29,150
+So even if it's late, you'll still
+get credit for scope points, I think.
+
+93
+00:04:29,150 --> 00:04:33,730
+>> So moral of the story is, make
+sure your psets are in on-time.
+
+94
+00:04:33,730 --> 00:04:38,350
+And if they aren't in on-time,
+know that it's not great.
+
+95
+00:04:38,350 --> 00:04:41,678
+Yeah, before I move on, does anyone have
+any questions regarding pset feedback?
+
+96
+00:04:41,678 --> 00:04:42,178
+Yeah.
+
+97
+00:04:42,178 --> 00:04:43,630
+>> AUDIENCE: Did you say we
+can drop one of the psets?
+
+98
+00:04:43,630 --> 00:04:44,296
+>> ANDI PENG: Yeah.
+
+99
+00:04:44,296 --> 00:04:47,050
+So there's nine psets overall
+over the course of the semester.
+
+100
+00:04:47,050 --> 00:04:50,610
+And if you have scope
+points-- so scope is just,
+
+101
+00:04:50,610 --> 00:04:53,567
+pretty much, are you attempting the
+problem, are you putting in time,
+
+102
+00:04:53,567 --> 00:04:56,150
+are you showing that you've
+demonstrated you've read the spec.
+
+103
+00:04:56,150 --> 00:04:57,191
+That's pretty much scope.
+
+104
+00:04:57,191 --> 00:04:59,370
+And if you are fulfilling
+scope points, we
+
+105
+00:04:59,370 --> 00:05:03,360
+can drop the lowest
+one out of full scope.
+
+106
+00:05:03,360 --> 00:05:06,790
+So that's in your advantage to
+complete and try every pset.
+
+107
+00:05:06,790 --> 00:05:10,320
+>> Even upload-- if none of
+them work, upload them all.
+
+108
+00:05:10,320 --> 00:05:13,711
+And then we'll hopefully be able to
+give you some of those points back.
+
+109
+00:05:13,711 --> 00:05:14,210
+Cool.
+
+110
+00:05:14,210 --> 00:05:16,780
+Any other questions?
+
+111
+00:05:16,780 --> 00:05:17,840
+Great.
+
+112
+00:05:17,840 --> 00:05:21,960
+>> Secondly, office hours-- a few
+quick notes about office hours.
+
+113
+00:05:21,960 --> 00:05:24,300
+So first, come early in the week.
+
+114
+00:05:24,300 --> 00:05:26,909
+No one is ever at
+office hours on Mondays.
+
+115
+00:05:26,909 --> 00:05:28,700
+Christabel came to
+office hours last night.
+
+116
+00:05:28,700 --> 00:05:29,691
+Yeah, Christabel.
+
+117
+00:05:29,691 --> 00:05:32,190
+And what did we have at office
+hours last night, Christabel?
+
+118
+00:05:32,190 --> 00:05:33,020
+>> AUDIENCE: We had ice cream.
+
+119
+00:05:33,020 --> 00:05:36,160
+>> ANDI PENG: So that's right, we had
+ice cream at office hours last night.
+
+120
+00:05:36,160 --> 00:05:39,390
+While I can't promise you that
+we'll have ice cream at office hours
+
+121
+00:05:39,390 --> 00:05:43,230
+every week, what I can promise you
+is that there will be a significantly
+
+122
+00:05:43,230 --> 00:05:45,380
+better student to TA ratio.
+
+123
+00:05:45,380 --> 00:05:47,650
+Like legit, it's like three to one.
+
+124
+00:05:47,650 --> 00:05:50,350
+Whereas, contrast that with
+Thursday, you've got about 150
+
+125
+00:05:50,350 --> 00:05:52,830
+really stressed kids and no ice cream.
+
+126
+00:05:52,830 --> 00:05:55,360
+And it's just not productive for anyone.
+
+127
+00:05:55,360 --> 00:05:58,730
+So moral of the story is, come early
+to office hours and good things
+
+128
+00:05:58,730 --> 00:06:00,310
+will happen.
+
+129
+00:06:00,310 --> 00:06:02,110
+>> Also, come prepared to ask questions.
+
+130
+00:06:02,110 --> 00:06:03,200
+You know?
+
+131
+00:06:03,200 --> 00:06:05,420
+Regardless of what TAs, I
+think, have been saying,
+
+132
+00:06:05,420 --> 00:06:10,710
+we've been getting a couple students
+who come in on Thursday at, like, 10:50
+
+133
+00:06:10,710 --> 00:06:15,100
+not having read the spec
+being like help me, help me.
+
+134
+00:06:15,100 --> 00:06:18,200
+Unfortunately at that point, there's
+not much we can do to help you.
+
+135
+00:06:18,200 --> 00:06:19,590
+So please come early in the week.
+
+136
+00:06:19,590 --> 00:06:22,040
+Come early to office hours.
+
+137
+00:06:22,040 --> 00:06:23,350
+Come prepared to ask questions.
+
+138
+00:06:23,350 --> 00:06:25,310
+Make sure that you, as
+a student, are where
+
+139
+00:06:25,310 --> 00:06:27,620
+you need to be so that the
+TAs can guide you along,
+
+140
+00:06:27,620 --> 00:06:32,850
+which is what office hours
+should be allotted for.
+
+141
+00:06:32,850 --> 00:06:37,380
+>> Secondly, so I know professors
+like to surprise us with tests.
+
+142
+00:06:37,380 --> 00:06:39,439
+I had a professor those
+like, yo, by the way,
+
+143
+00:06:39,439 --> 00:06:41,230
+remember that midterm
+you have next Monday.
+
+144
+00:06:41,230 --> 00:06:42,855
+Yeah, I didn't know about that midterm.
+
+145
+00:06:42,855 --> 00:06:45,630
+So I'm going to be that TA
+that reminds you all that quiz
+
+146
+00:06:45,630 --> 00:06:47,270
+0-- because, you know, we're CS.
+
+147
+00:06:47,270 --> 00:06:50,730
+Now that we've done arrays, you get
+why it's quiz 0, not quiz 1, eh?
+
+148
+00:06:50,730 --> 00:06:51,320
+OK.
+
+149
+00:06:51,320 --> 00:06:52,490
+Oh, I got some chuckles on that one.
+
+150
+00:06:52,490 --> 00:06:53,120
+OK.
+
+151
+00:06:53,120 --> 00:06:59,710
+>> So quiz 0 will be October 14 if
+you're in the Monday-Wednesday section
+
+152
+00:06:59,710 --> 00:07:02,920
+and October 15 if you're in
+the Tuesday-Thursday section.
+
+153
+00:07:02,920 --> 00:07:05,630
+This does not apply for
+those of you at Harvard
+
+154
+00:07:05,630 --> 00:07:10,350
+who-- I think you'll all be
+taking your quizzes on the 14th.
+
+155
+00:07:10,350 --> 00:07:13,560
+>> So yeah, next week, if
+David, in lecture, goes,
+
+156
+00:07:13,560 --> 00:07:15,747
+yeah, so about that
+quiz next week, you all
+
+157
+00:07:15,747 --> 00:07:17,580
+won't be shocked because
+you came to section
+
+158
+00:07:17,580 --> 00:07:19,664
+and you know that your
+quiz 0 is in two weeks.
+
+159
+00:07:19,664 --> 00:07:21,580
+And we'll have review
+sessions and everything.
+
+160
+00:07:21,580 --> 00:07:26,360
+So no worries about
+being scared for that.
+
+161
+00:07:26,360 --> 00:07:29,890
+Any questions before-- any questions
+at all regarding logistical issues,
+
+162
+00:07:29,890 --> 00:07:32,591
+grading, office hours, sections?
+
+163
+00:07:32,591 --> 00:07:33,090
+Yeah.
+
+164
+00:07:33,090 --> 00:07:35,100
+>> AUDIENCE: So the quiz is
+going to be during lecture?
+
+165
+00:07:35,100 --> 00:07:35,766
+>> ANDI PENG: Yeah.
+
+166
+00:07:35,766 --> 00:07:39,460
+So the quiz, I think, is 60
+minutes allotted in that time slot
+
+167
+00:07:39,460 --> 00:07:42,240
+that you'll just take
+in the lecture hall.
+
+168
+00:07:42,240 --> 00:07:44,810
+So you don't have to come in
+on, like, a random 7:00 PM.
+
+169
+00:07:44,810 --> 00:07:46,140
+It's all good.
+
+170
+00:07:46,140 --> 00:07:47,100
+Yeah.
+
+171
+00:07:47,100 --> 00:07:50,060
+Cool.
+
+172
+00:07:50,060 --> 00:07:50,840
+>> All right.
+
+173
+00:07:50,840 --> 00:07:54,330
+So we're going to
+introduce a concept to you
+
+174
+00:07:54,330 --> 00:08:00,760
+this week that David has already kind
+of touched on in lecture this past week.
+
+175
+00:08:00,760 --> 00:08:02,010
+It's called GDB.
+
+176
+00:08:02,010 --> 00:08:05,570
+And how many of you, while in
+the course of writing your psets,
+
+177
+00:08:05,570 --> 00:08:09,981
+have noticed a big button that says
+"Debug" on the top of your IDE?
+
+178
+00:08:09,981 --> 00:08:10,480
+OK.
+
+179
+00:08:10,480 --> 00:08:13,770
+So now we'll actually get to unearth
+the mystery of what that button actually
+
+180
+00:08:13,770 --> 00:08:14,270
+does.
+
+181
+00:08:14,270 --> 00:08:16,790
+And I guarantee you, it is a
+beautiful, beautiful thing.
+
+182
+00:08:16,790 --> 00:08:20,740
+>> So up until now, I think
+there's been two things
+
+183
+00:08:20,740 --> 00:08:23,320
+students have been typically
+doing when debugging psets.
+
+184
+00:08:23,320 --> 00:08:27,635
+One, they either add in
+printf()-- so every few lines,
+
+185
+00:08:27,635 --> 00:08:29,760
+they add in a printf()--
+oh, what is this variable?
+
+186
+00:08:29,760 --> 00:08:32,551
+Oh, what is this variable now--
+and you kind of see the progression
+
+187
+00:08:32,551 --> 00:08:33,940
+of your code as it runs.
+
+188
+00:08:33,940 --> 00:08:37,030
+Or the second method kids do is
+that they just write the whole thing
+
+189
+00:08:37,030 --> 00:08:38,610
+and then go like this at the end.
+
+190
+00:08:38,610 --> 00:08:39,970
+Hopefully it works.
+
+191
+00:08:39,970 --> 00:08:44,851
+I guarantee you, GDB is better
+than both of those methods.
+
+192
+00:08:44,851 --> 00:08:45,350
+Yeah.
+
+193
+00:08:45,350 --> 00:08:46,980
+So this will be your new best friend.
+
+194
+00:08:46,980 --> 00:08:51,780
+Because it's a beautiful thing
+that visually displays both
+
+195
+00:08:51,780 --> 00:08:54,850
+what your code is doing
+at a specific point
+
+196
+00:08:54,850 --> 00:08:57,486
+as well as what all of your
+variables are carrying,
+
+197
+00:08:57,486 --> 00:08:59,610
+like what their values are,
+at that specific point.
+
+198
+00:08:59,610 --> 00:09:02,670
+And in this way, you can really
+set breakpoints in your code.
+
+199
+00:09:02,670 --> 00:09:04,350
+You can run through line by line.
+
+200
+00:09:04,350 --> 00:09:07,324
+And GDB will just have for
+you, displayed for you,
+
+201
+00:09:07,324 --> 00:09:09,490
+what all of your variables
+are, what are they doing,
+
+202
+00:09:09,490 --> 00:09:10,656
+what's going on in the code.
+
+203
+00:09:10,656 --> 00:09:13,240
+And in such a way, it's
+so much easier to see
+
+204
+00:09:13,240 --> 00:09:17,120
+what's happening instead of printf-ing
+or writing down your statements.
+
+205
+00:09:17,120 --> 00:09:19,160
+>> So we'll do an example of this later.
+
+206
+00:09:19,160 --> 00:09:20,660
+So this seems a bit abstract.
+
+207
+00:09:20,660 --> 00:09:23,490
+No worries, we'll do examples.
+
+208
+00:09:23,490 --> 00:09:29,170
+And so essentially, the three largest,
+most-used functions you'll need in GDB
+
+209
+00:09:29,170 --> 00:09:32,500
+are the Next, Step over,
+and Step into buttons.
+
+210
+00:09:32,500 --> 00:09:34,860
+I'm going to head over
+there, actually, right now.
+
+211
+00:09:34,860 --> 00:09:40,930
+>> So can you guys all see that
+or should I zoom in a bit?
+
+212
+00:09:40,930 --> 00:09:43,220
+
+213
+00:09:43,220 --> 00:09:44,470
+In the back, can you see that?
+
+214
+00:09:44,470 --> 00:09:45,730
+Should I zoom in?
+
+215
+00:09:45,730 --> 00:09:46,480
+Just a little bit?
+
+216
+00:09:46,480 --> 00:09:49,390
+OK, cool.
+
+217
+00:09:49,390 --> 00:09:50,280
+There we go.
+
+218
+00:09:50,280 --> 00:09:50,960
+OK.
+
+219
+00:09:50,960 --> 00:09:57,000
+>> So I have, here, my
+implementation for greedy.
+
+220
+00:09:57,000 --> 00:10:01,430
+And while a lot of you guys wrote
+greedy in while loop form-- that
+
+221
+00:10:01,430 --> 00:10:04,890
+is a perfectly acceptable way to do
+it-- another way to do it is to simply
+
+222
+00:10:04,890 --> 00:10:06,280
+divide in the modulo.
+
+223
+00:10:06,280 --> 00:10:09,290
+Because then you can have your
+value and then have your remainder.
+
+224
+00:10:09,290 --> 00:10:11,150
+And then you can just
+add it all together.
+
+225
+00:10:11,150 --> 00:10:13,390
+Does the logic of what I'm doing
+here make sense to everyone,
+
+226
+00:10:13,390 --> 00:10:14,117
+before we begin?
+
+227
+00:10:14,117 --> 00:10:16,760
+
+228
+00:10:16,760 --> 00:10:17,980
+Kind of?
+
+229
+00:10:17,980 --> 00:10:18,710
+Cool.
+
+230
+00:10:18,710 --> 00:10:19,210
+Great.
+
+231
+00:10:19,210 --> 00:10:21,290
+It's a pretty sexy piece
+of code, I would say.
+
+232
+00:10:21,290 --> 00:10:23,502
+Like I said, David, in
+lecture, after a while,
+
+233
+00:10:23,502 --> 00:10:25,960
+you'll all start seeing code
+as something that's beautiful.
+
+234
+00:10:25,960 --> 00:10:29,950
+And sometimes when you see beautiful
+code, it's such a wonderful feeling.
+
+235
+00:10:29,950 --> 00:10:35,410
+>> So however, whilst this code is very
+beautiful, it does not work properly.
+
+236
+00:10:35,410 --> 00:10:37,750
+So let's run check50 on this.
+
+237
+00:10:37,750 --> 00:10:39,440
+Check 50 20-- oop.
+
+238
+00:10:39,440 --> 00:10:43,221
+
+239
+00:10:43,221 --> 00:10:43,720
+2?
+
+240
+00:10:43,720 --> 00:10:44,990
+Is that pset2?
+
+241
+00:10:44,990 --> 00:10:46,870
+Yeah.
+
+242
+00:10:46,870 --> 00:10:47,520
+Oh, pset1.
+
+243
+00:10:47,520 --> 00:10:50,970
+
+244
+00:10:50,970 --> 00:10:52,890
+OK.
+
+245
+00:10:52,890 --> 00:10:53,900
+So we run check50.
+
+246
+00:10:53,900 --> 00:11:01,550
+
+247
+00:11:01,550 --> 00:11:07,170
+>> And as you guys can see here,
+it's failing a couple of cases.
+
+248
+00:11:07,170 --> 00:11:10,165
+And for some of you, in the
+course of doing your problem sets,
+
+249
+00:11:10,165 --> 00:11:11,110
+you're like, ah, why isn't it working.
+
+250
+00:11:11,110 --> 00:11:13,318
+Why is it working for some
+values but not for others?
+
+251
+00:11:13,318 --> 00:11:17,760
+Well, GDB is going to help you figure
+out why those inputs were not working.
+
+252
+00:11:17,760 --> 00:11:18,320
+>> OK.
+
+253
+00:11:18,320 --> 00:11:21,640
+So let's see, one of the
+checks I was failing in check50
+
+254
+00:11:21,640 --> 00:11:24,920
+was the input value of 0.41.
+
+255
+00:11:24,920 --> 00:11:27,830
+So the correct answer that
+you should be getting is a 4.
+
+256
+00:11:27,830 --> 00:11:33,090
+But instead what I am printing out
+is the 3-n, which is incorrect.
+
+257
+00:11:33,090 --> 00:11:36,190
+So let's just run this manually, just
+make sure that check50 is working.
+
+258
+00:11:36,190 --> 00:11:36,940
+Let's do ./greedy.
+
+259
+00:11:36,940 --> 00:11:40,130
+
+260
+00:11:40,130 --> 00:11:43,340
+Oops, I have to make greedy.
+
+261
+00:11:43,340 --> 00:11:43,840
+There we go.
+
+262
+00:11:43,840 --> 00:11:44,381
+Now ./greedy.
+
+263
+00:11:44,381 --> 00:11:46,950
+
+264
+00:11:46,950 --> 00:11:47,670
+>> How much is owed?
+
+265
+00:11:47,670 --> 00:11:49,550
+Let's do 0.41.
+
+266
+00:11:49,550 --> 00:11:52,590
+And yep, we see here
+that it's outputting 3
+
+267
+00:11:52,590 --> 00:11:55,160
+when the correct answer,
+in fact, should be 4.
+
+268
+00:11:55,160 --> 00:12:01,460
+So let's enter GDB and see how we
+can go about fixing this problem.
+
+269
+00:12:01,460 --> 00:12:03,992
+>> So the first step in
+always debugging your code
+
+270
+00:12:03,992 --> 00:12:05,950
+is to set a breakpoint,
+or a point at which you
+
+271
+00:12:05,950 --> 00:12:09,079
+want the computer or the
+debugger to start looking at.
+
+272
+00:12:09,079 --> 00:12:11,120
+So if you don't really
+know what your problem is,
+
+273
+00:12:11,120 --> 00:12:14,670
+usually, the typical thing we want to
+do is to set our breakpoint at main.
+
+274
+00:12:14,670 --> 00:12:18,520
+So if you guys can see this
+red button right there,
+
+275
+00:12:18,520 --> 00:12:22,860
+yep, that was me setting a
+breakpoint for the main function.
+
+276
+00:12:22,860 --> 00:12:24,130
+I click that.
+
+277
+00:12:24,130 --> 00:12:26,130
+>> And then I can go up to my Debug button.
+
+278
+00:12:26,130 --> 00:12:27,036
+I hit that button.
+
+279
+00:12:27,036 --> 00:12:31,710
+
+280
+00:12:31,710 --> 00:12:36,555
+Let me zoom back out if I can.
+
+281
+00:12:36,555 --> 00:12:38,020
+There we go.
+
+282
+00:12:38,020 --> 00:12:40,730
+So we have, here, a panel on the right.
+
+283
+00:12:40,730 --> 00:12:43,680
+I'm sorry, guys in the back, you
+can't really see really well.
+
+284
+00:12:43,680 --> 00:12:49,090
+But essentially, all
+this right panel is doing
+
+285
+00:12:49,090 --> 00:12:53,130
+is keeping track of both the highlighted
+line, which is the line of code
+
+286
+00:12:53,130 --> 00:12:56,640
+that the computer is currently running,
+as well as all of your variables
+
+287
+00:12:56,640 --> 00:12:57,600
+down here.
+
+288
+00:12:57,600 --> 00:13:00,487
+>> So you've got cents, coins, n,
+all declared to different things
+
+289
+00:13:00,487 --> 00:13:01,070
+at this point.
+
+290
+00:13:01,070 --> 00:13:04,850
+No worries, because we haven't actually
+initialized them to any variables yet.
+
+291
+00:13:04,850 --> 00:13:07,200
+So in your computer, your
+computer's just seeing,
+
+292
+00:13:07,200 --> 00:13:14,376
+oh, 32767 was the last used function
+of that memory space in my computer.
+
+293
+00:13:14,376 --> 00:13:16,000
+And so that's where cents currently is.
+
+294
+00:13:16,000 --> 00:13:19,360
+But no that once you run the code,
+it should become initialized.
+
+295
+00:13:19,360 --> 00:13:24,110
+>> So let's go through, line by
+line, what's going on here.
+
+296
+00:13:24,110 --> 00:13:25,350
+OK.
+
+297
+00:13:25,350 --> 00:13:29,400
+So up here are the three
+buttons that I just explained.
+
+298
+00:13:29,400 --> 00:13:34,090
+You have the Play, or the Run function,
+button, you have the Step over button,
+
+299
+00:13:34,090 --> 00:13:36,600
+and you also have the Step into button.
+
+300
+00:13:36,600 --> 00:13:41,260
+And essentially, all three of
+them just go through your code
+
+301
+00:13:41,260 --> 00:13:42,690
+and do different things.
+
+302
+00:13:42,690 --> 00:13:45,680
+>> So typically, when you're debugging,
+we don't want to just hit Play,
+
+303
+00:13:45,680 --> 00:13:47,930
+because Play will just run
+your code to the end of it.
+
+304
+00:13:47,930 --> 00:13:49,070
+And then you won't actually
+know what your problem
+
+305
+00:13:49,070 --> 00:13:51,432
+is unless you set multiple breakpoints.
+
+306
+00:13:51,432 --> 00:13:53,890
+If you set multiple breakpoints,
+it will just automatically
+
+307
+00:13:53,890 --> 00:13:56,030
+run from one breakpoint,
+to the next, to the next.
+
+308
+00:13:56,030 --> 00:13:58,030
+But in this case we've
+just that one, because we
+
+309
+00:13:58,030 --> 00:13:59,970
+want to work our way
+from top down to bottom.
+
+310
+00:13:59,970 --> 00:14:04,830
+So we're going to ignore that button
+right now for purposes of this program.
+
+311
+00:14:04,830 --> 00:14:08,230
+>> So the Step over function just
+steps over every single line
+
+312
+00:14:08,230 --> 00:14:11,510
+and tells you what
+the computer is doing.
+
+313
+00:14:11,510 --> 00:14:14,630
+The Step into function goes
+into the actual function
+
+314
+00:14:14,630 --> 00:14:16,000
+that's on your line of code.
+
+315
+00:14:16,000 --> 00:14:19,070
+So for example, like printf(),
+that is a function, right?
+
+316
+00:14:19,070 --> 00:14:21,980
+If I wanted to physically step
+into the printf() function,
+
+317
+00:14:21,980 --> 00:14:25,610
+I would actually go into the piece of
+code where printf() was written and see
+
+318
+00:14:25,610 --> 00:14:26,730
+what's going on there.
+
+319
+00:14:26,730 --> 00:14:29,924
+>> But typically, we assume that
+the code that we give you works.
+
+320
+00:14:29,924 --> 00:14:31,340
+We assume the printf() is working.
+
+321
+00:14:31,340 --> 00:14:33,170
+We assume that GetInt() is working.
+
+322
+00:14:33,170 --> 00:14:35,170
+So there's no need to
+step into those functions.
+
+323
+00:14:35,170 --> 00:14:37,170
+But if there's functions
+that you write yourself
+
+324
+00:14:37,170 --> 00:14:39,060
+that you want to check
+out what's going on,
+
+325
+00:14:39,060 --> 00:14:41,200
+you would want to step
+into that function.
+
+326
+00:14:41,200 --> 00:14:43,940
+>> So right now we're just going
+to step over this piece of code.
+
+327
+00:14:43,940 --> 00:14:44,485
+So let's see.
+
+328
+00:14:44,485 --> 00:14:46,547
+Oh, print, "Oh hai, how
+much change is owed?"
+
+329
+00:14:46,547 --> 00:14:47,130
+We don't care.
+
+330
+00:14:47,130 --> 00:14:49,830
+We know that's working,
+so we step over it.
+
+331
+00:14:49,830 --> 00:14:53,290
+>> So n, which is our float that
+we've initialized-- or declared--
+
+332
+00:14:53,290 --> 00:14:56,810
+up at the top, we're now
+equalling that to GetFloat().
+
+333
+00:14:56,810 --> 00:14:57,810
+So let's step over that.
+
+334
+00:14:57,810 --> 00:14:59,580
+And we see at the
+bottom here, the program
+
+335
+00:14:59,580 --> 00:15:03,360
+is prompting me to input a value.
+
+336
+00:15:03,360 --> 00:15:08,580
+So let's input the value we want
+to test here, which is 0.41.
+
+337
+00:15:08,580 --> 00:15:09,160
+Great.
+
+338
+00:15:09,160 --> 00:15:12,780
+>> So now n-- do you guys see
+here, at the bottom-- it's
+
+339
+00:15:12,780 --> 00:15:15,140
+stored-- because we
+haven't rounded yet, it's
+
+340
+00:15:15,140 --> 00:15:19,540
+stored in this like giant
+float that is 0.4099999996,
+
+341
+00:15:19,540 --> 00:15:22,550
+which is close enough to our
+purposes, right now, to 0.41.
+
+342
+00:15:22,550 --> 00:15:26,090
+And then we'll see later on, as we
+continue stepping over the program,
+
+343
+00:15:26,090 --> 00:15:29,850
+after here, n has become
+rounded and cents has become 41.
+
+344
+00:15:29,850 --> 00:15:30,350
+Great.
+
+345
+00:15:30,350 --> 00:15:32,230
+So we know that our rounding's working.
+
+346
+00:15:32,230 --> 00:15:34,700
+We know that we have the
+correct number of cents,
+
+347
+00:15:34,700 --> 00:15:36,990
+so we know that that's
+not really the problem.
+
+348
+00:15:36,990 --> 00:15:40,050
+>> So we continue stepping
+on in this program.
+
+349
+00:15:40,050 --> 00:15:40,900
+We go here.
+
+350
+00:15:40,900 --> 00:15:46,139
+And so after this line of code, we
+should know how many quarters we have.
+
+351
+00:15:46,139 --> 00:15:46,680
+We step over.
+
+352
+00:15:46,680 --> 00:15:52,040
+And you see we do, in fact, have one
+quarter because we've subtracted 25
+
+353
+00:15:52,040 --> 00:15:53,790
+from our initial value of 41.
+
+354
+00:15:53,790 --> 00:15:55,890
+And we have 16 left for our cents.
+
+355
+00:15:55,890 --> 00:15:58,830
+>> Does everyone understand how
+the program is stepping through
+
+356
+00:15:58,830 --> 00:16:02,980
+and why cents has now become 16
+and why, now, coins has become 1?
+
+357
+00:16:02,980 --> 00:16:04,610
+Is everyone following that logic?
+
+358
+00:16:04,610 --> 00:16:05,110
+Cool.
+
+359
+00:16:05,110 --> 00:16:07,860
+So as of this point, the
+program's working, right?
+
+360
+00:16:07,860 --> 00:16:09,797
+We know it's doing exactly
+what we want it to.
+
+361
+00:16:09,797 --> 00:16:11,880
+And we didn't actually
+have to print out, oh, what
+
+362
+00:16:11,880 --> 00:16:14,430
+is cents at this point,
+what is coins at this point.
+
+363
+00:16:14,430 --> 00:16:17,170
+>> We continue going through the program.
+
+364
+00:16:17,170 --> 00:16:18,100
+Step over.
+
+365
+00:16:18,100 --> 00:16:18,620
+Cool.
+
+366
+00:16:18,620 --> 00:16:19,700
+We go over dimes.
+
+367
+00:16:19,700 --> 00:16:20,200
+Great.
+
+368
+00:16:20,200 --> 00:16:22,367
+We see that it's taken
+off $0.10 for a dime.
+
+369
+00:16:22,367 --> 00:16:23,450
+And now we have two coins.
+
+370
+00:16:23,450 --> 00:16:25,260
+That's correct.
+
+371
+00:16:25,260 --> 00:16:31,555
+>> We go over pennies and we see
+that we've got left over cents.
+
+372
+00:16:31,555 --> 00:16:32,680
+Hmm, that's strange.
+
+373
+00:16:32,680 --> 00:16:37,540
+Up here at the program, I was supposed
+to have subtracted my pennies.
+
+374
+00:16:37,540 --> 00:16:39,400
+Perhaps I just wasn't
+doing that line right.
+
+375
+00:16:39,400 --> 00:16:42,190
+And alas, you can see
+here, because we know
+
+376
+00:16:42,190 --> 00:16:44,360
+that we are stepping
+through lines 32 and 33,
+
+377
+00:16:44,360 --> 00:16:50,560
+that's where our program
+improperly had variables run.
+
+378
+00:16:50,560 --> 00:16:55,136
+So we can look and see, oh,
+I'm subtracting cents here,
+
+379
+00:16:55,136 --> 00:16:57,010
+but I'm not actually
+adding to my coin value.
+
+380
+00:16:57,010 --> 00:16:57,860
+I'm adding to cents.
+
+381
+00:16:57,860 --> 00:17:00,234
+And I don't want to add to
+cents, I want to add to coins.
+
+382
+00:17:00,234 --> 00:17:05,420
+So if we change that to coins,
+we've got a working program.
+
+383
+00:17:05,420 --> 00:17:06,730
+I can run check50.
+
+384
+00:17:06,730 --> 00:17:11,063
+You can just exit out of GDB right
+here and then run check50 again.
+
+385
+00:17:11,063 --> 00:17:11,938
+I could just do this.
+
+386
+00:17:11,938 --> 00:17:14,822
+
+387
+00:17:14,822 --> 00:17:18,480
+I have to make greedy.
+
+388
+00:17:18,480 --> 00:17:19,940
+0.41.
+
+389
+00:17:19,940 --> 00:17:22,819
+And here, it's printing
+out the right answer.
+
+390
+00:17:22,819 --> 00:17:26,569
+>> So as you guys can see, GDB
+is a really powerful tool
+
+391
+00:17:26,569 --> 00:17:29,940
+for when we have so much code
+going on and so many variables
+
+392
+00:17:29,940 --> 00:17:32,510
+that it's hard for us, as
+a human, to keep track of.
+
+393
+00:17:32,510 --> 00:17:35,360
+The computer, in the GDB
+debugger, has the ability
+
+394
+00:17:35,360 --> 00:17:37,020
+to keep track of everything.
+
+395
+00:17:37,020 --> 00:17:40,480
+I know, in Visionaire, you guys probably
+might have hit some segmentation faults
+
+396
+00:17:40,480 --> 00:17:43,150
+because you were running
+out of bounds of your array.
+
+397
+00:17:43,150 --> 00:17:46,510
+In the example of Caesar, that's
+exactly what I've implemented here.
+
+398
+00:17:46,510 --> 00:17:50,060
+>> So I forgot to check for
+what would happen if I
+
+399
+00:17:50,060 --> 00:17:52,510
+didn't have two command line arguments.
+
+400
+00:17:52,510 --> 00:17:53,880
+I just didn't put in that check.
+
+401
+00:17:53,880 --> 00:17:57,380
+And so if I run Debug-- I set
+my breakpoint to right there.
+
+402
+00:17:57,380 --> 00:17:58,055
+I run Debug.
+
+403
+00:17:58,055 --> 00:18:15,880
+
+404
+00:18:15,880 --> 00:18:16,550
+>> OK.
+
+405
+00:18:16,550 --> 00:18:17,050
+Yeah.
+
+406
+00:18:17,050 --> 00:18:20,350
+So actually, GDB was supposed
+to have told me there
+
+407
+00:18:20,350 --> 00:18:22,300
+was a segmentation fault there.
+
+408
+00:18:22,300 --> 00:18:24,883
+I don't know what was going on
+right there, but when I ran it,
+
+409
+00:18:24,883 --> 00:18:25,590
+it was working.
+
+410
+00:18:25,590 --> 00:18:29,410
+When you run lines of code through and
+GDB might just suddenly quit on you,
+
+411
+00:18:29,410 --> 00:18:31,540
+go up and look what the red error is.
+
+412
+00:18:31,540 --> 00:18:33,930
+It'll tell you, hey, you
+had a segmentation fault,
+
+413
+00:18:33,930 --> 00:18:38,550
+which means that you tried to access
+space in an array that didn't exist.
+
+414
+00:18:38,550 --> 00:18:39,050
+Yeah.
+
+415
+00:18:39,050 --> 00:18:43,280
+>> So in the next problem
+set this week, you guys
+
+416
+00:18:43,280 --> 00:18:45,600
+will probably have a lot of
+variables floating around.
+
+417
+00:18:45,600 --> 00:18:48,560
+You're not going to be sure what
+they all mean at a certain point.
+
+418
+00:18:48,560 --> 00:18:53,560
+So GDB will really help you in figuring
+out what they are all equalling
+
+419
+00:18:53,560 --> 00:18:55,940
+and being able to see that visually.
+
+420
+00:18:55,940 --> 00:19:01,995
+Is anyone confused on how
+any of that was working?
+
+421
+00:19:01,995 --> 00:19:02,495
+Cool.
+
+422
+00:19:02,495 --> 00:19:10,121
+
+423
+00:19:10,121 --> 00:19:10,620
+All right.
+
+424
+00:19:10,620 --> 00:19:14,260
+So after that, we are
+going to dive right
+
+425
+00:19:14,260 --> 00:19:17,562
+into are four different
+types of sorts for this week.
+
+426
+00:19:17,562 --> 00:19:19,520
+How many of you, first
+of all, before we start,
+
+427
+00:19:19,520 --> 00:19:23,020
+have read the entire spec for pset3?
+
+428
+00:19:23,020 --> 00:19:23,824
+OK.
+
+429
+00:19:23,824 --> 00:19:24,740
+I'm proud of you guys.
+
+430
+00:19:24,740 --> 00:19:29,110
+That's like half of the class, which
+is significantly more than last time.
+
+431
+00:19:29,110 --> 00:19:33,950
+>> So that's great, because when
+we talk about the content
+
+432
+00:19:33,950 --> 00:19:36,170
+in lecture-- or sorry,
+in section-- I like
+
+433
+00:19:36,170 --> 00:19:38,210
+to relate a lot of that
+back to what the pset is
+
+434
+00:19:38,210 --> 00:19:40,210
+and how you want to
+implement that in your pset.
+
+435
+00:19:40,210 --> 00:19:42,400
+So if you come having
+read the spec, it'll
+
+436
+00:19:42,400 --> 00:19:45,510
+be a lot easier for you to understand
+what I'm talking about when I say,
+
+437
+00:19:45,510 --> 00:19:48,720
+oh hey, this might be a really
+good place to implement this sort.
+
+438
+00:19:48,720 --> 00:19:52,870
+So those of you who have read the
+spec know that, as part of your pset,
+
+439
+00:19:52,870 --> 00:19:54,900
+you're going to have to
+write a type of sort.
+
+440
+00:19:54,900 --> 00:19:58,670
+So this may be very helpful
+for a lot of you today.
+
+441
+00:19:58,670 --> 00:20:01,760
+>> So we'll start off with,
+essentially, the most simple type
+
+442
+00:20:01,760 --> 00:20:04,580
+of sort, the selection sort.
+
+443
+00:20:04,580 --> 00:20:06,800
+The typical algorithm for
+how we'd go about this
+
+444
+00:20:06,800 --> 00:20:10,460
+is-- David went through these all in
+lecture, so I'll quickly move along
+
+445
+00:20:10,460 --> 00:20:13,900
+here-- is essentially, you
+have an array of values.
+
+446
+00:20:13,900 --> 00:20:17,170
+And then you find the
+smallest unsorted value
+
+447
+00:20:17,170 --> 00:20:20,200
+and you swap that value with
+the first unsorted value.
+
+448
+00:20:20,200 --> 00:20:22,700
+And then you just keep repeating
+with the rest of your list.
+
+449
+00:20:22,700 --> 00:20:25,740
+>> And here's a visual explanation
+of how that would work.
+
+450
+00:20:25,740 --> 00:20:30,460
+So for example, if we were to start
+with an array of five elements, index
+
+451
+00:20:30,460 --> 00:20:35,910
+0 to 4, with 3, 5, 2, 6, and 4 values
+placed in the array-- so right now,
+
+452
+00:20:35,910 --> 00:20:38,530
+we're just going to assume
+that they're all unsorted
+
+453
+00:20:38,530 --> 00:20:41,130
+because we haven't tested otherwise.
+
+454
+00:20:41,130 --> 00:20:44,130
+>> So how a selection sort would
+work is that it would first
+
+455
+00:20:44,130 --> 00:20:46,800
+run through the entirety
+of the unsorted array.
+
+456
+00:20:46,800 --> 00:20:49,120
+It would pick out the smallest value.
+
+457
+00:20:49,120 --> 00:20:51,750
+In this case, 3, right
+now, is the smallest.
+
+458
+00:20:51,750 --> 00:20:52,680
+It gets to 5.
+
+459
+00:20:52,680 --> 00:20:55,620
+Nope, 5 is not greater than--
+or sorry, is not less than-- 3.
+
+460
+00:20:55,620 --> 00:20:57,779
+So the minimum value is still 3.
+
+461
+00:20:57,779 --> 00:20:58,695
+And then you get to 2.
+
+462
+00:20:58,695 --> 00:21:00,990
+The computer sees, oh, 2 is less than 3.
+
+463
+00:21:00,990 --> 00:21:02,750
+2 must now be the minimum value.
+
+464
+00:21:02,750 --> 00:21:06,630
+And so 2 swaps with that first value.
+
+465
+00:21:06,630 --> 00:21:10,702
+>> So after one pass, we do indeed see
+that the 2 and the 3 are swapped.
+
+466
+00:21:10,702 --> 00:21:13,910
+And we're just going to continue doing
+this again with the rest of the array.
+
+467
+00:21:13,910 --> 00:21:17,660
+So we're going to just run through
+the last four indexes of the array.
+
+468
+00:21:17,660 --> 00:21:20,670
+We'll see that 3 is
+the next minimum value.
+
+469
+00:21:20,670 --> 00:21:23,240
+So we're going to swap that with 4.
+
+470
+00:21:23,240 --> 00:21:26,900
+And then we're just going to keep
+running through until, eventually, you
+
+471
+00:21:26,900 --> 00:21:33,730
+get to a sorted array in which
+2, 3, 4, 5, and 6 are all sorted.
+
+472
+00:21:33,730 --> 00:21:37,530
+Does everyone understand the logic
+of how a selection sort works?
+
+473
+00:21:37,530 --> 00:21:39,669
+>> You just have some sort
+of a minimum value.
+
+474
+00:21:39,669 --> 00:21:41,210
+You're keeping track of what that is.
+
+475
+00:21:41,210 --> 00:21:45,170
+And whenever you find it, you swap it
+with the first value in the array--
+
+476
+00:21:45,170 --> 00:21:48,740
+or, not the first value--
+the next value in the array.
+
+477
+00:21:48,740 --> 00:21:50,150
+Cool.
+
+478
+00:21:50,150 --> 00:21:55,460
+>> So as you guys kind of
+saw from a brief glimpse,
+
+479
+00:21:55,460 --> 00:21:58,450
+we're going to pseudocode this out.
+
+480
+00:21:58,450 --> 00:22:02,510
+So if you guys in the back want to
+form a group, everyone at a table
+
+481
+00:22:02,510 --> 00:22:06,170
+can form a little partner, I'm going
+to give you guys like three minutes
+
+482
+00:22:06,170 --> 00:22:08,190
+to just talk through
+the logic, in English,
+
+483
+00:22:08,190 --> 00:22:14,161
+of how we might be able to implement
+pseudocode to write a selection sort.
+
+484
+00:22:14,161 --> 00:22:14,910
+And there's candy.
+
+485
+00:22:14,910 --> 00:22:16,118
+Please come up and get candy.
+
+486
+00:22:16,118 --> 00:22:19,520
+If you're in the back and you want
+candy, I can throw candy at you.
+
+487
+00:22:19,520 --> 00:22:22,850
+Actually, do you-- cool.
+
+488
+00:22:22,850 --> 00:22:23,552
+Oh, sorry.
+
+489
+00:22:23,552 --> 00:22:26,751
+
+490
+00:22:26,751 --> 00:22:27,250
+OK.
+
+491
+00:22:27,250 --> 00:25:23,880
+
+492
+00:25:23,880 --> 00:25:27,140
+>> So if we would like to, as
+a class, write pseudocode
+
+493
+00:25:27,140 --> 00:25:30,466
+for how one might approach
+this problem, just feel free.
+
+494
+00:25:30,466 --> 00:25:32,340
+I'll just go around and,
+in order, ask groups
+
+495
+00:25:32,340 --> 00:25:35,065
+for the next line of
+what we should be doing.
+
+496
+00:25:35,065 --> 00:25:37,840
+So if you guys want to start
+off, what's the first thing
+
+497
+00:25:37,840 --> 00:25:40,600
+to do when you're trying to
+implement a way to solve this program
+
+498
+00:25:40,600 --> 00:25:43,480
+to selectively sort a list?
+
+499
+00:25:43,480 --> 00:25:46,349
+Let's just assume we
+have an array, all right?
+
+500
+00:25:46,349 --> 00:25:49,088
+>> AUDIENCE: You want to create some
+sort of [INAUDIBLE] that you're
+
+501
+00:25:49,088 --> 00:25:50,420
+running through your whole array.
+
+502
+00:25:50,420 --> 00:25:51,128
+>> ANDI PENG: Right.
+
+503
+00:25:51,128 --> 00:25:54,100
+So you're going to want to iterate
+through every space, right?
+
+504
+00:25:54,100 --> 00:26:05,490
+So, great.
+
+505
+00:26:05,490 --> 00:26:08,600
+If you guys want to give me the
+next line-- yeah, in the back.
+
+506
+00:26:08,600 --> 00:26:11,414
+
+507
+00:26:11,414 --> 00:26:13,290
+>> AUDIENCE: Check them
+all for the smallest.
+
+508
+00:26:13,290 --> 00:26:14,248
+>> ANDI PENG: There we go.
+
+509
+00:26:14,248 --> 00:26:17,438
+So we want to go through and check to
+see what the minimum value is, right?
+
+510
+00:26:17,438 --> 00:26:22,110
+
+511
+00:26:22,110 --> 00:26:24,840
+I'm going to abbreviate that to "min."
+
+512
+00:26:24,840 --> 00:26:27,658
+What do you guys want to do after
+you've found the minimum value?
+
+513
+00:26:27,658 --> 00:26:28,533
+>> AUDIENCE: [INAUDIBLE]
+
+514
+00:26:28,533 --> 00:26:29,942
+
+515
+00:26:29,942 --> 00:26:33,150
+ANDI PENG: So you're going to want to
+switch it with the first of that array,
+
+516
+00:26:33,150 --> 00:26:33,650
+right?
+
+517
+00:26:33,650 --> 00:26:45,120
+
+518
+00:26:45,120 --> 00:26:46,850
+That's the beginning, I'm going to say.
+
+519
+00:26:46,850 --> 00:26:47,220
+All right.
+
+520
+00:26:47,220 --> 00:26:50,386
+So now that you've swapped the first
+one, what do you want to do after that?
+
+521
+00:26:50,386 --> 00:26:54,840
+So now we know that this one here
+must be the smallest value, right?
+
+522
+00:26:54,840 --> 00:26:58,310
+Then you have an additional rest
+of the array that's unsorted.
+
+523
+00:26:58,310 --> 00:27:01,569
+So what you want to do here, if you
+guys want to give me the next line?
+
+524
+00:27:01,569 --> 00:27:04,610
+AUDIENCE: So then you want to iterate
+through the remainder of the array.
+
+525
+00:27:04,610 --> 00:27:05,276
+ANDI PENG: Yeah.
+
+526
+00:27:05,276 --> 00:27:09,857
+And so what does iterating through
+kind of imply we'll probably need?
+
+527
+00:27:09,857 --> 00:27:10,440
+What type of--
+
+528
+00:27:10,440 --> 00:27:12,057
+>> AUDIENCE: Oh, an additional variable?
+
+529
+00:27:12,057 --> 00:27:13,890
+ANDI PENG: Probably
+another for loop, right?
+
+530
+00:27:13,890 --> 00:27:28,914
+So we're probably going to want
+to iterate through-- great.
+
+531
+00:27:28,914 --> 00:27:31,830
+And then you're going to go back and
+probably check the minimum again,
+
+532
+00:27:31,830 --> 00:27:32,100
+right?
+
+533
+00:27:32,100 --> 00:27:34,975
+And you're going to keep repeating
+this, because the loops just going
+
+534
+00:27:34,975 --> 00:27:36,010
+to keep running, right?
+
+535
+00:27:36,010 --> 00:27:39,190
+>> So as you guys can see, we
+just have a general pseudocode
+
+536
+00:27:39,190 --> 00:27:41,480
+of how we want this program to look.
+
+537
+00:27:41,480 --> 00:27:46,646
+This iterate here, what do we
+typically need to write in our code
+
+538
+00:27:46,646 --> 00:27:49,270
+if we want to iterate through an
+array, what type of structure?
+
+539
+00:27:49,270 --> 00:27:51,030
+I think Christabel
+already said this before.
+
+540
+00:27:51,030 --> 00:27:51,500
+>> AUDIENCE: A for loop.
+
+541
+00:27:51,500 --> 00:27:52,160
+>> ANDI PENG: A for loop?
+
+542
+00:27:52,160 --> 00:27:52,770
+Exactly.
+
+543
+00:27:52,770 --> 00:27:56,060
+So this is probably
+going to be a for loop.
+
+544
+00:27:56,060 --> 00:27:59,240
+What is a check here going to imply?
+
+545
+00:27:59,240 --> 00:28:02,536
+Typically, if you want to check
+if something is something else--
+
+546
+00:28:02,536 --> 00:28:03,270
+>> AUDIENCE: If.
+
+547
+00:28:03,270 --> 00:28:06,790
+>> ANDI PENG: An if, right?
+
+548
+00:28:06,790 --> 00:28:10,790
+And then the swap here, we'll
+go over later, because David
+
+549
+00:28:10,790 --> 00:28:12,770
+went through that in lecture as well.
+
+550
+00:28:12,770 --> 00:28:14,580
+And then the second iterate implies--
+
+551
+00:28:14,580 --> 00:28:15,120
+>> AUDIENCE: Another for loop.
+
+552
+00:28:15,120 --> 00:28:16,745
+>> ANDI PENG: --another for loop, exactly.
+
+553
+00:28:16,745 --> 00:28:19,870
+
+554
+00:28:19,870 --> 00:28:22,000
+So if we're looking
+at this correctly, we
+
+555
+00:28:22,000 --> 00:28:24,680
+can see that we're probably
+going to need a nested for loop
+
+556
+00:28:24,680 --> 00:28:28,330
+with a conditional statement in there
+and then an actual piece of code that's
+
+557
+00:28:28,330 --> 00:28:31,360
+going to swap the values.
+
+558
+00:28:31,360 --> 00:28:35,980
+So I've just generally written
+a pseudocode code here.
+
+559
+00:28:35,980 --> 00:28:38,910
+And then we're actually going
+to physically, as a class,
+
+560
+00:28:38,910 --> 00:28:40,700
+try to implement this today.
+
+561
+00:28:40,700 --> 00:28:42,486
+Let's go back into this IDE.
+
+562
+00:28:42,486 --> 00:28:49,243
+
+563
+00:28:49,243 --> 00:28:50,230
+>> Uh-oh.
+
+564
+00:28:50,230 --> 00:28:51,754
+Why is that not-- there it is.
+
+565
+00:28:51,754 --> 00:28:52,253
+OK.
+
+566
+00:28:52,253 --> 00:28:55,834
+
+567
+00:28:55,834 --> 00:28:57,500
+Sorry, let me try to zoom in a bit more.
+
+568
+00:28:57,500 --> 00:28:59,310
+There we go.
+
+569
+00:28:59,310 --> 00:29:05,060
+All I'm doing here is I've created
+a program called "selection/sort.c."
+
+570
+00:29:05,060 --> 00:29:10,860
+I've created an array of nine
+values, 4, 8, 2, 1, 6, 9, 7, 5, 3.
+
+571
+00:29:10,860 --> 00:29:14,370
+Currently, as you can
+see, they are unordered.
+
+572
+00:29:14,370 --> 00:29:17,880
+n is going to be the number that
+tells you the amount of values
+
+573
+00:29:17,880 --> 00:29:18,920
+you have in your array.
+
+574
+00:29:18,920 --> 00:29:20,670
+In this case, we have nine values.
+
+575
+00:29:20,670 --> 00:29:23,760
+And I've just got a for loop here
+that prints out the unsorted array.
+
+576
+00:29:23,760 --> 00:29:28,370
+>> And at the end, I've also got a for
+loop that just prints it out again.
+
+577
+00:29:28,370 --> 00:29:32,070
+So theoretically, if this program
+is working correctly, at the end,
+
+578
+00:29:32,070 --> 00:29:35,670
+you should see a printed for loop
+in which 1, 2, 3, 4, 5, 6, 7, 8,
+
+579
+00:29:35,670 --> 00:29:39,310
+9 are all correctly in order.
+
+580
+00:29:39,310 --> 00:29:43,410
+>> So we've got our pseudocode here.
+
+581
+00:29:43,410 --> 00:29:46,090
+Does anyone want to-- I'm just
+going to go ask for volunteers--
+
+582
+00:29:46,090 --> 00:29:49,540
+tell me exactly what to type if
+we want to, first, just iterate
+
+583
+00:29:49,540 --> 00:29:52,840
+through the beginning of this array?
+
+584
+00:29:52,840 --> 00:29:55,204
+What's the line of code I'm
+probably going to need here?
+
+585
+00:29:55,204 --> 00:29:56,990
+>> AUDIENCE: [INAUDIBLE]
+
+586
+00:29:56,990 --> 00:29:59,010
+>> ANDI PENG: Yeah, feel
+free to-- sorry, you
+
+587
+00:29:59,010 --> 00:30:02,318
+don't have to stand up-- feel
+free to raise your voice a bit.
+
+588
+00:30:02,318 --> 00:30:08,190
+>> AUDIENCE: For int i equals 0--
+
+589
+00:30:08,190 --> 00:30:10,690
+>> ANDI PENG: Yeah, good.
+
+590
+00:30:10,690 --> 00:30:15,220
+>> AUDIENCE: i is less than array length.
+
+591
+00:30:15,220 --> 00:30:19,630
+>> ANDI PENG: So keep in
+mind here, because we
+
+592
+00:30:19,630 --> 00:30:23,060
+don't have a function that
+tells us the length of an array,
+
+593
+00:30:23,060 --> 00:30:25,790
+we already have a
+value that stores that.
+
+594
+00:30:25,790 --> 00:30:27,920
+Right?
+
+595
+00:30:27,920 --> 00:30:31,010
+Another thing to keep
+in mind-- in an array
+
+596
+00:30:31,010 --> 00:30:33,940
+of nine values, what are the indexes?
+
+597
+00:30:33,940 --> 00:30:38,720
+Let's just say this array was 0 to 3.
+
+598
+00:30:38,720 --> 00:30:41,500
+You see that the last
+index is actually 3.
+
+599
+00:30:41,500 --> 00:30:45,530
+It's not 4, even though there's
+four values in the array.
+
+600
+00:30:45,530 --> 00:30:49,866
+>> So in here, we have to be very careful
+of what our condition for the length
+
+601
+00:30:49,866 --> 00:30:50,490
+is going to be.
+
+602
+00:30:50,490 --> 00:30:51,948
+>> AUDIENCE: Wouldn't it be n minus 1?
+
+603
+00:30:51,948 --> 00:30:54,440
+ANDI PENG: It's going
+n minus 1, exactly.
+
+604
+00:30:54,440 --> 00:30:57,379
+Does that make sense, why
+it's n minus 1, everyone?
+
+605
+00:30:57,379 --> 00:30:58,920
+It's because arrays are zero-indexed.
+
+606
+00:30:58,920 --> 00:31:02,010
+They start at 0 and run up to n minus 1.
+
+607
+00:31:02,010 --> 00:31:03,210
+Yeah, it's a bit tricky.
+
+608
+00:31:03,210 --> 00:31:03,730
+OK.
+
+609
+00:31:03,730 --> 00:31:05,929
+And then--
+
+610
+00:31:05,929 --> 00:31:08,054
+AUDIENCE: Isnt'1 that
+already taken care of though,
+
+611
+00:31:08,054 --> 00:31:11,400
+by just not saying "less than or
+equal to" and just saying "less than?"
+
+612
+00:31:11,400 --> 00:31:13,108
+>> ANDI PENG: That's a
+really good question.
+
+613
+00:31:13,108 --> 00:31:13,630
+So, yes.
+
+614
+00:31:13,630 --> 00:31:17,410
+But also, the way that we're
+implementing the checking right,
+
+615
+00:31:17,410 --> 00:31:19,120
+you need to compare two values.
+
+616
+00:31:19,120 --> 00:31:21,009
+So you actually want to
+leave the "to" empty.
+
+617
+00:31:21,009 --> 00:31:23,050
+Because if you compare
+this one, you're not going
+
+618
+00:31:23,050 --> 00:31:25,530
+have anything after it
+to compare to, right?
+
+619
+00:31:25,530 --> 00:31:27,460
+Yeah.
+
+620
+00:31:27,460 --> 00:31:29,297
+So i++.
+
+621
+00:31:29,297 --> 00:31:30,380
+Let's add our brackets in.
+
+622
+00:31:30,380 --> 00:31:30,880
+Whoops.
+
+623
+00:31:30,880 --> 00:31:33,950
+
+624
+00:31:33,950 --> 00:31:34,710
+Great.
+
+625
+00:31:34,710 --> 00:31:39,117
+So we have the beginning
+of our outer loop.
+
+626
+00:31:39,117 --> 00:31:41,450
+So now we probably want to
+create a variable for keeping
+
+627
+00:31:41,450 --> 00:31:43,085
+track of the smallest value, right?
+
+628
+00:31:43,085 --> 00:31:45,751
+Does anyone want to give me the
+line of code that would do that?
+
+629
+00:31:45,751 --> 00:31:48,700
+
+630
+00:31:48,700 --> 00:31:53,570
+What do we need if we're going
+to want to store something?
+
+631
+00:31:53,570 --> 00:31:55,047
+>> Right.
+
+632
+00:31:55,047 --> 00:31:57,630
+Maybe a better name for that
+would be-- "temp" totally works--
+
+633
+00:31:57,630 --> 00:32:00,655
+maybe a more aptly named would be,
+if we want the smallest value--
+
+634
+00:32:00,655 --> 00:32:01,624
+>> AUDIENCE: Min.
+
+635
+00:32:01,624 --> 00:32:02,790
+ANDI PENG: min, there we go.
+
+636
+00:32:02,790 --> 00:32:05,230
+min would be good.
+
+637
+00:32:05,230 --> 00:32:08,340
+And so here, what do we
+want to initialize it to?
+
+638
+00:32:08,340 --> 00:32:09,620
+This is a bit tricky.
+
+639
+00:32:09,620 --> 00:32:13,580
+Because right now at the
+beginning of this array,
+
+640
+00:32:13,580 --> 00:32:15,730
+you haven't looked at anything, right?
+
+641
+00:32:15,730 --> 00:32:19,200
+So what, automatically, if
+we're just on i equals 0,
+
+642
+00:32:19,200 --> 00:32:22,302
+what do we want to initialize
+our first minimum value to?
+
+643
+00:32:22,302 --> 00:32:22,802
+AUDIENCE: i.
+
+644
+00:32:22,802 --> 00:32:24,790
+ANDI PENG: i, exactly.
+
+645
+00:32:24,790 --> 00:32:27,040
+Christabel, why do we want
+to initialize it to i?
+
+646
+00:32:27,040 --> 00:32:28,510
+>> AUDIENCE: Because, well,
+we're starting with 0.
+
+647
+00:32:28,510 --> 00:32:31,660
+So because we have nothing to compare
+it to, the minimum will end up being 0.
+
+648
+00:32:31,660 --> 00:32:32,451
+>> ANDI PENG: Exactly.
+
+649
+00:32:32,451 --> 00:32:34,400
+So she's exactly right.
+
+650
+00:32:34,400 --> 00:32:36,780
+Because we haven't actually
+looked at anything yet,
+
+651
+00:32:36,780 --> 00:32:38,680
+we don't know what our minimum value is.
+
+652
+00:32:38,680 --> 00:32:41,960
+We want to just initialize it to
+i, which, currently, is right here.
+
+653
+00:32:41,960 --> 00:32:44,750
+And as we continue to
+move down this array,
+
+654
+00:32:44,750 --> 00:32:48,122
+we'll see that, with each
+additional pass, i increments.
+
+655
+00:32:48,122 --> 00:32:49,830
+And so at that point,
+i is probably going
+
+656
+00:32:49,830 --> 00:32:52,329
+to want to be the minimum,
+because it's going to be whatever
+
+657
+00:32:52,329 --> 00:32:54,520
+is the beginning of the unsorted array.
+
+658
+00:32:54,520 --> 00:32:55,270
+Cool.
+
+659
+00:32:55,270 --> 00:32:58,720
+>> So now we want to add
+a for loop here that's
+
+660
+00:32:58,720 --> 00:33:03,225
+going to iterate through the
+unsorted, or the rest of this array.
+
+661
+00:33:03,225 --> 00:33:05,808
+Does anyone want to give me a
+line of code that would do that?
+
+662
+00:33:05,808 --> 00:33:08,870
+
+663
+00:33:08,870 --> 00:33:11,330
+Hint-- what do we need down here?
+
+664
+00:33:11,330 --> 00:33:17,320
+
+665
+00:33:17,320 --> 00:33:18,820
+What's going to go in this for loop?
+
+666
+00:33:18,820 --> 00:33:19,465
+Yeah.
+
+667
+00:33:19,465 --> 00:33:21,590
+AUDIENCE: So we'd want to
+have a different integer,
+
+668
+00:33:21,590 --> 00:33:25,080
+because we're running through the rest
+of the array instead of the i, so maybe
+
+669
+00:33:25,080 --> 00:33:25,760
+j.
+
+670
+00:33:25,760 --> 00:33:27,301
+>> ANDI PENG: Yeah, j sounds good to me.
+
+671
+00:33:27,301 --> 00:33:27,850
+Equals?
+
+672
+00:33:27,850 --> 00:33:33,930
+>> AUDIENCE: So would be i plus 1, because
+you're starting at the next value.
+
+673
+00:33:33,930 --> 00:33:40,395
+And then to the end-- so again, j is
+less than n minus 1, and then j++.
+
+674
+00:33:40,395 --> 00:33:41,103
+ANDI PENG: Great.
+
+675
+00:33:41,103 --> 00:33:48,510
+
+676
+00:33:48,510 --> 00:33:52,750
+>> And then in here, we're going to want
+to check to see if our condition is met,
+
+677
+00:33:52,750 --> 00:33:53,250
+right?
+
+678
+00:33:53,250 --> 00:33:55,740
+Because you want to
+change the minimum value
+
+679
+00:33:55,740 --> 00:33:58,700
+if it's actually smaller than what
+you're comparing it to, right?
+
+680
+00:33:58,700 --> 00:34:01,146
+So what are we going to want in here?
+
+681
+00:34:01,146 --> 00:34:04,160
+
+682
+00:34:04,160 --> 00:34:04,897
+Check to see.
+
+683
+00:34:04,897 --> 00:34:06,730
+What type of statement
+are we probably going
+
+684
+00:34:06,730 --> 00:34:08,389
+ti want to use if we
+want to check something?
+
+685
+00:34:08,389 --> 00:34:09,360
+>> AUDIENCE: An if statement.
+
+686
+00:34:09,360 --> 00:34:10,485
+>> ANDI PENG: An if statement.
+
+687
+00:34:10,485 --> 00:34:13,155
+So if-- and what's going to be
+the condition that we want inside
+
+688
+00:34:13,155 --> 00:34:13,988
+of our if statement?
+
+689
+00:34:13,988 --> 00:34:18,255
+
+690
+00:34:18,255 --> 00:34:22,960
+>> AUDIENCE: If the value of j
+is less than the value of i--
+
+691
+00:34:22,960 --> 00:34:24,600
+>> ANDI PENG: Exactly.
+
+692
+00:34:24,600 --> 00:34:27,480
+So if-- so this array is called "array."
+
+693
+00:34:27,480 --> 00:34:27,980
+Great.
+
+694
+00:34:27,980 --> 00:34:30,465
+So if array-- what was that?
+
+695
+00:34:30,465 --> 00:34:31,090
+Say that again.
+
+696
+00:34:31,090 --> 00:34:39,590
+>> AUDIENCE: If array-j is less than
+array-i, then we would change the min.
+
+697
+00:34:39,590 --> 00:34:41,590
+So the min would be j.
+
+698
+00:34:41,590 --> 00:34:44,590
+
+699
+00:34:44,590 --> 00:34:47,249
+>> ANDI PENG: Does that make sense?
+
+700
+00:34:47,249 --> 00:34:48,670
+OK.
+
+701
+00:34:48,670 --> 00:34:52,929
+And now down here, we actually
+want to implement the swap, right?
+
+702
+00:34:52,929 --> 00:34:58,285
+So recall, in lecture, that David, when
+he was trying to swap the-- what was
+
+703
+00:34:58,285 --> 00:34:59,996
+it-- orange juice and milk--
+
+704
+00:34:59,996 --> 00:35:01,150
+>> AUDIENCE: That was gross.
+
+705
+00:35:01,150 --> 00:35:02,816
+>> ANDI PENG: Yeah, that was kind of gross.
+
+706
+00:35:02,816 --> 00:35:05,310
+But it was a pretty good
+concept demonstrating time.
+
+707
+00:35:05,310 --> 00:35:08,430
+So think of your values here.
+
+708
+00:35:08,430 --> 00:35:10,794
+You've got an array
+of min, an array of i,
+
+709
+00:35:10,794 --> 00:35:12,460
+or whatever we were trying to swap here.
+
+710
+00:35:12,460 --> 00:35:15,310
+And you probably can't pour them into
+each other at the same time, right?
+
+711
+00:35:15,310 --> 00:35:17,180
+So what are we going
+to need to create here
+
+712
+00:35:17,180 --> 00:35:19,126
+in order to swap the values correctly?
+
+713
+00:35:19,126 --> 00:35:19,820
+>> AUDIENCE: A temporary variable.
+
+714
+00:35:19,820 --> 00:35:21,370
+>> ANDI PENG: A temporary variable.
+
+715
+00:35:21,370 --> 00:35:22,570
+So let's do int temp.
+
+716
+00:35:22,570 --> 00:35:25,681
+See, this would be a better
+time to-- whoa, what was that?
+
+717
+00:35:25,681 --> 00:35:26,180
+OK.
+
+718
+00:35:26,180 --> 00:35:29,800
+So this would have been a better
+time to name the variable "temp."
+
+719
+00:35:29,800 --> 00:35:30,730
+So let's do int temp.
+
+720
+00:35:30,730 --> 00:35:32,563
+What are we going to
+set temp equal to here?
+
+721
+00:35:32,563 --> 00:35:34,752
+
+722
+00:35:34,752 --> 00:35:35,335
+AUDIENCE: Min?
+
+723
+00:35:35,335 --> 00:35:38,508
+
+724
+00:35:38,508 --> 00:35:39,716
+ANDI PENG: It's a bit tricky.
+
+725
+00:35:39,716 --> 00:35:43,110
+
+726
+00:35:43,110 --> 00:35:44,880
+It actually doesn't matter in the end.
+
+727
+00:35:44,880 --> 00:35:47,690
+It doesn't matter what
+order you choose to swap in
+
+728
+00:35:47,690 --> 00:35:50,862
+as long as you're making sure you're
+keeping track of what you're swapping.
+
+729
+00:35:50,862 --> 00:35:52,250
+>> AUDIENCE: It could be array-i.
+
+730
+00:35:52,250 --> 00:35:53,666
+>> ANDI PENG: Yeah, let's do array-i.
+
+731
+00:35:53,666 --> 00:35:55,950
+
+732
+00:35:55,950 --> 00:35:59,305
+And then what's the next line
+of code we want to have here?
+
+733
+00:35:59,305 --> 00:36:00,680
+AUDIENCE: array-i equals array-j.
+
+734
+00:36:00,680 --> 00:36:07,154
+
+735
+00:36:07,154 --> 00:36:08,070
+ANDI PENG: And lastly?
+
+736
+00:36:08,070 --> 00:36:12,070
+AUDIENCE: array-j equals array-i.
+
+737
+00:36:12,070 --> 00:36:14,525
+AUDIENCE: Or array-j equals
+array-temp-- or, temp.
+
+738
+00:36:14,525 --> 00:36:17,135
+
+739
+00:36:17,135 --> 00:36:19,430
+>> ANDI PENG: OK.
+
+740
+00:36:19,430 --> 00:36:21,510
+So let's run this and see
+if it's going to work.
+
+741
+00:36:21,510 --> 00:36:37,520
+
+742
+00:36:37,520 --> 00:36:39,335
+Where is that happening?
+
+743
+00:36:39,335 --> 00:36:40,210
+Oh, that's a problem.
+
+744
+00:36:40,210 --> 00:36:44,320
+See, on line 40, we're
+trying to use array-j?
+
+745
+00:36:44,320 --> 00:36:47,022
+But where does j only exist in?
+
+746
+00:36:47,022 --> 00:36:48,402
+>> AUDIENCE: In the for loop.
+
+747
+00:36:48,402 --> 00:36:49,110
+ANDI PENG: Right.
+
+748
+00:36:49,110 --> 00:36:51,730
+So what are we going to need to do?
+
+749
+00:36:51,730 --> 00:36:53,170
+>> AUDIENCE: Define it outside the--
+
+750
+00:36:53,170 --> 00:36:57,777
+
+751
+00:36:57,777 --> 00:37:00,610
+AUDIENCE: Yeah, I guess you have
+to use another if statement, right?
+
+752
+00:37:00,610 --> 00:37:05,230
+So like, if the minimum--
+all right, let me think.
+
+753
+00:37:05,230 --> 00:37:08,170
+
+754
+00:37:08,170 --> 00:37:09,990
+>> ANDI PENG: Guys, try
+to take a look Let's
+
+755
+00:37:09,990 --> 00:37:11,270
+see, what's something we can do here?
+
+756
+00:37:11,270 --> 00:37:11,811
+>> AUDIENCE: OK.
+
+757
+00:37:11,811 --> 00:37:15,900
+So if the minimum doesn't equal
+j-- so if the minimum is still i--
+
+758
+00:37:15,900 --> 00:37:17,570
+then we wouldn't have to swap.
+
+759
+00:37:17,570 --> 00:37:22,450
+
+760
+00:37:22,450 --> 00:37:24,712
+>> ANDI PENG: Does that equal i?
+
+761
+00:37:24,712 --> 00:37:25,920
+What do you want to say here?
+
+762
+00:37:25,920 --> 00:37:30,494
+>> AUDIENCE: Or yeah, if the
+minimum doesn't equal i, yeah.
+
+763
+00:37:30,494 --> 00:37:39,627
+
+764
+00:37:39,627 --> 00:37:40,210
+ANDI PENG: OK.
+
+765
+00:37:40,210 --> 00:37:42,040
+Well that solves, kind of, our problems.
+
+766
+00:37:42,040 --> 00:37:47,265
+But that still doesn't solve the
+problem of what happens if j-- since j
+
+767
+00:37:47,265 --> 00:37:49,890
+doesn't exist outside of it, what
+do you we want to do with it?
+
+768
+00:37:49,890 --> 00:37:50,698
+Declare it outside?
+
+769
+00:37:50,698 --> 00:37:59,410
+
+770
+00:37:59,410 --> 00:38:02,730
+Let's try running this.
+
+771
+00:38:02,730 --> 00:38:04,435
+Uh-oh.
+
+772
+00:38:04,435 --> 00:38:06,200
+Our sort's not working.
+
+773
+00:38:06,200 --> 00:38:10,060
+>> As you can see, our initial
+array had those values.
+
+774
+00:38:10,060 --> 00:38:14,800
+And afterwards it should have
+been in 1, 2, 3, 4, 5, 6, 7, 8, 9.
+
+775
+00:38:14,800 --> 00:38:15,530
+It's not working.
+
+776
+00:38:15,530 --> 00:38:16,030
+Ahh.
+
+777
+00:38:16,030 --> 00:38:17,184
+What do we do?
+
+778
+00:38:17,184 --> 00:38:17,850
+AUDIENCE: Debug.
+
+779
+00:38:17,850 --> 00:38:21,787
+
+780
+00:38:21,787 --> 00:38:23,370
+ANDI PENG: All right, we can try that.
+
+781
+00:38:23,370 --> 00:38:25,030
+We can debug.
+
+782
+00:38:25,030 --> 00:38:26,042
+Zoom out a bit.
+
+783
+00:38:26,042 --> 00:38:31,177
+
+784
+00:38:31,177 --> 00:38:33,656
+Let's set our breakpoint.
+
+785
+00:38:33,656 --> 00:38:37,280
+Let's go like-- OK.
+
+786
+00:38:37,280 --> 00:38:40,444
+>> So because we already know that
+these lines, 15 through 22,
+
+787
+00:38:40,444 --> 00:38:43,610
+are working-- because all I'm doing is
+just iterating through and printing--
+
+788
+00:38:43,610 --> 00:38:45,406
+I can go ahead and skip that.
+
+789
+00:38:45,406 --> 00:38:47,280
+Let's start at line 25.
+
+790
+00:38:47,280 --> 00:38:48,712
+Oop, let me get rid of that.
+
+791
+00:38:48,712 --> 00:38:51,598
+
+792
+00:38:51,598 --> 00:38:54,057
+>> AUDIENCE: So the breakpoint's
+where the debugging starts?
+
+793
+00:38:54,057 --> 00:38:54,890
+ANDI PENG: Or stops.
+
+794
+00:38:54,890 --> 00:38:55,670
+AUDIENCE: Or stops.
+
+795
+00:38:55,670 --> 00:38:55,930
+ANDI PENG: Yeah.
+
+796
+00:38:55,930 --> 00:38:58,640
+You can set multiple breakpoints and
+it can just jump from one to the other.
+
+797
+00:38:58,640 --> 00:39:01,590
+But in this case we don't know
+where the error is happening.
+
+798
+00:39:01,590 --> 00:39:03,780
+So we just want to
+start from the top down.
+
+799
+00:39:03,780 --> 00:39:05,020
+Yep.
+
+800
+00:39:05,020 --> 00:39:05,550
+OK.
+
+801
+00:39:05,550 --> 00:39:08,460
+>> So this line here, we can step in.
+
+802
+00:39:08,460 --> 00:39:11,499
+You can see down here,
+we've got an array.
+
+803
+00:39:11,499 --> 00:39:13,290
+Those are the values
+that are in the array.
+
+804
+00:39:13,290 --> 00:39:16,360
+Do you see that, how index 0, it
+corresponds to the value-- oh,
+
+805
+00:39:16,360 --> 00:39:17,526
+I'm going to try to zoom in.
+
+806
+00:39:17,526 --> 00:39:20,650
+Sorry, it's really hard
+to see-- at array index 0,
+
+807
+00:39:20,650 --> 00:39:24,090
+we have a value of 4 and
+then so forth and so on.
+
+808
+00:39:24,090 --> 00:39:25,670
+We have our local variables.
+
+809
+00:39:25,670 --> 00:39:28,570
+Right now i is equal to
+0, which we want it to be.
+
+810
+00:39:28,570 --> 00:39:31,540
+
+811
+00:39:31,540 --> 00:39:33,690
+>> And so let's keep stepping through.
+
+812
+00:39:33,690 --> 00:39:36,850
+Our minimum is equal to 0,
+which we also want it to be.
+
+813
+00:39:36,850 --> 00:39:39,470
+
+814
+00:39:39,470 --> 00:39:45,560
+And then we enter our second for
+loop, if array-j is less than array-i,
+
+815
+00:39:45,560 --> 00:39:46,380
+which it was not.
+
+816
+00:39:46,380 --> 00:39:48,130
+So did you see how
+that skipped over that?
+
+817
+00:39:48,130 --> 00:39:52,430
+>> AUDIENCE: So should the if
+minimum, all that-- shouldn't that
+
+818
+00:39:52,430 --> 00:39:55,424
+be inside the first for loop?
+
+819
+00:39:55,424 --> 00:39:57,340
+ANDI PENG: No, because
+you still want to test.
+
+820
+00:39:57,340 --> 00:40:00,329
+You want to do a comparison every
+time, even after you run through it.
+
+821
+00:40:00,329 --> 00:40:02,620
+You don't just want to do it
+on the first pass-through.
+
+822
+00:40:02,620 --> 00:40:05,240
+You want to do it with
+each additional pass again.
+
+823
+00:40:05,240 --> 00:40:07,198
+So you want to check for
+your condition inside.
+
+824
+00:40:07,198 --> 00:40:11,610
+
+825
+00:40:11,610 --> 00:40:13,746
+So we're just going to
+keep running through here.
+
+826
+00:40:13,746 --> 00:40:17,337
+
+827
+00:40:17,337 --> 00:40:18,420
+I'll give you guys a hint.
+
+828
+00:40:18,420 --> 00:40:23,910
+It has to do with the fact that when
+you're checking your conditional,
+
+829
+00:40:23,910 --> 00:40:26,600
+you're not checking
+for the correct index.
+
+830
+00:40:26,600 --> 00:40:32,510
+So right now you're checking for
+array index of j is less than array
+
+831
+00:40:32,510 --> 00:40:33,970
+index of i.
+
+832
+00:40:33,970 --> 00:40:36,580
+But what are you doing up at
+the beginning of the for loop?
+
+833
+00:40:36,580 --> 00:40:38,260
+Aren't you setting j equal to i?
+
+834
+00:40:38,260 --> 00:40:41,260
+
+835
+00:40:41,260 --> 00:40:45,415
+>> Yeah, so we can actually
+exit the debugger here.
+
+836
+00:40:45,415 --> 00:40:47,040
+So let's take a look at our pseudocode.
+
+837
+00:40:47,040 --> 00:40:50,070
+
+838
+00:40:50,070 --> 00:40:52,580
+For-- we're going to
+start at i equals 0.
+
+839
+00:40:52,580 --> 00:40:54,760
+We're going to go up to n minus 1.
+
+840
+00:40:54,760 --> 00:40:58,040
+Let's check, did we have that right?
+
+841
+00:40:58,040 --> 00:40:59,580
+Yep, that was right.
+
+842
+00:40:59,580 --> 00:41:02,080
+>> So then inside here, we're
+going to create a minimum value
+
+843
+00:41:02,080 --> 00:41:03,630
+and set that equal to i.
+
+844
+00:41:03,630 --> 00:41:04,950
+Did we do that?
+
+845
+00:41:04,950 --> 00:41:06,270
+Yep, did that.
+
+846
+00:41:06,270 --> 00:41:10,430
+Now in our inner for loop, we're
+going to do j equals i to n minus 1.
+
+847
+00:41:10,430 --> 00:41:11,950
+Did we do that?
+
+848
+00:41:11,950 --> 00:41:15,540
+Indeed, we did that.
+
+849
+00:41:15,540 --> 00:41:19,922
+>> So however, what are we comparing here?
+
+850
+00:41:19,922 --> 00:41:20,925
+>> AUDIENCE: j plus 1.
+
+851
+00:41:20,925 --> 00:41:21,716
+ANDI PENG: Exactly.
+
+852
+00:41:21,716 --> 00:41:24,184
+
+853
+00:41:24,184 --> 00:41:27,350
+And then you're going to want to set
+your minimum equal to j plus 1 as well.
+
+854
+00:41:27,350 --> 00:41:31,057
+
+855
+00:41:31,057 --> 00:41:32,640
+So I went through that really quickly.
+
+856
+00:41:32,640 --> 00:41:36,190
+Do you guys understand
+why it's j plus 1?
+
+857
+00:41:36,190 --> 00:41:36,890
+OK.
+
+858
+00:41:36,890 --> 00:41:40,700
+>> So in your array, in
+your first pass through,
+
+859
+00:41:40,700 --> 00:41:44,850
+your for loop, for int
+i equals 0, let's just
+
+860
+00:41:44,850 --> 00:41:46,740
+assume this hasn't been changed yet.
+
+861
+00:41:46,740 --> 00:41:53,180
+
+862
+00:41:53,180 --> 00:41:56,760
+We have an array of, completely,
+just four unsorted elements, right?
+
+863
+00:41:56,760 --> 00:42:00,760
+So we want to initialize i equal to 0.
+
+864
+00:42:00,760 --> 00:42:03,650
+And i is going to just
+run through this loop.
+
+865
+00:42:03,650 --> 00:42:08,560
+And so in the first pass, we're going
+to initialize a variable called "min"
+
+866
+00:42:08,560 --> 00:42:11,245
+that also equals i, because
+we don't have a minimum value.
+
+867
+00:42:11,245 --> 00:42:12,870
+So that's currently equal to 0 as well.
+
+868
+00:42:12,870 --> 00:42:16,182
+
+869
+00:42:16,182 --> 00:42:17,640
+And then we're going to go through.
+
+870
+00:42:17,640 --> 00:42:19,270
+And we want to iterate again.
+
+871
+00:42:19,270 --> 00:42:22,900
+Now that we've found what our minimum
+is, we want to iterate through
+
+872
+00:42:22,900 --> 00:42:25,190
+again to see if it's comparing, right?
+
+873
+00:42:25,190 --> 00:42:40,440
+So j, here, is going
+to equal i, which is 0.
+
+874
+00:42:40,440 --> 00:42:46,320
+And then if array j plus i, which
+is the one that's next over, as less
+
+875
+00:42:46,320 --> 00:42:49,270
+than what your current minimum
+value is, you want to swap.
+
+876
+00:42:49,270 --> 00:42:56,850
+>> So let's just say we've
+got, like, 2, 5, 1, 8.
+
+877
+00:42:56,850 --> 00:43:01,610
+Right now, i is equal to
+0 and j is equal to 0.
+
+878
+00:43:01,610 --> 00:43:05,210
+And that's our minimum value.
+
+879
+00:43:05,210 --> 00:43:09,950
+If array-j plus i-- so if the one
+that's after the one we're looking at
+
+880
+00:43:09,950 --> 00:43:13,450
+is greater than the one before it,
+it's going to become the minimum.
+
+881
+00:43:13,450 --> 00:43:18,120
+>> So here we see that 5
+is not less than that.
+
+882
+00:43:18,120 --> 00:43:19,730
+So it's going to not be 5.
+
+883
+00:43:19,730 --> 00:43:23,580
+We see that 1 is less than 2, right?
+
+884
+00:43:23,580 --> 00:43:32,970
+So now we know that our minimum is
+going to be the index value at 0, 1, 2.
+
+885
+00:43:32,970 --> 00:43:34,030
+Yeah?
+
+886
+00:43:34,030 --> 00:43:39,170
+And then when you get down here,
+you can swap the correct values.
+
+887
+00:43:39,170 --> 00:43:42,610
+>> So when you guys were just having the j
+before, you weren't looking at the one
+
+888
+00:43:42,610 --> 00:43:43,260
+after it.
+
+889
+00:43:43,260 --> 00:43:44,520
+You were looking at
+the same value, which
+
+890
+00:43:44,520 --> 00:43:46,290
+is why it just wasn't doing anything.
+
+891
+00:43:46,290 --> 00:43:49,721
+Does that make sense to everybody,
+why we needed that plus 1 there?
+
+892
+00:43:49,721 --> 00:43:50,220
+OK.
+
+893
+00:43:50,220 --> 00:43:53,345
+Now let's just run through it to make
+sure the rest of the code is correct.
+
+894
+00:43:53,345 --> 00:44:04,424
+
+895
+00:44:04,424 --> 00:44:05,340
+Why is that happening?
+
+896
+00:44:05,340 --> 00:44:14,780
+
+897
+00:44:14,780 --> 00:44:16,364
+Ah, it's the min right here.
+
+898
+00:44:16,364 --> 00:44:17,780
+We were comparing the wrong value.
+
+899
+00:44:17,780 --> 00:44:24,944
+
+900
+00:44:24,944 --> 00:44:25,906
+Oh no.
+
+901
+00:44:25,906 --> 00:44:30,720
+
+902
+00:44:30,720 --> 00:44:33,482
+>> Oh yeah, down here we were
+swapping the wrong values as well.
+
+903
+00:44:33,482 --> 00:44:34,940
+Because we were looking at i and j.
+
+904
+00:44:34,940 --> 00:44:36,440
+Those are the ones we were checking.
+
+905
+00:44:36,440 --> 00:44:39,160
+We actually want to swap the
+minimum, the current minimum,
+
+906
+00:44:39,160 --> 00:44:40,550
+with whatever the one outside is.
+
+907
+00:44:40,550 --> 00:44:59,510
+
+908
+00:44:59,510 --> 00:45:05,402
+And as you guys can see down
+here, we have a sorted array.
+
+909
+00:45:05,402 --> 00:45:07,110
+It just had to do with
+the fact that when
+
+910
+00:45:07,110 --> 00:45:09,350
+we were checking the
+values we were comparing,
+
+911
+00:45:09,350 --> 00:45:11,226
+we weren't looking at the right values.
+
+912
+00:45:11,226 --> 00:45:13,850
+We were looking at the same one
+here, not actually swapping it.
+
+913
+00:45:13,850 --> 00:45:17,135
+You have to look at the one next
+to it and then you can swap.
+
+914
+00:45:17,135 --> 00:45:19,260
+So that's what was kind of
+bugging our code before.
+
+915
+00:45:19,260 --> 00:45:22,460
+And what I did here is everything
+the debugger could have done for you
+
+916
+00:45:22,460 --> 00:45:23,810
+I just did it on the
+board, because it's easier
+
+917
+00:45:23,810 --> 00:45:26,320
+to see rather than trying
+to zoom in on the debugger.
+
+918
+00:45:26,320 --> 00:45:29,391
+Does that make sense to everybody?
+
+919
+00:45:29,391 --> 00:45:29,890
+Cool.
+
+920
+00:45:29,890 --> 00:45:34,800
+
+921
+00:45:34,800 --> 00:45:35,410
+>> All right.
+
+922
+00:45:35,410 --> 00:45:41,070
+We can move on to talking about
+asymptotic notation, which
+
+923
+00:45:41,070 --> 00:45:44,580
+is just a fancy way of saying the
+runtimes of all of these sorts.
+
+924
+00:45:44,580 --> 00:45:47,650
+So I know David, in lecture,
+touched upon runtimes.
+
+925
+00:45:47,650 --> 00:45:52,124
+And he went through the whole formula
+of how to calculate the runtimes.
+
+926
+00:45:52,124 --> 00:45:53,040
+No worries about that.
+
+927
+00:45:53,040 --> 00:45:54,660
+If you're really curious
+on how that works,
+
+928
+00:45:54,660 --> 00:45:55,810
+feel free to talk to me after section.
+
+929
+00:45:55,810 --> 00:45:57,560
+We can walk through
+the formulas together.
+
+930
+00:45:57,560 --> 00:46:00,689
+But all you guys have to really
+know is that n squared over 2
+
+931
+00:46:00,689 --> 00:46:01,980
+is the same thing as n squared.
+
+932
+00:46:01,980 --> 00:46:04,710
+Because the largest number,
+the exponent, grows the most.
+
+933
+00:46:04,710 --> 00:46:06,590
+And so for our purposes,
+all we care about
+
+934
+00:46:06,590 --> 00:46:09,470
+is that giant number that's growing.
+
+935
+00:46:09,470 --> 00:46:13,340
+>> So what is the best case
+runtime of selection sort?
+
+936
+00:46:13,340 --> 00:46:15,830
+If you're going to have
+to iterate through a list
+
+937
+00:46:15,830 --> 00:46:18,712
+and then iterate through
+the rest of that list,
+
+938
+00:46:18,712 --> 00:46:20,420
+how many times are
+you going to probably,
+
+939
+00:46:20,420 --> 00:46:24,612
+in the worst case-- in the
+best case, sorry-- run through?
+
+940
+00:46:24,612 --> 00:46:27,070
+Maybe the better question is
+to ask, what is the worst case
+
+941
+00:46:27,070 --> 00:46:28,153
+runtime of selection sort.
+
+942
+00:46:28,153 --> 00:46:29,366
+AUDIENCE: n squared.
+
+943
+00:46:29,366 --> 00:46:30,740
+ANDI PENG: It's n squared, right.
+
+944
+00:46:30,740 --> 00:46:36,986
+So an easy way to think of this is like,
+any time you have two nested for loops,
+
+945
+00:46:36,986 --> 00:46:38,110
+it's going to be n squared.
+
+946
+00:46:38,110 --> 00:46:40,386
+Because not only are you
+running through once again,
+
+947
+00:46:40,386 --> 00:46:42,260
+you have to go back
+around and run through it
+
+948
+00:46:42,260 --> 00:46:44,980
+once again inside for every value.
+
+949
+00:46:44,980 --> 00:46:48,640
+So in that case, you're running n
+times n squared, which is-- sorry,
+
+950
+00:46:48,640 --> 00:46:50,505
+n times n, which equals n squared.
+
+951
+00:46:50,505 --> 00:46:53,230
+
+952
+00:46:53,230 --> 00:46:56,360
+>> And sort is also a bit
+unique in the sense
+
+953
+00:46:56,360 --> 00:46:59,774
+that it doesn't matter if these
+values are already in order.
+
+954
+00:46:59,774 --> 00:47:01,440
+It's still going to run through anyways.
+
+955
+00:47:01,440 --> 00:47:03,872
+Let's just say this was 1, 2, 3, 4.
+
+956
+00:47:03,872 --> 00:47:07,080
+Regardless of whether or not it was in
+order, it still would have ran through
+
+957
+00:47:07,080 --> 00:47:08,620
+and still checked the minimum value.
+
+958
+00:47:08,620 --> 00:47:10,100
+It would have made the
+same number of checks
+
+959
+00:47:10,100 --> 00:47:12,780
+every single time, even if it
+didn't actually touch anything.
+
+960
+00:47:12,780 --> 00:47:16,940
+>> So in such a case, the best and worst
+runtimes are actually equivalent.
+
+961
+00:47:16,940 --> 00:47:19,160
+So the expected runtime
+of selection sort,
+
+962
+00:47:19,160 --> 00:47:23,790
+which we designate by the symbol
+of theta, theta, in this case,
+
+963
+00:47:23,790 --> 00:47:24,790
+would also be n squared.
+
+964
+00:47:24,790 --> 00:47:26,480
+All three of these would be n squared.
+
+965
+00:47:26,480 --> 00:47:29,653
+Is everyone clear on why
+the runtime is n squared?
+
+966
+00:47:29,653 --> 00:47:33,360
+
+967
+00:47:33,360 --> 00:47:33,980
+>> All right.
+
+968
+00:47:33,980 --> 00:47:39,120
+So I'm just going to quickly run
+through the rest of the sorts.
+
+969
+00:47:39,120 --> 00:47:41,137
+The algorithm for
+bubble sort-- remember,
+
+970
+00:47:41,137 --> 00:47:43,220
+this was the first one
+David went over in lecture.
+
+971
+00:47:43,220 --> 00:47:46,000
+Essentially, you step
+through the entire list
+
+972
+00:47:46,000 --> 00:47:48,950
+and you swap-- you just
+compare two at a time.
+
+973
+00:47:48,950 --> 00:47:51,350
+And if one's greater,
+than you just swap them.
+
+974
+00:47:51,350 --> 00:47:53,590
+So if these are greater, you would swap.
+
+975
+00:47:53,590 --> 00:47:56,180
+I've got official right here.
+
+976
+00:47:56,180 --> 00:47:59,100
+>> So let's just say you had 8, 6, 4, 2.
+
+977
+00:47:59,100 --> 00:48:00,571
+You'd compare the 8 and a 6.
+
+978
+00:48:00,571 --> 00:48:01,570
+You'd need to swap them.
+
+979
+00:48:01,570 --> 00:48:02,610
+You would compare the 8 and a 4.
+
+980
+00:48:02,610 --> 00:48:03,609
+You'd need to swap them.
+
+981
+00:48:03,609 --> 00:48:07,000
+If you have to swap the 8 and
+the 2, change them as well.
+
+982
+00:48:07,000 --> 00:48:10,760
+So in such a sense, you can see,
+played out over a long period of time,
+
+983
+00:48:10,760 --> 00:48:13,730
+how the values kind of bubble to
+the ends, which is why we call it
+
+984
+00:48:13,730 --> 00:48:15,320
+bubble sort.
+
+985
+00:48:15,320 --> 00:48:19,950
+>> We would just run through again on
+our second pass, and our third pass,
+
+986
+00:48:19,950 --> 00:48:21,150
+and our fourth pass.
+
+987
+00:48:21,150 --> 00:48:25,820
+Essentially, bubble sort just runs
+until you don't make any more swaps.
+
+988
+00:48:25,820 --> 00:48:31,109
+So in that sense, this is just
+the general pseudocode for it.
+
+989
+00:48:31,109 --> 00:48:32,650
+No worries, these will all be online.
+
+990
+00:48:32,650 --> 00:48:34,990
+We don't have to actually go over this.
+
+991
+00:48:34,990 --> 00:48:38,134
+>> We just initialize a counter
+variable that starts at 0.
+
+992
+00:48:38,134 --> 00:48:39,800
+And we iterate through the entire array.
+
+993
+00:48:39,800 --> 00:48:43,420
+And if one value is-- if this
+value is greater than that value,
+
+994
+00:48:43,420 --> 00:48:44,610
+you're going to swap them.
+
+995
+00:48:44,610 --> 00:48:46,860
+And then you're just
+going to keep going.
+
+996
+00:48:46,860 --> 00:48:47,970
+And you're going to count.
+
+997
+00:48:47,970 --> 00:48:50,845
+And you're just going to keep doing
+this while the counter is greater
+
+998
+00:48:50,845 --> 00:48:53,345
+than 0, which means that
+every time you have to swap,
+
+999
+00:48:53,345 --> 00:48:55,220
+you know you want to go
+back and check again.
+
+1000
+00:48:55,220 --> 00:48:59,510
+You want to keep checking until you know
+that you don't have to swap anymore.
+
+1001
+00:48:59,510 --> 00:49:05,570
+>> So what are the best and worst
+case runtimes for bubble sort?
+
+1002
+00:49:05,570 --> 00:49:09,300
+And hint-- this is actually different
+from selection sort in the sense
+
+1003
+00:49:09,300 --> 00:49:11,810
+that these two answers aren't the same.
+
+1004
+00:49:11,810 --> 00:49:14,709
+Think about what would happen in
+a case if it was already sorted.
+
+1005
+00:49:14,709 --> 00:49:16,500
+And think about what
+would happen if it was
+
+1006
+00:49:16,500 --> 00:49:18,372
+in the case in which it wasn't sorted.
+
+1007
+00:49:18,372 --> 00:49:20,580
+And you can kind of run
+through why that's happening.
+
+1008
+00:49:20,580 --> 00:49:22,954
+I'll give you guys, like, 30
+seconds to think about that.
+
+1009
+00:49:22,954 --> 00:49:52,330
+
+1010
+00:49:52,330 --> 00:49:53,540
+>> OK.
+
+1011
+00:49:53,540 --> 00:49:57,462
+Does anyone have a guess at what the
+worst case runtime of bubble sort is?
+
+1012
+00:49:57,462 --> 00:49:57,962
+Yeah.
+
+1013
+00:49:57,962 --> 00:50:07,810
+>> AUDIENCE: Would it be, like, n times
+n minus 1 or something like that?
+
+1014
+00:50:07,810 --> 00:50:10,650
+Like, every time it runs,
+it's just, like, one swap less
+
+1015
+00:50:10,650 --> 00:50:10,960
+that whatever it was.
+
+1016
+00:50:10,960 --> 00:50:12,668
+>> ANDI PENG: Yeah, so
+you're totally right.
+
+1017
+00:50:12,668 --> 00:50:15,940
+And this is a case in which your
+answer was actually more complex
+
+1018
+00:50:15,940 --> 00:50:17,240
+than the one we need to give.
+
+1019
+00:50:17,240 --> 00:50:19,772
+So it's going to run-- I'm
+going to erase all this here.
+
+1020
+00:50:19,772 --> 00:50:20,480
+Is everyone good?
+
+1021
+00:50:20,480 --> 00:50:21,869
+Can I erase this?
+
+1022
+00:50:21,869 --> 00:50:22,368
+OK.
+
+1023
+00:50:22,368 --> 00:50:27,904
+
+1024
+00:50:27,904 --> 00:50:30,320
+You're going to run through n
+times the first time, right?
+
+1025
+00:50:30,320 --> 00:50:33,200
+And they're going to run through
+n minus 1 the second time, right?
+
+1026
+00:50:33,200 --> 00:50:37,130
+And then you're going to keep
+going, n mine 2, et cetera.
+
+1027
+00:50:37,130 --> 00:50:40,210
+David did this in a lecture, where,
+if you added up all those values,
+
+1028
+00:50:40,210 --> 00:50:48,080
+you get something that's like-- yeah--
+over 2, which essentially just reduces
+
+1029
+00:50:48,080 --> 00:50:49,784
+down to n squared.
+
+1030
+00:50:49,784 --> 00:50:51,700
+You're going to get a
+weird fraction in there.
+
+1031
+00:50:51,700 --> 00:50:53,892
+And so just know that
+the n squared always
+
+1032
+00:50:53,892 --> 00:50:55,350
+takes precedence over the fraction.
+
+1033
+00:50:55,350 --> 00:50:58,450
+And so in this case, the worst
+runtime would be n squared.
+
+1034
+00:50:58,450 --> 00:51:00,210
+If it was in descending
+order, think, you
+
+1035
+00:51:00,210 --> 00:51:02,530
+have to make a swap every single time.
+
+1036
+00:51:02,530 --> 00:51:05,170
+>> What would be, potentially,
+the best case runtime?
+
+1037
+00:51:05,170 --> 00:51:08,580
+Let's just say, if the list was already
+in order, what would the runtime be?
+
+1038
+00:51:08,580 --> 00:51:09,565
+>> AUDIENCE: n.
+
+1039
+00:51:09,565 --> 00:51:10,690
+ANDI PENG: It's n, exactly.
+
+1040
+00:51:10,690 --> 00:51:11,600
+And why is it n?
+
+1041
+00:51:11,600 --> 00:51:13,850
+AUDIENCE: Because you just
+have to check on each once.
+
+1042
+00:51:13,850 --> 00:51:14,770
+ANDI PENG: Exactly.
+
+1043
+00:51:14,770 --> 00:51:17,150
+So in the best possible runtime,
+if this list was already
+
+1044
+00:51:17,150 --> 00:51:20,270
+sorted-- let's say 1, 2, 3, 4-- you
+would just go through, you would check,
+
+1045
+00:51:20,270 --> 00:51:21,720
+you would see, oh, they all pan out.
+
+1046
+00:51:21,720 --> 00:51:22,636
+I didn't have to swap.
+
+1047
+00:51:22,636 --> 00:51:23,370
+I'm done.
+
+1048
+00:51:23,370 --> 00:51:26,500
+So in that case, it's just n
+or the number of steps you just
+
+1049
+00:51:26,500 --> 00:51:29,870
+had to check in the first list.
+
+1050
+00:51:29,870 --> 00:51:33,990
+>> And after, we now hit
+insertion sort, where
+
+1051
+00:51:33,990 --> 00:51:39,260
+the algorithm is essentially to divide
+it into a sorted and unsorted portion.
+
+1052
+00:51:39,260 --> 00:51:42,810
+And then one by one,
+the unsorted values are
+
+1053
+00:51:42,810 --> 00:51:46,880
+inserted in their appropriate
+positions in the beginning of the list.
+
+1054
+00:51:46,880 --> 00:51:52,120
+>> So for example, we have a
+list of 3, 5, 2, 6, 4 again.
+
+1055
+00:51:52,120 --> 00:51:54,750
+We know that it's currently
+unsorted because we've just
+
+1056
+00:51:54,750 --> 00:51:57,030
+started looking at it.
+
+1057
+00:51:57,030 --> 00:52:00,610
+We take a look and we know that
+the first value is sorted, right?
+
+1058
+00:52:00,610 --> 00:52:04,190
+If you're only looking at an array of
+size one, you know that it's sorted.
+
+1059
+00:52:04,190 --> 00:52:08,230
+>> So then we know that the
+other four are unsorted.
+
+1060
+00:52:08,230 --> 00:52:10,980
+We go through and we see that value.
+
+1061
+00:52:10,980 --> 00:52:11,730
+Let's go back.
+
+1062
+00:52:11,730 --> 00:52:13,130
+See that value of 5?
+
+1063
+00:52:13,130 --> 00:52:14,110
+We take a look at it.
+
+1064
+00:52:14,110 --> 00:52:15,204
+We compare it to 3.
+
+1065
+00:52:15,204 --> 00:52:17,870
+We know that it's greater than
+3, so we know that that's sorted.
+
+1066
+00:52:17,870 --> 00:52:22,940
+So we now know that the first two
+are sorted and the last three aren't.
+
+1067
+00:52:22,940 --> 00:52:24,270
+>> We take a look at 2.
+
+1068
+00:52:24,270 --> 00:52:25,720
+We first check it with 5.
+
+1069
+00:52:25,720 --> 00:52:26,700
+Is it less than 5?
+
+1070
+00:52:26,700 --> 00:52:27,240
+It is not.
+
+1071
+00:52:27,240 --> 00:52:29,510
+So we have to keep looking down.
+
+1072
+00:52:29,510 --> 00:52:30,940
+Then you check 2 off 3.
+
+1073
+00:52:30,940 --> 00:52:31,850
+Is it less than?
+
+1074
+00:52:31,850 --> 00:52:32,350
+No.
+
+1075
+00:52:32,350 --> 00:52:35,430
+So you know a 2 has to be inserted
+into the front and 3 and 5
+
+1076
+00:52:35,430 --> 00:52:38,200
+both have to be pushed out.
+
+1077
+00:52:38,200 --> 00:52:42,190
+Do this again with 6 and 4.
+
+1078
+00:52:42,190 --> 00:52:48,962
+And we just keep checking essentially,
+where we just check, check, check.
+
+1079
+00:52:48,962 --> 00:52:51,170
+And until it's in the right
+position, we kind of just
+
+1080
+00:52:51,170 --> 00:52:54,890
+insert it into the right position,
+which is where the name of it came from.
+
+1081
+00:52:54,890 --> 00:52:59,830
+>> So that's just the algorithm,
+pseudocode per se, kind of,
+
+1082
+00:52:59,830 --> 00:53:04,990
+on how we would implement
+an insertion sort.
+
+1083
+00:53:04,990 --> 00:53:05,954
+Pseudocode is here.
+
+1084
+00:53:05,954 --> 00:53:06,620
+It's all online.
+
+1085
+00:53:06,620 --> 00:53:10,720
+No worries if you guys are
+trying to copy this down.
+
+1086
+00:53:10,720 --> 00:53:14,500
+So once again, same question-- what
+would be the best and worst runtimes
+
+1087
+00:53:14,500 --> 00:53:16,120
+for insertion sort?
+
+1088
+00:53:16,120 --> 00:53:17,750
+It's very similar to the last question.
+
+1089
+00:53:17,750 --> 00:53:20,479
+I'll give you guys, like, 30
+seconds to think about this as well.
+
+1090
+00:53:20,479 --> 00:53:47,150
+
+1091
+00:53:47,150 --> 00:53:50,071
+>> OK Does anyone want to
+give me the worst runtime?
+
+1092
+00:53:50,071 --> 00:53:50,570
+Yeah.
+
+1093
+00:53:50,570 --> 00:53:51,490
+>> AUDIENCE: n squared.
+
+1094
+00:53:51,490 --> 00:53:52,573
+>> ANDI PENG: It's n squared.
+
+1095
+00:53:52,573 --> 00:53:53,730
+And why is it n squared?
+
+1096
+00:53:53,730 --> 00:53:57,562
+>> AUDIENCE: Because in
+reverse order, you have
+
+1097
+00:53:57,562 --> 00:54:02,619
+to go through n times n, which is--
+
+1098
+00:54:02,619 --> 00:54:03,660
+ANDI PENG: Yeah, exactly.
+
+1099
+00:54:03,660 --> 00:54:06,610
+So same thing as in the bubble sort.
+
+1100
+00:54:06,610 --> 00:54:08,720
+If this list is in
+descending order, you're
+
+1101
+00:54:08,720 --> 00:54:11,240
+going to have to check first once.
+
+1102
+00:54:11,240 --> 00:54:13,470
+And then with every
+additional value, you're
+
+1103
+00:54:13,470 --> 00:54:16,390
+going to have to check it against
+every single value, right?
+
+1104
+00:54:16,390 --> 00:54:20,290
+And so altogether, you're going to make
+an n pass times another n pass, which
+
+1105
+00:54:20,290 --> 00:54:21,750
+is n squared.
+
+1106
+00:54:21,750 --> 00:54:22,860
+What about the best case?
+
+1107
+00:54:22,860 --> 00:54:24,360
+Yeah.
+
+1108
+00:54:24,360 --> 00:54:28,840
+>> AUDIENCE: n minus 1, because the
+first one is already squared.
+
+1109
+00:54:28,840 --> 00:54:30,270
+>> ANDI PENG: So, close.
+
+1110
+00:54:30,270 --> 00:54:31,850
+The answer is actually n.
+
+1111
+00:54:31,850 --> 00:54:37,189
+Because while the first one is
+sorted, it may not actually-- it
+
+1112
+00:54:37,189 --> 00:54:38,980
+we just lucked out, in
+that example, that 2
+
+1113
+00:54:38,980 --> 00:54:40,930
+happened to be the smallest number.
+
+1114
+00:54:40,930 --> 00:54:43,680
+But that won't always be the case.
+
+1115
+00:54:43,680 --> 00:54:48,040
+If 2 is already sorted in the beginning
+but you look and there's a 1 here,
+
+1116
+00:54:48,040 --> 00:54:49,144
+the 1 is going to bump it.
+
+1117
+00:54:49,144 --> 00:54:51,060
+And it's going to end
+up being bumped anyways.
+
+1118
+00:54:51,060 --> 00:54:56,250
+>> So in the best case scenario,
+it's actually just going to be n.
+
+1119
+00:54:56,250 --> 00:54:59,090
+If you have 1, 2, 3,
+4, 5, 6, 7, 8, you're
+
+1120
+00:54:59,090 --> 00:55:00,940
+going to run through
+that entire list once
+
+1121
+00:55:00,940 --> 00:55:03,430
+to check to see if everything's fine.
+
+1122
+00:55:03,430 --> 00:55:07,390
+Is everyone clear on running
+times of selection as well?
+
+1123
+00:55:07,390 --> 00:55:09,960
+I know I'm going through
+these really fast.
+
+1124
+00:55:09,960 --> 00:55:13,330
+But just know that if you know the
+general concepts, you should be good.
+
+1125
+00:55:13,330 --> 00:55:16,070
+OK.
+
+1126
+00:55:16,070 --> 00:55:19,790
+So I'll just give you guys maybe, like,
+a minute to talk to your neighbors
+
+1127
+00:55:19,790 --> 00:55:21,890
+on what are just some
+of the main differences
+
+1128
+00:55:21,890 --> 00:55:23,540
+between these types of sorts.
+
+1129
+00:55:23,540 --> 00:56:24,571
+
+1130
+00:56:24,571 --> 00:56:25,570
+We'll go over that soon.
+
+1131
+00:56:25,570 --> 00:56:26,444
+AUDIENCE: Oh, OK.
+
+1132
+00:56:26,444 --> 00:56:27,320
+ANDI PENG: Yeah.
+
+1133
+00:56:27,320 --> 00:56:28,380
+OK.
+
+1134
+00:56:28,380 --> 00:56:33,420
+Cool, let's reconvene as a class.
+
+1135
+00:56:33,420 --> 00:56:34,330
+OK.
+
+1136
+00:56:34,330 --> 00:56:37,579
+So this was kind of an
+open-ended question in the sense
+
+1137
+00:56:37,579 --> 00:56:39,120
+that there's lots of answers to them.
+
+1138
+00:56:39,120 --> 00:56:40,746
+And we'll go over some of them briefly.
+
+1139
+00:56:40,746 --> 00:56:43,411
+I just wanted to get you guys
+thinking about what differentiated
+
+1140
+00:56:43,411 --> 00:56:44,530
+all three types of sorts.
+
+1141
+00:56:44,530 --> 00:56:47,440
+And I heard, also, a great
+question-- what does merge sort do?
+
+1142
+00:56:47,440 --> 00:56:50,110
+Great question, because that's
+what we're covering next.
+
+1143
+00:56:50,110 --> 00:56:52,850
+>> So merge sort is the
+one sort that functions
+
+1144
+00:56:52,850 --> 00:56:56,100
+very differently from the other sorts.
+
+1145
+00:56:56,100 --> 00:56:58,180
+As you guys can see--
+did David do that demo
+
+1146
+00:56:58,180 --> 00:57:01,130
+where he had all the cool
+noises of seeing how merge
+
+1147
+00:57:01,130 --> 00:57:04,010
+sort ran, like, infinitely
+faster than the other two types?
+
+1148
+00:57:04,010 --> 00:57:04,510
+OK.
+
+1149
+00:57:04,510 --> 00:57:07,580
+So that's because merge
+sort implements that divide
+
+1150
+00:57:07,580 --> 00:57:11,020
+and conquer concept that we've
+talked about a lot in lecture.
+
+1151
+00:57:11,020 --> 00:57:14,550
+In that sense that we like to work
+smarter, not harder, when you divide
+
+1152
+00:57:14,550 --> 00:57:18,120
+and conquer problems, and break them
+down, and then put them together,
+
+1153
+00:57:18,120 --> 00:57:19,930
+good things always happen.
+
+1154
+00:57:19,930 --> 00:57:21,960
+>> So the way that merge
+sort essentially works
+
+1155
+00:57:21,960 --> 00:57:24,660
+is that it divides an
+unsorted array in half.
+
+1156
+00:57:24,660 --> 00:57:26,500
+And then it's got two halves of arrays.
+
+1157
+00:57:26,500 --> 00:57:28,220
+And it just sorts those two halves.
+
+1158
+00:57:28,220 --> 00:57:31,750
+It just keeps dividing in half, in
+half, in half until everything is sorted
+
+1159
+00:57:31,750 --> 00:57:33,680
+and then recursively
+puts it all together.
+
+1160
+00:57:33,680 --> 00:57:36,550
+>> So that's really abstract.
+
+1161
+00:57:36,550 --> 00:57:38,750
+So this is just a bit of pseudocode.
+
+1162
+00:57:38,750 --> 00:57:41,040
+Does that make sense in
+the way it's running?
+
+1163
+00:57:41,040 --> 00:57:43,870
+So let's just say you have an
+array of n elements, right?
+
+1164
+00:57:43,870 --> 00:57:45,450
+If n is less than 2, you can return.
+
+1165
+00:57:45,450 --> 00:57:49,040
+Because you know that if there's
+only one thing, it must be sorted.
+
+1166
+00:57:49,040 --> 00:57:52,600
+Else, you sort the left half,
+and then you sort the right half,
+
+1167
+00:57:52,600 --> 00:57:54,140
+and then you merge.
+
+1168
+00:57:54,140 --> 00:57:56,979
+>> So while that looks really easy,
+in reality, thinking about it's
+
+1169
+00:57:56,979 --> 00:58:00,270
+kind of difficult. Because you're like,
+well, that's kind of running on itself.
+
+1170
+00:58:00,270 --> 00:58:00,769
+Right?
+
+1171
+00:58:00,769 --> 00:58:02,430
+It's running on itself.
+
+1172
+00:58:02,430 --> 00:58:05,479
+So in that sense, David touched
+upon recursion in class.
+
+1173
+00:58:05,479 --> 00:58:07,270
+And that's a concept
+we'll talk about more.
+
+1174
+00:58:07,270 --> 00:58:11,430
+It's that this, these two lines
+here, actually is just the program
+
+1175
+00:58:11,430 --> 00:58:13,860
+telling it to run itself
+with different input.
+
+1176
+00:58:13,860 --> 00:58:17,230
+So rather than run itself with
+the entirety of n elements,
+
+1177
+00:58:17,230 --> 00:58:20,530
+you can break it down into the
+left half and the right half
+
+1178
+00:58:20,530 --> 00:58:22,680
+and then run it again.
+
+1179
+00:58:22,680 --> 00:58:26,050
+>> And then we'll look at it visually,
+because I'm a visual learner.
+
+1180
+00:58:26,050 --> 00:58:27,270
+It works better for me.
+
+1181
+00:58:27,270 --> 00:58:29,890
+So we'll look at a visual example here.
+
+1182
+00:58:29,890 --> 00:58:36,237
+>> Let's say we have an array, six
+elements, 3, 5, 2, 6, 4, 1, not sorted.
+
+1183
+00:58:36,237 --> 00:58:37,820
+All right, there's a lot on this page.
+
+1184
+00:58:37,820 --> 00:58:43,179
+So if you guys can look at the
+first step here, 3, 5, 2, 6, 4, 1,
+
+1185
+00:58:43,179 --> 00:58:44,220
+you can split it in half.
+
+1186
+00:58:44,220 --> 00:58:45,976
+You have 3, 5, 2, 6, 4, 1.
+
+1187
+00:58:45,976 --> 00:58:48,850
+You know that these aren't-- you
+don't know if they're sorted or not,
+
+1188
+00:58:48,850 --> 00:58:52,517
+so you keep breaking them down, in half,
+in half, in half, until eventually,
+
+1189
+00:58:52,517 --> 00:58:53,600
+you only have one element.
+
+1190
+00:58:53,600 --> 00:58:56,790
+And one element is always sorted, right?
+
+1191
+00:58:56,790 --> 00:59:01,560
+>> So we know that 3, 5, 2, 4, 6,
+1, by themselves, are sorted.
+
+1192
+00:59:01,560 --> 00:59:05,870
+And now we can put them back together.
+
+1193
+00:59:05,870 --> 00:59:07,510
+So we know the 3, 5.
+
+1194
+00:59:07,510 --> 00:59:08,510
+We put those together.
+
+1195
+00:59:08,510 --> 00:59:09,617
+We know that's sorted.
+
+1196
+00:59:09,617 --> 00:59:10,450
+The 2's still there.
+
+1197
+00:59:10,450 --> 00:59:11,830
+We can put the 4 and the 6 together.
+
+1198
+00:59:11,830 --> 00:59:13,996
+We know that that's sorted,
+so we put that together.
+
+1199
+00:59:13,996 --> 00:59:14,940
+And the 1 is there.
+
+1200
+00:59:14,940 --> 00:59:18,720
+>> And then you just look at
+these two halves right here.
+
+1201
+00:59:18,720 --> 00:59:21,300
+You have the 3, 5, 2, 2, 3, 5.
+
+1202
+00:59:21,300 --> 00:59:23,465
+You can just compare the
+beginning of everything.
+
+1203
+00:59:23,465 --> 00:59:26,340
+Because you know that this is sorted
+and you know that that's sorted.
+
+1204
+00:59:26,340 --> 00:59:29,360
+So then you don't even have to
+compare the 5, you just compare the 3.
+
+1205
+00:59:29,360 --> 00:59:32,070
+And the 2 is less than 3, so
+you know 2 must go in the end.
+
+1206
+00:59:32,070 --> 00:59:33,120
+>> Same thing over there.
+
+1207
+00:59:33,120 --> 00:59:34,740
+The 1 must go here.
+
+1208
+00:59:34,740 --> 00:59:37,330
+And then when you go to put
+those two values together,
+
+1209
+00:59:37,330 --> 00:59:39,950
+you know that this is sorted and
+you know that that is sorted.
+
+1210
+00:59:39,950 --> 00:59:43,240
+So then the 1 and the
+2, the 1 is less than 2.
+
+1211
+00:59:43,240 --> 00:59:45,570
+That tells you that the 1
+should go on the end of this
+
+1212
+00:59:45,570 --> 00:59:47,480
+without even looking at 3 or 5.
+
+1213
+00:59:47,480 --> 00:59:50,100
+And then the 4, you can just
+check, it goes right in here.
+
+1214
+00:59:50,100 --> 00:59:51,480
+You don't have to look at the 5.
+
+1215
+00:59:51,480 --> 00:59:52,570
+Same thing with the 6.
+
+1216
+00:59:52,570 --> 00:59:55,860
+You know that the 6-- it just
+doesn't need to be looked.
+
+1217
+00:59:55,860 --> 00:59:57,870
+>> And so in that way, you're
+just saving yourself
+
+1218
+00:59:57,870 --> 00:59:59,526
+a lot of steps when you're comparing.
+
+1219
+00:59:59,526 --> 01:00:02,150
+You don't have to compare every
+element against other elements.
+
+1220
+01:00:02,150 --> 01:00:05,230
+You just compare against the ones
+that you need to compare it against.
+
+1221
+01:00:05,230 --> 01:00:06,870
+So that's kind of an abstract concept.
+
+1222
+01:00:06,870 --> 01:00:10,540
+No worries if it's not
+quite hitting you right yet.
+
+1223
+01:00:10,540 --> 01:00:14,740
+But generally, this is
+how a merge sort works.
+
+1224
+01:00:14,740 --> 01:00:17,750
+Questions, quick questions,
+before I move on?
+
+1225
+01:00:17,750 --> 01:00:18,550
+Yeah.
+
+1226
+01:00:18,550 --> 01:00:22,230
+>> AUDIENCE: So you said that you take
+the 1, and then the 4, and the 6
+
+1227
+01:00:22,230 --> 01:00:23,860
+and put them in.
+
+1228
+01:00:23,860 --> 01:00:26,800
+So aren't those-- aren't
+you looking at them
+
+1229
+01:00:26,800 --> 01:00:28,544
+as separate elements, not as the whole?
+
+1230
+01:00:28,544 --> 01:00:29,210
+ANDI PENG: Yeah.
+
+1231
+01:00:29,210 --> 01:00:32,020
+So what's happening
+is that you basically
+
+1232
+01:00:32,020 --> 01:00:33,650
+are creating a brand new array.
+
+1233
+01:00:33,650 --> 01:00:36,690
+So you know that, here, I have
+two arrays of size 3, right?
+
+1234
+01:00:36,690 --> 01:00:39,600
+So you know that my sorted array
+needs to have six elements.
+
+1235
+01:00:39,600 --> 01:00:42,270
+So you just create a
+new amount of memory.
+
+1236
+01:00:42,270 --> 01:00:44,270
+So you're kind of like
+being wasteful of memory,
+
+1237
+01:00:44,270 --> 01:00:46,186
+but that doesn't matter
+because it's so small.
+
+1238
+01:00:46,186 --> 01:00:48,590
+So you look at the 1
+and you look at the 2.
+
+1239
+01:00:48,590 --> 01:00:50,770
+And you know that the 1 is less than 2.
+
+1240
+01:00:50,770 --> 01:00:53,840
+So you know that 1 should go in
+the beginning of all of those.
+
+1241
+01:00:53,840 --> 01:00:55,850
+>> You don't even need to
+look at the 3 and the 5.
+
+1242
+01:00:55,850 --> 01:00:57,400
+So you know 1 goes there.
+
+1243
+01:00:57,400 --> 01:00:59,300
+Then you basically chop off the 1.
+
+1244
+01:00:59,300 --> 01:01:00,370
+It's, like, dead to us.
+
+1245
+01:01:00,370 --> 01:01:03,690
+Then we just have 2,
+3, 5, and then 4 and 6.
+
+1246
+01:01:03,690 --> 01:01:06,270
+And then you know that, you
+compare the 4 and the 2,
+
+1247
+01:01:06,270 --> 01:01:07,560
+oh, the 2 should go in there.
+
+1248
+01:01:07,560 --> 01:01:09,685
+So you plop the 2 down, you chop it off.
+
+1249
+01:01:09,685 --> 01:01:12,060
+So then you just have the 3
+and the 5 in the 4 and the 6.
+
+1250
+01:01:12,060 --> 01:01:14,650
+And you just keep chopping it off
+until you put them in the array.
+
+1251
+01:01:14,650 --> 01:01:17,110
+>> AUDIENCE: So you're just always
+comparing the [INAUDIBLE]?
+
+1252
+01:01:17,110 --> 01:01:17,710
+>> ANDI PENG: Exactly.
+
+1253
+01:01:17,710 --> 01:01:19,590
+So in that sense, you're
+just comparing, essentially,
+
+1254
+01:01:19,590 --> 01:01:21,240
+one number against the other number.
+
+1255
+01:01:21,240 --> 01:01:22,990
+And because you know
+that it's sorted, you
+
+1256
+01:01:22,990 --> 01:01:24,350
+don't have to look through
+all of the numbers.
+
+1257
+01:01:24,350 --> 01:01:25,870
+You just have to look at the first one.
+
+1258
+01:01:25,870 --> 01:01:27,582
+And then you can just plop
+them down, because you know
+
+1259
+01:01:27,582 --> 01:01:29,640
+they belong where they need to belong.
+
+1260
+01:01:29,640 --> 01:01:31,030
+Yeah.
+
+1261
+01:01:31,030 --> 01:01:32,920
+Good question.
+
+1262
+01:01:32,920 --> 01:01:35,290
+>> And then if any of you
+are a bit ambitious,
+
+1263
+01:01:35,290 --> 01:01:38,660
+feel free to look at this code.
+
+1264
+01:01:38,660 --> 01:01:40,680
+This is actually the
+physical implementation
+
+1265
+01:01:40,680 --> 01:01:42,150
+of how we would write merge sort.
+
+1266
+01:01:42,150 --> 01:01:44,070
+And you can see, it's very short.
+
+1267
+01:01:44,070 --> 01:01:46,310
+But the ideas behind
+it are pretty complex.
+
+1268
+01:01:46,310 --> 01:01:50,865
+So if you feel like drawing this out
+in your homework tonight, feel free to.
+
+1269
+01:01:50,865 --> 01:01:54,050
+
+1270
+01:01:54,050 --> 01:01:54,740
+>> OK.
+
+1271
+01:01:54,740 --> 01:01:58,070
+So David also went over this in lecture.
+
+1272
+01:01:58,070 --> 01:02:00,660
+What are the best case
+runtimes, worst case runtimes,
+
+1273
+01:02:00,660 --> 01:02:05,680
+and the expected runtimes of merge sort?
+
+1274
+01:02:05,680 --> 01:02:07,260
+A couple seconds to think.
+
+1275
+01:02:07,260 --> 01:02:11,198
+This is pretty hard, but kind of
+intuitive if you think about it.
+
+1276
+01:02:11,198 --> 01:02:20,090
+
+1277
+01:02:20,090 --> 01:02:23,054
+All right.
+
+1278
+01:02:23,054 --> 01:02:25,269
+>> AUDIENCE: Is the worst case n log n?
+
+1279
+01:02:25,269 --> 01:02:26,060
+ANDI PENG: Exactly.
+
+1280
+01:02:26,060 --> 01:02:29,380
+And why is it n log n.
+
+1281
+01:02:29,380 --> 01:02:32,230
+>> AUDIENCE: Isn't it because it
+becomes exponentially faster,
+
+1282
+01:02:32,230 --> 01:02:35,390
+so it's like a function of that
+instead of just simply being n
+
+1283
+01:02:35,390 --> 01:02:37,529
+squared or something?
+
+1284
+01:02:37,529 --> 01:02:38,320
+ANDI PENG: Exactly.
+
+1285
+01:02:38,320 --> 01:02:40,750
+So the reason why the
+runtime on this is n log
+
+1286
+01:02:40,750 --> 01:02:44,310
+n is because-- what are you
+doing in all of these steps?
+
+1287
+01:02:44,310 --> 01:02:46,190
+You're just chopping it in half, right?
+
+1288
+01:02:46,190 --> 01:02:48,750
+And so when we're doing the
+log, all that it's doing
+
+1289
+01:02:48,750 --> 01:02:53,150
+is dividing a problem in half,
+in half, in half, in more halves.
+
+1290
+01:02:53,150 --> 01:02:56,430
+And in that sense, you can kind
+of eliminate the linear model
+
+1291
+01:02:56,430 --> 01:02:57,510
+that we've been using.
+
+1292
+01:02:57,510 --> 01:03:00,254
+Because when you chop
+things in half, it's a log.
+
+1293
+01:03:00,254 --> 01:03:02,420
+That's just the mathematical
+way of representing it.
+
+1294
+01:03:02,420 --> 01:03:06,310
+>> And then finally, at the end, you're
+just making one last pass through
+
+1295
+01:03:06,310 --> 01:03:07,930
+to put all of them in order, right?
+
+1296
+01:03:07,930 --> 01:03:10,330
+And so if you just have to
+check one thing, that's n.
+
+1297
+01:03:10,330 --> 01:03:13,420
+And so you're kind of
+multiplying the two together.
+
+1298
+01:03:13,420 --> 01:03:17,660
+So it's like you've got that final
+check for n down here with a log of n
+
+1299
+01:03:17,660 --> 01:03:18,390
+up here.
+
+1300
+01:03:18,390 --> 01:03:21,060
+And if you multiply
+them, that's n log n.
+
+1301
+01:03:21,060 --> 01:03:26,100
+>> And so the best case and worst
+case and expected are all n log n.
+
+1302
+01:03:26,100 --> 01:03:27,943
+It's also like another sort.
+
+1303
+01:03:27,943 --> 01:03:30,090
+It's like selection sort
+in the sense that it
+
+1304
+01:03:30,090 --> 01:03:32,131
+doesn't matter what your
+list is, it's just going
+
+1305
+01:03:32,131 --> 01:03:34,801
+to do the same thing every single time.
+
+1306
+01:03:34,801 --> 01:03:35,300
+OK.
+
+1307
+01:03:35,300 --> 01:03:39,950
+So as you guys can see, even though
+the sorts that we've gone through-- n
+
+1308
+01:03:39,950 --> 01:03:41,660
+squared, it's not very efficient.
+
+1309
+01:03:41,660 --> 01:03:47,060
+And even this n log n is
+not the most efficient.
+
+1310
+01:03:47,060 --> 01:03:49,720
+If you guys are curious,
+there's sort mechanisms
+
+1311
+01:03:49,720 --> 01:03:54,310
+that are so efficient that they're
+almost essentially flat in runtime.
+
+1312
+01:03:54,310 --> 01:03:55,420
+>> You've got some log n's.
+
+1313
+01:03:55,420 --> 01:03:58,190
+You've got some log log n's.
+
+1314
+01:03:58,190 --> 01:04:00,330
+We don't touch upon them
+in this class right now.
+
+1315
+01:04:00,330 --> 01:04:02,663
+But if you guys are curious,
+feel free to google, what's
+
+1316
+01:04:02,663 --> 01:04:04,392
+the most efficient sorting mechanisms.
+
+1317
+01:04:04,392 --> 01:04:06,350
+I don't know, there are
+some really funny ones,
+
+1318
+01:04:06,350 --> 01:04:09,860
+like-- there's some really
+funny ones that people make.
+
+1319
+01:04:09,860 --> 01:04:12,210
+And you wonder how they
+ever thought of that.
+
+1320
+01:04:12,210 --> 01:04:15,730
+So google, if you have some spare
+time, on, what are some funny ways
+
+1321
+01:04:15,730 --> 01:04:17,730
+that people-- as well as
+efficient ways-- people
+
+1322
+01:04:17,730 --> 01:04:20,371
+have been able to implement sorts.
+
+1323
+01:04:20,371 --> 01:04:20,870
+OK.
+
+1324
+01:04:20,870 --> 01:04:22,880
+And here's just a handy little chart.
+
+1325
+01:04:22,880 --> 01:04:26,850
+I know all of you, before that quiz 0,
+will be in your room probably trying
+
+1326
+01:04:26,850 --> 01:04:27,960
+to memorize that.
+
+1327
+01:04:27,960 --> 01:04:30,940
+So that's nice in there for you guys.
+
+1328
+01:04:30,940 --> 01:04:37,120
+Just don't forget the logic that made--
+why those numbers were occurring.
+
+1329
+01:04:37,120 --> 01:04:39,870
+If you're always lost, just make
+sure you know what the sorts are.
+
+1330
+01:04:39,870 --> 01:04:40,820
+And you can run through
+them in your mind
+
+1331
+01:04:40,820 --> 01:04:42,903
+to figure out why those
+answers are those answers.
+
+1332
+01:04:42,903 --> 01:04:46,250
+
+1333
+01:04:46,250 --> 01:04:47,600
+>> All right.
+
+1334
+01:04:47,600 --> 01:04:49,680
+So we're going to move
+on, finally, to searching.
+
+1335
+01:04:49,680 --> 01:04:51,638
+Because as those of you
+who have read the pset,
+
+1336
+01:04:51,638 --> 01:04:55,175
+searching is also part of
+this week's problem sets.
+
+1337
+01:04:55,175 --> 01:04:57,300
+You'll be asked to implement
+two types of searches.
+
+1338
+01:04:57,300 --> 01:05:00,070
+One is a linear search and
+one is a binary search.
+
+1339
+01:05:00,070 --> 01:05:01,760
+>> So the linear search is fairly easy.
+
+1340
+01:05:01,760 --> 01:05:04,070
+You just want to search element
+of a list to see if you get it.
+
+1341
+01:05:04,070 --> 01:05:05,444
+You just have to iterate through.
+
+1342
+01:05:05,444 --> 01:05:08,170
+And if it equals something,
+you can just return it, right?
+
+1343
+01:05:08,170 --> 01:05:10,890
+But the one that we're most
+interested in talking about
+
+1344
+01:05:10,890 --> 01:05:14,550
+is binary search, right, which is the
+divide and conquer mechanism which
+
+1345
+01:05:14,550 --> 01:05:18,190
+David was demonstrating in lecture.
+
+1346
+01:05:18,190 --> 01:05:20,810
+>> Remember the phone book example
+that he keeps bringing up,
+
+1347
+01:05:20,810 --> 01:05:23,960
+the one that he kind of struggled
+a bit on this past year,
+
+1348
+01:05:23,960 --> 01:05:27,530
+where you divide the problem in half,
+in half, in half, again and again,
+
+1349
+01:05:27,530 --> 01:05:30,730
+until you find what you're looking for?
+
+1350
+01:05:30,730 --> 01:05:33,727
+And you've got the
+runtime of that as well.
+
+1351
+01:05:33,727 --> 01:05:35,810
+And you can see, it's
+significantly more efficient
+
+1352
+01:05:35,810 --> 01:05:39,080
+than any other type of search.
+
+1353
+01:05:39,080 --> 01:05:41,880
+>> So the way that we would go about
+implementing a binary search
+
+1354
+01:05:41,880 --> 01:05:46,510
+is, if we had an array,
+index 0 to 6, seven elements,
+
+1355
+01:05:46,510 --> 01:05:49,790
+we can look in the middle, right--
+sorry, if our question first--
+
+1356
+01:05:49,790 --> 01:05:53,840
+if we want to ask the question of, does
+the array contain the element of 7,
+
+1357
+01:05:53,840 --> 01:05:56,840
+obviously, being humans, and having
+such a small array, it's easy for us
+
+1358
+01:05:56,840 --> 01:05:58,210
+to say yes.
+
+1359
+01:05:58,210 --> 01:06:05,750
+But the way to implement a binary
+search would be to look in the middle.
+
+1360
+01:06:05,750 --> 01:06:08,020
+>> We know that index 3 is
+the middle, because we
+
+1361
+01:06:08,020 --> 01:06:09,270
+know there are seven elements.
+
+1362
+01:06:09,270 --> 01:06:10,670
+What 7 divided by 2?
+
+1363
+01:06:10,670 --> 01:06:12,850
+You can chop off that extra 1.
+
+1364
+01:06:12,850 --> 01:06:14,850
+You've got 3 in the middle.
+
+1365
+01:06:14,850 --> 01:06:17,590
+So is array of 3 equal to 7?
+
+1366
+01:06:17,590 --> 01:06:18,900
+It is not, right?
+
+1367
+01:06:18,900 --> 01:06:21,050
+But we can do a couple of checks.
+
+1368
+01:06:21,050 --> 01:06:25,380
+Is array of 3 less than 7 or
+is array of 3 greater than 7?
+
+1369
+01:06:25,380 --> 01:06:27,240
+>> And we know that it's less than 7.
+
+1370
+01:06:27,240 --> 01:06:30,259
+So we know that, oh, it must
+not be in the left half.
+
+1371
+01:06:30,259 --> 01:06:32,300
+We know that it must be
+in the right half, right?
+
+1372
+01:06:32,300 --> 01:06:34,662
+So we can just chop off half the array.
+
+1373
+01:06:34,662 --> 01:06:36,370
+We don't even have to
+look at it anymore.
+
+1374
+01:06:36,370 --> 01:06:38,711
+Because we know that
+half of our problem--
+
+1375
+01:06:38,711 --> 01:06:41,210
+we know that the answer is in
+the right half of our problem.
+
+1376
+01:06:41,210 --> 01:06:42,580
+So we just look at that now.
+
+1377
+01:06:42,580 --> 01:06:44,860
+>> So now we look at the
+middle of what's left.
+
+1378
+01:06:44,860 --> 01:06:46,880
+That index 5.
+
+1379
+01:06:46,880 --> 01:06:50,200
+We do the same check again
+and we see that it's smaller.
+
+1380
+01:06:50,200 --> 01:06:52,050
+So we look to the left of that.
+
+1381
+01:06:52,050 --> 01:06:53,430
+And then we see that check.
+
+1382
+01:06:53,430 --> 01:06:57,600
+Is the array value at
+index 4 equal to 7?
+
+1383
+01:06:57,600 --> 01:06:58,260
+It is.
+
+1384
+01:06:58,260 --> 01:07:03,580
+So we can return true, because
+we found the value in our list.
+
+1385
+01:07:03,580 --> 01:07:06,738
+Does the way I went through
+that make sense to everybody?
+
+1386
+01:07:06,738 --> 01:07:08,760
+OK.
+
+1387
+01:07:08,760 --> 01:07:11,670
+I'll give you guys maybe, like,
+three, four minutes to figure out
+
+1388
+01:07:11,670 --> 01:07:13,270
+how to pseudocode this in.
+
+1389
+01:07:13,270 --> 01:07:18,070
+>> So imagine I asked you to write a
+function called search() that returned
+
+1390
+01:07:18,070 --> 01:07:20,640
+a value, a Boolean value,
+that was true or false-- like,
+
+1391
+01:07:20,640 --> 01:07:22,970
+true if you found the
+value, false if you didn't.
+
+1392
+01:07:22,970 --> 01:07:25,230
+And then you were
+passed in the value you
+
+1393
+01:07:25,230 --> 01:07:28,410
+were looking for into values, which
+is the array-- oh, I definitely put
+
+1394
+01:07:28,410 --> 01:07:29,410
+that in the wrong place.
+
+1395
+01:07:29,410 --> 01:07:29,580
+OK.
+
+1396
+01:07:29,580 --> 01:07:31,829
+Anyways, that should have
+been to the right of values.
+
+1397
+01:07:31,829 --> 01:07:36,280
+And then int n is the number
+of elements in that array.
+
+1398
+01:07:36,280 --> 01:07:39,430
+How would you go about trying
+to pseudocode that problem in?
+
+1399
+01:07:39,430 --> 01:07:41,630
+I'll give you guys like
+three minutes to do that.
+
+1400
+01:07:41,630 --> 01:08:00,137
+
+1401
+01:08:00,137 --> 01:08:02,595
+No, I think there's only--
+yeah, there's one right up here.
+
+1402
+01:08:02,595 --> 01:08:03,261
+AUDIENCE: Can I?
+
+1403
+01:08:03,261 --> 01:08:04,388
+ANDI PENG: Yeah, I got you.
+
+1404
+01:08:04,388 --> 01:08:09,410
+
+1405
+01:08:09,410 --> 01:08:11,050
+Is that working?
+
+1406
+01:08:11,050 --> 01:08:12,290
+OK, cool.
+
+1407
+01:08:12,290 --> 01:10:43,590
+
+1408
+01:10:43,590 --> 01:10:44,720
+>> OK.
+
+1409
+01:10:44,720 --> 01:10:47,630
+All right guys, we're
+going to rein it in.
+
+1410
+01:10:47,630 --> 01:10:49,730
+OK.
+
+1411
+01:10:49,730 --> 01:10:54,020
+So assume we've got this lovely
+little array with n values in it.
+
+1412
+01:10:54,020 --> 01:10:55,170
+I didn't draw the lines.
+
+1413
+01:10:55,170 --> 01:10:58,649
+But how would we go about
+trying to write this?
+
+1414
+01:10:58,649 --> 01:11:00,440
+Does anyone want to
+give me the first line?
+
+1415
+01:11:00,440 --> 01:11:02,814
+If you want to give me the
+first line of this pseudocode.
+
+1416
+01:11:02,814 --> 01:11:06,563
+
+1417
+01:11:06,563 --> 01:11:08,430
+>> AUDIENCE: [INAUDIBLE]
+
+1418
+01:11:08,430 --> 01:11:10,138
+AUDIENCE: You'd want
+to iterate through--
+
+1419
+01:11:10,138 --> 01:11:11,094
+AUDIENCE: Just another for loop?
+
+1420
+01:11:11,094 --> 01:11:11,760
+AUDIENCE: --for.
+
+1421
+01:11:11,760 --> 01:11:15,880
+
+1422
+01:11:15,880 --> 01:11:17,780
+>> ANDI PENG: So this one's a bit tricky.
+
+1423
+01:11:17,780 --> 01:11:23,130
+Think about-- you want
+to keep running this loop
+
+1424
+01:11:23,130 --> 01:11:27,950
+over and over again until when?
+
+1425
+01:11:27,950 --> 01:11:30,819
+>> AUDIENCE: Until the [INAUDIBLE]
+value is equal to that value.
+
+1426
+01:11:30,819 --> 01:11:31,610
+ANDI PENG: Exactly.
+
+1427
+01:11:31,610 --> 01:11:33,900
+So you can actually just write--
+we can even simplify it more.
+
+1428
+01:11:33,900 --> 01:11:35,630
+We can just do a while loop, right?
+
+1429
+01:11:35,630 --> 01:11:39,380
+So you can just have loop--
+we know that it's a while.
+
+1430
+01:11:39,380 --> 01:11:42,850
+But for right now, I'm going
+to say "loop"-- through what?
+
+1431
+01:11:42,850 --> 01:11:46,640
+Loop until-- what is
+our ending condition?
+
+1432
+01:11:46,640 --> 01:11:47,510
+I think I heard it.
+
+1433
+01:11:47,510 --> 01:11:48,530
+I heard someone say it.
+
+1434
+01:11:48,530 --> 01:11:51,255
+>> AUDIENCE: Values equals middle.
+
+1435
+01:11:51,255 --> 01:11:52,255
+ANDI PENG: Say it again.
+
+1436
+01:11:52,255 --> 01:11:54,470
+AUDIENCE: Or, until the
+value you're searching
+
+1437
+01:11:54,470 --> 01:11:58,470
+for is equal to the middle value.
+
+1438
+01:11:58,470 --> 01:12:00,280
+>> ANDI PENG: What if it's not in there?
+
+1439
+01:12:00,280 --> 01:12:03,113
+What if the value you're searching
+for isn't actually in this array?
+
+1440
+01:12:03,113 --> 01:12:05,890
+AUDIENCE: You return 1.
+
+1441
+01:12:05,890 --> 01:12:08,850
+>> ANDI PENG: But what do we want to
+loop until if we have a condition?
+
+1442
+01:12:08,850 --> 01:12:09,350
+Yeah.
+
+1443
+01:12:09,350 --> 01:12:11,239
+>> AUDIENCE: Until there's only one value?
+
+1444
+01:12:11,239 --> 01:12:13,530
+ANDI PENG: You can loop
+until-- so you know that you're
+
+1445
+01:12:13,530 --> 01:12:15,714
+going to have a max value, right?
+
+1446
+01:12:15,714 --> 01:12:18,130
+And you know that you're going
+to have a min value, right?
+
+1447
+01:12:18,130 --> 01:12:20,379
+Because also, that's something
+I forgot to say before,
+
+1448
+01:12:20,379 --> 01:12:22,640
+that something that's
+critical about binary search
+
+1449
+01:12:22,640 --> 01:12:24,182
+is that your array is already sorted.
+
+1450
+01:12:24,182 --> 01:12:26,973
+Because there's no way of doing
+this if they're just random values.
+
+1451
+01:12:26,973 --> 01:12:29,190
+You don't know if one's
+larger than the other, right?
+
+1452
+01:12:29,190 --> 01:12:32,720
+>> So you know that your max and
+your mins are here, right?
+
+1453
+01:12:32,720 --> 01:12:35,590
+If you're going to be adjusting
+your max in your mins and the mid--
+
+1454
+01:12:35,590 --> 01:12:38,470
+let's just assume your
+mid value is right here--
+
+1455
+01:12:38,470 --> 01:12:43,910
+you're going to basically
+loop until your minimum is
+
+1456
+01:12:43,910 --> 01:12:47,510
+about the same as your max, right, or
+if your max is not the same as your min.
+
+1457
+01:12:47,510 --> 01:12:48,040
+Right?
+
+1458
+01:12:48,040 --> 01:12:51,340
+Because when that happens, you know that
+you've eventually hit the same value.
+
+1459
+01:12:51,340 --> 01:12:59,135
+So you want to loop until your min
+is less than or equal to-- oops,
+
+1460
+01:12:59,135 --> 01:13:01,510
+not less than or equal to,
+the other way around-- max is.
+
+1461
+01:13:01,510 --> 01:13:15,110
+
+1462
+01:13:15,110 --> 01:13:16,160
+>> Did that make sense?
+
+1463
+01:13:16,160 --> 01:13:18,810
+I took a few tries to get that right.
+
+1464
+01:13:18,810 --> 01:13:21,869
+But loop until your max value
+is essentially almost less
+
+1465
+01:13:21,869 --> 01:13:23,410
+than or equal to your minimum, right?
+
+1466
+01:13:23,410 --> 01:13:25,201
+That's when you know
+that you've converged.
+
+1467
+01:13:25,201 --> 01:13:29,290
+AUDIENCE: When would your maximum
+value be less than the minimum?
+
+1468
+01:13:29,290 --> 01:13:31,040
+ANDI PENG: If you keep
+adjusting it, which
+
+1469
+01:13:31,040 --> 01:13:32,380
+is what we are going
+to be doing in this.
+
+1470
+01:13:32,380 --> 01:13:33,460
+Does that make sense?
+
+1471
+01:13:33,460 --> 01:13:35,750
+Minimum and max are just
+integers that we are probably
+
+1472
+01:13:35,750 --> 01:13:39,260
+going to want to create to keep
+track of where we're looking.
+
+1473
+01:13:39,260 --> 01:13:41,790
+Because the array exists
+regardless of what we're doing.
+
+1474
+01:13:41,790 --> 01:13:45,030
+Like, we're not actually physically
+chopping off the array, right?
+
+1475
+01:13:45,030 --> 01:13:47,261
+We're just adjusting
+where we're looking.
+
+1476
+01:13:47,261 --> 01:13:48,136
+Does that make sense?
+
+1477
+01:13:48,136 --> 01:13:48,472
+>> AUDIENCE: Yeah.
+
+1478
+01:13:48,472 --> 01:13:49,110
+>> ANDI PENG: OK.
+
+1479
+01:13:49,110 --> 01:13:57,090
+So if that's the condition for our loop,
+what do we want inside of this loop?
+
+1480
+01:13:57,090 --> 01:13:58,700
+What are we going to be wanting to do?
+
+1481
+01:13:58,700 --> 01:14:02,390
+So right now, we've got
+a max and a min, right,
+
+1482
+01:14:02,390 --> 01:14:04,962
+probably created up here somewhere.
+
+1483
+01:14:04,962 --> 01:14:07,170
+We're going to probably want
+to find a middle, right?
+
+1484
+01:14:07,170 --> 01:14:08,450
+How are we going to be
+able to find the middle?
+
+1485
+01:14:08,450 --> 01:14:09,491
+What's the mathematical--
+
+1486
+01:14:09,491 --> 01:14:11,079
+AUDIENCE: Max plus min divided by 2.
+
+1487
+01:14:11,079 --> 01:14:11,870
+ANDI PENG: Exactly.
+
+1488
+01:14:11,870 --> 01:14:20,300
+
+1489
+01:14:20,300 --> 01:14:21,620
+Does that make sense?
+
+1490
+01:14:21,620 --> 01:14:25,780
+And do you guys see why we
+didn't just use-- why we did this
+
+1491
+01:14:25,780 --> 01:14:27,850
+instead of doing just n divided by 2?
+
+1492
+01:14:27,850 --> 01:14:30,310
+It's because n is a value
+that's going to stay the same.
+
+1493
+01:14:30,310 --> 01:14:30,979
+Right?
+
+1494
+01:14:30,979 --> 01:14:34,020
+But as we adjust our minimum and
+maximum values, they're going to change.
+
+1495
+01:14:34,020 --> 01:14:36,040
+And as a result, our middle
+is going to change too.
+
+1496
+01:14:36,040 --> 01:14:37,873
+So that's why we want
+to do this right here.
+
+1497
+01:14:37,873 --> 01:14:38,510
+OK.
+
+1498
+01:14:38,510 --> 01:14:41,600
+>> And then, now that
+we've found our-- yeah.
+
+1499
+01:14:41,600 --> 01:14:44,270
+>> AUDIENCE: Just a quick question--
+when you say min and max,
+
+1500
+01:14:44,270 --> 01:14:46,410
+are we assuming that
+it's already sorted?
+
+1501
+01:14:46,410 --> 01:14:48,400
+>> ANDI PENG: Yeah, that's actually a
+precondition for a binary search,
+
+1502
+01:14:48,400 --> 01:14:49,816
+that you have to know it's sorted.
+
+1503
+01:14:49,816 --> 01:14:53,660
+Which is why sort, you write in your
+problem set before your binary search.
+
+1504
+01:14:53,660 --> 01:14:55,910
+OK.
+
+1505
+01:14:55,910 --> 01:14:58,876
+So now that we know where our midpoint
+is, what do you want to do here?
+
+1506
+01:14:58,876 --> 01:15:01,789
+
+1507
+01:15:01,789 --> 01:15:04,319
+>> AUDIENCE: We want to compare
+that to the other one.
+
+1508
+01:15:04,319 --> 01:15:05,110
+ANDI PENG: Exactly.
+
+1509
+01:15:05,110 --> 01:15:12,280
+So you're going to compare
+mid to value, right?
+
+1510
+01:15:12,280 --> 01:15:14,900
+
+1511
+01:15:14,900 --> 01:15:18,670
+And what does that tell
+us when we compare?
+
+1512
+01:15:18,670 --> 01:15:22,226
+What do we want to do afterwards?
+
+1513
+01:15:22,226 --> 01:15:25,389
+>> AUDIENCE: If the value is larger
+than the mid, we want to cut it off.
+
+1514
+01:15:25,389 --> 01:15:26,180
+ANDI PENG: Exactly.
+
+1515
+01:15:26,180 --> 01:15:33,940
+So if the value is larger
+than the mid, we're
+
+1516
+01:15:33,940 --> 01:15:36,550
+going to want to change these
+minimum and maxes, right?
+
+1517
+01:15:36,550 --> 01:15:38,980
+What do we want to change?
+
+1518
+01:15:38,980 --> 01:15:42,145
+So if we know the value is somewhere
+in here, what do you we to change?
+
+1519
+01:15:42,145 --> 01:15:44,758
+We want to change our
+minimum to be mid, right?
+
+1520
+01:15:44,758 --> 01:15:49,420
+
+1521
+01:15:49,420 --> 01:15:54,292
+And then else, if it's in this
+half, what do we want to change?
+
+1522
+01:15:54,292 --> 01:15:55,306
+>> AUDIENCE: Your maximum.
+
+1523
+01:15:55,306 --> 01:15:55,972
+ANDI PENG: Yeah.
+
+1524
+01:15:55,972 --> 01:16:02,597
+
+1525
+01:16:02,597 --> 01:16:04,680
+And then you're just going
+to keep looping, right?
+
+1526
+01:16:04,680 --> 01:16:08,920
+Because now, after one iteration
+through, you've got a max here.
+
+1527
+01:16:08,920 --> 01:16:10,760
+And then you can recalculate a mid.
+
+1528
+01:16:10,760 --> 01:16:11,990
+And then you can compare.
+
+1529
+01:16:11,990 --> 01:16:14,766
+And you're going to keep going
+until the mins and the maxes
+
+1530
+01:16:14,766 --> 01:16:15,890
+have essentially converged.
+
+1531
+01:16:15,890 --> 01:16:17,890
+And that's when you know that
+you've hit the end of it.
+
+1532
+01:16:17,890 --> 01:16:20,280
+And either you've found it
+or you haven't at that point.
+
+1533
+01:16:20,280 --> 01:16:23,170
+>> Does this make sense to everybody?
+
+1534
+01:16:23,170 --> 01:16:26,020
+
+1535
+01:16:26,020 --> 01:16:26,770
+OK.
+
+1536
+01:16:26,770 --> 01:16:27,900
+This is pretty important,
+because you'll have
+
+1537
+01:16:27,900 --> 01:16:29,760
+to write this in your code tonight.
+
+1538
+01:16:29,760 --> 01:16:32,660
+But you guys have a pretty good
+sense of what you should be doing,
+
+1539
+01:16:32,660 --> 01:16:34,051
+which is good.
+
+1540
+01:16:34,051 --> 01:16:34,550
+OK.
+
+1541
+01:16:34,550 --> 01:16:38,840
+So we've got about seven
+minutes left section.
+
+1542
+01:16:38,840 --> 01:16:43,170
+So we're going to talk about
+this pset that we'll be doing.
+
+1543
+01:16:43,170 --> 01:16:46,410
+So the pset is divided into two halves.
+
+1544
+01:16:46,410 --> 01:16:50,230
+The first half involves
+implementing a find
+
+1545
+01:16:50,230 --> 01:16:54,210
+in which you write a linear search, a
+binary search, and a sorting algorithm.
+
+1546
+01:16:54,210 --> 01:16:56,690
+>> So this is the first
+time in a pset where
+
+1547
+01:16:56,690 --> 01:17:00,050
+we'll be giving you guys what's called
+distribution code, which is code
+
+1548
+01:17:00,050 --> 01:17:02,740
+that we have pre-written,
+but just left some pieces off
+
+1549
+01:17:02,740 --> 01:17:04,635
+for you to finish writing.
+
+1550
+01:17:04,635 --> 01:17:07,510
+So you guys, when you look at this
+code, you might get really scared.
+
+1551
+01:17:07,510 --> 01:17:08,630
+If you're just like, ahh, I
+don't know what that's doing,
+
+1552
+01:17:08,630 --> 01:17:11,670
+I don't know, like, that seems
+so complicated, ahh, relax.
+
+1553
+01:17:11,670 --> 01:17:12,170
+It's OK.
+
+1554
+01:17:12,170 --> 01:17:12,930
+Read the spec.
+
+1555
+01:17:12,930 --> 01:17:16,920
+The spec will explain to you exactly
+what all of these programs are doing.
+
+1556
+01:17:16,920 --> 01:17:20,560
+>> For example, generate.c is a program
+that will come with your pset.
+
+1557
+01:17:20,560 --> 01:17:24,060
+You don't actually have to touch it, but
+you should understand what it's doing.
+
+1558
+01:17:24,060 --> 01:17:28,550
+And generate.c, all it's doing is
+either generating random numbers
+
+1559
+01:17:28,550 --> 01:17:32,400
+or you can give it a seed, like a
+prearranged number that it takes,
+
+1560
+01:17:32,400 --> 01:17:34,140
+and it generates more numbers.
+
+1561
+01:17:34,140 --> 01:17:37,170
+So there's a specific way to
+implement generate.c in which
+
+1562
+01:17:37,170 --> 01:17:42,760
+you can just make a bunch of numbers
+for you to test your other methods on.
+
+1563
+01:17:42,760 --> 01:17:45,900
+>> So if you wanted to, for
+example, test your find,
+
+1564
+01:17:45,900 --> 01:17:48,970
+you would want to run generate.c,
+generate a bunch of numbers,
+
+1565
+01:17:48,970 --> 01:17:50,880
+and then run your helpers function.
+
+1566
+01:17:50,880 --> 01:17:53,930
+Your helpers function is where you're
+actually physically writing code.
+
+1567
+01:17:53,930 --> 01:17:59,330
+And think of helpers as a library file
+you're writing that find is calling.
+
+1568
+01:17:59,330 --> 01:18:02,950
+And so within helpers.c, you'll
+do searching and sorting.
+
+1569
+01:18:02,950 --> 01:18:06,500
+>> And then you're going to essentially
+just put them all together.
+
+1570
+01:18:06,500 --> 01:18:10,350
+The spec will tell you how to
+put that on the command line.
+
+1571
+01:18:10,350 --> 01:18:14,880
+And you'll be able to test whether or
+not your sort and search are working.
+
+1572
+01:18:14,880 --> 01:18:15,870
+Cool.
+
+1573
+01:18:15,870 --> 01:18:18,720
+Has anyone already started and
+encountered problems or questions
+
+1574
+01:18:18,720 --> 01:18:20,520
+they have right now with this?
+
+1575
+01:18:20,520 --> 01:18:21,020
+OK.
+
+1576
+01:18:21,020 --> 01:18:21,476
+>> AUDIENCE: Wait.
+
+1577
+01:18:21,476 --> 01:18:21,932
+I have a question.
+
+1578
+01:18:21,932 --> 01:18:22,844
+>> ANDI PENG: Yeah.
+
+1579
+01:18:22,844 --> 01:18:28,390
+>> AUDIENCE: So I started doing
+the linear search in helpers.c
+
+1580
+01:18:28,390 --> 01:18:29,670
+and it wasn't really working.
+
+1581
+01:18:29,670 --> 01:18:34,590
+But then later, I found out we just
+have to delete it and do binary search.
+
+1582
+01:18:34,590 --> 01:18:36,991
+So does it matter if it doesn't work?
+
+1583
+01:18:36,991 --> 01:18:39,700
+
+1584
+01:18:39,700 --> 01:18:41,510
+>> ANDI PENG: Short answer is no.
+
+1585
+01:18:41,510 --> 01:18:42,642
+But since we're not--
+
+1586
+01:18:42,642 --> 01:18:44,350
+AUDIENCE: But no one's
+actually checking.
+
+1587
+01:18:44,350 --> 01:18:46,058
+ANDI PENG: We're never
+going to see that.
+
+1588
+01:18:46,058 --> 01:18:49,590
+But you probably want to make
+sure your search is working.
+
+1589
+01:18:49,590 --> 01:18:51,700
+Because if your linear
+search doesn't work,
+
+1590
+01:18:51,700 --> 01:18:54,410
+then chances are your binary
+search isn't going to work as well.
+
+1591
+01:18:54,410 --> 01:18:56,646
+Because you have similar
+logic in both of them.
+
+1592
+01:18:56,646 --> 01:18:58,020
+And no, it doesn't really matter.
+
+1593
+01:18:58,020 --> 01:19:01,300
+So the only ones you'll turn
+in are sort and binary search.
+
+1594
+01:19:01,300 --> 01:19:02,490
+Yeah.
+
+1595
+01:19:02,490 --> 01:19:06,610
+>> And also, a lot of kids were
+trying to compile helpers.c.
+
+1596
+01:19:06,610 --> 01:19:09,550
+You're not actually allowed
+to do that, because helpers.c
+
+1597
+01:19:09,550 --> 01:19:11,200
+doesn't have a main function.
+
+1598
+01:19:11,200 --> 01:19:13,550
+And so you should only
+be actually compiling
+
+1599
+01:19:13,550 --> 01:19:18,670
+generate and find, because find calls
+helpers.c and the functions within it.
+
+1600
+01:19:18,670 --> 01:19:20,790
+So that makes debugging
+a pain in the butt.
+
+1601
+01:19:20,790 --> 01:19:22,422
+But that's what we have to do.
+
+1602
+01:19:22,422 --> 01:19:23,880
+AUDIENCE: You just make all, right?
+
+1603
+01:19:23,880 --> 01:19:27,290
+ANDI PENG: You can just
+make all as well, yeah.
+
+1604
+01:19:27,290 --> 01:19:28,060
+OK.
+
+1605
+01:19:28,060 --> 01:19:32,570
+So that's it in terms of what
+the pset is asking you all to do.
+
+1606
+01:19:32,570 --> 01:19:35,160
+If you have any questions, feel
+free to ask me after section.
+
+1607
+01:19:35,160 --> 01:19:37,580
+I'll be here for, like, 20 minutes.
+
+1608
+01:19:37,580 --> 01:19:40,500
+>> And yeah, the pset's
+really not that bad.
+
+1609
+01:19:40,500 --> 01:19:41,680
+You guys should be OK.
+
+1610
+01:19:41,680 --> 01:19:43,250
+These, just follow guidelines.
+
+1611
+01:19:43,250 --> 01:19:47,840
+Kind of have a sense of, logically, what
+should be happening and you'll be fine.
+
+1612
+01:19:47,840 --> 01:19:48,690
+Don't be too scared.
+
+1613
+01:19:48,690 --> 01:19:50,220
+There's a lot of code
+already written there.
+
+1614
+01:19:50,220 --> 01:19:53,011
+Don't be too scared if you don't
+understand what all of that means.
+
+1615
+01:19:53,011 --> 01:19:54,749
+If it's a lot, it's totally fine.
+
+1616
+01:19:54,749 --> 01:19:55,790
+And come to office hours.
+
+1617
+01:19:55,790 --> 01:19:57,520
+We'll help you take a look.
+
+1618
+01:19:57,520 --> 01:20:00,810
+>> AUDIENCE: With the extra
+functions, do we look those up?
+
+1619
+01:20:00,810 --> 01:20:03,417
+>> ANDI PENG: Yeah, those are in the code.
+
+1620
+01:20:03,417 --> 01:20:05,750
+In the game of 15, half of
+it's already written for you.
+
+1621
+01:20:05,750 --> 01:20:09,310
+So those functions are
+already in the code.
+
+1622
+01:20:09,310 --> 01:20:12,020
+Yep.
+
+1623
+01:20:12,020 --> 01:20:12,520
+All right.
+
+1624
+01:20:12,520 --> 01:20:14,000
+Well, best of luck.
+
+1625
+01:20:14,000 --> 01:20:15,180
+It's a disgusting day.
+
+1626
+01:20:15,180 --> 01:20:19,370
+So hopefully you guys don't feel too
+bad about staying inside and coding.
+
+1627
+01:20:19,370 --> 01:20:22,133

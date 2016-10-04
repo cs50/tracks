@@ -1,0 +1,1209 @@
+1
+00:00:00,000 --> 00:00:05,830
+
+2
+00:00:05,830 --> 00:00:07,910
+>> All right, so, computational complexity.
+
+3
+00:00:07,910 --> 00:00:10,430
+Just a bit of a warning
+before we dive in too far--
+
+4
+00:00:10,430 --> 00:00:13,070
+this'll probably be among
+the most math-heavy things
+
+5
+00:00:13,070 --> 00:00:14,200
+we talk about in CS50.
+
+6
+00:00:14,200 --> 00:00:16,950
+Hopefully it won't be too overwhelming
+and we'll try and guide you
+
+7
+00:00:16,950 --> 00:00:19,200
+through the process, but
+just a bit of a fair warning.
+
+8
+00:00:19,200 --> 00:00:21,282
+There's a little bit
+of math involved here.
+
+9
+00:00:21,282 --> 00:00:23,990
+All right, so in order to make
+use of our computational resources
+
+10
+00:00:23,990 --> 00:00:28,170
+in the real world-- it's really
+important to understand algorithms
+
+11
+00:00:28,170 --> 00:00:30,750
+and how they process data.
+
+12
+00:00:30,750 --> 00:00:32,810
+If we have a really
+efficient algorithm, we
+
+13
+00:00:32,810 --> 00:00:36,292
+can minimize the amount of resources
+we have available to deal with it.
+
+14
+00:00:36,292 --> 00:00:38,750
+If we have an algorithm that
+is going to take a lot of work
+
+15
+00:00:38,750 --> 00:00:41,210
+to process a really
+large set of data, it's
+
+16
+00:00:41,210 --> 00:00:44,030
+going to require more
+and more resources, which
+
+17
+00:00:44,030 --> 00:00:47,980
+is money, RAM, all that kind of stuff.
+
+18
+00:00:47,980 --> 00:00:52,090
+>> So, being able to analyze an
+algorithm using this tool set,
+
+19
+00:00:52,090 --> 00:00:56,110
+basically, asks the question--
+how does this algorithm scale
+
+20
+00:00:56,110 --> 00:00:59,020
+as we throw more and more data at it?
+
+21
+00:00:59,020 --> 00:01:02,220
+In CS50, the amount of data we're
+working with is pretty small.
+
+22
+00:01:02,220 --> 00:01:05,140
+Generally, our programs are going
+to run in a second or less--
+
+23
+00:01:05,140 --> 00:01:07,830
+probably a lot less
+particularly early on.
+
+24
+00:01:07,830 --> 00:01:12,250
+>> But think about a company that deals
+with hundreds of millions of customers.
+
+25
+00:01:12,250 --> 00:01:14,970
+And they need to process
+that customer data.
+
+26
+00:01:14,970 --> 00:01:18,260
+As the number of customers they
+have gets bigger and bigger,
+
+27
+00:01:18,260 --> 00:01:21,230
+it's going to require
+more and more resources.
+
+28
+00:01:21,230 --> 00:01:22,926
+How many more resources?
+
+29
+00:01:22,926 --> 00:01:25,050
+Well, that depends on how
+we analyze the algorithm,
+
+30
+00:01:25,050 --> 00:01:28,097
+using the tools in this toolbox.
+
+31
+00:01:28,097 --> 00:01:31,180
+When we talk about the complexity of
+an algorithm-- which sometimes you'll
+
+32
+00:01:31,180 --> 00:01:34,040
+hear it referred to as time
+complexity or space complexity
+
+33
+00:01:34,040 --> 00:01:36,190
+but we're just going
+to call complexity--
+
+34
+00:01:36,190 --> 00:01:38,770
+we're generally talking about
+the worst-case scenario.
+
+35
+00:01:38,770 --> 00:01:42,640
+Given the absolute worst pile of
+data that we could be throwing at it,
+
+36
+00:01:42,640 --> 00:01:46,440
+how is this algorithm going to
+process or deal with that data?
+
+37
+00:01:46,440 --> 00:01:51,450
+We generally call the worst-case
+runtime of an algorithm big-O.
+
+38
+00:01:51,450 --> 00:01:56,770
+So an algorithm might be said to
+run in O of n or O of n squared.
+
+39
+00:01:56,770 --> 00:01:59,110
+And more about what
+those mean in a second.
+
+40
+00:01:59,110 --> 00:02:01,620
+>> Sometimes, though, we do care
+about the best-case scenario.
+
+41
+00:02:01,620 --> 00:02:05,400
+If the data is everything we wanted
+it to be and it was absolutely perfect
+
+42
+00:02:05,400 --> 00:02:09,630
+and we were sending this perfect
+set of data through our algorithm.
+
+43
+00:02:09,630 --> 00:02:11,470
+How would it handle in that situation?
+
+44
+00:02:11,470 --> 00:02:15,050
+We sometimes refer to that as
+big-Omega, so in contrast with big-O,
+
+45
+00:02:15,050 --> 00:02:16,530
+we have big-Omega.
+
+46
+00:02:16,530 --> 00:02:18,880
+Big-Omega for the best-case scenario.
+
+47
+00:02:18,880 --> 00:02:21,319
+Big-O for the worst-case scenario.
+
+48
+00:02:21,319 --> 00:02:23,860
+Generally, when we talk about
+the complexity of an algorithm,
+
+49
+00:02:23,860 --> 00:02:26,370
+we're talking about the
+worst-case scenario.
+
+50
+00:02:26,370 --> 00:02:28,100
+So keep that in mind.
+
+51
+00:02:28,100 --> 00:02:31,510
+>> And in this class, we're generally going
+to leave the rigorous analysis aside.
+
+52
+00:02:31,510 --> 00:02:35,350
+There are sciences and fields
+devoted to this kind of stuff.
+
+53
+00:02:35,350 --> 00:02:37,610
+When we talk about reasoning
+through algorithms,
+
+54
+00:02:37,610 --> 00:02:41,822
+which we'll do piece-by-piece for many
+algorithms we talk about in the class.
+
+55
+00:02:41,822 --> 00:02:44,780
+We're really just talking about
+reasoning through it with common sense,
+
+56
+00:02:44,780 --> 00:02:47,070
+not with formulas, or proofs,
+or anything like that.
+
+57
+00:02:47,070 --> 00:02:51,600
+So don't worry, We won't be
+turning into a big math class.
+
+58
+00:02:51,600 --> 00:02:55,920
+>> So I said we care about complexity
+because it asks the question, how
+
+59
+00:02:55,920 --> 00:03:00,160
+do our algorithms handle larger and
+larger data sets being thrown at them.
+
+60
+00:03:00,160 --> 00:03:01,960
+Well, what is a data set?
+
+61
+00:03:01,960 --> 00:03:03,910
+What did I mean when I said that?
+
+62
+00:03:03,910 --> 00:03:07,600
+It means whatever makes the most
+sense in context, to be honest.
+
+63
+00:03:07,600 --> 00:03:11,160
+If we have an algorithm, the
+Processes Strings-- we're probably
+
+64
+00:03:11,160 --> 00:03:13,440
+talking about the size of the string.
+
+65
+00:03:13,440 --> 00:03:15,190
+That's the data set--
+the size, the number
+
+66
+00:03:15,190 --> 00:03:17,050
+of characters that make up the string.
+
+67
+00:03:17,050 --> 00:03:20,090
+If we're talking about an
+algorithm that processes files,
+
+68
+00:03:20,090 --> 00:03:23,930
+we might be talking about how
+many kilobytes comprise that file.
+
+69
+00:03:23,930 --> 00:03:25,710
+And that's the data set.
+
+70
+00:03:25,710 --> 00:03:28,870
+If we're talking about an algorithm
+that handles arrays more generally,
+
+71
+00:03:28,870 --> 00:03:31,510
+such as sorting algorithms
+or searching algorithms,
+
+72
+00:03:31,510 --> 00:03:36,690
+we're probably talking about the number
+of elements that comprise an array.
+
+73
+00:03:36,690 --> 00:03:39,272
+>> Now, we can measure an
+algorithm-- in particular,
+
+74
+00:03:39,272 --> 00:03:40,980
+when I say we can
+measure an algorithm, I
+
+75
+00:03:40,980 --> 00:03:43,840
+mean we can measure how
+many resources it takes up.
+
+76
+00:03:43,840 --> 00:03:48,990
+Whether those resources are, how many
+bytes of RAM-- or megabytes of RAM
+
+77
+00:03:48,990 --> 00:03:49,790
+it uses.
+
+78
+00:03:49,790 --> 00:03:52,320
+Or how much time it takes to run.
+
+79
+00:03:52,320 --> 00:03:56,200
+And we can call this
+measure, arbitrarily, f of n.
+
+80
+00:03:56,200 --> 00:03:59,420
+Where n is the number of
+elements in the data set.
+
+81
+00:03:59,420 --> 00:04:02,640
+And f of n is how many somethings.
+
+82
+00:04:02,640 --> 00:04:07,530
+How many units of resources does
+it require to process that data.
+
+83
+00:04:07,530 --> 00:04:10,030
+>> Now, we actually don't care
+about what f of n is exactly.
+
+84
+00:04:10,030 --> 00:04:13,700
+In fact, we very rarely will--
+certainly will never in this class-- I
+
+85
+00:04:13,700 --> 00:04:18,709
+dive into any really deep
+analysis of what f of n is.
+
+86
+00:04:18,709 --> 00:04:23,510
+We're just going to talk about what f of
+n is approximately or what it tends to.
+
+87
+00:04:23,510 --> 00:04:27,600
+And the tendency of an algorithm is
+dictated by its highest order term.
+
+88
+00:04:27,600 --> 00:04:29,440
+And we can see what I
+mean by that by taking
+
+89
+00:04:29,440 --> 00:04:31,910
+a look at a more concrete example.
+
+90
+00:04:31,910 --> 00:04:34,620
+>> So let's say that we have
+three different algorithms.
+
+91
+00:04:34,620 --> 00:04:39,350
+The first of which takes n
+cubed, some units of resources
+
+92
+00:04:39,350 --> 00:04:42,880
+to process a data set of size n.
+
+93
+00:04:42,880 --> 00:04:47,000
+We have a second algorithm that takes
+n cubed plus n squared resources
+
+94
+00:04:47,000 --> 00:04:49,350
+to process a data set of size n.
+
+95
+00:04:49,350 --> 00:04:52,030
+And we have a third
+algorithm that runs in-- that
+
+96
+00:04:52,030 --> 00:04:58,300
+takes up n cubed minus 8n squared
+plus 20 n units of resources
+
+97
+00:04:58,300 --> 00:05:02,370
+to process an algorithm
+with data set of size n.
+
+98
+00:05:02,370 --> 00:05:05,594
+>> Now again, we really aren't going
+to get into this level of detail.
+
+99
+00:05:05,594 --> 00:05:08,260
+I'm really just have these up
+here as an illustration of a point
+
+100
+00:05:08,260 --> 00:05:10,176
+that I'm going to be
+making in a second, which
+
+101
+00:05:10,176 --> 00:05:12,980
+is that we only really care
+about the tendency of things
+
+102
+00:05:12,980 --> 00:05:14,870
+as the data sets get bigger.
+
+103
+00:05:14,870 --> 00:05:18,220
+So if the data set is small, there's
+actually a pretty big difference
+
+104
+00:05:18,220 --> 00:05:19,870
+in these algorithms.
+
+105
+00:05:19,870 --> 00:05:23,000
+The third algorithm there
+takes 13 times longer,
+
+106
+00:05:23,000 --> 00:05:27,980
+13 times the amount of resources
+to run relative to the first one.
+
+107
+00:05:27,980 --> 00:05:31,659
+>> If our data set is size 10, which
+is bigger, but not necessarily huge,
+
+108
+00:05:31,659 --> 00:05:33,950
+we can see that there's
+actually a bit of a difference.
+
+109
+00:05:33,950 --> 00:05:36,620
+The third algorithm
+becomes more efficient.
+
+110
+00:05:36,620 --> 00:05:40,120
+It's about actually 40%--
+or 60% more efficient.
+
+111
+00:05:40,120 --> 00:05:41,580
+It takes 40% the amount of time.
+
+112
+00:05:41,580 --> 00:05:45,250
+It can run-- it can take
+400 units of resources
+
+113
+00:05:45,250 --> 00:05:47,570
+to process a data set of size 10.
+
+114
+00:05:47,570 --> 00:05:49,410
+Whereas the first
+algorithm, by contrast,
+
+115
+00:05:49,410 --> 00:05:54,520
+takes 1,000 units of resources
+to process a data set of size 10.
+
+116
+00:05:54,520 --> 00:05:57,240
+But look what happens as
+our numbers get even bigger.
+
+117
+00:05:57,240 --> 00:05:59,500
+>> Now, the difference
+between these algorithms
+
+118
+00:05:59,500 --> 00:06:01,420
+start to become a little less apparent.
+
+119
+00:06:01,420 --> 00:06:04,560
+And the fact that there are
+lower-order terms-- or rather,
+
+120
+00:06:04,560 --> 00:06:09,390
+terms with lower exponents--
+start to become irrelevant.
+
+121
+00:06:09,390 --> 00:06:12,290
+If a data set is of size
+1,000 and the first algorithm
+
+122
+00:06:12,290 --> 00:06:14,170
+runs in a billion steps.
+
+123
+00:06:14,170 --> 00:06:17,880
+And the second algorithm runs in
+a billion and a million steps.
+
+124
+00:06:17,880 --> 00:06:20,870
+And the third algorithm runs
+in just shy of a billion steps.
+
+125
+00:06:20,870 --> 00:06:22,620
+It's pretty much a billion steps.
+
+126
+00:06:22,620 --> 00:06:25,640
+Those lower-order terms start
+to become really irrelevant.
+
+127
+00:06:25,640 --> 00:06:27,390
+And just to really
+hammer home the point--
+
+128
+00:06:27,390 --> 00:06:31,240
+if the data input is of size a
+million-- all three of these pretty much
+
+129
+00:06:31,240 --> 00:06:34,960
+take one quintillion-- if
+my math is correct-- steps
+
+130
+00:06:34,960 --> 00:06:37,260
+to process a data input
+of size a million.
+
+131
+00:06:37,260 --> 00:06:38,250
+That's a lot of steps.
+
+132
+00:06:38,250 --> 00:06:42,092
+And the fact that one of them might
+take a couple 100,000, or a couple 100
+
+133
+00:06:42,092 --> 00:06:44,650
+million even less when
+we're talking about a number
+
+134
+00:06:44,650 --> 00:06:46,990
+that big-- it's kind of irrelevant.
+
+135
+00:06:46,990 --> 00:06:50,006
+They all tend to take
+approximately n cubed,
+
+136
+00:06:50,006 --> 00:06:52,380
+and so we would actually refer
+to all of these algorithms
+
+137
+00:06:52,380 --> 00:06:59,520
+as being on the order of n
+cubed or big-O of n cubed.
+
+138
+00:06:59,520 --> 00:07:03,220
+>> Here's a list of some of the more
+common computational complexity classes
+
+139
+00:07:03,220 --> 00:07:05,820
+that we'll encounter in
+algorithms, generally.
+
+140
+00:07:05,820 --> 00:07:07,970
+And also specifically in CS50.
+
+141
+00:07:07,970 --> 00:07:11,410
+These are ordered from
+generally fastest at the top,
+
+142
+00:07:11,410 --> 00:07:13,940
+to generally slowest at the bottom.
+
+143
+00:07:13,940 --> 00:07:16,920
+So constant time algorithms tend
+to be the fastest, regardless
+
+144
+00:07:16,920 --> 00:07:19,110
+of the size of the
+data input you pass in.
+
+145
+00:07:19,110 --> 00:07:23,760
+They always take one operation or
+one unit of resources to deal with.
+
+146
+00:07:23,760 --> 00:07:25,730
+It might be 2, it might
+be 3, it might be 4.
+
+147
+00:07:25,730 --> 00:07:26,910
+But it's a constant number.
+
+148
+00:07:26,910 --> 00:07:28,400
+It doesn't vary.
+
+149
+00:07:28,400 --> 00:07:31,390
+>> Logarithmic time algorithms
+are slightly better.
+
+150
+00:07:31,390 --> 00:07:33,950
+And a really good example of
+a logarithmic time algorithm
+
+151
+00:07:33,950 --> 00:07:37,420
+you've surely seen by now is the
+tearing apart of the phone book
+
+152
+00:07:37,420 --> 00:07:39,480
+to find Mike Smith in the phone book.
+
+153
+00:07:39,480 --> 00:07:40,980
+We cut the problem in half.
+
+154
+00:07:40,980 --> 00:07:43,580
+And so as n gets larger
+and larger and larger--
+
+155
+00:07:43,580 --> 00:07:47,290
+in fact, every time you double
+n, it only takes one more step.
+
+156
+00:07:47,290 --> 00:07:49,770
+So that's a lot better
+than, say, linear time.
+
+157
+00:07:49,770 --> 00:07:53,030
+Which is if you double n, it
+takes double the number of steps.
+
+158
+00:07:53,030 --> 00:07:55,980
+If you triple n, it takes
+triple the number of steps.
+
+159
+00:07:55,980 --> 00:07:58,580
+One step per unit.
+
+160
+00:07:58,580 --> 00:08:01,790
+>> Then things get a little more--
+little less great from there.
+
+161
+00:08:01,790 --> 00:08:06,622
+You have linear rhythmic time, sometimes
+called log linear time or just n log n.
+
+162
+00:08:06,622 --> 00:08:08,330
+And we'll an example
+of an algorithm that
+
+163
+00:08:08,330 --> 00:08:13,370
+runs in n log n, which is still better
+than quadratic time-- n squared.
+
+164
+00:08:13,370 --> 00:08:17,320
+Or polynomial time, n two
+any number greater than two.
+
+165
+00:08:17,320 --> 00:08:20,810
+Or exponential time, which
+is even worse-- C to the n.
+
+166
+00:08:20,810 --> 00:08:24,670
+So some constant number raised to
+the power of the size of the input.
+
+167
+00:08:24,670 --> 00:08:28,990
+So if there's 1,000-- if the
+data input is of size 1,000,
+
+168
+00:08:28,990 --> 00:08:31,310
+it would take C to the 1,000th power.
+
+169
+00:08:31,310 --> 00:08:33,559
+It's a lot worse than polynomial time.
+
+170
+00:08:33,559 --> 00:08:35,030
+>> Factorial time is even worse.
+
+171
+00:08:35,030 --> 00:08:37,760
+And in fact, there really do
+exist infinite time algorithms,
+
+172
+00:08:37,760 --> 00:08:43,740
+such as, so-called stupid sort-- whose
+job is to randomly shuffle an array
+
+173
+00:08:43,740 --> 00:08:45,490
+and then check to see
+whether it's sorted.
+
+174
+00:08:45,490 --> 00:08:47,589
+And if it's not, randomly
+shuffle the array again
+
+175
+00:08:47,589 --> 00:08:49,130
+and check to see whether it's sorted.
+
+176
+00:08:49,130 --> 00:08:51,671
+And as you can probably imagine--
+you can imagine a situation
+
+177
+00:08:51,671 --> 00:08:55,200
+where in the worst-case, that will
+never actually start with the array.
+
+178
+00:08:55,200 --> 00:08:57,150
+That algorithm would run forever.
+
+179
+00:08:57,150 --> 00:08:59,349
+And so that would be an
+infinite time algorithm.
+
+180
+00:08:59,349 --> 00:09:01,890
+Hopefully you won't be writing
+any factorial or infinite time
+
+181
+00:09:01,890 --> 00:09:04,510
+algorithms in CS50.
+
+182
+00:09:04,510 --> 00:09:09,150
+>> So, let's take a little more
+concrete look at some simpler
+
+183
+00:09:09,150 --> 00:09:11,154
+computational complexity classes.
+
+184
+00:09:11,154 --> 00:09:13,070
+So we have an example--
+or two examples here--
+
+185
+00:09:13,070 --> 00:09:15,590
+of constant time algorithms,
+which always take
+
+186
+00:09:15,590 --> 00:09:17,980
+a single operation in the worst-case.
+
+187
+00:09:17,980 --> 00:09:20,050
+So the first example--
+we have a function
+
+188
+00:09:20,050 --> 00:09:23,952
+called 4 for you, which
+takes an array of size 1,000.
+
+189
+00:09:23,952 --> 00:09:25,660
+But then apparently
+doesn't actually look
+
+190
+00:09:25,660 --> 00:09:29,000
+at it-- doesn't really care what's
+inside of it, of that array.
+
+191
+00:09:29,000 --> 00:09:30,820
+Always just returns four.
+
+192
+00:09:30,820 --> 00:09:32,940
+So, that algorithm,
+despite the fact that it
+
+193
+00:09:32,940 --> 00:09:35,840
+takes 1,000 elements doesn't
+do anything with them.
+
+194
+00:09:35,840 --> 00:09:36,590
+Just returns four.
+
+195
+00:09:36,590 --> 00:09:38,240
+It's always a single step.
+
+196
+00:09:38,240 --> 00:09:41,600
+>> In fact, add 2 nums-- which
+we've seen before as well--
+
+197
+00:09:41,600 --> 00:09:43,680
+just processes two integers.
+
+198
+00:09:43,680 --> 00:09:44,692
+It's not a single step.
+
+199
+00:09:44,692 --> 00:09:45,900
+It's actually a couple steps.
+
+200
+00:09:45,900 --> 00:09:50,780
+You get a, you get b, you add them
+together, and you output the results.
+
+201
+00:09:50,780 --> 00:09:53,270
+So it's 84 steps.
+
+202
+00:09:53,270 --> 00:09:55,510
+But it's always constant,
+regardless of a or b.
+
+203
+00:09:55,510 --> 00:09:59,240
+You have to get a, get b, add
+them together, output the result.
+
+204
+00:09:59,240 --> 00:10:02,900
+So that's a constant time algorithm.
+
+205
+00:10:02,900 --> 00:10:05,170
+>> Here's an example of a
+linear time algorithm--
+
+206
+00:10:05,170 --> 00:10:08,740
+an algorithm that gets-- that takes
+one additional step, possibly,
+
+207
+00:10:08,740 --> 00:10:10,740
+as your input grows by 1.
+
+208
+00:10:10,740 --> 00:10:14,190
+So, let's say we're looking for
+the number 5 inside of an array.
+
+209
+00:10:14,190 --> 00:10:16,774
+You might have a situation where
+you can find it fairly early.
+
+210
+00:10:16,774 --> 00:10:18,606
+But you could also have
+a situation where it
+
+211
+00:10:18,606 --> 00:10:20,450
+might be the last element of the array.
+
+212
+00:10:20,450 --> 00:10:23,780
+In an array of size 5, if
+we're looking for the number 5.
+
+213
+00:10:23,780 --> 00:10:25,930
+It would take 5 steps.
+
+214
+00:10:25,930 --> 00:10:29,180
+And in fact, imagine that there's
+not 5 anywhere in this array.
+
+215
+00:10:29,180 --> 00:10:32,820
+We still actually have to look at
+every single element of the array
+
+216
+00:10:32,820 --> 00:10:35,550
+in order to determine
+whether or not 5 is there.
+
+217
+00:10:35,550 --> 00:10:39,840
+>> So in the worst-case, which is that
+the element is last in the array
+
+218
+00:10:39,840 --> 00:10:41,700
+or doesn't exist at all.
+
+219
+00:10:41,700 --> 00:10:44,690
+We still have to look at
+all of the n elements.
+
+220
+00:10:44,690 --> 00:10:47,120
+And so this algorithm
+runs in linear time.
+
+221
+00:10:47,120 --> 00:10:50,340
+You can confirm that by
+extrapolating a little bit by saying,
+
+222
+00:10:50,340 --> 00:10:53,080
+if we had a 6-element array and
+we were looking for the number 5,
+
+223
+00:10:53,080 --> 00:10:54,890
+it might take 6 steps.
+
+224
+00:10:54,890 --> 00:10:57,620
+If we have a 7-element array and
+we're looking for the number 5.
+
+225
+00:10:57,620 --> 00:10:59,160
+It might take 7 steps.
+
+226
+00:10:59,160 --> 00:11:02,920
+As we add one more element to our
+array, it takes one more step.
+
+227
+00:11:02,920 --> 00:11:06,750
+That's a linear algorithm
+in the worst-case.
+
+228
+00:11:06,750 --> 00:11:08,270
+>> Couple quick questions for you.
+
+229
+00:11:08,270 --> 00:11:11,170
+What's the runtime-- what's
+the worst-case runtime
+
+230
+00:11:11,170 --> 00:11:13,700
+of this particular snippet of code?
+
+231
+00:11:13,700 --> 00:11:17,420
+So I have a 4 loop here that runs
+from j equals 0, all the way up to m.
+
+232
+00:11:17,420 --> 00:11:21,980
+And what I'm seeing here, is that the
+body of the loop runs in constant time.
+
+233
+00:11:21,980 --> 00:11:24,730
+So using the terminology that
+we've already talked about-- what
+
+234
+00:11:24,730 --> 00:11:29,390
+would be the worst-case
+runtime of this algorithm?
+
+235
+00:11:29,390 --> 00:11:31,050
+Take a second.
+
+236
+00:11:31,050 --> 00:11:34,270
+The inner part of the loop
+runs in constant time.
+
+237
+00:11:34,270 --> 00:11:37,510
+And the outer part of the
+loop is going to run m times.
+
+238
+00:11:37,510 --> 00:11:40,260
+So what's the worst-case runtime here?
+
+239
+00:11:40,260 --> 00:11:43,210
+Did you guess big-O of m?
+
+240
+00:11:43,210 --> 00:11:44,686
+You'd be right.
+
+241
+00:11:44,686 --> 00:11:46,230
+>> How about another one?
+
+242
+00:11:46,230 --> 00:11:48,590
+This time we have a
+loop inside of a loop.
+
+243
+00:11:48,590 --> 00:11:50,905
+We have an outer loop
+that runs from zero to p.
+
+244
+00:11:50,905 --> 00:11:54,630
+And we have an inner loop that runs
+from zero to p, and inside of that,
+
+245
+00:11:54,630 --> 00:11:57,890
+I state that the body the
+loop runs in constant time.
+
+246
+00:11:57,890 --> 00:12:02,330
+So what's the worst-case runtime
+of this particular snippet of code?
+
+247
+00:12:02,330 --> 00:12:06,140
+Well, again, we have an
+outer loop that runs p times.
+
+248
+00:12:06,140 --> 00:12:09,660
+And each time-- iteration
+of that loop, rather.
+
+249
+00:12:09,660 --> 00:12:13,170
+We have an inner loop
+that also runs p times.
+
+250
+00:12:13,170 --> 00:12:16,900
+And then inside of that, there's the
+constant time-- little snippet there.
+
+251
+00:12:16,900 --> 00:12:19,890
+>> So if we have an outer loop that
+runs p times inside of which is
+
+252
+00:12:19,890 --> 00:12:22,880
+an inner loop that
+runs p times-- what is
+
+253
+00:12:22,880 --> 00:12:26,480
+the worst-case runtime
+of this snippet of code?
+
+254
+00:12:26,480 --> 00:12:30,730
+Did you guess big-O of p squared?
+
+255
+00:12:30,730 --> 00:12:31,690
+>> I'm Doug Lloyd.
+
+256
+00:12:31,690 --> 00:12:33,880
+This is CS50.
+
+257
+00:12:33,880 --> 00:12:35,622

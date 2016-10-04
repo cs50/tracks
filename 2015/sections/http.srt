@@ -1,0 +1,1469 @@
+1
+00:00:00,000 --> 00:00:05,950
+
+2
+00:00:05,950 --> 00:00:09,310
+>> SPEAKER: Let's talk about another
+protocol-- the Hypertext Transfer
+
+3
+00:00:09,310 --> 00:00:12,060
+Protocol, or HTTP.
+
+4
+00:00:12,060 --> 00:00:15,074
+So we've talked about IP
+and TCP in previous videos.
+
+5
+00:00:15,074 --> 00:00:17,240
+And those are protocols
+that dictate how information
+
+6
+00:00:17,240 --> 00:00:20,970
+moves from machine to machine and
+from program to program or service
+
+7
+00:00:20,970 --> 00:00:27,720
+to service via the internet, via
+this network of routers and machines.
+
+8
+00:00:27,720 --> 00:00:30,640
+>> But that's usually not
+the entire picture, right?
+
+9
+00:00:30,640 --> 00:00:33,530
+Usually when we send
+information, the program
+
+10
+00:00:33,530 --> 00:00:36,570
+itself-- when data is
+received, say, for example,
+
+11
+00:00:36,570 --> 00:00:44,270
+in email via TCP port 25 or a
+web page request via port 80,
+
+12
+00:00:44,270 --> 00:00:48,220
+there's usually a system of rules there
+to process what I've just received.
+
+13
+00:00:48,220 --> 00:00:51,960
+And HTTP is an example
+of just such a protocol.
+
+14
+00:00:51,960 --> 00:00:54,929
+>> HTTP is the only
+application layer protocol
+
+15
+00:00:54,929 --> 00:00:56,220
+that we're going to talk about.
+
+16
+00:00:56,220 --> 00:00:59,660
+But it is another set
+of rules dictating how
+
+17
+00:00:59,660 --> 00:01:02,790
+information is to be transmitted
+and processed via the internet.
+
+18
+00:01:02,790 --> 00:01:06,390
+In particular, HTTP
+specifies exactly how
+
+19
+00:01:06,390 --> 00:01:11,300
+one must make a request for
+a web page and exactly how
+
+20
+00:01:11,300 --> 00:01:15,160
+a server, a machine
+that hosts web pages,
+
+21
+00:01:15,160 --> 00:01:17,840
+delivers that information
+back to clients.
+
+22
+00:01:17,840 --> 00:01:20,010
+>> So this protocol doesn't
+actually have anything
+
+23
+00:01:20,010 --> 00:01:22,270
+to do with how information
+moves from point A
+
+24
+00:01:22,270 --> 00:01:26,090
+to point B. It's really
+the system of rules
+
+25
+00:01:26,090 --> 00:01:29,700
+for-- it's basically the rules of
+engagement for working with a web page,
+
+26
+00:01:29,700 --> 00:01:31,960
+similar to when somebody
+waves their hand at you,
+
+27
+00:01:31,960 --> 00:01:33,410
+you're supposed to wave back.
+
+28
+00:01:33,410 --> 00:01:36,280
+That's sort of a
+conventional human protocol.
+
+29
+00:01:36,280 --> 00:01:39,610
+HTTP protocol just says, if
+you want to request a web
+
+30
+00:01:39,610 --> 00:01:42,730
+page, make sure your format looks
+like this-- sort of like formatting
+
+31
+00:01:42,730 --> 00:01:44,930
+a business letter, for example.
+
+32
+00:01:44,930 --> 00:01:50,029
+And the response will similarly
+come according to this protocol.
+
+33
+00:01:50,029 --> 00:01:51,820
+There are other
+application layer protocols
+
+34
+00:01:51,820 --> 00:01:53,380
+that we're not going to
+talk about in videos.
+
+35
+00:01:53,380 --> 00:01:55,790
+But these include things like
+the File Transfer Protocol,
+
+36
+00:01:55,790 --> 00:01:59,200
+Simple Mail Transfer Protocol for
+sending emails, the Data Distribution
+
+37
+00:01:59,200 --> 00:02:02,100
+Service, Remote Desktop
+Protocol, RDP, which
+
+38
+00:02:02,100 --> 00:02:05,590
+is used if you want to remotely access
+your computer from another computer,
+
+39
+00:02:05,590 --> 00:02:08,479
+XMPP, which is frequently
+known as Jabber or chat,
+
+40
+00:02:08,479 --> 00:02:11,160
+so this is the protocol
+for using chat services.
+
+41
+00:02:11,160 --> 00:02:13,310
+And there are many, many, many others.
+
+42
+00:02:13,310 --> 00:02:15,900
+>> So every time you're using
+a service, the service
+
+43
+00:02:15,900 --> 00:02:18,930
+is expecting information
+to be received-- a request
+
+44
+00:02:18,930 --> 00:02:21,010
+to be received-- in a
+very particular format
+
+45
+00:02:21,010 --> 00:02:24,070
+and is required to
+return information back
+
+46
+00:02:24,070 --> 00:02:27,190
+in a very particular format as well.
+
+47
+00:02:27,190 --> 00:02:31,750
+>> So let's go back to our illustration
+of us wanting to talk to the internet.
+
+48
+00:02:31,750 --> 00:02:34,810
+So we're happy, and we want
+to go to cats.com, right?
+
+49
+00:02:34,810 --> 00:02:38,550
+So if we're just talking to cats.com,
+we might say something like hey,
+
+50
+00:02:38,550 --> 00:02:39,720
+can I see your home page?
+
+51
+00:02:39,720 --> 00:02:42,320
+And cats.com will probably
+respond, yeah, sure.
+
+52
+00:02:42,320 --> 00:02:43,440
+Here you go.
+
+53
+00:02:43,440 --> 00:02:46,440
+So that's a human sort
+of ask-and-answer.
+
+54
+00:02:46,440 --> 00:02:47,980
+>> What does that look like in HTTP?
+
+55
+00:02:47,980 --> 00:02:51,340
+Well, it actually kind of translates
+pretty cleanly to something like this.
+
+56
+00:02:51,340 --> 00:02:57,290
+We might say GET/HTTP/1.1
+from host cats.com.
+
+57
+00:02:57,290 --> 00:03:03,039
+So basically what I'm doing here is
+asking for the web page www.cats.com/.
+
+58
+00:03:03,039 --> 00:03:05,330
+We usually omit the slash
+nowadays, but that would just
+
+59
+00:03:05,330 --> 00:03:07,200
+mean cats.com's homepage.
+
+60
+00:03:07,200 --> 00:03:11,910
+>> Oh, and by the way, I'm going
+to be using HTTP version
+
+61
+00:03:11,910 --> 00:03:14,182
+1.1 to communicate with you.
+
+62
+00:03:14,182 --> 00:03:16,390
+That's sort of analogous to
+saying, like, by the way,
+
+63
+00:03:16,390 --> 00:03:17,870
+I'm going to be speaking
+in French, or by the way,
+
+64
+00:03:17,870 --> 00:03:19,370
+I'm going to be speaking in English.
+
+65
+00:03:19,370 --> 00:03:22,160
+That's just the format of the protocol.
+
+66
+00:03:22,160 --> 00:03:25,050
+It's also 1.0, which is
+not commonly used anymore.
+
+67
+00:03:25,050 --> 00:03:30,615
+So I'm speaking HTTP 1.1, and
+I would like www.cats.com/.
+
+68
+00:03:30,615 --> 00:03:31,710
+Please get that for me.
+
+69
+00:03:31,710 --> 00:03:34,610
+>> And then there's other information,
+too-- the dot, dot, dot there,
+
+70
+00:03:34,610 --> 00:03:38,234
+which is information about
+who you are so cats.com
+
+71
+00:03:38,234 --> 00:03:39,400
+would know where to send it.
+
+72
+00:03:39,400 --> 00:03:41,480
+But these are the two
+sort of critical parts
+
+73
+00:03:41,480 --> 00:03:44,000
+at the very beginning
+of an HTTP request--
+
+74
+00:03:44,000 --> 00:03:46,770
+just like when you start a
+letter you say, dear, blank.
+
+75
+00:03:46,770 --> 00:03:49,710
+This is very similar in spirit to that.
+
+76
+00:03:49,710 --> 00:03:52,370
+>> And if cats.com is going to
+say, oh, sure, here you go.
+
+77
+00:03:52,370 --> 00:03:55,590
+They might respond like
+this-- I'm also responding.
+
+78
+00:03:55,590 --> 00:03:57,960
+I also speak HTTP 1.1.
+
+79
+00:03:57,960 --> 00:04:01,720
+Your request is approved, 200 OK.
+
+80
+00:04:01,720 --> 00:04:04,709
+What you're about to
+receive is HTML and then
+
+81
+00:04:04,709 --> 00:04:06,250
+dot, dot, dot some extra information.
+
+82
+00:04:06,250 --> 00:04:10,620
+And at the very bottom of the
+request is actually the HTML,
+
+83
+00:04:10,620 --> 00:04:16,339
+the markup language, the
+content of cats.com's homepage.
+
+84
+00:04:16,339 --> 00:04:21,227
+>> So HTTP/1.1-- I acknowledge your
+request was accepted via HTTP 1.1.
+
+85
+00:04:21,227 --> 00:04:22,310
+Your request was approved.
+
+86
+00:04:22,310 --> 00:04:25,810
+I can give you what you want, 200 OK.
+
+87
+00:04:25,810 --> 00:04:27,440
+You're about to receive HTML.
+
+88
+00:04:27,440 --> 00:04:30,450
+And then here's the
+HTML that you requested.
+
+89
+00:04:30,450 --> 00:04:33,930
+>> But sometimes our requests don't
+always go quite according to plan.
+
+90
+00:04:33,930 --> 00:04:37,100
+Can I see your cats.html page?
+
+91
+00:04:37,100 --> 00:04:40,366
+Well, what if they say, we
+don't have a cats.html page,
+
+92
+00:04:40,366 --> 00:04:42,740
+which seems kind of unrealistic
+because they're cats.com.
+
+93
+00:04:42,740 --> 00:04:44,400
+You'd think they would have cats.html.
+
+94
+00:04:44,400 --> 00:04:45,420
+But OK.
+
+95
+00:04:45,420 --> 00:04:48,484
+So this is sort of the
+conventional human interaction
+
+96
+00:04:48,484 --> 00:04:49,650
+we've now had with cats.com.
+
+97
+00:04:49,650 --> 00:04:51,060
+How does that translate?
+
+98
+00:04:51,060 --> 00:04:52,726
+>> This might be something familiar to you.
+
+99
+00:04:52,726 --> 00:04:55,690
+Our request looked exactly the same,
+except instead of getting slash
+
+100
+00:04:55,690 --> 00:04:58,110
+we're now getting cats.html.
+
+101
+00:04:58,110 --> 00:05:01,810
+So now what basically this entire
+request is saying is please give me
+
+102
+00:05:01,810 --> 00:05:05,620
+www.cats.com/cats.html.
+
+103
+00:05:05,620 --> 00:05:08,700
+So the host and the middle
+part of that top line
+
+104
+00:05:08,700 --> 00:05:14,632
+there indicate precisely
+what page I am asking for.
+
+105
+00:05:14,632 --> 00:05:17,590
+But cats.com in this case isn't going
+to be able to respond positively.
+
+106
+00:05:17,590 --> 00:05:19,089
+They don't know we're talking about.
+
+107
+00:05:19,089 --> 00:05:25,170
+And so this is something you might have
+seen before-- HTTP 1.1 404 Not Found.
+
+108
+00:05:25,170 --> 00:05:27,180
+I couldn't find what
+you were asking for.
+
+109
+00:05:27,180 --> 00:05:30,460
+By the way, I'm going to give you
+back some HTML, and usually that HTML
+
+110
+00:05:30,460 --> 00:05:32,351
+is the content of some 404 page.
+
+111
+00:05:32,351 --> 00:05:34,100
+And in the case of
+cats.com, it's probably
+
+112
+00:05:34,100 --> 00:05:37,720
+some cute cats in a basket with
+a sad 404 face next to them,
+
+113
+00:05:37,720 --> 00:05:40,920
+because you're going to be
+sad when you don't get page
+
+114
+00:05:40,920 --> 00:05:43,040
+that you were looking for.
+
+115
+00:05:43,040 --> 00:05:48,520
+>> That's kind of the basics of what a
+protocol, the HTTP protocol requests
+
+116
+00:05:48,520 --> 00:05:49,180
+look like.
+
+117
+00:05:49,180 --> 00:05:52,640
+They're really similar to how we
+would make a similar interaction
+
+118
+00:05:52,640 --> 00:05:55,460
+in just human conventions
+asking for something
+
+119
+00:05:55,460 --> 00:05:58,250
+and getting it back or writing a
+letter and expecting a response
+
+120
+00:05:58,250 --> 00:06:00,380
+letter in a particular format.
+
+121
+00:06:00,380 --> 00:06:03,910
+That's pretty much what
+HTTP is just canonicalizing
+
+122
+00:06:03,910 --> 00:06:10,190
+for all devices that wish to access
+web pages, hypertext transfers.
+
+123
+00:06:10,190 --> 00:06:15,110
+>> So a line of the form, this the
+method request target HTTP version,
+
+124
+00:06:15,110 --> 00:06:17,100
+is called an HTTP request line.
+
+125
+00:06:17,100 --> 00:06:23,740
+It's usually the first thing that is
+transmitted as part of an HTTP request
+
+126
+00:06:23,740 --> 00:06:26,180
+or if you're asking for HTTP.
+
+127
+00:06:26,180 --> 00:06:29,970
+It's sort of like, as I said, saying
+dear, blank at the top your letter.
+
+128
+00:06:29,970 --> 00:06:32,880
+They know that you're
+writing them a letter.
+
+129
+00:06:32,880 --> 00:06:34,796
+So this is very similar
+to saying, I know
+
+130
+00:06:34,796 --> 00:06:37,670
+that they're making an HTTP request
+and this is the particular format
+
+131
+00:06:37,670 --> 00:06:39,090
+they're asking for.
+
+132
+00:06:39,090 --> 00:06:43,810
+>> HTTP version is probably
+always going to be HTTP/1/1.
+
+133
+00:06:43,810 --> 00:06:46,670
+1.0 also exists but isn't
+really used anymore.
+
+134
+00:06:46,670 --> 00:06:49,200
+For purposes of CS50,
+GET is probably always
+
+135
+00:06:49,200 --> 00:06:51,540
+what you're going to be
+using when you're actually
+
+136
+00:06:51,540 --> 00:06:54,250
+making direct HTTP requests.
+
+137
+00:06:54,250 --> 00:06:57,720
+But POST is another option that we're
+not going to talk about right now.
+
+138
+00:06:57,720 --> 00:07:02,980
+And then request-target is
+what page on the host's server
+
+139
+00:07:02,980 --> 00:07:05,812
+you would like to get.
+
+140
+00:07:05,812 --> 00:07:08,020
+As I said, that host name
+is a separate line, usually
+
+141
+00:07:08,020 --> 00:07:10,350
+the second line of the overall request.
+
+142
+00:07:10,350 --> 00:07:13,660
+And so taken together, the host
+name and the request target
+
+143
+00:07:13,660 --> 00:07:16,070
+specify a specific
+resource being sought.
+
+144
+00:07:16,070 --> 00:07:20,986
+In our 404 example a second ago, I
+was asking again for www.cats.com,
+
+145
+00:07:20,986 --> 00:07:22,940
+cats.com being the host.
+
+146
+00:07:22,940 --> 00:07:26,300
+And in my request line,
+I said /cats.html.
+
+147
+00:07:26,300 --> 00:07:27,790
+That was my request target.
+
+148
+00:07:27,790 --> 00:07:31,200
+So overall I was asking for the
+contents or the resource located
+
+149
+00:07:31,200 --> 00:07:36,410
+at www.cats.com/cats.html.
+
+150
+00:07:36,410 --> 00:07:38,870
+>> And then based on whether
+the resource exists
+
+151
+00:07:38,870 --> 00:07:42,160
+and whether the server can deliver
+the resource pursuant to the client's
+
+152
+00:07:42,160 --> 00:07:46,760
+request, you might get
+various status codes back.
+
+153
+00:07:46,760 --> 00:07:50,280
+Some of these status codes you've seen
+because they're part of the response.
+
+154
+00:07:50,280 --> 00:07:53,580
+Some of them, 200 OK, are
+probably pretty silent.
+
+155
+00:07:53,580 --> 00:07:55,650
+You've probably never seen
+a page respond 200 OK.
+
+156
+00:07:55,650 --> 00:07:56,890
+You just get the page.
+
+157
+00:07:56,890 --> 00:08:01,260
+It's not like a 404 error,
+which is usually pretty clear.
+
+158
+00:08:01,260 --> 00:08:03,850
+You usually see that it says 404.
+
+159
+00:08:03,850 --> 00:08:06,880
+>> So let's talk about what some
+of those status codes might be.
+
+160
+00:08:06,880 --> 00:08:09,660
+Again, when the server
+responds to us, they're
+
+161
+00:08:09,660 --> 00:08:12,120
+going to respond HTTP version status.
+
+162
+00:08:12,120 --> 00:08:14,020
+Usually HTTP/1.1.
+
+163
+00:08:14,020 --> 00:08:17,410
+What are these status codes going to be?
+
+164
+00:08:17,410 --> 00:08:18,890
+Well, we might get a success.
+
+165
+00:08:18,890 --> 00:08:23,617
+So in the success category, we
+might get code 200 with the text OK.
+
+166
+00:08:23,617 --> 00:08:24,450
+What does this mean?
+
+167
+00:08:24,450 --> 00:08:25,491
+Well, everything is good.
+
+168
+00:08:25,491 --> 00:08:26,721
+You made a valid request.
+
+169
+00:08:26,721 --> 00:08:27,720
+Here's a valid response.
+
+170
+00:08:27,720 --> 00:08:30,060
+I was able to deliver
+exactly what you wanted.
+
+171
+00:08:30,060 --> 00:08:33,080
+>> Sometimes you might get other things
+that you won't notice right away
+
+172
+00:08:33,080 --> 00:08:35,140
+but are somewhat failures.
+
+173
+00:08:35,140 --> 00:08:36,422
+They're called redirections.
+
+174
+00:08:36,422 --> 00:08:37,630
+There's two common ones here.
+
+175
+00:08:37,630 --> 00:08:41,520
+301 Moved Permanently--
+what this basically means
+
+176
+00:08:41,520 --> 00:08:43,559
+is the page is now at a new location.
+
+177
+00:08:43,559 --> 00:08:44,920
+It will live there forever.
+
+178
+00:08:44,920 --> 00:08:47,150
+And most browsers will
+automatically redirect you.
+
+179
+00:08:47,150 --> 00:08:49,860
+So you'll never really see
+a 301, either, unless you're
+
+180
+00:08:49,860 --> 00:08:52,210
+using a really out-of-date
+browser, possibly,
+
+181
+00:08:52,210 --> 00:08:57,660
+because the 301 response is part of
+the dot, dot, dot of the 301 response.
+
+182
+00:08:57,660 --> 00:08:59,577
+It also tells you where the new page is.
+
+183
+00:08:59,577 --> 00:09:01,660
+And so most browsers will
+just redirect you there,
+
+184
+00:09:01,660 --> 00:09:03,570
+assuming that you want to go there.
+
+185
+00:09:03,570 --> 00:09:05,440
+>> Sometimes you'll also get 302 Found.
+
+186
+00:09:05,440 --> 00:09:07,850
+And this one you actually
+might still see occasionally.
+
+187
+00:09:07,850 --> 00:09:09,720
+Sometimes pages move temporarily.
+
+188
+00:09:09,720 --> 00:09:13,570
+So it's not going to be built into
+the request telling the browser
+
+189
+00:09:13,570 --> 00:09:16,740
+to permanently change any time
+it sees the request that you
+
+190
+00:09:16,740 --> 00:09:18,255
+make to change it to something else.
+
+191
+00:09:18,255 --> 00:09:21,210
+So you might see 302
+Found, which basically
+
+192
+00:09:21,210 --> 00:09:22,710
+says this page lives somewhere else.
+
+193
+00:09:22,710 --> 00:09:24,418
+But it's not going to
+live there forever.
+
+194
+00:09:24,418 --> 00:09:29,052
+It will eventually probably go
+back to where you think it is.
+
+195
+00:09:29,052 --> 00:09:31,780
+>> Then you'll get things
+like client errors.
+
+196
+00:09:31,780 --> 00:09:34,012
+So these are ones you've
+probably seen, now.
+
+197
+00:09:34,012 --> 00:09:35,970
+You probably haven't seen
+the 200s or the 300s,
+
+198
+00:09:35,970 --> 00:09:37,370
+but you're probably
+familiar with the 400s.
+
+199
+00:09:37,370 --> 00:09:40,130
+And that's what we'll talk
+about in a second, 500s as well.
+
+200
+00:09:40,130 --> 00:09:42,580
+>> You might see 401 Unauthorized.
+
+201
+00:09:42,580 --> 00:09:45,100
+Usually this means you're
+trying to access a page,
+
+202
+00:09:45,100 --> 00:09:46,230
+but you haven't logged in.
+
+203
+00:09:46,230 --> 00:09:50,500
+So you try and go to some
+profile or something on Facebook
+
+204
+00:09:50,500 --> 00:09:53,106
+or you try and access
+some-- you're at work.
+
+205
+00:09:53,106 --> 00:09:56,619
+You're trying to access something
+on your work's internet,
+
+206
+00:09:56,619 --> 00:09:57,660
+but you're not logged in.
+
+207
+00:09:57,660 --> 00:09:58,740
+You can't see the page.
+
+208
+00:09:58,740 --> 00:10:01,770
+You might get a 401 unauthorized,
+which means we probably
+
+209
+00:10:01,770 --> 00:10:06,590
+will be able to satisfy this request,
+but first you need to log in to do so.
+
+210
+00:10:06,590 --> 00:10:09,590
+>> Conversely, you might get 403
+Forbidden, which is it doesn't really
+
+211
+00:10:09,590 --> 00:10:11,490
+matter if you're logged in or not.
+
+212
+00:10:11,490 --> 00:10:13,020
+This request isn't allowed.
+
+213
+00:10:13,020 --> 00:10:15,320
+The resource exists on the server.
+
+214
+00:10:15,320 --> 00:10:17,817
+But you are not allowed to access it.
+
+215
+00:10:17,817 --> 00:10:20,900
+This is usually internal files that
+live on the server for various reasons
+
+216
+00:10:20,900 --> 00:10:23,860
+but are not intended to be
+accessed from the outside world,
+
+217
+00:10:23,860 --> 00:10:25,030
+and so they are forbidden.
+
+218
+00:10:25,030 --> 00:10:27,120
+They live there.
+
+219
+00:10:27,120 --> 00:10:28,440
+I'm not saying I can't find it.
+
+220
+00:10:28,440 --> 00:10:30,030
+But I'm saying I cannot give it to you.
+
+221
+00:10:30,030 --> 00:10:32,071
+And it doesn't matter if
+you're logged in or not.
+
+222
+00:10:32,071 --> 00:10:35,479
+And then of course, the
+very common 404 Not Found.
+
+223
+00:10:35,479 --> 00:10:37,020
+The file doesn't exist on the server.
+
+224
+00:10:37,020 --> 00:10:40,200
+I would like to satisfy
+your request, but I can't.
+
+225
+00:10:40,200 --> 00:10:43,390
+>> You also sometimes see server
+errors, the most common generally
+
+226
+00:10:43,390 --> 00:10:46,990
+being 500 Internal Server Error, which
+doesn't actually tell you anything
+
+227
+00:10:46,990 --> 00:10:50,200
+at all about what has gone wrong.
+
+228
+00:10:50,200 --> 00:10:53,290
+But it's not actually you making
+a mistake in your request.
+
+229
+00:10:53,290 --> 00:10:58,200
+It's actually the server failing
+to deliver on the request somehow.
+
+230
+00:10:58,200 --> 00:11:00,040
+So 500 is the general response.
+
+231
+00:11:00,040 --> 00:11:03,190
+>> You'll also see something
+like Service Unavailable,
+
+232
+00:11:03,190 --> 00:11:05,720
+which I believe is code 503.
+
+233
+00:11:05,720 --> 00:11:07,882
+And Gateway Timeout-- if
+you ever had a page just
+
+234
+00:11:07,882 --> 00:11:09,590
+sit there loading and
+loading and loading
+
+235
+00:11:09,590 --> 00:11:12,715
+and you never know if it's going to
+load and then eventually it just says--
+
+236
+00:11:12,715 --> 00:11:13,650
+just gives up.
+
+237
+00:11:13,650 --> 00:11:15,460
+That's a 504 Gateway Timeout.
+
+238
+00:11:15,460 --> 00:11:17,600
+The server wanted to
+execute your request,
+
+239
+00:11:17,600 --> 00:11:19,930
+but something went wrong
+on the server side--
+
+240
+00:11:19,930 --> 00:11:24,452
+not on your side-- to
+cause that to be a problem.
+
+241
+00:11:24,452 --> 00:11:27,410
+Now, we could end the story here,
+but what I'm actually going to do now
+
+242
+00:11:27,410 --> 00:11:29,368
+is I'm going to open up
+my browser and show you
+
+243
+00:11:29,368 --> 00:11:32,250
+how you might be able to see
+some of these status codes
+
+244
+00:11:32,250 --> 00:11:34,580
+even if you don't generally see them.
+
+245
+00:11:34,580 --> 00:11:39,090
+And we're going to do that by taking
+a look at some developer tools.
+
+246
+00:11:39,090 --> 00:11:42,050
+>> All right So here I am
+now in my browser window.
+
+247
+00:11:42,050 --> 00:11:45,840
+And I want to learn a little bit
+more about these HTTP requests.
+
+248
+00:11:45,840 --> 00:11:49,060
+How do I know-- certainly we know if a
+page goes-- when something goes wrong,
+
+249
+00:11:49,060 --> 00:11:49,630
+we get a 404.
+
+250
+00:11:49,630 --> 00:11:50,465
+We've all seen that.
+
+251
+00:11:50,465 --> 00:11:51,840
+We don't need to illustrate that.
+
+252
+00:11:51,840 --> 00:11:53,048
+But what are some other ones?
+
+253
+00:11:53,048 --> 00:11:56,850
+And how would we see
+these requests in action?
+
+254
+00:11:56,850 --> 00:11:59,990
+>> So first thing I'm going to
+do is open up Developer Tools.
+
+255
+00:11:59,990 --> 00:12:02,580
+So Developer Tools are built
+into most modern browsers
+
+256
+00:12:02,580 --> 00:12:06,020
+and allow us to see things
+that we don't otherwise
+
+257
+00:12:06,020 --> 00:12:10,580
+see-- some extra information sort of
+being transmitted underneath our web
+
+258
+00:12:10,580 --> 00:12:11,500
+requests.
+
+259
+00:12:11,500 --> 00:12:12,790
+I'm using Google Chrome here.
+
+260
+00:12:12,790 --> 00:12:16,900
+And to open Developer Tools
+in Chrome, you just hit F-12,
+
+261
+00:12:16,900 --> 00:12:18,729
+and it's going to open
+it up on the side.
+
+262
+00:12:18,729 --> 00:12:21,770
+Once I type the request, I'll zoom in
+so we can see what's going on here.
+
+263
+00:12:21,770 --> 00:12:28,530
+But what I'm going to do in my browser
+bar is-- and I'll zoom in over here--
+
+264
+00:12:28,530 --> 00:12:32,427
+I will make a request to www.google.com.
+
+265
+00:12:32,427 --> 00:12:34,260
+We've all probably made
+this request before.
+
+266
+00:12:34,260 --> 00:12:35,400
+I'm going to hit Enter.
+
+267
+00:12:35,400 --> 00:12:41,920
+
+268
+00:12:41,920 --> 00:12:46,400
+>> Now, over here in my Developer
+Tools, I've chosen the Network tab.
+
+269
+00:12:46,400 --> 00:12:48,010
+And you notice a lot of things here.
+
+270
+00:12:48,010 --> 00:12:51,732
+Look at these-- 200 OK, 200 OK, some
+of these status codes coming up.
+
+271
+00:12:51,732 --> 00:12:53,356
+I don't know why I'm getting 302 Found.
+
+272
+00:12:53,356 --> 00:12:54,860
+I didn't realize I'd see that one.
+
+273
+00:12:54,860 --> 00:12:58,192
+But basically notice that pretty
+much, in terms of my Google request--
+
+274
+00:12:58,192 --> 00:13:00,150
+I made a very simple
+request for Google's page.
+
+275
+00:13:00,150 --> 00:13:02,890
+And in the process of
+delivering my request,
+
+276
+00:13:02,890 --> 00:13:05,670
+Google has apparently made a lot
+of other requests on my behalf.
+
+277
+00:13:05,670 --> 00:13:11,990
+>> But I've made a get request for Google's
+page and I'm getting a lot of 200 OKs.
+
+278
+00:13:11,990 --> 00:13:14,830
+I'm not seeing 200 OK on
+my screen, but I'm getting
+
+279
+00:13:14,830 --> 00:13:17,170
+a lot of requests that have been made.
+
+280
+00:13:17,170 --> 00:13:19,550
+One more that I'm pretty
+sure is going to work
+
+281
+00:13:19,550 --> 00:13:21,920
+is-- for those of you who
+are really old-school,
+
+282
+00:13:21,920 --> 00:13:26,012
+you may know that Facebook was
+not always at Facebook.com.
+
+283
+00:13:26,012 --> 00:13:29,780
+In its early days it was
+at wwww.thefacebook.com.
+
+284
+00:13:29,780 --> 00:13:33,560
+They apparently could not get access
+to Facebook.com for quite awhile.
+
+285
+00:13:33,560 --> 00:13:35,870
+>> And so what I'm expecting
+here is to get information.
+
+286
+00:13:35,870 --> 00:13:37,315
+And we'll see if this pans out.
+
+287
+00:13:37,315 --> 00:13:39,190
+What I'm expecting here
+is to get information
+
+288
+00:13:39,190 --> 00:13:43,980
+that Facebook has moved permanently
+from thefacebook.com to Facebook.com.
+
+289
+00:13:43,980 --> 00:13:46,830
+So I'm expecting somewhere
+near the top of my requests
+
+290
+00:13:46,830 --> 00:13:50,730
+over in my Developer Tools
+to get a 301 notification
+
+291
+00:13:50,730 --> 00:13:52,580
+that Facebook has moved permanently.
+
+292
+00:13:52,580 --> 00:13:59,070
+Again, I won't see 301
+on my browser screen.
+
+293
+00:13:59,070 --> 00:14:01,380
+And because it's a 301,
+it's a permanent move.
+
+294
+00:14:01,380 --> 00:14:03,500
+My browser, being that
+it's a modern browser,
+
+295
+00:14:03,500 --> 00:14:06,110
+is probably going to redirect
+me to Facebook.com anyway.
+
+296
+00:14:06,110 --> 00:14:07,260
+But let's see what happens.
+
+297
+00:14:07,260 --> 00:14:09,340
+>> And now I'm going to
+go to thefacebook.com.
+
+298
+00:14:09,340 --> 00:14:11,370
+And yep, there it is right at the top.
+
+299
+00:14:11,370 --> 00:14:13,390
+It went away, but it was there.
+
+300
+00:14:13,390 --> 00:14:14,820
+Let me scroll up here.
+
+301
+00:14:14,820 --> 00:14:18,004
+
+302
+00:14:18,004 --> 00:14:18,920
+Right here at the top.
+
+303
+00:14:18,920 --> 00:14:23,080
+I made a request to thefacebook.com,
+and I'm getting a response
+
+304
+00:14:23,080 --> 00:14:25,410
+that this page has moved permanently.
+
+305
+00:14:25,410 --> 00:14:27,770
+And then 307 here is
+an internal redirect.
+
+306
+00:14:27,770 --> 00:14:30,680
+And so this is what has actually
+moved me to the much more
+
+307
+00:14:30,680 --> 00:14:33,330
+familiar www.facebook.com.
+
+308
+00:14:33,330 --> 00:14:38,480
+>> So these response codes do still
+happen, even if we don't see them.
+
+309
+00:14:38,480 --> 00:14:40,710
+I'm not going to
+illustrate 401, 403, 404,
+
+310
+00:14:40,710 --> 00:14:43,090
+because you've probably seen
+those at various points.
+
+311
+00:14:43,090 --> 00:14:45,740
+And 500, I would just be
+kind of-- we'd get lucky
+
+312
+00:14:45,740 --> 00:14:50,380
+if got a 500 because we don't know what
+servers are currently down anywhere.
+
+313
+00:14:50,380 --> 00:14:53,060
+But these codes do
+exist, and there is a way
+
+314
+00:14:53,060 --> 00:14:58,610
+to access them even if we don't
+see them firsthand on our systems.
+
+315
+00:14:58,610 --> 00:14:59,530
+I'm Doug Lloyd.
+
+316
+00:14:59,530 --> 00:15:01,570
+This is CS50.
+
+317
+00:15:01,570 --> 00:15:03,557

@@ -1,0 +1,1065 @@
+1
+00:00:00,000 --> 00:00:09,647
+
+2
+00:00:09,647 --> 00:00:11,730
+SPEAKER: Now let's dive
+into the distribution code
+
+3
+00:00:11,730 --> 00:00:14,470
+and take a look at the context
+in which the code you write
+
+4
+00:00:14,470 --> 00:00:15,780
+is going to be operating.
+
+5
+00:00:15,780 --> 00:00:17,350
+At the end of the day,
+you're going to implement
+
+6
+00:00:17,350 --> 00:00:18,710
+the entirety of the web server.
+
+7
+00:00:18,710 --> 00:00:20,460
+But we have provided
+you with the skeleton
+
+8
+00:00:20,460 --> 00:00:24,090
+code that have some functionality,
+particularly related to networking.
+
+9
+00:00:24,090 --> 00:00:25,390
+Let's take a look.
+
+10
+00:00:25,390 --> 00:00:27,560
+>> So up here toward the top
+of the file is a bunch
+
+11
+00:00:27,560 --> 00:00:30,020
+of feature test macro requirements.
+
+12
+00:00:30,020 --> 00:00:33,570
+Now this is just a feature of c, whereby
+according to a bunch of man pages
+
+13
+00:00:33,570 --> 00:00:36,410
+you have to define some of
+these constants to be true
+
+14
+00:00:36,410 --> 00:00:39,920
+or to be even specific numbers so that
+you have access to certain functions.
+
+15
+00:00:39,920 --> 00:00:42,470
+Otherwise they'll be undeclared
+and you won't have access.
+
+16
+00:00:42,470 --> 00:00:45,340
+So I've done this by way
+of reading the man pages.
+
+17
+00:00:45,340 --> 00:00:48,410
+Now down below, in
+lines 15 through 17, we
+
+18
+00:00:48,410 --> 00:00:50,550
+have a whole bunch of limits declared.
+
+19
+00:00:50,550 --> 00:00:53,370
+>> And we've borrowed these from a
+popular web server called Apache.
+
+20
+00:00:53,370 --> 00:00:54,650
+And these are just
+numbers that are going
+
+21
+00:00:54,650 --> 00:00:56,810
+to cap the total number
+of bytes that are allowed
+
+22
+00:00:56,810 --> 00:01:01,930
+in various contexts for the HTTP request
+that a browser is allowed to send me.
+
+23
+00:01:01,930 --> 00:01:04,310
+Next, we define octets.
+
+24
+00:01:04,310 --> 00:01:07,790
+Now an octet is just a fancy way
+of saying a byte, or eight bits.
+
+25
+00:01:07,790 --> 00:01:10,720
+Turns out in yesteryear a byte
+wasn't necessarily eight bits,
+
+26
+00:01:10,720 --> 00:01:12,339
+so octet is always eight bits.
+
+27
+00:01:12,339 --> 00:01:14,880
+So in this case we've adopted
+what's common in the networking
+
+28
+00:01:14,880 --> 00:01:17,410
+world of calling eight bytes an octet.
+
+29
+00:01:17,410 --> 00:01:21,840
+>> Here I've specified that octets will
+be 512, so that much like in forensics
+
+30
+00:01:21,840 --> 00:01:24,170
+when we read a bunch of
+bytes at a time, here too,
+
+31
+00:01:24,170 --> 00:01:27,390
+we're going to read a
+bunch of octets at a time.
+
+32
+00:01:27,390 --> 00:01:28,922
+Next a whole bunch of header files.
+
+33
+00:01:28,922 --> 00:01:30,255
+How did I know to include these?
+
+34
+00:01:30,255 --> 00:01:32,730
+Well I simply read the man
+pages for a number of functions
+
+35
+00:01:32,730 --> 00:01:35,620
+that we'll use in this distribution
+code and include in the ones
+
+36
+00:01:35,620 --> 00:01:37,390
+I was instructed to.
+
+37
+00:01:37,390 --> 00:01:39,090
+>> And now we have a data type.
+
+38
+00:01:39,090 --> 00:01:41,470
+We've declared an octet to be a char.
+
+39
+00:01:41,470 --> 00:01:44,040
+And we'll see later that that's
+used throughout the code.
+
+40
+00:01:44,040 --> 00:01:45,670
+And we've declared a
+whole bunch of prototypes,
+
+41
+00:01:45,670 --> 00:01:47,961
+and we'll walk quickly through
+each of those functions.
+
+42
+00:01:47,961 --> 00:01:50,400
+Lastly, and perhaps most
+important to keep in
+
+43
+00:01:50,400 --> 00:01:52,520
+mind at this point in
+the story, is that there
+
+44
+00:01:52,520 --> 00:01:54,520
+are, in fact a whole
+bunch of global variables
+
+45
+00:01:54,520 --> 00:02:00,430
+at the top of the file, root,
+CFD, SFD, request, file and body.
+
+46
+00:02:00,430 --> 00:02:03,960
+>> Now generally, using so many global
+variables, or global variables at all,
+
+47
+00:02:03,960 --> 00:02:05,280
+isn't the back practice.
+
+48
+00:02:05,280 --> 00:02:09,090
+But it turns out we're also using a
+technique called signal handling later
+
+49
+00:02:09,090 --> 00:02:11,930
+in the code, which allows us to
+detect when the user hits something
+
+50
+00:02:11,930 --> 00:02:15,080
+like CTRL C and shut down
+the server gracefully.
+
+51
+00:02:15,080 --> 00:02:18,240
+And in order to do that gracefully
+and actually free up memory,
+
+52
+00:02:18,240 --> 00:02:20,800
+we need to have access to
+these global variables.
+
+53
+00:02:20,800 --> 00:02:24,510
+>> And now let's take a look at main, which
+drives the entirety of this program.
+
+54
+00:02:24,510 --> 00:02:27,720
+First, at the top here we
+have an error number variable
+
+55
+00:02:27,720 --> 00:02:29,570
+that appears not to
+have a type, but that's
+
+56
+00:02:29,570 --> 00:02:31,500
+because it's actually
+defined in a file called
+
+57
+00:02:31,500 --> 00:02:34,800
+error errno.h which
+is included higher up.
+
+58
+00:02:34,800 --> 00:02:38,780
+If you do man errno to actually
+see the definition for this thing,
+
+59
+00:02:38,780 --> 00:02:41,230
+you'll see that this is a
+special global variable that
+
+60
+00:02:41,230 --> 00:02:43,350
+is set by a whole bunch
+of functions not written
+
+61
+00:02:43,350 --> 00:02:48,730
+by us, but by the authors of Linux
+and other systems to actually set
+
+62
+00:02:48,730 --> 00:02:52,400
+a number to that variable when something
+goes wrong so that you can globally
+
+63
+00:02:52,400 --> 00:02:54,830
+figure out what did go wrong.
+
+64
+00:02:54,830 --> 00:02:58,540
+>> Now down below you'll see a new
+technique perhaps using getopt,
+
+65
+00:02:58,540 --> 00:03:01,790
+a function that helps parse command
+line arguments so that we don't
+
+66
+00:03:01,790 --> 00:03:05,540
+have to bother wasting time figuring
+out how to parse something like 8080,
+
+67
+00:03:05,540 --> 00:03:08,350
+or dash p, or dash h to get help.
+
+68
+00:03:08,350 --> 00:03:10,300
+getopt essentially does that for us.
+
+69
+00:03:10,300 --> 00:03:11,750
+See the man page for more.
+
+70
+00:03:11,750 --> 00:03:13,960
+>> Next, we do a bit of error
+checking to make sure
+
+71
+00:03:13,960 --> 00:03:17,420
+that the port number is within
+the specified range in the spec.
+
+72
+00:03:17,420 --> 00:03:20,240
+Next, we see a call to the function
+start, whose definition we'll
+
+73
+00:03:20,240 --> 00:03:24,040
+look at in a moment, and as its name
+suggests, this starts the web server.
+
+74
+00:03:24,040 --> 00:03:26,960
+Here we have a call to a function
+called signal which says,
+
+75
+00:03:26,960 --> 00:03:30,750
+if and when you hear Control C from
+the user's keyboard, go ahead and call
+
+76
+00:03:30,750 --> 00:03:34,650
+a function called handler that's going
+to ultimately clean things up and stop
+
+77
+00:03:34,650 --> 00:03:35,500
+the server.
+
+78
+00:03:35,500 --> 00:03:39,470
+>> Below that is what appears to be an
+infinite loop, the first line of which
+
+79
+00:03:39,470 --> 00:03:41,660
+effectively is a call
+to a function called
+
+80
+00:03:41,660 --> 00:03:45,110
+reset, which we ourselves
+implement later on in order
+
+81
+00:03:45,110 --> 00:03:47,470
+to free up some of our global states.
+
+82
+00:03:47,470 --> 00:03:50,480
+After that is a line of
+code that conditionally
+
+83
+00:03:50,480 --> 00:03:52,576
+is checking the return
+value of connected.
+
+84
+00:03:52,576 --> 00:03:55,700
+Now connected looks like a predicate,
+something that returns true or false.
+
+85
+00:03:55,700 --> 00:03:58,040
+And it does, but there's
+something special in connected
+
+86
+00:03:58,040 --> 00:03:59,960
+in that it's a blocking call.
+
+87
+00:03:59,960 --> 00:04:03,180
+It will sit there and wait
+until a user's browser
+
+88
+00:04:03,180 --> 00:04:05,860
+tries to connect to this web
+server and only then will it
+
+89
+00:04:05,860 --> 00:04:10,160
+return true or false so that we proceed
+to the inside of this if statement.
+
+90
+00:04:10,160 --> 00:04:13,870
+>> Once there, notice this function to a
+function called parse, which we wrote,
+
+91
+00:04:13,870 --> 00:04:17,230
+which parses all of the octets, all
+of the bytes coming from a browser
+
+92
+00:04:17,230 --> 00:04:21,010
+to the server, so that we can hand
+you back ultimately a value to one
+
+93
+00:04:21,010 --> 00:04:24,420
+of those global variables that
+stores all of the bytes in just
+
+94
+00:04:24,420 --> 00:04:26,630
+the headers of that
+request, not the body
+
+95
+00:04:26,630 --> 00:04:28,920
+if there were actually a body to it.
+
+96
+00:04:28,920 --> 00:04:32,980
+>> Now down below we begin to
+parse those headers to extract
+
+97
+00:04:32,980 --> 00:04:35,490
+a subset of the information
+that we care about.
+
+98
+00:04:35,490 --> 00:04:37,740
+Specifically, per the
+specification, we first
+
+99
+00:04:37,740 --> 00:04:40,580
+wanted to request line, which is
+just that very first line that
+
+100
+00:04:40,580 --> 00:04:45,710
+hopefully says something like get
+slash or some path and then HTTP 1.1.
+
+101
+00:04:45,710 --> 00:04:48,150
+We're using this metaphor
+of a needle in a haystack
+
+102
+00:04:48,150 --> 00:04:50,370
+to look for particular
+chars or addresses.
+
+103
+00:04:50,370 --> 00:04:53,120
+And indeed, there's a number of
+functions in our distribution code
+
+104
+00:04:53,120 --> 00:04:56,930
+that you, too, might find helpful
+when looking for particular values.
+
+105
+00:04:56,930 --> 00:05:00,630
+>> Ultimately, we copy these bytes
+into a variable called line,
+
+106
+00:05:00,630 --> 00:05:03,510
+which notice, too, we've
+allocated on the stack
+
+107
+00:05:03,510 --> 00:05:05,890
+by way of a dynamically sized array.
+
+108
+00:05:05,890 --> 00:05:08,350
+And we're deliberately trying
+to avoid calling malloc
+
+109
+00:05:08,350 --> 00:05:11,100
+because again, because
+of Control C being
+
+110
+00:05:11,100 --> 00:05:14,630
+a potential feature of this program, we
+don't want to have this code suddenly
+
+111
+00:05:14,630 --> 00:05:17,479
+interrupted by the user hitting
+Control C, the result of which
+
+112
+00:05:17,479 --> 00:05:20,270
+is that I might not have a chance
+for free something I've malloced.
+
+113
+00:05:20,270 --> 00:05:23,660
+So I'm trying to use as much
+of the stack is I can here.
+
+114
+00:05:23,660 --> 00:05:26,040
+>> Next up, a whole bunch of to dos.
+
+115
+00:05:26,040 --> 00:05:28,930
+The specification will expound
+on exactly what's expected here,
+
+116
+00:05:28,930 --> 00:05:31,800
+but the comments give you
+a hint of what lies ahead.
+
+117
+00:05:31,800 --> 00:05:33,830
+You first need to
+validate the request line
+
+118
+00:05:33,830 --> 00:05:37,760
+and make sure that it looks like the
+specifications grammar, so to speak,
+
+119
+00:05:37,760 --> 00:05:38,541
+says it should.
+
+120
+00:05:38,541 --> 00:05:41,290
+You then need to extract something
+called the query, the stuff out
+
+121
+00:05:41,290 --> 00:05:44,200
+after a question mark, like
+we saw with our Google example
+
+122
+00:05:44,200 --> 00:05:46,320
+in passing in an HD parameter.
+
+123
+00:05:46,320 --> 00:05:49,050
+We then concatenate together
+the root of the web server
+
+124
+00:05:49,050 --> 00:05:52,520
+with the path that's in
+that request first line
+
+125
+00:05:52,520 --> 00:05:56,010
+and form the full path of
+the file we want to look for.
+
+126
+00:05:56,010 --> 00:06:00,300
+>> Thereafter, we're going to make sure
+that the file exists and is readable.
+
+127
+00:06:00,300 --> 00:06:05,100
+And then we're going to extract its
+file extension, the .html or the .php,
+
+128
+00:06:05,100 --> 00:06:09,920
+or some such extension that's at the
+very end of the string requested.
+
+129
+00:06:09,920 --> 00:06:11,940
+Next up is a whole
+bunch of code we wrote
+
+130
+00:06:11,940 --> 00:06:15,800
+to actually generate PHP
+generated content for you.
+
+131
+00:06:15,800 --> 00:06:18,010
+In a nutshell, this
+code takes in the name
+
+132
+00:06:18,010 --> 00:06:20,250
+of the file you want PHP to interpret.
+
+133
+00:06:20,250 --> 00:06:24,630
+We pass it by something called
+a pipe into PHP's interpreter.
+
+134
+00:06:24,630 --> 00:06:28,060
+Get back the response as though
+the response were a file itself.
+
+135
+00:06:28,060 --> 00:06:32,110
+And then we iterate over that file's
+bytes, pulling them all into one buffer
+
+136
+00:06:32,110 --> 00:06:34,180
+so that we can ultimately
+print them out.
+
+137
+00:06:34,180 --> 00:06:37,230
+>> Indeed, all of these
+calls here to dprintf
+
+138
+00:06:37,230 --> 00:06:40,110
+allows us to print something
+called a file descriptor, which
+
+139
+00:06:40,110 --> 00:06:42,350
+is just an integer
+that represents a file.
+
+140
+00:06:42,350 --> 00:06:45,360
+Very similar in spirit, but
+fundamentally different from a file
+
+141
+00:06:45,360 --> 00:06:46,620
+star pointer.
+
+142
+00:06:46,620 --> 00:06:50,260
+Notice how you can use syntax like
+printf here so that I can dynamically
+
+143
+00:06:50,260 --> 00:06:54,000
+insert something like the length
+for the value of an HTTP header
+
+144
+00:06:54,000 --> 00:06:55,270
+called Content-Length.
+
+145
+00:06:55,270 --> 00:06:57,990
+And ultimately I used the
+function right to actually write
+
+146
+00:06:57,990 --> 00:07:00,040
+the body to the request.
+
+147
+00:07:00,040 --> 00:07:03,750
+>> Unfortunately, we only implemented
+support for dynamically
+
+148
+00:07:03,750 --> 00:07:05,350
+generated PHP files.
+
+149
+00:07:05,350 --> 00:07:08,520
+We did not implement support for
+static files like gifs, and jpegs,
+
+150
+00:07:08,520 --> 00:07:10,660
+and CSS and HTML files.
+
+151
+00:07:10,660 --> 00:07:14,450
+That, unfortunately, is left to you
+to respond to the client purpose
+
+152
+00:07:14,450 --> 00:07:15,090
+this to do.
+
+153
+00:07:15,090 --> 00:07:20,050
+So in there you'll find that there's
+not much inspiration within that block,
+
+154
+00:07:20,050 --> 00:07:23,520
+but if you a little higher up at how
+we went about interpreting PHP code,
+
+155
+00:07:23,520 --> 00:07:25,520
+the functions you'll use
+are a little different.
+
+156
+00:07:25,520 --> 00:07:27,561
+>> In fact, you can borrow
+some of the functionality
+
+157
+00:07:27,561 --> 00:07:29,620
+perhaps from the forensics
+problem set, because
+
+158
+00:07:29,620 --> 00:07:32,860
+at the end of the day all you need to
+do here is once you know what file open
+
+159
+00:07:32,860 --> 00:07:35,690
+and once you know it's so-called
+MIME type or content type,
+
+160
+00:07:35,690 --> 00:07:39,040
+you need to read in those bytes
+and somehow spit them back out.
+
+161
+00:07:39,040 --> 00:07:41,190
+>> And now a tour of this
+file's other functions.
+
+162
+00:07:41,190 --> 00:07:43,820
+Up first is connected,
+which simply returns true
+
+163
+00:07:43,820 --> 00:07:47,350
+when it finally hears a
+connection from a user.
+
+164
+00:07:47,350 --> 00:07:48,786
+Next up is error.
+
+165
+00:07:48,786 --> 00:07:52,296
+Error, meanwhile, as a function we
+wrote to handle all of the different 400
+
+166
+00:07:52,296 --> 00:07:55,360
+and 500 HTTP status
+codes that you might want
+
+167
+00:07:55,360 --> 00:07:58,500
+to send back to the user,
+along with a standard message.
+
+168
+00:07:58,500 --> 00:08:01,950
+>> Next up is load, a particularly
+meaty function, whose purpose in life
+
+169
+00:08:01,950 --> 00:08:06,920
+is to read from a file star pointer the
+contents of a file into a global buffer
+
+170
+00:08:06,920 --> 00:08:09,000
+that we declared globally
+above [? main. ?]
+
+171
+00:08:09,000 --> 00:08:12,649
+This is a bit complex because we
+have to read the bytes from the file
+
+172
+00:08:12,649 --> 00:08:14,690
+but check on each iteration
+whether we've already
+
+173
+00:08:14,690 --> 00:08:17,600
+hit the end of the file or
+something else has gone wrong.
+
+174
+00:08:17,600 --> 00:08:21,210
+And we use realloc to make sure that
+whatever buffer we're using is growing
+
+175
+00:08:21,210 --> 00:08:24,440
+and growing and growing and always
+staying ahead of the number of bytes
+
+176
+00:08:24,440 --> 00:08:25,675
+that we need to fit in there.
+
+177
+00:08:25,675 --> 00:08:27,550
+Handler, meanwhile, is
+the function that gets
+
+178
+00:08:27,550 --> 00:08:30,630
+called by way of having
+registered Control C as a signal
+
+179
+00:08:30,630 --> 00:08:32,140
+that we want to intercept.
+
+180
+00:08:32,140 --> 00:08:34,070
+Notice here in handler
+that it ultimately
+
+181
+00:08:34,070 --> 00:08:36,780
+calls stop, which of course
+stops the web server.
+
+182
+00:08:36,780 --> 00:08:39,750
+And unfortunately, lookup
+is not implemented.
+
+183
+00:08:39,750 --> 00:08:41,940
+In spirit, this is a
+fairly simple function.
+
+184
+00:08:41,940 --> 00:08:44,900
+Given a file extension, it needs
+to return it's so-called MIME
+
+185
+00:08:44,900 --> 00:08:46,320
+type or content type.
+
+186
+00:08:46,320 --> 00:08:49,260
+And we specify in the specification
+what that mapping must be.
+
+187
+00:08:49,260 --> 00:08:52,330
+But you need to translate
+it ultimately to c code.
+
+188
+00:08:52,330 --> 00:08:56,490
+>> Next up is our similarly meaty function
+called parse, whose purpose in life
+
+189
+00:08:56,490 --> 00:08:59,350
+is to read, not from a file,
+but from a network connection.
+
+190
+00:08:59,350 --> 00:09:03,510
+Specifically, reading and parsing the
+HTTP request that's come from a browser
+
+191
+00:09:03,510 --> 00:09:05,940
+to the server so that
+ultimately we can parse
+
+192
+00:09:05,940 --> 00:09:09,530
+at just the headers in the request
+line and return those to you
+
+193
+00:09:09,530 --> 00:09:12,720
+by way of a global buffer that
+we declared above [? main. ?]
+
+194
+00:09:12,720 --> 00:09:14,880
+>> Reset, meanwhile, is a
+function that we define
+
+195
+00:09:14,880 --> 00:09:18,730
+that gets called iteratively inside
+of main every time you're about
+
+196
+00:09:18,730 --> 00:09:20,799
+ready to start listening
+for a new connection
+
+197
+00:09:20,799 --> 00:09:22,840
+so that we always know
+the state of our variables
+
+198
+00:09:22,840 --> 00:09:24,870
+and so that we've also
+freed any memory that
+
+199
+00:09:24,870 --> 00:09:28,070
+might have been allocated for
+a previous network connection.
+
+200
+00:09:28,070 --> 00:09:30,060
+Next up is start, the
+function that we wrote
+
+201
+00:09:30,060 --> 00:09:31,920
+that contains a whole
+lot of networking code
+
+202
+00:09:31,920 --> 00:09:34,420
+that ultimately starts the web server.
+
+203
+00:09:34,420 --> 00:09:36,680
+>> Last up is the function
+called stop, which
+
+204
+00:09:36,680 --> 00:09:38,770
+does exactly that, it
+stops the web server.
+
+205
+00:09:38,770 --> 00:09:42,270
+But first it frees up any memory
+that still has been allocated.
+
+206
+00:09:42,270 --> 00:09:45,850
+But it ultimately calls exit
+without even returning control
+
+207
+00:09:45,850 --> 00:09:47,480
+to our main function.
+
+208
+00:09:47,480 --> 00:09:49,480
+Ultimately, one of the
+most important techniques
+
+209
+00:09:49,480 --> 00:09:52,680
+when implementing this web server is
+going to be a bit of trial and error,
+
+210
+00:09:52,680 --> 00:09:55,886
+having one browser window open
+at right and a terminal window at
+
+211
+00:09:55,886 --> 00:09:57,760
+left, the servers console
+window, so that you
+
+212
+00:09:57,760 --> 00:10:00,420
+can see the messages that are
+being displayed on the screen.
+
+213
+00:10:00,420 --> 00:10:04,170
+>> But better still would be a third
+window, a second terminal window,
+
+214
+00:10:04,170 --> 00:10:07,135
+in which you use Telnet, the usage
+for which is prescribed in the spec.
+
+215
+00:10:07,135 --> 00:10:09,640
+And Telnet is just a very
+simple network program
+
+216
+00:10:09,640 --> 00:10:12,660
+that lets you to pretend to
+be a browser in one window
+
+217
+00:10:12,660 --> 00:10:14,540
+while talking to the other window.
+
+218
+00:10:14,540 --> 00:10:16,830
+This way you can see
+exactly the textual commands
+
+219
+00:10:16,830 --> 00:10:18,700
+that are coming back
+from server to client
+
+220
+00:10:18,700 --> 00:10:20,810
+without having to poking
+around chrome's developer
+
+221
+00:10:20,810 --> 00:10:24,010
+tools in an otherwise
+clunkier interface.
+
+222
+00:10:24,010 --> 00:10:29,099

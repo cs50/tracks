@@ -1,0 +1,1001 @@
+1
+00:00:00,000 --> 00:00:03,381
+>> [MUSIC PLAYING]
+
+2
+00:00:03,381 --> 00:00:04,604
+
+3
+00:00:04,604 --> 00:00:05,520
+DOUG LLOYD: All right.
+
+4
+00:00:05,520 --> 00:00:07,860
+So if you just finished that
+video on singly-linked lists sorry
+
+5
+00:00:07,860 --> 00:00:09,568
+I left you off on a
+bit of a cliffhanger.
+
+6
+00:00:09,568 --> 00:00:12,790
+But I'm glad you're here to finish
+the story of doubly-linked lists.
+
+7
+00:00:12,790 --> 00:00:15,250
+>> So if you recall from
+that video, we talked
+
+8
+00:00:15,250 --> 00:00:18,500
+about how singly-linked
+lists do attend our ability
+
+9
+00:00:18,500 --> 00:00:22,090
+to deal with information
+where the number of elements
+
+10
+00:00:22,090 --> 00:00:24,442
+or the number of items in
+a list can grow or shrink.
+
+11
+00:00:24,442 --> 00:00:26,400
+We can now deal with
+something like that, where
+
+12
+00:00:26,400 --> 00:00:28,310
+we couldn't deal with it with arrays.
+
+13
+00:00:28,310 --> 00:00:30,560
+>> But they do suffer from one
+critical limitation which
+
+14
+00:00:30,560 --> 00:00:33,790
+is that with a singly-linked
+list, we can only ever move
+
+15
+00:00:33,790 --> 00:00:36,200
+in a single direction through the list.
+
+16
+00:00:36,200 --> 00:00:39,010
+And the only real situation
+where that can become a problem
+
+17
+00:00:39,010 --> 00:00:41,250
+was when we were trying to
+delete a single element.
+
+18
+00:00:41,250 --> 00:00:46,000
+And we didn't even discuss how to do it
+in a singly-linked list in pseudocode.
+
+19
+00:00:46,000 --> 00:00:48,797
+It is certainly doable, but
+it can be a bit of a hassle.
+
+20
+00:00:48,797 --> 00:00:50,630
+So if you find yourself
+in a situation where
+
+21
+00:00:50,630 --> 00:00:53,175
+you're trying to delete
+single elements from the list
+
+22
+00:00:53,175 --> 00:00:55,430
+or it's going to be required
+that you'll be deleting
+
+23
+00:00:55,430 --> 00:00:57,970
+single elements from
+the list, you might want
+
+24
+00:00:57,970 --> 00:01:02,090
+to consider using a doubly-linked
+list instead of a singly-linked list.
+
+25
+00:01:02,090 --> 00:01:06,320
+Because doubly-linked lists allow you
+to move both forwards and backwards
+
+26
+00:01:06,320 --> 00:01:09,340
+through the list instead of
+just forward through the list--
+
+27
+00:01:09,340 --> 00:01:13,950
+just by adding one extra element
+to our structure definition
+
+28
+00:01:13,950 --> 00:01:16,690
+for the doubly-linked list node.
+
+29
+00:01:16,690 --> 00:01:19,770
+>> Again, if you're not going to
+be deleting single elements
+
+30
+00:01:19,770 --> 00:01:24,810
+from the list-- because we're adding
+an extra field to our structure
+
+31
+00:01:24,810 --> 00:01:28,340
+definition, the nodes themselves
+for doubly-linked lists
+
+32
+00:01:28,340 --> 00:01:29,550
+are going to be larger.
+
+33
+00:01:29,550 --> 00:01:31,600
+They're going to take
+up more bytes of memory.
+
+34
+00:01:31,600 --> 00:01:34,160
+And so if this is not something
+you're going to need to do,
+
+35
+00:01:34,160 --> 00:01:36,300
+you might decide it's
+not worth the trade off
+
+36
+00:01:36,300 --> 00:01:39,360
+to have to spend the extra
+bytes of memory required
+
+37
+00:01:39,360 --> 00:01:43,940
+for a doubly-linked list if you're not
+going to be deleting single elements.
+
+38
+00:01:43,940 --> 00:01:46,760
+But they're also cool
+for other things too.
+
+39
+00:01:46,760 --> 00:01:51,260
+>> So as I said, we just have to add
+one single field to our structure
+
+40
+00:01:51,260 --> 00:01:55,360
+definition-- this notion
+of a Previous pointer.
+
+41
+00:01:55,360 --> 00:01:58,620
+So with a singly-linked list, we
+have the value and the Next pointer,
+
+42
+00:01:58,620 --> 00:02:02,850
+so the doubly-linked list just has
+a way to move backwards as well.
+
+43
+00:02:02,850 --> 00:02:04,960
+>> Now in the singly-linked
+list video, we talked
+
+44
+00:02:04,960 --> 00:02:07,210
+about these are five of the
+main things you need to be
+
+45
+00:02:07,210 --> 00:02:09,449
+able to do to work with linked lists.
+
+46
+00:02:09,449 --> 00:02:12,880
+And for most of these, the fact
+that it's a doubly-linked list
+
+47
+00:02:12,880 --> 00:02:14,130
+isn't really a big jump.
+
+48
+00:02:14,130 --> 00:02:17,936
+We can still search through by just
+moving forward from start to end.
+
+49
+00:02:17,936 --> 00:02:20,810
+We can still create a node out of
+thin air, pretty much the same way.
+
+50
+00:02:20,810 --> 00:02:23,591
+We can delete lists pretty
+much the same way too.
+
+51
+00:02:23,591 --> 00:02:25,340
+The only things that
+are subtly different,
+
+52
+00:02:25,340 --> 00:02:28,970
+really, are inserting
+new nodes into the list,
+
+53
+00:02:28,970 --> 00:02:33,722
+and we'll finally talk about deleting
+a single element from the list as well.
+
+54
+00:02:33,722 --> 00:02:35,430
+Again, pretty much
+the other three, we're
+
+55
+00:02:35,430 --> 00:02:37,888
+not going to talk about them
+right now because they're just
+
+56
+00:02:37,888 --> 00:02:43,920
+very minor tweaks on the ideas discussed
+in the singly-linked list video.
+
+57
+00:02:43,920 --> 00:02:46,292
+>> So let's insert a new node
+into a doubly-linked list.
+
+58
+00:02:46,292 --> 00:02:48,750
+We talked about doing this for
+singly-linked lists as well,
+
+59
+00:02:48,750 --> 00:02:52,020
+but there's a couple of extra
+catches with doubly-linked lists.
+
+60
+00:02:52,020 --> 00:02:55,280
+We're [? passing ?] in the head of the
+list here and some arbitrary value,
+
+61
+00:02:55,280 --> 00:02:58,600
+and we want to get the new head
+of the list out of this function.
+
+62
+00:02:58,600 --> 00:03:01,414
+That's why it returns a dllnode star.
+
+63
+00:03:01,414 --> 00:03:02,330
+So what are the steps?
+
+64
+00:03:02,330 --> 00:03:04,496
+They are, again, very similar
+to singly-linked lists
+
+65
+00:03:04,496 --> 00:03:05,670
+with one extra addition.
+
+66
+00:03:05,670 --> 00:03:08,900
+We want to allocates space for a new
+node and check to make sure it's valid.
+
+67
+00:03:08,900 --> 00:03:11,510
+We want to fill that node up
+with whatever information we
+
+68
+00:03:11,510 --> 00:03:12,564
+want to put in it.
+
+69
+00:03:12,564 --> 00:03:15,480
+The last thing we need to do-- the
+extra thing we need to do, rather--
+
+70
+00:03:15,480 --> 00:03:19,435
+is to fix the Previous pointer
+of the old head of the list.
+
+71
+00:03:19,435 --> 00:03:21,310
+Remember that because
+of doubly-linked lists,
+
+72
+00:03:21,310 --> 00:03:23,110
+we can move forward
+and backwards-- which
+
+73
+00:03:23,110 --> 00:03:27,080
+means that each node actually points
+to two other nodes instead of just one.
+
+74
+00:03:27,080 --> 00:03:29,110
+And so we need to fix
+the old head of the list
+
+75
+00:03:29,110 --> 00:03:32,151
+to point backward to the new head of
+the linked list, which was something
+
+76
+00:03:32,151 --> 00:03:33,990
+we didn't have to do before.
+
+77
+00:03:33,990 --> 00:03:37,420
+And as before, we just return a
+pointer to the new head of the list.
+
+78
+00:03:37,420 --> 00:03:38,220
+>> So here's a list.
+
+79
+00:03:38,220 --> 00:03:40,144
+We want to insert 12 into this list.
+
+80
+00:03:40,144 --> 00:03:42,060
+Notice that the diagram
+is slightly different.
+
+81
+00:03:42,060 --> 00:03:47,710
+Each node contains three fields--
+data, and a Next pointer in red,
+
+82
+00:03:47,710 --> 00:03:50,170
+and a Previous pointer in blue.
+
+83
+00:03:50,170 --> 00:03:54,059
+Nothing comes before the 15 node,
+so its Previous pointer is null.
+
+84
+00:03:54,059 --> 00:03:55,350
+It's the beginning of the list.
+
+85
+00:03:55,350 --> 00:03:56,560
+There's nothing before it.
+
+86
+00:03:56,560 --> 00:04:03,350
+And nothing comes after the 10 node, and
+so it's Next pointer is null as well.
+
+87
+00:04:03,350 --> 00:04:05,616
+>> So let's add 12 to this list.
+
+88
+00:04:05,616 --> 00:04:08,070
+We need [INAUDIBLE] space for the node.
+
+89
+00:04:08,070 --> 00:04:11,480
+We put 12 inside of it.
+
+90
+00:04:11,480 --> 00:04:14,840
+And then again, we need to be really
+careful not to break the chain.
+
+91
+00:04:14,840 --> 00:04:17,144
+We want to rearrange the
+pointers in the correct order.
+
+92
+00:04:17,144 --> 00:04:19,519
+And sometimes that might mean--
+as we'll see particularly
+
+93
+00:04:19,519 --> 00:04:24,120
+with delete-- that we do have some
+redundant pointers, but that's OK.
+
+94
+00:04:24,120 --> 00:04:25,750
+>> So what do we want to do first?
+
+95
+00:04:25,750 --> 00:04:28,290
+I would recommend the
+things you should probably
+
+96
+00:04:28,290 --> 00:04:35,350
+do are to fill the pointers of the 12
+node before you touch anybody else.
+
+97
+00:04:35,350 --> 00:04:38,640
+So what is 12 going to point to next?
+
+98
+00:04:38,640 --> 00:04:39,860
+15.
+
+99
+00:04:39,860 --> 00:04:42,430
+What comes before 12?
+
+100
+00:04:42,430 --> 00:04:43,640
+Nothing.
+
+101
+00:04:43,640 --> 00:04:46,280
+Now we've filled the
+extra information in 12
+
+102
+00:04:46,280 --> 00:04:49,320
+so it has Previous, Next, and value.
+
+103
+00:04:49,320 --> 00:04:53,505
+>> Now we can have 15-- this extra
+step we were talking about-- we
+
+104
+00:04:53,505 --> 00:04:56,590
+can have 15 point back to 12.
+
+105
+00:04:56,590 --> 00:04:59,634
+And now we can move the head of
+the linked list to also be 12.
+
+106
+00:04:59,634 --> 00:05:02,550
+So it's pretty similar to what we
+were doing with singly-linked lists,
+
+107
+00:05:02,550 --> 00:05:06,940
+except for the extra step of
+connecting the old head of the list
+
+108
+00:05:06,940 --> 00:05:09,810
+back to the new head of the list.
+
+109
+00:05:09,810 --> 00:05:12,170
+>> Now let's finally delete
+a node from a linked list.
+
+110
+00:05:12,170 --> 00:05:14,350
+So let's say we have
+some other function that
+
+111
+00:05:14,350 --> 00:05:18,080
+is finding a node we want to delete
+and has given us a pointer to exactly
+
+112
+00:05:18,080 --> 00:05:19,710
+the node that we want to delete.
+
+113
+00:05:19,710 --> 00:05:22,360
+We don't even need-- say the
+head is still globally declared.
+
+114
+00:05:22,360 --> 00:05:23,590
+We don't need head here.
+
+115
+00:05:23,590 --> 00:05:26,830
+All this function is doing is we've
+found a pointer to exactly the node we
+
+116
+00:05:26,830 --> 00:05:28,090
+want to get rid of.
+
+117
+00:05:28,090 --> 00:05:28,940
+Let's get rid of it.
+
+118
+00:05:28,940 --> 00:05:31,859
+It's a lot easier with
+doubly-linked lists.
+
+119
+00:05:31,859 --> 00:05:33,650
+First-- it's actually
+just a couple things.
+
+120
+00:05:33,650 --> 00:05:38,760
+We just need to fix the surrounding
+nodes' pointers so that they skip over
+
+121
+00:05:38,760 --> 00:05:40,240
+the node we want to delete.
+
+122
+00:05:40,240 --> 00:05:43,484
+And then we can delete that node.
+
+123
+00:05:43,484 --> 00:05:45,150
+So again, we're just going through here.
+
+124
+00:05:45,150 --> 00:05:49,625
+We have apparently decided that
+we want to delete the node X.
+
+125
+00:05:49,625 --> 00:05:51,500
+And again, what I'm
+doing here-- by the way--
+
+126
+00:05:51,500 --> 00:05:54,580
+is a general case for a
+node that is in the middle.
+
+127
+00:05:54,580 --> 00:05:56,547
+There are a couple of
+extra caveats that you
+
+128
+00:05:56,547 --> 00:05:59,380
+need to consider when you're deleting
+the very beginning of the list
+
+129
+00:05:59,380 --> 00:06:01,040
+or the very end of the list.
+
+130
+00:06:01,040 --> 00:06:03,730
+There's a couple of special
+corner cases to deal with there.
+
+131
+00:06:03,730 --> 00:06:07,960
+>> So this works for deleting any node
+in the middle of the list-- one that
+
+132
+00:06:07,960 --> 00:06:11,550
+has a legitimate pointer forward
+and a legitimate pointer backward,
+
+133
+00:06:11,550 --> 00:06:14,460
+legitimate Previous and Next pointer.
+
+134
+00:06:14,460 --> 00:06:16,530
+Again, if you're working
+with the ends, you
+
+135
+00:06:16,530 --> 00:06:18,500
+need to handle those
+slightly differently,
+
+136
+00:06:18,500 --> 00:06:19,570
+and we're not going to
+talk about that now.
+
+137
+00:06:19,570 --> 00:06:21,319
+But you can probably
+figure out what needs
+
+138
+00:06:21,319 --> 00:06:24,610
+to be done just by watching this video.
+
+139
+00:06:24,610 --> 00:06:28,910
+>> So we've isolated X. X is the node
+we want to delete from the list.
+
+140
+00:06:28,910 --> 00:06:30,140
+What do we do?
+
+141
+00:06:30,140 --> 00:06:32,800
+First, we need to rearrange
+the outside pointers.
+
+142
+00:06:32,800 --> 00:06:35,815
+We need to rearrange
+9's next to skip over 13
+
+143
+00:06:35,815 --> 00:06:38,030
+and point to 10-- which
+is what we've just done.
+
+144
+00:06:38,030 --> 00:06:41,180
+And we also need to
+rearrange 10's Previous
+
+145
+00:06:41,180 --> 00:06:44,610
+to point to 9 instead of pointing to 13.
+
+146
+00:06:44,610 --> 00:06:46,490
+>> So again, this was the
+diagram to start with.
+
+147
+00:06:46,490 --> 00:06:47,730
+This was our chain.
+
+148
+00:06:47,730 --> 00:06:51,027
+We need to skip over 13,
+but we need to also preserve
+
+149
+00:06:51,027 --> 00:06:52,110
+the integrity of the list.
+
+150
+00:06:52,110 --> 00:06:54,680
+We don't want to lose any
+information in either direction.
+
+151
+00:06:54,680 --> 00:06:59,620
+So we need to rearrange
+the pointers carefully
+
+152
+00:06:59,620 --> 00:07:02,240
+so we don't break the chain at all.
+
+153
+00:07:02,240 --> 00:07:05,710
+>> So we can say 9's Next pointer
+points to the same place
+
+154
+00:07:05,710 --> 00:07:08,040
+that thirteen's Next
+pointer points right now.
+
+155
+00:07:08,040 --> 00:07:10,331
+Because we're eventually
+going to want to skip over 13.
+
+156
+00:07:10,331 --> 00:07:13,750
+So wherever 13 points next, you
+want nine to point there instead.
+
+157
+00:07:13,750 --> 00:07:15,200
+So that's that.
+
+158
+00:07:15,200 --> 00:07:20,370
+And then wherever 13 points back
+to, whatever comes before 13,
+
+159
+00:07:20,370 --> 00:07:24,800
+we want 10 to point
+to that instead of 13.
+
+160
+00:07:24,800 --> 00:07:29,290
+Now notice, if you follow
+the arrows, we can drop 13
+
+161
+00:07:29,290 --> 00:07:32,380
+without actually losing any information.
+
+162
+00:07:32,380 --> 00:07:36,002
+We've kept the integrity of the list,
+moving both forward and backward.
+
+163
+00:07:36,002 --> 00:07:38,210
+And then we can just sort
+of clean it up a little bit
+
+164
+00:07:38,210 --> 00:07:40,930
+by pulling the list together.
+
+165
+00:07:40,930 --> 00:07:43,270
+So we rearranged the
+pointers on either side.
+
+166
+00:07:43,270 --> 00:07:46,231
+And then we freed X the
+node that contained 13,
+
+167
+00:07:46,231 --> 00:07:47,480
+and we didn't break the chain.
+
+168
+00:07:47,480 --> 00:07:50,980
+So we did good.
+
+169
+00:07:50,980 --> 00:07:53,000
+>> Final note here on linked lists.
+
+170
+00:07:53,000 --> 00:07:55,990
+So both singly- and doubly-linked
+lists, as we've seen,
+
+171
+00:07:55,990 --> 00:07:58,959
+support really efficient insertion
+and deletion of elements.
+
+172
+00:07:58,959 --> 00:08:00,750
+You can pretty much do
+it in constant time.
+
+173
+00:08:00,750 --> 00:08:03,333
+What did we have to do to delete
+an element just a second ago?
+
+174
+00:08:03,333 --> 00:08:04,440
+We moved one pointer.
+
+175
+00:08:04,440 --> 00:08:05,920
+We moved another pointer.
+
+176
+00:08:05,920 --> 00:08:07,915
+We freed X-- took three operations.
+
+177
+00:08:07,915 --> 00:08:14,500
+It always takes three operations to
+delete that node-- to free a node.
+
+178
+00:08:14,500 --> 00:08:15,280
+>> How do we insert?
+
+179
+00:08:15,280 --> 00:08:17,280
+Well, we're just always
+tacking on the beginning
+
+180
+00:08:17,280 --> 00:08:19,400
+if we're inserting efficiently.
+
+181
+00:08:19,400 --> 00:08:21,964
+So we need to rearrange--
+depending on if it's
+
+182
+00:08:21,964 --> 00:08:24,380
+a singly- or doubly-linked
+list, we might need to do three
+
+183
+00:08:24,380 --> 00:08:26,824
+or four operations max.
+
+184
+00:08:26,824 --> 00:08:28,365
+But again, it's always three or four.
+
+185
+00:08:28,365 --> 00:08:30,531
+It doesn't matter how many
+elements are in our list,
+
+186
+00:08:30,531 --> 00:08:33,549
+it's always three or four operations--
+just like deletion is always
+
+187
+00:08:33,549 --> 00:08:35,320
+three or four operations.
+
+188
+00:08:35,320 --> 00:08:36,919
+It's constant time.
+
+189
+00:08:36,919 --> 00:08:38,169
+So that's really great.
+
+190
+00:08:38,169 --> 00:08:40,620
+>> With arrays, we were doing
+something like insertion sort.
+
+191
+00:08:40,620 --> 00:08:44,739
+You probably recall that insertion
+sort is not a constant time algorithm.
+
+192
+00:08:44,739 --> 00:08:46,030
+It's actually pretty expensive.
+
+193
+00:08:46,030 --> 00:08:48,840
+So this is a lot better for inserting.
+
+194
+00:08:48,840 --> 00:08:51,840
+But as I mentioned in the
+singly-linked list video,
+
+195
+00:08:51,840 --> 00:08:54,030
+we've got a downside here too, right?
+
+196
+00:08:54,030 --> 00:08:57,580
+We've lost the ability to
+randomly access elements.
+
+197
+00:08:57,580 --> 00:09:02,310
+We can't say, I want element number four
+or element number 10 of a linked list
+
+198
+00:09:02,310 --> 00:09:04,990
+the same way that we can
+do that with an array
+
+199
+00:09:04,990 --> 00:09:08,630
+or we can just directly index
+into our array's element.
+
+200
+00:09:08,630 --> 00:09:10,930
+>> And so trying to find an
+element in a linked list--
+
+201
+00:09:10,930 --> 00:09:15,880
+if searching is important--
+may now take linear time.
+
+202
+00:09:15,880 --> 00:09:18,330
+As the list gets longer, it
+might take one additional step
+
+203
+00:09:18,330 --> 00:09:22,644
+for every single element in the list in
+order to find what we're looking for.
+
+204
+00:09:22,644 --> 00:09:23,560
+So there's trade offs.
+
+205
+00:09:23,560 --> 00:09:25,780
+There's a bit of a pro
+and con element here.
+
+206
+00:09:25,780 --> 00:09:29,110
+>> And doubly-linked lists are not the
+last kind of data structure combination
+
+207
+00:09:29,110 --> 00:09:32,840
+that we'll talk about,
+taking all the basic building
+
+208
+00:09:32,840 --> 00:09:34,865
+blocks of C an putting together.
+
+209
+00:09:34,865 --> 00:09:37,900
+Because in fact, we can
+even do better than this
+
+210
+00:09:37,900 --> 00:09:41,970
+to create a data structure that
+you might be able to search through
+
+211
+00:09:41,970 --> 00:09:43,360
+in constant time too.
+
+212
+00:09:43,360 --> 00:09:46,080
+But more on that in another video.
+
+213
+00:09:46,080 --> 00:09:47,150
+>> I'm Doug Lloyd.
+
+214
+00:09:47,150 --> 00:09:49,050
+This is CS50.
+
+215
+00:09:49,050 --> 00:09:50,877

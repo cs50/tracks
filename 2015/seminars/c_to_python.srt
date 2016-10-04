@@ -1,0 +1,4458 @@
+1
+00:00:00,000 --> 00:00:05,426
+
+2
+00:00:05,426 --> 00:00:06,800
+ROSS RHEINGANS-YOO: Hi, I'm Ross.
+
+3
+00:00:06,800 --> 00:00:08,570
+And this is a CS50 seminar.
+
+4
+00:00:08,570 --> 00:00:12,100
+It will take you from programming
+in C to programming in Python.
+
+5
+00:00:12,100 --> 00:00:15,120
+>> Python is a scripting language.
+
+6
+00:00:15,120 --> 00:00:17,870
+It's largely like C
+in syntax, though some
+
+7
+00:00:17,870 --> 00:00:20,390
+of the technical details of
+how that syntax gets executed
+
+8
+00:00:20,390 --> 00:00:22,240
+are slightly different.
+
+9
+00:00:22,240 --> 00:00:24,780
+It is less powerful than C in some ways.
+
+10
+00:00:24,780 --> 00:00:28,130
+It is less expressive for
+where exactly in your computer
+
+11
+00:00:28,130 --> 00:00:30,030
+memory gets laid out,
+how it gets laid out,
+
+12
+00:00:30,030 --> 00:00:32,030
+when it gets freedom, and
+those sorts of things.
+
+13
+00:00:32,030 --> 00:00:36,150
+>> It's more useful than C in some ways,
+because it's easier to program in.
+
+14
+00:00:36,150 --> 00:00:39,920
+The language is, to some
+people, more intuitive.
+
+15
+00:00:39,920 --> 00:00:44,820
+And really, the goal is for
+it to be faster to program
+
+16
+00:00:44,820 --> 00:00:46,490
+and potentially slower to execute.
+
+17
+00:00:46,490 --> 00:00:48,198
+>> Now if you think about
+the amount of time
+
+18
+00:00:48,198 --> 00:00:50,514
+you spent on your last
+problem set writing
+
+19
+00:00:50,514 --> 00:00:52,430
+your code against the
+amount of time you spend
+
+20
+00:00:52,430 --> 00:00:55,310
+on your last problem
+set executing your code,
+
+21
+00:00:55,310 --> 00:00:58,300
+you'd imagine that the language
+which was twice as fast to write,
+
+22
+00:00:58,300 --> 00:01:02,170
+and twice as slow to execute, might
+be an improvement over C in some ways.
+
+23
+00:01:02,170 --> 00:01:05,730
+Certainly when you're trying to write
+small programs to do little things,
+
+24
+00:01:05,730 --> 00:01:08,520
+Python is a useful language of choice.
+
+25
+00:01:08,520 --> 00:01:10,620
+>> And at the end of this
+seminar, I hope you'll
+
+26
+00:01:10,620 --> 00:01:12,950
+be able to make the
+choice in future projects
+
+27
+00:01:12,950 --> 00:01:17,710
+about which language is
+correct to use, not the idea
+
+28
+00:01:17,710 --> 00:01:21,405
+that one language is more
+correct all the time.
+
+29
+00:01:21,405 --> 00:01:23,030
+A few things about what the seminar is.
+
+30
+00:01:23,030 --> 00:01:25,910
+This seminar is not intended to
+teach you Python from scratch.
+
+31
+00:01:25,910 --> 00:01:28,310
+Python is very similar
+to C, and I'm assuming
+
+32
+00:01:28,310 --> 00:01:34,056
+that you're a CS50 student, or someone
+with a similar familiarity with C.
+
+33
+00:01:34,056 --> 00:01:36,700
+>> If you're CS50 student
+around problem set 6,
+
+34
+00:01:36,700 --> 00:01:38,866
+so you've see a lot of
+things in C, I'll give you
+
+35
+00:01:38,866 --> 00:01:40,740
+the major differences,
+and some of the things
+
+36
+00:01:40,740 --> 00:01:42,840
+that make Python different
+and special and useful,
+
+37
+00:01:42,840 --> 00:01:45,256
+but I'm not going to go for
+what a programming language is
+
+38
+00:01:45,256 --> 00:01:46,920
+and how to write programs.
+
+39
+00:01:46,920 --> 00:01:49,820
+However, this seminar will teach
+you to write a Python programs
+
+40
+00:01:49,820 --> 00:01:52,310
+if you're one of those few groups.
+
+41
+00:01:52,310 --> 00:01:54,820
+Again we'll look at how
+you would implement psets--
+
+42
+00:01:54,820 --> 00:01:57,550
+that should be 1-6 in
+Python-- and provide pointers
+
+43
+00:01:57,550 --> 00:02:00,322
+to official documentation
+for future reference.
+
+44
+00:02:00,322 --> 00:02:03,030
+The other thing that's important
+about how this talk is assigned,
+
+45
+00:02:03,030 --> 00:02:05,360
+this video will be
+online, courtesy of CS50,
+
+46
+00:02:05,360 --> 00:02:07,550
+so you shouldn't feel like
+you need to take notes.
+
+47
+00:02:07,550 --> 00:02:11,180
+You can always go back and look
+at it later as a reference.
+
+48
+00:02:11,180 --> 00:02:13,340
+Additionally the slides
+are available right now
+
+49
+00:02:13,340 --> 00:02:16,480
+at this site, which should
+take you do a Google doc.
+
+50
+00:02:16,480 --> 00:02:21,010
+It's a slightly abridged version
+of what I'm showing on the screen.
+
+51
+00:02:21,010 --> 00:02:24,850
+>> One careful caveat before
+we jump in, Python 3
+
+52
+00:02:24,850 --> 00:02:26,700
+is a different language from Python 2.
+
+53
+00:02:26,700 --> 00:02:30,020
+They look a lot the same; there are
+very slight technical differences
+
+54
+00:02:30,020 --> 00:02:32,530
+that will cause programs
+written in Python 2
+
+55
+00:02:32,530 --> 00:02:37,140
+not to be able to be executed
+in the Python 3 environment.
+
+56
+00:02:37,140 --> 00:02:41,969
+>> The CS50 appliance comes with
+Python, by default it uses Python 2.
+
+57
+00:02:41,969 --> 00:02:44,010
+You can check this by
+typing in your command line
+
+58
+00:02:44,010 --> 00:02:51,310
+python --version, which should output
+2.7.6 on the current appliance.
+
+59
+00:02:51,310 --> 00:02:53,580
+Try Python 3, which does
+work in the appliance,
+
+60
+00:02:53,580 --> 00:02:58,500
+if Python defaults to 2.X.Y, either on
+the appliance or on your own machines.
+
+61
+00:02:58,500 --> 00:03:03,730
+You should replace Python 3 anytime
+in this talk that I write Python.
+
+62
+00:03:03,730 --> 00:03:05,760
+If your machine is
+running 2 by default, type
+
+63
+00:03:05,760 --> 00:03:09,770
+Python 3 in order to be able to actually
+follow along and execute these things.
+
+64
+00:03:09,770 --> 00:03:12,280
+>> Additionally, I'll point you
+at official resources now.
+
+65
+00:03:12,280 --> 00:03:16,082
+docs.python.org/3-- careful
+that that's a 3 and not a 2--
+
+66
+00:03:16,082 --> 00:03:17,030
+has useful references.
+
+67
+00:03:17,030 --> 00:03:19,280
+Tutorial will take you through
+much of the same things
+
+68
+00:03:19,280 --> 00:03:21,460
+that I'm doing now, except in text form.
+
+69
+00:03:21,460 --> 00:03:23,725
+Reference is useful as a
+reference for the language,
+
+70
+00:03:23,725 --> 00:03:26,100
+and the Standard Library gives
+you some of the extensions
+
+71
+00:03:26,100 --> 00:03:27,770
+with additional functionality.
+
+72
+00:03:27,770 --> 00:03:31,300
+>> So a very first Python program.
+
+73
+00:03:31,300 --> 00:03:34,410
+On the left we have standard C,
+on the right, we have Python.
+
+74
+00:03:34,410 --> 00:03:36,780
+You might have recognized
+this problem, it's
+
+75
+00:03:36,780 --> 00:03:40,760
+one of the first problem
+sets in CS50, and these
+
+76
+00:03:40,760 --> 00:03:42,677
+solve it using the same solution.
+
+77
+00:03:42,677 --> 00:03:45,010
+Now, the reason that we're
+looking at these side by side
+
+78
+00:03:45,010 --> 00:03:46,830
+is so we can look at
+syntactic differences.
+
+79
+00:03:46,830 --> 00:03:49,580
+One of the elephants in the room
+that you might have noticed right
+
+80
+00:03:49,580 --> 00:03:56,350
+off the bat, is that Python has no
+main function wrapping around the code.
+
+81
+00:03:56,350 --> 00:03:59,170
+So in C, you write a bunch of
+files, you link them together,
+
+82
+00:03:59,170 --> 00:04:02,590
+and the program starts executing
+at this thing called int main.
+
+83
+00:04:02,590 --> 00:04:04,930
+>> In Python, you write a
+file you, execute the file,
+
+84
+00:04:04,930 --> 00:04:07,882
+the program starts executing
+at the top of the file.
+
+85
+00:04:07,882 --> 00:04:09,590
+So it's going to start
+at the top of file
+
+86
+00:04:09,590 --> 00:04:11,280
+go down until it find something else.
+
+87
+00:04:11,280 --> 00:04:14,440
+If it finds a function definition,
+it won't actually execute that code,
+
+88
+00:04:14,440 --> 00:04:15,940
+it will simply define the function.
+
+89
+00:04:15,940 --> 00:04:18,459
+But here, when the first
+program is n equals 10,
+
+90
+00:04:18,459 --> 00:04:21,273
+the first thing that this program
+will do is take this value of 10
+
+91
+00:04:21,273 --> 00:04:24,120
+and set it into a variable called n.
+
+92
+00:04:24,120 --> 00:04:27,690
+>> Speaking of that line, one of
+other things-- sorry-- this
+
+93
+00:04:27,690 --> 00:04:31,040
+means that C programs,
+you'll write them,
+
+94
+00:04:31,040 --> 00:04:34,899
+you'll make them, which will
+invoke some clang commands,
+
+95
+00:04:34,899 --> 00:04:36,690
+and then you'll run a
+resulting executable.
+
+96
+00:04:36,690 --> 00:04:41,030
+Python programs, you run the
+text file-- this mario.py might
+
+97
+00:04:41,030 --> 00:04:44,900
+be this file that I just showed
+you-- you'll run that file
+
+98
+00:04:44,900 --> 00:04:47,450
+and you'll execute,
+and the contents of it
+
+99
+00:04:47,450 --> 00:04:50,390
+will be executed by
+the Python interpreter.
+
+100
+00:04:50,390 --> 00:04:52,470
+You can do this in your IDE.
+
+101
+00:04:52,470 --> 00:05:02,260
+>> So if I have a Hello file,
+which simply has this contents.
+
+102
+00:05:02,260 --> 00:05:04,840
+This is actually Python
+2, not Python 3, so don't
+
+103
+00:05:04,840 --> 00:05:06,600
+worry about the syntax for now.
+
+104
+00:05:06,600 --> 00:05:14,230
+But I'll run Python, on
+hello.py, and it runs.
+
+105
+00:05:14,230 --> 00:05:18,890
+>> Another way that I can use Python that
+I won't deal with so much in this talk,
+
+106
+00:05:18,890 --> 00:05:21,840
+is if I just type Python, it
+drops me into an environment where
+
+107
+00:05:21,840 --> 00:05:24,370
+I can feed it Python line by line.
+
+108
+00:05:24,370 --> 00:05:31,260
+So here, if I type in
+print space 'hello, world'.
+
+109
+00:05:31,260 --> 00:05:32,360
+Type enter.
+
+110
+00:05:32,360 --> 00:05:37,430
+It will spit me that back the results
+that individual line immediately.
+
+111
+00:05:37,430 --> 00:05:38,470
+>> This is might be useful.
+
+112
+00:05:38,470 --> 00:05:40,700
+In this talk I'll do things on slides.
+
+113
+00:05:40,700 --> 00:05:43,940
+And so you'll be able to follow
+along either in here, or by writing
+
+114
+00:05:43,940 --> 00:05:45,725
+actual files and then executing them.
+
+115
+00:05:45,725 --> 00:05:48,340
+
+116
+00:05:48,340 --> 00:05:50,995
+>> But, going back to this
+code, another thing
+
+117
+00:05:50,995 --> 00:05:53,230
+that you might have
+noticed-- well, there's
+
+118
+00:05:53,230 --> 00:05:55,980
+two things that you might
+notice about these blocks.
+
+119
+00:05:55,980 --> 00:05:59,280
+The first, rather more mundane, is that
+the Python has no trailing semicolon.
+
+120
+00:05:59,280 --> 00:06:02,630
+>> Semicolons are optional everywhere
+and harmless everywhere.
+
+121
+00:06:02,630 --> 00:06:03,722
+You can add them.
+
+122
+00:06:03,722 --> 00:06:06,430
+It might make people who write
+Python for a living snicker at you
+
+123
+00:06:06,430 --> 00:06:08,860
+behind your back, because
+they're not necessary.
+
+124
+00:06:08,860 --> 00:06:13,497
+They're often a sign of being held over
+from C. The designers of the language
+
+125
+00:06:13,497 --> 00:06:16,580
+feel that it is more clear this way
+and that it's not necessary to declare
+
+126
+00:06:16,580 --> 00:06:18,700
+every time you end a line.
+
+127
+00:06:18,700 --> 00:06:21,799
+>> Another strange thing about this n
+is it doesn't have a type attached.
+
+128
+00:06:21,799 --> 00:06:24,590
+One of the magic pieces of Python--
+and I'm going to call it magic,
+
+129
+00:06:24,590 --> 00:06:26,381
+but there are very
+technical reasons why it
+
+130
+00:06:26,381 --> 00:06:28,560
+works-- one of the
+magic pieces of Python
+
+131
+00:06:28,560 --> 00:06:32,700
+is that variables can expand or
+shrink to contain whatever data
+
+132
+00:06:32,700 --> 00:06:34,530
+types you would want them to.
+
+133
+00:06:34,530 --> 00:06:35,580
+>> So this is a 10.
+
+134
+00:06:35,580 --> 00:06:40,060
+If later down I assigned to this
+n 0.5, it would take that 0.5.
+
+135
+00:06:40,060 --> 00:06:43,770
+No matter that it's an int here and
+float there, anything that uses this n
+
+136
+00:06:43,770 --> 00:06:47,057
+will, more or less, be able to chug
+along if it gets either of those.
+
+137
+00:06:47,057 --> 00:06:49,640
+Unless there's some very real
+reason why it can't use the data
+
+138
+00:06:49,640 --> 00:06:52,170
+type that n currently has,
+at which point it'll get
+
+139
+00:06:52,170 --> 00:06:54,490
+wedged and throw an error,
+and those sorts of things.
+
+140
+00:06:54,490 --> 00:06:57,050
+>> But here, Python
+doesn't really care what
+
+141
+00:06:57,050 --> 00:06:59,140
+it is that I'm going to stick in this
+sentence, like, you want this thing?
+
+142
+00:06:59,140 --> 00:06:59,840
+This thing in that?
+
+143
+00:06:59,840 --> 00:07:00,640
+Yeah, it's kind of a thing.
+
+144
+00:07:00,640 --> 00:07:01,810
+I'll stick it in the end.
+
+145
+00:07:01,810 --> 00:07:04,740
+It'll be a problem later on, if
+somebody who wants to use that end
+
+146
+00:07:04,740 --> 00:07:05,710
+can't handle it.
+
+147
+00:07:05,710 --> 00:07:08,500
+This is one of the major
+differences between Python and C
+
+148
+00:07:08,500 --> 00:07:10,790
+that makes it easy to
+write very large C programs
+
+149
+00:07:10,790 --> 00:07:15,120
+and makes it easier to write
+very small Python program.
+
+150
+00:07:15,120 --> 00:07:19,564
+>> The for syntax is not very
+different in what it does.
+
+151
+00:07:19,564 --> 00:07:21,480
+It's slightly different
+in how it's expressed.
+
+152
+00:07:21,480 --> 00:07:25,370
+So this is a very, what is called
+Pythonic, way of writing it.
+
+153
+00:07:25,370 --> 00:07:28,969
+for row in range(n), this is the
+range of numbers from 0 to n,
+
+154
+00:07:28,969 --> 00:07:31,010
+inclusive on the bottom
+and exclusive on the top.
+
+155
+00:07:31,010 --> 00:07:34,790
+So it's from 0 to n-1, which is
+exactly what the C code is doing,
+
+156
+00:07:34,790 --> 00:07:38,690
+except it's a lot easier
+to look at perhaps.
+
+157
+00:07:38,690 --> 00:07:42,710
+>> The relevant block is
+not set off by braces,
+
+158
+00:07:42,710 --> 00:07:44,540
+instead it's set off
+by this indentation.
+
+159
+00:07:44,540 --> 00:07:47,580
+So all of these lines are
+four spaces over to the right,
+
+160
+00:07:47,580 --> 00:07:50,410
+or like about an elephant width.
+
+161
+00:07:50,410 --> 00:07:54,570
+And those are the ones which are
+going to be executed in this for.
+
+162
+00:07:54,570 --> 00:07:57,020
+If I mess up the
+indentation on this and I
+
+163
+00:07:57,020 --> 00:08:01,420
+push that print back to
+the original indentation,
+
+164
+00:08:01,420 --> 00:08:04,320
+that print will leave the for loop.
+
+165
+00:08:04,320 --> 00:08:08,560
+In contrast to C, where here I actually
+need to move that closed brace around.
+
+166
+00:08:08,560 --> 00:08:11,820
+>> This means that you don't get errors
+that jump out at you because you
+
+167
+00:08:11,820 --> 00:08:13,580
+put a brace in wrong place.
+
+168
+00:08:13,580 --> 00:08:16,460
+It does mean that you get errors
+that jump out at you because you
+
+169
+00:08:16,460 --> 00:08:17,620
+indented a line wrong.
+
+170
+00:08:17,620 --> 00:08:19,290
+So it makes indentations super careful.
+
+171
+00:08:19,290 --> 00:08:22,123
+Hopefully you were being super
+careful with your indentation anyway,
+
+172
+00:08:22,123 --> 00:08:25,300
+and so this isn't that
+much more of a burden.
+
+173
+00:08:25,300 --> 00:08:28,762
+>> But a basic rule for Python,
+and we'll have a couple of these
+
+174
+00:08:28,762 --> 00:08:30,970
+that we'll go through through
+the course of the talk,
+
+175
+00:08:30,970 --> 00:08:33,840
+is try natural syntax
+before looking anything up.
+
+176
+00:08:33,840 --> 00:08:37,610
+So this syntax, for
+this number in range,
+
+177
+00:08:37,610 --> 00:08:41,460
+is very distinctive in terms of style.
+
+178
+00:08:41,460 --> 00:08:45,260
+Lots of things in Python
+we'll see taking this form.
+
+179
+00:08:45,260 --> 00:08:47,420
+>> And so if you come up
+with a new object that you
+
+180
+00:08:47,420 --> 00:08:50,870
+think you should be able to
+iterate over this, in this format,
+
+181
+00:08:50,870 --> 00:08:53,720
+turns out it probably
+supports that format.
+
+182
+00:08:53,720 --> 00:08:56,990
+We're not going to go super deep in
+the technical reasons why that's true.
+
+183
+00:08:56,990 --> 00:09:00,167
+>> But it's a useful intuition to have
+when you're approaching Python programs,
+
+184
+00:09:00,167 --> 00:09:01,750
+that this thing is just going to work.
+
+185
+00:09:01,750 --> 00:09:03,020
+Try it.
+
+186
+00:09:03,020 --> 00:09:06,480
+Boot up the Command Line
+Interpreter, see if it works,
+
+187
+00:09:06,480 --> 00:09:09,827
+move on with things, before you
+even need to open up Google and say,
+
+188
+00:09:09,827 --> 00:09:11,660
+what's the syntax for
+this particular thing?
+
+189
+00:09:11,660 --> 00:09:14,740
+Lots of Python you could
+discover just by trying.
+
+190
+00:09:14,740 --> 00:09:19,005
+>> This if is even more similar
+to C then the fors are.
+
+191
+00:09:19,005 --> 00:09:20,380
+Note that there's no parentheses.
+
+192
+00:09:20,380 --> 00:09:23,490
+The parentheses are, again,
+harmless but unnecessary.
+
+193
+00:09:23,490 --> 00:09:25,750
+There is a colon at the end
+just like the for loops,
+
+194
+00:09:25,750 --> 00:09:30,800
+and again, the relative blocks are
+indented rather than set off by braces.
+
+195
+00:09:30,800 --> 00:09:33,080
+This else is at the original
+level of indentation,
+
+196
+00:09:33,080 --> 00:09:35,930
+and its relevant block indented again.
+
+197
+00:09:35,930 --> 00:09:41,720
+Those work exactly as they do in C.
+
+198
+00:09:41,720 --> 00:09:44,520
+>> This is actually very much the same.
+
+199
+00:09:44,520 --> 00:09:49,430
+Again, print loses one character
+off of printf You pass some strings.
+
+200
+00:09:49,430 --> 00:09:51,520
+It turns out strings
+can either be marked off
+
+201
+00:09:51,520 --> 00:09:53,562
+by single quotes or double quotes.
+
+202
+00:09:53,562 --> 00:09:55,270
+There's no difference,
+except that inside
+
+203
+00:09:55,270 --> 00:09:57,722
+of single quotes you can use
+double quotes with abandon,
+
+204
+00:09:57,722 --> 00:09:59,430
+rather than having to
+escape all of them.
+
+205
+00:09:59,430 --> 00:10:01,480
+And inside of double quotes, you
+can use single quotes with abandon
+
+206
+00:10:01,480 --> 00:10:02,420
+without having to escape them.
+
+207
+00:10:02,420 --> 00:10:04,253
+If you wanted to mix
+them, you can certainly
+
+208
+00:10:04,253 --> 00:10:06,100
+look up online how to do that.
+
+209
+00:10:06,100 --> 00:10:09,581
+>> You'll notice that over here,
+I've passed in end= this thing.
+
+210
+00:10:09,581 --> 00:10:12,580
+This is an example of an optional
+argument, which is one of those things
+
+211
+00:10:12,580 --> 00:10:14,990
+that Python supports that
+makes it quite useful.
+
+212
+00:10:14,990 --> 00:10:18,240
+So print actually has a lot of
+arguments, which are usually
+
+213
+00:10:18,240 --> 00:10:20,140
+set to their default
+value, but here I've
+
+214
+00:10:20,140 --> 00:10:21,924
+decided to override the one called end.
+
+215
+00:10:21,924 --> 00:10:24,340
+The reason that I have to
+override it with an empty string
+
+216
+00:10:24,340 --> 00:10:26,756
+is that print in Python, by
+default, prints out a new line
+
+217
+00:10:26,756 --> 00:10:28,630
+after the thing that you told it too.
+
+218
+00:10:28,630 --> 00:10:31,462
+>> So this hash is actually going to
+print out a hash in a new line.
+
+219
+00:10:31,462 --> 00:10:34,670
+And if I don't want hash to print out
+a new line after it, then I have to say
+
+220
+00:10:34,670 --> 00:10:35,340
+don't print one.
+
+221
+00:10:35,340 --> 00:10:37,980
+
+222
+00:10:37,980 --> 00:10:43,690
+But, yet so, the one last thing that
+this program is missing that one has is
+
+223
+00:10:43,690 --> 00:10:44,960
+an include at the top.
+
+224
+00:10:44,960 --> 00:10:48,120
+Print is baked into Python so basically
+that there's no header or module
+
+225
+00:10:48,120 --> 00:10:49,869
+that you need to
+include, though if wanted
+
+226
+00:10:49,869 --> 00:10:52,029
+to include other things
+in a Python script,
+
+227
+00:10:52,029 --> 00:10:55,320
+I would do it in a very similar format--
+the words are just slightly different.
+
+228
+00:10:55,320 --> 00:10:58,840
+
+229
+00:10:58,840 --> 00:11:01,360
+>> I mentioned that we
+don't need a main here,
+
+230
+00:11:01,360 --> 00:11:03,372
+because the Python starts
+executing at the top.
+
+231
+00:11:03,372 --> 00:11:05,080
+If I wanted to wrap
+this in a function, I
+
+232
+00:11:05,080 --> 00:11:07,667
+would do it like this-- I
+would say def function name,
+
+233
+00:11:07,667 --> 00:11:10,500
+arguments might go in here and we'll
+see some of those later, colon,
+
+234
+00:11:10,500 --> 00:11:13,040
+and then again, this
+entire set off block
+
+235
+00:11:13,040 --> 00:11:16,810
+is what is the operational
+block for that function.
+
+236
+00:11:16,810 --> 00:11:18,560
+So this is the definition
+of the function.
+
+237
+00:11:18,560 --> 00:11:21,587
+And there's a declaration, then down
+here, I can just call the function.
+
+238
+00:11:21,587 --> 00:11:23,920
+And again, the program
+interpreter, starting at the top,
+
+239
+00:11:23,920 --> 00:11:25,280
+will see this is the definition.
+
+240
+00:11:25,280 --> 00:11:27,960
+It won't execute this until it
+get here, and then it's like, oh
+
+241
+00:11:27,960 --> 00:11:30,860
+now you've called it, I
+guess I should execute it.
+
+242
+00:11:30,860 --> 00:11:33,850
+>> A thing that's very common
+to see in Python files,
+
+243
+00:11:33,850 --> 00:11:36,700
+especially Python files that
+are released to the public
+
+244
+00:11:36,700 --> 00:11:41,650
+and developed by-- and developed and
+maintained, is something of this form.
+
+245
+00:11:41,650 --> 00:11:44,540
+This is basically-- so because
+Python, you start at the top
+
+246
+00:11:44,540 --> 00:11:50,310
+and then you execute down to the bottom,
+I if I just had Mario called out here,
+
+247
+00:11:50,310 --> 00:11:54,190
+then any time I included this file in
+another file, because I wanted to use
+
+248
+00:11:54,190 --> 00:11:58,580
+is Mario function, that other file would
+also have this call to Mario in it.
+
+249
+00:11:58,580 --> 00:12:01,000
+And when I ran that file,
+it would call Mario.
+
+250
+00:12:01,000 --> 00:12:04,520
+>> So it's possible that I only
+want to run this if I've actually
+
+251
+00:12:04,520 --> 00:12:07,290
+executed this particular file.
+
+252
+00:12:07,290 --> 00:12:11,520
+And so I can wrap this in an
+idiom like this, where I say,
+
+253
+00:12:11,520 --> 00:12:14,820
+if the name of this execution
+environment is main,
+
+254
+00:12:14,820 --> 00:12:16,200
+then I want to do these things.
+
+255
+00:12:16,200 --> 00:12:18,710
+Otherwise somebody else can
+use-- include my function--
+
+256
+00:12:18,710 --> 00:12:22,510
+my file, and just to get
+access to these functions
+
+257
+00:12:22,510 --> 00:12:25,552
+without having to run the things
+that I want to execute in this file.
+
+258
+00:12:25,552 --> 00:12:27,260
+This is, again, optional
+but very common.
+
+259
+00:12:27,260 --> 00:12:30,450
+
+260
+00:12:30,450 --> 00:12:33,840
+>> These things are entirely-- are
+exactly the same between C and Python,
+
+261
+00:12:33,840 --> 00:12:35,100
+certainly in 3.
+
+262
+00:12:35,100 --> 00:12:38,610
+I think in 2, the division operator
+sometimes gives you back floats when
+
+263
+00:12:38,610 --> 00:12:41,450
+you operated on ints, and either
+you wanted that or you didn't.
+
+264
+00:12:41,450 --> 00:12:44,777
+But plus, minus, and times
+work exactly like you'd expect,
+
+265
+00:12:44,777 --> 00:12:46,110
+except over slightly more types.
+
+266
+00:12:46,110 --> 00:12:49,740
+So you can multiply floats by
+ints, and those sorts of things.
+
+267
+00:12:49,740 --> 00:12:52,480
+>> set works exactly the same.
+
+268
+00:12:52,480 --> 00:12:54,310
+You can use two equal signs.
+
+269
+00:12:54,310 --> 00:12:59,000
+inequals-- greater than, less
+than, these sorts of things--
+
+270
+00:12:59,000 --> 00:13:02,580
+have the meanings that
+you're familiar with them.
+
+271
+00:13:02,580 --> 00:13:05,770
+>> Where C uses these operators,
+Python uses slightly more English
+
+272
+00:13:05,770 --> 00:13:06,390
+readable ones.
+
+273
+00:13:06,390 --> 00:13:09,348
+So instead of two, ampersands, you
+literally type the word "and," "or,"
+
+274
+00:13:09,348 --> 00:13:10,740
+or "not."
+
+275
+00:13:10,740 --> 00:13:13,420
+Like in your if-- in your
+conditional statements,
+
+276
+00:13:13,420 --> 00:13:17,670
+we saw earlier that this syntax in C
+corresponds to this syntax in Python.
+
+277
+00:13:17,670 --> 00:13:21,010
+And there's not a lot different
+there, except for a little bit
+
+278
+00:13:21,010 --> 00:13:24,780
+of punctuation around the sides.
+
+279
+00:13:24,780 --> 00:13:28,890
+Again, where C would else
+if, Python uses elif,
+
+280
+00:13:28,890 --> 00:13:33,960
+but these are mostly
+surface level changes.
+
+281
+00:13:33,960 --> 00:13:38,450
+>> Iteration like this is often
+written in this idiom in Python.
+
+282
+00:13:38,450 --> 00:13:42,350
+You can manufacture this sort of
+thing with a while loop on the outside
+
+283
+00:13:42,350 --> 00:13:46,387
+if you wanted, but you
+certainly don't have to.
+
+284
+00:13:46,387 --> 00:13:48,970
+And again, if you wanted the
+print out elements in of an array
+
+285
+00:13:48,970 --> 00:13:50,560
+you might do it this way.
+
+286
+00:13:50,560 --> 00:13:52,927
+One of the fun things
+about Python though,
+
+287
+00:13:52,927 --> 00:13:54,760
+is that you don't need
+to use this paradigm,
+
+288
+00:13:54,760 --> 00:13:57,290
+and you can use a
+slightly more elegant one.
+
+289
+00:13:57,290 --> 00:13:59,370
+You say for a in ary.
+
+290
+00:13:59,370 --> 00:14:02,980
+>> So rather than going here
+and running over the indices,
+
+291
+00:14:02,980 --> 00:14:05,630
+and then pulling out
+individual elements,
+
+292
+00:14:05,630 --> 00:14:08,644
+you tell the for to actually just
+run over the elements themselves.
+
+293
+00:14:08,644 --> 00:14:11,060
+And then whatever you're doing
+inside can operate directly
+
+294
+00:14:11,060 --> 00:14:13,260
+on the elements, which is pretty fun.
+
+295
+00:14:13,260 --> 00:14:16,710
+And we'll see-- we'll use
+that idiom again and again
+
+296
+00:14:16,710 --> 00:14:18,050
+as we walk through code.
+
+297
+00:14:18,050 --> 00:14:20,091
+>> This is, again, an example
+of something that I'll
+
+298
+00:14:20,091 --> 00:14:23,300
+call Python magic, though there are
+very technical reasons why it works.
+
+299
+00:14:23,300 --> 00:14:26,340
+And there are technical things that
+need to be true about array in order
+
+300
+00:14:26,340 --> 00:14:28,340
+for this to work behind the scenes.
+
+301
+00:14:28,340 --> 00:14:31,390
+The thing is that most types
+which you'd expect this to work
+
+302
+00:14:31,390 --> 00:14:36,610
+have had this implemented for
+you in the built-in language.
+
+303
+00:14:36,610 --> 00:14:40,030
+>> Another thing that it would be nice
+if this worked in every language,
+
+304
+00:14:40,030 --> 00:14:45,460
+but there are some reasons why it can't,
+print this string times this number.
+
+305
+00:14:45,460 --> 00:14:48,860
+Turns out in Python, this does exactly
+what you'd like, which is just fun,
+
+306
+00:14:48,860 --> 00:14:52,840
+and means that we can actually
+reduce this program, again mario.c.
+
+307
+00:14:52,840 --> 00:14:57,150
+Rather than iterating a lot, we can
+just say, I want some number of spaces,
+
+308
+00:14:57,150 --> 00:15:01,120
+I want the number of hashes,
+and some hashes at the end.
+
+309
+00:15:01,120 --> 00:15:02,640
+And again, we use this format.
+
+310
+00:15:02,640 --> 00:15:05,340
+>> Here, we're passing in
+a variable this way.
+
+311
+00:15:05,340 --> 00:15:08,050
+Again, we don't need to say
+what type of variable it is,
+
+312
+00:15:08,050 --> 00:15:11,322
+and the only time we'll
+get errors is at run time.
+
+313
+00:15:11,322 --> 00:15:13,030
+When somebody tries
+to pass something in,
+
+314
+00:15:13,030 --> 00:15:14,860
+it'll come into the function just fine.
+
+315
+00:15:14,860 --> 00:15:18,240
+If we wedge here because this isn't the
+thing that you can create ranges over,
+
+316
+00:15:18,240 --> 00:15:22,100
+I'll get a runtime error there,
+and I'll have to debug it that way.
+
+317
+00:15:22,100 --> 00:15:25,050
+But in the meantime, I don't have
+to be very careful about what
+
+318
+00:15:25,050 --> 00:15:32,800
+gets passed in, so long as in the actual
+execution it all works very cleanly.
+
+319
+00:15:32,800 --> 00:15:35,080
+>> I could even make this
+a little bit cleaner
+
+320
+00:15:35,080 --> 00:15:41,770
+using a particular built-in function
+on strings, which is Right Justify.
+
+321
+00:15:41,770 --> 00:15:45,250
+This is just a useful function
+lying around the library.
+
+322
+00:15:45,250 --> 00:15:47,660
+It's in the documentation
+if you go and look for it.
+
+323
+00:15:47,660 --> 00:15:51,650
+And I say, well I'm going to have
+this string, some number of hashes,
+
+324
+00:15:51,650 --> 00:15:56,390
+and I'd like to right justify it-- pad
+it out with spaces to be this length.
+
+325
+00:15:56,390 --> 00:16:00,584
+>> Again, this is in the
+documentation, which brings us--
+
+326
+00:16:00,584 --> 00:16:03,500
+I'll actually click through these--
+which brings us to our second rule
+
+327
+00:16:03,500 --> 00:16:06,990
+for Python-- standard library
+function methods are your friends.
+
+328
+00:16:06,990 --> 00:16:09,880
+And it's often worth your while
+to go looking for I wonder
+
+329
+00:16:09,880 --> 00:16:12,310
+if there's a thing that just does this.
+
+330
+00:16:12,310 --> 00:16:13,830
+There probably is.
+
+331
+00:16:13,830 --> 00:16:15,990
+If you'd like to pad
+out a string, if you'd
+
+332
+00:16:15,990 --> 00:16:17,470
+like to take the back
+half of a string, if you'd
+
+333
+00:16:17,470 --> 00:16:20,370
+like to search through a string, if
+you'd like to smash a couple of things
+
+334
+00:16:20,370 --> 00:16:22,420
+together with a string
+with commas between them,
+
+335
+00:16:22,420 --> 00:16:24,640
+there are standard library
+functions for doing this.
+
+336
+00:16:24,640 --> 00:16:27,190
+>> And it makes your life
+easier if you use them
+
+337
+00:16:27,190 --> 00:16:29,240
+instead of rolling out
+everything on your own
+
+338
+00:16:29,240 --> 00:16:31,650
+in five lines of code here,
+five lines of code here.
+
+339
+00:16:31,650 --> 00:16:34,430
+That really starts at
+add up to real time.
+
+340
+00:16:34,430 --> 00:16:37,430
+>> One of the interesting things
+about how this gets called.
+
+341
+00:16:37,430 --> 00:16:39,980
+You'll notice that there's a dot thing.
+
+342
+00:16:39,980 --> 00:16:43,490
+I have some object on the left,
+and then I called a dot a function.
+
+343
+00:16:43,490 --> 00:16:49,780
+This is one of the paradigms that Python
+uses for attaching methods to objects.
+
+344
+00:16:49,780 --> 00:16:54,410
+We'll talk about what this
+is very briefly at the end,
+
+345
+00:16:54,410 --> 00:16:58,510
+but know that we can both operate on
+things by taking that thing saying dot
+
+346
+00:16:58,510 --> 00:17:01,690
+whatever, or by calling
+a function that takes
+
+347
+00:17:01,690 --> 00:17:04,339
+that object and some other arguments.
+
+348
+00:17:04,339 --> 00:17:07,450
+>> So these are both ways that
+things get done in Python.
+
+349
+00:17:07,450 --> 00:17:09,780
+And whether a particular
+functionality is implemented
+
+350
+00:17:09,780 --> 00:17:14,230
+in this style or this
+style is something that you
+
+351
+00:17:14,230 --> 00:17:19,990
+should look up until you get a hang
+for which one it's likely to fall into.
+
+352
+00:17:19,990 --> 00:17:22,660
+There's a more or less cohesive
+philosophy behind Python
+
+353
+00:17:22,660 --> 00:17:24,930
+that you absorb mostly
+by writing a lot in it.
+
+354
+00:17:24,930 --> 00:17:28,190
+At some point, which one of these
+something will be implemented as
+
+355
+00:17:28,190 --> 00:17:29,470
+becomes natural.
+
+356
+00:17:29,470 --> 00:17:32,420
+For now, it's just something
+you learn as you figure out
+
+357
+00:17:32,420 --> 00:17:34,140
+each individual thing.
+
+358
+00:17:34,140 --> 00:17:36,420
+>> So standard library
+functions are your friends,
+
+359
+00:17:36,420 --> 00:17:41,320
+and they let you write things that
+take up this much space really shortly,
+
+360
+00:17:41,320 --> 00:17:42,040
+really elegantly.
+
+361
+00:17:42,040 --> 00:17:45,670
+And this is actually probably more
+legible, I'd say, than the C program
+
+362
+00:17:45,670 --> 00:17:46,780
+over there.
+
+363
+00:17:46,780 --> 00:17:49,730
+Not to mention the fact that is so
+short you can fit a whole elephant
+
+364
+00:17:49,730 --> 00:17:52,250
+in the space that we've saved.
+
+365
+00:17:52,250 --> 00:17:56,270
+>> Another thing, this is an implementation
+of mario that's dot C, which I think
+
+366
+00:17:56,270 --> 00:17:57,890
+is the shortest you can get it.
+
+367
+00:17:57,890 --> 00:18:00,757
+It doesn't have the get int, but
+it hard codes the value of 10
+
+368
+00:18:00,757 --> 00:18:02,090
+the same way that this one does.
+
+369
+00:18:02,090 --> 00:18:06,080
+Turns out that this one clocks in at
+84 characters, whereas Python is 64.
+
+370
+00:18:06,080 --> 00:18:11,490
+And this is infinitely more
+readable than this garbage here.
+
+371
+00:18:11,490 --> 00:18:14,610
+So Python is more efficient in space.
+
+372
+00:18:14,610 --> 00:18:17,260
+It's slightly less efficient
+in time, but not by much.
+
+373
+00:18:17,260 --> 00:18:18,890
+>> Lists are an important thing in Python.
+
+374
+00:18:18,890 --> 00:18:21,540
+
+375
+00:18:21,540 --> 00:18:24,587
+We haven't seen them, but they
+operate much like arrays do in C.
+
+376
+00:18:24,587 --> 00:18:27,170
+So here, you can declare them,
+you can pass them into a thing.
+
+377
+00:18:27,170 --> 00:18:29,810
+Now squares holds an
+array of these things.
+
+378
+00:18:29,810 --> 00:18:33,480
+Again, we haven't declared as
+type, but if we ever try to use it,
+
+379
+00:18:33,480 --> 00:18:36,260
+anything that you'd expect to
+work on an array of integers
+
+380
+00:18:36,260 --> 00:18:40,130
+is going to work on
+an array of integers.
+
+381
+00:18:40,130 --> 00:18:42,030
+>> This Is a thing which
+you absolutely can't
+
+382
+00:18:42,030 --> 00:18:47,390
+do in C, because the
+memory it is so hands on,
+
+383
+00:18:47,390 --> 00:18:48,950
+but is very easy to do in Python.
+
+384
+00:18:48,950 --> 00:18:55,310
+If I want my array to be larger, I can
+append an element to it and it's fine.
+
+385
+00:18:55,310 --> 00:18:57,150
+>> What's going on behind the scenes?
+
+386
+00:18:57,150 --> 00:18:59,150
+The interpreter will go
+out and get some memory,
+
+387
+00:18:59,150 --> 00:19:00,860
+and maybe it'll get a
+little bit of extra memory,
+
+388
+00:19:00,860 --> 00:19:03,090
+so I don't so I don't have
+to realloc every time.
+
+389
+00:19:03,090 --> 00:19:04,897
+But how much have more
+memory does it need?
+
+390
+00:19:04,897 --> 00:19:06,730
+This aren't decisions
+that you have to make,
+
+391
+00:19:06,730 --> 00:19:10,540
+these are decisions that the
+interpreter is going to do.
+
+392
+00:19:10,540 --> 00:19:12,270
+>> Here we see range can
+take two arguments,
+
+393
+00:19:12,270 --> 00:19:16,430
+but it's still going to be inclusive
+of the top so we add 1 there.
+
+394
+00:19:16,430 --> 00:19:21,970
+This is an idiom, which is an even more
+clever way to write things like this.
+
+395
+00:19:21,970 --> 00:19:25,980
+It's called list comprehension,
+and here what we're saying
+
+396
+00:19:25,980 --> 00:19:32,560
+is I'd like to put in i squared
+for every value of i in this range.
+
+397
+00:19:32,560 --> 00:19:35,770
+This thing on the right could be another
+array, and this thing on the left
+
+398
+00:19:35,770 --> 00:19:40,740
+to be any particular function
+that would take in i as a variable
+
+399
+00:19:40,740 --> 00:19:42,250
+and give me out some result.
+
+400
+00:19:42,250 --> 00:19:43,480
+>> What I'm going to do is,
+I'm going to construct
+
+401
+00:19:43,480 --> 00:19:46,200
+an array that's all of these things
+for each value in this range.
+
+402
+00:19:46,200 --> 00:19:48,960
+
+403
+00:19:48,960 --> 00:19:55,670
+And this is super elegant, super short,
+and it's very clear what it means.
+
+404
+00:19:55,670 --> 00:19:59,190
+This is one of the
+things-- this is again,
+
+405
+00:19:59,190 --> 00:20:03,860
+one of-- very emblematic of the
+reasons that people like Python.
+
+406
+00:20:03,860 --> 00:20:05,900
+If you like programming
+like this, then Python
+
+407
+00:20:05,900 --> 00:20:07,830
+is a language you might like to learn.
+
+408
+00:20:07,830 --> 00:20:10,950
+>> And again, there are technical
+reasons why this works.
+
+409
+00:20:10,950 --> 00:20:14,730
+But as far as we're concerned,
+we more or less don't care.
+
+410
+00:20:14,730 --> 00:20:18,500
+>> So if you want to print out lists,
+some of the same idioms are useful.
+
+411
+00:20:18,500 --> 00:20:20,940
+For i in this range, we could
+index through all the things
+
+412
+00:20:20,940 --> 00:20:23,140
+and then print them all out.
+
+413
+00:20:23,140 --> 00:20:24,650
+And you'll see len here.
+
+414
+00:20:24,650 --> 00:20:27,150
+If you've ever wanted to get
+the length of the array, that's
+
+415
+00:20:27,150 --> 00:20:31,150
+very easy in Python,
+it's very hard in C.
+
+416
+00:20:31,150 --> 00:20:33,720
+This would print out exactly
+what you'd expect it to.
+
+417
+00:20:33,720 --> 00:20:36,986
+We could also, as we've seen before,
+iterate over the elements in array
+
+418
+00:20:36,986 --> 00:20:39,860
+directly, and then just talk about
+them, rather than having the index
+
+419
+00:20:39,860 --> 00:20:43,190
+back into the array every time.
+
+420
+00:20:43,190 --> 00:20:45,990
+>> And this is a thing that you can do.
+
+421
+00:20:45,990 --> 00:20:49,984
+So in C, if you ask for something
+like this, print would say,
+
+422
+00:20:49,984 --> 00:20:51,150
+that's an array of integers.
+
+423
+00:20:51,150 --> 00:20:53,456
+That's definitely not a
+string, I can't print it.
+
+424
+00:20:53,456 --> 00:20:54,830
+Python more or less doesn't care.
+
+425
+00:20:54,830 --> 00:20:57,496
+It's like, is there a way that I
+could turn this in to a string?
+
+426
+00:20:57,496 --> 00:20:58,500
+Yeah, I'll do that.
+
+427
+00:20:58,500 --> 00:21:01,600
+And so I'll just print that out.
+
+428
+00:21:01,600 --> 00:21:03,640
+This means that you can
+do things like-- these
+
+429
+00:21:03,640 --> 00:21:06,530
+are most of the hard parts
+of game of fifteen, written
+
+430
+00:21:06,530 --> 00:21:08,930
+very briefly in Python.
+
+431
+00:21:08,930 --> 00:21:11,320
+>> You'll see that there's
+a little bit of-- here
+
+432
+00:21:11,320 --> 00:21:14,441
+I've cast an integer to a string,
+and I have to do that manually.
+
+433
+00:21:14,441 --> 00:21:16,190
+And I'm going to add
+it to another string,
+
+434
+00:21:16,190 --> 00:21:17,590
+or otherwise Python gets confused.
+
+435
+00:21:17,590 --> 00:21:19,840
+But whether when you're
+adding a string to an integer,
+
+436
+00:21:19,840 --> 00:21:22,630
+am I suppose to get an
+integer back or a string back?
+
+437
+00:21:22,630 --> 00:21:24,480
+But again, if you just
+call str on a thing,
+
+438
+00:21:24,480 --> 00:21:27,240
+and it could in any possible
+world be converted into a string,
+
+439
+00:21:27,240 --> 00:21:30,390
+it will probably be
+converted into a string.
+
+440
+00:21:30,390 --> 00:21:33,120
+>> Here, we see use of
+nested list comprehension
+
+441
+00:21:33,120 --> 00:21:38,690
+on the left, some indexing, which
+is exactly as you'd be used to it,
+
+442
+00:21:38,690 --> 00:21:40,060
+and some printing out of things.
+
+443
+00:21:40,060 --> 00:21:42,560
+Again, we've defined some
+functions and we'll call them down
+
+444
+00:21:42,560 --> 00:21:45,820
+in main when we actually get the file.
+
+445
+00:21:45,820 --> 00:21:52,004
+return works exactly like you'd
+expect from working with C. Find,
+
+446
+00:21:52,004 --> 00:21:54,420
+we can set up things like
+this-- here's list comprehension
+
+447
+00:21:54,420 --> 00:21:59,245
+there's an assignment to a variable,
+and we can actually do it even easier.
+
+448
+00:21:59,245 --> 00:22:01,870
+We don't need to write search,
+because built-in to the language
+
+449
+00:22:01,870 --> 00:22:04,230
+is if this thing is in this array.
+
+450
+00:22:04,230 --> 00:22:05,680
+Return true, else return false.
+
+451
+00:22:05,680 --> 00:22:08,830
+So that's the entirety of find.
+
+452
+00:22:08,830 --> 00:22:12,230
+>> The entirety of sort
+involves calling sort,
+
+453
+00:22:12,230 --> 00:22:15,462
+which is-- there are implementations
+of this built into certain C libraries.
+
+454
+00:22:15,462 --> 00:22:17,170
+If you'd like this
+sort of backwards, you
+
+455
+00:22:17,170 --> 00:22:20,450
+can override this optional
+argument in reverse with a true.
+
+456
+00:22:20,450 --> 00:22:23,350
+
+457
+00:22:23,350 --> 00:22:27,860
+And if you'd like to sort over
+strings, that's built-in as well.
+
+458
+00:22:27,860 --> 00:22:31,950
+>> So this is not to say these are
+things that you need to do every day,
+
+459
+00:22:31,950 --> 00:22:34,280
+but the idea is that this
+is the philosophy of Python,
+
+460
+00:22:34,280 --> 00:22:37,530
+that all these things which you'd
+sort of want to do are built-in.
+
+461
+00:22:37,530 --> 00:22:42,410
+And most standard functions,
+so sort, length, whatever,
+
+462
+00:22:42,410 --> 00:22:44,380
+support most logically sensible input.
+
+463
+00:22:44,380 --> 00:22:49,020
+You call len on an array the same
+way you call len on a string.
+
+464
+00:22:49,020 --> 00:22:55,785
+You multiply-- you sort strings
+the same way you sort arrays.
+
+465
+00:22:55,785 --> 00:22:58,930
+
+466
+00:22:58,930 --> 00:23:00,740
+>> Most standard functions
+that people build,
+
+467
+00:23:00,740 --> 00:23:03,000
+and most third-party
+libraries that people
+
+468
+00:23:03,000 --> 00:23:06,980
+build, because they're emulating
+the design of the standard library,
+
+469
+00:23:06,980 --> 00:23:10,190
+can be called on everything that you're
+like, why doesn't this just work,
+
+470
+00:23:10,190 --> 00:23:12,800
+in C. More or less,
+it will work in Python
+
+471
+00:23:12,800 --> 00:23:15,930
+because people work behind to figure
+out what a thing is and then operate
+
+472
+00:23:15,930 --> 00:23:17,510
+appropriately on it.
+
+473
+00:23:17,510 --> 00:23:22,760
+So again, technical background, but it
+makes our lives easier as programmers.
+
+474
+00:23:22,760 --> 00:23:26,820
+>> So here's file I/O. file I/O has lots of
+little things that make it complicated,
+
+475
+00:23:26,820 --> 00:23:29,890
+and so there are resources
+online, but in a nutshell,
+
+476
+00:23:29,890 --> 00:23:33,010
+you call open on a file
+name with a particular type.
+
+477
+00:23:33,010 --> 00:23:37,640
+So that's read, read and
+write, write or append.
+
+478
+00:23:37,640 --> 00:23:41,790
+You read a certain number of
+characters out and you print those,
+
+479
+00:23:41,790 --> 00:23:42,595
+you'll get Hello!
+
+480
+00:23:42,595 --> 00:23:43,970
+I mean, like this file had Hello!
+
+481
+00:23:43,970 --> 00:23:46,480
+In it, call to read,
+and what you'll get back
+
+482
+00:23:46,480 --> 00:23:49,520
+is a string which has all
+of the rest of the array,
+
+483
+00:23:49,520 --> 00:23:50,860
+or all of the rest of the file.
+
+484
+00:23:50,860 --> 00:23:53,805
+
+485
+00:23:53,805 --> 00:23:56,055
+If you call read again,
+you're at the end of the file,
+
+486
+00:23:56,055 --> 00:23:58,138
+and so you don't get
+anything and so you'll close.
+
+487
+00:23:58,138 --> 00:24:02,510
+Again, this is .close rather than
+close file, as it would be in C.
+
+488
+00:24:02,510 --> 00:24:07,190
+This is more or less because f is a
+thing, and you'd like for f to close.
+
+489
+00:24:07,190 --> 00:24:12,092
+But basic file I/O is not
+particularly complicated.
+
+490
+00:24:12,092 --> 00:24:15,300
+Again, if you'd like to open a file, if
+you'd like to read a particular line,
+
+491
+00:24:15,300 --> 00:24:17,870
+you can get out of particular
+line-- there's built-ins for that.
+
+492
+00:24:17,870 --> 00:24:19,995
+If you'd like to write a
+thing, you can write this.
+
+493
+00:24:19,995 --> 00:24:23,412
+If you'd like to write out individual
+bites, you can write those.
+
+494
+00:24:23,412 --> 00:24:25,620
+And if you'd like to iterate
+over the lines of a file
+
+495
+00:24:25,620 --> 00:24:29,557
+individually, as we did in a piece from
+a few weeks ago, you can do that to.
+
+496
+00:24:29,557 --> 00:24:32,140
+Again, most objects that you'd
+like to be able to iterate over
+
+497
+00:24:32,140 --> 00:24:33,780
+support iterating over them.
+
+498
+00:24:33,780 --> 00:24:37,430
+In Pythons, a file is maybe a thing that
+I'd like to iterate over line by line.
+
+499
+00:24:37,430 --> 00:24:39,138
+If it was a dictionary
+of words and I was
+
+500
+00:24:39,138 --> 00:24:42,181
+trying to get those individual
+words out, then, within this loop,
+
+501
+00:24:42,181 --> 00:24:44,180
+line it's going to be
+each word in turn and this
+
+502
+00:24:44,180 --> 00:24:47,880
+is going to be executed for every line
+in the file until the end of the file.
+
+503
+00:24:47,880 --> 00:24:52,280
+And again, if I printed out each
+line, the lines come with new lines,
+
+504
+00:24:52,280 --> 00:24:54,740
+so I'm setting the end
+back to a thing like this.
+
+505
+00:24:54,740 --> 00:24:56,580
+Then I'd get the contents of my file.
+
+506
+00:24:56,580 --> 00:25:03,610
+
+507
+00:25:03,610 --> 00:25:07,480
+>> The second thing which operates in
+some ways like lists, and in some ways
+
+508
+00:25:07,480 --> 00:25:11,870
+as something substantially
+more powerful,
+
+509
+00:25:11,870 --> 00:25:16,170
+are dictionaries, which are really
+cool to use but are basically hash
+
+510
+00:25:16,170 --> 00:25:17,670
+tables in disguise.
+
+511
+00:25:17,670 --> 00:25:23,330
+You create one using exactly
+two characters, which is awesome
+
+512
+00:25:23,330 --> 00:25:25,959
+if you tried to implement the
+hash table for your problem set,
+
+513
+00:25:25,959 --> 00:25:27,250
+you know much pain that can be.
+
+514
+00:25:27,250 --> 00:25:29,390
+But people have done
+it, and done it so well,
+
+515
+00:25:29,390 --> 00:25:32,260
+that you don't have to
+worry about it anymore.
+
+516
+00:25:32,260 --> 00:25:35,180
+>> Then you can insert individual things.
+
+517
+00:25:35,180 --> 00:25:38,110
+Hash tables-- or dictionaries
+don't particularly
+
+518
+00:25:38,110 --> 00:25:40,240
+care what you're storing in them.
+
+519
+00:25:40,240 --> 00:25:44,210
+So if some entries are numbers,
+and some entries are lists,
+
+520
+00:25:44,210 --> 00:25:47,360
+if some entries are other dictionaries,
+and some entries are strings,
+
+521
+00:25:47,360 --> 00:25:49,930
+Python doesn't much care.
+
+522
+00:25:49,930 --> 00:25:53,460
+>> Again, if you go into it expecting
+a string and what you get back
+
+523
+00:25:53,460 --> 00:25:56,269
+is an array, that's your problem.
+
+524
+00:25:56,269 --> 00:25:58,810
+And maybe it's fault of whoever
+thought it was putting things
+
+525
+00:25:58,810 --> 00:26:00,476
+in the dictionary, maybe that was you.
+
+526
+00:26:00,476 --> 00:26:02,350
+If that was someone
+else, hopefully they were
+
+527
+00:26:02,350 --> 00:26:04,520
+well behaved about what
+was going in the dictionary
+
+528
+00:26:04,520 --> 00:26:07,420
+and didn't leave any pitfalls
+for you to fall into.
+
+529
+00:26:07,420 --> 00:26:10,890
+>> But the standard functions will
+give you back well-behaved things.
+
+530
+00:26:10,890 --> 00:26:13,500
+So they say this returns
+back a dictionary of strings,
+
+531
+00:26:13,500 --> 00:26:15,860
+then everything you're going
+to get out of is a string.
+
+532
+00:26:15,860 --> 00:26:20,710
+If you do some of this and it trips
+you up, well, that might be on you.
+
+533
+00:26:20,710 --> 00:26:25,542
+Python certainly gives you enough
+rope to hang yourself, if you'd like.
+
+534
+00:26:25,542 --> 00:26:28,250
+Now we can print out individual
+elements of this and this returns
+
+535
+00:26:28,250 --> 00:26:29,935
+exactly what you'd expect.
+
+536
+00:26:29,935 --> 00:26:32,810
+Exactly what you'd expect, I guess,
+is a phrase that I'm using a lot,
+
+537
+00:26:32,810 --> 00:26:35,070
+but that's more or
+less how Python works.
+
+538
+00:26:35,070 --> 00:26:39,880
+If you ask for a thing which isn't
+it, Python will throw out an error
+
+539
+00:26:39,880 --> 00:26:43,194
+and it will quit you out of
+whatever program you were in.
+
+540
+00:26:43,194 --> 00:26:45,360
+It'll actually print out
+more information than that,
+
+541
+00:26:45,360 --> 00:26:49,110
+it'll point you-- it'll
+add a line, and so.
+
+542
+00:26:49,110 --> 00:26:52,190
+>> And, again, maybe we want
+to iterate over dictionaries
+
+543
+00:26:52,190 --> 00:26:54,410
+and find all the things in it.
+
+544
+00:26:54,410 --> 00:26:57,440
+Here we are iterating over
+two things at the same time.
+
+545
+00:26:57,440 --> 00:27:03,040
+And so we'll do it with a key, value,
+but then print out all of these.
+
+546
+00:27:03,040 --> 00:27:06,300
+>> And if we wanted to cast--
+if we actually ran this,
+
+547
+00:27:06,300 --> 00:27:10,840
+we would have some trouble because
+on-- when we went in with David,
+
+548
+00:27:10,840 --> 00:27:13,920
+it couldn't add-- if we didn't
+cast it to a string first,
+
+549
+00:27:13,920 --> 00:27:17,802
+we couldn't add that array
+of strings onto a string.
+
+550
+00:27:17,802 --> 00:27:19,760
+But if we cast it to a
+string, we get something
+
+551
+00:27:19,760 --> 00:27:22,590
+like this, which is maybe
+what we'd like to read.
+
+552
+00:27:22,590 --> 00:27:27,000
+
+553
+00:27:27,000 --> 00:27:30,500
+>> And this is speller.
+
+554
+00:27:30,500 --> 00:27:32,460
+We just read in things.
+
+555
+00:27:32,460 --> 00:27:35,770
+So we can read in
+individual words as lines.
+
+556
+00:27:35,770 --> 00:27:38,240
+We chop off the last
+thing, so colon minus 1
+
+557
+00:27:38,240 --> 00:27:41,651
+chomps off the last thing that we--
+the last character of a string.
+
+558
+00:27:41,651 --> 00:27:42,150
+We'll say.
+
+559
+00:27:42,150 --> 00:27:44,730
+OK, each one of those gets
+inserted into this dictionary,
+
+560
+00:27:44,730 --> 00:27:45,810
+mapping to a value of 1.
+
+561
+00:27:45,810 --> 00:27:48,006
+We don't particularly
+care about that one,
+
+562
+00:27:48,006 --> 00:27:51,130
+but it's just there to say, oh well,
+this thing I'll put in the dictionary.
+
+563
+00:27:51,130 --> 00:27:53,182
+Because later what we're
+going to do is we're
+
+564
+00:27:53,182 --> 00:27:55,390
+going to say, well, if it's
+in the dictionary at all.
+
+565
+00:27:55,390 --> 00:27:57,650
+>> Again, this check for
+membership is up operating
+
+566
+00:27:57,650 --> 00:28:00,940
+using a completely different
+algorithm than it will in a list,
+
+567
+00:28:00,940 --> 00:28:05,709
+but we call it the same way, which
+is some of that Python sugar coating
+
+568
+00:28:05,709 --> 00:28:07,250
+things so that they're easier to use.
+
+569
+00:28:07,250 --> 00:28:10,230
+And again, we've seen
+things like this before.
+
+570
+00:28:10,230 --> 00:28:12,940
+This is basically find, or
+it's exactly the same syntax
+
+571
+00:28:12,940 --> 00:28:16,480
+as find, but is operating over a
+completely different structure.
+
+572
+00:28:16,480 --> 00:28:20,170
+And we don't particularly care.
+
+573
+00:28:20,170 --> 00:28:25,540
+So those are the things that you
+were asked to implement for speller.
+
+574
+00:28:25,540 --> 00:28:29,278
+At this rate, we're going to get
+more or less all of the psets done.
+
+575
+00:28:29,278 --> 00:28:31,474
+>> AUDIENCE: So that
+basically just comes back
+
+576
+00:28:31,474 --> 00:28:34,852
+as incorrectly spelled if it doesn't
+match something in the dictionary?
+
+577
+00:28:34,852 --> 00:28:36,060
+ROSS RHEINGANS-YOO: Yes, yes.
+
+578
+00:28:36,060 --> 00:28:38,964
+
+579
+00:28:38,964 --> 00:28:40,880
+And so, this is an
+adaptation of a problem set
+
+580
+00:28:40,880 --> 00:28:43,150
+which asks you to do exactly that.
+
+581
+00:28:43,150 --> 00:28:46,357
+>> AUDIENCE: Why is the line minus 1 there?
+
+582
+00:28:46,357 --> 00:28:48,190
+ROSS RHEINGANS-YOO: So
+when you're iterating
+
+583
+00:28:48,190 --> 00:28:50,300
+over a file asking for
+by lines, the lines
+
+584
+00:28:50,300 --> 00:28:53,900
+come with a new line character
+at the end of it-- the minus 1
+
+585
+00:28:53,900 --> 00:28:55,260
+is just to shop those off.
+
+586
+00:28:55,260 --> 00:28:59,549
+And this is a particularly flexible
+way of indexing into things.
+
+587
+00:28:59,549 --> 00:29:01,590
+So if you have a string,
+and you'd like, well I'm
+
+588
+00:29:01,590 --> 00:29:05,340
+going to start at character three
+and I'm going to go to the end.
+
+589
+00:29:05,340 --> 00:29:07,140
+3 colon will do that for you.
+
+590
+00:29:07,140 --> 00:29:10,570
+If you're like, I want to start at the
+beginning and go to the last minus 1
+
+591
+00:29:10,570 --> 00:29:12,400
+character, colon minus 1.
+
+592
+00:29:12,400 --> 00:29:14,940
+And if you wanted to go from
+the third to the minus first,
+
+593
+00:29:14,940 --> 00:29:16,570
+then you'd say 3 minus 1.
+
+594
+00:29:16,570 --> 00:29:19,464
+
+595
+00:29:19,464 --> 00:29:22,400
+>> Additionally, if you want to index
+into things counting from the back,
+
+596
+00:29:22,400 --> 00:29:24,470
+you just index in with minus numbers.
+
+597
+00:29:24,470 --> 00:29:26,980
+And because, where C
+would explode or maybe
+
+598
+00:29:26,980 --> 00:29:31,090
+feed you other memory you didn't have
+access to, hear you can say minus 1
+
+599
+00:29:31,090 --> 00:29:34,104
+means the last but 1
+character in a string.
+
+600
+00:29:34,104 --> 00:29:36,950
+
+601
+00:29:36,950 --> 00:29:43,590
+>> Modules are version-- are
+analogs to libraries in C
+
+602
+00:29:43,590 --> 00:29:45,119
+and are useful for a lot of things.
+
+603
+00:29:45,119 --> 00:29:46,910
+A lot of things you'd
+like to do in Python,
+
+604
+00:29:46,910 --> 00:29:50,040
+besides simple
+manipulation of variables,
+
+605
+00:29:50,040 --> 00:29:52,290
+you want to hook into the
+larger libraries with larger
+
+606
+00:29:52,290 --> 00:29:55,910
+interfaces and more
+capabilities for interacting
+
+607
+00:29:55,910 --> 00:29:57,195
+with other parts of the world.
+
+608
+00:29:57,195 --> 00:29:58,910
+sys is one of those
+with a bunch of tools
+
+609
+00:29:58,910 --> 00:30:01,159
+that are useful for interacting
+with the system itself
+
+610
+00:30:01,159 --> 00:30:05,050
+and will import it like import sys.
+
+611
+00:30:05,050 --> 00:30:07,820
+>> There's more documentation from
+that, which you could go here,
+
+612
+00:30:07,820 --> 00:30:11,490
+or you could find on Google
+by googling Python sys.
+
+613
+00:30:11,490 --> 00:30:12,640
+You type in enter.
+
+614
+00:30:12,640 --> 00:30:15,140
+The first link is going to be
+the documentation in Python 2,
+
+615
+00:30:15,140 --> 00:30:19,260
+the second link is going to
+be the documentation Python 3.
+
+616
+00:30:19,260 --> 00:30:24,830
+>> And if we wrote out a file that looked
+like this-- If in particular, we're
+
+617
+00:30:24,830 --> 00:30:27,910
+looking at operating on
+command line arguments,
+
+618
+00:30:27,910 --> 00:30:30,040
+like we learned to do very
+early on in this class.
+
+619
+00:30:30,040 --> 00:30:32,190
+This isn't difficult.
+You can get out argv,
+
+620
+00:30:32,190 --> 00:30:34,565
+which is one of those things
+which is implemented by sys.
+
+621
+00:30:34,565 --> 00:30:37,210
+It's not built-in to the
+base package, but again, you
+
+622
+00:30:37,210 --> 00:30:40,080
+can extend it by importing
+that functionality from sys.
+
+623
+00:30:40,080 --> 00:30:41,090
+You'll call it sys.
+
+624
+00:30:41,090 --> 00:30:42,611
+whatever.
+
+625
+00:30:42,611 --> 00:30:43,360
+Here there's argv.
+
+626
+00:30:43,360 --> 00:30:45,193
+There's actually no
+argc in sys, because you
+
+627
+00:30:45,193 --> 00:30:47,880
+can get it so easily by calling len.
+
+628
+00:30:47,880 --> 00:30:55,390
+We then printed that out, then we
+ran on our terminal echo-args.py.
+
+629
+00:30:55,390 --> 00:30:58,360
+We get back an array, which
+is this first argument.
+
+630
+00:30:58,360 --> 00:31:02,240
+Again, this is argv 0, which is the
+name of the thing that got called.
+
+631
+00:31:02,240 --> 00:31:04,870
+If we called it with additional
+arguments, we'd get those back.
+
+632
+00:31:04,870 --> 00:31:07,687
+
+633
+00:31:07,687 --> 00:31:09,770
+This is one way of getting
+command line arguments.
+
+634
+00:31:09,770 --> 00:31:13,440
+If you want flags where you turn
+particular things on or override
+
+635
+00:31:13,440 --> 00:31:16,050
+a particular default,
+argparse is your friend.
+
+636
+00:31:16,050 --> 00:31:21,550
+And again you find that online
+at python argparse at Google.
+
+637
+00:31:21,550 --> 00:31:24,300
+>> There are a couple of utility
+modules that you find yourself using
+
+638
+00:31:24,300 --> 00:31:27,630
+and again, if you spend any time
+of this language importing jsons
+
+639
+00:31:27,630 --> 00:31:33,300
+for reading in and out of json
+files, not that complicated.
+
+640
+00:31:33,300 --> 00:31:37,139
+You open up a file, you called json.load
+on that file and you get back a thing.
+
+641
+00:31:37,139 --> 00:31:37,930
+What is that thing?
+
+642
+00:31:37,930 --> 00:31:40,329
+It's a json object.
+
+643
+00:31:40,329 --> 00:31:42,370
+Where that json has array,
+the Python has arrays.
+
+644
+00:31:42,370 --> 00:31:44,420
+Where that json has
+associative arrays, Python's
+
+645
+00:31:44,420 --> 00:31:48,810
+dictionaries, strings,
+and numbers, and so on.
+
+646
+00:31:48,810 --> 00:31:53,560
+You want to dump that out, you
+open up a new file, you call dump,
+
+647
+00:31:53,560 --> 00:31:57,590
+and loads and dumps to
+go in and out of strings.
+
+648
+00:31:57,590 --> 00:32:02,120
+>> Similarly, pickle gets called
+in basically the same interface.
+
+649
+00:32:02,120 --> 00:32:04,740
+It's slightly more useful if
+you're dumping Python objects.
+
+650
+00:32:04,740 --> 00:32:08,370
+So if you've ever wanted to save
+a version of the current status
+
+651
+00:32:08,370 --> 00:32:11,930
+of a variable for a future
+run of your program,
+
+652
+00:32:11,930 --> 00:32:14,740
+pickle is Python's
+library for doing that.
+
+653
+00:32:14,740 --> 00:32:19,140
+>> If you have any sort of
+variable that can be written out
+
+654
+00:32:19,140 --> 00:32:21,990
+in like words and characters and
+bytes-- like this dictionary,
+
+655
+00:32:21,990 --> 00:32:24,230
+we could write down, we
+could write it down as
+
+656
+00:32:24,230 --> 00:32:26,670
+like a json object, which was
+literally these characters.
+
+657
+00:32:26,670 --> 00:32:29,420
+And then it would be very easy for
+a human to open it up-- open up
+
+658
+00:32:29,420 --> 00:32:30,889
+and read it.
+
+659
+00:32:30,889 --> 00:32:33,180
+If we didn't particularly
+care about humans reading it,
+
+660
+00:32:33,180 --> 00:32:38,490
+we could package even more efficiently
+into forms that could later be unpacked
+
+661
+00:32:38,490 --> 00:32:42,860
+or that could later be inflated.
+
+662
+00:32:42,860 --> 00:32:46,740
+And this saves 80% of the
+space that your objects might
+
+663
+00:32:46,740 --> 00:32:49,390
+take if you wrote them out longhand.
+
+664
+00:32:49,390 --> 00:32:52,384
+>> You call pickle very much
+the same way-- dump, load,
+
+665
+00:32:52,384 --> 00:32:53,800
+and then you get your things back.
+
+666
+00:32:53,800 --> 00:32:56,880
+So if you are writing very
+short Python programs that
+
+667
+00:32:56,880 --> 00:32:59,952
+want to save state, and then read
+them back later, things like this
+
+668
+00:32:59,952 --> 00:33:00,660
+are your friends.
+
+669
+00:33:00,660 --> 00:33:02,640
+That you could very
+easily dump them as json.
+
+670
+00:33:02,640 --> 00:33:04,550
+Most Python objects
+can dump out the json
+
+671
+00:33:04,550 --> 00:33:11,310
+if there's any hope that structurally
+they could be represented that way.
+
+672
+00:33:11,310 --> 00:33:14,410
+>> These are just the tip of the
+iceberg on modules that are useful.
+
+673
+00:33:14,410 --> 00:33:19,510
+So sys, os, multiprocessing, are
+sort of basic workhorses for things
+
+674
+00:33:19,510 --> 00:33:23,120
+we need to interact with
+the file system os.,
+
+675
+00:33:23,120 --> 00:33:28,764
+like os.isfile, os.isdirectory,
+os.makefile, these are your friends.
+
+676
+00:33:28,764 --> 00:33:30,930
+If you want to interact
+with a particular file type,
+
+677
+00:33:30,930 --> 00:33:32,190
+json, pickle, csv.
+
+678
+00:33:32,190 --> 00:33:37,160
+If you want to interact with web
+pages, the urllib for getting http
+
+679
+00:33:37,160 --> 00:33:41,370
+pages. bs4-- BeautifulSoup--
+it's a wonderful parser for html.
+
+680
+00:33:41,370 --> 00:33:47,047
+You run it on an html and you
+get this nested array object now,
+
+681
+00:33:47,047 --> 00:33:49,630
+which you can traverse over
+lookin, with like just looking for
+
+682
+00:33:49,630 --> 00:33:52,380
+if, is, in, which is fantastic.
+
+683
+00:33:52,380 --> 00:33:55,920
+>> There's a bunch of
+packages for running--
+
+684
+00:33:55,920 --> 00:33:57,960
+for doing particularly mathy things.
+
+685
+00:33:57,960 --> 00:34:01,790
+So if you want to multiply,
+invert, transform matrices,
+
+686
+00:34:01,790 --> 00:34:05,690
+numpy is used by people all
+over the world for that.
+
+687
+00:34:05,690 --> 00:34:09,620
+scipy is even more useful
+tools in that direction.
+
+688
+00:34:09,620 --> 00:34:13,980
+sklearn-- machine learning,
+natural language processing,
+
+689
+00:34:13,980 --> 00:34:17,880
+super useful stuff, gets
+implemented in Python all the time.
+
+690
+00:34:17,880 --> 00:34:21,469
+>> And again, takes slightly
+longer to write-- sorry,
+
+691
+00:34:21,469 --> 00:34:26,199
+takes slightly longer to run, but
+the reason that real engineers tend
+
+692
+00:34:26,199 --> 00:34:29,900
+use Python is because you tend to be
+blocked on you writing the code, rather
+
+693
+00:34:29,900 --> 00:34:32,699
+than your computer running the code.
+
+694
+00:34:32,699 --> 00:34:35,860
+So if you're going to write a
+program, which lots of other people
+
+695
+00:34:35,860 --> 00:34:37,699
+are going to use
+forever, like Linux, you
+
+696
+00:34:37,699 --> 00:34:41,900
+might write it in C. If you were
+going to write a computation engine,
+
+697
+00:34:41,900 --> 00:34:46,124
+you might write in Python if you needed
+to change it every couple months.
+
+698
+00:34:46,124 --> 00:34:48,540
+Some people would write it in
+C because they're like that.
+
+699
+00:34:48,540 --> 00:34:51,100
+
+700
+00:34:51,100 --> 00:34:54,050
+>> So we've seen import sys
+as a way of getting things
+
+701
+00:34:54,050 --> 00:34:57,070
+of getting module into your program.
+
+702
+00:34:57,070 --> 00:35:00,370
+You can also import it as
+a nickname, if you'd like.
+
+703
+00:35:00,370 --> 00:35:03,660
+Again multiprocessing is a pain to
+type out every time, so import as mp
+
+704
+00:35:03,660 --> 00:35:05,900
+and then anytime you
+use it in the program,
+
+705
+00:35:05,900 --> 00:35:09,732
+you'll say mp.process, or what have you.
+
+706
+00:35:09,732 --> 00:35:12,670
+If you'd like import
+only a single thing,
+
+707
+00:35:12,670 --> 00:35:19,450
+so urllib has a thing called
+request, so you can just import that.
+
+708
+00:35:19,450 --> 00:35:22,610
+Later on, you won't invoke it as
+urllib.request, but just as request
+
+709
+00:35:22,610 --> 00:35:24,590
+by itself.
+
+710
+00:35:24,590 --> 00:35:30,110
+>> And you can import everything
+from a module if you'd like.
+
+711
+00:35:30,110 --> 00:35:34,820
+This is occasionally not a good idea--
+this usually not a good idea, actually.
+
+712
+00:35:34,820 --> 00:35:39,080
+Because you very-- because if anything
+in that module has a name that you
+
+713
+00:35:39,080 --> 00:35:41,640
+wanted to use somewhere else
+in your program, you can't.
+
+714
+00:35:41,640 --> 00:35:44,127
+>> And it is not always obvious
+that that's the case.
+
+715
+00:35:44,127 --> 00:35:46,460
+In order to make sure that
+what you were doing was safe,
+
+716
+00:35:46,460 --> 00:35:47,920
+you need to open up
+the module and see all
+
+717
+00:35:47,920 --> 00:35:50,295
+of the names that end up in
+there-- all of the functions,
+
+718
+00:35:50,295 --> 00:35:53,010
+all of the variables
+that live in that module,
+
+719
+00:35:53,010 --> 00:35:57,040
+because you're bringing all of
+them into your local namespace.
+
+720
+00:35:57,040 --> 00:35:58,680
+>> So people do this.
+
+721
+00:35:58,680 --> 00:36:01,322
+It is generally recommended
+that you don't do this.
+
+722
+00:36:01,322 --> 00:36:03,280
+But people do this all
+the time because they're
+
+723
+00:36:03,280 --> 00:36:05,180
+lazy and don't want to type out mp.
+
+724
+00:36:05,180 --> 00:36:06,310
+anything, ever.
+
+725
+00:36:06,310 --> 00:36:09,560
+
+726
+00:36:09,560 --> 00:36:13,310
+>> All this talk about modules
+bring me around to a short talk
+
+727
+00:36:13,310 --> 00:36:15,930
+on how you design programs in Python.
+
+728
+00:36:15,930 --> 00:36:19,860
+The first step is to check to see if
+anyone else has already done the thing,
+
+729
+00:36:19,860 --> 00:36:22,160
+or done 90% of the thing.
+
+730
+00:36:22,160 --> 00:36:26,010
+Chances are they probably have, and you
+should go get their thing and run that.
+
+731
+00:36:26,010 --> 00:36:28,900
+Or write a wrapper around it
+to adapt it to your purpose.
+
+732
+00:36:28,900 --> 00:36:31,250
+It's only after that has
+failed that you'd then
+
+733
+00:36:31,250 --> 00:36:35,529
+go on and write-- begin thinking about
+how you would put this thing together.
+
+734
+00:36:35,529 --> 00:36:37,320
+There's lots of stuff
+out there, and that's
+
+735
+00:36:37,320 --> 00:36:39,180
+one of the most useful
+things about Python.
+
+736
+00:36:39,180 --> 00:36:40,930
+Like the language is
+elegant, the language
+
+737
+00:36:40,930 --> 00:36:43,800
+is easy to use, but also because
+it's so elegant and easy to use,
+
+738
+00:36:43,800 --> 00:36:47,420
+people have been using it for a
+long time and there's a lot of stuff
+
+739
+00:36:47,420 --> 00:36:52,520
+out there that you can
+harness for your own use.
+
+740
+00:36:52,520 --> 00:36:58,457
+>> So last rule of Python is, somebody
+else has already probably written
+
+741
+00:36:58,457 --> 00:37:00,290
+a module for that,
+somebody else has already
+
+742
+00:37:00,290 --> 00:37:02,980
+probably written a library for that.
+
+743
+00:37:02,980 --> 00:37:06,579
+Before you try to do a thing, look
+to see if it's been implemented.
+
+744
+00:37:06,579 --> 00:37:07,370
+It's not that hard.
+
+745
+00:37:07,370 --> 00:37:11,960
+All of the modules that I put up
+before, with perhaps one exception,
+
+746
+00:37:11,960 --> 00:37:15,220
+come pre-installed in every
+standard Python installation.
+
+747
+00:37:15,220 --> 00:37:17,769
+And so with a call to
+import whatever, you
+
+748
+00:37:17,769 --> 00:37:19,852
+have all of that functionality
+at your fingertips.
+
+749
+00:37:19,852 --> 00:37:24,660
+
+750
+00:37:24,660 --> 00:37:28,920
+>> Beginning to wrap up this
+talk, there are a few things
+
+751
+00:37:28,920 --> 00:37:32,770
+that I've left as black boxes
+and sort of glossed over,
+
+752
+00:37:32,770 --> 00:37:37,217
+and there's a few white lies that I've
+told that for the sake of honesty,
+
+753
+00:37:37,217 --> 00:37:39,050
+I'll at least point at
+here, even if I won't
+
+754
+00:37:39,050 --> 00:37:43,980
+go super deep into all of them
+and their technical explanations.
+
+755
+00:37:43,980 --> 00:37:46,010
+>> A lot of the things
+that I've called magic
+
+756
+00:37:46,010 --> 00:37:48,980
+is what other people would call
+object oriented programming.
+
+757
+00:37:48,980 --> 00:37:52,470
+So there are lots of things--
+so variables are very often not
+
+758
+00:37:52,470 --> 00:37:56,540
+simple bytes sitting in,
+memory, but are very complicated
+
+759
+00:37:56,540 --> 00:38:01,910
+objects that have internal
+state about functions and lots
+
+760
+00:38:01,910 --> 00:38:05,570
+of hidden variables, lots of
+hidden functionality, which
+
+761
+00:38:05,570 --> 00:38:09,480
+lets you turn them into strings,
+which lets you iterate over them.
+
+762
+00:38:09,480 --> 00:38:12,260
+And if you're writing--
+and the reason that they
+
+763
+00:38:12,260 --> 00:38:15,710
+have all of this rich functionality
+is because the people--
+
+764
+00:38:15,710 --> 00:38:17,740
+the architects of the
+language-- have gone
+
+765
+00:38:17,740 --> 00:38:22,420
+through and for every standard
+object, put in the functionality
+
+766
+00:38:22,420 --> 00:38:26,970
+to say this is how this is
+how this is going to operate
+
+767
+00:38:26,970 --> 00:38:28,470
+if someone wants to iterate over it.
+
+768
+00:38:28,470 --> 00:38:31,240
+>> So everything that somebody might
+possibly want to iterate over,
+
+769
+00:38:31,240 --> 00:38:34,529
+has logic written in
+manually on how you're
+
+770
+00:38:34,529 --> 00:38:36,070
+supposed to iterate over that object.
+
+771
+00:38:36,070 --> 00:38:40,274
+Everything that you might possibly want
+dumped into a string has logic written.
+
+772
+00:38:40,274 --> 00:38:43,440
+This is the function that you call if
+you want to dump this out to a string.
+
+773
+00:38:43,440 --> 00:38:45,273
+This is why you can
+call len on things, this
+
+774
+00:38:45,273 --> 00:38:49,900
+is why you can call for in, this is
+why you can call if in on everything
+
+775
+00:38:49,900 --> 00:38:53,490
+that you'd want to, because
+those all are carrying with them,
+
+776
+00:38:53,490 --> 00:38:55,380
+the technical know-how to do that.
+
+777
+00:38:55,380 --> 00:38:58,170
+
+778
+00:38:58,170 --> 00:39:00,432
+>> This is something that I'm
+super not going to go into.
+
+779
+00:39:00,432 --> 00:39:03,140
+But for thing in list is subtly
+different from C style for loops,
+
+780
+00:39:03,140 --> 00:39:06,160
+and you can read all about that on
+the internet if you're interested.
+
+781
+00:39:06,160 --> 00:39:08,930
+There is a dark side to all
+of this, that I mentioned,
+
+782
+00:39:08,930 --> 00:39:10,359
+so there's two things.
+
+783
+00:39:10,359 --> 00:39:13,400
+The first is that this object oriented
+programming adds a lot of overhead
+
+784
+00:39:13,400 --> 00:39:16,080
+to random things, so you end
+up using a lot more memory;
+
+785
+00:39:16,080 --> 00:39:18,640
+you end up using a little more
+time than you would otherwise.
+
+786
+00:39:18,640 --> 00:39:21,300
+The other-- but the more
+insidious dark side to this
+
+787
+00:39:21,300 --> 00:39:24,047
+is, if things just act
+like you want them to
+
+788
+00:39:24,047 --> 00:39:27,130
+without you having to think super hard
+about whether this should be an int
+
+789
+00:39:27,130 --> 00:39:29,713
+or whether there should be a
+float, it might be that over here
+
+790
+00:39:29,713 --> 00:39:34,240
+you produce an int but over here you
+think but they'll always-- sorry,
+
+791
+00:39:34,240 --> 00:39:36,555
+it might be that here
+you produce a float,
+
+792
+00:39:36,555 --> 00:39:39,430
+but when you get to the second part
+of your program, you're thinking,
+
+793
+00:39:39,430 --> 00:39:41,150
+oh well, but they'll
+always pass me an int.
+
+794
+00:39:41,150 --> 00:39:43,608
+And if they don't, it's possible
+that you wedged somewhere,
+
+795
+00:39:43,608 --> 00:39:47,600
+if you try to use that to index
+into an array, or what have you.
+
+796
+00:39:47,600 --> 00:39:51,050
+>> So one of the real
+useful things about C is
+
+797
+00:39:51,050 --> 00:39:54,219
+it forces you to think really
+hard before you make any--
+
+798
+00:39:54,219 --> 00:39:56,510
+before you bring any variable
+into existence, like what
+
+799
+00:39:56,510 --> 00:39:58,764
+is the type of this variable.
+
+800
+00:39:58,764 --> 00:40:00,680
+And it's going to have
+that type for all time.
+
+801
+00:40:00,680 --> 00:40:02,410
+>> This is not true
+Python, and in fact, you
+
+802
+00:40:02,410 --> 00:40:04,740
+can-- if you're just
+sort of going by ear,
+
+803
+00:40:04,740 --> 00:40:07,690
+and you make some decisions
+one way in one place,
+
+804
+00:40:07,690 --> 00:40:09,870
+and some decisions one
+way in the other place
+
+805
+00:40:09,870 --> 00:40:12,960
+without putting enough stuff behind
+the scenes in the other place
+
+806
+00:40:12,960 --> 00:40:16,170
+to catch things properly, you
+can get some very strange errors.
+
+807
+00:40:16,170 --> 00:40:19,200
+And the program can keep running
+for a very long time, because it's
+
+808
+00:40:19,200 --> 00:40:23,200
+doing a lot of work to say, well
+this thing could operate this way,
+
+809
+00:40:23,200 --> 00:40:25,070
+so I'm going to run that way.
+
+810
+00:40:25,070 --> 00:40:30,300
+>> And in fact, the fact that it pushes
+forward through a lot of small errors
+
+811
+00:40:30,300 --> 00:40:33,260
+means that, often when
+an error is actually bad
+
+812
+00:40:33,260 --> 00:40:38,720
+and you do actually want to fix it,
+it ends up miles away-- the program
+
+813
+00:40:38,720 --> 00:40:41,780
+ends up stopping miles away
+from when you had your error.
+
+814
+00:40:41,780 --> 00:40:46,590
+And so one thing that we would like
+programs to do, sometimes-- one thing
+
+815
+00:40:46,590 --> 00:40:48,910
+that we would like programs
+to do when we're debugging
+
+816
+00:40:48,910 --> 00:40:54,160
+is fail loudly and fail very
+quickly when something goes wrong.
+
+817
+00:40:54,160 --> 00:40:55,510
+>> Python is very bad at that.
+
+818
+00:40:55,510 --> 00:40:58,820
+Python is very good at not
+failing and rolling forward
+
+819
+00:40:58,820 --> 00:41:00,320
+through unexpected things.
+
+820
+00:41:00,320 --> 00:41:02,820
+So this is useful for when
+you're writing small programs.
+
+821
+00:41:02,820 --> 00:41:07,110
+When you get complicated
+bugs it sometimes
+
+822
+00:41:07,110 --> 00:41:09,300
+takes a long time to tease them out.
+
+823
+00:41:09,300 --> 00:41:12,210
+>> So there's a dark side to all
+of this, like it just works.
+
+824
+00:41:12,210 --> 00:41:13,860
+It just works like you'd expect it to.
+
+825
+00:41:13,860 --> 00:41:18,320
+Except that when it doesn't, you end
+up in a completely different place
+
+826
+00:41:18,320 --> 00:41:21,530
+and trying to figure out where
+it was that you went wrong.
+
+827
+00:41:21,530 --> 00:41:25,180
+>> Garbage collection is-- so
+one thing that you will notice
+
+828
+00:41:25,180 --> 00:41:28,110
+is that any of these things that
+I've brought into existence--
+
+829
+00:41:28,110 --> 00:41:34,114
+these arrays, these dictionaries, these
+objects, these files-- never get freed.
+
+830
+00:41:34,114 --> 00:41:36,030
+There was no call to
+free in any of this talk.
+
+831
+00:41:36,030 --> 00:41:40,340
+And that was on the C-side, because
+we never got into those things.
+
+832
+00:41:40,340 --> 00:41:42,220
+>> But in Python-side, there isn't a free.
+
+833
+00:41:42,220 --> 00:41:43,970
+Things get automatically
+freed when Python
+
+834
+00:41:43,970 --> 00:41:45,386
+thinks you're not looking at them.
+
+835
+00:41:45,386 --> 00:41:49,640
+It's really good not freeing things that
+you might still possibly be looking at,
+
+836
+00:41:49,640 --> 00:41:54,262
+but this means that if you were
+going to allocate this big thing,
+
+837
+00:41:54,262 --> 00:41:55,970
+and you're like, oh
+I'm done with it now,
+
+838
+00:41:55,970 --> 00:42:00,360
+it's difficult to tell Python
+that you're done with it now.
+
+839
+00:42:00,360 --> 00:42:02,986
+>> You can sometimes set
+that variable to be none,
+
+840
+00:42:02,986 --> 00:42:05,110
+and then hope that eventually
+the garbage collector
+
+841
+00:42:05,110 --> 00:42:06,720
+comes through and cleans it out.
+
+842
+00:42:06,720 --> 00:42:10,177
+But again, you don't
+have control over that.
+
+843
+00:42:10,177 --> 00:42:13,510
+And one of the reasons that people use C
+for really performance critical things,
+
+844
+00:42:13,510 --> 00:42:16,570
+is this ability to really
+know when memory is allocated
+
+845
+00:42:16,570 --> 00:42:19,369
+and when it's freed, and have
+a lot of control over saying,
+
+846
+00:42:19,369 --> 00:42:20,910
+I'm using no more memory than I need.
+
+847
+00:42:20,910 --> 00:42:23,632
+Which is something that
+Python is not that great at.
+
+848
+00:42:23,632 --> 00:42:25,090
+AUDIENCE: Can I ask you a question?
+
+849
+00:42:25,090 --> 00:42:29,800
+What did you mean by fail loudly?
+
+850
+00:42:29,800 --> 00:42:32,070
+>> ROSS RHEINGANS-YOO: So if
+something's going wrong
+
+851
+00:42:32,070 --> 00:42:34,950
+and you're in debugging
+mode, you would very often
+
+852
+00:42:34,950 --> 00:42:38,510
+want your program to tell you
+where exactly it's gone wrong,
+
+853
+00:42:38,510 --> 00:42:42,360
+and not just quietly stop running.
+
+854
+00:42:42,360 --> 00:42:45,085
+But you'd actually it to print
+out all sorts of information about
+
+855
+00:42:45,085 --> 00:42:46,972
+like, here was this.
+
+856
+00:42:46,972 --> 00:42:53,957
+This thing happened If you're printing
+a wen-- if you're running a web server--
+
+857
+00:42:53,957 --> 00:42:55,390
+>> AUDIENCE: [INAUDIBLE]
+
+858
+00:42:55,390 --> 00:42:59,800
+>> ROSS RHEINGANS-YOO: Yeah, if
+you're running a web server,
+
+859
+00:42:59,800 --> 00:43:02,680
+it's sometimes bad if you're
+always discarding errors,
+
+860
+00:43:02,680 --> 00:43:04,530
+and you're saying,
+well that didn't work.
+
+861
+00:43:04,530 --> 00:43:05,300
+I'm going to stop.
+
+862
+00:43:05,300 --> 00:43:07,680
+I'm just going to ignore
+it and keep going on.
+
+863
+00:43:07,680 --> 00:43:11,260
+Because then you can get in hundreds
+of these errors and not see them.
+
+864
+00:43:11,260 --> 00:43:13,910
+>> It would certainly be useful
+for debugging purposes
+
+865
+00:43:13,910 --> 00:43:20,327
+if every time your web server made an
+error, you had durable records of that.
+
+866
+00:43:20,327 --> 00:43:22,910
+Maybe you even want the program
+to stop, so that those records
+
+867
+00:43:22,910 --> 00:43:25,471
+don't get buried under things.
+
+868
+00:43:25,471 --> 00:43:26,970
+But again, that's in debugging mode.
+
+869
+00:43:26,970 --> 00:43:31,280
+>> Often in production mode, the
+world is a little different.
+
+870
+00:43:31,280 --> 00:43:36,380
+And in tiny scripts that I'm running,
+where the thing that I said to do
+
+871
+00:43:36,380 --> 00:43:40,680
+might be only a little bit off
+from what I would like it to do,
+
+872
+00:43:40,680 --> 00:43:44,010
+then sort of pushing through
+errors is something you might want.
+
+873
+00:43:44,010 --> 00:43:49,410
+And in those cases, certainly
+Python really earns its starts.
+
+874
+00:43:49,410 --> 00:43:54,617
+>> The last thing that I didn't talk
+in this-- that I didn't talk about
+
+875
+00:43:54,617 --> 00:43:57,700
+but can be really infuriating the first
+time you have one of these errors,
+
+876
+00:43:57,700 --> 00:44:00,491
+and the second and third and fourth
+time you have one these errors.
+
+877
+00:44:00,491 --> 00:44:03,490
+Python, I mentioned
+that it uses white space
+
+878
+00:44:03,490 --> 00:44:06,700
+to tell you what level of indentation
+and what functional block you're in,
+
+879
+00:44:06,700 --> 00:44:08,840
+it treats tabs and spaces differently.
+
+880
+00:44:08,840 --> 00:44:12,780
+So if you tab over four, and then
+the next line has four spaces,
+
+881
+00:44:12,780 --> 00:44:16,910
+even if they show up as the
+same amount in your editor,
+
+882
+00:44:16,910 --> 00:44:20,160
+Python doesn't treat them the same.
+
+883
+00:44:20,160 --> 00:44:23,610
+>> In fact, Python treats tabs
+and spaces like oil and water.
+
+884
+00:44:23,610 --> 00:44:25,050
+They are just different things.
+
+885
+00:44:25,050 --> 00:44:27,264
+There is no particular
+length that a tab is,
+
+886
+00:44:27,264 --> 00:44:30,180
+so it's not like a tab equals 8
+spaces, and so you would get around it
+
+887
+00:44:30,180 --> 00:44:30,860
+that way.
+
+888
+00:44:30,860 --> 00:44:34,110
+Like, when it says, what
+level of white space I'm at,
+
+889
+00:44:34,110 --> 00:44:37,240
+it is actually looking for a
+pattern of spaces and tabs.
+
+890
+00:44:37,240 --> 00:44:43,050
+And so, the best way to deal with this
+is to always use spaces all the time.
+
+891
+00:44:43,050 --> 00:44:47,510
+>> And in fact, in the Cloud9
+IDE and the CS50 IDE,
+
+892
+00:44:47,510 --> 00:44:50,610
+your Tab key inserts
+four spaces in instead
+
+893
+00:44:50,610 --> 00:44:53,800
+of a tab, which is super useful.
+
+894
+00:44:53,800 --> 00:44:57,074
+Though again, if you wrote a Python
+program with tabs that would be fine,
+
+895
+00:44:57,074 --> 00:44:58,990
+it's just if somebody
+went in and tried to add
+
+896
+00:44:58,990 --> 00:45:02,655
+a single line to your program that
+had four spaces for every tab,
+
+897
+00:45:02,655 --> 00:45:03,280
+it would break.
+
+898
+00:45:03,280 --> 00:45:07,800
+And it would break in a way
+that really isn't visible.
+
+899
+00:45:07,800 --> 00:45:12,390
+Though the actual error
+message that it throws
+
+900
+00:45:12,390 --> 00:45:15,610
+has to do with new
+indent not expected here,
+
+901
+00:45:15,610 --> 00:45:18,700
+or-- if it's talking about indents
+and it looks like it's wrong,
+
+902
+00:45:18,700 --> 00:45:22,090
+it's probably because
+there's a tab-space problem.
+
+903
+00:45:22,090 --> 00:45:24,154
+They're still infuriating to debug.
+
+904
+00:45:24,154 --> 00:45:26,070
+The biggest whole in
+this talk, which I didn't
+
+905
+00:45:26,070 --> 00:45:29,740
+get to because it's really
+a complicated, subtle topic,
+
+906
+00:45:29,740 --> 00:45:34,760
+and wasn't necessary to do any
+of the things we've done so far,
+
+907
+00:45:34,760 --> 00:45:37,140
+are a concept called tuples.
+
+908
+00:45:37,140 --> 00:45:41,280
+They are there much like the
+arrays that you can't modify.
+
+909
+00:45:41,280 --> 00:45:44,700
+They get used all over the place because
+they are useful for lots of things
+
+910
+00:45:44,700 --> 00:45:46,300
+that arrays are not useful for.
+
+911
+00:45:46,300 --> 00:45:49,890
+>> But if you'd like to make an array, and
+then promise the interpreter that you
+
+912
+00:45:49,890 --> 00:45:53,140
+are never going to want to modify that
+thing-- in fact, if you want to modify,
+
+913
+00:45:53,140 --> 00:45:56,800
+you'll make a new one with the new
+values in it-- those are tuples.
+
+914
+00:45:56,800 --> 00:45:58,800
+Rather than producing
+them with square brackets,
+
+915
+00:45:58,800 --> 00:46:00,341
+you produce them with round brackets.
+
+916
+00:46:00,341 --> 00:46:05,074
+Why you would use these things,
+is a little bit of a question. .
+
+917
+00:46:05,074 --> 00:46:06,990
+The only thing that I'll
+say about that is you
+
+918
+00:46:06,990 --> 00:46:10,680
+can use tuples as
+indices for dictionaries.
+
+919
+00:46:10,680 --> 00:46:15,010
+You can't use arrays as
+indices for dictionaries.
+
+920
+00:46:15,010 --> 00:46:18,970
+And why is, again, technical and
+I'm not going to run into it.
+
+921
+00:46:18,970 --> 00:46:23,140
+>> The pset that I haven't touched
+on in this talk is pset6.
+
+922
+00:46:23,140 --> 00:46:25,837
+So here's how you 'd
+implement a-- here's
+
+923
+00:46:25,837 --> 00:46:28,140
+how you would implement pset6 in Python.
+
+924
+00:46:28,140 --> 00:46:32,680
+Keeping in mind the Python
+design cycle, the first thing
+
+925
+00:46:32,680 --> 00:46:34,760
+that you do when you're
+writing programs is check
+
+926
+00:46:34,760 --> 00:46:38,030
+to see if somebody's done it already.
+
+927
+00:46:38,030 --> 00:46:42,152
+>> In fact, if you want
+to serve-- Apache 50
+
+928
+00:46:42,152 --> 00:46:44,110
+does approximately this,
+except it doesn't come
+
+929
+00:46:44,110 --> 00:46:45,840
+standard installed on Linux machines.
+
+930
+00:46:45,840 --> 00:46:50,490
+Python does, and the Python
+simple http server does as well.
+
+931
+00:46:50,490 --> 00:46:54,717
+If you're ever on a Linux machine,
+or the Cloud9 IDE outside of CS50
+
+932
+00:46:54,717 --> 00:46:57,550
+and you'd like to serve this current
+directory to a particular port,
+
+933
+00:46:57,550 --> 00:47:04,610
+python-m SimpleHTTPServer
+port serves that.
+
+934
+00:47:04,610 --> 00:47:07,190
+You can also import
+the simple http server
+
+935
+00:47:07,190 --> 00:47:11,240
+and it's got a lot of functionality if
+you want to customize it, or change it,
+
+936
+00:47:11,240 --> 00:47:15,860
+or are run it-- harness it to
+run your own server services.
+
+937
+00:47:15,860 --> 00:47:18,032
+>> So that's Python in a nutshell.
+
+938
+00:47:18,032 --> 00:47:20,280
+And this has been CS50.
+
+939
+00:47:20,280 --> 00:47:21,980
+Thank you.
+
+940
+00:47:21,980 --> 00:47:23,468

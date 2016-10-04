@@ -1,0 +1,4545 @@
+1
+00:00:00,000 --> 00:00:10,982
+
+2
+00:00:10,982 --> 00:00:11,940
+DAVID MALAN: All right.
+
+3
+00:00:11,940 --> 00:00:16,470
+So this is CS50, and this is
+now the start of week three.
+
+4
+00:00:16,470 --> 00:00:19,960
+>> So up until now, we've
+been writing programs in C
+
+5
+00:00:19,960 --> 00:00:23,210
+that look a little
+something like this here.
+
+6
+00:00:23,210 --> 00:00:25,470
+So we've got a couple of
+sharp includes at the top.
+
+7
+00:00:25,470 --> 00:00:28,490
+We've got int, main, void, and
+then something to do in the middle,
+
+8
+00:00:28,490 --> 00:00:30,590
+some bit of code inside
+of that function.
+
+9
+00:00:30,590 --> 00:00:34,170
+But key has been the fact that
+we've been saying void here.
+
+10
+00:00:34,170 --> 00:00:39,320
+So void, all of this time, specifies
+that this program, when run,
+
+11
+00:00:39,320 --> 00:00:41,300
+can only be run via its name.
+
+12
+00:00:41,300 --> 00:00:46,330
+You cannot type any other words or
+numbers after the program's name when
+
+13
+00:00:46,330 --> 00:00:46,830
+running it.
+
+14
+00:00:46,830 --> 00:00:51,200
+So, for instance, if the program were
+compiled into a file called hello,
+
+15
+00:00:51,200 --> 00:00:53,480
+you could do ./hello, but that is it.
+
+16
+00:00:53,480 --> 00:00:56,750
+>> The only way that you could
+provide input to this program
+
+17
+00:00:56,750 --> 00:00:57,960
+is by calling a function.
+
+18
+00:00:57,960 --> 00:00:59,790
+For instance, what function
+have we been using thus far
+
+19
+00:00:59,790 --> 00:01:00,950
+to get input from the user?
+
+20
+00:01:00,950 --> 00:01:02,117
+>> AUDIENCE: Get string.
+
+21
+00:01:02,117 --> 00:01:04,700
+DAVID MALAN: To get string, or
+get int, or you've seen others,
+
+22
+00:01:04,700 --> 00:01:07,630
+even if you haven't used them yet,
+like get long, long and the like.
+
+23
+00:01:07,630 --> 00:01:09,380
+But suppose that we
+actually want to start
+
+24
+00:01:09,380 --> 00:01:12,760
+writing programs that are little more
+versatile, and, frankly, a little more
+
+25
+00:01:12,760 --> 00:01:15,090
+like the commands that you've
+been getting, hopefully,
+
+26
+00:01:15,090 --> 00:01:16,550
+a little bit accustomed to.
+
+27
+00:01:16,550 --> 00:01:18,560
+Like cd space Dropbox.
+
+28
+00:01:18,560 --> 00:01:20,800
+This, of course, changes
+your directory, assuming
+
+29
+00:01:20,800 --> 00:01:23,590
+you're in John Harvard's home
+directory, to your Dropbox folder.
+
+30
+00:01:23,590 --> 00:01:27,380
+Meanwhile, a command like this
+creates a new directory called pset2,
+
+31
+00:01:27,380 --> 00:01:30,290
+as you might have already or
+will soon for problem set two.
+
+32
+00:01:30,290 --> 00:01:33,970
+Make Hello, of course, is a command
+that builds a program called hello
+
+33
+00:01:33,970 --> 00:01:35,770
+from a file called hello dot c.
+
+34
+00:01:35,770 --> 00:01:39,140
+And in each of these
+cases, now, we've had
+
+35
+00:01:39,140 --> 00:01:43,620
+provide an argument on the so-called
+command line, the blinking prompt,
+
+36
+00:01:43,620 --> 00:01:48,540
+so that make knows what to build, and so
+that mkdir knows what folder to create,
+
+37
+00:01:48,540 --> 00:01:51,110
+and so that cd knows
+where you want to go.
+
+38
+00:01:51,110 --> 00:01:54,720
+But up until now, we keep saying
+that main, your default function,
+
+39
+00:01:54,720 --> 00:01:58,500
+has a void expression
+inside of those parentheses,
+
+40
+00:01:58,500 --> 00:02:01,250
+which means that it
+cannot take any arguments.
+
+41
+00:02:01,250 --> 00:02:03,240
+>> So starting today,
+what we're going to do
+
+42
+00:02:03,240 --> 00:02:06,270
+is, we're going to start
+supporting things like this even.
+
+43
+00:02:06,270 --> 00:02:08,990
+In fact, in this case, which you
+don't typically manually type,
+
+44
+00:02:08,990 --> 00:02:11,130
+Make has been doing this
+for us, there are not
+
+45
+00:02:11,130 --> 00:02:15,840
+one but one, two, three additional
+strings after the program's named
+
+46
+00:02:15,840 --> 00:02:16,850
+clang.
+
+47
+00:02:16,850 --> 00:02:18,240
+So how do we achieve this?
+
+48
+00:02:18,240 --> 00:02:20,260
+>> Well, starting today,
+in cases where we want
+
+49
+00:02:20,260 --> 00:02:22,855
+to provide input via the
+so-called command line,
+
+50
+00:02:22,855 --> 00:02:24,980
+we're going to start adding
+here what's in yellow--
+
+51
+00:02:24,980 --> 00:02:30,520
+replacing void with int argc comma
+string argv open bracket close bracket.
+
+52
+00:02:30,520 --> 00:02:32,520
+Now this is interesting
+for a couple of reasons.
+
+53
+00:02:32,520 --> 00:02:35,690
+One, it's going to let us write
+programs that are a little more dynamic.
+
+54
+00:02:35,690 --> 00:02:37,570
+But, more compellingly,
+it's going to open up
+
+55
+00:02:37,570 --> 00:02:40,340
+now a conversation as to
+what arrays can really
+
+56
+00:02:40,340 --> 00:02:43,300
+be used, for what a string
+really is underneath the hood,
+
+57
+00:02:43,300 --> 00:02:47,320
+until next week when we start diving
+in even deeper as to how the machine is
+
+58
+00:02:47,320 --> 00:02:48,590
+making all of this stuff work.
+
+59
+00:02:48,590 --> 00:02:51,920
+But for now, let's draw,
+perhaps, a picture.
+
+60
+00:02:51,920 --> 00:02:54,950
+>> When you write a program
+with main declared
+
+61
+00:02:54,950 --> 00:02:58,810
+in this way, such that main
+takes two arguments, an int
+
+62
+00:02:58,810 --> 00:03:03,233
+and-- what data type
+is the second argument?
+
+63
+00:03:03,233 --> 00:03:04,529
+>> AUDIENCE: Array.
+
+64
+00:03:04,529 --> 00:03:05,320
+DAVID MALAN: Array.
+
+65
+00:03:05,320 --> 00:03:09,170
+So it looks at first glance like it's a
+string, but notice the square brackets.
+
+66
+00:03:09,170 --> 00:03:12,760
+Recall last time we introduced
+the notion of an array.
+
+67
+00:03:12,760 --> 00:03:16,210
+And arrays use square brackets
+in a couple of contexts.
+
+68
+00:03:16,210 --> 00:03:19,160
+You might use the square
+brackets to go into an array
+
+69
+00:03:19,160 --> 00:03:22,710
+and get a particular element, like
+bracket 0 or bracket 1 or bracket 2.
+
+70
+00:03:22,710 --> 00:03:25,500
+But we saw, if briefly,
+last week that you also
+
+71
+00:03:25,500 --> 00:03:28,790
+use these square brackets to
+declare the size of an array,
+
+72
+00:03:28,790 --> 00:03:31,790
+if you know in advance how many ints
+or how many strings or whatever you
+
+73
+00:03:31,790 --> 00:03:32,630
+actually want.
+
+74
+00:03:32,630 --> 00:03:34,790
+So it turns out there's
+a third context here
+
+75
+00:03:34,790 --> 00:03:37,890
+that has no number inside
+of the square brackets.
+
+76
+00:03:37,890 --> 00:03:41,920
+When you specify, as I have here,
+the name of something like argv,
+
+77
+00:03:41,920 --> 00:03:44,550
+which is just a fancy way of
+saying argument vector, which
+
+78
+00:03:44,550 --> 00:03:47,750
+is another fancy way of
+saying an array of arguments,
+
+79
+00:03:47,750 --> 00:03:50,870
+open bracket close bracket just
+means that you don't necessarily
+
+80
+00:03:50,870 --> 00:03:52,960
+know in advance how big
+the array is going to be,
+
+81
+00:03:52,960 --> 00:03:55,070
+but you know it's going to be an array.
+
+82
+00:03:55,070 --> 00:03:57,320
+So if you don't know the
+number don't put it in there,
+
+83
+00:03:57,320 --> 00:04:01,160
+for open bracket close bracket
+means that argv is not a string,
+
+84
+00:04:01,160 --> 00:04:03,124
+but an array of strings.
+
+85
+00:04:03,124 --> 00:04:05,040
+So syntactically, if you
+think back last week,
+
+86
+00:04:05,040 --> 00:04:09,460
+it's very similar to saying
+something like int ages open bracket,
+
+87
+00:04:09,460 --> 00:04:10,984
+and then something thereafter.
+
+88
+00:04:10,984 --> 00:04:12,150
+So what does this look like?
+
+89
+00:04:12,150 --> 00:04:13,399
+Let's actually draw a picture.
+
+90
+00:04:13,399 --> 00:04:18,756
+So when you run this program with Main
+having two arguments defined inside
+
+91
+00:04:18,756 --> 00:04:21,339
+of those parentheses, you
+essentially have at least two chunks
+
+92
+00:04:21,339 --> 00:04:23,560
+of memory handed to you
+underneath the hood.
+
+93
+00:04:23,560 --> 00:04:26,550
+One, as I'll draws as this rectangle,
+is going to be called argc.
+
+94
+00:04:26,550 --> 00:04:30,645
+And just as a quick recap,
+what is the data type of argc?
+
+95
+00:04:30,645 --> 00:04:31,270
+So it's an int.
+
+96
+00:04:31,270 --> 00:04:33,480
+So a number is going
+to go in argc-- turns
+
+97
+00:04:33,480 --> 00:04:35,660
+out that stands for argument count.
+
+98
+00:04:35,660 --> 00:04:38,887
+Meanwhile, I've drawn argv as an array.
+
+99
+00:04:38,887 --> 00:04:40,970
+And I don't really know
+how long it's going to be,
+
+100
+00:04:40,970 --> 00:04:42,470
+so for today's purposes dot dot dot.
+
+101
+00:04:42,470 --> 00:04:43,636
+It might get of some length.
+
+102
+00:04:43,636 --> 00:04:45,640
+But I've pictured here
+at least four rectangles.
+
+103
+00:04:45,640 --> 00:04:50,970
+So argv a chunk of memory that stores
+string string string dot dot dot,
+
+104
+00:04:50,970 --> 00:04:53,950
+and argc is just one chunk
+of memory for an integer.
+
+105
+00:04:53,950 --> 00:04:55,710
+>> So now, let's be a little more precise.
+
+106
+00:04:55,710 --> 00:04:59,200
+If, when I have strings
+in this array, called
+
+107
+00:04:59,200 --> 00:05:03,290
+argv, I want to get at them
+individually, just like last week,
+
+108
+00:05:03,290 --> 00:05:05,670
+we're going to use notation
+like argv bracket 0
+
+109
+00:05:05,670 --> 00:05:07,650
+to get the first thing an array.
+
+110
+00:05:07,650 --> 00:05:10,440
+Argv bracket 1 to get the
+second thing, and so forth.
+
+111
+00:05:10,440 --> 00:05:14,597
+The key here being we're still 0
+indexed-- we're still counting from 0.
+
+112
+00:05:14,597 --> 00:05:16,430
+So now let's actually
+put something in this.
+
+113
+00:05:16,430 --> 00:05:21,670
+If I were to compile a program called
+hello from a file called hello dot c,
+
+114
+00:05:21,670 --> 00:05:24,340
+and then I run that program
+with dot slash hello,
+
+115
+00:05:24,340 --> 00:05:28,380
+what does my computer, my laptop,
+look like underneath the hood
+
+116
+00:05:28,380 --> 00:05:31,300
+the moment I run dot
+slash hello and hit Enter?
+
+117
+00:05:31,300 --> 00:05:33,500
+Well, this is perhaps
+what we could describe
+
+118
+00:05:33,500 --> 00:05:37,010
+as the content of your computer's
+memory, or RAM-- Random Access Memory.
+
+119
+00:05:37,010 --> 00:05:40,330
+In other words, the computer,
+somehow for you magically,
+
+120
+00:05:40,330 --> 00:05:45,360
+puts the number 1 in argc, AKA argcount,
+and it puts literally the string
+
+121
+00:05:45,360 --> 00:05:48,200
+./hello in argv bracket 0.
+
+122
+00:05:48,200 --> 00:05:51,750
+I have no idea, frankly, what's
+in argv bracket 1 or 2 or 3,
+
+123
+00:05:51,750 --> 00:05:55,550
+because if the user has not
+typed anything besides ./hello,
+
+124
+00:05:55,550 --> 00:05:58,550
+we're going to assume that these
+are most likely garbage values,
+
+125
+00:05:58,550 --> 00:05:59,700
+so to speak.
+
+126
+00:05:59,700 --> 00:06:02,650
+Those chunks of memory
+exist, but it's not up to us
+
+127
+00:06:02,650 --> 00:06:05,710
+to look at them, because
+the argcount is only one.
+
+128
+00:06:05,710 --> 00:06:07,870
+>> Now, meanwhile, if I
+write run another program,
+
+129
+00:06:07,870 --> 00:06:12,250
+cd, which is more properly a command,
+in your blinking prompt-- cd space
+
+130
+00:06:12,250 --> 00:06:17,200
+Dropbox-- when I run that, effectively,
+when the cd program is run, argc,
+
+131
+00:06:17,200 --> 00:06:22,270
+inside of my computer's memory, is for
+the most briefest second the number 2.
+
+132
+00:06:22,270 --> 00:06:25,936
+And then argv bracket o has
+cd, argv bracket 1 has Dropbox,
+
+133
+00:06:25,936 --> 00:06:28,560
+and then of course the command
+completes, so all of this memory
+
+134
+00:06:28,560 --> 00:06:30,420
+essentially goes away and
+is used for something else.
+
+135
+00:06:30,420 --> 00:06:32,270
+And that's why I say
+just a split second.
+
+136
+00:06:32,270 --> 00:06:35,720
+>> Meanwhile, if we do mkdir pset2,
+the picture looks almost the same,
+
+137
+00:06:35,720 --> 00:06:37,900
+but with different strings inside argv.
+
+138
+00:06:37,900 --> 00:06:42,570
+If I do clang dash hello
+hello dot c, same idea.
+
+139
+00:06:42,570 --> 00:06:47,060
+More stuff is filled in for
+argv, and argc, of course, is 4.
+
+140
+00:06:47,060 --> 00:06:49,150
+So in other words,
+even though this array
+
+141
+00:06:49,150 --> 00:06:52,950
+might be dot dot dot, of some
+variable length, so to speak,
+
+142
+00:06:52,950 --> 00:06:56,720
+you always know where the end of it
+is, because argc is going to tell you
+
+143
+00:06:56,720 --> 00:07:00,120
+at what point you have to stop
+looking at elements in argv.
+
+144
+00:07:00,120 --> 00:07:03,660
+You can only look at four
+in total in this case.
+
+145
+00:07:03,660 --> 00:07:06,600
+>> So let's now take a look at,
+perhaps, a simple program.
+
+146
+00:07:06,600 --> 00:07:09,070
+One that just says hello
+to someone like Zamyla.
+
+147
+00:07:09,070 --> 00:07:12,620
+So I claim I'm going to write a program
+in just a moment via which I could do
+
+148
+00:07:12,620 --> 00:07:16,670
+./hello space Zamyla, and then I want
+my program to print out something
+
+149
+00:07:16,670 --> 00:07:18,520
+super-simple like "hello, Zamyla."
+
+150
+00:07:18,520 --> 00:07:20,100
+Now in the past we've used getstring.
+
+151
+00:07:20,100 --> 00:07:22,850
+So in the past, even if
+you're new to programming,
+
+152
+00:07:22,850 --> 00:07:27,180
+odds are you could whip up a
+program that uses getstring
+
+153
+00:07:27,180 --> 00:07:29,390
+and then uses printf
+to say hi to Zamyla.
+
+154
+00:07:29,390 --> 00:07:31,290
+But let's not use getstring this time.
+
+155
+00:07:31,290 --> 00:07:37,510
+Let me instead go into the Appliant
+and do include standard I O dot h.
+
+156
+00:07:37,510 --> 00:07:41,160
+Let me also include CS50 dot h.
+
+157
+00:07:41,160 --> 00:07:44,730
+Now int main, and now I'm
+not going to do void today.
+
+158
+00:07:44,730 --> 00:07:51,200
+Instead, I'm going to do int argc
+string argv open bracket close bracket,
+
+159
+00:07:51,200 --> 00:07:52,640
+not specifying a number.
+
+160
+00:07:52,640 --> 00:07:54,644
+And now here is my so-called to do.
+
+161
+00:07:54,644 --> 00:07:57,560
+What I'm going to do now is, I'm
+going to do a bit of a leap of faith,
+
+162
+00:07:57,560 --> 00:08:00,560
+I'm going to assume that the user's
+going to use this program correctly,
+
+163
+00:08:00,560 --> 00:08:04,980
+and I'm simply going to
+do printf hello, %sn.
+
+164
+00:08:04,980 --> 00:08:06,630
+So nothing new there.
+
+165
+00:08:06,630 --> 00:08:11,470
+But I want to now put whatever word the
+user types after the program's name.
+
+166
+00:08:11,470 --> 00:08:16,970
+So if I do ./hello space Zamyla, I
+want to somehow programmatically access
+
+167
+00:08:16,970 --> 00:08:20,870
+quote unquote "Zamyla." so I
+can go into my argument vector,
+
+168
+00:08:20,870 --> 00:08:25,980
+my array of strings, and if the command,
+again, was ./hello space Zamyla,
+
+169
+00:08:25,980 --> 00:08:29,340
+what number do I want
+to put in argv here?
+
+170
+00:08:29,340 --> 00:08:29,840
+AUDIENCE: 1.
+
+171
+00:08:29,840 --> 00:08:32,355
+DAVID MALAN: 1, because
+bracket 0 turns out
+
+172
+00:08:32,355 --> 00:08:34,230
+is going to be the
+program's name, as we saw.
+
+173
+00:08:34,230 --> 00:08:37,789
+So bracket 1 is the first word
+that I, the user, have typed.
+
+174
+00:08:37,789 --> 00:08:39,559
+I'm going to go ahead and save this.
+
+175
+00:08:39,559 --> 00:08:42,830
+I'm going to go into my folder
+where I've placed this file.
+
+176
+00:08:42,830 --> 00:08:44,920
+I'm going to do make hello 3.
+
+177
+00:08:44,920 --> 00:08:46,230
+Comp IO's OK.
+
+178
+00:08:46,230 --> 00:08:51,380
+./hello Zamyla Enter.
+
+179
+00:08:51,380 --> 00:08:54,480
+What did I do wrong?
+
+180
+00:08:54,480 --> 00:08:57,270
+I was caught by surprise
+myself for just a moment there.
+
+181
+00:08:57,270 --> 00:08:58,230
+What did I do wrong?
+
+182
+00:08:58,230 --> 00:08:59,220
+>> AUDIENCE: Name.
+
+183
+00:08:59,220 --> 00:09:01,767
+>> DAVID MALAN: The file's
+actually called hello3.c.
+
+184
+00:09:01,767 --> 00:09:03,850
+And I did that just for
+consistency, because we've
+
+185
+00:09:03,850 --> 00:09:06,550
+had hello.c's in the
+past in the online code.
+
+186
+00:09:06,550 --> 00:09:11,550
+So let's fix this ./hello
+bracket dash 3 Zamyla.
+
+187
+00:09:11,550 --> 00:09:12,370
+Enter.
+
+188
+00:09:12,370 --> 00:09:14,030
+And now we have hello, Zamyla.
+
+189
+00:09:14,030 --> 00:09:17,650
+Meanwhile, I can change this to
+be Rob, or really any other word.
+
+190
+00:09:17,650 --> 00:09:19,230
+>> But let's consider a corner case.
+
+191
+00:09:19,230 --> 00:09:24,360
+What might you expect will happen if
+I don't type anyone's name at all?
+
+192
+00:09:24,360 --> 00:09:25,270
+>> AUDIENCE: Error.
+
+193
+00:09:25,270 --> 00:09:27,300
+>> DAVID MALAN: An error
+of some sort, perhaps.
+
+194
+00:09:27,300 --> 00:09:28,200
+Let's see.
+
+195
+00:09:28,200 --> 00:09:29,440
+Enter.
+
+196
+00:09:29,440 --> 00:09:30,210
+Null.
+
+197
+00:09:30,210 --> 00:09:33,870
+So printf is actually being
+a little protective of us
+
+198
+00:09:33,870 --> 00:09:38,131
+here, and literally printing open paren
+null, but even worse things can happen.
+
+199
+00:09:38,131 --> 00:09:40,130
+And just to demonstrate
+something you absolutely
+
+200
+00:09:40,130 --> 00:09:42,800
+shouldn't do, let's go in
+here and start poking around.
+
+201
+00:09:42,800 --> 00:09:43,300
+Right?
+
+202
+00:09:43,300 --> 00:09:46,410
+If I know that the picture in
+memory is essentially this,
+
+203
+00:09:46,410 --> 00:09:52,660
+argv bracket 1 has Zamyla, argv
+bracket 0 has ./hello, or ./hello-3.
+
+204
+00:09:52,660 --> 00:09:55,400
+What is in bracket 2?
+
+205
+00:09:55,400 --> 00:09:58,210
+So I can answer that
+question myself, right?
+
+206
+00:09:58,210 --> 00:10:00,460
+I can just change the 1 to a 2.
+
+207
+00:10:00,460 --> 00:10:07,270
+I can now recompile hello 3,
+./hello3 Let's zoom in and hit Enter.
+
+208
+00:10:07,270 --> 00:10:08,270
+Whoops.
+
+209
+00:10:08,270 --> 00:10:10,660
+No quote mark.
+
+210
+00:10:10,660 --> 00:10:12,540
+Interesting.
+
+211
+00:10:12,540 --> 00:10:15,530
+So that's kind of cool to
+see what else is in here.
+
+212
+00:10:15,530 --> 00:10:17,130
+>> So what else is inside of my laptop?
+
+213
+00:10:17,130 --> 00:10:20,390
+Let's save it with bracket 3.
+
+214
+00:10:20,390 --> 00:10:25,190
+Make hello3, ./hello-3.
+
+215
+00:10:25,190 --> 00:10:26,500
+Curious.
+
+216
+00:10:26,500 --> 00:10:30,560
+And now let's get really bold-- 50.
+
+217
+00:10:30,560 --> 00:10:34,340
+So that's really diving deep
+into my computer's memory.
+
+218
+00:10:34,340 --> 00:10:35,930
+50 indexes in.
+
+219
+00:10:35,930 --> 00:10:41,950
+So make hello 3 ./hello-3.
+
+220
+00:10:41,950 --> 00:10:42,680
+Curious.
+
+221
+00:10:42,680 --> 00:10:44,660
+All right, now I'm just
+going to get reckless.
+
+222
+00:10:44,660 --> 00:10:47,331
+Let's go to 5,000.
+
+223
+00:10:47,331 --> 00:10:47,830
+All right.
+
+224
+00:10:47,830 --> 00:10:49,520
+So let me recompile.
+
+225
+00:10:49,520 --> 00:10:51,460
+Make hello3, ./hello-3.
+
+226
+00:10:51,460 --> 00:10:55,780
+
+227
+00:10:55,780 --> 00:10:56,460
+OK.
+
+228
+00:10:56,460 --> 00:10:59,250
+Now some of you, there might
+be a light bulb going off.
+
+229
+00:10:59,250 --> 00:11:01,900
+How many of you have
+seen this message before?
+
+230
+00:11:01,900 --> 00:11:03,440
+OK.
+
+231
+00:11:03,440 --> 00:11:04,420
+So, why?
+
+232
+00:11:04,420 --> 00:11:07,250
+>> Odds are-- and there's different
+things that can cause this,
+
+233
+00:11:07,250 --> 00:11:09,730
+and clearly you're in good
+company-- we have clearly
+
+234
+00:11:09,730 --> 00:11:11,900
+caused what's called
+a segmentation fault.
+
+235
+00:11:11,900 --> 00:11:15,890
+And long story short for today, I
+have touched a segment of memory
+
+236
+00:11:15,890 --> 00:11:17,060
+that I shouldn't have.
+
+237
+00:11:17,060 --> 00:11:19,970
+Where a segment just means a chunk
+of memory that I shouldn't have.
+
+238
+00:11:19,970 --> 00:11:25,530
+Now the computer guarantees that if I
+run ./helloZamyla that I can touch argv
+
+239
+00:11:25,530 --> 00:11:27,760
+be bracket 0 and argv bracket 1.
+
+240
+00:11:27,760 --> 00:11:32,730
+But argc is value 2, that means I am
+only allowed-- it's sort of the honor
+
+241
+00:11:32,730 --> 00:11:35,180
+system-- to touch
+bracket 0 and bracket 1.
+
+242
+00:11:35,180 --> 00:11:37,990
+If I go any farther, there's
+absolutely going to be memory there.
+
+243
+00:11:37,990 --> 00:11:40,660
+My RAM exists physically
+in the computer.
+
+244
+00:11:40,660 --> 00:11:42,080
+But who knows what's there?
+
+245
+00:11:42,080 --> 00:11:44,450
+Indeed, I'm running multiple
+programs at one time.
+
+246
+00:11:44,450 --> 00:11:46,910
+I might have seen-- if I weren't
+doing this on the Appliant
+
+247
+00:11:46,910 --> 00:11:49,937
+but on my Mac or PC-- I might have
+seen the contents of an email.
+
+248
+00:11:49,937 --> 00:11:52,270
+I might have seen an instant
+message I've recently sent.
+
+249
+00:11:52,270 --> 00:11:55,390
+Anything that might be
+lingering around in memory
+
+250
+00:11:55,390 --> 00:11:59,180
+could have been accessed by way of
+this arbitrary square bracket notation.
+
+251
+00:11:59,180 --> 00:12:02,850
+Or, worse yet, you might have
+found one of my passwords
+
+252
+00:12:02,850 --> 00:12:05,859
+that I'd recently typed in, that a
+program had stored in memory so as
+
+253
+00:12:05,859 --> 00:12:07,900
+to authenticate me, and
+then just kind of left it
+
+254
+00:12:07,900 --> 00:12:09,910
+in RAM until I quit that program.
+
+255
+00:12:09,910 --> 00:12:12,860
+>> And indeed, this is one of
+the danger and one the powers
+
+256
+00:12:12,860 --> 00:12:15,980
+of using a language like C.
+You have unfettered access
+
+257
+00:12:15,980 --> 00:12:18,860
+to the entire contents
+of a program's memory,
+
+258
+00:12:18,860 --> 00:12:21,340
+and what bad guys can
+even do in those cases--
+
+259
+00:12:21,340 --> 00:12:23,807
+especially when we
+get to web programming
+
+260
+00:12:23,807 --> 00:12:26,890
+toward the end of the semester, we'll
+revisit this topic-- is poke around,
+
+261
+00:12:26,890 --> 00:12:31,660
+potentially, someone's computer's
+memory and find such curious things
+
+262
+00:12:31,660 --> 00:12:32,570
+as we saw there.
+
+263
+00:12:32,570 --> 00:12:36,900
+Or even worse yet, passwords that he
+or she can then use to do bad things.
+
+264
+00:12:36,900 --> 00:12:40,240
+>> So clearly I shouldn't have done this,
+because weird things start to happen.
+
+265
+00:12:40,240 --> 00:12:42,310
+Indeed, this is a program crashing.
+
+266
+00:12:42,310 --> 00:12:44,580
+This would be the equivalent
+of Mac OS or in Windows
+
+267
+00:12:44,580 --> 00:12:46,770
+a program window just disappearing.
+
+268
+00:12:46,770 --> 00:12:48,300
+An unexpected error has occurred.
+
+269
+00:12:48,300 --> 00:12:50,840
+In the command-line environment
+we see something like this.
+
+270
+00:12:50,840 --> 00:12:54,480
+But that's why, is I'm simply touching
+memory that doesn't belong to me.
+
+271
+00:12:54,480 --> 00:12:57,090
+>> So let's defend against this a
+little bit in a different way
+
+272
+00:12:57,090 --> 00:12:59,010
+by looking at this program here.
+
+273
+00:12:59,010 --> 00:13:01,000
+So, again, the skeleton
+that we saw earlier--
+
+274
+00:13:01,000 --> 00:13:02,480
+and I've highlighted this time int.
+
+275
+00:13:02,480 --> 00:13:05,900
+And all this time main has
+indeed returned a value.
+
+276
+00:13:05,900 --> 00:13:09,120
+Even though in most of our lecture
+examples we've never once used
+
+277
+00:13:09,120 --> 00:13:10,990
+return anything in main.
+
+278
+00:13:10,990 --> 00:13:13,710
+We just write printf close
+curly brace and that's it.
+
+279
+00:13:13,710 --> 00:13:16,500
+But for free, what the
+compiler been doing for you,
+
+280
+00:13:16,500 --> 00:13:19,510
+effectively, is returning 0 for you.
+
+281
+00:13:19,510 --> 00:13:22,950
+Turns out-- and it's a little
+counterintuitive-- that 0 is good.
+
+282
+00:13:22,950 --> 00:13:24,690
+It doesn't mean false per se.
+
+283
+00:13:24,690 --> 00:13:29,080
+0 is good, and any non-0
+value, the world has decided,
+
+284
+00:13:29,080 --> 00:13:30,619
+can signify an error.
+
+285
+00:13:30,619 --> 00:13:32,910
+So if you've ever messed
+something up on your computer,
+
+286
+00:13:32,910 --> 00:13:36,600
+or a program has just died on you and
+you've gotten some erroneous window
+
+287
+00:13:36,600 --> 00:13:40,360
+on your screen, saying error
+negative 49 or error 23--
+
+288
+00:13:40,360 --> 00:13:44,170
+some seemingly arbitrary value-- that's
+because a programmer has hard-coded
+
+289
+00:13:44,170 --> 00:13:49,370
+a value like negative 49 or positive
+23 to represent any number, dare say,
+
+290
+00:13:49,370 --> 00:13:53,340
+of 4 billion possible things
+that might go wrong in a program.
+
+291
+00:13:53,340 --> 00:13:55,700
+>> So how might I take
+advantage of this myself?
+
+292
+00:13:55,700 --> 00:13:58,970
+Well, let me open up a program
+that I wrote in advance,
+
+293
+00:13:58,970 --> 00:14:01,450
+and poke around online called hello 4.
+
+294
+00:14:01,450 --> 00:14:05,650
+And it's almost identical, except that
+its got a little bit of error-checking.
+
+295
+00:14:05,650 --> 00:14:09,660
+In this case, I've again declared
+main as taking two arguments,
+
+296
+00:14:09,660 --> 00:14:13,180
+but this time, on line 17, notice
+I'm doing a bit of a sanity check.
+
+297
+00:14:13,180 --> 00:14:17,100
+I'm making sure that
+argc equals equals 2.
+
+298
+00:14:17,100 --> 00:14:18,960
+Because if it is, that
+means I can safely
+
+299
+00:14:18,960 --> 00:14:21,420
+touch not only bracket 0, but bracket 1.
+
+300
+00:14:21,420 --> 00:14:24,330
+And I go ahead and print out,
+in this case, Zamyla or Rob
+
+301
+00:14:24,330 --> 00:14:26,020
+or whatever word I typed out.
+
+302
+00:14:26,020 --> 00:14:28,020
+And now just to get
+a little more proper,
+
+303
+00:14:28,020 --> 00:14:31,910
+I'm going to explicitly return
+0 to signify all is well.
+
+304
+00:14:31,910 --> 00:14:33,300
+Nothing bad happened.
+
+305
+00:14:33,300 --> 00:14:38,590
+>> But by convention, I'm going to
+return 1, or frankly any non-0 value,
+
+306
+00:14:38,590 --> 00:14:40,160
+if something went wrong.
+
+307
+00:14:40,160 --> 00:14:43,270
+Now the user is not going to
+really notice what's going on.
+
+308
+00:14:43,270 --> 00:14:50,410
+Indeed if I go into this directory,
+we zoom in and do make hello 4,
+
+309
+00:14:50,410 --> 00:14:54,210
+./hello-4 Zamyla behaves as I expect.
+
+310
+00:14:54,210 --> 00:14:58,570
+But if I instead don't type
+anything, nothing seems to happen,
+
+311
+00:14:58,570 --> 00:14:59,680
+but it doesn't crash.
+
+312
+00:14:59,680 --> 00:15:04,660
+And if I instead do something
+like Rob is a proctor
+
+313
+00:15:04,660 --> 00:15:07,550
+in Thayer-- sharing
+arbitrary information.
+
+314
+00:15:07,550 --> 00:15:13,680
+But notice, argv 1, 2, 3, 4, and
+5 should now exist in memory.
+
+315
+00:15:13,680 --> 00:15:16,540
+That, too, is not what
+my program expects,
+
+316
+00:15:16,540 --> 00:15:20,300
+because I've checked whether
+argc equals equals 2 or not.
+
+317
+00:15:20,300 --> 00:15:22,140
+So I'm now defending against this.
+
+318
+00:15:22,140 --> 00:15:25,290
+>> Now, as an aside, we the
+programmer-- or rather we the users--
+
+319
+00:15:25,290 --> 00:15:29,670
+never see that 0 or 1 but using a
+tool called Debugger, or other tools,
+
+320
+00:15:29,670 --> 00:15:32,250
+as we'll see before
+long, you the programmer
+
+321
+00:15:32,250 --> 00:15:36,590
+can actually see what might be
+going wrong inside of your program.
+
+322
+00:15:36,590 --> 00:15:39,170
+>> So, any questions on argc?
+
+323
+00:15:39,170 --> 00:15:40,873
+Yeah.
+
+324
+00:15:40,873 --> 00:15:45,292
+>> AUDIENCE: I've seen where they
+haven't had the character, [INAUDIBLE]
+
+325
+00:15:45,292 --> 00:15:49,669
+just said string star d, like
+character asterisk comma.
+
+326
+00:15:49,669 --> 00:15:50,710
+Are they equivalent here?
+
+327
+00:15:50,710 --> 00:15:51,626
+>> DAVID MALAN: They are.
+
+328
+00:15:51,626 --> 00:15:55,080
+So the question is, you have
+occasionally seen programs
+
+329
+00:15:55,080 --> 00:15:57,270
+like this that don't
+say string argv bracket
+
+330
+00:15:57,270 --> 00:16:01,015
+but instead say something
+like char star argv bracket.
+
+331
+00:16:01,015 --> 00:16:03,140
+And there's even other
+variants that you might see.
+
+332
+00:16:03,140 --> 00:16:04,264
+They are indeed equivalent.
+
+333
+00:16:04,264 --> 00:16:06,240
+For now, we have these
+sort of training wheels
+
+334
+00:16:06,240 --> 00:16:09,737
+on in the form of string in the CS50
+library, but in just over a week
+
+335
+00:16:09,737 --> 00:16:12,570
+or so we're going to remove that
+obstruction altogether and actually
+
+336
+00:16:12,570 --> 00:16:16,820
+look at what the char and the star
+are, and how those pertain to memory
+
+337
+00:16:16,820 --> 00:16:18,140
+representation more generally.
+
+338
+00:16:18,140 --> 00:16:19,540
+So we'll come back to that.
+
+339
+00:16:19,540 --> 00:16:21,540
+>> Other questions on our argv or argc?
+
+340
+00:16:21,540 --> 00:16:22,397
+Yeah.
+
+341
+00:16:22,397 --> 00:16:24,438
+AUDIENCE: Why did it return
+an error [INAUDIBLE]?
+
+342
+00:16:24,438 --> 00:16:27,147
+
+343
+00:16:27,147 --> 00:16:29,230
+DAVID MALAN: Why did it
+return an error only-- oh!
+
+344
+00:16:29,230 --> 00:16:31,813
+In the previous case, when we
+were futzing around with memory,
+
+345
+00:16:31,813 --> 00:16:35,110
+why did it only return an error
+when I really typed a big number?
+
+346
+00:16:35,110 --> 00:16:36,620
+Short answer is, we just got lucky.
+
+347
+00:16:36,620 --> 00:16:39,240
+Generally speaking, a computer
+allocates memory in chunks,
+
+348
+00:16:39,240 --> 00:16:42,900
+and it gave me a big enough chunk that
+I got away, without being noticed,
+
+349
+00:16:42,900 --> 00:16:46,280
+of touching bracket 2, bracket 3,
+bracket 50, but as soon as I pushed
+
+350
+00:16:46,280 --> 00:16:49,080
+my luck, I went beyond the
+boundaries of the chunk of memory
+
+351
+00:16:49,080 --> 00:16:50,520
+the operating system had given me.
+
+352
+00:16:50,520 --> 00:16:52,720
+And that's when it
+clamped down and said, no.
+
+353
+00:16:52,720 --> 00:16:54,580
+Segmentation error.
+
+354
+00:16:54,580 --> 00:16:55,692
+Yeah.
+
+355
+00:16:55,692 --> 00:16:58,890
+>> AUDIENCE: How does the computer
+know the value of argc?
+
+356
+00:16:58,890 --> 00:17:02,390
+>> DAVID MALAN: How does the
+computer know the value of argc?
+
+357
+00:17:02,390 --> 00:17:07,920
+When you run a program, that program,
+by nature of the blinking prompt,
+
+358
+00:17:07,920 --> 00:17:11,359
+is handed the array of
+words that were typed
+
+359
+00:17:11,359 --> 00:17:13,300
+at the prompt, that was
+typed at the prompt.
+
+360
+00:17:13,300 --> 00:17:16,569
+And so it is your operating
+system that essentially
+
+361
+00:17:16,569 --> 00:17:20,329
+populates main's arguments for you.
+
+362
+00:17:20,329 --> 00:17:22,829
+So that's one of the services
+that you get, sort of secretly
+
+363
+00:17:22,829 --> 00:17:24,869
+underneath the hood of
+an operating system.
+
+364
+00:17:24,869 --> 00:17:27,118
+Other questions?
+
+365
+00:17:27,118 --> 00:17:27,618
+Yeah.
+
+366
+00:17:27,618 --> 00:17:29,787
+>> AUDIENCE: What does core dump mean?
+
+367
+00:17:29,787 --> 00:17:31,370
+DAVID MALAN: What does core dump mean?
+
+368
+00:17:31,370 --> 00:17:32,950
+So that's a good question.
+
+369
+00:17:32,950 --> 00:17:35,312
+And let me go back into
+this directory here.
+
+370
+00:17:35,312 --> 00:17:37,270
+And you'll notice that
+I have a new file there.
+
+371
+00:17:37,270 --> 00:17:41,670
+It's indeed called core, and it's
+actually typically a decent-sized file.
+
+372
+00:17:41,670 --> 00:17:45,300
+That is essentially a snapshot of
+the contents of my program's memory
+
+373
+00:17:45,300 --> 00:17:46,902
+or RAM when it crashed.
+
+374
+00:17:46,902 --> 00:17:49,110
+And this will be useful,
+potentially, diagnostically,
+
+375
+00:17:49,110 --> 00:17:52,850
+once we talk in a future lecture
+and section about debugging,
+
+376
+00:17:52,850 --> 00:17:55,730
+because you can actually do the
+equivalent of a digital autopsy
+
+377
+00:17:55,730 --> 00:18:00,300
+on that file to help figure out
+what you did wrong in your program.
+
+378
+00:18:00,300 --> 00:18:01,220
+Yeah.
+
+379
+00:18:01,220 --> 00:18:04,450
+>> AUDIENCE: Is argc a command in
+itself, or can you name it anything?
+
+380
+00:18:04,450 --> 00:18:05,575
+>> DAVID MALAN: Good question.
+
+381
+00:18:05,575 --> 00:18:08,040
+Is argc a command in itself,
+or can you name it anything?
+
+382
+00:18:08,040 --> 00:18:09,290
+It's definitely not a command.
+
+383
+00:18:09,290 --> 00:18:13,500
+It's simply a variable's
+name or an argument's name,
+
+384
+00:18:13,500 --> 00:18:15,481
+and so absolutely we
+could call this foo,
+
+385
+00:18:15,481 --> 00:18:18,480
+we could call this bar, which tend
+to be the go-to words that a computer
+
+386
+00:18:18,480 --> 00:18:19,860
+scientist goes to.
+
+387
+00:18:19,860 --> 00:18:22,820
+But by convention, we use argc and argv.
+
+388
+00:18:22,820 --> 00:18:25,360
+But that's just a human
+convention, nothing more.
+
+389
+00:18:25,360 --> 00:18:25,860
+All right.
+
+390
+00:18:25,860 --> 00:18:28,140
+So turns out, I've been
+telling a bit of a white lie--
+
+391
+00:18:28,140 --> 00:18:31,264
+and frankly, in the future, you'll see
+we've been telling other white lies.
+
+392
+00:18:31,264 --> 00:18:33,510
+But for now, we're going
+to peel back one of these.
+
+393
+00:18:33,510 --> 00:18:37,310
+In this case here when I previously
+ran a program like ./hello or ./hello-3
+
+394
+00:18:37,310 --> 00:18:42,780
+Zamyla, we had the contents of my
+computer's memory looking roughly like
+
+395
+00:18:42,780 --> 00:18:43,280
+this.
+
+396
+00:18:43,280 --> 00:18:45,070
+But recall what a string is.
+
+397
+00:18:45,070 --> 00:18:49,279
+What did we say a week ago what a
+string actually is underneath the hood?
+
+398
+00:18:49,279 --> 00:18:50,320
+AUDIENCE: Array of chars.
+
+399
+00:18:50,320 --> 00:18:52,111
+DAVID MALAN: It's an
+array of chars, right?
+
+400
+00:18:52,111 --> 00:18:55,760
+So we might have an array of
+strings, but, in turn, a string
+
+401
+00:18:55,760 --> 00:18:57,150
+is an array of characters.
+
+402
+00:18:57,150 --> 00:19:00,010
+So if I really want to be
+anal when I draw this picture,
+
+403
+00:19:00,010 --> 00:19:03,290
+I should really be drawing
+it a little more like this,
+
+404
+00:19:03,290 --> 00:19:08,000
+whereby in each of these
+indexes of my argv array,
+
+405
+00:19:08,000 --> 00:19:11,432
+there is itself a whole string
+that itself is in an array.
+
+406
+00:19:11,432 --> 00:19:13,140
+And now the white lie
+we're telling today
+
+407
+00:19:13,140 --> 00:19:15,181
+is that the picture doesn't
+look quite like this.
+
+408
+00:19:15,181 --> 00:19:19,110
+In fact, the little squares are
+typically outside of the big rectangles
+
+409
+00:19:19,110 --> 00:19:19,610
+there.
+
+410
+00:19:19,610 --> 00:19:21,280
+But we'll come back to that before long.
+
+411
+00:19:21,280 --> 00:19:25,440
+But this is ./hello backslash 0,
+that being the special character that
+
+412
+00:19:25,440 --> 00:19:28,310
+demarcates the end of a string,
+and we've got another one after
+
+413
+00:19:28,310 --> 00:19:29,360
+Zamyla's name.
+
+414
+00:19:29,360 --> 00:19:30,900
+So what does this mean?
+
+415
+00:19:30,900 --> 00:19:33,410
+>> Well, let me go ahead and
+open up two other examples
+
+416
+00:19:33,410 --> 00:19:35,220
+that are available online.
+
+417
+00:19:35,220 --> 00:19:40,590
+One is called argv1.c
+and the other is argv2.
+
+418
+00:19:40,590 --> 00:19:44,260
+It's a super-simple program that
+is different from past programs
+
+419
+00:19:44,260 --> 00:19:47,260
+in that now I'm using
+argc and argv up here.
+
+420
+00:19:47,260 --> 00:19:54,300
+And now I'm integrating with a for loop
+in line 18, from i=0 on up to argc.
+
+421
+00:19:54,300 --> 00:19:56,850
+And what am I going to do
+with this line of code here?
+
+422
+00:19:56,850 --> 00:19:58,270
+In English.
+
+423
+00:19:58,270 --> 00:20:00,510
+This obviously demonstrates use of argc.
+
+424
+00:20:00,510 --> 00:20:03,670
+But in English, what does
+it do if I run this program?
+
+425
+00:20:03,670 --> 00:20:04,366
+Yeah?
+
+426
+00:20:04,366 --> 00:20:07,386
+>> AUDIENCE: It's going to print your
+screen as many times as you want.
+
+427
+00:20:07,386 --> 00:20:08,260
+DAVID MALAN: Exactly.
+
+428
+00:20:08,260 --> 00:20:10,480
+So whatever words I
+type at the prompt, it's
+
+429
+00:20:10,480 --> 00:20:13,120
+going to regurgitate
+them at me one per line.
+
+430
+00:20:13,120 --> 00:20:14,370
+So let's go ahead and do this.
+
+431
+00:20:14,370 --> 00:20:17,862
+Let me go into my directory
+and do make argv1 ./argv1.
+
+432
+00:20:17,862 --> 00:20:20,521
+
+433
+00:20:20,521 --> 00:20:21,770
+And now, let's keep it simple.
+
+434
+00:20:21,770 --> 00:20:23,834
+Let's do nothing at first.
+
+435
+00:20:23,834 --> 00:20:26,750
+It did print out one thing, and
+that's indeed the name of the program,
+
+436
+00:20:26,750 --> 00:20:28,240
+because that's in bracket 0.
+
+437
+00:20:28,240 --> 00:20:33,290
+If I now say foo, it's going to do
+those two, and if I say foo bar,
+
+438
+00:20:33,290 --> 00:20:35,580
+it's going to say those three things.
+
+439
+00:20:35,580 --> 00:20:37,740
+Now that's somewhat interesting, maybe.
+
+440
+00:20:37,740 --> 00:20:41,450
+But recall that argv
+is an array of strings,
+
+441
+00:20:41,450 --> 00:20:45,960
+but a string is an array of chars,
+so we can take things up a notch
+
+442
+00:20:45,960 --> 00:20:48,560
+and apply that basic
+logic and make code that
+
+443
+00:20:48,560 --> 00:20:51,160
+looks a little more cryptic, admittedly.
+
+444
+00:20:51,160 --> 00:20:53,540
+But by having a nested
+loop, something akin
+
+445
+00:20:53,540 --> 00:20:57,030
+to what you might recall from Mario,
+for instance, if you did it this way.
+
+446
+00:20:57,030 --> 00:21:00,380
+>> So now notice on line 19, I'm
+again iterating over my arguments,
+
+447
+00:21:00,380 --> 00:21:02,410
+from 0 on up to argc.
+
+448
+00:21:02,410 --> 00:21:05,510
+And now in line 21-- I'm
+borrowing a trick from last week--
+
+449
+00:21:05,510 --> 00:21:11,090
+I am checking what is the
+length of argv bracket i.
+
+450
+00:21:11,090 --> 00:21:12,920
+I'm storing that answer in n.
+
+451
+00:21:12,920 --> 00:21:18,230
+And then I'm integrating from j on
+up to n, where j is initialized to 0.
+
+452
+00:21:18,230 --> 00:21:19,460
+So, convention for counting.
+
+453
+00:21:19,460 --> 00:21:22,335
+Once you've used i, if you have a
+nested loop, you can't use i again,
+
+454
+00:21:22,335 --> 00:21:25,770
+otherwise you'll clobber, potentially,
+the value outside of the inner loop.
+
+455
+00:21:25,770 --> 00:21:27,200
+So I'm using j by convention.
+
+456
+00:21:27,200 --> 00:21:28,020
+We might use k.
+
+457
+00:21:28,020 --> 00:21:31,080
+If you have more than k, you probably
+have too much nesting, typically.
+
+458
+00:21:31,080 --> 00:21:33,800
+But now, notice my printf
+line is slightly different.
+
+459
+00:21:33,800 --> 00:21:37,520
+I'm not printing %s, I'm
+printing %c, which, of course,
+
+460
+00:21:37,520 --> 00:21:39,460
+is a placeholder for a char.
+
+461
+00:21:39,460 --> 00:21:40,770
+>> And now notice this syntax.
+
+462
+00:21:40,770 --> 00:21:41,270
+New.
+
+463
+00:21:41,270 --> 00:21:42,630
+We haven't seen it before.
+
+464
+00:21:42,630 --> 00:21:47,290
+But logically, this just means
+get the ith string in argv
+
+465
+00:21:47,290 --> 00:21:50,067
+and get the jth what?
+
+466
+00:21:50,067 --> 00:21:50,900
+AUDIENCE: Character.
+
+467
+00:21:50,900 --> 00:21:52,800
+DAVID MALAN: Character in that string.
+
+468
+00:21:52,800 --> 00:21:57,100
+So by using square brackets
+followed by square brackets,
+
+469
+00:21:57,100 --> 00:22:00,390
+this is diving first
+into argv's strings,
+
+470
+00:22:00,390 --> 00:22:02,225
+and then the second
+square brackets with j
+
+471
+00:22:02,225 --> 00:22:06,580
+is diving into the characters of
+that particular string in argv.
+
+472
+00:22:06,580 --> 00:22:09,562
+And then, just for good measure,
+I'm printing a new line here.
+
+473
+00:22:09,562 --> 00:22:12,020
+So now let me go ahead and open
+up a slightly bigger window
+
+474
+00:22:12,020 --> 00:22:13,600
+so we can see this in action.
+
+475
+00:22:13,600 --> 00:22:15,700
+Let me go into that folder.
+
+476
+00:22:15,700 --> 00:22:22,550
+And now do make argv-2--
+whoops-- make argv-2, ./argv 2.
+
+477
+00:22:22,550 --> 00:22:23,110
+Enter.
+
+478
+00:22:23,110 --> 00:22:24,860
+And it's a little hard
+to read vertically,
+
+479
+00:22:24,860 --> 00:22:27,920
+but that's indeed the name of the
+program, followed by a blank line.
+
+480
+00:22:27,920 --> 00:22:30,210
+Now let me go ahead and do foo.
+
+481
+00:22:30,210 --> 00:22:33,210
+Similarly hard to read, but it's
+indeed printing one character per line.
+
+482
+00:22:33,210 --> 00:22:36,780
+And if I do bar, it's now
+printing those line by line.
+
+483
+00:22:36,780 --> 00:22:40,140
+So the takeaway here isn't so much
+that, wow, look at this neat new trick
+
+484
+00:22:40,140 --> 00:22:44,750
+where you can get at the contents
+of an array's specific characters,
+
+485
+00:22:44,750 --> 00:22:48,380
+but rather how we're taking these basic
+ideas like indexing into an array,
+
+486
+00:22:48,380 --> 00:22:51,620
+and then indexing into an
+array that was in that array,
+
+487
+00:22:51,620 --> 00:22:56,180
+and just applying the same ideas to
+slightly more sophisticated examples.
+
+488
+00:22:56,180 --> 00:22:59,560
+But the basics really haven't
+changed, even since last week.
+
+489
+00:22:59,560 --> 00:23:02,350
+>> Now this is sort of timely,
+in that, recall, in week zero
+
+490
+00:23:02,350 --> 00:23:04,110
+we played with a phone book like this.
+
+491
+00:23:04,110 --> 00:23:06,670
+And even though this is obviously
+physical pieces of paper,
+
+492
+00:23:06,670 --> 00:23:09,150
+you can kind of think of
+a phone book as an array.
+
+493
+00:23:09,150 --> 00:23:12,770
+Certainly, if you were to reimplement
+this pieces these pieces of paper
+
+494
+00:23:12,770 --> 00:23:15,260
+in a computer, probably
+you would use something
+
+495
+00:23:15,260 --> 00:23:20,270
+like an array to store all of those
+names and numbers from A all the way
+
+496
+00:23:20,270 --> 00:23:23,800
+through Z. So this is nice, because
+it allows us an opportunity,
+
+497
+00:23:23,800 --> 00:23:28,310
+perhaps, to consider how you might
+actually implement something like that.
+
+498
+00:23:28,310 --> 00:23:31,250
+As with a series of doors here.
+
+499
+00:23:31,250 --> 00:23:36,380
+So if I could-- we need one
+volunteer to come on up.
+
+500
+00:23:36,380 --> 00:23:36,980
+Let's see.
+
+501
+00:23:36,980 --> 00:23:40,650
+An unfamiliar face perhaps,
+unfamiliar face perhaps.
+
+502
+00:23:40,650 --> 00:23:42,090
+How about in orange?
+
+503
+00:23:42,090 --> 00:23:42,680
+Here.
+
+504
+00:23:42,680 --> 00:23:45,870
+Orange shirt, come on up.
+
+505
+00:23:45,870 --> 00:23:52,230
+>> Let's go ahead now and move
+these doors over to the side,
+
+506
+00:23:52,230 --> 00:23:54,020
+move these out of the way for a moment.
+
+507
+00:23:54,020 --> 00:23:56,600
+
+508
+00:23:56,600 --> 00:23:57,760
+What's your name?
+
+509
+00:23:57,760 --> 00:23:58,580
+>> AJAY:
+
+510
+00:23:58,580 --> 00:23:58,655
+>> DAVID MALAN: Ajay.
+
+511
+00:23:58,655 --> 00:23:58,680
+David.
+
+512
+00:23:58,680 --> 00:23:59,451
+Nice to meet you.
+
+513
+00:23:59,451 --> 00:23:59,950
+All right.
+
+514
+00:23:59,950 --> 00:24:04,500
+So we have behind these six
+doors digitally on the screen--
+
+515
+00:24:04,500 --> 00:24:07,810
+or, rather, seven doors on the
+screen-- a whole bunch of numbers.
+
+516
+00:24:07,810 --> 00:24:10,099
+And I've told you nothing
+in advance-- agreed?
+
+517
+00:24:10,099 --> 00:24:11,140
+AJAY: Nothing in advance.
+
+518
+00:24:11,140 --> 00:24:14,730
+DAVID MALAN: All I want you to do
+now is to find for me, and for us,
+
+519
+00:24:14,730 --> 00:24:20,920
+really, the number 50,
+one step at a time.
+
+520
+00:24:20,920 --> 00:24:21,830
+>> AJAY: Number 50?
+
+521
+00:24:21,830 --> 00:24:22,580
+>> DAVID MALAN: The number 50.
+
+522
+00:24:22,580 --> 00:24:24,746
+And you can reveal what's
+behind each of these doors
+
+523
+00:24:24,746 --> 00:24:27,930
+simply by touching it with a finger.
+
+524
+00:24:27,930 --> 00:24:31,364
+Damn it. [LAUGHTER]
+
+525
+00:24:31,364 --> 00:24:34,560
+>> [APPLAUSE]
+
+526
+00:24:34,560 --> 00:24:39,540
+>> Very well done.
+
+527
+00:24:39,540 --> 00:24:40,400
+OK.
+
+528
+00:24:40,400 --> 00:24:44,090
+We have a lovely gift
+prize for you here.
+
+529
+00:24:44,090 --> 00:24:46,520
+Your pick of movies we
+discussed last week.
+
+530
+00:24:46,520 --> 00:24:47,362
+>> AJAY: Oh, man.
+
+531
+00:24:47,362 --> 00:24:49,050
+Oh, I've never seen Spaceballs.
+
+532
+00:24:49,050 --> 00:24:49,520
+>> DAVID MALAN: Spaceballs.
+
+533
+00:24:49,520 --> 00:24:50,140
+All right.
+
+534
+00:24:50,140 --> 00:24:53,790
+So hold on just one moment.
+
+535
+00:24:53,790 --> 00:24:57,430
+How-- let's make this
+a teachable moment--
+
+536
+00:24:57,430 --> 00:25:00,412
+how did you go about
+finding the number 50?
+
+537
+00:25:00,412 --> 00:25:01,370
+AJAY: I chose randomly.
+
+538
+00:25:01,370 --> 00:25:03,420
+DAVID MALAN: So you chose
+randomly and got lucky.
+
+539
+00:25:03,420 --> 00:25:03,790
+AJAY: Yes.
+
+540
+00:25:03,790 --> 00:25:04,456
+DAVID MALAN: OK.
+
+541
+00:25:04,456 --> 00:25:05,050
+Excellent.
+
+542
+00:25:05,050 --> 00:25:08,470
+So now, had you not
+gotten lucky, what else
+
+543
+00:25:08,470 --> 00:25:10,210
+might have happened behind these doors?
+
+544
+00:25:10,210 --> 00:25:12,930
+So if I go ahead and
+reveal these numbers here,
+
+545
+00:25:12,930 --> 00:25:15,180
+they actually are in random order.
+
+546
+00:25:15,180 --> 00:25:17,750
+And the best you could have
+done, frankly, is by, ultimately,
+
+547
+00:25:17,750 --> 00:25:19,410
+in the worst case, checking them all.
+
+548
+00:25:19,410 --> 00:25:23,000
+So you got super-lucky, which
+isn't what we'd call an algorithm.
+
+549
+00:25:23,000 --> 00:25:24,730
+Yes, congrats.
+
+550
+00:25:24,730 --> 00:25:27,010
+But now let's-- humor me, if you could.
+
+551
+00:25:27,010 --> 00:25:28,310
+Let's go to this tab here.
+
+552
+00:25:28,310 --> 00:25:31,460
+And here are the numbers in clearly
+what seems to be a random order,
+
+553
+00:25:31,460 --> 00:25:32,280
+and they were.
+
+554
+00:25:32,280 --> 00:25:35,160
+But now if I instead claim
+that behind these doors
+
+555
+00:25:35,160 --> 00:25:39,070
+are numbers that are sorted.
+
+556
+00:25:39,070 --> 00:25:41,780
+The goal now is to also
+find us the number 50.
+
+557
+00:25:41,780 --> 00:25:45,910
+But do it algorithmically, and
+tell us how you're going about it.
+
+558
+00:25:45,910 --> 00:25:48,020
+And if you find it, you keep the movie.
+
+559
+00:25:48,020 --> 00:25:49,520
+You don't find it, you give it back.
+
+560
+00:25:49,520 --> 00:25:52,720
+
+561
+00:25:52,720 --> 00:25:58,112
+AJAY: So I'm going to check the ends
+first, to determine if there's--
+
+562
+00:25:58,112 --> 00:26:02,048
+[LAUGHTER AND APPLAUSE]
+
+563
+00:26:02,048 --> 00:26:04,451
+
+564
+00:26:04,451 --> 00:26:05,492
+DAVID MALAN: Here you go.
+
+565
+00:26:05,492 --> 00:26:17,080
+
+566
+00:26:17,080 --> 00:26:21,700
+Let's take a look at one
+of Ajay's predecessors,
+
+567
+00:26:21,700 --> 00:26:25,450
+Sean, who wasn't quite as lucky.
+
+568
+00:26:25,450 --> 00:26:28,670
+OK, so your task here,
+Sean, is the following.
+
+569
+00:26:28,670 --> 00:26:32,970
+I have hidden behind these
+doors the number seven,
+
+570
+00:26:32,970 --> 00:26:37,200
+but tucked away in some of these doors
+as well are other non-negative numbers.
+
+571
+00:26:37,200 --> 00:26:40,730
+And your goal is to think of this
+top row of numbers as just an array.
+
+572
+00:26:40,730 --> 00:26:43,590
+We're just a sequence of pieces
+of paper with numbers behind them.
+
+573
+00:26:43,590 --> 00:26:47,640
+And your goal is, only using the top
+array here, find me the number seven.
+
+574
+00:26:47,640 --> 00:26:51,200
+And we are then going to critique
+how you go about doing it.
+
+575
+00:26:51,200 --> 00:26:52,920
+Find us the number seven, please.
+
+576
+00:26:52,920 --> 00:27:02,570
+
+577
+00:27:02,570 --> 00:27:03,070
+No.
+
+578
+00:27:03,070 --> 00:27:06,760
+
+579
+00:27:06,760 --> 00:27:08,179
+5, 19, 13.
+
+580
+00:27:08,179 --> 00:27:16,752
+
+581
+00:27:16,752 --> 00:27:17,835
+It's not a trick question.
+
+582
+00:27:17,835 --> 00:27:21,420
+
+583
+00:27:21,420 --> 00:27:21,920
+1.
+
+584
+00:27:21,920 --> 00:27:26,715
+
+585
+00:27:26,715 --> 00:27:29,840
+At this point your score is not very
+good, so you might as well keep going.
+
+586
+00:27:29,840 --> 00:27:32,870
+
+587
+00:27:32,870 --> 00:27:33,370
+3.
+
+588
+00:27:33,370 --> 00:27:38,570
+
+589
+00:27:38,570 --> 00:27:39,802
+Go on.
+
+590
+00:27:39,802 --> 00:27:42,510
+Frankly, I can't help but wonder
+what you're even thinking about.
+
+591
+00:27:42,510 --> 00:27:44,990
+>> SEAN: I can take from only the top row.
+
+592
+00:27:44,990 --> 00:27:46,240
+DAVID MALAN: Only the top row.
+
+593
+00:27:46,240 --> 00:27:47,281
+So you've got three left.
+
+594
+00:27:47,281 --> 00:27:48,310
+So find me 7.
+
+595
+00:27:48,310 --> 00:27:54,758
+
+596
+00:27:54,758 --> 00:27:59,141
+>> [AUDIENCE  SHOUTS SUGGESTIONS]
+
+597
+00:27:59,141 --> 00:28:22,210
+
+598
+00:28:22,210 --> 00:28:26,130
+So both of those were amazing
+for very different reasons.
+
+599
+00:28:26,130 --> 00:28:29,150
+So this is where we
+left off a moment ago,
+
+600
+00:28:29,150 --> 00:28:32,530
+and the key insight here
+was these doors had numbers
+
+601
+00:28:32,530 --> 00:28:37,390
+behind them that were sorted, the ideal
+takeaway for which is that you could do
+
+602
+00:28:37,390 --> 00:28:39,670
+fundamentally better in
+this second example--
+
+603
+00:28:39,670 --> 00:28:42,380
+and, indeed, that was Sean's
+first attempt with random numbers
+
+604
+00:28:42,380 --> 00:28:45,460
+just as before-- but as soon
+as these numbers are sorted,
+
+605
+00:28:45,460 --> 00:28:47,980
+much like the phone book,
+what can you obviously do?
+
+606
+00:28:47,980 --> 00:28:50,090
+Or how can you leverage that knowledge?
+
+607
+00:28:50,090 --> 00:28:51,530
+Yeah.
+
+608
+00:28:51,530 --> 00:28:54,910
+>> AUDIENCE: You go halfway [INAUDIBLE].
+
+609
+00:28:54,910 --> 00:28:55,660
+DAVID MALAN: Yeah.
+
+610
+00:28:55,660 --> 00:28:56,160
+Exactly.
+
+611
+00:28:56,160 --> 00:28:59,680
+So Ajay's initial instinct was
+to check the ends, as I recall,
+
+612
+00:28:59,680 --> 00:29:02,320
+and then we sort of finished
+the example quickly.
+
+613
+00:29:02,320 --> 00:29:05,220
+But if we started to do this more
+methodically along those lines,
+
+614
+00:29:05,220 --> 00:29:07,860
+but starting perhaps in the
+middle, because they're sorted,
+
+615
+00:29:07,860 --> 00:29:10,900
+as soon as we reveal the
+number 16, we therefore know--
+
+616
+00:29:10,900 --> 00:29:14,850
+and let's do exactly that-- we
+therefore know that 50, in today's case,
+
+617
+00:29:14,850 --> 00:29:16,080
+has got to be to the right.
+
+618
+00:29:16,080 --> 00:29:18,735
+So just like in week zero when
+we tore the phone book in half
+
+619
+00:29:18,735 --> 00:29:21,490
+and threw half of the
+problem away, same idea here.
+
+620
+00:29:21,490 --> 00:29:23,680
+We can throw this half
+of the problem away.
+
+621
+00:29:23,680 --> 00:29:25,730
+And probably what you
+might do algorithmically,
+
+622
+00:29:25,730 --> 00:29:28,710
+once you know that 50 must be
+to the right, if it's anywhere,
+
+623
+00:29:28,710 --> 00:29:31,390
+is try there, in the middle
+of the remaining doors.
+
+624
+00:29:31,390 --> 00:29:33,450
+Of course, 50 is higher
+than 42, so we can
+
+625
+00:29:33,450 --> 00:29:36,060
+throw this remaining
+quarter of the problem away,
+
+626
+00:29:36,060 --> 00:29:38,510
+and, finally, identify
+something like 50.
+
+627
+00:29:38,510 --> 00:29:41,050
+But just as with the
+phone book, these numbers
+
+628
+00:29:41,050 --> 00:29:44,560
+were given to us already in
+sorted order, which leaves us
+
+629
+00:29:44,560 --> 00:29:47,450
+with the question, how do you
+get things into sorted order?
+
+630
+00:29:47,450 --> 00:29:49,640
+And, frankly, at what cost?
+
+631
+00:29:49,640 --> 00:29:51,390
+It's one thing to be
+handed the phone book
+
+632
+00:29:51,390 --> 00:29:54,810
+and then impress your friends by finding
+a phone number really quickly, right?
+
+633
+00:29:54,810 --> 00:29:58,520
+Tearing 32 pages out to find a
+person out of 4 billion pages,
+
+634
+00:29:58,520 --> 00:30:00,470
+we said was one extreme example.
+
+635
+00:30:00,470 --> 00:30:03,320
+But how much time did it take
+Verizon to sort that phone book?
+
+636
+00:30:03,320 --> 00:30:06,170
+How much time did it take us
+to sort these seven numbers?
+
+637
+00:30:06,170 --> 00:30:10,110
+That's a question that we've
+thus far completely ignored.
+
+638
+00:30:10,110 --> 00:30:12,330
+>> So let's answer this question now.
+
+639
+00:30:12,330 --> 00:30:15,920
+And we're all out of movies now,
+but we do have some stress balls.
+
+640
+00:30:15,920 --> 00:30:19,480
+If, say, eight volunteers
+wouldn't mind joining us up here?
+
+641
+00:30:19,480 --> 00:30:24,100
+Let's go ahead and do, how about
+the four of you, three of you here?
+
+642
+00:30:24,100 --> 00:30:25,290
+Get some new faces.
+
+643
+00:30:25,290 --> 00:30:27,220
+And the four of you there?
+
+644
+00:30:27,220 --> 00:30:30,760
+And now-- let's not bias here-- and
+number eight over here on the end.
+
+645
+00:30:30,760 --> 00:30:32,060
+Come on up.
+
+646
+00:30:32,060 --> 00:30:32,560
+All right.
+
+647
+00:30:32,560 --> 00:30:37,480
+So what we have here for
+each of you is a number.
+
+648
+00:30:37,480 --> 00:30:40,055
+If you'd like to go
+ahead, take this number.
+
+649
+00:30:40,055 --> 00:30:40,763
+What's your name?
+
+650
+00:30:40,763 --> 00:30:41,950
+>> ARTIE:Artie.
+
+651
+00:30:41,950 --> 00:30:43,100
+>> DAVID MALAN: Artie, okay.
+
+652
+00:30:43,100 --> 00:30:44,297
+You're number 1.
+
+653
+00:30:44,297 --> 00:30:45,310
+>> AMIN: Amin.
+
+654
+00:30:45,310 --> 00:30:46,060
+DAVID MALAN: Amin.
+
+655
+00:30:46,060 --> 00:30:46,820
+David.
+
+656
+00:30:46,820 --> 00:30:47,530
+You're number 2.
+
+657
+00:30:47,530 --> 00:30:49,100
+And go ahead, as I hand
+you the sheets of paper,
+
+658
+00:30:49,100 --> 00:30:52,130
+line yourselves up in front of the music
+stands in the same order as up there.
+
+659
+00:30:52,130 --> 00:30:52,660
+>> ANDY: Hi, Andy.
+
+660
+00:30:52,660 --> 00:30:53,970
+>> DAVID MALAN: Andy, it's nice to see you.
+
+661
+00:30:53,970 --> 00:30:54,520
+Number 3.
+
+662
+00:30:54,520 --> 00:30:55,310
+>> JACOB: Jacob.
+
+663
+00:30:55,310 --> 00:30:56,760
+>> DAVID MALAN: Jacob, number 4.
+
+664
+00:30:56,760 --> 00:30:57,549
+Welcome aboard.
+
+665
+00:30:57,549 --> 00:30:58,090
+GRANT: Grant.
+
+666
+00:30:58,090 --> 00:30:58,881
+DAVID MALAN: Grant.
+
+667
+00:30:58,881 --> 00:31:00,348
+Number 5.
+
+668
+00:31:00,348 --> 00:31:01,200
+>> ALANNA: Alanna.
+
+669
+00:31:01,200 --> 00:31:02,766
+>> DAVID MALAN: Alanna, number 6.
+
+670
+00:31:02,766 --> 00:31:03,589
+>> FRANCES: Frances.
+
+671
+00:31:03,589 --> 00:31:04,880
+DAVID MALAN: Frances, number 7.
+
+672
+00:31:04,880 --> 00:31:05,200
+And?
+
+673
+00:31:05,200 --> 00:31:05,830
+>> RACHEL: Rachel.
+
+674
+00:31:05,830 --> 00:31:06,815
+>> DAVID MALAN: Rachel, number 8.
+
+675
+00:31:06,815 --> 00:31:07,100
+All right.
+
+676
+00:31:07,100 --> 00:31:08,766
+Go ahead and get yourself in this order.
+
+677
+00:31:08,766 --> 00:31:11,440
+Let me put one remaining
+music stand in place.
+
+678
+00:31:11,440 --> 00:31:13,670
+Where do you need a stand?
+
+679
+00:31:13,670 --> 00:31:14,170
+OK.
+
+680
+00:31:14,170 --> 00:31:18,710
+Go ahead and just put your numbers
+where the audience can see them on,
+
+681
+00:31:18,710 --> 00:31:20,340
+the music stand facing outward.
+
+682
+00:31:20,340 --> 00:31:27,240
+And hopefully, our first
+sanity check here-- 4, 2, 6.
+
+683
+00:31:27,240 --> 00:31:27,890
+Oh-oh.
+
+684
+00:31:27,890 --> 00:31:29,070
+Wait a minute.
+
+685
+00:31:29,070 --> 00:31:31,140
+We don't have an 8.
+
+686
+00:31:31,140 --> 00:31:35,180
+I need to evict you from
+the example somehow.
+
+687
+00:31:35,180 --> 00:31:35,680
+No.
+
+688
+00:31:35,680 --> 00:31:36,940
+No, that's OK.
+
+689
+00:31:36,940 --> 00:31:37,890
+Let's see.
+
+690
+00:31:37,890 --> 00:31:38,880
+We can do this.
+
+691
+00:31:38,880 --> 00:31:39,440
+Stand by.
+
+692
+00:31:39,440 --> 00:31:43,970
+
+693
+00:31:43,970 --> 00:31:45,740
+There we go.
+
+694
+00:31:45,740 --> 00:31:46,800
+Correct.
+
+695
+00:31:46,800 --> 00:31:47,360
+All right.
+
+696
+00:31:47,360 --> 00:31:50,260
+So, now we have 8, 1, 3 7, 5.
+
+697
+00:31:50,260 --> 00:31:50,760
+OK.
+
+698
+00:31:50,760 --> 00:31:51,360
+Excellent.
+
+699
+00:31:51,360 --> 00:31:54,400
+>> So the question at hand is, at
+what cost, and via what method,
+
+700
+00:31:54,400 --> 00:31:58,580
+can we actually sort these numbers here
+so that we can kind of work backwards,
+
+701
+00:31:58,580 --> 00:32:02,759
+ultimately, and decide-- is it really
+impressive, is it really efficient,
+
+702
+00:32:02,759 --> 00:32:04,550
+that I can divide and
+conquer a phone book?
+
+703
+00:32:04,550 --> 00:32:06,716
+Is it really efficient that
+I can divide and conquer
+
+704
+00:32:06,716 --> 00:32:08,600
+those digital pieces
+of paper on the board,
+
+705
+00:32:08,600 --> 00:32:14,500
+if maybe it's going to cost us a
+fortune in time or energy or CPU cycles
+
+706
+00:32:14,500 --> 00:32:17,340
+to actually get our data
+into some sorted order?
+
+707
+00:32:17,340 --> 00:32:18,930
+So let's ask that question.
+
+708
+00:32:18,930 --> 00:32:22,077
+>> So first off, these numbers are
+in pretty much random order,
+
+709
+00:32:22,077 --> 00:32:24,160
+and I'm going to propose
+one algorithm, or process
+
+710
+00:32:24,160 --> 00:32:25,970
+by which we can sort these folks.
+
+711
+00:32:25,970 --> 00:32:28,100
+I'm going to approach
+this pretty naively.
+
+712
+00:32:28,100 --> 00:32:30,730
+And I'm going to recognize
+that it's kind of a lot for me
+
+713
+00:32:30,730 --> 00:32:32,890
+to wrap my mind around the
+whole data set at once.
+
+714
+00:32:32,890 --> 00:32:33,640
+But you know what?
+
+715
+00:32:33,640 --> 00:32:37,450
+I'm going to make some
+very simple marginal fixes.
+
+716
+00:32:37,450 --> 00:32:41,152
+4 and 2 are out of order, if the
+goal is to go from 1 on up to 8.
+
+717
+00:32:41,152 --> 00:32:41,860
+So you know what?
+
+718
+00:32:41,860 --> 00:32:43,776
+I'm going to have you
+guys swap, if you switch
+
+719
+00:32:43,776 --> 00:32:46,380
+physically positions and
+your pieces of paper.
+
+720
+00:32:46,380 --> 00:32:47,894
+Now 4 and 6, these are in order.
+
+721
+00:32:47,894 --> 00:32:49,060
+I'm going to leave those be.
+
+722
+00:32:49,060 --> 00:32:50,227
+6 and 8, those are in order.
+
+723
+00:32:50,227 --> 00:32:51,185
+Going to leave them be.
+
+724
+00:32:51,185 --> 00:32:52,170
+8 and1, out of order.
+
+725
+00:32:52,170 --> 00:32:54,790
+If you two wouldn't mind swapping.
+
+726
+00:32:54,790 --> 00:32:57,300
+Now 8 and 3, if you guys could swap.
+
+727
+00:32:57,300 --> 00:32:59,320
+8 and 7, if you guys could swap.
+
+728
+00:32:59,320 --> 00:33:01,790
+And 8 and 5, if you guys could swap.
+
+729
+00:33:01,790 --> 00:33:03,980
+>> Now, am I done?
+
+730
+00:33:03,980 --> 00:33:05,200
+No, obviously not.
+
+731
+00:33:05,200 --> 00:33:07,880
+But I have made the
+situation better, right?
+
+732
+00:33:07,880 --> 00:33:09,430
+What was your name again, number 8?
+
+733
+00:33:09,430 --> 00:33:10,055
+>> RACHEL: Rachel.
+
+734
+00:33:10,055 --> 00:33:12,850
+DAVID MALAN: So Rachel has
+effectively bubbled up pretty far,
+
+735
+00:33:12,850 --> 00:33:15,660
+all the way to the end of
+my array of numbers here.
+
+736
+00:33:15,660 --> 00:33:17,310
+And so that problem is kind of solved.
+
+737
+00:33:17,310 --> 00:33:21,670
+Now, clearly, 2 still needs to
+move a bit, and 4 and 6 and 1.
+
+738
+00:33:21,670 --> 00:33:24,420
+But I seem to have gotten a
+little closer to the solution.
+
+739
+00:33:24,420 --> 00:33:26,790
+So let's apply this same
+naive heuristic again.
+
+740
+00:33:26,790 --> 00:33:27,690
+2 and 4, OK.
+
+741
+00:33:27,690 --> 00:33:28,810
+4 and 6, OK.
+
+742
+00:33:28,810 --> 00:33:29,930
+6 and 1, mm-mm.
+
+743
+00:33:29,930 --> 00:33:32,230
+Let's swap.
+
+744
+00:33:32,230 --> 00:33:33,200
+6 and 3, mm-mm.
+
+745
+00:33:33,200 --> 00:33:34,420
+Let's swap.
+
+746
+00:33:34,420 --> 00:33:35,580
+6 and 7 is OK.
+
+747
+00:33:35,580 --> 00:33:36,590
+7 and 5, nope.
+
+748
+00:33:36,590 --> 00:33:37,790
+Let's swap.
+
+749
+00:33:37,790 --> 00:33:38,470
+And now 7 and 8.
+
+750
+00:33:38,470 --> 00:33:39,862
+And what's your name again?
+
+751
+00:33:39,862 --> 00:33:40,570
+FRANCES: Frances.
+
+752
+00:33:40,570 --> 00:33:41,445
+DAVID MALAN: Frances.
+
+753
+00:33:41,445 --> 00:33:44,230
+So now Frances is in even a better
+position, because now 7 and 8
+
+754
+00:33:44,230 --> 00:33:46,440
+are correctly bubbled up to the top.
+
+755
+00:33:46,440 --> 00:33:47,510
+So 2 and 4, OK.
+
+756
+00:33:47,510 --> 00:33:48,720
+4 and 1, let's swap.
+
+757
+00:33:48,720 --> 00:33:50,410
+4 and 3, let's swap.
+
+758
+00:33:50,410 --> 00:33:51,550
+4 and 6, you're OK.
+
+759
+00:33:51,550 --> 00:33:53,340
+6 and 5, let's swap.
+
+760
+00:33:53,340 --> 00:33:54,590
+And now those guys are good.
+
+761
+00:33:54,590 --> 00:33:55,780
+We're almost there.
+
+762
+00:33:55,780 --> 00:33:57,706
+2 and 1, out of order, so swap.
+
+763
+00:33:57,706 --> 00:33:59,080
+And now let me do a sanity check.
+
+764
+00:33:59,080 --> 00:34:03,080
+2 and 3, 3 and 4, 4 and
+5, 5 and 6, 6 and 7, 8.
+
+765
+00:34:03,080 --> 00:34:05,060
+OK, so we're done.
+
+766
+00:34:05,060 --> 00:34:09,310
+>> But at what cost did I
+sort these numbers here?
+
+767
+00:34:09,310 --> 00:34:13,960
+Well, how many steps did I potentially
+take when sorting these folks?
+
+768
+00:34:13,960 --> 00:34:15,710
+Well, we'll come back to that question.
+
+769
+00:34:15,710 --> 00:34:18,030
+But, frankly, if you got
+a little bored, that's
+
+770
+00:34:18,030 --> 00:34:22,270
+kind of revealing in that this wasn't
+maybe the most efficient algorithm.
+
+771
+00:34:22,270 --> 00:34:25,230
+And indeed, frankly, I'm sweating
+all the more walking back and forth.
+
+772
+00:34:25,230 --> 00:34:26,639
+That didn't feel particularly efficient.
+
+773
+00:34:26,639 --> 00:34:27,805
+So let's try something else.
+
+774
+00:34:27,805 --> 00:34:31,870
+If you guys could reset
+yourselves to these eight values.
+
+775
+00:34:31,870 --> 00:34:32,969
+Good job.
+
+776
+00:34:32,969 --> 00:34:36,570
+>> Let's take a look digitally, for just
+a moment before we try something else,
+
+777
+00:34:36,570 --> 00:34:38,179
+at what just happened.
+
+778
+00:34:38,179 --> 00:34:41,330
+Up here, you're about to see a
+visualization of these eight humans
+
+779
+00:34:41,330 --> 00:34:44,719
+whereby blue and red
+bars represent numbers.
+
+780
+00:34:44,719 --> 00:34:46,670
+The taller the bar,
+the bigger the number.
+
+781
+00:34:46,670 --> 00:34:48,510
+The shorter the bar,
+the smaller the number.
+
+782
+00:34:48,510 --> 00:34:51,560
+And what you're going to see is in
+random order more than eight of them.
+
+783
+00:34:51,560 --> 00:34:55,830
+You're going to see these bars
+getting sorted by that same algorithm,
+
+784
+00:34:55,830 --> 00:34:59,890
+or set of instructions, which
+we'll call henceforth bubble sort.
+
+785
+00:34:59,890 --> 00:35:04,000
+So notice, every second or so,
+two bars are lighting up in red,
+
+786
+00:35:04,000 --> 00:35:05,590
+are being compared by the computer.
+
+787
+00:35:05,590 --> 00:35:08,630
+And then if the big bar and the
+little bar are out of order,
+
+788
+00:35:08,630 --> 00:35:11,220
+they are being swapped for me.
+
+789
+00:35:11,220 --> 00:35:15,120
+>> Now this is incredibly tedious
+to watch this, certainly,
+
+790
+00:35:15,120 --> 00:35:18,630
+for very long, but notice the
+takeaway-- big bars moving to the right,
+
+791
+00:35:18,630 --> 00:35:20,460
+little bars moving to the left.
+
+792
+00:35:20,460 --> 00:35:23,380
+Let's abort this process
+and speed this up
+
+793
+00:35:23,380 --> 00:35:27,330
+to be much faster, so we can
+get a high-level sense of what,
+
+794
+00:35:27,330 --> 00:35:29,970
+indeed, bubble sort is doing.
+
+795
+00:35:29,970 --> 00:35:33,150
+Indeed, it's bubbling up to the
+right hand side of the list,
+
+796
+00:35:33,150 --> 00:35:35,260
+or the array, the bigger bars.
+
+797
+00:35:35,260 --> 00:35:40,020
+And conversely, the little bars are
+bubbling their way down to the left,
+
+798
+00:35:40,020 --> 00:35:42,950
+albeit at a faster pace
+than we previously did.
+
+799
+00:35:42,950 --> 00:35:45,850
+So, harder to see with humans,
+but visually that's indeed what
+
+800
+00:35:45,850 --> 00:35:46,540
+was happening.
+
+801
+00:35:46,540 --> 00:35:49,110
+>> But let's try a fundamentally
+different approach now.
+
+802
+00:35:49,110 --> 00:35:52,387
+Let's try a different
+algorithm whereby we have you
+
+803
+00:35:52,387 --> 00:35:59,640
+guys start in these original
+positions, which was this order here.
+
+804
+00:35:59,640 --> 00:36:00,827
+And let's go ahead now.
+
+805
+00:36:00,827 --> 00:36:02,910
+And I'm going to do something
+even simpler, right?
+
+806
+00:36:02,910 --> 00:36:06,710
+In retrospect, swapping pairwise again
+and again, almost a little clever.
+
+807
+00:36:06,710 --> 00:36:10,460
+Let's do things even more naively,
+where if I want to sort these folks,
+
+808
+00:36:10,460 --> 00:36:12,560
+let me just keep looking
+for the smallest element.
+
+809
+00:36:12,560 --> 00:36:14,570
+So right now, 4 is the
+smallest number I've seen.
+
+810
+00:36:14,570 --> 00:36:15,695
+I'm going to remember that.
+
+811
+00:36:15,695 --> 00:36:17,750
+No, 2 is better, and remember that.
+
+812
+00:36:17,750 --> 00:36:20,730
+1 is even smaller.
+
+813
+00:36:20,730 --> 00:36:21,970
+3, 7, 5.
+
+814
+00:36:21,970 --> 00:36:22,470
+OK.
+
+815
+00:36:22,470 --> 00:36:23,750
+One-- what's your name again?
+
+816
+00:36:23,750 --> 00:36:24,400
+>> ARTIE: Artie.
+
+817
+00:36:24,400 --> 00:36:24,610
+>> DAVID MALAN: Artie.
+
+818
+00:36:24,610 --> 00:36:25,460
+So, Artie, go ahead.
+
+819
+00:36:25,460 --> 00:36:27,043
+I'm going to pull you out of the line.
+
+820
+00:36:27,043 --> 00:36:28,400
+If you could come back here.
+
+821
+00:36:28,400 --> 00:36:30,790
+And I need to make room for him.
+
+822
+00:36:30,790 --> 00:36:32,040
+We have a decision point here.
+
+823
+00:36:32,040 --> 00:36:36,000
+How might we make room for Artie here
+at the beginning where number 1 belongs?
+
+824
+00:36:36,000 --> 00:36:36,770
+>> AUDIENCE: Shift.
+
+825
+00:36:36,770 --> 00:36:38,950
+>> DAVID MALAN: OK, we
+could shift everyone.
+
+826
+00:36:38,950 --> 00:36:40,860
+But propose an optimization.
+
+827
+00:36:40,860 --> 00:36:43,410
+That feels a little annoying
+for me to ask four people
+
+828
+00:36:43,410 --> 00:36:44,620
+to move all the way down.
+
+829
+00:36:44,620 --> 00:36:45,520
+What else could I do?
+
+830
+00:36:45,520 --> 00:36:46,360
+>> AUDIENCE: Switch them.
+
+831
+00:36:46,360 --> 00:36:46,850
+>> DAVID MALAN: Switch them.
+
+832
+00:36:46,850 --> 00:36:47,900
+And what's your name again?
+
+833
+00:36:47,900 --> 00:36:48,441
+>> JACOB: Jacob.
+
+834
+00:36:48,441 --> 00:36:50,330
+DAVID MALAN: Jacob, move.
+
+835
+00:36:50,330 --> 00:36:54,440
+Much more efficient just to have
+Jacob swap locations with Artie,
+
+836
+00:36:54,440 --> 00:36:56,710
+as opposed to forcing
+all four of these folks,
+
+837
+00:36:56,710 --> 00:36:58,734
+thank you very much, to
+their correct position.
+
+838
+00:36:58,734 --> 00:37:01,150
+What's nice about Artie now,
+he's in his correct position.
+
+839
+00:37:01,150 --> 00:37:02,060
+Let's do this again.
+
+840
+00:37:02,060 --> 00:37:03,730
+2, that's the smallest number I've seen.
+
+841
+00:37:03,730 --> 00:37:05,690
+3, 7, 5.
+
+842
+00:37:05,690 --> 00:37:06,190
+OK.
+
+843
+00:37:06,190 --> 00:37:07,467
+2 is definitely the smallest.
+
+844
+00:37:07,467 --> 00:37:08,550
+Don't have to do any work.
+
+845
+00:37:08,550 --> 00:37:09,320
+Let's do it again.
+
+846
+00:37:09,320 --> 00:37:10,070
+6.
+
+847
+00:37:10,070 --> 00:37:10,640
+Smallest?
+
+848
+00:37:10,640 --> 00:37:11,140
+8.
+
+849
+00:37:11,140 --> 00:37:11,590
+Nope.
+
+850
+00:37:11,590 --> 00:37:11,720
+4?
+
+851
+00:37:11,720 --> 00:37:12,220
+Ooh.
+
+852
+00:37:12,220 --> 00:37:13,420
+Let me remember 4.
+
+853
+00:37:13,420 --> 00:37:13,950
+3.
+
+854
+00:37:13,950 --> 00:37:15,110
+Let me remember 3.
+
+855
+00:37:15,110 --> 00:37:16,080
+7, 5.
+
+856
+00:37:16,080 --> 00:37:18,490
+Smallest number I've
+seen on this pass is 3.
+
+857
+00:37:18,490 --> 00:37:20,340
+If you'd come on out.
+
+858
+00:37:20,340 --> 00:37:21,986
+Where are we going to put you?
+
+859
+00:37:21,986 --> 00:37:22,860
+And what's your name?
+
+860
+00:37:22,860 --> 00:37:23,530
+>> ALANNA: Alanna.
+
+861
+00:37:23,530 --> 00:37:25,780
+>> DAVID MALAN: Alanna, we're
+going to have to evict you.
+
+862
+00:37:25,780 --> 00:37:28,670
+But that is more efficient,
+to just swap two people,
+
+863
+00:37:28,670 --> 00:37:31,850
+than to have multiple people
+actually sidestep over.
+
+864
+00:37:31,850 --> 00:37:32,850
+Now let's do this again.
+
+865
+00:37:32,850 --> 00:37:34,980
+I'm going to select 4, so come on out.
+
+866
+00:37:34,980 --> 00:37:36,540
+And who's going to move?
+
+867
+00:37:36,540 --> 00:37:37,750
+Number 8, of course.
+
+868
+00:37:37,750 --> 00:37:40,260
+If I now find number 5, come on out.
+
+869
+00:37:40,260 --> 00:37:42,104
+Number 8's going to get evicted again.
+
+870
+00:37:42,104 --> 00:37:43,770
+I'm now going to find number 6 in place.
+
+871
+00:37:43,770 --> 00:37:44,410
+7 in place.
+
+872
+00:37:44,410 --> 00:37:45,080
+8 in place.
+
+873
+00:37:45,080 --> 00:37:48,590
+>> What we just did now is
+something called selection sort,
+
+874
+00:37:48,590 --> 00:37:52,560
+and if we visualize this, it's
+going to feel a little different.
+
+875
+00:37:52,560 --> 00:37:56,800
+Let's go ahead and from this
+menu here, this visualization--
+
+876
+00:37:56,800 --> 00:38:02,920
+let's change this to-- come on, Firefox.
+
+877
+00:38:02,920 --> 00:38:07,610
+Let's change this to selection sort.
+
+878
+00:38:07,610 --> 00:38:11,830
+And let's speed it up as before,
+and start the visualization now.
+
+879
+00:38:11,830 --> 00:38:13,990
+And this algorithm has
+a different feel to it.
+
+880
+00:38:13,990 --> 00:38:16,480
+On each iteration, frankly,
+it's even more straightforward.
+
+881
+00:38:16,480 --> 00:38:18,385
+I'm just selecting the smallest element.
+
+882
+00:38:18,385 --> 00:38:21,510
+Now, frankly, I got a little lucky that
+time, in that it sorted super-fast.
+
+883
+00:38:21,510 --> 00:38:22,660
+The elements were random.
+
+884
+00:38:22,660 --> 00:38:25,520
+It's not, as we'll eventually
+see, fundamentally faster.
+
+885
+00:38:25,520 --> 00:38:29,400
+But let's see a third and final
+approach here as to what's going on.
+
+886
+00:38:29,400 --> 00:38:36,230
+So let's go ahead and reset you guys
+one final time to be in this order here.
+
+887
+00:38:36,230 --> 00:38:38,450
+>> And now, I'm going to
+be a little more clever,
+
+888
+00:38:38,450 --> 00:38:40,220
+just to round out our algorithms.
+
+889
+00:38:40,220 --> 00:38:41,230
+I'm going to do this.
+
+890
+00:38:41,230 --> 00:38:43,140
+I'm going to not go
+back and forth so much.
+
+891
+00:38:43,140 --> 00:38:44,900
+Frankly, I'm tired of
+all this traversing.
+
+892
+00:38:44,900 --> 00:38:47,691
+I'm just going to take what I'm
+given at the beginning of the list,
+
+893
+00:38:47,691 --> 00:38:49,460
+and I'm going to sort
+that then and there.
+
+894
+00:38:49,460 --> 00:38:50,140
+So here we are.
+
+895
+00:38:50,140 --> 00:38:51,030
+Number 4.
+
+896
+00:38:51,030 --> 00:38:53,680
+I'm going to insert number
+4 into a sorted list.
+
+897
+00:38:53,680 --> 00:38:54,180
+Done.
+
+898
+00:38:54,180 --> 00:38:58,300
+I claim now, and just to make this more
+clear, this part of my list is sorted.
+
+899
+00:38:58,300 --> 00:39:02,610
+It's kind of a stupid claim, but indeed
+4 is sorted in a list of size one.
+
+900
+00:39:02,610 --> 00:39:04,210
+Now, I'm going to take on number 2.
+
+901
+00:39:04,210 --> 00:39:07,670
+Number 2 I'm now going to
+insert into the right place.
+
+902
+00:39:07,670 --> 00:39:08,680
+So where does 2 belong?
+
+903
+00:39:08,680 --> 00:39:09,824
+Obviously, over here.
+
+904
+00:39:09,824 --> 00:39:11,490
+So go ahead and move back, if you could.
+
+905
+00:39:11,490 --> 00:39:14,406
+And why don't you guys just take
+your music stands with you this time.
+
+906
+00:39:14,406 --> 00:39:17,020
+And let's forcibly insert you
+into the beginning of the list.
+
+907
+00:39:17,020 --> 00:39:17,936
+So a little more work.
+
+908
+00:39:17,936 --> 00:39:20,890
+I had to move Jacob around,
+and what's your name?
+
+909
+00:39:20,890 --> 00:39:21,420
+>> AMIN: Amin.
+
+910
+00:39:21,420 --> 00:39:22,270
+>> DAVID MALAN: Amin.
+
+911
+00:39:22,270 --> 00:39:24,350
+But at least I didn't go back and forth.
+
+912
+00:39:24,350 --> 00:39:25,739
+I'm just taking things as I go.
+
+913
+00:39:25,739 --> 00:39:27,530
+I'm just inserting them
+in the right place.
+
+914
+00:39:27,530 --> 00:39:29,220
+6, this is actually pretty easy.
+
+915
+00:39:29,220 --> 00:39:31,510
+Let's insert you over there, if you
+just wanted to move over slightly.
+
+916
+00:39:31,510 --> 00:39:32,870
+Number 8, also pretty easy.
+
+917
+00:39:32,870 --> 00:39:33,741
+Right over there.
+
+918
+00:39:33,741 --> 00:39:34,240
+Damn it.
+
+919
+00:39:34,240 --> 00:39:37,590
+Number 1 we can't just
+swap with Amin here,
+
+920
+00:39:37,590 --> 00:39:39,340
+because that's going
+to mess up the order.
+
+921
+00:39:39,340 --> 00:39:40,660
+So we have to be a little more clever.
+
+922
+00:39:40,660 --> 00:39:42,770
+So, Artie, if you could
+back up for a moment.
+
+923
+00:39:42,770 --> 00:39:46,550
+Let's go ahead and shift now,
+unlike our previous algorithms,
+
+924
+00:39:46,550 --> 00:39:50,910
+to make room for Artie
+right here at the beginning.
+
+925
+00:39:50,910 --> 00:39:54,690
+So at the end of the day, I'm kind of
+doing what I wanted to avoid before.
+
+926
+00:39:54,690 --> 00:39:57,770
+And so my algorithm is sort
+of reversed, intellectually,
+
+927
+00:39:57,770 --> 00:39:59,070
+from what it originally was.
+
+928
+00:39:59,070 --> 00:40:01,240
+I'm just doing the shifting
+at a different point.
+
+929
+00:40:01,240 --> 00:40:02,291
+Now I'm at 3.
+
+930
+00:40:02,291 --> 00:40:02,790
+Oh, damn.
+
+931
+00:40:02,790 --> 00:40:04,039
+We have to do more work again.
+
+932
+00:40:04,039 --> 00:40:05,060
+So let's push you out.
+
+933
+00:40:05,060 --> 00:40:09,360
+Let's move 8, 6, 4-- oh oh-- and
+3 is going to go right there.
+
+934
+00:40:09,360 --> 00:40:11,490
+So at least slight savings this time.
+
+935
+00:40:11,490 --> 00:40:13,100
+7, not too much work to be done.
+
+936
+00:40:13,100 --> 00:40:15,370
+So if you want to pop
+back, let's insert you.
+
+937
+00:40:15,370 --> 00:40:17,440
+And lastly, 5, if you
+want to pop back, we
+
+938
+00:40:17,440 --> 00:40:22,610
+need to shift you, you,
+you, until five is in place.
+
+939
+00:40:22,610 --> 00:40:25,670
+>> So now to see this at a
+high level graphically,
+
+940
+00:40:25,670 --> 00:40:31,080
+let's do this algorithm
+visualization one additional time.
+
+941
+00:40:31,080 --> 00:40:33,580
+So this we shall call insertion sort.
+
+942
+00:40:33,580 --> 00:40:37,700
+We'll run it just as
+fast, and start it here.
+
+943
+00:40:37,700 --> 00:40:39,580
+And it, too, has a different feel.
+
+944
+00:40:39,580 --> 00:40:42,180
+It's sort of getting better and
+better, but it's never perfect
+
+945
+00:40:42,180 --> 00:40:44,630
+until I go in and smooth in those gaps.
+
+946
+00:40:44,630 --> 00:40:47,860
+Because, again, I'm only taking what
+I'm being given from left to right.
+
+947
+00:40:47,860 --> 00:40:50,350
+So I didn't get so lucky
+that everything was perfect.
+
+948
+00:40:50,350 --> 00:40:54,190
+That's why we had these little
+mispositions that we fixed over time.
+
+949
+00:40:54,190 --> 00:40:58,890
+>> So all of these algorithms seem to
+run at slightly different paces.
+
+950
+00:40:58,890 --> 00:41:02,030
+In fact, which would you say is
+the best or the fastest so far?
+
+951
+00:41:02,030 --> 00:41:03,450
+Bubble sort, the first?
+
+952
+00:41:03,450 --> 00:41:05,000
+Selection sort, the second?
+
+953
+00:41:05,000 --> 00:41:08,450
+Insertion sort, the third?
+
+954
+00:41:08,450 --> 00:41:10,710
+I hear some selection sorts.
+
+955
+00:41:10,710 --> 00:41:13,280
+Other thoughts?
+
+956
+00:41:13,280 --> 00:41:16,880
+>> So it turns out that
+all of these algorithms
+
+957
+00:41:16,880 --> 00:41:22,400
+are fundamentally just as efficient as
+each other-- or, conversely, just as
+
+958
+00:41:22,400 --> 00:41:25,980
+inefficient as each other,
+because we can do fundamentally
+
+959
+00:41:25,980 --> 00:41:28,120
+better than all three
+of these algorithms.
+
+960
+00:41:28,120 --> 00:41:29,990
+And that's a bit of a white lie, too.
+
+961
+00:41:29,990 --> 00:41:32,580
+when I say as efficient
+or as inefficient,
+
+962
+00:41:32,580 --> 00:41:35,040
+that's at least for
+super-large values of n.
+
+963
+00:41:35,040 --> 00:41:38,450
+When we have just eight people here,
+or maybe 50 or so bars on the screen,
+
+964
+00:41:38,450 --> 00:41:41,645
+you'll absolutely notice differences
+among these three algorithms.
+
+965
+00:41:41,645 --> 00:41:44,020
+But as n, the number of people,
+or the number of numbers,
+
+966
+00:41:44,020 --> 00:41:46,350
+or the number of people in the phone
+book, or the number of web pages
+
+967
+00:41:46,350 --> 00:41:48,230
+in Google's database
+gets bigger and bigger,
+
+968
+00:41:48,230 --> 00:41:51,650
+we'll see that all three of these
+algorithms are actually pretty poor.
+
+969
+00:41:51,650 --> 00:41:54,060
+And we can do fundamentally
+better than that.
+
+970
+00:41:54,060 --> 00:41:56,830
+>> Let's take a look, finally,
+at what these algorithms might
+
+971
+00:41:56,830 --> 00:41:59,520
+sound like in the
+context of a few others
+
+972
+00:41:59,520 --> 00:42:03,550
+as well by way of this
+visualization here
+
+973
+00:42:03,550 --> 00:42:06,860
+that will introduce us to
+a number of algorithms.
+
+974
+00:42:06,860 --> 00:42:10,330
+Let's go ahead and congratulate
+our participants here, all of whom
+
+975
+00:42:10,330 --> 00:42:11,690
+sorted themselves very well.
+
+976
+00:42:11,690 --> 00:42:15,124
+If you'd like to take a parting gift.
+
+977
+00:42:15,124 --> 00:42:16,540
+You can keep your numbers as well.
+
+978
+00:42:16,540 --> 00:42:19,460
+
+979
+00:42:19,460 --> 00:42:22,520
+And what you'll see,
+or rather hear, now,
+
+980
+00:42:22,520 --> 00:42:25,710
+is that as we put sounds
+to each of these bars
+
+981
+00:42:25,710 --> 00:42:28,660
+and associate it with the software,
+different frequency of sound,
+
+982
+00:42:28,660 --> 00:42:33,970
+you can wrap your mind more audioly
+around what each of these things
+
+983
+00:42:33,970 --> 00:42:34,470
+look like.
+
+984
+00:42:34,470 --> 00:42:39,325
+The first of which is insertion sort
+
+985
+00:42:39,325 --> 00:42:44,275
+>> [TONES]
+
+986
+00:42:44,275 --> 00:42:47,245
+
+987
+00:42:47,245 --> 00:42:49,720
+>> This is bubble sort.
+
+988
+00:42:49,720 --> 00:42:54,175
+>> [TONES]
+
+989
+00:42:54,175 --> 00:43:17,250
+
+990
+00:43:17,250 --> 00:43:18,222
+>> Selection sort.
+
+991
+00:43:18,222 --> 00:43:22,596
+>> [TONES]
+
+992
+00:43:22,596 --> 00:43:33,570
+
+993
+00:43:33,570 --> 00:43:35,150
+>> Something called merge sort.
+
+994
+00:43:35,150 --> 00:43:38,140
+>> [TONES]
+
+995
+00:43:38,140 --> 00:43:49,510
+
+996
+00:43:49,510 --> 00:43:51,278
+>> Gnome sort.
+
+997
+00:43:51,278 --> 00:43:56,390
+>> [TONES]
+
+998
+00:43:56,390 --> 00:44:08,240
+
+999
+00:44:08,240 --> 00:44:09,430
+>> That's it for CS50.
+
+1000
+00:44:09,430 --> 00:44:13,360
+We will see you on Wednesday.
+
+1001
+00:44:13,360 --> 00:44:16,671
+>> NARRATOR: And now, "Deep
+Thoughts," by Daven Farnham.
+
+1002
+00:44:16,671 --> 00:44:19,910
+
+1003
+00:44:19,910 --> 00:44:21,590
+Why is it a for loop?
+
+1004
+00:44:21,590 --> 00:44:23,200
+Why not make it better?
+
+1005
+00:44:23,200 --> 00:44:25,970
+I'd make a five loop.
+
+1006
+00:44:25,970 --> 00:44:28,720
+>> [LAUGHTER]

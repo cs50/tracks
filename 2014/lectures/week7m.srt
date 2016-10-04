@@ -1,0 +1,5101 @@
+1
+00:00:00,000 --> 00:00:10,792
+
+2
+00:00:10,792 --> 00:00:11,750
+DAVID MALAN: All right.
+
+3
+00:00:11,750 --> 00:00:13,630
+This is CS50.
+
+4
+00:00:13,630 --> 00:00:15,950
+And this is the start of week seven.
+
+5
+00:00:15,950 --> 00:00:19,120
+So today, perhaps thankfully,
+we begin our transition
+
+6
+00:00:19,120 --> 00:00:21,630
+from the lower level
+world of C programming
+
+7
+00:00:21,630 --> 00:00:24,290
+to the higher level
+world of web programming.
+
+8
+00:00:24,290 --> 00:00:28,060
+And with that, we'll take a look
+at exactly how the internet works,
+
+9
+00:00:28,060 --> 00:00:31,920
+what these machines and these internets
+that you've been using for years now
+
+10
+00:00:31,920 --> 00:00:35,090
+actually do underneath the hood toward
+a better understanding of how it all
+
+11
+00:00:35,090 --> 00:00:37,660
+works, and how you can
+make it work for you.
+
+12
+00:00:37,660 --> 00:00:41,480
+>> Toward that end, why don't we take a
+look first at a clip from a TV show
+
+13
+00:00:41,480 --> 00:00:45,680
+called Numb3rs, that will get us started
+as to exactly how the internet works.
+
+14
+00:00:45,680 --> 00:00:46,964
+
+15
+00:00:46,964 --> 00:00:47,630
+[VIDEO PLAYBACK]
+
+16
+00:00:47,630 --> 00:00:49,858
+-It's a 32-bit IPP4 address.
+
+17
+00:00:49,858 --> 00:00:50,794
+-IP.
+
+18
+00:00:50,794 --> 00:00:51,730
+That's the internet.
+
+19
+00:00:51,730 --> 00:00:52,640
+>> -Private network.
+
+20
+00:00:52,640 --> 00:00:53,865
+It's Amita's private network.
+
+21
+00:00:53,865 --> 00:01:06,635
+
+22
+00:01:06,635 --> 00:01:08,120
+Oh, she's so amazing.
+
+23
+00:01:08,120 --> 00:01:09,605
+
+24
+00:01:09,605 --> 00:01:11,120
+>> -Oh, Charlie.
+
+25
+00:01:11,120 --> 00:01:12,640
+>> -It's a mirror IP address.
+
+26
+00:01:12,640 --> 00:01:15,672
+She's letting us watch what
+she's doing in real time.
+
+27
+00:01:15,672 --> 00:01:16,505
+[END VIDEO PLAYBACK]
+
+28
+00:01:16,505 --> 00:01:19,570
+DAVID MALAN: So there's a whole
+lot of wrong with that TV show.
+
+29
+00:01:19,570 --> 00:01:23,250
+So let's tease apart exactly
+one of the first such things
+
+30
+00:01:23,250 --> 00:01:25,210
+and see if we can't wrap
+our minds around it.
+
+31
+00:01:25,210 --> 00:01:28,110
+So the last frame of
+that movie, of that show
+
+32
+00:01:28,110 --> 00:01:30,360
+is this one here, which
+seems to suggest that this
+
+33
+00:01:30,360 --> 00:01:33,300
+is what some hacker is using
+to get into some system.
+
+34
+00:01:33,300 --> 00:01:33,875
+>> But no.
+
+35
+00:01:33,875 --> 00:01:36,030
+If you zoom in on this
+source code, which
+
+36
+00:01:36,030 --> 00:01:40,210
+is a language called Objective C in
+which iPhone apps, iPad apps, and Mac
+
+37
+00:01:40,210 --> 00:01:42,060
+OS apps are written,
+you'll see that this
+
+38
+00:01:42,060 --> 00:01:45,400
+is for some sort of drawing program
+that has a crayon as a variable.
+
+39
+00:01:45,400 --> 00:01:47,800
+
+40
+00:01:47,800 --> 00:01:51,880
+>> So additionally, you might
+have noticed this address here.
+
+41
+00:01:51,880 --> 00:01:53,330
+Now, this is an as wrong.
+
+42
+00:01:53,330 --> 00:01:56,740
+And this is probably deliberately chosen
+to be an invalid address so that it
+
+43
+00:01:56,740 --> 00:02:00,010
+doesn't actually lead somewhere
+if a TV viewer actually visits it.
+
+44
+00:02:00,010 --> 00:02:02,620
+But this number here,
+something dot something
+
+45
+00:02:02,620 --> 00:02:05,799
+dot something dot something is what's
+generally known as an IP address.
+
+46
+00:02:05,799 --> 00:02:07,840
+And it's actually a good
+segue to this topic more
+
+47
+00:02:07,840 --> 00:02:10,930
+generally, known as
+IP, internet protocol.
+
+48
+00:02:10,930 --> 00:02:14,210
+So you've probably at least
+heard this phrase before.
+
+49
+00:02:14,210 --> 00:02:18,980
+But what is IP, or internet
+protocol as you understand it today?
+
+50
+00:02:18,980 --> 00:02:21,376
+
+51
+00:02:21,376 --> 00:02:23,625
+Odds are, if we asked for a
+show of hands, most of you
+
+52
+00:02:23,625 --> 00:02:26,880
+have probably said the
+words IP address before.
+
+53
+00:02:26,880 --> 00:02:27,955
+So what did you mean?
+
+54
+00:02:27,955 --> 00:02:29,578
+
+55
+00:02:29,578 --> 00:02:30,779
+>> AUDIENCE: [INAUDIBLE]?
+
+56
+00:02:30,779 --> 00:02:31,820
+DAVID MALAN: What's that?
+
+57
+00:02:31,820 --> 00:02:33,170
+AUDIENCE: [INAUDIBLE]?
+
+58
+00:02:33,170 --> 00:02:33,455
+DAVID MALAN: Once more.
+
+59
+00:02:33,455 --> 00:02:34,840
+AUDIENCE: Address of the computer.
+
+60
+00:02:34,840 --> 00:02:35,950
+DAVID MALAN: The
+address of the computer.
+
+61
+00:02:35,950 --> 00:02:36,949
+So that's exactly right.
+
+62
+00:02:36,949 --> 00:02:39,660
+It turns out that every
+computer on the internet,
+
+63
+00:02:39,660 --> 00:02:42,940
+and these days, every phone in your
+pocket and tablet in your backpack,
+
+64
+00:02:42,940 --> 00:02:45,880
+has an IP address, internet
+protocol address, which
+
+65
+00:02:45,880 --> 00:02:49,379
+is a unique address that identifies
+it throughout the entire internet.
+
+66
+00:02:49,379 --> 00:02:51,920
+Now, that's a bit of a white
+lie because the world's actually
+
+67
+00:02:51,920 --> 00:02:53,240
+running out of IP addresses.
+
+68
+00:02:53,240 --> 00:02:55,900
+>> So we've started using
+private IP addresses.
+
+69
+00:02:55,900 --> 00:02:57,160
+But more on that in a moment.
+
+70
+00:02:57,160 --> 00:03:00,731
+But you can think of an IP address
+as like your postal service street
+
+71
+00:03:00,731 --> 00:03:01,230
+address.
+
+72
+00:03:01,230 --> 00:03:04,160
+We've use the example of Maxwell
+Dworkin, the CS building, before-
+
+73
+00:03:04,160 --> 00:03:07,920
+33 Oxford Street Cambridge,
+Mass, 02138, USA.
+
+74
+00:03:07,920 --> 00:03:10,400
+That is its unique address in the world.
+
+75
+00:03:10,400 --> 00:03:12,547
+>> Similarly do computers
+have unique addresses.
+
+76
+00:03:12,547 --> 00:03:14,380
+They just happen to
+look a little different-
+
+77
+00:03:14,380 --> 00:03:17,219
+a number dot a number dot
+a number dot a number.
+
+78
+00:03:17,219 --> 00:03:19,760
+And does anyone actually know
+what the valid range of numbers
+
+79
+00:03:19,760 --> 00:03:21,105
+is for each of those hashes?
+
+80
+00:03:21,105 --> 00:03:21,604
+Yeah.
+
+81
+00:03:21,604 --> 00:03:23,045
+>> AUDIENCE: 0 to 255?
+
+82
+00:03:23,045 --> 00:03:23,920
+DAVID MALAN: Exactly.
+
+83
+00:03:23,920 --> 00:03:25,450
+0 to 255.
+
+84
+00:03:25,450 --> 00:03:28,360
+And even if you didn't know
+that, now draw a conclusion,
+
+85
+00:03:28,360 --> 00:03:31,130
+how many bits are used to represent
+each of these numbers then?
+
+86
+00:03:31,130 --> 00:03:32,232
+
+87
+00:03:32,232 --> 00:03:34,440
+Eight apparently because of
+the highest you can count
+
+88
+00:03:34,440 --> 00:03:36,720
+is 255, that's an 8-bit value.
+
+89
+00:03:36,720 --> 00:03:38,980
+So in total, an IP address is 32-bits.
+
+90
+00:03:38,980 --> 00:03:41,310
+So fast forwarding to the
+mathematical conclusion,
+
+91
+00:03:41,310 --> 00:03:43,900
+how many possible IP addresses
+are there in the world, then?
+
+92
+00:03:43,900 --> 00:03:46,990
+
+93
+00:03:46,990 --> 00:03:50,100
+>> So that's 8 plus 8 plus 8
+plus 8, so that's 32 bits.
+
+94
+00:03:50,100 --> 00:03:52,490
+And we've always said that
+2 to the 32 is roughly?
+
+95
+00:03:52,490 --> 00:03:53,940
+
+96
+00:03:53,940 --> 00:03:54,440
+OK.
+
+97
+00:03:54,440 --> 00:03:55,273
+I'll field this one.
+
+98
+00:03:55,273 --> 00:03:55,864
+Four billion.
+
+99
+00:03:55,864 --> 00:03:58,780
+And we talked about that in week
+zero when we talked about phone books
+
+100
+00:03:58,780 --> 00:04:00,170
+with crazy numbers of pages.
+
+101
+00:04:00,170 --> 00:04:03,450
+But the sort of it is that there's
+a finite number of IP addresses.
+
+102
+00:04:03,450 --> 00:04:05,740
+And even though four billion
+might seem like a lot,
+
+103
+00:04:05,740 --> 00:04:07,770
+we humans have been
+consuming quite a few
+
+104
+00:04:07,770 --> 00:04:10,350
+of them for all of our servers
+and devices and so forth.
+
+105
+00:04:10,350 --> 00:04:12,170
+>> So this is actually becoming a problem.
+
+106
+00:04:12,170 --> 00:04:16,500
+Now, there tends to be a
+scheme behind who has what IP.
+
+107
+00:04:16,500 --> 00:04:18,560
+For instance, many of
+the computers at Harvard
+
+108
+00:04:18,560 --> 00:04:21,810
+have unique addresses that start
+with one of these two values.
+
+109
+00:04:21,810 --> 00:04:23,560
+MIT, similarly, has a prefix.
+
+110
+00:04:23,560 --> 00:04:26,889
+And a lot of companies and universities
+have their own unique prefix.
+
+111
+00:04:26,889 --> 00:04:29,680
+And then most of us for our home
+internet connections and the like,
+
+112
+00:04:29,680 --> 00:04:33,575
+we share some prefix that Comcast
+or someone like that happens to own.
+
+113
+00:04:33,575 --> 00:04:36,640
+And this is only to say that if you
+looked at most computers on campus,
+
+114
+00:04:36,640 --> 00:04:40,070
+they'd probably have an IP
+address that looks like this.
+
+115
+00:04:40,070 --> 00:04:43,180
+>> Now, you might also occasionally see
+an IP address it starts like this.
+
+116
+00:04:43,180 --> 00:04:46,150
+In fact, if any of you grew up
+with internet access at home,
+
+117
+00:04:46,150 --> 00:04:49,270
+and you were ever sufficiently
+technically curious to poke around
+
+118
+00:04:49,270 --> 00:04:51,800
+your own computer settings,
+you probably instead
+
+119
+00:04:51,800 --> 00:04:56,990
+saw an address that looks more like
+this, that started with 10, or 172.6,
+
+120
+00:04:56,990 --> 00:05:00,480
+or 192.168, or some variants thereof.
+
+121
+00:05:00,480 --> 00:05:04,025
+>> And that just means that the world
+is set aside a whole bunch of numbers
+
+122
+00:05:04,025 --> 00:05:06,400
+to be private, which means
+you can use them in your home,
+
+123
+00:05:06,400 --> 00:05:08,941
+you can even use them on your
+campus and within your company,
+
+124
+00:05:08,941 --> 00:05:10,970
+but you can't use them
+on the internet at large.
+
+125
+00:05:10,970 --> 00:05:13,320
+>> And so these private
+IPs have been a solution
+
+126
+00:05:13,320 --> 00:05:16,990
+toward making sure that at least so
+far as the whole world is concerned,
+
+127
+00:05:16,990 --> 00:05:18,890
+we're not using that many IP addresses.
+
+128
+00:05:18,890 --> 00:05:22,840
+But at least, we can, on our own
+campus, have pretty much as many IPs
+
+129
+00:05:22,840 --> 00:05:23,590
+as we want.
+
+130
+00:05:23,590 --> 00:05:24,410
+But who cares?
+
+131
+00:05:24,410 --> 00:05:28,500
+What's the relevance of all of this
+to an actual usage of the internet?
+
+132
+00:05:28,500 --> 00:05:31,450
+>> Well, let's take a look at
+perhaps a simple picture here.
+
+133
+00:05:31,450 --> 00:05:33,550
+Let me through both of
+these up on the screen.
+
+134
+00:05:33,550 --> 00:05:36,050
+And forgive my handwriting here.
+
+135
+00:05:36,050 --> 00:05:39,500
+But if we think of ourselves as
+being this little laptop here
+
+136
+00:05:39,500 --> 00:05:41,830
+somewhere on campus,
+these days it has Wi-Fi.
+
+137
+00:05:41,830 --> 00:05:44,180
+>> But in yesteryear and if
+you find the right adapter,
+
+138
+00:05:44,180 --> 00:05:47,420
+it can have an ethernet cable
+which would similarly let
+
+139
+00:05:47,420 --> 00:05:49,130
+you connect to some kind of device.
+
+140
+00:05:49,130 --> 00:05:51,090
+And you can call this
+any number of things.
+
+141
+00:05:51,090 --> 00:05:55,930
+But I'm going to go ahead and call this,
+for now, how about an access point?
+
+142
+00:05:55,930 --> 00:05:57,690
+>> So this is my laptop.
+
+143
+00:05:57,690 --> 00:06:01,130
+This is my AP, or access point,
+and this is some wireless device,
+
+144
+00:06:01,130 --> 00:06:04,400
+not unlike the ones that Harvard
+has all over the ceilings
+
+145
+00:06:04,400 --> 00:06:07,420
+and walls around campus
+that have blinking lights
+
+146
+00:06:07,420 --> 00:06:10,930
+and that are what your laptops
+used to talk wirelessly
+
+147
+00:06:10,930 --> 00:06:12,160
+to the rest of the network.
+
+148
+00:06:12,160 --> 00:06:14,880
+>> So somehow this laptop is talking
+to that thing on the wall,
+
+149
+00:06:14,880 --> 00:06:16,540
+in the dining hall, or elsewhere.
+
+150
+00:06:16,540 --> 00:06:21,410
+Now, meanwhile, that access point is
+connected to something else on campus.
+
+151
+00:06:21,410 --> 00:06:24,810
+And it's probably something
+known as a switch.
+
+152
+00:06:24,810 --> 00:06:27,690
+And they look a lot more interesting
+than just these box diagrams.
+
+153
+00:06:27,690 --> 00:06:29,760
+>> But somehow, that thing's
+connected to a switch.
+
+154
+00:06:29,760 --> 00:06:31,900
+And in turn, somehow
+that switch is connected
+
+155
+00:06:31,900 --> 00:06:35,890
+to a device that's probably a
+bit bigger, called a router.
+
+156
+00:06:35,890 --> 00:06:37,930
+And then, meanwhile,
+Harvard is connected
+
+157
+00:06:37,930 --> 00:06:41,210
+to the entire internet which
+we'll draw as this cloud here,
+
+158
+00:06:41,210 --> 00:06:43,850
+via some number of wires
+or wireless technology.
+
+159
+00:06:43,850 --> 00:06:46,670
+>> So there's a lot of steps between
+me and the rest of the world.
+
+160
+00:06:46,670 --> 00:06:49,620
+And indeed, even within
+this picture here,
+
+161
+00:06:49,620 --> 00:06:52,634
+there are some other servers
+or services involved.
+
+162
+00:06:52,634 --> 00:06:54,800
+And I'm just going to draw
+these somewhat abstractly
+
+163
+00:06:54,800 --> 00:06:57,050
+just so that we have
+the acronyms before us.
+
+164
+00:06:57,050 --> 00:06:57,993
+>> One is called DHCP.
+
+165
+00:06:57,993 --> 00:06:59,330
+
+166
+00:06:59,330 --> 00:07:03,440
+And another one, a little more
+interestingly for today, is called DNS.
+
+167
+00:07:03,440 --> 00:07:09,160
+So these are servers that are somehow
+accessible to my computer as well.
+
+168
+00:07:09,160 --> 00:07:10,910
+So now, let's tease
+apart a bit of jargon.
+
+169
+00:07:10,910 --> 00:07:13,410
+So the access point is
+just this wireless device
+
+170
+00:07:13,410 --> 00:07:16,079
+often with antennas that actually
+let you talk to a wirelessly.
+
+171
+00:07:16,079 --> 00:07:17,870
+At home, you might call
+this a home router.
+
+172
+00:07:17,870 --> 00:07:21,550
+It might be made by Linksys, or Apple,
+or D-Link, or any number of companies.
+
+173
+00:07:21,550 --> 00:07:23,930
+That, in turn, is connected
+to a switch of some sort.
+
+174
+00:07:23,930 --> 00:07:28,287
+Or back home, what is your Wi-Fi
+device probably connected to instead?
+
+175
+00:07:28,287 --> 00:07:30,370
+Because you probably don't
+own all this equipment.
+
+176
+00:07:30,370 --> 00:07:31,900
+
+177
+00:07:31,900 --> 00:07:32,400
+Yeah.
+
+178
+00:07:32,400 --> 00:07:36,379
+Cable modem or DSL modem back home
+that you got from Verizon, or Comcast,
+
+179
+00:07:36,379 --> 00:07:37,420
+or one of those carriers.
+
+180
+00:07:37,420 --> 00:07:41,520
+So think of all of this complexity
+as supporting a university or really
+
+181
+00:07:41,520 --> 00:07:42,920
+a business like Comcast.
+
+182
+00:07:42,920 --> 00:07:44,690
+And really, the stuff
+that's in your home
+
+183
+00:07:44,690 --> 00:07:46,800
+is probably on this side
+of the fence plus maybe
+
+184
+00:07:46,800 --> 00:07:50,380
+one of these home route-- one
+of these are cable modems or DSL
+
+185
+00:07:50,380 --> 00:07:51,720
+modems they might provide.
+
+186
+00:07:51,720 --> 00:07:55,650
+>> So a switch is just a device with
+a whole bunch of data jacks in it.
+
+187
+00:07:55,650 --> 00:07:58,940
+In fact, if you recall that news
+report we played on the big screen
+
+188
+00:07:58,940 --> 00:08:01,930
+a couple of weeks ago where we
+were talking about shell shock,
+
+189
+00:08:01,930 --> 00:08:03,270
+and how bad this was?
+
+190
+00:08:03,270 --> 00:08:05,850
+And there were of these
+photographs of cables, and jacks,
+
+191
+00:08:05,850 --> 00:08:07,569
+and things that look technical?
+
+192
+00:08:07,569 --> 00:08:10,360
+Those were just dumb switches that
+just internet connects computers
+
+193
+00:08:10,360 --> 00:08:12,810
+by plugging cables into them.
+
+194
+00:08:12,810 --> 00:08:14,140
+>> So that's all a switch is.
+
+195
+00:08:14,140 --> 00:08:16,363
+Now, these devices get a
+little more interesting.
+
+196
+00:08:16,363 --> 00:08:16,863
+DHCP.
+
+197
+00:08:16,863 --> 00:08:17,846
+
+198
+00:08:17,846 --> 00:08:20,470
+If you've poked around your
+computer at home or even on campus,
+
+199
+00:08:20,470 --> 00:08:21,845
+you might have seen this acronym.
+
+200
+00:08:21,845 --> 00:08:24,480
+Does anyone know what a DHCP server is?
+
+201
+00:08:24,480 --> 00:08:25,560
+
+202
+00:08:25,560 --> 00:08:27,360
+Dynamic host configuration protocol?
+
+203
+00:08:27,360 --> 00:08:28,324
+
+204
+00:08:28,324 --> 00:08:30,490
+Not the kind of thing you
+really need to write down.
+
+205
+00:08:30,490 --> 00:08:30,990
+DHCP.
+
+206
+00:08:30,990 --> 00:08:32,480
+
+207
+00:08:32,480 --> 00:08:33,891
+anyone at all?
+
+208
+00:08:33,891 --> 00:08:34,390
+All right.
+
+209
+00:08:34,390 --> 00:08:35,520
+So let's rewind the story.
+
+210
+00:08:35,520 --> 00:08:39,210
+If the story here at hand is predicated
+on my having a unique address
+
+211
+00:08:39,210 --> 00:08:42,909
+in the world, an IP address,
+where does that come from?
+
+212
+00:08:42,909 --> 00:08:44,640
+In yesteryear, when
+you've got to campus,
+
+213
+00:08:44,640 --> 00:08:47,790
+you actually had ask someone at
+Harvard, what should my IP address be.
+
+214
+00:08:47,790 --> 00:08:49,873
+And you would manually
+type it into your computer.
+
+215
+00:08:49,873 --> 00:08:53,770
+But more recently, technologies
+exist that allow you to dynamically,
+
+216
+00:08:53,770 --> 00:08:58,460
+DHCP, get an IP address simply when
+you plug into campus wirelessly
+
+217
+00:08:58,460 --> 00:08:59,220
+or with a wire.
+
+218
+00:08:59,220 --> 00:09:03,800
+So DHCP server is just a server
+that gives your computer a unique IP
+
+219
+00:09:03,800 --> 00:09:06,349
+address, somewhat randomly
+or via some algorithm.
+
+220
+00:09:06,349 --> 00:09:08,390
+But if you think back a
+few weeks or a few years,
+
+221
+00:09:08,390 --> 00:09:10,670
+when you first registered
+your computer on campus,
+
+222
+00:09:10,670 --> 00:09:13,957
+you were telling Harvard, authorize
+me to give me an IP address.
+
+223
+00:09:13,957 --> 00:09:15,915
+Now DNS start to get a
+little more interesting.
+
+224
+00:09:15,915 --> 00:09:17,050
+
+225
+00:09:17,050 --> 00:09:18,940
+Domain name system.
+
+226
+00:09:18,940 --> 00:09:21,970
+Does anyone want to take a stab
+at what this thing is here?
+
+227
+00:09:21,970 --> 00:09:26,195
+>> It's one or more servers that
+perform a fairly simple task that's
+
+228
+00:09:26,195 --> 00:09:26,945
+kind of important.
+
+229
+00:09:26,945 --> 00:09:30,150
+
+230
+00:09:30,150 --> 00:09:31,130
+Yeah.
+
+231
+00:09:31,130 --> 00:09:33,810
+>> AUDIENCE: Translates URLs [INAUDIBLE].
+
+232
+00:09:33,810 --> 00:09:34,560
+DAVID MALAN: Yeah.
+
+233
+00:09:34,560 --> 00:09:38,970
+It translates URLs to IP
+addresses and vice versa.
+
+234
+00:09:38,970 --> 00:09:41,310
+Consider, after all, that
+when you go on the website,
+
+235
+00:09:41,310 --> 00:09:46,200
+you type in something like facebook.com,
+or google.com, or harvard.edu,
+
+236
+00:09:46,200 --> 00:09:50,620
+you certainly have never typed
+most likely a numeric IP address.
+
+237
+00:09:50,620 --> 00:09:52,490
+>> And you can think of the reason why.
+
+238
+00:09:52,490 --> 00:09:54,910
+Back in the day, even
+now to some extent,
+
+239
+00:09:54,910 --> 00:09:58,030
+when you make a telephone
+call to a company,
+
+240
+00:09:58,030 --> 00:10:02,275
+they really try hard to buy themselves
+an 800 number that actually has words
+
+241
+00:10:02,275 --> 00:10:06,140
+in it, like 1-800-collect or something
+that's memorable like that so that
+
+242
+00:10:06,140 --> 00:10:10,692
+people don't have to remember what
+C-O-L-L-E-C-T actually expands to.
+
+243
+00:10:10,692 --> 00:10:12,400
+So we've seen this
+heuristic in the past.
+
+244
+00:10:12,400 --> 00:10:15,720
+And indeed, that's what IP addresses
+and what we'll call host names
+
+245
+00:10:15,720 --> 00:10:18,120
+or fully qualified
+domain names do for us.
+
+246
+00:10:18,120 --> 00:10:22,610
+It allows us to address servers
+by words instead of numbers.
+
+247
+00:10:22,610 --> 00:10:24,560
+So how do we actually
+see this conversion.
+
+248
+00:10:24,560 --> 00:10:26,393
+I'm going to go ahead
+and open up a program.
+
+249
+00:10:26,393 --> 00:10:26,975
+
+250
+00:10:26,975 --> 00:10:29,350
+I'm just going to go ahead
+and open up a terminal window.
+
+251
+00:10:29,350 --> 00:10:31,933
+And I'm going to go ahead and
+show you what a DNS server does.
+
+252
+00:10:31,933 --> 00:10:35,700
+For instance, if I wanted to see
+what the IP address is of Facebook,
+
+253
+00:10:35,700 --> 00:10:37,720
+I can type at a terminal
+prompt like this--
+
+254
+00:10:37,720 --> 00:10:40,010
+and you can do this even
+inside of your appliance.
+
+255
+00:10:40,010 --> 00:10:41,595
+And that's lookup facebook.com.
+
+256
+00:10:41,595 --> 00:10:43,220
+
+257
+00:10:43,220 --> 00:10:44,500
+>> And I see a bunch of things.
+
+258
+00:10:44,500 --> 00:10:48,097
+This first response is
+Harvard's DNS server--
+
+259
+00:10:48,097 --> 00:10:49,930
+that picture that I've
+drawn there. --that's
+
+260
+00:10:49,930 --> 00:10:54,300
+telling me that Facebook's IP
+address is apparently this.
+
+261
+00:10:54,300 --> 00:10:58,650
+So let me go ahead and
+copy that 173.252.120.16.
+
+262
+00:10:58,650 --> 00:11:00,960
+And let me open up Chrome on my Mac.
+
+263
+00:11:00,960 --> 00:11:06,690
+And let me go to http:// and paste
+that IP address in and hit Enter.
+
+264
+00:11:06,690 --> 00:11:08,950
+>> And indeed, I find myself at Facebook.
+
+265
+00:11:08,950 --> 00:11:11,090
+So somehow that conversion,
+indeed, happened.
+
+266
+00:11:11,090 --> 00:11:15,314
+And if I do this again, let's
+do nslookup, www.google.com.
+
+267
+00:11:15,314 --> 00:11:17,302
+I get back a whole bunch of responses.
+
+268
+00:11:17,302 --> 00:11:20,010
+And indeed, there's different ways
+that companies implement this.
+
+269
+00:11:20,010 --> 00:11:22,440
+Sometimes, they tell the world
+they have one IP address.
+
+270
+00:11:22,440 --> 00:11:25,824
+>> But that one IP address gets resolved
+or mapped to multiple servers.
+
+271
+00:11:25,824 --> 00:11:27,740
+Or in the case of Google,
+they tell the world,
+
+272
+00:11:27,740 --> 00:11:29,510
+we have a whole bunch of IP addresses.
+
+273
+00:11:29,510 --> 00:11:33,910
+Your laptop is welcome to talk
+contact any one of these servers.
+
+274
+00:11:33,910 --> 00:11:36,200
+So all of that's been going
+on underneath the hood.
+
+275
+00:11:36,200 --> 00:11:40,830
+>> When you type in www.google.com Enter
+into your browser, your browser,
+
+276
+00:11:40,830 --> 00:11:46,180
+and in turn your operating, Mac
+OS, or Windows, or Ubuntu Linux,
+
+277
+00:11:46,180 --> 00:11:51,010
+ask the nearby DNS server, what is
+the actual address of this server.
+
+278
+00:11:51,010 --> 00:11:54,330
+Because the last device
+in this picture, a router,
+
+279
+00:11:54,330 --> 00:11:57,840
+is the one whose purpose in
+life is to route information,
+
+280
+00:11:57,840 --> 00:12:01,150
+route packets so to speak,
+envelopes of digital information
+
+281
+00:12:01,150 --> 00:12:06,320
+containing zeroes and ones from
+sender to destination, from origin
+
+282
+00:12:06,320 --> 00:12:07,200
+to receiver.
+
+283
+00:12:07,200 --> 00:12:09,760
+>> And so a router routes stuff.
+
+284
+00:12:09,760 --> 00:12:13,000
+So why is this all
+particularly relevant?
+
+285
+00:12:13,000 --> 00:12:16,000
+Well, let's take a look
+at how this might be used.
+
+286
+00:12:16,000 --> 00:12:21,600
+Suppose that I have here
+a picture of Rob Boden.
+
+287
+00:12:21,600 --> 00:12:22,690
+
+288
+00:12:22,690 --> 00:12:25,150
+So suppose that I want to
+send this picture of Rob Boden
+
+289
+00:12:25,150 --> 00:12:27,530
+into Dan in the back
+of the lecture hall.
+
+290
+00:12:27,530 --> 00:12:29,976
+>> So I am a computer
+like my laptop, and Dan
+
+291
+00:12:29,976 --> 00:12:31,600
+is some other computer on the internet.
+
+292
+00:12:31,600 --> 00:12:34,380
+And I want to send a packet
+of information from me to him.
+
+293
+00:12:34,380 --> 00:12:37,952
+That begs the question, how do I
+actually route this packet to him.
+
+294
+00:12:37,952 --> 00:12:40,660
+Well, in human terms, I would say,
+hey, can you pass this to Dan?
+
+295
+00:12:40,660 --> 00:12:42,826
+>> And then, a bunch of you
+would probably pass it back
+
+296
+00:12:42,826 --> 00:12:45,890
+and forth back and forth until
+eventually makes its way over to Dan.
+
+297
+00:12:45,890 --> 00:12:47,700
+But that's a little imprecise.
+
+298
+00:12:47,700 --> 00:12:50,370
+Computers probably need to
+be a little more methodical.
+
+299
+00:12:50,370 --> 00:12:53,190
+So probably, Dan has an IP address.
+
+300
+00:12:53,190 --> 00:12:57,190
+So what really I should do is I should
+take, for instance, a blank envelope
+
+301
+00:12:57,190 --> 00:12:58,140
+like this.
+
+302
+00:12:58,140 --> 00:13:00,130
+And I don't know what
+Dan's IP address is.
+
+303
+00:13:00,130 --> 00:13:04,300
+>> So I'm just going to
+generalize it as Dan's IP.
+
+304
+00:13:04,300 --> 00:13:07,511
+And I'm going to put this in
+the to field of my envelope.
+
+305
+00:13:07,511 --> 00:13:09,010
+And meanwhile, I have an IP address.
+
+306
+00:13:09,010 --> 00:13:10,610
+It doesn't matter today what it is.
+
+307
+00:13:10,610 --> 00:13:15,130
+So I'm just going to say My
+IP in the back corner there.
+
+308
+00:13:15,130 --> 00:13:19,350
+And then, I'm going to go ahead and put
+this picture inside of this envelope.
+
+309
+00:13:19,350 --> 00:13:22,800
+>> And then, each of you, presumably,
+as routers on the internet,
+
+310
+00:13:22,800 --> 00:13:25,470
+have been preconfigured by
+humans generally or sometimes
+
+311
+00:13:25,470 --> 00:13:29,854
+by automated algorithms to know that
+if Dan's IP address starts with a 1,
+
+312
+00:13:29,854 --> 00:13:30,770
+it should go that way.
+
+313
+00:13:30,770 --> 00:13:33,300
+If Dan's IP address starts with
+a 2, it should go that way.
+
+314
+00:13:33,300 --> 00:13:34,450
+Maybe a 3 goes that way.
+
+315
+00:13:34,450 --> 00:13:35,575
+Maybe a 4 goes that way.
+
+316
+00:13:35,575 --> 00:13:36,700
+And that's a little overly.
+
+317
+00:13:36,700 --> 00:13:38,670
+Simplistic but that's the general idea.
+
+318
+00:13:38,670 --> 00:13:42,370
+Each of these routers-- and there might
+be as many as 30 between me and Dan.
+
+319
+00:13:42,370 --> 00:13:45,140
+--have some kind of spreadsheet
+inside of their memory,
+
+320
+00:13:45,140 --> 00:13:49,070
+a database table, that just says,
+IP address that looks like this,
+
+321
+00:13:49,070 --> 00:13:49,730
+goes this way.
+
+322
+00:13:49,730 --> 00:13:51,960
+An IP address that looks
+like this, goes that way.
+
+323
+00:13:51,960 --> 00:13:54,750
+And that's how it makes
+fairly simplistic decisions.
+
+324
+00:13:54,750 --> 00:13:59,440
+>> But it turns out that these routers do
+something more than that, potentially.
+
+325
+00:13:59,440 --> 00:14:03,550
+They allow computers to
+guarantee delivery, at least
+
+326
+00:14:03,550 --> 00:14:05,000
+with high probability.
+
+327
+00:14:05,000 --> 00:14:08,340
+So you might, too, have heard, even if
+you've never quite cared or wondered
+
+328
+00:14:08,340 --> 00:14:12,140
+what it is, you might have heard
+of something by this acronym.
+
+329
+00:14:12,140 --> 00:14:15,500
+Let's go back over here for
+just a moment and pull up this.
+
+330
+00:14:15,500 --> 00:14:18,550
+>> TCP, transmission control protocol.
+
+331
+00:14:18,550 --> 00:14:21,494
+Another technical way of just
+describing another technology
+
+332
+00:14:21,494 --> 00:14:22,660
+that's used on the internet.
+
+333
+00:14:22,660 --> 00:14:24,809
+So IP, internet protocol
+is used for addressing.
+
+334
+00:14:24,809 --> 00:14:27,100
+It some standard that the
+world came up with that said,
+
+335
+00:14:27,100 --> 00:14:31,059
+you put one IP address here for Dan,
+and one IP address here for yourself,
+
+336
+00:14:31,059 --> 00:14:33,100
+and then you put some
+information in an envelope.
+
+337
+00:14:33,100 --> 00:14:36,600
+>> But TCP is another technology,
+used in conjunction with IP.
+
+338
+00:14:36,600 --> 00:14:38,970
+And indeed, if you've ever
+seen these acronyms before,
+
+339
+00:14:38,970 --> 00:14:42,110
+you've probably seen
+TCP slash IP which just
+
+340
+00:14:42,110 --> 00:14:43,900
+means people tend to use them together.
+
+341
+00:14:43,900 --> 00:14:47,570
+Well, TCP is kind of
+cool because it allows
+
+342
+00:14:47,570 --> 00:14:50,220
+you to increase the probability
+that the data is actually
+
+343
+00:14:50,220 --> 00:14:51,970
+going to get from me to Dan.
+
+344
+00:14:51,970 --> 00:14:54,080
+>> In fact, the internet is a crazy place.
+
+345
+00:14:54,080 --> 00:14:56,530
+There's no guarantee that
+if I send data this way
+
+346
+00:14:56,530 --> 00:14:58,530
+that it's going to go
+that way next time around.
+
+347
+00:14:58,530 --> 00:14:59,905
+It might go that way or that way.
+
+348
+00:14:59,905 --> 00:15:02,680
+The shortest distance between
+two points is not necessarily
+
+349
+00:15:02,680 --> 00:15:04,860
+a straight or the same line.
+
+350
+00:15:04,860 --> 00:15:07,170
+>> Moreover, some of you
+guys might make mistakes
+
+351
+00:15:07,170 --> 00:15:09,780
+or get overwhelmed with too
+many envelopes coming your way.
+
+352
+00:15:09,780 --> 00:15:10,940
+So you just going to
+give up and literally
+
+353
+00:15:10,940 --> 00:15:13,050
+drop some of these
+envelopes on the floor.
+
+354
+00:15:13,050 --> 00:15:16,930
+And in that same way can data be
+dropped on the internet by routers.
+
+355
+00:15:16,930 --> 00:15:18,680
+So to decrease the
+odds of this, I'm going
+
+356
+00:15:18,680 --> 00:15:21,980
+to take my little safety
+scissors here and cut Rob
+
+357
+00:15:21,980 --> 00:15:26,140
+into, let's say, four
+pieces, four segments.
+
+358
+00:15:26,140 --> 00:15:27,210
+
+359
+00:15:27,210 --> 00:15:33,350
+>> And now, I'm going to go ahead and
+put one more piece of information
+
+360
+00:15:33,350 --> 00:15:34,610
+on this envelope.
+
+361
+00:15:34,610 --> 00:15:39,630
+I'm going to say something like, 1 of 4.
+
+362
+00:15:39,630 --> 00:15:43,370
+So now, my final envelope, at
+least the first, looks like this.
+
+363
+00:15:43,370 --> 00:15:45,500
+I'm going to go ahead
+and put this one in here.
+
+364
+00:15:45,500 --> 00:15:47,070
+
+365
+00:15:47,070 --> 00:15:53,430
+And for time's sake, I'm going to
+label the others identically as 2 of 4,
+
+366
+00:15:53,430 --> 00:15:57,760
+3 of 4, 4 of 4.
+
+367
+00:15:57,760 --> 00:16:02,170
+>> Again, with Dan's IP address in the
+front of it and with my IP address
+
+368
+00:16:02,170 --> 00:16:06,660
+on the back left, but I
+can't send them just yet.
+
+369
+00:16:06,660 --> 00:16:08,930
+Because it turns out
+that on the internet,
+
+370
+00:16:08,930 --> 00:16:10,980
+servers can do multiple things.
+
+371
+00:16:10,980 --> 00:16:14,300
+In fact, we all might use the web
+quite a bit, the worldwide web,
+
+372
+00:16:14,300 --> 00:16:16,139
+http:// whatever.
+
+373
+00:16:16,139 --> 00:16:17,930
+But there's other
+services on the internet.
+
+374
+00:16:17,930 --> 00:16:21,760
+What are some other services, sort
+of user, consumer-friendly services
+
+375
+00:16:21,760 --> 00:16:25,020
+that spring to mind besides
+a web browser-type program?
+
+376
+00:16:25,020 --> 00:16:26,724
+
+377
+00:16:26,724 --> 00:16:27,390
+AUDIENCE: Email.
+
+378
+00:16:27,390 --> 00:16:28,180
+DAVID MALAN: Email.
+
+379
+00:16:28,180 --> 00:16:28,410
+OK.
+
+380
+00:16:28,410 --> 00:16:28,630
+Good.
+
+381
+00:16:28,630 --> 00:16:29,446
+What's another one?
+
+382
+00:16:29,446 --> 00:16:30,070
+AUDIENCE: Chat.
+
+383
+00:16:30,070 --> 00:16:32,780
+DAVID MALAN: So chat, whether
+it's Skype, or Gchat, or something
+
+384
+00:16:32,780 --> 00:16:33,992
+like that.
+
+385
+00:16:33,992 --> 00:16:34,817
+>> AUDIENCE: Storage.
+
+386
+00:16:34,817 --> 00:16:37,150
+DAVID MALAN: So some kind of
+storage service, certainly.
+
+387
+00:16:37,150 --> 00:16:39,004
+Something like Dropbox,
+or Box, or the like.
+
+388
+00:16:39,004 --> 00:16:40,920
+So there's different
+services on the internet.
+
+389
+00:16:40,920 --> 00:16:44,090
+And it turns out that Dan,
+if he is indeed a computer,
+
+390
+00:16:44,090 --> 00:16:46,520
+doesn't have to be dedicated
+to one thing in life.
+
+391
+00:16:46,520 --> 00:16:49,650
+He can actually do multiple things.
+
+392
+00:16:49,650 --> 00:16:51,740
+And indeed, he can be an email server.
+
+393
+00:16:51,740 --> 00:16:53,270
+He can be a web server.
+
+394
+00:16:53,270 --> 00:16:55,120
+He can be a chat server.
+
+395
+00:16:55,120 --> 00:16:57,600
+>> But that seems to suggest
+that Dan needs to know
+
+396
+00:16:57,600 --> 00:17:01,010
+in advance what are the
+contents of these messages.
+
+397
+00:17:01,010 --> 00:17:02,830
+Is this a web page I'm sending him?
+
+398
+00:17:02,830 --> 00:17:04,140
+Is it an email I'm sending him?
+
+399
+00:17:04,140 --> 00:17:05,930
+Is it an instant
+message I'm sending him?
+
+400
+00:17:05,930 --> 00:17:08,630
+So we need one more piece of
+information on these envelope
+
+401
+00:17:08,630 --> 00:17:10,930
+so that Dan, when he
+receives this envelope,
+
+402
+00:17:10,930 --> 00:17:13,119
+knows what program to use to display it.
+
+403
+00:17:13,119 --> 00:17:14,200
+>> Is it a browser?
+
+404
+00:17:14,200 --> 00:17:15,170
+Is it Google?
+
+405
+00:17:15,170 --> 00:17:16,170
+Is it Skype?
+
+406
+00:17:16,170 --> 00:17:19,760
+Or is it Outlook or some
+other program altogether?
+
+407
+00:17:19,760 --> 00:17:23,740
+And so, with TCP comes
+just a human convention.
+
+408
+00:17:23,740 --> 00:17:26,930
+The world decided some years
+ago to associate unique integers
+
+409
+00:17:26,930 --> 00:17:28,520
+with the most popular services.
+
+410
+00:17:28,520 --> 00:17:31,920
+>> One's called File Transfer Protocol,
+FTP, though it's a little dated now.
+
+411
+00:17:31,920 --> 00:17:34,150
+But its unique identifier is 21.
+
+412
+00:17:34,150 --> 00:17:39,020
+SMTP for outbound email, its unique
+identifier is 25 just because.
+
+413
+00:17:39,020 --> 00:17:43,616
+DNS, the thing we talked about earlier,
+uses the number 53 for its queries.
+
+414
+00:17:43,616 --> 00:17:45,365
+Like what is the IP
+address of google.com?
+
+415
+00:17:45,365 --> 00:17:46,580
+
+416
+00:17:46,580 --> 00:17:49,790
+>> And now, the more familiar you
+might have somewhere at some point
+
+417
+00:17:49,790 --> 00:17:52,620
+seen the number 80 and maybe 443.
+
+418
+00:17:52,620 --> 00:17:55,822
+Those are the unique
+identifiers for HTTP,
+
+419
+00:17:55,822 --> 00:17:57,530
+which is the language
+we'll soon see used
+
+420
+00:17:57,530 --> 00:18:00,000
+for web traffic between
+browsers and servers.
+
+421
+00:18:00,000 --> 00:18:02,740
+And 443 is for the
+secure version thereof.
+
+422
+00:18:02,740 --> 00:18:05,530
+>> So the one last detail I'm
+going to put on my envelope
+
+423
+00:18:05,530 --> 00:18:08,530
+is that I'm not going to
+send this just to Dan's IP.
+
+424
+00:18:08,530 --> 00:18:13,630
+I'm going to send it to say,
+:80, if what I'm trying to send
+
+425
+00:18:13,630 --> 00:18:16,862
+him is a web page, a web page
+that contains Rob Boden's picture.
+
+426
+00:18:16,862 --> 00:18:19,320
+So I'm going to do the same
+thing on these other envelopes.
+
+427
+00:18:19,320 --> 00:18:23,620
+>> And then ultimately, I'm going to drop
+these off with the nearest router,
+
+428
+00:18:23,620 --> 00:18:26,300
+recognizing that that
+router might not necessarily
+
+429
+00:18:26,300 --> 00:18:28,210
+take the same path every time.
+
+430
+00:18:28,210 --> 00:18:30,900
+In fact, I might have the
+first packet going this way.
+
+431
+00:18:30,900 --> 00:18:32,670
+Second packet might go that way.
+
+432
+00:18:32,670 --> 00:18:34,250
+Third packet-- start routing.
+
+433
+00:18:34,250 --> 00:18:35,420
+--might go over here.
+
+434
+00:18:35,420 --> 00:18:36,440
+
+435
+00:18:36,440 --> 00:18:39,530
+And in theory-- can't keep it.
+
+436
+00:18:39,530 --> 00:18:43,660
+In theory, all four of these packets
+should eventually route their way,
+
+437
+00:18:43,660 --> 00:18:46,940
+however efficiently or inefficiently,
+all the way to the back.
+
+438
+00:18:46,940 --> 00:18:51,560
+>> At which point, Dan, upon
+receipt, can reassemble them
+
+439
+00:18:51,560 --> 00:18:55,735
+based on-- the funny thing is,
+we all know what the outcome here
+
+440
+00:18:55,735 --> 00:18:56,360
+is going to be.
+
+441
+00:18:56,360 --> 00:18:57,600
+Dan's going to get a picture of Rob.
+
+442
+00:18:57,600 --> 00:18:58,974
+But let's see how this works out.
+
+443
+00:18:58,974 --> 00:18:59,664
+
+444
+00:18:59,664 --> 00:19:02,080
+Well, rather, Dan's going to
+get part of a picture of Rob.
+
+445
+00:19:02,080 --> 00:19:04,286
+
+446
+00:19:04,286 --> 00:19:04,785
+Very good.
+
+447
+00:19:04,785 --> 00:19:06,200
+
+448
+00:19:06,200 --> 00:19:07,580
+Everyone's participating today.
+
+449
+00:19:07,580 --> 00:19:09,200
+
+450
+00:19:09,200 --> 00:19:09,910
+All right.
+
+451
+00:19:09,910 --> 00:19:13,870
+So as Dan starts to receive these
+packets, let's ask one question.
+
+452
+00:19:13,870 --> 00:19:18,820
+What if one of you gets lazy,
+overloaded, malicious, or just powered
+
+453
+00:19:18,820 --> 00:19:22,570
+off, and one or more of the
+package doesn't make it to Dan?
+
+454
+00:19:22,570 --> 00:19:26,920
+>> How is Dan going to know he did not
+receive one of the segments of the four
+
+455
+00:19:26,920 --> 00:19:28,040
+I sent him?
+
+456
+00:19:28,040 --> 00:19:30,040
+Just intuitively, what can we do?
+
+457
+00:19:30,040 --> 00:19:30,540
+Yeah?
+
+458
+00:19:30,540 --> 00:19:31,456
+>> AUDIENCE: [INAUDIBLE].
+
+459
+00:19:31,456 --> 00:19:35,885
+
+460
+00:19:35,885 --> 00:19:36,760
+DAVID MALAN: Exactly.
+
+461
+00:19:36,760 --> 00:19:40,250
+Because I've uniquely numbered them, and
+I've specified how many segments there
+
+462
+00:19:40,250 --> 00:19:44,030
+should be, he can infer from that
+which, if any, of the segments
+
+463
+00:19:44,030 --> 00:19:45,070
+he's actually missing.
+
+464
+00:19:45,070 --> 00:19:48,770
+And what TCP tells computers to
+do, if computers, like Mac OS,
+
+465
+00:19:48,770 --> 00:19:52,510
+and Windows, and Linux support
+and understand TCP, which they do,
+
+466
+00:19:52,510 --> 00:19:57,010
+TCP's documentation essentially
+says that Dan should send me
+
+467
+00:19:57,010 --> 00:20:00,580
+a message back saying, hey, David,
+I'm missing packet number 1 of 4,
+
+468
+00:20:00,580 --> 00:20:02,290
+or 3 of 4, whichever it is.
+
+469
+00:20:02,290 --> 00:20:06,016
+>> And then, my job is to take
+another picture of Rob,
+
+470
+00:20:06,016 --> 00:20:09,140
+which we have extras of for later today
+if you'd like to take one with you,
+
+471
+00:20:09,140 --> 00:20:13,550
+and then I can resend that segment
+of Rob all the way to the back.
+
+472
+00:20:13,550 --> 00:20:16,380
+>> So as simplistic as
+this mechanism is, that
+
+473
+00:20:16,380 --> 00:20:20,310
+is what's happening almost any time
+you do something on the internet,
+
+474
+00:20:20,310 --> 00:20:22,530
+particularly for these
+most popular of services.
+
+475
+00:20:22,530 --> 00:20:26,500
+There are other protocols,
+other technologies besides TCP
+
+476
+00:20:26,500 --> 00:20:27,880
+that work a little differently.
+
+477
+00:20:27,880 --> 00:20:33,040
+But so many of the services we typically
+use actually rely on these protocols.
+
+478
+00:20:33,040 --> 00:20:35,720
+>> So Dan, did you get the
+full picture back there?
+
+479
+00:20:35,720 --> 00:20:36,220
+Yes.
+
+480
+00:20:36,220 --> 00:20:37,840
+We have reassembled Rob in the back.
+
+481
+00:20:37,840 --> 00:20:39,610
+Thank you so much to the routers.
+
+482
+00:20:39,610 --> 00:20:43,260
+Suppose, I actually want the
+see the routers between me
+
+483
+00:20:43,260 --> 00:20:46,400
+and MIT, much like you guys were
+the routers between me and Dan.
+
+484
+00:20:46,400 --> 00:20:49,500
+>> Well, rather than nslookup
+for name server lookup,
+
+485
+00:20:49,500 --> 00:20:53,150
+I can instead type trace route, which
+is actually going to do what it says.
+
+486
+00:20:53,150 --> 00:20:55,240
+And I'm going to do and
+quiet mode with dash 1.
+
+487
+00:20:55,240 --> 00:20:57,448
+It's a command line argument
+that just says, try this
+
+488
+00:20:57,448 --> 00:20:58,740
+once and not multiple times.
+
+489
+00:20:58,740 --> 00:21:02,210
+>> And now, I'm going to type www.mit.edu.
+
+490
+00:21:02,210 --> 00:21:05,660
+Now, the output is
+fairly quick and cryptic.
+
+491
+00:21:05,660 --> 00:21:08,300
+But what's neat about this
+is that each of these rows
+
+492
+00:21:08,300 --> 00:21:10,750
+essentially represents a
+student in this audience
+
+493
+00:21:10,750 --> 00:21:13,870
+if you were the path between me and MIT.
+
+494
+00:21:13,870 --> 00:21:17,930
+What you see up here, first, is
+the domain name that I typed in,
+
+495
+00:21:17,930 --> 00:21:20,500
+or fully qualified domain
+name as it's properly called.
+
+496
+00:21:20,500 --> 00:21:24,420
+>> And this apparently is the
+IP address of www.mit.edu.
+
+497
+00:21:24,420 --> 00:21:26,260
+My computer figured that out for me.
+
+498
+00:21:26,260 --> 00:21:29,170
+This here is a promise
+that we're only going
+
+499
+00:21:29,170 --> 00:21:31,490
+to try to reach MIT within 30 hops.
+
+500
+00:21:31,490 --> 00:21:34,180
+There better be no more than
+30 students between me and Dan.
+
+501
+00:21:34,180 --> 00:21:37,870
+And now, each of these rows
+represents literally a router
+
+502
+00:21:37,870 --> 00:21:40,280
+between me and Dan,
+literally one of you guys.
+
+503
+00:21:40,280 --> 00:21:42,950
+>> And so this one doesn't seem
+to have a name, a domain name.
+
+504
+00:21:42,950 --> 00:21:44,150
+It just has an IP.
+
+505
+00:21:44,150 --> 00:21:49,439
+And it only took 0.662 milliseconds
+to get from me to that first router.
+
+506
+00:21:49,439 --> 00:21:51,230
+The next one wasn't
+that much farther away.
+
+507
+00:21:51,230 --> 00:21:53,560
+It only took one
+millisecond to get there.
+
+508
+00:21:53,560 --> 00:21:56,280
+And now, thankfully, things
+get a little more user-friendly
+
+509
+00:21:56,280 --> 00:21:58,860
+with names that are cryptic
+but a little more telling.
+
+510
+00:21:58,860 --> 00:22:03,440
+>> This apparently is a router in the
+core of Harvard's network housed,
+
+511
+00:22:03,440 --> 00:22:06,330
+only because people have told us
+this, in the Science Center, SC.
+
+512
+00:22:06,330 --> 00:22:11,720
+And GW is just a shorthand notation for
+gateway which is a synonym for router.
+
+513
+00:22:11,720 --> 00:22:14,630
+So this is some system
+administrator's superscript way
+
+514
+00:22:14,630 --> 00:22:17,230
+of naming one of the servers
+in the Science Center.
+
+515
+00:22:17,230 --> 00:22:20,360
+>> Meanwhile, that server is apparently
+connected by some kind of cable
+
+516
+00:22:20,360 --> 00:22:24,760
+to another router that's nicknamed
+the border gateway one dash
+
+517
+00:22:24,760 --> 00:22:26,770
+something, whatever those numbers mean.
+
+518
+00:22:26,770 --> 00:22:29,230
+And then, apparently,
+Harvard has a connection
+
+519
+00:22:29,230 --> 00:22:31,340
+that's another millisecond
+away to something
+
+520
+00:22:31,340 --> 00:22:35,590
+called the northern crossroads
+which is a common peering point
+
+521
+00:22:35,590 --> 00:22:38,430
+between big places like Harvard
+where lots of cabling goes in
+
+522
+00:22:38,430 --> 00:22:40,870
+and allows interconnections
+among different entities.
+
+523
+00:22:40,870 --> 00:22:43,700
+>> Step six, unfortunately,
+doesn't have a valid name.
+
+524
+00:22:43,700 --> 00:22:45,370
+And step seven gets interesting.
+
+525
+00:22:45,370 --> 00:22:46,820
+
+526
+00:22:46,820 --> 00:22:49,260
+I have no idea what most of these mean.
+
+527
+00:22:49,260 --> 00:22:50,875
+But NY does jump out at me.
+
+528
+00:22:50,875 --> 00:22:52,375
+And what does that probably signify?
+
+529
+00:22:52,375 --> 00:22:54,810
+
+530
+00:22:54,810 --> 00:22:56,520
+It's not even technical.
+
+531
+00:22:56,520 --> 00:22:57,400
+Just New York.
+
+532
+00:22:57,400 --> 00:23:00,510
+So indeed, what's common human
+convention not guaranteed
+
+533
+00:23:00,510 --> 00:23:04,730
+but common convention is to name routers
+by nature of the city or the airport
+
+534
+00:23:04,730 --> 00:23:05,960
+code that they're nearest to.
+
+535
+00:23:05,960 --> 00:23:08,630
+>> So with some probability,
+this router number seven
+
+536
+00:23:08,630 --> 00:23:10,270
+is probably, indeed, in New York.
+
+537
+00:23:10,270 --> 00:23:13,020
+And this seems to corroborate
+that assumption because it's
+
+538
+00:23:13,020 --> 00:23:16,700
+six milliseconds instead of just one
+or so to something here on campus.
+
+539
+00:23:16,700 --> 00:23:19,900
+But now take that into account,
+right on Megabus or whatnot,
+
+540
+00:23:19,900 --> 00:23:23,810
+it might take four, five, six hours
+to get a human from here to New York.
+
+541
+00:23:23,810 --> 00:23:28,040
+>> To get a piece of data, it
+takes just six milliseconds
+
+542
+00:23:28,040 --> 00:23:31,020
+to get a packet from me to Dan if
+he were all the way in New York.
+
+543
+00:23:31,020 --> 00:23:36,832
+Then finally, this apparently is the
+actual domain name for www.mit.edu.
+
+544
+00:23:36,832 --> 00:23:38,790
+They've apparently
+outsourced their web servers
+
+545
+00:23:38,790 --> 00:23:42,030
+to a company called Akamai which means
+some other company runs their servers.
+
+546
+00:23:42,030 --> 00:23:44,380
+And that's why we're seeing
+that weird thing there.
+
+547
+00:23:44,380 --> 00:23:45,720
+>> Well, let's do this once more.
+
+548
+00:23:45,720 --> 00:23:49,150
+Let's go ahead and do a trace
+route to our friend Professor Nick
+
+549
+00:23:49,150 --> 00:23:52,955
+Parlante at Stanford who has a
+server called nifty.stanfor.edu.
+
+550
+00:23:52,955 --> 00:23:55,870
+
+551
+00:23:55,870 --> 00:23:56,980
+Enter.
+
+552
+00:23:56,980 --> 00:23:59,460
+And now, we'll see probably
+a slightly longer path
+
+553
+00:23:59,460 --> 00:24:00,960
+that goes through a few more cities.
+
+554
+00:24:00,960 --> 00:24:03,160
+So here these nameless
+Harvard servers here.
+
+555
+00:24:03,160 --> 00:24:05,660
+We're in the core of Harvard,
+the border gateway of Harvard,
+
+556
+00:24:05,660 --> 00:24:08,081
+the northern crossroads,
+wherever this is.
+
+557
+00:24:08,081 --> 00:24:10,080
+And now, it's getting a
+little more interesting.
+
+558
+00:24:10,080 --> 00:24:12,960
+I'm guessing that router
+number eight is in what city?
+
+559
+00:24:12,960 --> 00:24:14,210
+AUDIENCE: [INTERPOSING VOICES]
+
+560
+00:24:14,210 --> 00:24:18,570
+DAVID MALAN: Chicago probably, based
+on this, based on this thing here.
+
+561
+00:24:18,570 --> 00:24:25,220
+And now we have Salt Lake City maybe,
+maybe Los Angeles here, and then LAX,
+
+562
+00:24:25,220 --> 00:24:27,690
+yep, this probably is LA by the bottom.
+
+563
+00:24:27,690 --> 00:24:29,940
+Until finally, it goes
+from southern California
+
+564
+00:24:29,940 --> 00:24:34,420
+all the way up to northern California
+to where Stanford is in Palo Alto.
+
+565
+00:24:34,420 --> 00:24:35,299
+So pretty cool.
+
+566
+00:24:35,299 --> 00:24:36,840
+And let's take this one step further.
+
+567
+00:24:36,840 --> 00:24:39,000
+It apparently would
+take you 82 milliseconds
+
+568
+00:24:39,000 --> 00:24:42,360
+to send a message to Dan if you were
+in California instead of New York.
+
+569
+00:24:42,360 --> 00:24:45,090
+Let's do something
+like trace routes, one
+
+570
+00:24:45,090 --> 00:24:51,350
+attempt to www.cnn.co.jp for the
+Japanese version of CNN's website.
+
+571
+00:24:51,350 --> 00:24:52,540
+
+572
+00:24:52,540 --> 00:24:54,910
+And now, we're still in
+Boston it seems at the moment.
+
+573
+00:24:54,910 --> 00:24:56,050
+
+574
+00:24:56,050 --> 00:24:58,165
+>> A couple servers six and
+eight aren't responding
+
+575
+00:24:58,165 --> 00:24:59,790
+because they're being a little private.
+
+576
+00:24:59,790 --> 00:25:04,970
+But eventually, there seems to be
+something interesting going on between,
+
+577
+00:25:04,970 --> 00:25:08,395
+let's say, step seven and nine.
+
+578
+00:25:08,395 --> 00:25:09,800
+
+579
+00:25:09,800 --> 00:25:12,610
+What is probably between
+seven and nine, and certainly
+
+580
+00:25:12,610 --> 00:25:14,610
+between seven and step 17?
+
+581
+00:25:14,610 --> 00:25:18,090
+
+582
+00:25:18,090 --> 00:25:20,210
+There's a huge jump
+in the amount of time
+
+583
+00:25:20,210 --> 00:25:23,540
+it's taking for data to go from one
+of these hops, one of these routers
+
+584
+00:25:23,540 --> 00:25:24,060
+to another.
+
+585
+00:25:24,060 --> 00:25:27,310
+>> So odds are, somewhere in
+here, there's probably,
+
+586
+00:25:27,310 --> 00:25:31,440
+especially right here, there's probably
+a very large body of water that
+
+587
+00:25:31,440 --> 00:25:35,320
+has some trans Pacific or trans
+Atlantic cable that actually requires
+
+588
+00:25:35,320 --> 00:25:37,710
+even more time for data to
+get from one point to another.
+
+589
+00:25:37,710 --> 00:25:40,690
+But again, imagine the hours
+it would take the fly to Japan.
+
+590
+00:25:40,690 --> 00:25:45,786
+Here, in some 200 milliseconds,
+boom, your message is actually there.
+
+591
+00:25:45,786 --> 00:25:48,160
+So you can play around with
+this on the appliance or even
+
+592
+00:25:48,160 --> 00:25:50,940
+in Windows or Mac OS with
+slightly different commands.
+
+593
+00:25:50,940 --> 00:25:53,860
+Sometimes, you will get these stars,
+like in rows six and eight, which
+
+594
+00:25:53,860 --> 00:25:55,300
+just means the routers
+are configured not
+
+595
+00:25:55,300 --> 00:25:57,120
+to give you an answer
+for privacy's sake.
+
+596
+00:25:57,120 --> 00:26:00,210
+But generally, this technique
+would, in fact, work.
+
+597
+00:26:00,210 --> 00:26:03,730
+>> So it turns out too there's other
+juicy information lurking in tools
+
+598
+00:26:03,730 --> 00:26:05,610
+that you take for granted every day.
+
+599
+00:26:05,610 --> 00:26:08,560
+So for instance, if you receive
+an email, frankly as some of you
+
+600
+00:26:08,560 --> 00:26:11,270
+may have recently, of questionable
+origins, if you've never
+
+601
+00:26:11,270 --> 00:26:13,330
+looked at Gmail interface
+before, whether it's
+
+602
+00:26:13,330 --> 00:26:15,560
+for the college interface
+or your personal one,
+
+603
+00:26:15,560 --> 00:26:17,620
+you might see your
+inbox looking like this.
+
+604
+00:26:17,620 --> 00:26:20,910
+>> And in fact, this is an email
+I sent, malan@harvard.edu,
+
+605
+00:26:20,910 --> 00:26:24,620
+to jharvard@cs50.harvard.edu
+this morning just
+
+606
+00:26:24,620 --> 00:26:26,070
+so I could take a screenshot.
+
+607
+00:26:26,070 --> 00:26:28,149
+But it turns out, all
+this time in Gmail,
+
+608
+00:26:28,149 --> 00:26:30,190
+there's that little triangle
+toward the top right
+
+609
+00:26:30,190 --> 00:26:34,080
+there next to the Harvard crest that if
+you click, you can click Show Original.
+
+610
+00:26:34,080 --> 00:26:35,160
+
+611
+00:26:35,160 --> 00:26:39,260
+And if you do that, you'll actually see
+a bunch of very esoteric information
+
+612
+00:26:39,260 --> 00:26:43,360
+like timestamps, and IP
+addresses, and domain names.
+
+613
+00:26:43,360 --> 00:26:46,990
+>> But you'll see, in short, the
+headers that all this time have
+
+614
+00:26:46,990 --> 00:26:50,430
+been hit in each and every
+email you send and receive.
+
+615
+00:26:50,430 --> 00:26:54,130
+And it's these headers that people can
+use, computer scientist or otherwise,
+
+616
+00:26:54,130 --> 00:26:56,670
+to actually infer with
+some probability where
+
+617
+00:26:56,670 --> 00:26:59,290
+and from whom an email actually came.
+
+618
+00:26:59,290 --> 00:27:01,830
+>> In fact, we'll talk in
+later weeks about how email
+
+619
+00:27:01,830 --> 00:27:04,100
+itself can be generated
+programmatically which
+
+620
+00:27:04,100 --> 00:27:07,100
+is a very good thing for a website
+that wants to send emails to users.
+
+621
+00:27:07,100 --> 00:27:12,020
+But we'll see, too, just how trivial
+it is to forge emails from someone
+
+622
+00:27:12,020 --> 00:27:15,380
+to someone else, unless you actually
+know how to verify the headers.
+
+623
+00:27:15,380 --> 00:27:18,670
+And even that is a losing
+proposition these days.
+
+624
+00:27:18,670 --> 00:27:22,220
+>> So with that said,
+let's go one layer up.
+
+625
+00:27:22,220 --> 00:27:25,100
+We started with IP which
+addresses packets for us,
+
+626
+00:27:25,100 --> 00:27:26,470
+gives them unique addresses.
+
+627
+00:27:26,470 --> 00:27:29,770
+TCP, which, in short,
+guarantees delivery or at least
+
+628
+00:27:29,770 --> 00:27:34,002
+increases the probability thereof by
+adding things like segments, 1 or 4,
+
+629
+00:27:34,002 --> 00:27:36,740
+2 of 4, 3 of 4, and 4 of 4.
+
+630
+00:27:36,740 --> 00:27:40,710
+>> And now, let's layer on top
+of that another protocol.
+
+631
+00:27:40,710 --> 00:27:44,550
+All of these things are
+protocols, computer conventions
+
+632
+00:27:44,550 --> 00:27:47,670
+that dictate how two
+computers talk to one another.
+
+633
+00:27:47,670 --> 00:27:52,030
+HTTP, finally today, is
+hypertext transfer protocol.
+
+634
+00:27:52,030 --> 00:27:54,100
+And this is the protocol
+that web browsers
+
+635
+00:27:54,100 --> 00:27:56,410
+use when speaking to web servers.
+
+636
+00:27:56,410 --> 00:27:59,970
+>> So when you pull up a browser like
+Chrome, or IE, or Firefox, or Safari,
+
+637
+00:27:59,970 --> 00:28:04,230
+or whatever, and you type in something
+like facebook.com and hit Enter,
+
+638
+00:28:04,230 --> 00:28:08,390
+not only does your computer first
+translate facebook.com into what?
+
+639
+00:28:08,390 --> 00:28:10,590
+
+640
+00:28:10,590 --> 00:28:11,770
+An IP address.
+
+641
+00:28:11,770 --> 00:28:17,420
+It then converts-- it then sends a
+message to that IP address saying,
+
+642
+00:28:17,420 --> 00:28:21,360
+give me today's homepage or give
+me the login screen of Facebook.
+
+643
+00:28:21,360 --> 00:28:25,290
+>> Or if you're already logged in, give
+me the default view of my timeline.
+
+644
+00:28:25,290 --> 00:28:26,820
+So that's what HTTP says.
+
+645
+00:28:26,820 --> 00:28:30,055
+And more colloquially, if I am a web
+server and you are-- what's your name,
+
+646
+00:28:30,055 --> 00:28:30,180
+again?
+
+647
+00:28:30,180 --> 00:28:30,920
+>> AUDIENCE: Margot.
+
+648
+00:28:30,920 --> 00:28:34,250
+>> DAVID MALAN: Margot is a web
+server, and I'm a web browser,
+
+649
+00:28:34,250 --> 00:28:37,610
+and I simply want to retrieve my
+timeline from Margot, margot.com,
+
+650
+00:28:37,610 --> 00:28:39,640
+I would say, hello, I'm David.
+
+651
+00:28:39,640 --> 00:28:40,870
+>> AUDIENCE: Hi, I'm Margot.
+
+652
+00:28:40,870 --> 00:28:43,570
+>> DAVID MALAN: And you would then respond
+with additional information to me.
+
+653
+00:28:43,570 --> 00:28:45,890
+So we have this stupid human
+convention for instance-- thank you.
+
+654
+00:28:45,890 --> 00:28:47,510
+--of shaking each other's hands.
+
+655
+00:28:47,510 --> 00:28:51,670
+And computers have that same idea
+where a client, like a browser,
+
+656
+00:28:51,670 --> 00:28:55,600
+asks a server to do something
+on his or her behalf.
+
+657
+00:28:55,600 --> 00:28:57,540
+>> And so here's a picture, for instance.
+
+658
+00:28:57,540 --> 00:29:01,120
+On the left is a computer laptop,
+desktop, whatever, or even a phone.
+
+659
+00:29:01,120 --> 00:29:03,890
+And on the right is a very
+dated view of a server.
+
+660
+00:29:03,890 --> 00:29:06,460
+They typically looks smaller
+and sexier these days.
+
+661
+00:29:06,460 --> 00:29:09,570
+But the point is simply that
+there's some kind of communication
+
+662
+00:29:09,570 --> 00:29:11,800
+between client and server.
+
+663
+00:29:11,800 --> 00:29:14,080
+>> And clients in the sense
+of someone in a restaurant
+
+664
+00:29:14,080 --> 00:29:16,620
+and the waiter or waitress,
+same idea with computers.
+
+665
+00:29:16,620 --> 00:29:19,340
+Clients and servers, one
+asks for information,
+
+666
+00:29:19,340 --> 00:29:21,560
+one responds with information.
+
+667
+00:29:21,560 --> 00:29:23,920
+Now, how does that
+information come back?
+
+668
+00:29:23,920 --> 00:29:25,890
+Well, consider this.
+
+669
+00:29:25,890 --> 00:29:30,360
+Get is sort of the default way--
+and it's a super simple term.
+
+670
+00:29:30,360 --> 00:29:34,530
+--that just dictates how a browser
+gets information from a server.
+
+671
+00:29:34,530 --> 00:29:38,270
+>> In other words, rather than just
+goof-ily extending my hand to Margot,
+
+672
+00:29:38,270 --> 00:29:42,100
+if I really were a browser, I
+would stuff inside of an envelope,
+
+673
+00:29:42,100 --> 00:29:46,580
+as I did with Rob's photo before, a
+textual message that literally says
+
+674
+00:29:46,580 --> 00:29:53,084
+something like this,
+get/http/1.1hostwww.google.com
+
+675
+00:29:53,084 --> 00:29:56,670
+or margot.com or whatever the
+server's name might happen to be.
+
+676
+00:29:56,670 --> 00:29:58,540
+And then, dot dot dot, some other stuff.
+
+677
+00:29:58,540 --> 00:30:00,310
+>> But literally, inside
+of an envelope would
+
+678
+00:30:00,310 --> 00:30:03,290
+be fairly simple textual
+message like that.
+
+679
+00:30:03,290 --> 00:30:05,990
+That upon receipt, Margot would
+open up, read the content,
+
+680
+00:30:05,990 --> 00:30:07,640
+and respond accordingly.
+
+681
+00:30:07,640 --> 00:30:12,000
+Now, it's a little
+non-obvious with this example.
+
+682
+00:30:12,000 --> 00:30:16,130
+But get/, what is the slash
+probably referring to, just based
+
+683
+00:30:16,130 --> 00:30:20,470
+on your familiarity with
+browsing the web in daily life?
+
+684
+00:30:20,470 --> 00:30:22,206
+What's the slash?
+
+685
+00:30:22,206 --> 00:30:23,147
+>> AUDIENCE: [INAUDIBLE].
+
+686
+00:30:23,147 --> 00:30:24,480
+DAVID MALAN: An escape sequence.
+
+687
+00:30:24,480 --> 00:30:27,280
+Not a bad idea but generally
+escape sequences go the other way.
+
+688
+00:30:27,280 --> 00:30:28,760
+That would be a backslash usually.
+
+689
+00:30:28,760 --> 00:30:29,560
+But not a bad thought.
+
+690
+00:30:29,560 --> 00:30:30,060
+Yeah?
+
+691
+00:30:30,060 --> 00:30:31,190
+
+692
+00:30:31,190 --> 00:30:31,830
+A pointer.
+
+693
+00:30:31,830 --> 00:30:35,100
+Also good thought but
+even simpler than that.
+
+694
+00:30:35,100 --> 00:30:36,250
+The home directory.
+
+695
+00:30:36,250 --> 00:30:38,380
+The root of a hard drive, so to speak.
+
+696
+00:30:38,380 --> 00:30:39,890
+Most of us don't type this.
+
+697
+00:30:39,890 --> 00:30:43,150
+But technically, if you wanted
+to be super proper these days,
+
+698
+00:30:43,150 --> 00:30:50,056
+you would go to something
+like http://www.facebook.com/.
+
+699
+00:30:50,056 --> 00:30:52,580
+>> Now, I said most of us wouldn't
+bother typing the slash.
+
+700
+00:30:52,580 --> 00:30:54,770
+And frankly, most
+browsers, Chrome included,
+
+701
+00:30:54,770 --> 00:30:57,019
+don't even bother showing
+us the slash these days
+
+702
+00:30:57,019 --> 00:30:59,060
+just because they like to
+be simple and succinct.
+
+703
+00:30:59,060 --> 00:31:02,920
+But the slash just means go
+to www.facebook.com and get
+
+704
+00:31:02,920 --> 00:31:08,076
+slash, the root of the hard drive,
+the default page in facebook.com.
+
+705
+00:31:08,076 --> 00:31:09,240
+Using what protocol?
+
+706
+00:31:09,240 --> 00:31:14,910
+Well, using version 1.1 of
+this thing known as HTTP.
+
+707
+00:31:14,910 --> 00:31:16,750
+>> The server, or Margot--
+and by the way, do
+
+708
+00:31:16,750 --> 00:31:17,920
+you mind that I'm using you in these?
+
+709
+00:31:17,920 --> 00:31:18,419
+OK.
+
+710
+00:31:18,419 --> 00:31:19,430
+So we're good now.
+
+711
+00:31:19,430 --> 00:31:23,910
+So Margot response now with an
+envelope of her own, inside of which
+
+712
+00:31:23,910 --> 00:31:26,040
+is a similarly textual message.
+
+713
+00:31:26,040 --> 00:31:30,640
+The first line of which is,
+yep, I speak HTTP version 1.1.
+
+714
+00:31:30,640 --> 00:31:34,930
+200 is the status code
+which just means all is OK.
+
+715
+00:31:34,930 --> 00:31:37,440
+I have the page you're looking for.
+
+716
+00:31:37,440 --> 00:31:44,040
+>> Meanwhile, Content-Type: text/html, this
+is Margot's semi-arcane way of saying,
+
+717
+00:31:44,040 --> 00:31:46,190
+what you have requested is a web page.
+
+718
+00:31:46,190 --> 00:31:50,530
+And it's type, so to speak--
+almost like a variable sense,
+
+719
+00:31:50,530 --> 00:31:52,060
+but this is much higher level now.
+
+720
+00:31:52,060 --> 00:31:55,380
+Its data type is text
+but specifically HTML.
+
+721
+00:31:55,380 --> 00:31:57,210
+The language we'll soon see.
+
+722
+00:31:57,210 --> 00:31:58,700
+>> And then, there's some other stuff.
+
+723
+00:31:58,700 --> 00:32:02,060
+So other stuff is literally what
+Facebook is responding with.
+
+724
+00:32:02,060 --> 00:32:03,400
+So let's see this, too.
+
+725
+00:32:03,400 --> 00:32:05,380
+Let me go ahead and open
+up Chrome on my laptop
+
+726
+00:32:05,380 --> 00:32:07,980
+which you can do on your
+own computer as well.
+
+727
+00:32:07,980 --> 00:32:12,035
+And I'm going to go ahead
+and open up www.facebook.com.
+
+728
+00:32:12,035 --> 00:32:12,535
+Enter.
+
+729
+00:32:12,535 --> 00:32:13,590
+
+730
+00:32:13,590 --> 00:32:16,264
+And I get this familiar screen here.
+
+731
+00:32:16,264 --> 00:32:17,930
+But now, I'm going to do something else.
+
+732
+00:32:17,930 --> 00:32:21,670
+I'm going to go ahead and
+go to View, Developer.
+
+733
+00:32:21,670 --> 00:32:24,190
+And go to Developer
+Tools, which you should
+
+734
+00:32:24,190 --> 00:32:27,377
+have within Chrome on your computer,
+at least within your appliance.
+
+735
+00:32:27,377 --> 00:32:29,460
+I'm going to scroll this
+thing up here, and you're
+
+736
+00:32:29,460 --> 00:32:33,060
+going to see a whole bunch
+of cryptic text here.
+
+737
+00:32:33,060 --> 00:32:37,920
+>> It turns out that what Margot put inside
+of that envelope in response to me
+
+738
+00:32:37,920 --> 00:32:41,472
+is a language called HTML,
+HyperText Markup Language.
+
+739
+00:32:41,472 --> 00:32:43,680
+It's not a programming
+language because you can't, it
+
+740
+00:32:43,680 --> 00:32:46,679
+doesn't have loops, and conditions,
+and functions, and things like that.
+
+741
+00:32:46,679 --> 00:32:47,870
+It's a markup language.
+
+742
+00:32:47,870 --> 00:32:52,110
+In that, it has special syntax
+called tags and attributes
+
+743
+00:32:52,110 --> 00:32:57,120
+that tells a browser what to display
+on the screen and how to display it.
+
+744
+00:32:57,120 --> 00:32:57,920
+Should be centered?
+
+745
+00:32:57,920 --> 00:32:58,920
+Should it be bold-faced?
+
+746
+00:32:58,920 --> 00:33:00,270
+Red, green, blue?
+
+747
+00:33:00,270 --> 00:33:01,390
+It's a markup language.
+
+748
+00:33:01,390 --> 00:33:04,970
+In that, it tells a browser
+what to show on the screen.
+
+749
+00:33:04,970 --> 00:33:10,530
+So this is, literally, all of the
+HTML and more that Facebook server
+
+750
+00:33:10,530 --> 00:33:13,950
+is spitting out and that
+Chrome, and IE, and Firefox have
+
+751
+00:33:13,950 --> 00:33:17,820
+been designed by their
+respective authors to understand.
+
+752
+00:33:17,820 --> 00:33:20,780
+>> And in fact, it's a
+little messier than that.
+
+753
+00:33:20,780 --> 00:33:24,290
+If you, instead, go to View,
+Developer, View Source,
+
+754
+00:33:24,290 --> 00:33:27,550
+this is actually what
+Facebook is out putting.
+
+755
+00:33:27,550 --> 00:33:29,800
+Sort of zero for five
+for style, right, if we
+
+756
+00:33:29,800 --> 00:33:31,479
+infer that this probably isn't the best.
+
+757
+00:33:31,479 --> 00:33:34,270
+But frankly, they can get away with
+it because if you're serving up
+
+758
+00:33:34,270 --> 00:33:36,090
+billions of web pages
+per day, you really
+
+759
+00:33:36,090 --> 00:33:40,040
+don't want to waste time, and bytes,
+and money ultimately in transmitting
+
+760
+00:33:40,040 --> 00:33:43,000
+things like new line
+characters, and spaces, and tabs
+
+761
+00:33:43,000 --> 00:33:46,870
+because you're spending for bandwidth
+unnecessarily with your ISP.
+
+762
+00:33:46,870 --> 00:33:49,580
+>> So indeed, this is meant
+to be minified in this way.
+
+763
+00:33:49,580 --> 00:33:51,740
+But what Chrome is doing
+for us is, it's taking
+
+764
+00:33:51,740 --> 00:33:56,310
+this HTML, which completely looks like
+a mess and unintelligible to human,
+
+765
+00:33:56,310 --> 00:33:57,580
+and it's just formatting it.
+
+766
+00:33:57,580 --> 00:34:00,280
+It's pretty printing it so that
+we can wrap our minds around it
+
+767
+00:34:00,280 --> 00:34:01,452
+a little more readily.
+
+768
+00:34:01,452 --> 00:34:02,660
+But more interesting is this.
+
+769
+00:34:02,660 --> 00:34:06,180
+If I now click in Chrome,
+not elements but network,
+
+770
+00:34:06,180 --> 00:34:08,520
+I'm going to see a little
+logging screen that's
+
+771
+00:34:08,520 --> 00:34:11,040
+going to show me all
+of the HTTP requests
+
+772
+00:34:11,040 --> 00:34:14,380
+that are actually going back and
+forth between me and Facebook or me
+
+773
+00:34:14,380 --> 00:34:17,219
+and Margot if I make
+more than one request.
+
+774
+00:34:17,219 --> 00:34:21,409
+>> So I'm going to go ahead and click
+the reload icon up here in Chrome.
+
+775
+00:34:21,409 --> 00:34:23,850
+And now, a whole bunch of
+stuff flew past at the bottom.
+
+776
+00:34:23,850 --> 00:34:25,710
+I'm going to scroll
+back up to the very top.
+
+777
+00:34:25,710 --> 00:34:29,350
+And now, notice this, the
+very first request my browser
+
+778
+00:34:29,350 --> 00:34:31,340
+made was to www.facebook.com.
+
+779
+00:34:31,340 --> 00:34:34,199
+>> It's using the get
+mechanism which just means
+
+780
+00:34:34,199 --> 00:34:37,810
+it's speaking the textual language
+that we saw an example of a moment ago.
+
+781
+00:34:37,810 --> 00:34:41,909
+And moreover, it turns out
+that the response that Facebook
+
+782
+00:34:41,909 --> 00:34:46,070
+gave me is 200 OK, which means I
+found the web page in question.
+
+783
+00:34:46,070 --> 00:34:49,630
+>> If I click on this row, I can actually
+see those headers a little more
+
+784
+00:34:49,630 --> 00:34:50,800
+clearly.
+
+785
+00:34:50,800 --> 00:34:52,810
+These will make more sense before long.
+
+786
+00:34:52,810 --> 00:34:57,020
+But notice that my browser sends a
+whole lot of information like host,
+
+787
+00:34:57,020 --> 00:34:59,320
+and method, and cookies.
+
+788
+00:34:59,320 --> 00:35:00,879
+We'll come back to those before long.
+
+789
+00:35:00,879 --> 00:35:03,170
+And you'll finally understand
+what a cookie actually is
+
+790
+00:35:03,170 --> 00:35:04,930
+and how you soon will be sending them.
+
+791
+00:35:04,930 --> 00:35:06,900
+>> And you can see what
+Facebook is sending back,
+
+792
+00:35:06,900 --> 00:35:12,230
+including the content type of text
+HTML, the current date time, its privacy
+
+793
+00:35:12,230 --> 00:35:15,530
+policy, or lack thereof, and
+then, finally, a number of cookies
+
+794
+00:35:15,530 --> 00:35:18,050
+that are being set on
+your computer as well.
+
+795
+00:35:18,050 --> 00:35:20,140
+But we'll tease those apart before long.
+
+796
+00:35:20,140 --> 00:35:23,950
+>> But in short, every time you
+visited a web page, now for years,
+
+797
+00:35:23,950 --> 00:35:26,970
+you've been sending messages to
+the one I sent in an envelope
+
+798
+00:35:26,970 --> 00:35:28,230
+to Margot and to Dan.
+
+799
+00:35:28,230 --> 00:35:31,210
+And you've been getting back
+responses like this from Facebook.
+
+800
+00:35:31,210 --> 00:35:35,650
+But moreover, guess what's being
+disclosed to Facebook, and Google,
+
+801
+00:35:35,650 --> 00:35:39,101
+and everyone else every
+time you visit a web page?
+
+802
+00:35:39,101 --> 00:35:42,100
+What is on the outside of every
+envelope your computer has been sending?
+
+803
+00:35:42,100 --> 00:35:43,800
+
+804
+00:35:43,800 --> 00:35:45,590
+Your IP address, right?
+
+805
+00:35:45,590 --> 00:35:48,720
+Maybe not your name per
+se, but your IP address.
+
+806
+00:35:48,720 --> 00:35:52,410
+And just, let's connect the dots
+later, if you're using services
+
+807
+00:35:52,410 --> 00:35:54,430
+like the web, or
+BitTorrent, and the life,
+
+808
+00:35:54,430 --> 00:35:56,860
+and you've registered a computer
+at a place like Harvard,
+
+809
+00:35:56,860 --> 00:36:01,080
+someone somewhere knows that John
+Harvard's IP addresses this, dot this,
+
+810
+00:36:01,080 --> 00:36:02,350
+dot this, dot this.
+
+811
+00:36:02,350 --> 00:36:06,730
+>> And indeed, logs can he kept both on a
+campus like this, on a Comcast network,
+
+812
+00:36:06,730 --> 00:36:10,270
+on Verizon, or frankly, at the
+NSA as we've recently learned,
+
+813
+00:36:10,270 --> 00:36:14,040
+that logs pretty much everything
+that you are doing on the internet.
+
+814
+00:36:14,040 --> 00:36:15,910
+And we'll come back to
+this the future class
+
+815
+00:36:15,910 --> 00:36:18,990
+on the implications of these
+design decisions and security.
+
+816
+00:36:18,990 --> 00:36:21,920
+>> But the truth is, you really
+don't have all that much privacy.
+
+817
+00:36:21,920 --> 00:36:25,380
+Every time you've been visiting anywhere
+on the web, you been showing your hand
+
+818
+00:36:25,380 --> 00:36:28,720
+and revealing at least your IP address.
+
+819
+00:36:28,720 --> 00:36:35,930
+So scary note aside, what can we do to
+embed things like cats in a web page?
+
+820
+00:36:35,930 --> 00:36:40,730
+>> So we have a bunch of responses that
+might come back from the server.
+
+821
+00:36:40,730 --> 00:36:42,340
+And we won't see all of these today.
+
+822
+00:36:42,340 --> 00:36:43,800
+But 200 is good.
+
+823
+00:36:43,800 --> 00:36:46,622
+And you're probably not seen
+all of these as a human before.
+
+824
+00:36:46,622 --> 00:36:48,580
+But you've probably seen
+at least one of these.
+
+825
+00:36:48,580 --> 00:36:50,204
+Which one of these might look familiar?
+
+826
+00:36:50,204 --> 00:36:51,097
+AUDIENCE: 404
+
+827
+00:36:51,097 --> 00:36:51,930
+DAVID MALAN: So 404.
+
+828
+00:36:51,930 --> 00:36:52,695
+File not found.
+
+829
+00:36:52,695 --> 00:36:55,320
+And indeed, you're going to see
+this programmatically yourself.
+
+830
+00:36:55,320 --> 00:37:00,220
+404 just means the file you requested,
+slash or slash something, simply
+
+831
+00:37:00,220 --> 00:37:00,950
+doesn't exist.
+
+832
+00:37:00,950 --> 00:37:04,380
+And a web server typically
+responds with 404 as a result
+
+833
+00:37:04,380 --> 00:37:09,680
+>> Meanwhile, we'll soon see that
+the contents of that message
+
+834
+00:37:09,680 --> 00:37:11,800
+are this language known as HTML.
+
+835
+00:37:11,800 --> 00:37:15,070
+And this is a super
+simple snippet of HTML
+
+836
+00:37:15,070 --> 00:37:18,380
+that does nothing other than
+display hello world on the screen.
+
+837
+00:37:18,380 --> 00:37:21,830
+Indeed, you see at the top of this
+something called a document type
+
+838
+00:37:21,830 --> 00:37:24,220
+declaration which just says, hey, world.
+
+839
+00:37:24,220 --> 00:37:25,964
+This file contains HTML.
+
+840
+00:37:25,964 --> 00:37:28,380
+And then, the next bit of HTML
+that you're going to write,
+
+841
+00:37:28,380 --> 00:37:30,930
+it has an open bracket,
+and then the word HTML,
+
+842
+00:37:30,930 --> 00:37:33,670
+then a closed bracket, and then
+open head, and close bracket.
+
+843
+00:37:33,670 --> 00:37:36,000
+So in short, let's actually
+do this more mechanically.
+
+844
+00:37:36,000 --> 00:37:39,980
+Let me go into my appliance,
+but you can do this anywhere
+
+845
+00:37:39,980 --> 00:37:42,110
+that you have a text editor to.
+
+846
+00:37:42,110 --> 00:37:45,105
+>> I'm going to go ahead and
+save a file called hello.html.
+
+847
+00:37:45,105 --> 00:37:46,440
+
+848
+00:37:46,440 --> 00:37:49,640
+I'm going to put it on my desktop to
+keep things super simple right now.
+
+849
+00:37:49,640 --> 00:37:51,760
+And I'm going to do
+exactly what I just saw.
+
+850
+00:37:51,760 --> 00:37:55,452
+So doc type HTML, open bracket HTML.
+
+851
+00:37:55,452 --> 00:37:57,910
+And now, notice, I'm going to
+do the opposite preemptively.
+
+852
+00:37:57,910 --> 00:38:01,000
+And by opposite, I mean
+the same tag, so to speak,
+
+853
+00:38:01,000 --> 00:38:02,767
+but it starts with a forward slash.
+
+854
+00:38:02,767 --> 00:38:04,600
+And then, over here,
+I'm going to say, head,
+
+855
+00:38:04,600 --> 00:38:07,530
+because it turns out that every
+web page has a so-called head which
+
+856
+00:38:07,530 --> 00:38:10,300
+is stuff that goes in the title
+bar, at the very top of the page.
+
+857
+00:38:10,300 --> 00:38:13,026
+In the title is just
+going to be hello here.
+
+858
+00:38:13,026 --> 00:38:15,150
+And now, I'm going to have
+a body to this web page.
+
+859
+00:38:15,150 --> 00:38:18,130
+So every web page has both
+a head up top and a body
+
+860
+00:38:18,130 --> 00:38:19,522
+which is the guts of the page.
+
+861
+00:38:19,522 --> 00:38:21,980
+And here, I'm just going to
+say something like hello world.
+
+862
+00:38:21,980 --> 00:38:23,440
+And I'm going to save this file.
+
+863
+00:38:23,440 --> 00:38:26,150
+If I now minimize gedit,
+look, there's a little file
+
+864
+00:38:26,150 --> 00:38:28,470
+on my desktop called hello.html.
+
+865
+00:38:28,470 --> 00:38:30,820
+Now, that's not on a server
+yet, per se, Indeed, it's
+
+866
+00:38:30,820 --> 00:38:33,040
+just on my own personal desktop here.
+
+867
+00:38:33,040 --> 00:38:36,910
+But if I open up Chrome and hit Control
+O-- there's the cat in question.
+
+868
+00:38:36,910 --> 00:38:38,710
+--and I go to my desktop.
+
+869
+00:38:38,710 --> 00:38:43,730
+>> And I open up hello.html, there, in
+fact, is my super simple web page.
+
+870
+00:38:43,730 --> 00:38:45,490
+The body of my page
+and this white window
+
+871
+00:38:45,490 --> 00:38:47,610
+here is the body with hello world.
+
+872
+00:38:47,610 --> 00:38:51,020
+And the title in the head of
+the page is in the tab there.
+
+873
+00:38:51,020 --> 00:38:53,020
+And we're going to see
+soon that it's super
+
+874
+00:38:53,020 --> 00:38:55,004
+simple to open up other pages as well.
+
+875
+00:38:55,004 --> 00:38:57,670
+For instance, I'm going to go
+into some of the distribution code
+
+876
+00:38:57,670 --> 00:39:00,230
+for this week, source
+seven, and I'm going
+
+877
+00:39:00,230 --> 00:39:03,150
+to open up not the JPEG
+which this guy is here.
+
+878
+00:39:03,150 --> 00:39:08,430
+But I'm going to open up image.html,
+which ultimately looks like this.
+
+879
+00:39:08,430 --> 00:39:15,140
+But let me now open this up in gedit,
+and go into Dropbox source seven,
+
+880
+00:39:15,140 --> 00:39:17,470
+and image.html.
+
+881
+00:39:17,470 --> 00:39:19,430
+
+882
+00:39:19,430 --> 00:39:21,960
+>> Most of this is just
+comments as we'll soon see.
+
+883
+00:39:21,960 --> 00:39:25,210
+But if I want to put Grumpy
+Cat inside of this web page,
+
+884
+00:39:25,210 --> 00:39:29,890
+it suffices to put another open bracket,
+and then the keyword image or img
+
+885
+00:39:29,890 --> 00:39:33,080
+for short, and then alternative
+text for accessibility reasons
+
+886
+00:39:33,080 --> 00:39:35,890
+if someone has a screen
+reader or something like that.
+
+887
+00:39:35,890 --> 00:39:38,260
+Source which is, what's the
+name of the file, cat.jpeg.
+
+888
+00:39:38,260 --> 00:39:39,280
+
+889
+00:39:39,280 --> 00:39:41,400
+>> And then, because this
+tag's a little special,
+
+890
+00:39:41,400 --> 00:39:44,140
+we put the forward slash, as
+we'll see, inside of the tag.
+
+891
+00:39:44,140 --> 00:39:47,180
+But the end result is a web
+page that looks like this.
+
+892
+00:39:47,180 --> 00:39:51,320
+So in short, what we're going to be
+doing now over time is using the web
+
+893
+00:39:51,320 --> 00:39:54,200
+and creating web pages to
+ultimately be containers
+
+894
+00:39:54,200 --> 00:39:57,280
+not only for silly things like
+images, and links, and tables,
+
+895
+00:39:57,280 --> 00:40:00,770
+and bulleted lists, and the like,
+but also to give us ourselves
+
+896
+00:40:00,770 --> 00:40:04,890
+a graphical user interface, a GUI,
+not unlike what we did we Breakout.
+
+897
+00:40:04,890 --> 00:40:08,330
+>> But within this environment, we're
+going to start using languages like PHP,
+
+898
+00:40:08,330 --> 00:40:10,960
+and JavaScript, the database
+language called SQL,
+
+899
+00:40:10,960 --> 00:40:14,050
+a client-side scripting language
+called JavaScript to actually create
+
+900
+00:40:14,050 --> 00:40:18,760
+all the more dynamic interfaces but
+in a much, much more familiar context.
+
+901
+00:40:18,760 --> 00:40:21,970
+But before then, let's
+conclude today with a look,
+
+902
+00:40:21,970 --> 00:40:25,280
+as promised, of what's really going on
+underneath the hood with the internet
+
+903
+00:40:25,280 --> 00:40:26,060
+itself.
+
+904
+00:40:26,060 --> 00:40:28,400
+>> Stipulate for today
+that the internet can
+
+905
+00:40:28,400 --> 00:40:31,390
+be used to transfer things
+like web pages over HTTP
+
+906
+00:40:31,390 --> 00:40:33,150
+much like I shook Margot's hand earlier.
+
+907
+00:40:33,150 --> 00:40:36,470
+But there's so many other
+services that use TCP and IP
+
+908
+00:40:36,470 --> 00:40:39,800
+that we take for granted
+that work as we'll see here
+
+909
+00:40:39,800 --> 00:40:42,477
+in this film that'll
+take us to the end today.
+
+910
+00:40:42,477 --> 00:40:45,956
+>> [VIDEO PLAYBACK]
+
+911
+00:40:45,956 --> 00:41:31,710
+
+912
+00:41:31,710 --> 00:41:35,870
+>> -For the first time in
+history, people and machinery
+
+913
+00:41:35,870 --> 00:41:38,940
+are working together, realizing a dream.
+
+914
+00:41:38,940 --> 00:41:41,780
+A uniting force that knows
+no geographical boundaries.
+
+915
+00:41:41,780 --> 00:41:45,010
+Without regard to race, creed, or color.
+
+916
+00:41:45,010 --> 00:41:49,130
+A new era where communication
+truly brings people together.
+
+917
+00:41:49,130 --> 00:41:51,795
+This is The Dawn of the Net.
+
+918
+00:41:51,795 --> 00:41:54,920
+
+919
+00:41:54,920 --> 00:41:56,450
+>> Want to know how it works?
+
+920
+00:41:56,450 --> 00:42:00,260
+Click here to begin your
+journey into the net.
+
+921
+00:42:00,260 --> 00:42:02,780
+
+922
+00:42:02,780 --> 00:42:05,380
+Now, exactly what happened
+when you clicked on that link?
+
+923
+00:42:05,380 --> 00:42:07,190
+You started a flow of information.
+
+924
+00:42:07,190 --> 00:42:09,790
+This information travels down
+into your personal mail room
+
+925
+00:42:09,790 --> 00:42:14,040
+when Mr. IP packages it, labels
+it, and sends it on its way.
+
+926
+00:42:14,040 --> 00:42:16,030
+>> Each packet is limited size.
+
+927
+00:42:16,030 --> 00:42:19,900
+The mail room must decide how to divide
+the information and how to package it.
+
+928
+00:42:19,900 --> 00:42:23,400
+Now, the package needs a label
+containing important information,
+
+929
+00:42:23,400 --> 00:42:27,480
+such as sender's address, receiver's
+address, and the type of packet it is.
+
+930
+00:42:27,480 --> 00:42:41,070
+
+931
+00:42:41,070 --> 00:42:43,700
+>> Because this particular packet
+is going out onto the internet,
+
+932
+00:42:43,700 --> 00:42:46,240
+it also gets an address
+for the proxy server, which
+
+933
+00:42:46,240 --> 00:42:47,990
+has a special function
+as we'll see later.
+
+934
+00:42:47,990 --> 00:42:49,080
+
+935
+00:42:49,080 --> 00:42:53,430
+The packet is now launched onto
+your local area network or LAN.
+
+936
+00:42:53,430 --> 00:42:56,220
+This network is used to connect
+all the local computers,
+
+937
+00:42:56,220 --> 00:42:58,760
+routers printers, et cetera
+for information exchange
+
+938
+00:42:58,760 --> 00:43:00,790
+within the physical
+walls of the building.
+
+939
+00:43:00,790 --> 00:43:04,840
+The LAN is a pretty uncontrolled
+place and, unfortunately, accidents
+
+940
+00:43:04,840 --> 00:43:05,828
+can happen.
+
+941
+00:43:05,828 --> 00:43:13,240
+
+942
+00:43:13,240 --> 00:43:16,020
+>> The highway of LAN is packed
+with all types of information.
+
+943
+00:43:16,020 --> 00:43:19,270
+These are IP packets, Novell
+packets, Apple Talk packets.
+
+944
+00:43:19,270 --> 00:43:21,440
+They're going against traffic as usual.
+
+945
+00:43:21,440 --> 00:43:24,040
+The local router reads the
+address and, if necessary,
+
+946
+00:43:24,040 --> 00:43:25,935
+lifts the packet onto another network.
+
+947
+00:43:25,935 --> 00:43:27,610
+
+948
+00:43:27,610 --> 00:43:28,810
+Ah, the router.
+
+949
+00:43:28,810 --> 00:43:31,990
+A symbol of control in a
+seemingly disorganized world.
+
+950
+00:43:31,990 --> 00:43:41,050
+
+951
+00:43:41,050 --> 00:43:45,480
+>> There he is, a systematic,
+uncaring, methodical, conservative,
+
+952
+00:43:45,480 --> 00:43:48,100
+and sometimes not quite up to speed.
+
+953
+00:43:48,100 --> 00:43:50,430
+But at least, he is
+exact for the most part.
+
+954
+00:43:50,430 --> 00:44:03,090
+
+955
+00:44:03,090 --> 00:44:05,530
+>> As the packets leave the
+router, they make their way
+
+956
+00:44:05,530 --> 00:44:08,780
+into the corporate intranet
+and head for the router switch.
+
+957
+00:44:08,780 --> 00:44:10,179
+
+958
+00:44:10,179 --> 00:44:12,470
+A bit more efficient than
+the router, the router switch
+
+959
+00:44:12,470 --> 00:44:16,700
+plays fast and loose with IP packets,
+deftly routing them along the way.
+
+960
+00:44:16,700 --> 00:44:18,950
+A digital Pinball Wizard if you will.
+
+961
+00:44:18,950 --> 00:44:19,532
+>> -Here we go.
+
+962
+00:44:19,532 --> 00:44:20,490
+Here comes another one.
+
+963
+00:44:20,490 --> 00:44:21,198
+And it's another.
+
+964
+00:44:21,198 --> 00:44:21,886
+Watch this, Mom.
+
+965
+00:44:21,886 --> 00:44:22,258
+Here is goes.
+
+966
+00:44:22,258 --> 00:44:22,382
+Whoops.
+
+967
+00:44:22,382 --> 00:44:23,126
+Around the back.
+
+968
+00:44:23,126 --> 00:44:23,374
+Hey.
+
+969
+00:44:23,374 --> 00:44:23,622
+In there.
+
+970
+00:44:23,622 --> 00:44:24,122
+In there.
+
+971
+00:44:24,122 --> 00:44:24,862
+Over to the left.
+
+972
+00:44:24,862 --> 00:44:25,110
+Over to the right.
+
+973
+00:44:25,110 --> 00:44:25,358
+Over to the left.
+
+974
+00:44:25,358 --> 00:44:26,350
+Over to the right.
+
+975
+00:44:26,350 --> 00:44:26,596
+You got it.
+
+976
+00:44:26,596 --> 00:44:26,846
+Here it goes.
+
+977
+00:44:26,846 --> 00:44:27,342
+He shoots.
+
+978
+00:44:27,342 --> 00:44:27,840
+He scores.
+
+979
+00:44:27,840 --> 00:44:28,100
+It's going.
+
+980
+00:44:28,100 --> 00:44:28,580
+Hey, wait.
+
+981
+00:44:28,580 --> 00:44:28,940
+Hey, watch out.
+
+982
+00:44:28,940 --> 00:44:29,898
+Here comes another one.
+
+983
+00:44:29,898 --> 00:44:30,860
+Oh, here we go.
+
+984
+00:44:30,860 --> 00:44:33,740
+
+985
+00:44:33,740 --> 00:44:35,930
+>> -As packets arrive at
+their destination, they're
+
+986
+00:44:35,930 --> 00:44:40,640
+picked up by the network interface,
+ready to be sent to the next level,
+
+987
+00:44:40,640 --> 00:44:42,000
+in this case, the proxy.
+
+988
+00:44:42,000 --> 00:44:43,060
+
+989
+00:44:43,060 --> 00:44:46,210
+The proxy is used by many
+companies as sort of a middle man
+
+990
+00:44:46,210 --> 00:44:48,650
+in order to lessen the load
+on their internet connection
+
+991
+00:44:48,650 --> 00:44:50,040
+and for security reasons as well.
+
+992
+00:44:50,040 --> 00:44:51,824
+
+993
+00:44:51,824 --> 00:44:55,310
+As you can see, the packets
+are all of various sizes,
+
+994
+00:44:55,310 --> 00:44:56,650
+depending upon their content.
+
+995
+00:44:56,650 --> 00:45:10,750
+
+996
+00:45:10,750 --> 00:45:14,790
+>> The proxy opens the packet and
+looks for the web address or URL.
+
+997
+00:45:14,790 --> 00:45:16,230
+
+998
+00:45:16,230 --> 00:45:18,707
+Depending upon whether
+the address is acceptable,
+
+999
+00:45:18,707 --> 00:45:20,290
+the packet is sent on to the internet.
+
+1000
+00:45:20,290 --> 00:45:25,880
+
+1001
+00:45:25,880 --> 00:45:28,700
+There are, however, some
+addresses which do not
+
+1002
+00:45:28,700 --> 00:45:31,440
+meet with the approval of
+the proxy, that is to say,
+
+1003
+00:45:31,440 --> 00:45:33,305
+corporate or management guidelines.
+
+1004
+00:45:33,305 --> 00:45:35,830
+
+1005
+00:45:35,830 --> 00:45:38,290
+These are summarily dealt with.
+
+1006
+00:45:38,290 --> 00:45:39,530
+
+1007
+00:45:39,530 --> 00:45:41,070
+We'll have none of that.
+
+1008
+00:45:41,070 --> 00:45:43,350
+For those who make it,
+it's on the road again.
+
+1009
+00:45:43,350 --> 00:45:52,740
+
+1010
+00:45:52,740 --> 00:45:54,695
+>> Next up, the firewall.
+
+1011
+00:45:54,695 --> 00:45:58,060
+
+1012
+00:45:58,060 --> 00:46:01,414
+The corporate firewall
+serves two purposes.
+
+1013
+00:46:01,414 --> 00:46:03,580
+It prevents some rather
+nasty things on the internet
+
+1014
+00:46:03,580 --> 00:46:05,379
+from coming into the intranet.
+
+1015
+00:46:05,379 --> 00:46:07,670
+And it can also prevent
+sensitive corporate information
+
+1016
+00:46:07,670 --> 00:46:09,900
+from being sent out onto the internet.
+
+1017
+00:46:09,900 --> 00:46:11,810
+
+1018
+00:46:11,810 --> 00:46:14,210
+>> Once through the firewall,
+a router picks up the packet
+
+1019
+00:46:14,210 --> 00:46:18,290
+and places it onto a much narrower
+road or bandwidth, as we say.
+
+1020
+00:46:18,290 --> 00:46:21,505
+Obviously, the row is not
+broad enough to take them all.
+
+1021
+00:46:21,505 --> 00:46:22,727
+
+1022
+00:46:22,727 --> 00:46:25,060
+Now, you might wonder, what
+happens to all those packets
+
+1023
+00:46:25,060 --> 00:46:27,250
+which don't make it along the way.
+
+1024
+00:46:27,250 --> 00:46:29,880
+Well, when Mr. IP doesn't
+receive an acknowledgement
+
+1025
+00:46:29,880 --> 00:46:32,160
+that a packet has been
+received in due time,
+
+1026
+00:46:32,160 --> 00:46:34,060
+he simply sends a replacement packet.
+
+1027
+00:46:34,060 --> 00:46:36,040
+
+1028
+00:46:36,040 --> 00:46:40,510
+>> We are now ready to enter the
+world of the internet, a spider
+
+1029
+00:46:40,510 --> 00:46:44,656
+web of interconnected networks
+which span our entire globe.
+
+1030
+00:46:44,656 --> 00:46:47,845
+Here, routers and switches
+establish links between networks.
+
+1031
+00:46:47,845 --> 00:46:49,239
+
+1032
+00:46:49,239 --> 00:46:51,280
+Now, the net is an entirely
+different environment
+
+1033
+00:46:51,280 --> 00:46:53,740
+than you'll find within the
+protective walls of your LAN.
+
+1034
+00:46:53,740 --> 00:46:56,510
+>> Out here, it's the Wild
+West, plenty of space,
+
+1035
+00:46:56,510 --> 00:47:00,440
+plenty of opportunities, plenty of
+things to explore, and places to go.
+
+1036
+00:47:00,440 --> 00:47:02,790
+Thanks to very little
+control and regulation,
+
+1037
+00:47:02,790 --> 00:47:07,250
+new ideas find fertile soil to push
+the envelope of their possibilities.
+
+1038
+00:47:07,250 --> 00:47:10,590
+But because of this freedom,
+certain dangers also lurk.
+
+1039
+00:47:10,590 --> 00:47:14,230
+>> You'll never know when you
+meet the dreaded ping of death,
+
+1040
+00:47:14,230 --> 00:47:18,040
+a special version of a normal request
+ping which some idiot thought up
+
+1041
+00:47:18,040 --> 00:47:19,830
+to mess up unsuspecting hosts.
+
+1042
+00:47:19,830 --> 00:47:21,470
+
+1043
+00:47:21,470 --> 00:47:25,490
+The path our packets take maybe via
+satellite, telephone lines, wireless,
+
+1044
+00:47:25,490 --> 00:47:27,340
+or even transoceanic cable.
+
+1045
+00:47:27,340 --> 00:47:30,290
+>> They don't always take the fastest
+or shortest routes possible,
+
+1046
+00:47:30,290 --> 00:47:33,330
+but they will get there, eventually.
+
+1047
+00:47:33,330 --> 00:47:37,255
+Maybe that's why it's sometimes
+called the worldwide wait.
+
+1048
+00:47:37,255 --> 00:47:39,650
+But when everything is
+working smoothly, you
+
+1049
+00:47:39,650 --> 00:47:43,270
+could circumvent the globe five
+times over at the drop of a hat,
+
+1050
+00:47:43,270 --> 00:47:46,690
+literally, and all for the
+cost of a local call or less.
+
+1051
+00:47:46,690 --> 00:47:47,970
+
+1052
+00:47:47,970 --> 00:47:51,025
+>> Near the end of our destination,
+we'll find another firewall.
+
+1053
+00:47:51,025 --> 00:47:53,710
+
+1054
+00:47:53,710 --> 00:47:56,160
+Depending upon your
+perspective as a data packet,
+
+1055
+00:47:56,160 --> 00:48:00,520
+the firewall could be a bastion
+of security or dreaded adversary.
+
+1056
+00:48:00,520 --> 00:48:04,420
+It all depends on which side you're
+on, and what your intentions are.
+
+1057
+00:48:04,420 --> 00:48:08,365
+>> The firewall is designed to let in only
+those packets that meet its criteria.
+
+1058
+00:48:08,365 --> 00:48:09,590
+
+1059
+00:48:09,590 --> 00:48:11,940
+This firewall is operating
+on Ports 80 and 25.
+
+1060
+00:48:11,940 --> 00:48:13,250
+
+1061
+00:48:13,250 --> 00:48:16,380
+All attempts to enter through other
+ports are closed for business.
+
+1062
+00:48:16,380 --> 00:48:27,690
+
+1063
+00:48:27,690 --> 00:48:30,600
+>> Port 25 is used for mail packets.
+
+1064
+00:48:30,600 --> 00:48:32,750
+
+1065
+00:48:32,750 --> 00:48:35,791
+While Port 80 is the entrance for
+packets from the internet to the web
+
+1066
+00:48:35,791 --> 00:48:36,290
+server.
+
+1067
+00:48:36,290 --> 00:48:38,880
+
+1068
+00:48:38,880 --> 00:48:42,540
+Inside the firewall, packets
+are screened more thoroughly.
+
+1069
+00:48:42,540 --> 00:48:44,660
+Some packets make it
+easily through customs,
+
+1070
+00:48:44,660 --> 00:48:47,500
+while others look just a bit dubious.
+
+1071
+00:48:47,500 --> 00:48:49,630
+>> Now, the firewall officer
+is not easily fooled,
+
+1072
+00:48:49,630 --> 00:48:53,010
+such as when this ping
+of death packet tries
+
+1073
+00:48:53,010 --> 00:48:55,628
+to disguise itself as
+a normal ping packet.
+
+1074
+00:48:55,628 --> 00:48:56,128
+-Move along.
+
+1075
+00:48:56,128 --> 00:48:56,606
+It's OK.
+
+1076
+00:48:56,606 --> 00:48:57,106
+No problem.
+
+1077
+00:48:57,106 --> 00:48:58,040
+Have a nice day.
+
+1078
+00:48:58,040 --> 00:48:59,360
+Let me outta here.
+
+1079
+00:48:59,360 --> 00:49:00,460
+Bye.
+
+1080
+00:49:00,460 --> 00:49:02,990
+>> -For those packets lucky
+enough to make it this far,
+
+1081
+00:49:02,990 --> 00:49:04,860
+the journey is almost over.
+
+1082
+00:49:04,860 --> 00:49:07,280
+
+1083
+00:49:07,280 --> 00:49:11,560
+It's just a line up on the interface
+to be taken up into the web server.
+
+1084
+00:49:11,560 --> 00:49:12,610
+
+1085
+00:49:12,610 --> 00:49:16,850
+Nowadays, a web server can run on many
+things, from a mainframe, to a webcam,
+
+1086
+00:49:16,850 --> 00:49:18,430
+to the computer on your desk.
+
+1087
+00:49:18,430 --> 00:49:20,220
+Why not your refrigerator?
+
+1088
+00:49:20,220 --> 00:49:22,140
+>> With the proper set
+up, you could find out
+
+1089
+00:49:22,140 --> 00:49:24,330
+if you have the makings
+for chicken cacciatore
+
+1090
+00:49:24,330 --> 00:49:25,690
+or if you have to go shopping.
+
+1091
+00:49:25,690 --> 00:49:28,625
+Remember, this is The Dawn of the Net.
+
+1092
+00:49:28,625 --> 00:49:29,850
+Almost anything's possible.
+
+1093
+00:49:29,850 --> 00:49:32,960
+
+1094
+00:49:32,960 --> 00:49:37,080
+>> One by one, the packets are
+received, opened, and unpacked.
+
+1095
+00:49:37,080 --> 00:49:40,350
+
+1096
+00:49:40,350 --> 00:49:44,280
+The information they contain, that
+is your request for information,
+
+1097
+00:49:44,280 --> 00:49:46,080
+is sent on to the web
+server application.
+
+1098
+00:49:46,080 --> 00:49:52,670
+
+1099
+00:49:52,670 --> 00:49:54,345
+>> The packet itself is recycled.
+
+1100
+00:49:54,345 --> 00:49:57,280
+
+1101
+00:49:57,280 --> 00:50:06,770
+Ready to be used again and filled with
+your requested information, addressed,
+
+1102
+00:50:06,770 --> 00:50:08,680
+and send out on its way back to you.
+
+1103
+00:50:08,680 --> 00:50:10,430
+
+1104
+00:50:10,430 --> 00:50:14,700
+Back past the firewalls, routers,
+and on through to the internet.
+
+1105
+00:50:14,700 --> 00:50:18,164
+
+1106
+00:50:18,164 --> 00:50:19,705
+Back through your corporate firewall.
+
+1107
+00:50:19,705 --> 00:50:24,461
+
+1108
+00:50:24,461 --> 00:50:26,295
+And onto your interface.
+
+1109
+00:50:26,295 --> 00:50:27,400
+
+1110
+00:50:27,400 --> 00:50:30,630
+Ready to supply your web browser
+with the information you requested.
+
+1111
+00:50:30,630 --> 00:50:33,010
+
+1112
+00:50:33,010 --> 00:50:34,538
+That is this film.
+
+1113
+00:50:34,538 --> 00:50:40,030
+
+1114
+00:50:40,030 --> 00:50:43,200
+>> Pleased with their efforts and
+trusting in a better world,
+
+1115
+00:50:43,200 --> 00:50:45,960
+our trusty data packets
+ride off blissfully
+
+1116
+00:50:45,960 --> 00:50:49,830
+into the sunset of another
+day, knowing fully they
+
+1117
+00:50:49,830 --> 00:50:51,635
+have served their masters well.
+
+1118
+00:50:51,635 --> 00:50:54,030
+
+1119
+00:50:54,030 --> 00:50:57,209
+Now, isn't that a happy ending.
+
+1120
+00:50:57,209 --> 00:50:58,042
+[END VIDEO PLAYBACK]
+
+1121
+00:50:58,042 --> 00:50:59,533
+DAVID MALAN: That's it for CS50.
+
+1122
+00:50:59,533 --> 00:51:01,521
+We will see you next week.
+
+1123
+00:51:01,521 --> 00:51:05,994
+
+1124
+00:51:05,994 --> 00:51:11,220
+>> [MUSIC - KATY PERRY, "DARK HORSE"]
+
+1125
+00:51:11,220 --> 00:54:19,222

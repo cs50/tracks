@@ -1,0 +1,332 @@
+1
+00:00:00,000 --> 00:00:04,970
+
+2
+00:00:04,970 --> 00:00:07,220
+DOUG LLOYD: So if you've
+seen our video on structures,
+
+3
+00:00:07,220 --> 00:00:10,950
+you already know that we have the
+ability to define our own data types.
+
+4
+00:00:10,950 --> 00:00:14,530
+But if you've used structures, you know
+that sometimes using those data types
+
+5
+00:00:14,530 --> 00:00:16,446
+can actually be a little
+cumbersome because we
+
+6
+00:00:16,446 --> 00:00:19,210
+have to use the struct keyword
+when we're working with them--
+
+7
+00:00:19,210 --> 00:00:21,257
+struct car or struct student.
+
+8
+00:00:21,257 --> 00:00:23,090
+That's a lot to type
+if we just want to have
+
+9
+00:00:23,090 --> 00:00:24,830
+something simple, like a structure.
+
+10
+00:00:24,830 --> 00:00:26,390
+We want to have-- we want to
+be able to work with things
+
+11
+00:00:26,390 --> 00:00:29,350
+a little more shorthand way,
+like int or char, something a lot
+
+12
+00:00:29,350 --> 00:00:31,240
+more convenient to type.
+
+13
+00:00:31,240 --> 00:00:33,100
+>> Fortunately, there's
+a way to do this in C,
+
+14
+00:00:33,100 --> 00:00:37,150
+with something called typedef, which is
+a way to create shorthand or rewritten
+
+15
+00:00:37,150 --> 00:00:38,640
+names for data types.
+
+16
+00:00:38,640 --> 00:00:40,720
+You can rewrite data
+types that already exist,
+
+17
+00:00:40,720 --> 00:00:43,970
+or you can write data types of your own.
+
+18
+00:00:43,970 --> 00:00:46,890
+>> The first thing you do is you
+define a type in the normal way,
+
+19
+00:00:46,890 --> 00:00:52,271
+and then you just alias it to something
+else-- typedef old name new name.
+
+20
+00:00:52,271 --> 00:00:53,520
+Pretty straightforward, right?
+
+21
+00:00:53,520 --> 00:00:56,240
+So we could typedef for example,
+the already existing data
+
+22
+00:00:56,240 --> 00:01:00,266
+type of unsigned char as byte.
+
+23
+00:01:00,266 --> 00:01:03,140
+And then, from now on, after we've
+made this type definition-- again,
+
+24
+00:01:03,140 --> 00:01:07,570
+which is usually going to be at the top
+of our dot C files, or in a dot H file
+
+25
+00:01:07,570 --> 00:01:10,590
+separately, we can just
+use bite everywhere
+
+26
+00:01:10,590 --> 00:01:12,180
+we would have used unsigned char.
+
+27
+00:01:12,180 --> 00:01:14,300
+That's a lot shorter to type.
+
+28
+00:01:14,300 --> 00:01:19,280
+>> In CS50's library, we do this--
+we typedef char star as string.
+
+29
+00:01:19,280 --> 00:01:21,400
+Because we abstracted
+away the idea of pointers.
+
+30
+00:01:21,400 --> 00:01:25,072
+And the fact that a string is really
+a pointer to the first character--
+
+31
+00:01:25,072 --> 00:01:26,780
+an array of characters,
+because it's just
+
+32
+00:01:26,780 --> 00:01:29,863
+so confusing to get your head around
+that-- but in fact that's what we do.
+
+33
+00:01:29,863 --> 00:01:35,140
+And this line of code actually exists
+in CS50 dot H typedef char star string,
+
+34
+00:01:35,140 --> 00:01:39,021
+just to make that a little less
+cumbersome to have to deal with.
+
+35
+00:01:39,021 --> 00:01:41,520
+Already you've seen probably a
+little bit of the value here,
+
+36
+00:01:41,520 --> 00:01:44,160
+but typedef becomes great
+when combined with structures,
+
+37
+00:01:44,160 --> 00:01:45,780
+as I alluded to earlier.
+
+38
+00:01:45,780 --> 00:01:48,550
+Structures have a two-word type name.
+
+39
+00:01:48,550 --> 00:01:52,020
+And so they can be really annoying
+to create variables of that type,
+
+40
+00:01:52,020 --> 00:01:56,310
+or [INAUDIBLE] of struct something, your
+lines can just get really, really long.
+
+41
+00:01:56,310 --> 00:01:59,400
+And so you can use typedef to come
+up with something a lot shorter.
+
+42
+00:01:59,400 --> 00:02:04,650
+>> So if I define a car as follows, I have
+my definition of a car-- struct car,
+
+43
+00:02:04,650 --> 00:02:07,230
+and then open curly brace, all
+the fields of my structure,
+
+44
+00:02:07,230 --> 00:02:11,030
+close curly brace, semi-colon--
+after I've defined my data type,
+
+45
+00:02:11,030 --> 00:02:15,680
+I can typedef struct
+car as car underscore t.
+
+46
+00:02:15,680 --> 00:02:19,670
+And then when I've done that, now every
+time I would have otherwise used struct
+
+47
+00:02:19,670 --> 00:02:22,680
+car, I can just use car underscore t.
+
+48
+00:02:22,680 --> 00:02:26,480
+That's a lot shorter of a way to
+express this idea of this structure
+
+49
+00:02:26,480 --> 00:02:28,530
+that I just created.
+
+50
+00:02:28,530 --> 00:02:33,620
+>> Alternatively, because structures
+are so commonly used in typedef,
+
+51
+00:02:33,620 --> 00:02:37,980
+there's a-- you can actually define the
+type in between the start and the end.
+
+52
+00:02:37,980 --> 00:02:42,020
+So the typedef structure again is
+usually typedef, old name, new name,
+
+53
+00:02:42,020 --> 00:02:45,360
+where the names are already
+types that you've created.
+
+54
+00:02:45,360 --> 00:02:49,620
+But you can actually define a structure
+right in the middle of the typedef
+
+55
+00:02:49,620 --> 00:02:51,760
+instead of having to define
+it separately, and then
+
+56
+00:02:51,760 --> 00:02:52,990
+do a typedef of it.
+
+57
+00:02:52,990 --> 00:02:55,780
+And that would look just like
+this-- typedef struct car,
+
+58
+00:02:55,780 --> 00:02:59,957
+open curly brace, all of your field
+definitions, close curly brace, car t.
+
+59
+00:02:59,957 --> 00:03:03,290
+So the old name is all that stuff in the
+red, you're just defining the structure
+
+60
+00:03:03,290 --> 00:03:05,610
+and naming it at the same time.
+
+61
+00:03:05,610 --> 00:03:07,790
+And then the new name
+is car underscore t.
+
+62
+00:03:07,790 --> 00:03:10,150
+And so if we start to use
+this in code, previously I
+
+63
+00:03:10,150 --> 00:03:13,279
+might have said, struct
+car mycar semi-colon.
+
+64
+00:03:13,279 --> 00:03:14,820
+Well I don't have to do that anymore.
+
+65
+00:03:14,820 --> 00:03:20,265
+Now that I've used the typedef, I
+can just say car underscore t, mycar.
+
+66
+00:03:20,265 --> 00:03:22,640
+That's a lot shorter of a way
+to do it, and in fact, it's
+
+67
+00:03:22,640 --> 00:03:24,515
+going to be a lot more
+convenient, especially
+
+68
+00:03:24,515 --> 00:03:27,730
+as you start to use structures
+a lot more in your code.
+
+69
+00:03:27,730 --> 00:03:28,810
+>> I'm Doug Lloyd.
+
+70
+00:03:28,810 --> 00:03:30,640
+This is CS50.
+
+71
+00:03:30,640 --> 00:03:32,415

@@ -1,0 +1,731 @@
+1
+00:00:00,000 --> 00:00:00,710
+
+2
+00:00:00,710 --> 00:00:02,900
+>> Let's get greedy.
+
+3
+00:00:02,900 --> 00:00:06,810
+In greedy, our job is to play
+the role of a greedy cashier.
+
+4
+00:00:06,810 --> 00:00:09,750
+The user will tell us how
+much change we owe them,
+
+5
+00:00:09,750 --> 00:00:13,520
+and then our job is to calculate
+the minimum number of coins
+
+6
+00:00:13,520 --> 00:00:17,240
+that we can use to make
+that amount of change.
+
+7
+00:00:17,240 --> 00:00:19,560
+>> Let's start with an example.
+
+8
+00:00:19,560 --> 00:00:23,170
+Say the user requires $0.32 back.
+
+9
+00:00:23,170 --> 00:00:28,960
+We could do this by giving
+them 32 pennies, one cent each.
+
+10
+00:00:28,960 --> 00:00:35,180
+Or I could also use five coins-- by
+giving them three dimes, $0.10 each,
+
+11
+00:00:35,180 --> 00:00:38,060
+and two pennies, $0.02 each.
+
+12
+00:00:38,060 --> 00:00:42,580
+But could we use even
+fewer coins to make that?
+
+13
+00:00:42,580 --> 00:00:45,100
+>> The whole tactic in greedy--
+to be a greedy cashier--
+
+14
+00:00:45,100 --> 00:00:47,600
+is to use the largest coin possible.
+
+15
+00:00:47,600 --> 00:00:50,670
+So whenever we have
+quarters we'll use them.
+
+16
+00:00:50,670 --> 00:00:54,100
+And then once those run out,
+we'll use dimes, $0.10 each.
+
+17
+00:00:54,100 --> 00:00:58,840
+Then nickels, 5 cents each, and
+then down to pennies, one cent each.
+
+18
+00:00:58,840 --> 00:01:01,792
+By using the largest coin
+possible whenever we can,
+
+19
+00:01:01,792 --> 00:01:07,350
+we ensure that we use the fewest number
+of coins possible to make the change.
+
+20
+00:01:07,350 --> 00:01:09,180
+>> So let's walk this through.
+
+21
+00:01:09,180 --> 00:01:11,660
+The user needs $0.32.
+
+22
+00:01:11,660 --> 00:01:14,200
+So we ask ourselves,
+can we use a quarter?
+
+23
+00:01:14,200 --> 00:01:15,560
+Well, yes we can.
+
+24
+00:01:15,560 --> 00:01:19,720
+So now we only know them
+$0.07, and we used one coin.
+
+25
+00:01:19,720 --> 00:01:20,970
+>> Can we use another quarter?
+
+26
+00:01:20,970 --> 00:01:21,890
+Well, no.
+
+27
+00:01:21,890 --> 00:01:27,570
+$0.07 is less than $0.25, so we proceed
+to the next largest coin available.
+
+28
+00:01:27,570 --> 00:01:30,690
+Dimes are $0.10, and
+again, we can't use dimes.
+
+29
+00:01:30,690 --> 00:01:35,480
+Because dimes are worth $0.10, which
+is more than the amount of change owed.
+
+30
+00:01:35,480 --> 00:01:36,790
+>> We go to nickels.
+
+31
+00:01:36,790 --> 00:01:40,890
+And, yes indeed, $0.05 is less than
+$0.10-- so we can use a nickel.
+
+32
+00:01:40,890 --> 00:01:46,104
+So now we only owe the user $0.02,
+and we've so far used two coins.
+
+33
+00:01:46,104 --> 00:01:47,270
+We can't use another nickel.
+
+34
+00:01:47,270 --> 00:01:51,140
+So then we proceed to the last coin at
+our disposal, which are the pennies.
+
+35
+00:01:51,140 --> 00:01:52,270
+>> And can we use penny?
+
+36
+00:01:52,270 --> 00:01:59,060
+Well, yes-- and we end up using two
+pennies for a total of four coins.
+
+37
+00:01:59,060 --> 00:02:01,430
+>> Once you're finished, the
+program will look like this.
+
+38
+00:02:01,430 --> 00:02:03,710
+Once the user runs the
+greedy program, they'll
+
+39
+00:02:03,710 --> 00:02:07,270
+be prompted to give the amount of
+change in dollars that they're owed.
+
+40
+00:02:07,270 --> 00:02:11,140
+And then your program will output
+the minimum amount of coins
+
+41
+00:02:11,140 --> 00:02:14,740
+that the greedy cashier would use
+to make that amount of change.
+
+42
+00:02:14,740 --> 00:02:18,160
+>> So now let's break this
+down into our subtasks.
+
+43
+00:02:18,160 --> 00:02:21,410
+First we're going to prompt our
+user for an amount of change.
+
+44
+00:02:21,410 --> 00:02:25,630
+And, as with any user input, we want to
+make sure that we validate that input
+
+45
+00:02:25,630 --> 00:02:29,360
+and ensure that we can use that
+input for the rest of our program.
+
+46
+00:02:29,360 --> 00:02:32,480
+Then we're going to always
+use the largest point possible
+
+47
+00:02:32,480 --> 00:02:35,240
+and keep track of the coins used.
+
+48
+00:02:35,240 --> 00:02:39,080
+And finally, print the final
+number of coins that we used.
+
+49
+00:02:39,080 --> 00:02:40,970
+>> So let's talk about prompting.
+
+50
+00:02:40,970 --> 00:02:43,550
+The amount must make cents,
+and this is in dollars.
+
+51
+00:02:43,550 --> 00:02:48,440
+And so for dollars, we're going
+to use the float variable type.
+
+52
+00:02:48,440 --> 00:02:52,390
+Now whenever you ask a user for input,
+you want to make sure that it's valid.
+
+53
+00:02:52,390 --> 00:02:56,640
+And so here we like to take advantage
+of the do-while loop construct.
+
+54
+00:02:56,640 --> 00:03:00,320
+>> A do-while loop will execute the
+body of the loop at least once.
+
+55
+00:03:00,320 --> 00:03:01,650
+So this comes in handy.
+
+56
+00:03:01,650 --> 00:03:05,510
+We know that we need to prompt the
+user at least once for a float.
+
+57
+00:03:05,510 --> 00:03:07,100
+Now if that float is valid.
+
+58
+00:03:07,100 --> 00:03:07,710
+That's great.
+
+59
+00:03:07,710 --> 00:03:08,460
+We move on.
+
+60
+00:03:08,460 --> 00:03:11,910
+But if not, the loop will ensure
+that we get a proper float
+
+61
+00:03:11,910 --> 00:03:16,810
+by repeating continuously until
+the user gives us a valid value.
+
+62
+00:03:16,810 --> 00:03:18,760
+>> Now for the do-while
+loop condition, we need
+
+63
+00:03:18,760 --> 00:03:22,000
+to consider what it means
+to have an invalid float.
+
+64
+00:03:22,000 --> 00:03:24,220
+So for the context of
+this problem, probably
+
+65
+00:03:24,220 --> 00:03:27,450
+it makes sense just to
+accept positive values.
+
+66
+00:03:27,450 --> 00:03:32,010
+>> So moving on-- we've obtained a
+value in dollars from the user.
+
+67
+00:03:32,010 --> 00:03:35,380
+But we're dealing with coins,
+which are entirely in cents.
+
+68
+00:03:35,380 --> 00:03:38,660
+$1 is equivalent to 100 cents.
+
+69
+00:03:38,660 --> 00:03:43,670
+So a good thing to do is to
+convert those values into cents.
+
+70
+00:03:43,670 --> 00:03:48,380
+>> Now when converting from a float
+to an integer, so dollars to cents,
+
+71
+00:03:48,380 --> 00:03:52,230
+we want to make sure that we're careful
+about floating-point imprecision.
+
+72
+00:03:52,230 --> 00:03:55,260
+So that means that-- say
+my dollar value-- my float
+
+73
+00:03:55,260 --> 00:04:00,260
+value-- was an even $2, there still
+may be some stray numbers in there.
+
+74
+00:04:00,260 --> 00:04:04,590
+So we want to make sure that not only
+do we multiply by 100 to get the cents,
+
+75
+00:04:04,590 --> 00:04:06,480
+but we also round it off.
+
+76
+00:04:06,480 --> 00:04:09,210
+>> So now we have the amount
+of change owed to the user.
+
+77
+00:04:09,210 --> 00:04:13,430
+We originally obtained it in dollars,
+and now we've converted it to cents.
+
+78
+00:04:13,430 --> 00:04:17,029
+So now we can proceed with the heart of
+the greedy algorithm, which is always
+
+79
+00:04:17,029 --> 00:04:19,220
+using the largest coin possible.
+
+80
+00:04:19,220 --> 00:04:21,930
+While we're doing this,
+it's essential that we also
+
+81
+00:04:21,930 --> 00:04:25,360
+keep track of how many coins are
+going to be returned to the user
+
+82
+00:04:25,360 --> 00:04:28,630
+as well as the remaining
+change owed to the user.
+
+83
+00:04:28,630 --> 00:04:31,130
+>> The program will look
+something like this.
+
+84
+00:04:31,130 --> 00:04:34,190
+After you get the amount of
+dollars and convert that to cents,
+
+85
+00:04:34,190 --> 00:04:35,790
+then you'll enter a loop.
+
+86
+00:04:35,790 --> 00:04:38,400
+While quarters can be
+used-- that is to say
+
+87
+00:04:38,400 --> 00:04:43,660
+while the amount of change owed to the
+user is greater than or equal to $0.25,
+
+88
+00:04:43,660 --> 00:04:45,040
+you'll use a quarter.
+
+89
+00:04:45,040 --> 00:04:47,000
+>> Now what does using a quarter entail?
+
+90
+00:04:47,000 --> 00:04:51,280
+Well, one-- you'll increase the coin
+count to be returned to the user.
+
+91
+00:04:51,280 --> 00:04:55,890
+And second you'll decrease the current
+amount of change owed back to the user
+
+92
+00:04:55,890 --> 00:04:57,520
+by $0.25.
+
+93
+00:04:57,520 --> 00:05:00,680
+>> After repeating that until
+quarters can no longer be used,
+
+94
+00:05:00,680 --> 00:05:04,630
+proceed to the next largest
+coin-- in this case dimes, $0.10.
+
+95
+00:05:04,630 --> 00:05:07,750
+So you'll enter that loop until
+you can no longer use dimes.
+
+96
+00:05:07,750 --> 00:05:10,720
+Then proceed to the next
+largest coin, nickels.
+
+97
+00:05:10,720 --> 00:05:14,810
+After nickels can no longer be used,
+use the remaining amount in pennies.
+
+98
+00:05:14,810 --> 00:05:17,800
+And finally, print the
+number of coins used.
+
+99
+00:05:17,800 --> 00:05:20,350
+>> Another way that you can
+approach the greedy problem
+
+100
+00:05:20,350 --> 00:05:22,950
+is to use the modulo approach.
+
+101
+00:05:22,950 --> 00:05:25,690
+Modulo is an operator
+that returns the remainder
+
+102
+00:05:25,690 --> 00:05:27,680
+of the division between two numbers.
+
+103
+00:05:27,680 --> 00:05:30,270
+Say I had 50 mod 5.
+
+104
+00:05:30,270 --> 00:05:34,070
+Well, 5 is a factor of 50,
+so the remainder will be 0.
+
+105
+00:05:34,070 --> 00:05:39,230
+50 mod 10-- well, 10 is also a factor
+of 50, so the remainder is also 0.
+
+106
+00:05:39,230 --> 00:05:43,660
+50 mod 50-- well, any number mod itself
+isn't going to have any remainder.
+
+107
+00:05:43,660 --> 00:05:45,510
+>> What about 50 mod 49?
+
+108
+00:05:45,510 --> 00:05:47,910
+Well, 49 only goes into 50 once.
+
+109
+00:05:47,910 --> 00:05:50,290
+So the remainder is going to be 1.
+
+110
+00:05:50,290 --> 00:05:55,180
+53 mod 50 is going to
+give you a remainder of 3.
+
+111
+00:05:55,180 --> 00:05:59,120
+>> So how can we use modulo
+and perhaps some division
+
+112
+00:05:59,120 --> 00:06:01,690
+to implement our greedy algorithm?
+
+113
+00:06:01,690 --> 00:06:05,550
+Well, we still want to stay true to the
+heart of the greedy algorithm-- that
+
+114
+00:06:05,550 --> 00:06:07,910
+is using the largest coin possible.
+
+115
+00:06:07,910 --> 00:06:14,570
+>> So let's ask ourselves if we can use any
+quarters to return $0.32 to the user.
+
+116
+00:06:14,570 --> 00:06:20,070
+Well, 32 mod 25 gives
+us a remainder of $0.07.
+
+117
+00:06:20,070 --> 00:06:24,500
+So that tells us that we can definitely
+use one quarter with $0.07 remaining.
+
+118
+00:06:24,500 --> 00:06:26,180
+>> Can we then use any dimes?
+
+119
+00:06:26,180 --> 00:06:32,740
+Well, no-- because $0.07 mod
+$0.10 gives us a remainder of 7.
+
+120
+00:06:32,740 --> 00:06:34,960
+10 doesn't go into 7 at all.
+
+121
+00:06:34,960 --> 00:06:36,390
+>> Then can we use nickels?
+
+122
+00:06:36,390 --> 00:06:40,490
+Well $0.07 mod 5 cents
+gives us two remaining.
+
+123
+00:06:40,490 --> 00:06:42,930
+And lastly, can we use any pennies?
+
+124
+00:06:42,930 --> 00:06:45,930
+2 mod 1 gives us 0,
+which is ultimately what
+
+125
+00:06:45,930 --> 00:06:48,160
+we want because then that
+means that we've returned
+
+126
+00:06:48,160 --> 00:06:50,160
+to the user all of the change owed.
+
+127
+00:06:50,160 --> 00:06:54,320
+>> So now you have two possible ways of
+implementing the greedy algorithm--
+
+128
+00:06:54,320 --> 00:06:59,230
+one with loops and one with a
+combination of modulo and division.
+
+129
+00:06:59,230 --> 00:07:03,010
+So finally, we just need to
+print the final number of coins.
+
+130
+00:07:03,010 --> 00:07:06,520
+>> If I wanted to tell you that I had
+3 pets and this value was hardcoded,
+
+131
+00:07:06,520 --> 00:07:09,240
+then I could just use a
+simple print test statement.
+
+132
+00:07:09,240 --> 00:07:12,320
+But our value is actually
+stored in a variable.
+
+133
+00:07:12,320 --> 00:07:15,260
+So how do you print the
+values stored in variables?
+
+134
+00:07:15,260 --> 00:07:17,880
+>> For this we take
+advantage of placeholders.
+
+135
+00:07:17,880 --> 00:07:21,540
+Say I had already declared
+an initialized integer n.
+
+136
+00:07:21,540 --> 00:07:25,170
+Then later on if I wanted to print that
+value, then I would write the string.
+
+137
+00:07:25,170 --> 00:07:30,500
+And instead of that value I would use
+a placeholder for that integer-- %i.
+
+138
+00:07:30,500 --> 00:07:33,800
+Then after the string, I have a
+comma, followed by the variable
+
+139
+00:07:33,800 --> 00:07:34,950
+that I want to print.
+
+140
+00:07:34,950 --> 00:07:38,550
+And later on, when it prints,
+it'll print the value of n.
+
+141
+00:07:38,550 --> 00:07:41,570
+>> I could also use a placeholder
+for a float, for instance.
+
+142
+00:07:41,570 --> 00:07:44,000
+If I wanted to tell you how
+much cash I have in my pocket,
+
+143
+00:07:44,000 --> 00:07:46,820
+then I could say I have %f dollars.
+
+144
+00:07:46,820 --> 00:07:51,330
+And later on when it prints, then n will
+take the place of that place holder.
+
+145
+00:07:51,330 --> 00:07:55,530
+I could also, for instance, use several
+placeholders for several variables.
+
+146
+00:07:55,530 --> 00:07:57,590
+So as long as I list
+them in order, then I
+
+147
+00:07:57,590 --> 00:08:00,390
+can tell you how many
+dogs and cats I have.
+
+148
+00:08:00,390 --> 00:08:03,710
+>> Now we know how to prompt the
+user for an amount of change,
+
+149
+00:08:03,710 --> 00:08:06,130
+ensure that that input
+is valid, and then we
+
+150
+00:08:06,130 --> 00:08:10,370
+have two possible ways of implementing
+the greedy algorithm of always using
+
+151
+00:08:10,370 --> 00:08:12,090
+the largest coin possible.
+
+152
+00:08:12,090 --> 00:08:15,050
+Because we've kept track of
+how many coins we're using,
+
+153
+00:08:15,050 --> 00:08:19,210
+we can then print that value at the end,
+telling the user how many coins they're
+
+154
+00:08:19,210 --> 00:08:20,240
+getting back.
+
+155
+00:08:20,240 --> 00:08:24,240
+>> My name is the Amayla, and this is CS50.
+
+156
+00:08:24,240 --> 00:08:25,915

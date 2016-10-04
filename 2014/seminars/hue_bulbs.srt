@@ -1,0 +1,3276 @@
+1
+00:00:00,000 --> 00:00:00,750
+
+2
+00:00:00,750 --> 00:00:04,200
+>> [MUSIC PLAYING]
+
+3
+00:00:04,200 --> 00:00:12,314
+
+4
+00:00:12,314 --> 00:00:13,230
+DAN BRADLEY: Alrighty.
+
+5
+00:00:13,230 --> 00:00:16,560
+Welcome, everyone, to the
+first CS50 seminar of the year.
+
+6
+00:00:16,560 --> 00:00:19,560
+We today we'll be talking
+about how you set up hue light
+
+7
+00:00:19,560 --> 00:00:24,590
+bulbs to use all the fancy
+features that hues actually have.
+
+8
+00:00:24,590 --> 00:00:31,300
+So we can control hue light
+bulbs via the web, and with that,
+
+9
+00:00:31,300 --> 00:00:34,440
+change the color of the
+bulb, turn on the bulb
+
+10
+00:00:34,440 --> 00:00:37,350
+and turn them off, and do all
+sort of other fancy features.
+
+11
+00:00:37,350 --> 00:00:40,790
+So what we're going to
+actually do today is
+
+12
+00:00:40,790 --> 00:00:44,490
+build a little web app that
+controls one of these bulbs,
+
+13
+00:00:44,490 --> 00:00:50,220
+and turns it on, turns it off,
+and is able to change its color.
+
+14
+00:00:50,220 --> 00:00:55,860
+>> First and foremost I'm going to
+assume, if you guys are watching this,
+
+15
+00:00:55,860 --> 00:01:02,000
+that you have access to this,
+which is a Phillips Hue Bridge.
+
+16
+00:01:02,000 --> 00:01:06,170
+It is the thing that is actually
+going to be controlling these bulbs,
+
+17
+00:01:06,170 --> 00:01:09,600
+and is essentially
+just a wireless router
+
+18
+00:01:09,600 --> 00:01:11,880
+that has some extra features built in.
+
+19
+00:01:11,880 --> 00:01:17,160
+So the first thing we need
+to do to make this work--
+
+20
+00:01:17,160 --> 00:01:22,880
+and again, I'm assuming
+that you have the hardware,
+
+21
+00:01:22,880 --> 00:01:24,540
+but nothing actually set up.
+
+22
+00:01:24,540 --> 00:01:32,640
+So to get it working on Harvard WiFi,
+you need to grab your Hue Bridge,
+
+23
+00:01:32,640 --> 00:01:40,050
+plug it into your wall, wherever
+that is, so to the ethernet.
+
+24
+00:01:40,050 --> 00:01:42,850
+Obviously, have it plugged
+in so it has power.
+
+25
+00:01:42,850 --> 00:01:48,210
+And then you need to go
+to the FAS Autoreg page,
+
+26
+00:01:48,210 --> 00:01:54,780
+autoreg.fas.harvard.edu,
+sign in, and then register
+
+27
+00:01:54,780 --> 00:01:58,350
+the new Bridge for the internet.
+
+28
+00:01:58,350 --> 00:02:03,110
+>> So I got logged out, so
+I'll just click log in.
+
+29
+00:02:03,110 --> 00:02:09,460
+
+30
+00:02:09,460 --> 00:02:12,560
+And let's actually register this Bridge.
+
+31
+00:02:12,560 --> 00:02:19,660
+So to register a Bridge you need the
+MAC address, which is the bottom most
+
+32
+00:02:19,660 --> 00:02:28,110
+line of numbers on the bridge,
+so it's at the very bottom,
+
+33
+00:02:28,110 --> 00:02:30,160
+by the ethernet port.
+
+34
+00:02:30,160 --> 00:02:35,400
+And it starts with 00:17: such and such.
+
+35
+00:02:35,400 --> 00:02:38,900
+So I'm just going to quickly
+type that in, so we can actually
+
+36
+00:02:38,900 --> 00:02:42,730
+use this on the Harvard internet,
+and we'll go from there.
+
+37
+00:02:42,730 --> 00:03:18,514
+
+38
+00:03:18,514 --> 00:03:21,830
+>> All right, so we've
+registered it, so now it
+
+39
+00:03:21,830 --> 00:03:23,950
+can actually access the internet.
+
+40
+00:03:23,950 --> 00:03:27,810
+And when it finally actually
+manages to access the internet,
+
+41
+00:03:27,810 --> 00:03:32,790
+this light that's flashing will stop
+flashing, and just be solid blue.
+
+42
+00:03:32,790 --> 00:03:36,160
+But until that happens,
+we can just wait.
+
+43
+00:03:36,160 --> 00:03:38,960
+And the other thing
+we're going to need to do
+
+44
+00:03:38,960 --> 00:03:43,280
+is actually register this
+Bridge with Philips Hue.
+
+45
+00:03:43,280 --> 00:03:45,720
+So Phillips is the company
+that makes the Bridge,
+
+46
+00:03:45,720 --> 00:03:49,790
+so we need to actually go
+and register for an account.
+
+47
+00:03:49,790 --> 00:03:52,430
+So I'm going to do that here, too.
+
+48
+00:03:52,430 --> 00:04:13,890
+
+49
+00:04:13,890 --> 00:04:14,480
+>> All right.
+
+50
+00:04:14,480 --> 00:04:17,910
+And as we can see, the
+third light has now
+
+51
+00:04:17,910 --> 00:04:20,339
+turned, on so we're all the way there.
+
+52
+00:04:20,339 --> 00:04:24,290
+So you sign in, now you
+just activate the Bridge
+
+53
+00:04:24,290 --> 00:04:28,740
+by clicking on the button
+in the middle, and Hue
+
+54
+00:04:28,740 --> 00:04:32,060
+realizes that, hey, you've
+actually registered this.
+
+55
+00:04:32,060 --> 00:04:42,290
+So we now have this on Hue, so it
+actually realizes that it exists.
+
+56
+00:04:42,290 --> 00:04:44,550
+Now we can start doing some
+more interesting things.
+
+57
+00:04:44,550 --> 00:04:47,440
+
+58
+00:04:47,440 --> 00:04:49,050
+>> We have this.
+
+59
+00:04:49,050 --> 00:04:52,250
+Now we want to actually create
+a website-- or a web app,
+
+60
+00:04:52,250 --> 00:04:55,370
+rather-- that lets us
+control these bulbs.
+
+61
+00:04:55,370 --> 00:04:59,850
+
+62
+00:04:59,850 --> 00:05:05,400
+First-- every time you use Hue bulbs,
+they actually need to be turned on.
+
+63
+00:05:05,400 --> 00:05:08,290
+So there actually has to
+be power going to them.
+
+64
+00:05:08,290 --> 00:05:12,160
+You can then tell them to turn off.
+
+65
+00:05:12,160 --> 00:05:15,430
+So the light will be off, but there
+will still be power going to it.
+
+66
+00:05:15,430 --> 00:05:20,450
+So this-- if I actually used a
+light switch how it's normally used,
+
+67
+00:05:20,450 --> 00:05:23,650
+it isn't actually all that
+useful, because you can't turn it
+
+68
+00:05:23,650 --> 00:05:25,960
+on if there's no power going to at all.
+
+69
+00:05:25,960 --> 00:05:28,960
+So we're just going to have this
+on, and hopefully not staring you
+
+70
+00:05:28,960 --> 00:05:31,420
+guys in the face for the next few steps.
+
+71
+00:05:31,420 --> 00:05:37,880
+>> OK, so to actually
+control these bulbs we
+
+72
+00:05:37,880 --> 00:05:40,850
+need to use what's called
+the Phillips Hue API.
+
+73
+00:05:40,850 --> 00:05:45,860
+So an API is an called an
+Application Program Interface.
+
+74
+00:05:45,860 --> 00:05:50,210
+So it's essentially a
+way to access and control
+
+75
+00:05:50,210 --> 00:05:54,790
+data on a system that
+isn't necessarily yours.
+
+76
+00:05:54,790 --> 00:06:00,140
+So this light bulb uses an API,
+so it has its own system that
+
+77
+00:06:00,140 --> 00:06:03,600
+has all sorts of fancy things in
+it-- like, it's a zigbee wireless
+
+78
+00:06:03,600 --> 00:06:06,200
+system-- we don't actually have to know.
+
+79
+00:06:06,200 --> 00:06:11,620
+All we need to know is how to interact
+with this API, this Application Program
+
+80
+00:06:11,620 --> 00:06:12,500
+Interface.
+
+81
+00:06:12,500 --> 00:06:17,760
+And so if we can talk to that, we
+can do everything we need to do.
+
+82
+00:06:17,760 --> 00:06:21,840
+And how we actually are going to
+talk to it is by using web requests,
+
+83
+00:06:21,840 --> 00:06:24,890
+just like we did for
+this last problem set.
+
+84
+00:06:24,890 --> 00:06:32,110
+>> So how we get started is
+we again register for this.
+
+85
+00:06:32,110 --> 00:06:36,840
+We need to do a fair bit of registering
+to actually get started using the Hue,
+
+86
+00:06:36,840 --> 00:06:40,575
+but-- and hopefully
+it's actually exists.
+
+87
+00:06:40,575 --> 00:06:51,508
+
+88
+00:06:51,508 --> 00:06:53,945
+I agree.
+
+89
+00:06:53,945 --> 00:06:55,741
+And can I actually read that?
+
+90
+00:06:55,741 --> 00:06:56,240
+Good.
+
+91
+00:06:56,240 --> 00:07:00,420
+
+92
+00:07:00,420 --> 00:07:00,920
+Alrighty.
+
+93
+00:07:00,920 --> 00:07:01,570
+cool.
+
+94
+00:07:01,570 --> 00:07:03,845
+So e-mail address.
+
+95
+00:07:03,845 --> 00:07:12,976
+
+96
+00:07:12,976 --> 00:07:17,200
+That's now password stuff,
+because of course there is.
+
+97
+00:07:17,200 --> 00:07:19,018
+I need uppercase letters.
+
+98
+00:07:19,018 --> 00:07:24,994
+
+99
+00:07:24,994 --> 00:07:27,810
+Cool All right.
+
+100
+00:07:27,810 --> 00:07:34,375
+>> So we have gotten in, or we're about to.
+
+101
+00:07:34,375 --> 00:07:35,700
+I think we're in.
+
+102
+00:07:35,700 --> 00:07:37,266
+OK, cool so we're in.
+
+103
+00:07:37,266 --> 00:07:40,740
+
+104
+00:07:40,740 --> 00:07:44,670
+>> This, the API documentation
+that we're on now,
+
+105
+00:07:44,670 --> 00:07:47,160
+is going to be your
+best friend if you're
+
+106
+00:07:47,160 --> 00:07:50,900
+trying to do anything
+useful with these bulbs.
+
+107
+00:07:50,900 --> 00:07:55,330
+Basically, it'll tell you how to
+get started using these bulbs-- how
+
+108
+00:07:55,330 --> 00:07:57,330
+to change the lights to
+whatever color you want,
+
+109
+00:07:57,330 --> 00:08:00,756
+how to create groups, which isn't all
+that important right now because we're
+
+110
+00:08:00,756 --> 00:08:02,630
+only going to be talking
+about a single bulb.
+
+111
+00:08:02,630 --> 00:08:06,420
+But if you say have multiple
+bulbs, it is very handy.
+
+112
+00:08:06,420 --> 00:08:09,380
+And all sorts of things.
+
+113
+00:08:09,380 --> 00:08:15,650
+>> To get started we'll go to their
+Getting Started page-- surprise.
+
+114
+00:08:15,650 --> 00:08:24,220
+And to actually check if we are in
+fact getting everything working,
+
+115
+00:08:24,220 --> 00:08:33,220
+we can see-- you can use this
+link, meethue.com/api/nupmp.
+
+116
+00:08:33,220 --> 00:08:37,820
+I don't know what all the letters
+are supposed to stand for.
+
+117
+00:08:37,820 --> 00:08:46,230
+But we can find a list up here of
+all the Bridges on this network.
+
+118
+00:08:46,230 --> 00:08:49,340
+
+119
+00:08:49,340 --> 00:08:55,550
+Luckily, I know which Bridge is ours,
+which is the first one, because we
+
+120
+00:08:55,550 --> 00:08:57,670
+haven't bothered to
+change the name of it yet.
+
+121
+00:08:57,670 --> 00:09:00,019
+So it's just starting as Philips Hue.
+
+122
+00:09:00,019 --> 00:09:02,060
+But we have all sorts of
+interesting things here.
+
+123
+00:09:02,060 --> 00:09:06,130
+We have its IP address, which we're
+going to be accessing pretty soon.
+
+124
+00:09:06,130 --> 00:09:09,430
+We have its MAC address,
+which we used earlier.
+
+125
+00:09:09,430 --> 00:09:13,310
+And we have its name, but that
+doesn't matter to us in the least.
+
+126
+00:09:13,310 --> 00:09:21,950
+>> So how we actually go about interacting
+with these bulbs is we use this IP
+
+127
+00:09:21,950 --> 00:09:28,990
+address, and we also
+go to /debug/clip.html.
+
+128
+00:09:28,990 --> 00:09:32,479
+
+129
+00:09:32,479 --> 00:09:33,270
+So debug/clip.html.
+
+130
+00:09:33,270 --> 00:09:40,080
+
+131
+00:09:40,080 --> 00:09:41,830
+So there we go.
+
+132
+00:09:41,830 --> 00:09:46,880
+We have this nice,
+relatively nice interface,
+
+133
+00:09:46,880 --> 00:09:51,050
+so we can actually talk
+to the Bridge right
+
+134
+00:09:51,050 --> 00:09:54,570
+here, to figure out, OK, which
+lights are connected to this?
+
+135
+00:09:54,570 --> 00:09:55,829
+Are they on?
+
+136
+00:09:55,829 --> 00:09:56,620
+That sort of thing.
+
+137
+00:09:56,620 --> 00:09:59,202
+
+138
+00:09:59,202 --> 00:10:01,410
+There's a few steps to
+actually getting this started.
+
+139
+00:10:01,410 --> 00:10:05,000
+So right now, as we
+can see, the debugger
+
+140
+00:10:05,000 --> 00:10:10,230
+looks just like this page that it has.
+
+141
+00:10:10,230 --> 00:10:15,580
+Again, I can't stress this enough,
+this developer.meethue.com,
+
+142
+00:10:15,580 --> 00:10:21,940
+incredibly useful if you're actually
+interacting with these bulbs.
+
+143
+00:10:21,940 --> 00:10:30,390
+So if we actually want to walk through
+what this debugger looks like, it gives
+
+144
+00:10:30,390 --> 00:10:40,000
+us a URL to interact with, a set of
+methods we can use, a message body,
+
+145
+00:10:40,000 --> 00:10:42,170
+and then we'll get back
+some sort of response
+
+146
+00:10:42,170 --> 00:10:44,890
+from the client, which is the Bridge.
+
+147
+00:10:44,890 --> 00:10:50,020
+>> So just like we did for this last
+problem set, right, where we have,
+
+148
+00:10:50,020 --> 00:10:56,080
+instead of saying using Telnet,
+we're just using this interface,
+
+149
+00:10:56,080 --> 00:11:03,800
+but we're still using a get
+request to a certain absolute path,
+
+150
+00:11:03,800 --> 00:11:06,350
+with a certain body.
+
+151
+00:11:06,350 --> 00:11:11,250
+And the body, in this case, is
+actually just going to be our query.
+
+152
+00:11:11,250 --> 00:11:15,150
+>> Let's walk through how we
+actually get to using this.
+
+153
+00:11:15,150 --> 00:11:20,470
+
+154
+00:11:20,470 --> 00:11:27,670
+If we say, go here-- so,
+1234 is an unauthorized user.
+
+155
+00:11:27,670 --> 00:11:31,810
+You have to set up, again,
+another user for this Bridge.
+
+156
+00:11:31,810 --> 00:11:32,890
+So that's fun.
+
+157
+00:11:32,890 --> 00:11:35,087
+We have a lot of users
+that we have to set up.
+
+158
+00:11:35,087 --> 00:11:37,045
+So we're going to call
+ourselves New Developer.
+
+159
+00:11:37,045 --> 00:11:39,780
+
+160
+00:11:39,780 --> 00:11:43,540
+But again, if we get
+that that doesn't work,
+
+161
+00:11:43,540 --> 00:11:52,630
+we actually have to go about and post
+with the body device type, test user,
+
+162
+00:11:52,630 --> 00:11:57,920
+and username, New Developer,
+to the API of the Bridge.
+
+163
+00:11:57,920 --> 00:12:01,503
+So let's see if I have
+that exactly right.
+
+164
+00:12:01,503 --> 00:12:02,310
+Yes.
+
+165
+00:12:02,310 --> 00:12:09,150
+Bridge IP address-- oh yes, of course.
+
+166
+00:12:09,150 --> 00:12:10,600
+Sorry about that.
+
+167
+00:12:10,600 --> 00:12:12,640
+So it's actually visible, always handy.
+
+168
+00:12:12,640 --> 00:12:19,150
+>> So to actually create a new user,
+we put in the message body device
+
+169
+00:12:19,150 --> 00:12:24,280
+type, test user, username New
+Developer, and we post this.
+
+170
+00:12:24,280 --> 00:12:27,090
+Except this doesn't work,
+because we haven't pressed
+
+171
+00:12:27,090 --> 00:12:28,540
+the big button in the middle.
+
+172
+00:12:28,540 --> 00:12:31,970
+So if we press the button in
+the middle and do that again,
+
+173
+00:12:31,970 --> 00:12:34,395
+we have our new user in.
+
+174
+00:12:34,395 --> 00:12:35,860
+It's very handy.
+
+175
+00:12:35,860 --> 00:12:41,330
+>> OK, so now that we
+have our New Developer,
+
+176
+00:12:41,330 --> 00:12:44,300
+we can start getting
+information about ourselves.
+
+177
+00:12:44,300 --> 00:12:53,320
+So we have that there is apparently
+three lights hooked up to this Bridge.
+
+178
+00:12:53,320 --> 00:12:56,870
+This is because all Bridges
+come with a starter kit,
+
+179
+00:12:56,870 --> 00:12:58,680
+and they have three
+lights automatically.
+
+180
+00:12:58,680 --> 00:13:01,800
+
+181
+00:13:01,800 --> 00:13:07,190
+And it has all the information about
+all these lights-- Light 1, which
+
+182
+00:13:07,190 --> 00:13:10,460
+again isn't actually this light
+bulb, so that's not all that handy.
+
+183
+00:13:10,460 --> 00:13:14,167
+It is apparently on state off.
+
+184
+00:13:14,167 --> 00:13:17,250
+Each light-- let's actually just run
+through this newdeveloper/lights/get.
+
+185
+00:13:17,250 --> 00:13:26,520
+
+186
+00:13:26,520 --> 00:13:32,070
+If we look at each of these
+lights, we can get their name,
+
+187
+00:13:32,070 --> 00:13:35,270
+if we just look at
+the lights as a whole.
+
+188
+00:13:35,270 --> 00:13:40,850
+Then we can also look at
+each light and its state.
+
+189
+00:13:40,850 --> 00:13:47,230
+So if we get its state-- it states not
+available, because it's not plugged in.
+
+190
+00:13:47,230 --> 00:13:47,730
+But--
+
+191
+00:13:47,730 --> 00:13:51,100
+
+192
+00:13:51,100 --> 00:13:57,200
+>> OK, so if we want to actually
+connect to this light to this Bridge,
+
+193
+00:13:57,200 --> 00:14:01,510
+we need to use a program--
+and I need to download it,
+
+194
+00:14:01,510 --> 00:14:08,900
+because I forgot about this--
+called Lamps Dealer, which
+
+195
+00:14:08,900 --> 00:14:11,400
+Phillips Hue actually
+already built for us.
+
+196
+00:14:11,400 --> 00:14:12,910
+It's very helpful.
+
+197
+00:14:12,910 --> 00:14:19,030
+So if we download that, opening
+in four seconds-- there we go.
+
+198
+00:14:19,030 --> 00:14:20,490
+OK.
+
+199
+00:14:20,490 --> 00:14:21,855
+Open up Lamps Dealer.
+
+200
+00:14:21,855 --> 00:14:23,160
+And we agree.
+
+201
+00:14:23,160 --> 00:14:24,730
+We find the bridge.
+
+202
+00:14:24,730 --> 00:14:31,260
+We know which MAC address we have, which
+is the thing on the back, so 8809F2E0.
+
+203
+00:14:31,260 --> 00:14:32,880
+We find that.
+
+204
+00:14:32,880 --> 00:14:37,560
+>> And to actually make
+Lamps Dealer work, you
+
+205
+00:14:37,560 --> 00:14:41,870
+put the light bulb against the
+Bridge, and hit Start Linking.
+
+206
+00:14:41,870 --> 00:14:48,132
+It'll flash to say that it's
+working, and we have the light bulb.
+
+207
+00:14:48,132 --> 00:14:59,160
+OK, so once we've done that to actually
+connect that bulb to our light,
+
+208
+00:14:59,160 --> 00:15:01,570
+we use post.
+
+209
+00:15:01,570 --> 00:15:04,480
+So we go api/newdevelopers/lights.
+
+210
+00:15:04,480 --> 00:15:06,180
+Hit post.
+
+211
+00:15:06,180 --> 00:15:08,000
+That'll find any new
+lights that we have.
+
+212
+00:15:08,000 --> 00:15:12,790
+
+213
+00:15:12,790 --> 00:15:16,980
+Then if we hit get, we now have a
+fourth light bulb, which is the bulb
+
+214
+00:15:16,980 --> 00:15:19,660
+that we actually just added on.
+
+215
+00:15:19,660 --> 00:15:28,920
+>> So now, if we go for
+light/force/state, and get that---
+
+216
+00:15:28,920 --> 00:15:32,680
+I might actually not be doing the
+right thing, when I ask for state.
+
+217
+00:15:32,680 --> 00:15:38,210
+So let's go Philips Hue API, lights.
+
+218
+00:15:38,210 --> 00:15:42,210
+Flashlights gets us all
+the different lights.
+
+219
+00:15:42,210 --> 00:15:44,160
+And Get New Lights.
+
+220
+00:15:44,160 --> 00:15:45,665
+We already did that.
+
+221
+00:15:45,665 --> 00:15:47,280
+We searched for lights.
+
+222
+00:15:47,280 --> 00:15:52,260
+So but we don't actually have to
+go to state to get the lights.
+
+223
+00:15:52,260 --> 00:15:53,480
+So it's just light/force/get.
+
+224
+00:15:53,480 --> 00:15:56,060
+
+225
+00:15:56,060 --> 00:16:04,690
+>> OK, so interestingly, this says that
+this fourth bulb that we just added
+
+226
+00:16:04,690 --> 00:16:05,460
+is off.
+
+227
+00:16:05,460 --> 00:16:09,140
+And that's because we haven't
+actually done anything with it yet.
+
+228
+00:16:09,140 --> 00:16:13,480
+So if you just plug in
+a bulb to a light socket
+
+229
+00:16:13,480 --> 00:16:16,480
+and don't try and
+manipulate it using Hue,
+
+230
+00:16:16,480 --> 00:16:19,760
+it'll just assume that
+it's probably off.
+
+231
+00:16:19,760 --> 00:16:26,910
+We need to actually tell it that
+it wants to be either on or off.
+
+232
+00:16:26,910 --> 00:16:35,940
+So we just give it the body on,
+quote, colon, true or false,
+
+233
+00:16:35,940 --> 00:16:38,510
+if we want to actually
+see it do something.
+
+234
+00:16:38,510 --> 00:16:45,510
+And we put that, and
+we have the light off.
+
+235
+00:16:45,510 --> 00:16:50,770
+If we want it to turn back on,
+we put that, light turns back on.
+
+236
+00:16:50,770 --> 00:16:52,750
+>> So that's fancy, right?
+
+237
+00:16:52,750 --> 00:16:56,770
+We're controlling a light
+bulb all through the internet.
+
+238
+00:16:56,770 --> 00:16:57,960
+Obviously we can do better.
+
+239
+00:16:57,960 --> 00:17:01,210
+So if we want to do
+something more interesting,
+
+240
+00:17:01,210 --> 00:17:07,460
+like change the colors that
+it is, we can also do that.
+
+241
+00:17:07,460 --> 00:17:15,579
+Where now it's a sort of shade of green,
+if we want it to be red we can do that.
+
+242
+00:17:15,579 --> 00:17:16,770
+Anyway, very nice, right?
+
+243
+00:17:16,770 --> 00:17:19,290
+
+244
+00:17:19,290 --> 00:17:20,530
+That's the first step, right?
+
+245
+00:17:20,530 --> 00:17:23,196
+We have this light set up, so we
+can actually do things with it.
+
+246
+00:17:23,196 --> 00:17:26,140
+
+247
+00:17:26,140 --> 00:17:31,340
+>> What if we then want to
+actually create a website that
+
+248
+00:17:31,340 --> 00:17:34,060
+can control this light bulb?
+
+249
+00:17:34,060 --> 00:17:44,590
+So, conveniently, I have written sort
+of the-- going to make this bigger,
+
+250
+00:17:44,590 --> 00:17:46,056
+so we can actually see.
+
+251
+00:17:46,056 --> 00:17:47,050
+Ah yes, there we go.
+
+252
+00:17:47,050 --> 00:17:55,960
+
+253
+00:17:55,960 --> 00:18:00,250
+>> So I've built a little sample
+website that will actually
+
+254
+00:18:00,250 --> 00:18:02,290
+be able to control this
+light bulb with, once we
+
+255
+00:18:02,290 --> 00:18:06,260
+add all the actual features
+that we're going to need.
+
+256
+00:18:06,260 --> 00:18:09,300
+So here's what it looks like right now.
+
+257
+00:18:09,300 --> 00:18:10,640
+It's kind of hideous.
+
+258
+00:18:10,640 --> 00:18:14,530
+And it also doesn't do anything.
+
+259
+00:18:14,530 --> 00:18:18,240
+There's a couple bad things right
+there, ugly and doesn't do anything,
+
+260
+00:18:18,240 --> 00:18:23,609
+but we can make it better, and
+we are going to make a better.
+
+261
+00:18:23,609 --> 00:18:26,150
+Quick aside-- we're going to
+talk about a couple things here,
+
+262
+00:18:26,150 --> 00:18:30,190
+JavaScript, which is a language we
+haven't talked about yet in the class,
+
+263
+00:18:30,190 --> 00:18:33,511
+and AJAX which is a use of
+JavaScript that we haven't talked
+
+264
+00:18:33,511 --> 00:18:35,510
+about in the class, not
+surprisingly, because we
+
+265
+00:18:35,510 --> 00:18:36,990
+haven't talked about JavaScript.
+
+266
+00:18:36,990 --> 00:18:40,490
+So we're going to need
+both of these things.
+
+267
+00:18:40,490 --> 00:18:44,400
+So JavaScript is what's known
+as a client side language.
+
+268
+00:18:44,400 --> 00:18:51,760
+So basically it's a language that
+runs on the client's machine.
+
+269
+00:18:51,760 --> 00:18:53,300
+So it's running.
+
+270
+00:18:53,300 --> 00:19:00,360
+>> So if a website uses JavaScript, it's
+your computer running the JavaScript,
+
+271
+00:19:00,360 --> 00:19:04,170
+unlike PHP, where it's the
+server that runs the JavaScript,
+
+272
+00:19:04,170 --> 00:19:06,930
+and then tells your
+computer what to see.
+
+273
+00:19:06,930 --> 00:19:08,980
+Your computer is saying
+what it's going to see,
+
+274
+00:19:08,980 --> 00:19:11,400
+by running the JavaScript itself.
+
+275
+00:19:11,400 --> 00:19:18,277
+So it's a client side language, and
+it runs completely independently
+
+276
+00:19:18,277 --> 00:19:19,360
+of the website, basically.
+
+277
+00:19:19,360 --> 00:19:21,870
+
+278
+00:19:21,870 --> 00:19:27,270
+>> We're going to use JavaScript, which is
+basically the only thing that we want
+
+279
+00:19:27,270 --> 00:19:31,540
+to use, because I don't actually
+have this site up on the Web.
+
+280
+00:19:31,540 --> 00:19:34,070
+It's just on my own computer.
+
+281
+00:19:34,070 --> 00:19:37,080
+We don't want it to
+connect to the Web at all.
+
+282
+00:19:37,080 --> 00:19:39,130
+We're just running it.
+
+283
+00:19:39,130 --> 00:19:44,040
+>> And we're also going to
+use this thing called AJAX.
+
+284
+00:19:44,040 --> 00:19:53,080
+So AJAX stands for Asynchronous
+JavaScript and XML.
+
+285
+00:19:53,080 --> 00:19:59,840
+And it's basically a way for a part of
+your web page to talk to the internet.
+
+286
+00:19:59,840 --> 00:20:07,800
+So if we say, want when we click on
+this button, to talk to our API--
+
+287
+00:20:07,800 --> 00:20:11,150
+so to talk to our
+bridge-- and say, we want
+
+288
+00:20:11,150 --> 00:20:14,660
+to change the color to
+whatever I've typed in here,
+
+289
+00:20:14,660 --> 00:20:18,140
+we can do that using AJAX.
+
+290
+00:20:18,140 --> 00:20:21,860
+It's fairly straightforward, and
+we'll obviously go into more detail
+
+291
+00:20:21,860 --> 00:20:24,177
+as we actually write some code for it.
+
+292
+00:20:24,177 --> 00:20:25,760
+But are we feeling OK about it so far?
+
+293
+00:20:25,760 --> 00:20:28,390
+
+294
+00:20:28,390 --> 00:20:30,980
+Ask me questions if not.
+
+295
+00:20:30,980 --> 00:20:36,320
+>> Alrighty, so I've created
+here this website.
+
+296
+00:20:36,320 --> 00:20:41,940
+We're including here a
+call to jQuery, which
+
+297
+00:20:41,940 --> 00:20:45,790
+is just a library of a bunch
+of handy JavaScript functions.
+
+298
+00:20:45,790 --> 00:20:49,350
+We'll talk about that in
+more detail in the future.
+
+299
+00:20:49,350 --> 00:20:54,029
+And then inside this
+script tag I've created
+
+300
+00:20:54,029 --> 00:20:55,820
+a sort of wrapper
+function, which will just
+
+301
+00:20:55,820 --> 00:20:58,930
+get called once the website
+is finished loading.
+
+302
+00:20:58,930 --> 00:21:02,560
+And then I've built
+some basic descriptors
+
+303
+00:21:02,560 --> 00:21:06,590
+of functions, change color and toggle.
+
+304
+00:21:06,590 --> 00:21:10,130
+So what toggle's going to do is
+just turn this light on and off,
+
+305
+00:21:10,130 --> 00:21:15,180
+and change color is going to
+change the color of the light bulb.
+
+306
+00:21:15,180 --> 00:21:17,560
+So far so good?
+
+307
+00:21:17,560 --> 00:21:18,340
+>> Okey doke.
+
+308
+00:21:18,340 --> 00:21:28,360
+So I've also included on here, inside
+the actual HTML part of the page,
+
+309
+00:21:28,360 --> 00:21:35,380
+a on click tag, or attribute,
+rather, which calls change color.
+
+310
+00:21:35,380 --> 00:21:37,870
+And this onclick calls toggle.
+
+311
+00:21:37,870 --> 00:21:43,400
+So if we want to, say, just make
+it obvious that these are actually
+
+312
+00:21:43,400 --> 00:21:48,800
+doing something-- so, ideally, onclick
+is getting called if I hit that,
+
+313
+00:21:48,800 --> 00:21:51,500
+and onclick is getting
+called if I hit that.
+
+314
+00:21:51,500 --> 00:21:55,530
+But to actually make it
+explicit we can use the console,
+
+315
+00:21:55,530 --> 00:21:58,990
+which is a handy thing
+for JavaScript, and .log,
+
+316
+00:21:58,990 --> 00:22:01,370
+so it's just like using
+Print-F, basically.
+
+317
+00:22:01,370 --> 00:22:11,480
+And we'll just give it change color,
+and we can do the same thing for toggle.
+
+318
+00:22:11,480 --> 00:22:17,010
+
+319
+00:22:17,010 --> 00:22:28,060
+>> OK, so we reload the page, and
+then if we open up the console
+
+320
+00:22:28,060 --> 00:22:31,610
+and click this-- that was unexpected.
+
+321
+00:22:31,610 --> 00:22:41,370
+
+322
+00:22:41,370 --> 00:22:42,470
+Don't mind me.
+
+323
+00:22:42,470 --> 00:22:43,907
+OK, let's see.
+
+324
+00:22:43,907 --> 00:22:47,260
+
+325
+00:22:47,260 --> 00:22:48,250
+There we go.
+
+326
+00:22:48,250 --> 00:22:53,810
+So if I hit Submit, right, it knows
+that it's calling change color.
+
+327
+00:22:53,810 --> 00:22:57,390
+If I hit toggle, it knows
+that it's calling toggle.
+
+328
+00:22:57,390 --> 00:22:58,210
+Right?
+
+329
+00:22:58,210 --> 00:23:00,390
+So, so far so good.
+
+330
+00:23:00,390 --> 00:23:03,630
+>> Basically this is
+just-- this onclick here
+
+331
+00:23:03,630 --> 00:23:09,700
+is just a way of saying to the
+website that when I click this,
+
+332
+00:23:09,700 --> 00:23:12,540
+I want you to call the
+function change color.
+
+333
+00:23:12,540 --> 00:23:16,740
+
+334
+00:23:16,740 --> 00:23:18,340
+How we feeling?
+
+335
+00:23:18,340 --> 00:23:20,230
+Good so far?
+
+336
+00:23:20,230 --> 00:23:21,720
+All right.
+
+337
+00:23:21,720 --> 00:23:32,460
+>> So if we actually want to talk to
+the API, so to talk to these lights,
+
+338
+00:23:32,460 --> 00:23:37,700
+we need to know the IP address,
+which we found earlier,
+
+339
+00:23:37,700 --> 00:23:41,570
+and how we're actually
+going to talk to them.
+
+340
+00:23:41,570 --> 00:23:48,090
+So if we want to just talk about
+this again, or use this again,
+
+341
+00:23:48,090 --> 00:24:04,090
+so api/NewDeveloper/lights/fore/state--
+or-- I guess light slash four.
+
+342
+00:24:04,090 --> 00:24:07,600
+We'll just call a get request,
+and we get all this stuff.
+
+343
+00:24:07,600 --> 00:24:17,571
+We can see that if we call using the
+web a get request, of this address,
+
+344
+00:24:17,571 --> 00:24:19,070
+we'll get back all this information.
+
+345
+00:24:19,070 --> 00:24:22,760
+
+346
+00:24:22,760 --> 00:24:26,200
+>> So we can do gets that
+way very easily, right?
+
+347
+00:24:26,200 --> 00:24:32,160
+Basically everything we do over the web
+these days is using gets as the method.
+
+348
+00:24:32,160 --> 00:24:34,870
+Using put is much harder, right?
+
+349
+00:24:34,870 --> 00:24:38,400
+It's confusing, because
+that isn't something
+
+350
+00:24:38,400 --> 00:24:40,680
+that the Web is built to handle anymore.
+
+351
+00:24:40,680 --> 00:24:43,600
+
+352
+00:24:43,600 --> 00:24:49,430
+Luckily, if we use AJAX we can
+just tell it what method we want.
+
+353
+00:24:49,430 --> 00:24:53,940
+We don't have to rely on how
+the Web works these days.
+
+354
+00:24:53,940 --> 00:25:00,920
+>> So if we want to use
+AJAX, we simply do $ --
+
+355
+00:25:00,920 --> 00:25:04,130
+and so this is using the
+jQuery library-- .ajax.
+
+356
+00:25:04,130 --> 00:25:07,790
+
+357
+00:25:07,790 --> 00:25:10,950
+And we pass AJAX a body.
+
+358
+00:25:10,950 --> 00:25:15,120
+So I think we give it method equals put.
+
+359
+00:25:15,120 --> 00:25:23,240
+
+360
+00:25:23,240 --> 00:25:23,890
+Let's see.
+
+361
+00:25:23,890 --> 00:25:30,310
+URL equals get/state.
+
+362
+00:25:30,310 --> 00:25:35,530
+
+363
+00:25:35,530 --> 00:25:43,230
+And we give it the body
+of-- and so the body
+
+364
+00:25:43,230 --> 00:25:48,120
+that we want to give it is
+the same thing we gave here,
+
+365
+00:25:48,120 --> 00:25:53,320
+of just Hue, followed
+by some number, if we
+
+366
+00:25:53,320 --> 00:25:55,150
+want to change that
+color to that number.
+
+367
+00:25:55,150 --> 00:26:03,850
+So it's just got to be as simple as hue:
+
+368
+00:26:03,850 --> 00:26:07,490
+>> And we're going to start
+with a fixed number,
+
+369
+00:26:07,490 --> 00:26:17,830
+and we'll talk about how we'll
+change that in the future,
+
+370
+00:26:17,830 --> 00:26:20,470
+And that should be enough.
+
+371
+00:26:20,470 --> 00:26:24,448
+We'll want to actually check to
+see if that works, but we can try.
+
+372
+00:26:24,448 --> 00:26:24,948
+So.
+
+373
+00:26:24,948 --> 00:26:30,110
+
+374
+00:26:30,110 --> 00:26:31,370
+It did not.
+
+375
+00:26:31,370 --> 00:26:36,670
+OK, so bear with me for a
+second as I open the recent file
+
+376
+00:26:36,670 --> 00:26:42,394
+that I might have done all
+the work on, any second ago.
+
+377
+00:26:42,394 --> 00:26:47,610
+
+378
+00:26:47,610 --> 00:27:01,441
+Scratch examples, JS, I guess
+I want OK, get the IP address,
+
+379
+00:27:01,441 --> 00:27:03,486
+[INAUDIBLE] state's on through Hue.
+
+380
+00:27:03,486 --> 00:27:11,460
+
+381
+00:27:11,460 --> 00:27:12,590
+>> Oh, data not body.
+
+382
+00:27:12,590 --> 00:27:13,650
+That was it.
+
+383
+00:27:13,650 --> 00:27:25,090
+Let's-- OK, and-- hm, crap.
+
+384
+00:27:25,090 --> 00:27:26,850
+So this a little
+embarrassing, obviously.
+
+385
+00:27:26,850 --> 00:27:33,100
+
+386
+00:27:33,100 --> 00:27:36,000
+And of course that's still
+closed on itself again.
+
+387
+00:27:36,000 --> 00:27:40,650
+
+388
+00:27:40,650 --> 00:27:48,896
+>> So we put that URL, our data of Hue.
+
+389
+00:27:48,896 --> 00:27:53,220
+
+390
+00:27:53,220 --> 00:27:54,070
+Oh, right.
+
+391
+00:27:54,070 --> 00:27:54,570
+And data.
+
+392
+00:27:54,570 --> 00:27:56,236
+The whole thing needs to be in a string.
+
+393
+00:27:56,236 --> 00:27:59,810
+
+394
+00:27:59,810 --> 00:28:00,910
+There we go.
+
+395
+00:28:00,910 --> 00:28:02,030
+So much better.
+
+396
+00:28:02,030 --> 00:28:05,990
+>> OK, so debugging on the fly,
+not the best, but did the job.
+
+397
+00:28:05,990 --> 00:28:10,190
+So let's quickly talk
+about what just happened.
+
+398
+00:28:10,190 --> 00:28:14,450
+So we're calling this AJAX call.
+
+399
+00:28:14,450 --> 00:28:18,380
+We're giving it the method put, right?
+
+400
+00:28:18,380 --> 00:28:21,440
+We're calling it to
+this URL, which happens
+
+401
+00:28:21,440 --> 00:28:27,650
+to be the IP address of my Hue bulb.
+
+402
+00:28:27,650 --> 00:28:29,330
+It's the same IP address we had up here.
+
+403
+00:28:29,330 --> 00:28:32,010
+
+404
+00:28:32,010 --> 00:28:38,580
+Passing it
+api/NewDeveloper/lights/4/state,
+
+405
+00:28:38,580 --> 00:28:41,980
+inside the debug mode.
+
+406
+00:28:41,980 --> 00:28:48,040
+And then we give it
+the body of Hue 2500.
+
+407
+00:28:48,040 --> 00:28:52,480
+>> So if we wanted it to go back and
+forth, we can put this one to red,
+
+408
+00:28:52,480 --> 00:28:57,370
+we can put this one to green.
+
+409
+00:28:57,370 --> 00:29:03,022
+This to red, this to
+green, and so on, right?
+
+410
+00:29:03,022 --> 00:29:04,730
+Obviously that isn't
+that impressive yet,
+
+411
+00:29:04,730 --> 00:29:08,270
+though, because we have
+this fixed color, right?
+
+412
+00:29:08,270 --> 00:29:12,380
+We can only change this to green.
+
+413
+00:29:12,380 --> 00:29:15,210
+Luckily with JavaScript
+you can actually figure out
+
+414
+00:29:15,210 --> 00:29:18,780
+what is going on on your
+page, so we can figure out
+
+415
+00:29:18,780 --> 00:29:25,030
+the inner values of this text box.
+
+416
+00:29:25,030 --> 00:29:26,680
+So that's kind of neat.
+
+417
+00:29:26,680 --> 00:29:30,200
+>> And then the other thing we still
+need to do that we haven't done yet
+
+418
+00:29:30,200 --> 00:29:35,070
+is actually have our on and off switch.
+
+419
+00:29:35,070 --> 00:29:40,910
+So which do we want to do first,
+on/off switch, or actually get colors?
+
+420
+00:29:40,910 --> 00:29:41,900
+Actually get colors?
+
+421
+00:29:41,900 --> 00:29:44,970
+Sounds good.
+
+422
+00:29:44,970 --> 00:29:47,430
+>> All we need to do here
+is figure out what
+
+423
+00:29:47,430 --> 00:29:51,960
+the actual value inside of this box is.
+
+424
+00:29:51,960 --> 00:29:55,530
+
+425
+00:29:55,530 --> 00:29:57,650
+And we can do that using JavaScript.
+
+426
+00:29:57,650 --> 00:29:58,520
+It's very handy.
+
+427
+00:29:58,520 --> 00:30:01,180
+So we're going to
+quickly use this console.
+
+428
+00:30:01,180 --> 00:30:06,680
+So I'll make that bigger, too, and just
+talk about how we actually get things,
+
+429
+00:30:06,680 --> 00:30:12,230
+and then we'll go into basically
+copying that code over again.
+
+430
+00:30:12,230 --> 00:30:18,200
+>> So jQuery, again, how you access
+things on a page using jQuery.
+
+431
+00:30:18,200 --> 00:30:21,660
+Again, it's a great
+library for JavaScript.
+
+432
+00:30:21,660 --> 00:30:26,530
+You first use a $, which says
+I'm using the jQuery library,
+
+433
+00:30:26,530 --> 00:30:33,170
+then you pass it a set of parentheses,
+which is basically the function body,
+
+434
+00:30:33,170 --> 00:30:37,540
+and then you give it a string
+that represents something.
+
+435
+00:30:37,540 --> 00:30:40,070
+So I'm going to quickly
+do this, and then we'll
+
+436
+00:30:40,070 --> 00:30:45,630
+talk about what that actually means.
+
+437
+00:30:45,630 --> 00:30:55,570
+>> So I give it this hash switch,
+which is the ID-- oh, sorry.
+
+438
+00:30:55,570 --> 00:30:58,290
+I don't want to give it switch,
+because that's the check box.
+
+439
+00:30:58,290 --> 00:31:01,070
+But you can give it the
+idea of whatever instance,
+
+440
+00:31:01,070 --> 00:31:02,820
+or the whatever thing
+you want to look at.
+
+441
+00:31:02,820 --> 00:31:10,060
+So instead of hash switch, I
+want to give it hash numbers,
+
+442
+00:31:10,060 --> 00:31:13,506
+and this gives us this text box.
+
+443
+00:31:13,506 --> 00:31:22,540
+
+444
+00:31:22,540 --> 00:31:25,900
+I think just value-- nope.
+
+445
+00:31:25,900 --> 00:31:40,370
+
+446
+00:31:40,370 --> 00:31:45,990
+>> Well, so .txt-- What's that?
+
+447
+00:31:45,990 --> 00:31:47,940
+Yeah, I think that's
+the one I actually want.
+
+448
+00:31:47,940 --> 00:31:52,640
+Because .txt would give
+us the inner text in HTML,
+
+449
+00:31:52,640 --> 00:31:56,210
+but that isn't-- this
+.val is what we want.
+
+450
+00:31:56,210 --> 00:32:00,600
+So .txt would give us the inner HTML.
+
+451
+00:32:00,600 --> 00:32:04,720
+But because this isn't inner HTML,
+because we typed this in ourself,
+
+452
+00:32:04,720 --> 00:32:08,730
+we use .val, which is just
+the value given to whatever.
+
+453
+00:32:08,730 --> 00:32:10,240
+And we can figure that out.
+
+454
+00:32:10,240 --> 00:32:19,960
+>> So if we have this 2,500 that we
+can-- or 255,000-- no, 25,000,
+
+455
+00:32:19,960 --> 00:32:22,930
+rather, because I can
+read numbers real well,
+
+456
+00:32:22,930 --> 00:32:26,020
+we can figure out exactly
+what we've put into this box.
+
+457
+00:32:26,020 --> 00:32:29,650
+And we can use that.
+
+458
+00:32:29,650 --> 00:32:33,450
+So number equals that.
+
+459
+00:32:33,450 --> 00:32:40,300
+Hue equals-- and we'll talk about
+what I'm doing here in just a second.
+
+460
+00:32:40,300 --> 00:32:44,570
+
+461
+00:32:44,570 --> 00:32:48,730
+>> Basically we get the
+number from the page,
+
+462
+00:32:48,730 --> 00:32:54,300
+using number equals $
+of hash number .val,
+
+463
+00:32:54,300 --> 00:33:01,600
+and then we are inserting it into this
+string so the plus sign in JavaScript
+
+464
+00:33:01,600 --> 00:33:03,800
+just means string concatenation.
+
+465
+00:33:03,800 --> 00:33:08,220
+So we have this string, followed by
+the string, followed by this string.
+
+466
+00:33:08,220 --> 00:33:14,500
+And even though we think
+of 25,000 as a number,
+
+467
+00:33:14,500 --> 00:33:18,320
+JavaScript can just
+interpret it as a string.
+
+468
+00:33:18,320 --> 00:33:25,541
+>> So if we do that, we give this a
+zero, we can change the color to red.
+
+469
+00:33:25,541 --> 00:33:33,520
+If we give it 2,500 again, or 25,000
+again we can change it to green.
+
+470
+00:33:33,520 --> 00:33:40,540
+And let's see, what's a good
+blue, like 49,000, I think?
+
+471
+00:33:40,540 --> 00:33:41,752
+Purple.
+
+472
+00:33:41,752 --> 00:33:43,880
+So yeah.
+
+473
+00:33:43,880 --> 00:33:45,130
+So far we can change--
+
+474
+00:33:45,130 --> 00:33:48,020
+>> SPEAKER: Just a question.
+what scale are the numbers?
+
+475
+00:33:48,020 --> 00:33:51,580
+>> DAN BRADLEY: So the numbers
+are weird in Hue bulbs.
+
+476
+00:33:51,580 --> 00:33:54,440
+
+477
+00:33:54,440 --> 00:34:01,430
+You might have noticed that this
+is sort of a not great green.
+
+478
+00:34:01,430 --> 00:34:04,130
+It's not a very bright
+green that we have here.
+
+479
+00:34:04,130 --> 00:34:07,580
+That is actually as good
+as Hues get, because it's
+
+480
+00:34:07,580 --> 00:34:13,610
+a number between 0 and
+65,000-- or 65,556.
+
+481
+00:34:13,610 --> 00:34:21,800
+So whatever that is, I
+think 16 to the fourth?
+
+482
+00:34:21,800 --> 00:34:24,280
+It's-- no, 16 to the eighth.
+
+483
+00:34:24,280 --> 00:34:29,679
+So it's eight hexadecimals
+in a row, basically.
+
+484
+00:34:29,679 --> 00:34:35,260
+But it unfortunately doesn't-- you can't
+just use hex notation as well as you
+
+485
+00:34:35,260 --> 00:34:39,170
+could in other systems.
+
+486
+00:34:39,170 --> 00:34:42,409
+So you actually have to
+convert that to actual numbers.
+
+487
+00:34:42,409 --> 00:34:45,330
+
+488
+00:34:45,330 --> 00:34:48,620
+>> They're kind of odd If
+you want a good sense
+
+489
+00:34:48,620 --> 00:34:52,179
+of what they look like, look it up.
+
+490
+00:34:52,179 --> 00:34:55,910
+Oops, I just did something.
+
+491
+00:34:55,910 --> 00:34:57,600
+There we go.
+
+492
+00:34:57,600 --> 00:35:03,480
+But yeah, it's between
+0 and 65,000, roughly.
+
+493
+00:35:03,480 --> 00:35:08,100
+And you can get fairly decent
+sense of what colors want to be.
+
+494
+00:35:08,100 --> 00:35:10,680
+So 46,000, I think is
+actually the good blue.
+
+495
+00:35:10,680 --> 00:35:13,851
+
+496
+00:35:13,851 --> 00:35:16,720
+Nope, that's also.
+
+497
+00:35:16,720 --> 00:35:21,770
+>> So other things I guess we
+should talk about on Hue bulbs
+
+498
+00:35:21,770 --> 00:35:25,770
+is there's a bunch of different settings
+you can have for each of these bulbs.
+
+499
+00:35:25,770 --> 00:35:29,730
+So we can have-- the Hue, obviously.
+
+500
+00:35:29,730 --> 00:35:33,150
+You can also include things
+like the saturation, so
+
+501
+00:35:33,150 --> 00:35:38,140
+SAT, which is just some
+number between 0 and 255.
+
+502
+00:35:38,140 --> 00:35:42,820
+>> So if we want high saturation, I guess
+that is as high as the saturation goes.
+
+503
+00:35:42,820 --> 00:35:45,730
+
+504
+00:35:45,730 --> 00:35:52,260
+I actually do-- that is the
+size and saturation goes.
+
+505
+00:35:52,260 --> 00:35:55,960
+Or, so if we say set it
+to a lower saturation,
+
+506
+00:35:55,960 --> 00:35:59,895
+it'll be a less bright color.
+
+507
+00:35:59,895 --> 00:36:03,740
+Not that it's all that bright, as is.
+
+508
+00:36:03,740 --> 00:36:05,482
+Or is that just not working?
+
+509
+00:36:05,482 --> 00:36:06,960
+It's hard for me to tell from here.
+
+510
+00:36:06,960 --> 00:36:16,140
+
+511
+00:36:16,140 --> 00:36:20,120
+So the saturation went down,
+because I set the saturation to 100.
+
+512
+00:36:20,120 --> 00:36:24,870
+Since I don't know, I kind of like
+colors, I'll leave it at 26,000,
+
+513
+00:36:24,870 --> 00:36:26,610
+or 255.
+
+514
+00:36:26,610 --> 00:36:28,860
+I don't know where 26,000 came from.
+
+515
+00:36:28,860 --> 00:36:33,430
+And we can have it nice and dark.
+
+516
+00:36:33,430 --> 00:36:36,800
+>> So how are we feeling?
+
+517
+00:36:36,800 --> 00:36:43,261
+Able to change colors on some bulbs
+that we just took out of a box.
+
+518
+00:36:43,261 --> 00:36:43,760
+Pretty good.
+
+519
+00:36:43,760 --> 00:36:46,740
+
+520
+00:36:46,740 --> 00:36:51,950
+>> The other thing we want to do is
+actually turn this thing on and off.
+
+521
+00:36:51,950 --> 00:36:58,620
+So if we know how to do
+each of those things,
+
+522
+00:36:58,620 --> 00:37:06,750
+it's easy enough to turn it off, because
+we just use exactly this AJAX call,
+
+523
+00:37:06,750 --> 00:37:09,770
+and instead of doing Hue we do on.
+
+524
+00:37:09,770 --> 00:37:16,980
+And instead of any of this
+stuff, we just do false,
+
+525
+00:37:16,980 --> 00:37:22,240
+and we can just-- unexpected token.
+
+526
+00:37:22,240 --> 00:37:23,100
+What's that?
+
+527
+00:37:23,100 --> 00:37:26,950
+>> SPEAKER: For the false,
+can you do colors?
+
+528
+00:37:26,950 --> 00:37:29,414
+>> DAN BRADLEY: No.
+
+529
+00:37:29,414 --> 00:37:31,430
+Let's see, unexpected token period.
+
+530
+00:37:31,430 --> 00:37:32,754
+Where is the period?
+
+531
+00:37:32,754 --> 00:37:35,688
+
+532
+00:37:35,688 --> 00:37:36,771
+Not what I meant to click.
+
+533
+00:37:36,771 --> 00:37:40,140
+
+534
+00:37:40,140 --> 00:37:42,384
+All right.
+
+535
+00:37:42,384 --> 00:37:43,340
+Dollar sign.
+
+536
+00:37:43,340 --> 00:37:44,710
+There we go.
+
+537
+00:37:44,710 --> 00:37:48,451
+
+538
+00:37:48,451 --> 00:37:48,950
+There we go.
+
+539
+00:37:48,950 --> 00:37:49,660
+Much better.
+
+540
+00:37:49,660 --> 00:37:53,220
+>> So if we just want to turn
+it off, we can turn it off.
+
+541
+00:37:53,220 --> 00:37:56,730
+But now we can't turn it back
+on, so that's unfortunate.
+
+542
+00:37:56,730 --> 00:37:59,780
+So if we switch it to true,
+obviously we can turn it on,
+
+543
+00:37:59,780 --> 00:38:03,260
+but it'll just stay on when we click.
+
+544
+00:38:03,260 --> 00:38:11,200
+We need some way of first
+checking whether it's on or off,
+
+545
+00:38:11,200 --> 00:38:18,310
+and then either setting it to on if
+it's not on, or off if it's not off.
+
+546
+00:38:18,310 --> 00:38:29,500
+>> So if we go back to our debug, we
+can get information about each bulb.
+
+547
+00:38:29,500 --> 00:38:35,830
+Or if we go to light/4, rather, we can
+get each information about the bulb.
+
+548
+00:38:35,830 --> 00:38:38,210
+We have that on equals true.
+
+549
+00:38:38,210 --> 00:38:41,500
+We have that brightness equals 254.
+
+550
+00:38:41,500 --> 00:38:43,760
+We have its hue, we have all the stuff.
+
+551
+00:38:43,760 --> 00:38:50,870
+So if we actually want to get the
+information we want-- for instance,
+
+552
+00:38:50,870 --> 00:38:55,970
+this is the thing we actually
+care about, this on equals true.
+
+553
+00:38:55,970 --> 00:39:04,110
+>> We can make an AJAX call to see what
+color it is-- or not what color,
+
+554
+00:39:04,110 --> 00:39:05,590
+whether it's on or not.
+
+555
+00:39:05,590 --> 00:39:09,880
+And then once we have that
+information, make another AJAX call
+
+556
+00:39:09,880 --> 00:39:13,850
+to either turn it off, or turn it on.
+
+557
+00:39:13,850 --> 00:39:16,670
+>> So let's talk about how we do this.
+
+558
+00:39:16,670 --> 00:39:23,142
+So if we go up here-- again,
+our URL was the IP address,
+
+559
+00:39:23,142 --> 00:39:25,225
+so 10.245.12.1.75/api/n
+ewdevelopers/lights/floor.
+
+560
+00:39:25,225 --> 00:39:34,340
+
+561
+00:39:34,340 --> 00:39:36,320
+And we use the method get.
+
+562
+00:39:36,320 --> 00:39:46,080
+So, if we actually want to just do that,
+just getting the information alone,
+
+563
+00:39:46,080 --> 00:39:48,970
+we are already there.
+
+564
+00:39:48,970 --> 00:39:50,870
+Right?
+
+565
+00:39:50,870 --> 00:39:54,000
+We can get the information
+just with that.
+
+566
+00:39:54,000 --> 00:39:56,320
+>> But we want to do something
+with that information,
+
+567
+00:39:56,320 --> 00:40:00,880
+and this is something that
+AJAX is kind of interesting on,
+
+568
+00:40:00,880 --> 00:40:02,630
+Because it's asynchronous.
+
+569
+00:40:02,630 --> 00:40:05,650
+If I just made this call
+and then immediately checked
+
+570
+00:40:05,650 --> 00:40:10,670
+what that was supposed to
+return, it would fail, right?
+
+571
+00:40:10,670 --> 00:40:15,340
+Because AJAX is asynchronous, that means
+it just sends off a call somewhere else
+
+572
+00:40:15,340 --> 00:40:18,870
+in space, and it's going to
+return when it's ready to return.
+
+573
+00:40:18,870 --> 00:40:22,590
+But it's not-- you shouldn't
+wait around for it, basically.
+
+574
+00:40:22,590 --> 00:40:31,250
+So you can actually, in this AJAX call,
+make a call for when it's successful.
+
+575
+00:40:31,250 --> 00:40:35,820
+>> So when it finishes you
+can tell it what to do.
+
+576
+00:40:35,820 --> 00:40:42,390
+So on success you give it a function.
+
+577
+00:40:42,390 --> 00:40:43,540
+Function get.
+
+578
+00:40:43,540 --> 00:40:45,190
+And I guess it takes data.
+
+579
+00:40:45,190 --> 00:40:53,026
+
+580
+00:40:53,026 --> 00:40:56,660
+>> If we have this function that
+we're going to call on data,
+
+581
+00:40:56,660 --> 00:41:00,670
+or when it successfully returns--
+and it'll return some data,
+
+582
+00:41:00,670 --> 00:41:04,800
+which is this response
+that I just showed you.
+
+583
+00:41:04,800 --> 00:41:07,580
+It's this whole thing.
+
+584
+00:41:07,580 --> 00:41:14,670
+We want to look at the data , the
+success or the state field of the data,
+
+585
+00:41:14,670 --> 00:41:16,720
+and then the on field
+of that state field.
+
+586
+00:41:16,720 --> 00:41:20,580
+
+587
+00:41:20,580 --> 00:41:23,030
+Does that makes sense so far?
+
+588
+00:41:23,030 --> 00:41:30,290
+>> OK, so because we are
+dealing with JavaScript,
+
+589
+00:41:30,290 --> 00:41:32,250
+this is actually pretty easy.
+
+590
+00:41:32,250 --> 00:41:36,210
+So let's just do this,
+so we're going to-- this
+
+591
+00:41:36,210 --> 00:41:39,930
+is just doing, again, that
+same print that we did earlier.
+
+592
+00:41:39,930 --> 00:41:46,850
+We'll just console.log
+of data .state.un,
+
+593
+00:41:46,850 --> 00:41:49,860
+and we'll see what we get back.
+
+594
+00:41:49,860 --> 00:41:52,460
+So this isn't get it end
+up changing anything.
+
+595
+00:41:52,460 --> 00:41:57,750
+It'll just print true
+for us, if it works.
+
+596
+00:41:57,750 --> 00:42:01,400
+
+597
+00:42:01,400 --> 00:42:05,680
+>> Let's inspect elements so
+we get our console out.
+
+598
+00:42:05,680 --> 00:42:09,445
+And that did nothing.
+
+599
+00:42:09,445 --> 00:42:17,360
+
+600
+00:42:17,360 --> 00:42:18,482
+Did I hit refresh?
+
+601
+00:42:18,482 --> 00:42:19,190
+I might not have.
+
+602
+00:42:19,190 --> 00:42:24,540
+
+603
+00:42:24,540 --> 00:42:29,320
+No, that didn't do the thing
+I was hoping it would do.
+
+604
+00:42:29,320 --> 00:42:33,420
+And I apologize for the
+confusion for all this.
+
+605
+00:42:33,420 --> 00:42:38,852
+
+606
+00:42:38,852 --> 00:42:41,320
+Let's see, is it quotes?
+
+607
+00:42:41,320 --> 00:42:45,980
+>> So there's-- I've been dealing with a
+fairly wide set of languages lately,
+
+608
+00:42:45,980 --> 00:42:48,840
+and all of them deal with
+objects slightly differently.
+
+609
+00:42:48,840 --> 00:42:51,620
+So it's possible that
+JavaScript treats it
+
+610
+00:42:51,620 --> 00:42:55,450
+as associative arrays, and no such luck.
+
+611
+00:42:55,450 --> 00:42:56,200
+OK.
+
+612
+00:42:56,200 --> 00:43:01,820
+So, going back to my
+previously written code,
+
+613
+00:43:01,820 --> 00:43:05,000
+because obviously I'm going to
+need to fall back on that again.
+
+614
+00:43:05,000 --> 00:43:12,890
+
+615
+00:43:12,890 --> 00:43:14,080
+>> Function text.
+
+616
+00:43:14,080 --> 00:43:16,450
+Oh, we don't return to no string.
+
+617
+00:43:16,450 --> 00:43:18,970
+
+618
+00:43:18,970 --> 00:43:23,770
+OK, the one time that is in
+the string is when it gets me.
+
+619
+00:43:23,770 --> 00:43:29,167
+And this should be dot state dot on.
+
+620
+00:43:29,167 --> 00:43:29,666
+OK.
+
+621
+00:43:29,666 --> 00:43:33,340
+
+622
+00:43:33,340 --> 00:43:34,320
+Figures.
+
+623
+00:43:34,320 --> 00:43:35,720
+And there we go.
+
+624
+00:43:35,720 --> 00:43:39,040
+
+625
+00:43:39,040 --> 00:43:41,690
+>> The success field on
+AJAX, apparently-- and I
+
+626
+00:43:41,690 --> 00:43:46,560
+forgot this, obviously-- doesn't take a
+string like the rest of the fields do.
+
+627
+00:43:46,560 --> 00:43:52,500
+It just has whether or not, or basically
+you actually pass in the function
+
+628
+00:43:52,500 --> 00:43:55,870
+that you want it to call on return.
+
+629
+00:43:55,870 --> 00:43:57,790
+So does this make sense why this works?
+
+630
+00:43:57,790 --> 00:44:03,670
+
+631
+00:44:03,670 --> 00:44:09,240
+>> So we're calling AJAX, so we're
+calling off to the internet
+
+632
+00:44:09,240 --> 00:44:14,360
+with the method get, so we're saying
+we're going to use the get method,
+
+633
+00:44:14,360 --> 00:44:17,860
+just like we did for problem set six.
+
+634
+00:44:17,860 --> 00:44:25,429
+We're calling to this URL,
+which is the lights/--
+
+635
+00:44:25,429 --> 00:44:27,345
+the 10.245.12.175/api/ne
+wdevelopers/lights/4.
+
+636
+00:44:27,345 --> 00:44:33,080
+
+637
+00:44:33,080 --> 00:44:37,030
+And we're calling when
+it succeeds, and returns
+
+638
+00:44:37,030 --> 00:44:43,360
+whatever body console dot log of data.
+
+639
+00:44:43,360 --> 00:44:47,330
+And so we log the data dot state dot on.
+
+640
+00:44:47,330 --> 00:44:55,420
+So the on field of the state field
+of data, which, looking back here,
+
+641
+00:44:55,420 --> 00:45:03,397
+is the state field of data, and
+the on field of the state field,
+
+642
+00:45:03,397 --> 00:45:03,980
+which is true.
+
+643
+00:45:03,980 --> 00:45:08,430
+
+644
+00:45:08,430 --> 00:45:12,480
+>> If we have this get, right,
+we know whether or not
+
+645
+00:45:12,480 --> 00:45:15,210
+these this bulb is on or not.
+
+646
+00:45:15,210 --> 00:45:21,400
+Then we can figure out if we're going
+to turn it on or turn it off, right?
+
+647
+00:45:21,400 --> 00:45:24,440
+Because if it's false, we turn it on.
+
+648
+00:45:24,440 --> 00:45:28,150
+If it's true, we turn it off.
+
+649
+00:45:28,150 --> 00:45:31,499
+So let's make another line here,
+so we can make it a little bit more
+
+650
+00:45:31,499 --> 00:45:32,540
+obvious what we're doing.
+
+651
+00:45:32,540 --> 00:45:37,340
+
+652
+00:45:37,340 --> 00:45:47,180
+If data dot state dot on-- so in that
+case we know that our light bulb is on.
+
+653
+00:45:47,180 --> 00:45:49,064
+We want to turn it off.
+
+654
+00:45:49,064 --> 00:45:51,105
+Let's talk about how are
+we going to turn it off?
+
+655
+00:45:51,105 --> 00:45:54,691
+
+656
+00:45:54,691 --> 00:45:56,110
+>> SPEAKER 2: Change the state?
+
+657
+00:45:56,110 --> 00:45:57,360
+>> DAN BRADLEY: Change the state.
+
+658
+00:45:57,360 --> 00:46:02,950
+Change the state using AJAX,
+just like we did before.
+
+659
+00:46:02,950 --> 00:46:04,530
+Maybe I'll move that over one.
+
+660
+00:46:04,530 --> 00:46:12,630
+And instead of having all this extra
+stuff, we'll just turn it off, so.
+
+661
+00:46:12,630 --> 00:46:24,340
+On equals false, and
+we'll tab this over, also.
+
+662
+00:46:24,340 --> 00:46:25,970
+OK.
+
+663
+00:46:25,970 --> 00:46:32,350
+>> So if it's on, we call
+AJAX and turn it off.
+
+664
+00:46:32,350 --> 00:46:35,380
+
+665
+00:46:35,380 --> 00:46:41,020
+If it's off, what is the guess of
+what we were going to want to do?
+
+666
+00:46:41,020 --> 00:46:42,960
+>> SPEAKER 3: Find if it's true.
+
+667
+00:46:42,960 --> 00:46:43,960
+>> DAN BRADLEY: Yep.
+
+668
+00:46:43,960 --> 00:46:45,120
+So if on is false.
+
+669
+00:46:45,120 --> 00:46:46,630
+So we want to set on to true.
+
+670
+00:46:46,630 --> 00:46:47,640
+So, else.
+
+671
+00:46:47,640 --> 00:46:51,930
+
+672
+00:46:51,930 --> 00:46:55,010
+On, true.
+
+673
+00:46:55,010 --> 00:46:59,470
+And that should do us.
+
+674
+00:46:59,470 --> 00:47:03,718
+
+675
+00:47:03,718 --> 00:47:07,660
+All right, let's try it out.
+
+676
+00:47:07,660 --> 00:47:10,530
+What are the bets on
+it working first try?
+
+677
+00:47:10,530 --> 00:47:13,100
+Not good, not good?
+
+678
+00:47:13,100 --> 00:47:14,620
+All right, let's try it.
+
+679
+00:47:14,620 --> 00:47:19,900
+>> So turned off, turned on.
+
+680
+00:47:19,900 --> 00:47:24,469
+It doesn't actually have the check box
+right for on versus off, but you know,
+
+681
+00:47:24,469 --> 00:47:25,510
+You can't win everything.
+
+682
+00:47:25,510 --> 00:47:29,880
+
+683
+00:47:29,880 --> 00:47:35,236
+That's pretty close to everything we
+wanted or we needed to talk about.
+
+684
+00:47:35,236 --> 00:47:38,110
+Since we can turn it on, we can turn
+it off, we can change the color.
+
+685
+00:47:38,110 --> 00:47:39,595
+>> SPEAKER: Dan, I'm sorry.
+
+686
+00:47:39,595 --> 00:47:40,585
+Question online.
+
+687
+00:47:40,585 --> 00:47:43,555
+Is it possible you're
+missing an HTML tag?
+
+688
+00:47:43,555 --> 00:47:44,545
+Your HTML--
+
+689
+00:47:44,545 --> 00:47:48,020
+
+690
+00:47:48,020 --> 00:47:49,450
+>> DAN BRADLEY: Uh, yes.
+
+691
+00:47:49,450 --> 00:47:51,200
+I'm missing one at the
+bottom and the top.
+
+692
+00:47:51,200 --> 00:47:56,670
+
+693
+00:47:56,670 --> 00:47:59,902
+Who sent me, or who sent that?
+
+694
+00:47:59,902 --> 00:48:04,160
+>> SPEAKER: They can trust the viewer.
+
+695
+00:48:04,160 --> 00:48:05,043
+>> DAN BRADLEY: I see.
+
+696
+00:48:05,043 --> 00:48:07,716
+Yeah, I totally was missing that.
+
+697
+00:48:07,716 --> 00:48:12,372
+Of course, it doesn't make any real
+difference to whether it works or not.
+
+698
+00:48:12,372 --> 00:48:13,830
+SPEAKER: Well, for validity's sake.
+
+699
+00:48:13,830 --> 00:48:15,705
+DAN BRADLEY: But for
+validity's sake you need
+
+700
+00:48:15,705 --> 00:48:18,590
+to have the HTML tag around everything.
+
+701
+00:48:18,590 --> 00:48:19,220
+But Yeah.
+
+702
+00:48:19,220 --> 00:48:20,300
+So.
+
+703
+00:48:20,300 --> 00:48:21,610
+We have this.
+
+704
+00:48:21,610 --> 00:48:23,360
+Everything's working fine.
+
+705
+00:48:23,360 --> 00:48:26,110
+Little tips and tricks, if you want.
+
+706
+00:48:26,110 --> 00:48:29,820
+So you might have noticed that this goes
+about or moves kind of slowly, right,
+
+707
+00:48:29,820 --> 00:48:33,600
+so if we go to 0, submit,
+it turns kind of slowly.
+
+708
+00:48:33,600 --> 00:48:41,130
+If you want that to be faster,
+you use the transition time field.
+
+709
+00:48:41,130 --> 00:48:51,830
+So transmission time of-- if you
+just give at 0, so 0 milliseconds.
+
+710
+00:48:51,830 --> 00:48:54,420
+Oh yes, I do have an extra s in there.
+
+711
+00:48:54,420 --> 00:48:56,490
+Thank you.
+
+712
+00:48:56,490 --> 00:49:04,410
+So we can make it turn instantly.
+
+713
+00:49:04,410 --> 00:49:10,300
+>> I don't think it matters
+quite so much for the colors,
+
+714
+00:49:10,300 --> 00:49:13,660
+because transitioning kind of slowly
+and colors' kind of looks nice .
+
+715
+00:49:13,660 --> 00:49:19,080
+But when with the on and off this
+really slow turn on turn off time
+
+716
+00:49:19,080 --> 00:49:22,510
+is not all that is impressive.
+
+717
+00:49:22,510 --> 00:49:26,300
+So if you switch, if you use
+transition time of 0 there,
+
+718
+00:49:26,300 --> 00:49:30,720
+that's a little nicer in
+general, according to me.
+
+719
+00:49:30,720 --> 00:49:34,890
+
+720
+00:49:34,890 --> 00:49:39,960
+>> So that's interesting.
+
+721
+00:49:39,960 --> 00:49:46,750
+In any case, there's still a couple
+of bugs in how this actually works.
+
+722
+00:49:46,750 --> 00:49:51,950
+So notice that this turned
+on, but didn't turn on bright.
+
+723
+00:49:51,950 --> 00:49:58,520
+For some reason if you use a shorter
+transition time, then the set,
+
+724
+00:49:58,520 --> 00:50:01,810
+the automatic one or the default.
+
+725
+00:50:01,810 --> 00:50:04,210
+It Doesn't turn on bright,
+unless you tell it to.
+
+726
+00:50:04,210 --> 00:50:07,130
+
+727
+00:50:07,130 --> 00:50:09,110
+I don't know why.
+
+728
+00:50:09,110 --> 00:50:14,950
+It's something to do with the bulbs,
+or the way the Hue bulbs work.
+
+729
+00:50:14,950 --> 00:50:23,900
+But to fix that you just change the
+brightness to 255, when you turn it on.
+
+730
+00:50:23,900 --> 00:50:28,965
+>> So I closed that accidentally.
+
+731
+00:50:28,965 --> 00:50:29,789
+Oh, well.
+
+732
+00:50:29,789 --> 00:50:30,580
+Luckily we're done.
+
+733
+00:50:30,580 --> 00:50:34,280
+So there you go, see?
+
+734
+00:50:34,280 --> 00:50:35,950
+Nice and bright.
+
+735
+00:50:35,950 --> 00:50:36,950
+Alrighty.
+
+736
+00:50:36,950 --> 00:50:38,670
+So how are we feeling?
+
+737
+00:50:38,670 --> 00:50:41,530
+Feel like we could set up
+if a Hue bulb application?
+
+738
+00:50:41,530 --> 00:50:42,030
+Cool.
+
+739
+00:50:42,030 --> 00:50:42,660
+All righty.
+
+740
+00:50:42,660 --> 00:50:44,340
+Thanks, guys.
+
+741
+00:50:44,340 --> 00:50:45,675

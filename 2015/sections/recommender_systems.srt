@@ -1,0 +1,1172 @@
+1
+00:00:00,000 --> 00:00:03,416
+>> [MUSIC PLAYING]
+
+2
+00:00:03,416 --> 00:00:05,860
+
+3
+00:00:05,860 --> 00:00:08,180
+>> BRAIN SCASSELLATI: Welcome
+to the CS50 AI series.
+
+4
+00:00:08,180 --> 00:00:12,600
+My name is Scass, and today we're going
+to talk about recommender systems.
+
+5
+00:00:12,600 --> 00:00:15,780
+Now recommender systems sounds
+like kind of an odd name.
+
+6
+00:00:15,780 --> 00:00:18,630
+It sounds like maybe it should
+be recommendation systems,
+
+7
+00:00:18,630 --> 00:00:21,290
+and I kind of agree with you.
+
+8
+00:00:21,290 --> 00:00:26,110
+But these are the systems that help
+select out similar things whenever
+
+9
+00:00:26,110 --> 00:00:28,210
+you select something online.
+
+10
+00:00:28,210 --> 00:00:32,119
+Netflix, for example will suggest other
+movies that you might want to watch.
+
+11
+00:00:32,119 --> 00:00:36,660
+Or Pandora will suggest different
+songs that you might want to listen to.
+
+12
+00:00:36,660 --> 00:00:40,940
+Amazon will suggest what kinds of
+other products you might want to buy.
+
+13
+00:00:40,940 --> 00:00:43,520
+Facebook will even suggest
+some of the other friends
+
+14
+00:00:43,520 --> 00:00:45,440
+that you might want to add.
+
+15
+00:00:45,440 --> 00:00:49,800
+Each of these systems operate using
+the same basic kind of algorithm,
+
+16
+00:00:49,800 --> 00:00:52,520
+and that's what we're
+going to talk about today.
+
+17
+00:00:52,520 --> 00:00:56,860
+>> Now these algorithms are
+surprisingly big business.
+
+18
+00:00:56,860 --> 00:01:01,130
+Netflix a few years ago in
+2009 offered a $1 million
+
+19
+00:01:01,130 --> 00:01:07,240
+prize if you could improve their
+recommendation system by just 10%.
+
+20
+00:01:07,240 --> 00:01:11,960
+That 10%, though, represents a
+substantial amount of business.
+
+21
+00:01:11,960 --> 00:01:15,330
+Estimates are hard to
+come by, but many people
+
+22
+00:01:15,330 --> 00:01:19,050
+believe that these recommendation
+systems for an online purchasing
+
+23
+00:01:19,050 --> 00:01:25,729
+system like Amazon lead to somewhere
+between 10% and 25% increased revenue.
+
+24
+00:01:25,729 --> 00:01:27,770
+So you can imagine the
+kind of volume that you're
+
+25
+00:01:27,770 --> 00:01:32,860
+talking about when we think about
+even these little algorithms.
+
+26
+00:01:32,860 --> 00:01:35,200
+>> So let's get some examples.
+
+27
+00:01:35,200 --> 00:01:38,460
+How is it that these
+systems really work?
+
+28
+00:01:38,460 --> 00:01:40,773
+There are two basic
+kinds of algorithms that
+
+29
+00:01:40,773 --> 00:01:45,050
+are at play when we talk about
+generating recommendations.
+
+30
+00:01:45,050 --> 00:01:48,650
+The first ones are called
+content based filtering.
+
+31
+00:01:48,650 --> 00:01:53,410
+And content based filtering relies
+upon similarities between the items
+
+32
+00:01:53,410 --> 00:02:00,370
+themselves, that is between two movies
+or two songs or two purchased items.
+
+33
+00:02:00,370 --> 00:02:03,190
+We're going to use movies
+as an example, but this
+
+34
+00:02:03,190 --> 00:02:07,850
+could apply, really, to any type
+of object that we're looking for.
+
+35
+00:02:07,850 --> 00:02:13,330
+>> So if I think about some
+movies from the last year,
+
+36
+00:02:13,330 --> 00:02:16,799
+I saw Inside Out with
+my kids, they loved it.
+
+37
+00:02:16,799 --> 00:02:17,840
+But we also had a choice.
+
+38
+00:02:17,840 --> 00:02:21,350
+We could have gone to see Minions,
+we could seen Age of Ultron,
+
+39
+00:02:21,350 --> 00:02:24,850
+or we could have seen
+Ant Man in the theaters.
+
+40
+00:02:24,850 --> 00:02:27,580
+>> For any of these
+movies, we could imagine
+
+41
+00:02:27,580 --> 00:02:33,320
+generating a list of features or
+qualities about those different movies.
+
+42
+00:02:33,320 --> 00:02:37,190
+So for example, I could consider
+which of those movies are animated.
+
+43
+00:02:37,190 --> 00:02:39,960
+Well, both Inside Out
+and Minions are animated.
+
+44
+00:02:39,960 --> 00:02:44,140
+Neither Age of Ultron nor
+Ant Man are animated movies.
+
+45
+00:02:44,140 --> 00:02:47,040
+And I could imagine building
+up a structure, a table that
+
+46
+00:02:47,040 --> 00:02:49,440
+lists each of these properties.
+
+47
+00:02:49,440 --> 00:02:51,790
+Are they animated or not?
+
+48
+00:02:51,790 --> 00:02:54,780
+I could then add more
+features to this table
+
+49
+00:02:54,780 --> 00:02:58,380
+by adding more rows into this structure.
+
+50
+00:02:58,380 --> 00:03:00,970
+I could ask whether or
+not they're Marvel movies.
+
+51
+00:03:00,970 --> 00:03:04,010
+Well, Inside Out and Minions
+are not Marvel movies,
+
+52
+00:03:04,010 --> 00:03:06,715
+Age of Ultron and Ant Man certainly are.
+
+53
+00:03:06,715 --> 00:03:09,100
+>> And I could ask any kinds
+of different qualities
+
+54
+00:03:09,100 --> 00:03:12,080
+that I wanted, any kinds of features
+that might be important to me.
+
+55
+00:03:12,080 --> 00:03:13,440
+Do they have a super villain?
+
+56
+00:03:13,440 --> 00:03:16,700
+Well, there's no super villain in Inside
+Out, but there are ones in Minions
+
+57
+00:03:16,700 --> 00:03:19,990
+and in, obviously, the
+two superhero movies.
+
+58
+00:03:19,990 --> 00:03:23,900
+>> I could also ask things like, well,
+do they pass the Bechdel test?
+
+59
+00:03:23,900 --> 00:03:27,280
+Are there two named
+female characters who
+
+60
+00:03:27,280 --> 00:03:30,550
+spend some significant amount of
+time having a conversation that
+
+61
+00:03:30,550 --> 00:03:34,400
+doesn't involve men in the cast?
+
+62
+00:03:34,400 --> 00:03:39,870
+Well, in this case, Inside Out passes
+the test, Minions fails, Age of Ultron
+
+63
+00:03:39,870 --> 00:03:42,990
+passes the test, and Ant Man fails.
+
+64
+00:03:42,990 --> 00:03:45,020
+Any one of these features
+I could think about
+
+65
+00:03:45,020 --> 00:03:48,660
+as being important for some people.
+
+66
+00:03:48,660 --> 00:03:52,000
+>> I could also ask things like are
+there any people in these movies that
+
+67
+00:03:52,000 --> 00:03:57,190
+are alumni from let's say, Parks and
+Recreation, one of my favorite shows.
+
+68
+00:03:57,190 --> 00:04:00,540
+Well, Inside Out has Amy
+Poehler, that's an Alumni.
+
+69
+00:04:00,540 --> 00:04:01,530
+That counts.
+
+70
+00:04:01,530 --> 00:04:04,110
+Jon Hamm was in Minions.
+
+71
+00:04:04,110 --> 00:04:08,600
+Paul Rudd was in Ant Man, but no one
+in Age of Ultron was in Parks and Req
+
+72
+00:04:08,600 --> 00:04:10,150
+as well.
+
+73
+00:04:10,150 --> 00:04:12,990
+So I can build up this list of
+features, and they could really
+
+74
+00:04:12,990 --> 00:04:14,710
+be anything about the movies.
+
+75
+00:04:14,710 --> 00:04:17,329
+They could be about what
+aspect ratio they were shot in,
+
+76
+00:04:17,329 --> 00:04:21,630
+it could be how many seats they
+sold on their opening weekend.
+
+77
+00:04:21,630 --> 00:04:25,630
+Any feature that I want to
+generate I can put into this table.
+
+78
+00:04:25,630 --> 00:04:29,600
+>> Now, in this case, I've built
+all sort of Bullion values,
+
+79
+00:04:29,600 --> 00:04:33,700
+yes or no, pass or fail,
+but they could be anything.
+
+80
+00:04:33,700 --> 00:04:36,690
+They could be arbitrary values.
+
+81
+00:04:36,690 --> 00:04:39,070
+For content based filtering,
+what we're going to do
+
+82
+00:04:39,070 --> 00:04:42,810
+is we're going to consider
+two columns in this table
+
+83
+00:04:42,810 --> 00:04:45,660
+and see how similar they are.
+
+84
+00:04:45,660 --> 00:04:48,640
+So for example, if I
+went to see Inside Out,
+
+85
+00:04:48,640 --> 00:04:53,640
+I might ask, what are the other movies
+that I might be willing to go see.
+
+86
+00:04:53,640 --> 00:04:56,890
+That is, what willing to
+spend my money to go see.
+
+87
+00:04:56,890 --> 00:05:00,310
+And I can compare this by just taking
+the two columns, one from Inside Out
+
+88
+00:05:00,310 --> 00:05:03,300
+and one from any of the
+other movies, and just seeing
+
+89
+00:05:03,300 --> 00:05:06,210
+how many of their features match.
+
+90
+00:05:06,210 --> 00:05:09,660
+So if I compare Inside Out
+with Minions, well, there's
+
+91
+00:05:09,660 --> 00:05:10,910
+three things here that match.
+
+92
+00:05:10,910 --> 00:05:16,200
+They're both animated, neither of them
+are Marvel movies, and both of them
+
+93
+00:05:16,200 --> 00:05:18,420
+have Parks and Req alumni.
+
+94
+00:05:18,420 --> 00:05:20,420
+So I could count up how
+many matches there were,
+
+95
+00:05:20,420 --> 00:05:22,640
+and in this case there'd be three.
+
+96
+00:05:22,640 --> 00:05:26,450
+>> If I then compare Inside Out
+with let's say Age of Ultron,
+
+97
+00:05:26,450 --> 00:05:28,430
+I can look down the list
+and say, well, there's
+
+98
+00:05:28,430 --> 00:05:30,140
+only one thing that matches there.
+
+99
+00:05:30,140 --> 00:05:34,560
+They both pass the Bechtel test, so
+that's going to be a score of one.
+
+100
+00:05:34,560 --> 00:05:36,770
+And between Inside Out
+and Ant Man, again I
+
+101
+00:05:36,770 --> 00:05:41,420
+can compare line by line how many
+things match between the two of them.
+
+102
+00:05:41,420 --> 00:05:43,060
+Well, one's animated, one's not.
+
+103
+00:05:43,060 --> 00:05:44,970
+One's a Marvel movie, one's not.
+
+104
+00:05:44,970 --> 00:05:47,280
+One's got a super villain,
+the other doesn't.
+
+105
+00:05:47,280 --> 00:05:49,480
+One passes the Bechtel
+test, one fails it,
+
+106
+00:05:49,480 --> 00:05:54,450
+but they both have Parks and Req alumni,
+so again, it gets a score of one.
+
+107
+00:05:54,450 --> 00:05:58,300
+>> So if I were looking for movies
+that were similar to Inside Out,
+
+108
+00:05:58,300 --> 00:06:02,170
+I could look for the movies that have
+the highest score within this content
+
+109
+00:06:02,170 --> 00:06:03,952
+filtering scheme.
+
+110
+00:06:03,952 --> 00:06:05,660
+So in this case, I
+would consider Minions
+
+111
+00:06:05,660 --> 00:06:08,330
+to be closer and more
+likely to be something
+
+112
+00:06:08,330 --> 00:06:13,250
+that I would spend money to see
+than Age of Ultron or Ant Man.
+
+113
+00:06:13,250 --> 00:06:16,150
+>> These content based
+filtering systems rely just
+
+114
+00:06:16,150 --> 00:06:18,670
+on the properties of
+the movies, and so I
+
+115
+00:06:18,670 --> 00:06:21,930
+can build these just by knowing
+something about the products
+
+116
+00:06:21,930 --> 00:06:23,500
+that I have.
+
+117
+00:06:23,500 --> 00:06:26,050
+I can use any kinds of
+features that I'd like,
+
+118
+00:06:26,050 --> 00:06:28,400
+and I can build more
+complex features that
+
+119
+00:06:28,400 --> 00:06:33,060
+involve more complex test
+of a quality as I go along.
+
+120
+00:06:33,060 --> 00:06:39,080
+In fact, I can even view this table
+not as being one static object,
+
+121
+00:06:39,080 --> 00:06:43,110
+but rather as being dimensions
+within a larger state space.
+
+122
+00:06:43,110 --> 00:06:46,295
+And I can start talking about the
+distances between different movies.
+
+123
+00:06:46,295 --> 00:06:49,300
+
+124
+00:06:49,300 --> 00:06:51,050
+These are all things
+that we know how they
+
+125
+00:06:51,050 --> 00:06:55,860
+do using the kinds of data structures
+that we've already seen in CS50.
+
+126
+00:06:55,860 --> 00:06:59,180
+So I could imagine building
+a data structure for a movie.
+
+127
+00:06:59,180 --> 00:07:02,390
+There's a struct that I've
+constructed called movie,
+
+128
+00:07:02,390 --> 00:07:04,369
+and it has five Boolean entries in it.
+
+129
+00:07:04,369 --> 00:07:07,160
+Is it animated, is it a Marvel
+movie, does it have a super villain,
+
+130
+00:07:07,160 --> 00:07:11,047
+does it pass the Bechdel test, and
+are there Parks and Rec alumni in it?
+
+131
+00:07:11,047 --> 00:07:12,880
+And each of these is a
+data structure that I
+
+132
+00:07:12,880 --> 00:07:16,330
+can occupy for that particular movie.
+
+133
+00:07:16,330 --> 00:07:20,090
+>> Then compute whether two
+movies are similar or not,
+
+134
+00:07:20,090 --> 00:07:23,330
+what their score is, I could
+write out a set of pseudocode that
+
+135
+00:07:23,330 --> 00:07:25,120
+generates that same function.
+
+136
+00:07:25,120 --> 00:07:30,100
+That is, given some movie M1, I can
+find the most similar movie to it
+
+137
+00:07:30,100 --> 00:07:32,430
+by following the pseudocode.
+
+138
+00:07:32,430 --> 00:07:37,040
+I consider which is the best
+scoring system that I've found,
+
+139
+00:07:37,040 --> 00:07:39,920
+the best comparison that I've found.
+
+140
+00:07:39,920 --> 00:07:41,890
+For every other movie
+I'm going to go through,
+
+141
+00:07:41,890 --> 00:07:44,920
+I'll set a match score equal to 0.
+
+142
+00:07:44,920 --> 00:07:47,920
+And I'll go through that
+movie, an M1, the movie
+
+143
+00:07:47,920 --> 00:07:51,500
+I started with, I'll check
+each and every feature
+
+144
+00:07:51,500 --> 00:07:53,650
+that they have to see
+if there's a match.
+
+145
+00:07:53,650 --> 00:07:56,460
+If there's a match, I'll
+increment the match score.
+
+146
+00:07:56,460 --> 00:08:00,480
+And if at the end the match score that
+I have is better than the current best
+
+147
+00:08:00,480 --> 00:08:03,310
+score, then I'll
+remember that best score,
+
+148
+00:08:03,310 --> 00:08:05,820
+and this is the best match that I have.
+
+149
+00:08:05,820 --> 00:08:09,450
+At the end, whatever movie
+is sitting in best match,
+
+150
+00:08:09,450 --> 00:08:12,580
+that's the closest
+I've been able to come.
+
+151
+00:08:12,580 --> 00:08:14,890
+So these content based
+filtering systems,
+
+152
+00:08:14,890 --> 00:08:16,900
+they all have this basic structure.
+
+153
+00:08:16,900 --> 00:08:20,910
+They rely upon the item
+in question and nothing
+
+154
+00:08:20,910 --> 00:08:24,590
+about any of the user preferences.
+
+155
+00:08:24,590 --> 00:08:29,010
+>> The other mechanism that we use in
+order to build recommendation systems
+
+156
+00:08:29,010 --> 00:08:31,790
+is called collaborative filtering.
+
+157
+00:08:31,790 --> 00:08:36,520
+Collaborative filtering relies upon
+not the qualities of the object itself,
+
+158
+00:08:36,520 --> 00:08:40,010
+but how people, other
+users that is, how they've
+
+159
+00:08:40,010 --> 00:08:43,370
+responded to these same objects.
+
+160
+00:08:43,370 --> 00:08:48,720
+So to continue with my movie example,
+I might take a bunch of my friends
+
+161
+00:08:48,720 --> 00:08:53,180
+and survey them about whether or
+not they liked particular movies.
+
+162
+00:08:53,180 --> 00:08:56,560
+Now different places will generate
+this data in different ways.
+
+163
+00:08:56,560 --> 00:08:59,630
+You can directly survey your
+users, or you could just
+
+164
+00:08:59,630 --> 00:09:03,120
+see what they choose if
+you're, for example Netflix.
+
+165
+00:09:03,120 --> 00:09:05,640
+Which movies did they watch?
+
+166
+00:09:05,640 --> 00:09:08,670
+>> I might question some of my
+friends here and find out
+
+167
+00:09:08,670 --> 00:09:12,910
+that Jason liked every movie
+he saw, not surprising there.
+
+168
+00:09:12,910 --> 00:09:15,590
+Andy only liked Minions and Aunt Man.
+
+169
+00:09:15,590 --> 00:09:19,330
+Sarah liked Inside Out and
+Avengers, the opposite of Andy.
+
+170
+00:09:19,330 --> 00:09:22,200
+And Sam, well, Sam liked
+all of the superhero movies,
+
+171
+00:09:22,200 --> 00:09:24,960
+but none of the animated movies.
+
+172
+00:09:24,960 --> 00:09:30,630
+>> I could then query for some new
+individual, some other user like myself
+
+173
+00:09:30,630 --> 00:09:34,520
+and ask, well, if I liked
+one of these movies,
+
+174
+00:09:34,520 --> 00:09:38,600
+can you make a prediction about
+which other movies I might like.
+
+175
+00:09:38,600 --> 00:09:41,890
+That is, if I liked Inside
+Out, which other movies
+
+176
+00:09:41,890 --> 00:09:48,460
+am I likely to also want to see
+based on what similar people did?
+
+177
+00:09:48,460 --> 00:09:51,640
+That is, I'll go through an
+I'll filter through this list
+
+178
+00:09:51,640 --> 00:09:54,520
+and find just the
+individuals who also liked
+
+179
+00:09:54,520 --> 00:09:57,680
+Inside Out, who matched my preferences.
+
+180
+00:09:57,680 --> 00:10:00,824
+Well, that means that Andy and
+Sam, they didn't like Inside Out,
+
+181
+00:10:00,824 --> 00:10:02,240
+so I'm not going to consider them.
+
+182
+00:10:02,240 --> 00:10:06,130
+I'm going to get rid of their
+data for this comparison.
+
+183
+00:10:06,130 --> 00:10:09,750
+>> I can then look at what Jason
+and Sarah thought and tally
+
+184
+00:10:09,750 --> 00:10:13,780
+up which of the movies that they saw
+that I didn't, whether they liked them
+
+185
+00:10:13,780 --> 00:10:15,150
+or not.
+
+186
+00:10:15,150 --> 00:10:17,820
+I could just count up, let's say votes.
+
+187
+00:10:17,820 --> 00:10:23,360
+So Minions, for example might have one
+vote for it, because Jason liked it.
+
+188
+00:10:23,360 --> 00:10:27,170
+Both Jason and Sarah liked Avengers,
+so it would have two votes.
+
+189
+00:10:27,170 --> 00:10:30,700
+And only Jason liked Ant Man,
+so it would get one vote.
+
+190
+00:10:30,700 --> 00:10:34,870
+So if I had to then recommend
+for myself which of these movies
+
+191
+00:10:34,870 --> 00:10:41,470
+I might be most likely to watch, I would
+have to choose Age of Ultron: Avengers.
+
+192
+00:10:41,470 --> 00:10:44,490
+>> So for any of these
+systems, now I'm using
+
+193
+00:10:44,490 --> 00:10:49,260
+data that was generated not about the
+movie itself, but about the preferences
+
+194
+00:10:49,260 --> 00:10:51,960
+from other users.
+
+195
+00:10:51,960 --> 00:10:54,150
+This has some difficulties of course.
+
+196
+00:10:54,150 --> 00:10:55,920
+What if you don't have any other users?
+
+197
+00:10:55,920 --> 00:10:58,770
+Well, that's called startup problem.
+
+198
+00:10:58,770 --> 00:11:03,760
+You have to have some
+quantity of data before you're
+
+199
+00:11:03,760 --> 00:11:07,560
+able to start making
+these recommendations.
+
+200
+00:11:07,560 --> 00:11:10,940
+The flip side of it is once
+you start collecting data,
+
+201
+00:11:10,940 --> 00:11:13,870
+if you can collect more
+and more and more data,
+
+202
+00:11:13,870 --> 00:11:17,850
+you'll get better and better
+and better recommendations.
+
+203
+00:11:17,850 --> 00:11:21,650
+>> Now we could translate
+this into code as well.
+
+204
+00:11:21,650 --> 00:11:23,860
+We can define a different
+kind of structure,
+
+205
+00:11:23,860 --> 00:11:25,720
+in this case we'll call it a user.
+
+206
+00:11:25,720 --> 00:11:30,970
+And it's got features about
+which movies this user liked.
+
+207
+00:11:30,970 --> 00:11:34,560
+Did they like Inside Out,
+Minions, Avengers, and Ant Man.
+
+208
+00:11:34,560 --> 00:11:36,660
+We could then generate
+some pseudocode to follow
+
+209
+00:11:36,660 --> 00:11:39,460
+the same procedure that I used before.
+
+210
+00:11:39,460 --> 00:11:43,460
+That is, given a particular
+user x, let's recommend a movie
+
+211
+00:11:43,460 --> 00:11:46,107
+that x might like.
+
+212
+00:11:46,107 --> 00:11:47,940
+We can go through and
+for all of the movies,
+
+213
+00:11:47,940 --> 00:11:51,410
+we can initialize a score
+for that movie to be 0.
+
+214
+00:11:51,410 --> 00:11:54,080
+And then we can find all
+of the other users who
+
+215
+00:11:54,080 --> 00:11:57,630
+have the same preferences as x.
+
+216
+00:11:57,630 --> 00:11:59,990
+And then for every
+movie that they liked,
+
+217
+00:11:59,990 --> 00:12:02,340
+we'll increment the score of that movie.
+
+218
+00:12:02,340 --> 00:12:05,010
+Whichever movie in the
+end has the highest score,
+
+219
+00:12:05,010 --> 00:12:07,600
+that's the one I should recommend.
+
+220
+00:12:07,600 --> 00:12:09,890
+>> None of this is really obscure.
+
+221
+00:12:09,890 --> 00:12:11,600
+None of this is challenging.
+
+222
+00:12:11,600 --> 00:12:15,810
+These are all basic algorithms
+that you could implement today.
+
+223
+00:12:15,810 --> 00:12:20,050
+>> Now with real recommender systems,
+you run into some problems.
+
+224
+00:12:20,050 --> 00:12:23,300
+What if there's nobody who
+matches exactly your preferences?
+
+225
+00:12:23,300 --> 00:12:27,170
+What if there are users who
+are exactly your preferences,
+
+226
+00:12:27,170 --> 00:12:30,480
+but then deviate drastically
+from what you like?
+
+227
+00:12:30,480 --> 00:12:36,210
+I like classic Godzilla
+movies, but my wife doesn't.
+
+228
+00:12:36,210 --> 00:12:39,430
+I like to watch them, my
+Netflix account contains them.
+
+229
+00:12:39,430 --> 00:12:41,800
+Her's doesn't.
+
+230
+00:12:41,800 --> 00:12:45,230
+What happens when we start
+mixing data like this?
+
+231
+00:12:45,230 --> 00:12:47,690
+These are all challenges
+that you can overcome,
+
+232
+00:12:47,690 --> 00:12:51,900
+they just take slightly
+more complex algorithms.
+
+233
+00:12:51,900 --> 00:12:56,420
+>> Now in the real world, which
+are actually operational,
+
+234
+00:12:56,420 --> 00:12:59,980
+do we use content based filtering or
+do we use collaborative filtering?
+
+235
+00:12:59,980 --> 00:13:01,910
+And the answer is we use both of them.
+
+236
+00:13:01,910 --> 00:13:06,350
+Almost all of the major users in
+this case, Amazon, Facebook, Netflix,
+
+237
+00:13:06,350 --> 00:13:11,200
+Pandora, they all use a combination of
+these different recommendation systems.
+
+238
+00:13:11,200 --> 00:13:16,520
+And when we combine the choices from
+each, we call them hybrid systems.
+
+239
+00:13:16,520 --> 00:13:20,750
+They in some way depend upon the
+features of the object itself,
+
+240
+00:13:20,750 --> 00:13:24,710
+and in some ways they depend upon
+the preferences of other users.
+
+241
+00:13:24,710 --> 00:13:28,120
+These hybrid systems,
+they're big business,
+
+242
+00:13:28,120 --> 00:13:30,830
+and they're what's current today.
+
+243
+00:13:30,830 --> 00:13:32,839
+>> So thanks very much for joining me.
+
+244
+00:13:32,839 --> 00:13:35,380
+I hope you've gotten a little
+bit of an understanding of what
+
+245
+00:13:35,380 --> 00:13:37,430
+makes these systems work.
+
+246
+00:13:37,430 --> 00:13:41,980
+Next time you're online, remember that
+not only you influencing your choices,
+
+247
+00:13:41,980 --> 00:13:44,680
+but potentially everyone else's as well.
+
+248
+00:13:44,680 --> 00:13:46,480
+Thanks again.
+
+249
+00:13:46,480 --> 00:13:47,186

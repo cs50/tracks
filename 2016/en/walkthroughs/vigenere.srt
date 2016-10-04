@@ -1,0 +1,682 @@
+1
+00:00:00,000 --> 00:00:00,930
+
+2
+00:00:00,930 --> 00:00:04,030
+>> Zamyla Chan: Let's step up our
+game with the vigenere cipher.
+
+3
+00:00:04,030 --> 00:00:06,710
+The vigenere cipher is
+very similar to Caesar,
+
+4
+00:00:06,710 --> 00:00:11,060
+except in Caesar we passed in
+a single integer as our key.
+
+5
+00:00:11,060 --> 00:00:14,100
+In vigenere we're going
+to pass in a keyword.
+
+6
+00:00:14,100 --> 00:00:19,400
+So, if I wanted to shift the
+ciphertext this is CS 50 by ohai,
+
+7
+00:00:19,400 --> 00:00:23,260
+then that means that each letter in
+ohai is going to serve as the key,
+
+8
+00:00:23,260 --> 00:00:27,160
+and I'm going to cycle over
+that keyword for my shift
+
+9
+00:00:27,160 --> 00:00:31,930
+making the ciphertext
+a lot harder to decode.
+
+10
+00:00:31,930 --> 00:00:34,540
+>> What does it mean to
+shift by the keyword?
+
+11
+00:00:34,540 --> 00:00:38,610
+Well, the keyword is a string
+where every letter corresponds
+
+12
+00:00:38,610 --> 00:00:41,080
+to some integer shift.
+
+13
+00:00:41,080 --> 00:00:49,310
+So, the o corresponds to a key of 14,
+h to a key of 7, a has a key of 0,
+
+14
+00:00:49,310 --> 00:00:54,670
+so that wouldn't change anything,
+and then i has a key of 8.
+
+15
+00:00:54,670 --> 00:01:00,000
+>> Say I ran vigenere A with the
+plain text this is CS50 well,
+
+16
+00:01:00,000 --> 00:01:02,800
+that would simply give
+me an unchanged string.
+
+17
+00:01:02,800 --> 00:01:08,170
+Notice that this is equivalent to
+running Caesar with a key of zero.
+
+18
+00:01:08,170 --> 00:01:12,070
+In fact, running vigenere
+with any single character
+
+19
+00:01:12,070 --> 00:01:17,070
+would be equivalent to running
+Caesar with that same integer.
+
+20
+00:01:17,070 --> 00:01:20,400
+>> All right, so, since
+they are so similar I'd
+
+21
+00:01:20,400 --> 00:01:24,300
+actually recommend that if you
+want you can just copy your Caesar
+
+22
+00:01:24,300 --> 00:01:26,932
+code into your vigenere code.
+
+23
+00:01:26,932 --> 00:01:28,640
+Things will change,
+but at least you have
+
+24
+00:01:28,640 --> 00:01:31,110
+some backbone that you can work with.
+
+25
+00:01:31,110 --> 00:01:36,410
+Because the TODOs are the same we want
+to get the key, get the plain text,
+
+26
+00:01:36,410 --> 00:01:40,690
+encipher that plain text,
+and then print that out.
+
+27
+00:01:40,690 --> 00:01:44,980
+>> Just like Caesar the key is going to
+be passed in as the second command line
+
+28
+00:01:44,980 --> 00:01:50,540
+argument contained in argv index
+1, but it's different this time
+
+29
+00:01:50,540 --> 00:01:52,560
+because it must be alphabetical.
+
+30
+00:01:52,560 --> 00:01:56,390
+So, we need to iterate over every
+single character in that key
+
+31
+00:01:56,390 --> 00:02:00,800
+that the user passed in, and ensure
+that every character is alphabetic
+
+32
+00:02:00,800 --> 00:02:02,800
+in order to continue.
+
+33
+00:02:02,800 --> 00:02:05,560
+>> Once we've done that, then we
+can get the string from the user,
+
+34
+00:02:05,560 --> 00:02:07,560
+just as we did before.
+
+35
+00:02:07,560 --> 00:02:10,520
+And now, we come to the heart
+of the problem for vigenere,
+
+36
+00:02:10,520 --> 00:02:14,665
+which is just like Caesar, how to
+figure out the enciphering pattern
+
+37
+00:02:14,665 --> 00:02:19,760
+and equation, and encipher
+the entire plaintext.
+
+38
+00:02:19,760 --> 00:02:23,280
+>> So, you'll notice that the
+equation for the vigenere shift
+
+39
+00:02:23,280 --> 00:02:25,610
+is very similar to the Caesar one.
+
+40
+00:02:25,610 --> 00:02:29,780
+The only difference is that
+instead of a single variable k
+
+41
+00:02:29,780 --> 00:02:37,270
+before, now k has a subscript,
+indicating the jth letter of the key.
+
+42
+00:02:37,270 --> 00:02:39,560
+>> Let's walk through an example.
+
+43
+00:02:39,560 --> 00:02:43,830
+Say you wanted to pass a secret
+message onto your crush, I like you.
+
+44
+00:02:43,830 --> 00:02:46,325
+Well, for your key you
+choose something that your
+
+45
+00:02:46,325 --> 00:02:49,790
+know crush knows that you like, pandas.
+
+46
+00:02:49,790 --> 00:02:52,290
+All right, so how do we shift this?
+
+47
+00:02:52,290 --> 00:02:55,500
+>> Well, we have our plaintext index.
+
+48
+00:02:55,500 --> 00:02:59,160
+That's at the first letter and
+so is the index for our key
+
+49
+00:02:59,160 --> 00:03:02,830
+which is at the p, the first
+letter in our panda word.
+
+50
+00:03:02,830 --> 00:03:08,590
+So, shifting I by p gives us x,
+then we advance the plaintext index.
+
+51
+00:03:08,590 --> 00:03:10,460
+This gets us to a space.
+
+52
+00:03:10,460 --> 00:03:13,540
+Now, the space character
+is non alphabetic,
+
+53
+00:03:13,540 --> 00:03:16,930
+so that means that, that just
+transfers right over to the ciphertext,
+
+54
+00:03:16,930 --> 00:03:23,430
+we put a space there, and we don't
+advance the index for our key.
+
+55
+00:03:23,430 --> 00:03:25,820
+So, we're still at p at this point.
+
+56
+00:03:25,820 --> 00:03:30,130
+>> We advance to the next
+index in our plaintext.
+
+57
+00:03:30,130 --> 00:03:34,030
+And now, because that is
+a letter, the lowercase l,
+
+58
+00:03:34,030 --> 00:03:37,920
+we shift that by the
+next index in our key.
+
+59
+00:03:37,920 --> 00:03:42,360
+Which is a, which is a zero
+shift so that just becomes
+
+60
+00:03:42,360 --> 00:03:44,370
+an l in our ciphertext.
+
+61
+00:03:44,370 --> 00:03:51,120
+Then, we advance both the plaintext, and
+the key index because it's alphabetic.
+
+62
+00:03:51,120 --> 00:03:56,210
+So then we continue that
+until we get to the e in like.
+
+63
+00:03:56,210 --> 00:04:01,090
+>> All right, so you'll notice at this
+point that, in terms of our key index,
+
+64
+00:04:01,090 --> 00:04:03,940
+we've reached the end of
+the panda word, so what
+
+65
+00:04:03,940 --> 00:04:08,750
+happens when we get to the next
+alphabetic letter in the plaintext?
+
+66
+00:04:08,750 --> 00:04:12,180
+Well, all that happens is we
+wrap around to the beginning,
+
+67
+00:04:12,180 --> 00:04:14,710
+to the first index of our key.
+
+68
+00:04:14,710 --> 00:04:19,570
+So, then we shift that
+y by p to give us n.
+
+69
+00:04:19,570 --> 00:04:26,860
+And then, we continue finishing encoding
+our plaintext to get x lvne noh.
+
+70
+00:04:26,860 --> 00:04:29,300
+>> From this example, I
+showed that we only advance
+
+71
+00:04:29,300 --> 00:04:33,140
+to the next letter in the keyword
+if the character in plain text
+
+72
+00:04:33,140 --> 00:04:37,480
+is a letter so the isalpha
+function will come in handy here.
+
+73
+00:04:37,480 --> 00:04:43,030
+And, just as in Caesar, we want to
+preserve the case, isupper and islower.
+
+74
+00:04:43,030 --> 00:04:46,100
+So, add this little bit
+in into your pseudocode.
+
+75
+00:04:46,100 --> 00:04:48,510
+>> So how do we figure out the key shifts?
+
+76
+00:04:48,510 --> 00:04:53,030
+Well, if you recall our discussion
+on alphabetical indices in the Caesar
+
+77
+00:04:53,030 --> 00:04:55,370
+problem, it's very similar.
+
+78
+00:04:55,370 --> 00:05:01,130
+>> Where A corresponds to an ASCII
+value of 65 but a shift of 0,
+
+79
+00:05:01,130 --> 00:05:03,550
+and then the last letter
+in the alphabet, Z,
+
+80
+00:05:03,550 --> 00:05:06,940
+corresponds to a shift of 25.
+
+81
+00:05:06,940 --> 00:05:10,320
+You'll notice that the shift
+is identical whether or not
+
+82
+00:05:10,320 --> 00:05:14,880
+the letter is upper case or lower case.
+
+83
+00:05:14,880 --> 00:05:17,700
+>> OK, so now that you
+know how to figure out
+
+84
+00:05:17,700 --> 00:05:21,470
+the numerical shift that
+corresponds to a single character
+
+85
+00:05:21,470 --> 00:05:24,050
+let's go back to our equation.
+
+86
+00:05:24,050 --> 00:05:28,180
+Because we have two different
+subscripts here, i and j,
+
+87
+00:05:28,180 --> 00:05:32,130
+that's a hint that we want to keep track
+of both our position in the plaintext
+
+88
+00:05:32,130 --> 00:05:36,600
+as well as our position in the keyword,
+so those are two separate variables
+
+89
+00:05:36,600 --> 00:05:39,010
+that we want to keep a hold of.
+
+90
+00:05:39,010 --> 00:05:42,580
+>> Now, the position in our plaintext
+is going to increase every time,
+
+91
+00:05:42,580 --> 00:05:45,530
+so that's going to be a
+bit more straight forward
+
+92
+00:05:45,530 --> 00:05:49,750
+as opposed to the position the keyword,
+which we know has to wrap around,
+
+93
+00:05:49,750 --> 00:05:52,910
+and sometimes increment,
+sometimes stay the same.
+
+94
+00:05:52,910 --> 00:05:55,430
+So, how do we implement
+the functionality
+
+95
+00:05:55,430 --> 00:05:59,820
+to wrap around the
+index for the keyword?
+
+96
+00:05:59,820 --> 00:06:01,640
+>> I'm going to use the count off example.
+
+97
+00:06:01,640 --> 00:06:06,100
+Counting off is a popular way
+to split people into groups.
+
+98
+00:06:06,100 --> 00:06:10,660
+Say I had 5 people and I wanted to
+split them up into three groups,
+
+99
+00:06:10,660 --> 00:06:13,640
+well then I would start by counting off.
+
+100
+00:06:13,640 --> 00:06:16,980
+The first person would
+say I'm team number one,
+
+101
+00:06:16,980 --> 00:06:21,030
+the next person would be team number
+two, the third person team number
+
+102
+00:06:21,030 --> 00:06:21,910
+three.
+
+103
+00:06:21,910 --> 00:06:25,910
+Now, I only want three groups so
+the fourth person would actually
+
+104
+00:06:25,910 --> 00:06:30,160
+start at the beginning and say,
+well, I'm team number one as well,
+
+105
+00:06:30,160 --> 00:06:32,890
+and the next person
+would be team number two.
+
+106
+00:06:32,890 --> 00:06:37,660
+And, from there, they can then
+separate into their groups.
+
+107
+00:06:37,660 --> 00:06:41,130
+>> So, how might I use modulo
+to help me implement
+
+108
+00:06:41,130 --> 00:06:44,160
+this count off wrap around function?
+
+109
+00:06:44,160 --> 00:06:50,140
+Well, the first person
+number 1, mod 3 gives us 1.
+
+110
+00:06:50,140 --> 00:06:54,690
+2 mod 3 gives us 2,
+and 3 mod 3 gives us 0.
+
+111
+00:06:54,690 --> 00:07:02,140
+>> The fourth person, number 4, mod 3
+gives us 1, and then 5 mod 3 gives us 2.
+
+112
+00:07:02,140 --> 00:07:05,370
+So, you will notice that even though
+the number of people that I have
+
+113
+00:07:05,370 --> 00:07:11,210
+increases, and is above
+3, since I'm modding by 3
+
+114
+00:07:11,210 --> 00:07:15,250
+I always get numbers 0, 1, and 2.
+
+115
+00:07:15,250 --> 00:07:19,040
+I never get larger than 3.
+
+116
+00:07:19,040 --> 00:07:22,630
+So then, even if I had 10
+people, then all of those people
+
+117
+00:07:22,630 --> 00:07:27,430
+would still be within groups 1, 2, or 0.
+
+118
+00:07:27,430 --> 00:07:33,560
+>> So, now we know that if we have a group
+of 5 and we mod all of those by 3,
+
+119
+00:07:33,560 --> 00:07:38,180
+then we're never going to
+exceed groups 0, 1, or 2.
+
+120
+00:07:38,180 --> 00:07:43,430
+So, we're never going to get a group
+number that's equal to 3 or above.
+
+121
+00:07:43,430 --> 00:07:46,980
+So, even if I add five more
+people, then all of them
+
+122
+00:07:46,980 --> 00:07:53,150
+would still be assigned to groups
+0, 1, or 2 because I'm modding by 3.
+
+123
+00:07:53,150 --> 00:07:56,510
+I'm never going to exceed that cap.
+
+124
+00:07:56,510 --> 00:08:00,800
+>> OK, so let's see if we can apply
+this concept of using modulo
+
+125
+00:08:00,800 --> 00:08:03,710
+to wrap around the
+group numbers and apply
+
+126
+00:08:03,710 --> 00:08:08,000
+it to vigenere where we want
+to use modulo to wrap around
+
+127
+00:08:08,000 --> 00:08:10,220
+the index for the keyword.
+
+128
+00:08:10,220 --> 00:08:12,830
+Even though we're incrementing
+the index we always
+
+129
+00:08:12,830 --> 00:08:17,260
+want to make sure that we always
+wrap around to the very beginning
+
+130
+00:08:17,260 --> 00:08:20,050
+never exceeding the
+length of the string.
+
+131
+00:08:20,050 --> 00:08:23,510
+>> OK, so I know it might be
+a little bit overwhelming.
+
+132
+00:08:23,510 --> 00:08:26,670
+There's a lot more to do in this p set.
+
+133
+00:08:26,670 --> 00:08:30,050
+So, make sure that you write out
+a good pseudocode for yourself
+
+134
+00:08:30,050 --> 00:08:32,870
+that you understand and
+that gets the job done.
+
+135
+00:08:32,870 --> 00:08:35,580
+Try and address every
+single line independently
+
+136
+00:08:35,580 --> 00:08:38,370
+figuring out all the little
+small pieces of the puzzle
+
+137
+00:08:38,370 --> 00:08:40,260
+before putting it together.
+
+138
+00:08:40,260 --> 00:08:43,110
+>> Make sure that you can get
+the key from the command line
+
+139
+00:08:43,110 --> 00:08:46,780
+and ensure that it's alphabetic,
+get the plain text from the user,
+
+140
+00:08:46,780 --> 00:08:51,010
+and then in enciphering, make sure you
+know how to encipher a single letter,
+
+141
+00:08:51,010 --> 00:08:56,130
+and then progress to the whole string
+with all of the wrap around functions.
+
+142
+00:08:56,130 --> 00:08:59,610
+Finally, you can print the ciphertext.
+
+143
+00:08:59,610 --> 00:09:04,050
+>> My name is a Zamyla,
+and this was vigenere.
+
+144
+00:09:04,050 --> 00:09:07,757

@@ -1,0 +1,3101 @@
+1
+00:00:00,000 --> 00:00:11,370
+
+2
+00:00:11,370 --> 00:00:12,370
+JEFFREY LICHT: Hi there.
+
+3
+00:00:12,370 --> 00:00:13,550
+I'm Jeffrey Licht.
+
+4
+00:00:13,550 --> 00:00:17,890
+And I'm here to talk to you about the
+Harvard Library and building tomorrow's
+
+5
+00:00:17,890 --> 00:00:20,870
+library today, I guess.
+
+6
+00:00:20,870 --> 00:00:23,040
+So the background here,
+the pitch for this session
+
+7
+00:00:23,040 --> 00:00:26,930
+is essentially that there is
+a lot of bibliographic data
+
+8
+00:00:26,930 --> 00:00:28,400
+available in the Harvard libraries.
+
+9
+00:00:28,400 --> 00:00:33,434
+And there is an opportunity,
+through some of the tools
+
+10
+00:00:33,434 --> 00:00:36,350
+and a project that's being developed,
+to get access to the information
+
+11
+00:00:36,350 --> 00:00:42,430
+and take it to places that the
+Harvard Library isn't doing right now,
+
+12
+00:00:42,430 --> 00:00:45,460
+do new stuff with it, experiment
+and play around with it.
+
+13
+00:00:45,460 --> 00:00:52,413
+>> So the entry point into this is an API
+called the Harvard Library Cloud, which
+
+14
+00:00:52,413 --> 00:00:57,650
+is an open metadata server,
+which I will talk about now.
+
+15
+00:00:57,650 --> 00:01:02,595
+So the background is that there is a
+lot of stuff in the Harvard library.
+
+16
+00:01:02,595 --> 00:01:07,150
+We have over 13 million bibliographic
+records, millions of images,
+
+17
+00:01:07,150 --> 00:01:11,090
+and thousands of finding aids, which
+are essentially documents describing
+
+18
+00:01:11,090 --> 00:01:15,500
+collections, saying what
+is in them, boxes of papers
+
+19
+00:01:15,500 --> 00:01:21,080
+and so forth that represent over
+a million individual documents.
+
+20
+00:01:21,080 --> 00:01:24,290
+And there's also a lot of
+information that the library has
+
+21
+00:01:24,290 --> 00:01:28,180
+about how the content is used that
+could be of interest to people
+
+22
+00:01:28,180 --> 00:01:32,400
+who might want to work with it.
+
+23
+00:01:32,400 --> 00:01:36,150
+>> So all of the information
+the library has metadata.
+
+24
+00:01:36,150 --> 00:01:39,500
+So metadata is data about data.
+
+25
+00:01:39,500 --> 00:01:42,070
+So when we talk about
+the information that's
+
+26
+00:01:42,070 --> 00:01:44,890
+available through the library
+cloud that's available,
+
+27
+00:01:44,890 --> 00:01:47,760
+it's not necessarily
+the actual documents
+
+28
+00:01:47,760 --> 00:01:53,060
+themselves, not necessarily the full
+text of books or the full images,
+
+29
+00:01:53,060 --> 00:01:54,890
+though that actually may be the case.
+
+30
+00:01:54,890 --> 00:01:57,550
+But it's really
+information about the data.
+
+31
+00:01:57,550 --> 00:02:00,909
+>> So you can think of cataloging
+information, call numbers, subjects,
+
+32
+00:02:00,909 --> 00:02:02,700
+how many copies of the
+book there are, what
+
+33
+00:02:02,700 --> 00:02:06,380
+are the editions, what are the
+formats, the authors, and so forth.
+
+34
+00:02:06,380 --> 00:02:12,250
+So there's a lot of information about
+the information in the collection that,
+
+35
+00:02:12,250 --> 00:02:14,400
+in itself, is kind of inherently useful.
+
+36
+00:02:14,400 --> 00:02:19,230
+And though if you're
+doing in-depth research,
+
+37
+00:02:19,230 --> 00:02:25,160
+you obviously want to get to the actual
+content itself and look at the data,
+
+38
+00:02:25,160 --> 00:02:30,140
+the metadata is useful in terms of
+both analyzing the corpus as a whole,
+
+39
+00:02:30,140 --> 00:02:33,870
+like what things are in the collection.
+
+40
+00:02:33,870 --> 00:02:35,520
+How do they relate?
+
+41
+00:02:35,520 --> 00:02:39,482
+It helps you really find other stuff,
+which is really the main purpose of it.
+
+42
+00:02:39,482 --> 00:02:41,190
+The point of the
+metadata and the catalog
+
+43
+00:02:41,190 --> 00:02:43,230
+is to help you find all
+the information that's
+
+44
+00:02:43,230 --> 00:02:46,590
+available within the collections.
+
+45
+00:02:46,590 --> 00:02:53,690
+>> So this is an example of metadata
+for a book in the Harvard Library.
+
+46
+00:02:53,690 --> 00:02:56,370
+So it's there.
+
+47
+00:02:56,370 --> 00:02:59,850
+And you can see it's
+actually moderately complex.
+
+48
+00:02:59,850 --> 00:03:04,610
+And part of the value of metadata
+within the Harvard Library system
+
+49
+00:03:04,610 --> 00:03:09,320
+is that it's been sort
+of built up by catalogers
+
+50
+00:03:09,320 --> 00:03:12,720
+and assembled by people applying
+a lot of expertise and skill
+
+51
+00:03:12,720 --> 00:03:20,030
+and thought to it over time,
+which has a lot of value.
+
+52
+00:03:20,030 --> 00:03:25,450
+>> So if you take a look at this record for
+The Annotated Alice, you can find out
+
+53
+00:03:25,450 --> 00:03:32,590
+you've got the title, who wrote it, the
+author, and all the different subjects
+
+54
+00:03:32,590 --> 00:03:35,380
+which people have cataloged it into.
+
+55
+00:03:35,380 --> 00:03:40,110
+And you can see there's also, in
+addition to a lot of good information
+
+56
+00:03:40,110 --> 00:03:42,852
+here, there's some duplication.
+
+57
+00:03:42,852 --> 00:03:45,560
+There's a lot of complexity that's
+reflected through the metadata
+
+58
+00:03:45,560 --> 00:03:46,300
+that you have.
+
+59
+00:03:46,300 --> 00:03:50,320
+>> So one title of this book is
+Alice's Adventures in Wonderland.
+
+60
+00:03:50,320 --> 00:03:53,880
+So this is an annotated
+version of that book.
+
+61
+00:03:53,880 --> 00:03:56,380
+But it's also called The Annotated
+Alice, Alice's Adventures
+
+62
+00:03:56,380 --> 00:03:58,570
+in Wonderland because
+it's something which
+
+63
+00:03:58,570 --> 00:04:00,430
+Martin Gardner wrote
+and annotated the book.
+
+64
+00:04:00,430 --> 00:04:03,369
+And there's a lot of great information
+about logic puzzles and things
+
+65
+00:04:03,369 --> 00:04:05,410
+within Alice that you
+probably didn't know about.
+
+66
+00:04:05,410 --> 00:04:07,000
+So you should go read it.
+
+67
+00:04:07,000 --> 00:04:11,940
+>> But you can see there's
+a lot of detail here,
+
+68
+00:04:11,940 --> 00:04:15,340
+including identifiers, when it
+was created, where it came from,
+
+69
+00:04:15,340 --> 00:04:17,420
+in terms of the Harvard
+system, and so forth.
+
+70
+00:04:17,420 --> 00:04:20,350
+So this is a sample of
+the type of metadata
+
+71
+00:04:20,350 --> 00:04:24,340
+that you might see for a book in
+the Harvard Library collection.
+
+72
+00:04:24,340 --> 00:04:26,680
+>> This is something completely different.
+
+73
+00:04:26,680 --> 00:04:32,610
+So there is a system called
+VIA Harvard, which basically
+
+74
+00:04:32,610 --> 00:04:39,990
+is cataloging images and objects of art
+and visual things throughout Harvard,
+
+75
+00:04:39,990 --> 00:04:44,010
+and adding some metadata
+to them, classifying them,
+
+76
+00:04:44,010 --> 00:04:49,200
+and, in some cases, providing
+small thumbnail images
+
+77
+00:04:49,200 --> 00:04:51,250
+that you can take a
+look at if you so wish.
+
+78
+00:04:51,250 --> 00:04:54,240
+>> So this is an example of the
+metadata that you have for a plate
+
+79
+00:04:54,240 --> 00:04:57,840
+from, presumably, Alice in Wonderland.
+
+80
+00:04:57,840 --> 00:05:00,499
+And you can see there's
+less metadata here.
+
+81
+00:05:00,499 --> 00:05:02,040
+It's just a different kind of object.
+
+82
+00:05:02,040 --> 00:05:03,425
+And so there's less information.
+
+83
+00:05:03,425 --> 00:05:07,790
+>> You mostly have the fact that, a call
+number, essentially who created it,--
+
+84
+00:05:07,790 --> 00:05:10,410
+>> We don't know when it was created.
+
+85
+00:05:10,410 --> 00:05:13,320
+>> --and a title.
+
+86
+00:05:13,320 --> 00:05:14,300
+>> Another example.
+
+87
+00:05:14,300 --> 00:05:16,380
+This is a finding aid.
+
+88
+00:05:16,380 --> 00:05:19,030
+So there's a collection of Lewis
+Carroll's papers at Harvard.
+
+89
+00:05:19,030 --> 00:05:23,601
+So this describes what
+is in that collection.
+
+90
+00:05:23,601 --> 00:05:26,100
+So someone has gone through and
+looked through all the boxes
+
+91
+00:05:26,100 --> 00:05:32,220
+and cataloged it, given some background,
+written a summary of what's here.
+
+92
+00:05:32,220 --> 00:05:35,290
+And if you were to look
+further at this, this
+
+93
+00:05:35,290 --> 00:05:39,620
+goes on for pages and pages
+and pages, but will tell you
+
+94
+00:05:39,620 --> 00:05:41,860
+what letters and what
+dates from what boxes
+
+95
+00:05:41,860 --> 00:05:44,289
+existed throughout the collection.
+
+96
+00:05:44,289 --> 00:05:46,330
+But this is something
+that, if you're at Harvard,
+
+97
+00:05:46,330 --> 00:05:50,720
+you can go and actually physically look
+up and, presumably, take a look at.
+
+98
+00:05:50,720 --> 00:05:53,440
+>> So this is all great.
+
+99
+00:05:53,440 --> 00:05:54,450
+This metadata's useful.
+
+100
+00:05:54,450 --> 00:05:56,327
+It's in the Harvard Library system.
+
+101
+00:05:56,327 --> 00:05:58,910
+There are tools online where you
+can go and take a look at it,
+
+102
+00:05:58,910 --> 00:05:59,993
+and see it, and search it.
+
+103
+00:05:59,993 --> 00:06:02,810
+And you can slice it and dice
+it in lots of different ways.
+
+104
+00:06:02,810 --> 00:06:06,920
+>> But it's really only available if
+you are a human being sitting down
+
+105
+00:06:06,920 --> 00:06:12,600
+at your web browser or something or
+your phone and navigating through it.
+
+106
+00:06:12,600 --> 00:06:16,730
+It's not really available in
+any kind of usable fashion
+
+107
+00:06:16,730 --> 00:06:19,520
+for other systems or
+other computers to use,
+
+108
+00:06:19,520 --> 00:06:21,500
+not with systems within
+the Harvard Library,
+
+109
+00:06:21,500 --> 00:06:24,890
+but systems in the outside world,
+just other people in general.
+
+110
+00:06:24,890 --> 00:06:30,210
+So the question is, how can we
+make it available to computers
+
+111
+00:06:30,210 --> 00:06:33,560
+so that we can do more interesting
+stuff with it than just
+
+112
+00:06:33,560 --> 00:06:36,550
+browsing it ourselves?
+
+113
+00:06:36,550 --> 00:06:39,766
+>> So why would you want to do this?
+
+114
+00:06:39,766 --> 00:06:41,140
+There are a lot of possibilities.
+
+115
+00:06:41,140 --> 00:06:43,980
+One is you could build a completely
+different way of browsing
+
+116
+00:06:43,980 --> 00:06:46,962
+the content that's available
+through the Harvard Libraries.
+
+117
+00:06:46,962 --> 00:06:48,670
+I'll show you one
+later called Stacklife,
+
+118
+00:06:48,670 --> 00:06:52,440
+which has a completely different
+take on looking for content.
+
+119
+00:06:52,440 --> 00:06:54,560
+>> You could build a recommendation engine.
+
+120
+00:06:54,560 --> 00:06:57,955
+So Harvard Library isn't in the
+business of saying, you like this book.
+
+121
+00:06:57,955 --> 00:07:01,080
+Then go take a look at these 17 other
+books that you might be interested in
+
+122
+00:07:01,080 --> 00:07:03,200
+or these 18 other images.
+
+123
+00:07:03,200 --> 00:07:06,040
+But that certainly could
+be a valuable feature.
+
+124
+00:07:06,040 --> 00:07:09,272
+And given the metadata, it may
+be possible to put that together.
+
+125
+00:07:09,272 --> 00:07:11,980
+You might have different needs in
+terms of searching the content,
+
+126
+00:07:11,980 --> 00:07:16,200
+like maybe despite the tools that
+are available that the library makes
+
+127
+00:07:16,200 --> 00:07:18,450
+available, you might want
+to search in a different way
+
+128
+00:07:18,450 --> 00:07:21,847
+or optimize for a particular use case,
+which maybe it's very specialized.
+
+129
+00:07:21,847 --> 00:07:23,930
+Maybe there are only a few
+people in the world who
+
+130
+00:07:23,930 --> 00:07:25,846
+want to search the content
+in this way, but it
+
+131
+00:07:25,846 --> 00:07:28,985
+would be great if we
+could let them do that.
+
+132
+00:07:28,985 --> 00:07:30,860
+There's a lot of analytics
+in just how people
+
+133
+00:07:30,860 --> 00:07:33,860
+use the content that would be really
+interesting to know about, find out
+
+134
+00:07:33,860 --> 00:07:37,280
+what books are being used,
+what are not, and so forth.
+
+135
+00:07:37,280 --> 00:07:41,670
+And then there's a lot of
+opportunity to integrate
+
+136
+00:07:41,670 --> 00:07:45,210
+with other information
+that's out there on the web.
+
+137
+00:07:45,210 --> 00:07:46,880
+So we have--
+
+138
+00:07:46,880 --> 00:07:50,260
+>> For example, NPR has
+a book review segment,
+
+139
+00:07:50,260 --> 00:07:53,090
+where they interview
+authors about books.
+
+140
+00:07:53,090 --> 00:07:56,837
+And so it would be great if you were
+looking up a book in the Harvard
+
+141
+00:07:56,837 --> 00:07:59,670
+Library, and you say, OK, there's
+been an interview with the author.
+
+142
+00:07:59,670 --> 00:08:00,878
+Let's go take a look at that.
+
+143
+00:08:00,878 --> 00:08:05,461
+Or there's a Wikipedia page, as an
+authoritative, scholarly reference
+
+144
+00:08:05,461 --> 00:08:07,710
+about this book that you
+might want to take a look at.
+
+145
+00:08:07,710 --> 00:08:12,600
+>> There are these types of sources
+scattered throughout the web.
+
+146
+00:08:12,600 --> 00:08:16,555
+And bringing them together
+could be a great use
+
+147
+00:08:16,555 --> 00:08:18,930
+to someone looking at the
+content, looking for something.
+
+148
+00:08:18,930 --> 00:08:20,180
+But it's also not the
+kind of thing you'd
+
+149
+00:08:20,180 --> 00:08:23,205
+want the library to be responsible
+for going down and hunting down
+
+150
+00:08:23,205 --> 00:08:25,455
+all these different sources
+and plugging them together
+
+151
+00:08:25,455 --> 00:08:28,920
+because they're changing continuously.
+
+152
+00:08:28,920 --> 00:08:33,570
+And what they think is important may
+not be what you think is important.
+
+153
+00:08:33,570 --> 00:08:36,929
+>> And even more so, basically there's a
+lot of stuff we haven't thought of yet.
+
+154
+00:08:36,929 --> 00:08:42,222
+So if we can open this up, more
+people besides a half dozen or so,
+
+155
+00:08:42,222 --> 00:08:45,174
+who are looking at this on a
+regular basis can think of ideas
+
+156
+00:08:45,174 --> 00:08:47,340
+and massage the data, and
+do what they want with it.
+
+157
+00:08:47,340 --> 00:08:49,920
+
+158
+00:08:49,920 --> 00:08:54,045
+>> So we want to make this
+data available to the world.
+
+159
+00:08:54,045 --> 00:08:55,670
+Well, there are a couple complications.
+
+160
+00:08:55,670 --> 00:08:58,540
+One is that this metadata
+is in different systems.
+
+161
+00:08:58,540 --> 00:09:01,110
+It's in different formats.
+
+162
+00:09:01,110 --> 00:09:04,719
+So there's some normalization
+which needs to happen,
+
+163
+00:09:04,719 --> 00:09:08,010
+which normalization being the process of
+bringing things from different formats
+
+164
+00:09:08,010 --> 00:09:12,940
+and mapping them to a single format
+so that the fields will match up.
+
+165
+00:09:12,940 --> 00:09:15,160
+>> There are some copyright restrictions.
+
+166
+00:09:15,160 --> 00:09:21,010
+Oddly enough, the catalog entry
+about a book is liable for copyright.
+
+167
+00:09:21,010 --> 00:09:24,060
+So even though it's just
+information derived from the book,
+
+168
+00:09:24,060 --> 00:09:25,330
+it's copyrightable.
+
+169
+00:09:25,330 --> 00:09:28,400
+And depending on who actually
+created that metadata,
+
+170
+00:09:28,400 --> 00:09:32,175
+there may be restrictions on who
+can distribute it, similar to--
+
+171
+00:09:32,175 --> 00:09:33,402
+>> I don't know.
+
+172
+00:09:33,402 --> 00:09:36,110
+It may or may not be similar to
+the situation of the song lyrics,
+
+173
+00:09:36,110 --> 00:09:36,610
+for example.
+
+174
+00:09:36,610 --> 00:09:38,560
+So we all know how that pans out.
+
+175
+00:09:38,560 --> 00:09:40,450
+So you need to get around that issue.
+
+176
+00:09:40,450 --> 00:09:44,910
+>> And then another piece is
+that there's a lot of data.
+
+177
+00:09:44,910 --> 00:09:52,420
+So if I am someone who wants to work
+with the data or has a cool idea,
+
+178
+00:09:52,420 --> 00:09:55,350
+dealing with 14 million
+records on my laptop
+
+179
+00:09:55,350 --> 00:09:57,487
+could be problematic
+and difficult to manage.
+
+180
+00:09:57,487 --> 00:09:59,320
+So we want to reduce
+the barriers for people
+
+181
+00:09:59,320 --> 00:10:02,130
+to be able to work with the data.
+
+182
+00:10:02,130 --> 00:10:07,880
+>> So the approach that hopefully addresses
+all of these concerns is two parts.
+
+183
+00:10:07,880 --> 00:10:11,770
+One is building a platform that takes
+data from all these disparate sources
+
+184
+00:10:11,770 --> 00:10:14,350
+and aggravates it, normalizes,
+enriches it, and makes
+
+185
+00:10:14,350 --> 00:10:16,650
+it available in a single location.
+
+186
+00:10:16,650 --> 00:10:20,950
+And it makes it available through
+a public API that people can call.
+
+187
+00:10:20,950 --> 00:10:24,430
+>> So an API is an Application
+Programming Interface.
+
+188
+00:10:24,430 --> 00:10:28,930
+And it basically refers to an
+endpoint that a system or technology
+
+189
+00:10:28,930 --> 00:10:31,720
+can call and get data back in
+a structured format in a way
+
+190
+00:10:31,720 --> 00:10:32,900
+that it can be used.
+
+191
+00:10:32,900 --> 00:10:36,060
+So it's not dependent
+on going to a website
+
+192
+00:10:36,060 --> 00:10:37,970
+and scraping data off
+of it, for example.
+
+193
+00:10:37,970 --> 00:10:40,690
+
+194
+00:10:40,690 --> 00:10:45,010
+>> So this is the home page of
+the Library Cloud Item API,
+
+195
+00:10:45,010 --> 00:10:47,220
+which is essentially its version two.
+
+196
+00:10:47,220 --> 00:10:50,130
+So it's the second iteration of
+trying to make all of this data
+
+197
+00:10:50,130 --> 00:10:53,280
+available to the world.
+
+198
+00:10:53,280 --> 00:10:59,560
+So it's
+http://api.lib.harvard.edu/v2/items.
+
+199
+00:10:59,560 --> 00:11:03,830
+And just to break this down
+a little bit, what this means
+
+200
+00:11:03,830 --> 00:11:06,115
+is that this is version two of the API.
+
+201
+00:11:06,115 --> 00:11:08,490
+There's a version one, which
+I'm not going to talk about.
+
+202
+00:11:08,490 --> 00:11:09,750
+But there is a version one.
+
+203
+00:11:09,750 --> 00:11:14,740
+>> And if you're calling this
+API, you are getting items.
+
+204
+00:11:14,740 --> 00:11:20,640
+And part of the idea of an
+API is an API is a contract.
+
+205
+00:11:20,640 --> 00:11:23,440
+It's something that is
+not going to change.
+
+206
+00:11:23,440 --> 00:11:24,850
+So for example,--
+
+207
+00:11:24,850 --> 00:11:27,410
+>> And the reason is that if I
+build some kind of system that
+
+208
+00:11:27,410 --> 00:11:33,210
+is going to use a library cloud API
+to display books or help people find
+
+209
+00:11:33,210 --> 00:11:36,190
+information in unique ways,
+what we don't want to happen
+
+210
+00:11:36,190 --> 00:11:38,940
+is for us to go change how
+that API works, and suddenly
+
+211
+00:11:38,940 --> 00:11:41,340
+everything breaks on the end user side.
+
+212
+00:11:41,340 --> 00:11:46,710
+So part of if you're making API
+available to the world, it's
+
+213
+00:11:46,710 --> 00:11:49,396
+good practice to put a
+version number in it so people
+
+214
+00:11:49,396 --> 00:11:51,020
+know what version they're dealing with.
+
+215
+00:11:51,020 --> 00:11:54,300
+>> So if we decide we find a better way
+of making this information available,
+
+216
+00:11:54,300 --> 00:11:57,295
+we might change that to
+call that version three.
+
+217
+00:11:57,295 --> 00:11:59,920
+So everyone who is still using
+version two, that'll still work.
+
+218
+00:11:59,920 --> 00:12:03,490
+But version three would
+have all the new stuff.
+
+219
+00:12:03,490 --> 00:12:06,680
+
+220
+00:12:06,680 --> 00:12:09,210
+>> So this is an API, but this
+really looks like a URL.
+
+221
+00:12:09,210 --> 00:12:11,680
+And so what this is an
+example of is what's
+
+222
+00:12:11,680 --> 00:12:16,615
+called a rest API, which is available
+over just a regular web connection.
+
+223
+00:12:16,615 --> 00:12:19,680
+And you can actually
+go to it in a browser.
+
+224
+00:12:19,680 --> 00:12:28,550
+>> So here I've just opened up Firefox and
+gone to api.lib.harvard.edu/v2/items.
+
+225
+00:12:28,550 --> 00:12:31,560
+And so what I get here is
+basically the first page
+
+226
+00:12:31,560 --> 00:12:34,740
+of results from the entire
+set of items that we've got.
+
+227
+00:12:34,740 --> 00:12:37,460
+And it's here in XML format.
+
+228
+00:12:37,460 --> 00:12:40,130
+
+229
+00:12:40,130 --> 00:12:42,210
+And it's also been
+prettified by Firefox.
+
+230
+00:12:42,210 --> 00:12:45,850
+It doesn't actually have all of these
+little expanding and contracting
+
+231
+00:12:45,850 --> 00:12:47,880
+doohickeys here.
+
+232
+00:12:47,880 --> 00:12:52,520
+This is sort of a nicer
+version way to look at it.
+
+233
+00:12:52,520 --> 00:12:57,040
+>> But what this is telling us is
+I've requested all the items.
+
+234
+00:12:57,040 --> 00:13:03,120
+So there are 13,289,475 items.
+
+235
+00:13:03,120 --> 00:13:06,150
+And I'm looking at the first
+10, starting at position zero
+
+236
+00:13:06,150 --> 00:13:09,760
+because in computer science
+we always start at zero.
+
+237
+00:13:09,760 --> 00:13:15,150
+And what I have here, if I just collapse
+this, you'll see I've got 10 items.
+
+238
+00:13:15,150 --> 00:13:20,410
+
+239
+00:13:20,410 --> 00:13:25,210
+>> And if I take a look at an item, I can
+see that I've got information about it.
+
+240
+00:13:25,210 --> 00:13:27,400
+And this is in what's called MODS form.
+
+241
+00:13:27,400 --> 00:13:30,860
+And so I'm going to switch
+back here for a moment.
+
+242
+00:13:30,860 --> 00:13:33,750
+OK.
+
+243
+00:13:33,750 --> 00:13:37,447
+>> So let's search for something in
+specific because the first item that
+
+244
+00:13:37,447 --> 00:13:40,030
+happens to come up when you look
+through the entire collection
+
+245
+00:13:40,030 --> 00:13:41,750
+is, by definition, random.
+
+246
+00:13:41,750 --> 00:13:44,550
+So let's look for some donuts.
+
+247
+00:13:44,550 --> 00:13:46,830
+Oh.
+
+248
+00:13:46,830 --> 00:13:49,190
+>> OK.
+
+249
+00:13:49,190 --> 00:13:49,940
+So doughnuts.
+
+250
+00:13:49,940 --> 00:13:55,360
+So we found there are 80 items in
+the collection that reference donuts.
+
+251
+00:13:55,360 --> 00:13:57,150
+We're looking at the first 10 of them.
+
+252
+00:13:57,150 --> 00:14:01,890
+Now, you can see here the way that
+I said I'm looking for donuts,
+
+253
+00:14:01,890 --> 00:14:04,400
+I just added something to
+the query string of the URL.
+
+254
+00:14:04,400 --> 00:14:09,680
+So q equals donuts, which you can
+see a little more easily here.
+
+255
+00:14:09,680 --> 00:14:12,131
+>> And this basically means there's
+a spec for the API, which
+
+256
+00:14:12,131 --> 00:14:13,880
+defines what all of
+these parameters mean.
+
+257
+00:14:13,880 --> 00:14:17,150
+And this means we're going to
+search everything for donuts.
+
+258
+00:14:17,150 --> 00:14:24,910
+>> So the first item here we have
+you can see the title is Donuts,
+
+259
+00:14:24,910 --> 00:14:29,310
+and there is a subtitle called An
+American Passion, which is, I guess,
+
+260
+00:14:29,310 --> 00:14:31,610
+appropriate.
+
+261
+00:14:31,610 --> 00:14:36,134
+There are a lot of different--
+
+262
+00:14:36,134 --> 00:14:38,050
+Once you get to the point
+of getting the data,
+
+263
+00:14:38,050 --> 00:14:41,020
+there are a lot of different
+formats that you can get it into.
+
+264
+00:14:41,020 --> 00:14:44,050
+And there are different strengths
+and weaknesses for all of them.
+
+265
+00:14:44,050 --> 00:14:49,000
+So this one, you can see
+here, this form is very rich.
+
+266
+00:14:49,000 --> 00:14:51,946
+And it's standardized.
+
+267
+00:14:51,946 --> 00:14:55,040
+>> So there's a specific title
+field, a subtitle field.
+
+268
+00:14:55,040 --> 00:14:58,950
+There's an alternate
+title, An American Passion.
+
+269
+00:14:58,950 --> 00:15:01,650
+There is the name associated with it.
+
+270
+00:15:01,650 --> 00:15:03,120
+Type of the resource is text.
+
+271
+00:15:03,120 --> 00:15:06,070
+There's a lot of information
+here in this format.
+
+272
+00:15:06,070 --> 00:15:09,480
+>> But there are a bunch
+of different formats.
+
+273
+00:15:09,480 --> 00:15:11,920
+So what we were just
+looking at is a format
+
+274
+00:15:11,920 --> 00:15:17,700
+called MODS, which stands for
+Metadata Object Description Service,
+
+275
+00:15:17,700 --> 00:15:18,250
+potentially.
+
+276
+00:15:18,250 --> 00:15:23,030
+I'm actually not quite sure about the
+S. But it's a fairly complex format.
+
+277
+00:15:23,030 --> 00:15:24,240
+It's the default format.
+
+278
+00:15:24,240 --> 00:15:30,260
+>> But it's the one that keeps
+the richness of all the data
+
+279
+00:15:30,260 --> 00:15:33,820
+that the library has because
+it's very close to what
+
+280
+00:15:33,820 --> 00:15:35,110
+the library uses internally.
+
+281
+00:15:35,110 --> 00:15:39,030
+It's a standard that is
+used across the country,
+
+282
+00:15:39,030 --> 00:15:40,944
+across the world in academic libraries.
+
+283
+00:15:40,944 --> 00:15:42,110
+And it's very interoperable.
+
+284
+00:15:42,110 --> 00:15:44,852
+So if you've got a document
+that is in MODS format,
+
+285
+00:15:44,852 --> 00:15:47,560
+you can give that to somebody else
+whose systems understand MODS,
+
+286
+00:15:47,560 --> 00:15:48,518
+and they can import it.
+
+287
+00:15:48,518 --> 00:15:50,840
+So it's a standard.
+
+288
+00:15:50,840 --> 00:15:54,250
+It's very well defined, very specific.
+
+289
+00:15:54,250 --> 00:15:58,980
+And that is what makes it
+interoperable because if someone says,
+
+290
+00:15:58,980 --> 00:16:04,930
+this is the alternate title of a
+record, everybody knows what that means.
+
+291
+00:16:04,930 --> 00:16:07,740
+On the flip side, it's very complicated.
+
+292
+00:16:07,740 --> 00:16:13,160
+>> So if you take a look
+at this record here,
+
+293
+00:16:13,160 --> 00:16:15,320
+if I just want to get the
+title of this document,
+
+294
+00:16:15,320 --> 00:16:21,150
+of this book, which is probably Donuts,
+An American Passion, parsing it out
+
+295
+00:16:21,150 --> 00:16:22,940
+is a little involved.
+
+296
+00:16:22,940 --> 00:16:27,380
+Whereas there's another
+format called Dublin Core,
+
+297
+00:16:27,380 --> 00:16:29,730
+which is a much, much simpler format.
+
+298
+00:16:29,730 --> 00:16:33,764
+>> And so you see here, there's no
+title, subtitle, alternate title.
+
+299
+00:16:33,764 --> 00:16:35,930
+There's just the title,
+Donuts, An American Passion,
+
+300
+00:16:35,930 --> 00:16:38,780
+and another title, American Passion.
+
+301
+00:16:38,780 --> 00:16:42,907
+So when you're looking at what form
+you want to get the data out of,
+
+302
+00:16:42,907 --> 00:16:44,740
+a lot depends on how
+you're going to use it.
+
+303
+00:16:44,740 --> 00:16:46,573
+Are you using for
+interoperability or do you
+
+304
+00:16:46,573 --> 00:16:49,970
+want something simple that
+might be easier to work with?
+
+305
+00:16:49,970 --> 00:16:56,002
+>> On the flip side, a lot of the
+details get sort of squished down.
+
+306
+00:16:56,002 --> 00:16:58,460
+You might lose the nuances of
+what a particular field means
+
+307
+00:16:58,460 --> 00:17:02,960
+if you're dealing with Dublin Core,
+which you wouldn't get with MODS.
+
+308
+00:17:02,960 --> 00:17:06,462
+So those are two of the formats
+you can get out of the API.
+
+309
+00:17:06,462 --> 00:17:08,920
+And basically, we are keeping
+it behind the scenes in MODS.
+
+310
+00:17:08,920 --> 00:17:14,179
+But we can give you it in MODS and
+Dublin Core and anything else as well.
+
+311
+00:17:14,179 --> 00:17:16,470
+The other consideration when
+you're looking in the data
+
+312
+00:17:16,470 --> 00:17:21,210
+is you can get it as either JSON, which
+stands for JavaScript Object Notation,
+
+313
+00:17:21,210 --> 00:17:24,720
+or XML, which stands for
+Extensible Markup Language.
+
+314
+00:17:24,720 --> 00:17:30,080
+And these data representations both
+have exactly the same data, exactly
+
+315
+00:17:30,080 --> 00:17:31,080
+the same fields.
+
+316
+00:17:31,080 --> 00:17:33,644
+But they're just
+syntactically different.
+
+317
+00:17:33,644 --> 00:17:40,401
+>> So this is a--
+
+318
+00:17:40,401 --> 00:17:41,400
+Well, let's just switch.
+
+319
+00:17:41,400 --> 00:17:47,490
+So this is our query for
+donuts in XML format.
+
+320
+00:17:47,490 --> 00:17:53,470
+If I just switch this to be JSON,
+I can see it looks different.
+
+321
+00:17:53,470 --> 00:17:58,580
+So now this is the same content,
+but a different structure.
+
+322
+00:17:58,580 --> 00:18:00,080
+There are fewer angle brackets.
+
+323
+00:18:00,080 --> 00:18:02,530
+There's less verbose.
+
+324
+00:18:02,530 --> 00:18:06,440
+>> And this is a format that, if you
+are working in the web environment,
+
+325
+00:18:06,440 --> 00:18:09,680
+you are most likely going
+to want to use because one
+
+326
+00:18:09,680 --> 00:18:12,630
+of the nice things about JSON is
+it's compatible with JavaScript.
+
+327
+00:18:12,630 --> 00:18:17,680
+So if I'm writing web app, I can pull
+in JSON and just work with it directly.
+
+328
+00:18:17,680 --> 00:18:20,187
+Whereas with XML, it's a
+little bit more complicated.
+
+329
+00:18:20,187 --> 00:18:21,520
+So again, these are both useful.
+
+330
+00:18:21,520 --> 00:18:26,387
+They just are different use cases
+where people might want to use them.
+
+331
+00:18:26,387 --> 00:18:26,886
+OK.
+
+332
+00:18:26,886 --> 00:18:29,810
+
+333
+00:18:29,810 --> 00:18:31,680
+So back to the API.
+
+334
+00:18:31,680 --> 00:18:32,900
+So we can search for--
+
+335
+00:18:32,900 --> 00:18:36,220
+>> I give an example of
+searching for donuts.
+
+336
+00:18:36,220 --> 00:18:39,330
+We can also search just in a
+particular field within here.
+
+337
+00:18:39,330 --> 00:18:41,310
+So instead of searching
+the entire record,
+
+338
+00:18:41,310 --> 00:18:43,870
+I can just search the title field.
+
+339
+00:18:43,870 --> 00:18:48,810
+And so now there are 25 things that
+have donuts in the title, one of which
+
+340
+00:18:48,810 --> 00:18:52,430
+is about restoring
+wetlands in management
+
+341
+00:18:52,430 --> 00:18:54,990
+of the hole in the donut
+program, which is probably
+
+342
+00:18:54,990 --> 00:18:58,970
+not necessarily what we're looking
+for when we're searching for donuts.
+
+343
+00:18:58,970 --> 00:19:02,790
+
+344
+00:19:02,790 --> 00:19:05,490
+>> You can also, when you're
+dealing with an API--
+
+345
+00:19:05,490 --> 00:19:08,827
+>> Part of having an API is giving
+people access to large data sets.
+
+346
+00:19:08,827 --> 00:19:11,410
+And there are a couple different
+tools you can use to do that.
+
+347
+00:19:11,410 --> 00:19:14,170
+One is, very simply, you
+can page through the data.
+
+348
+00:19:14,170 --> 00:19:17,340
+So just as if you do a query
+through a web interface,
+
+349
+00:19:17,340 --> 00:19:19,470
+you can look at page one,
+page two, page three.
+
+350
+00:19:19,470 --> 00:19:22,040
+You can do the same
+thing through the API.
+
+351
+00:19:22,040 --> 00:19:24,150
+You just need to be
+explicit in how you do it.
+
+352
+00:19:24,150 --> 00:19:29,511
+>> So for example, if I'm looking
+at my first query here,
+
+353
+00:19:29,511 --> 00:19:32,510
+where I'm doing a search for things
+with donuts in the title, I can say,
+
+354
+00:19:32,510 --> 00:19:35,415
+and limit equals 20, which means
+give me the first 20 records, not
+
+355
+00:19:35,415 --> 00:19:38,540
+the first 10, which is the default,
+because I want to look at 20 at a time.
+
+356
+00:19:38,540 --> 00:19:43,435
+Or I can say, set the
+start equal to 20 and limit
+
+357
+00:19:43,435 --> 00:19:47,150
+equal 20, which will give
+me records 21 through 40.
+
+358
+00:19:47,150 --> 00:19:52,680
+>> So I guess the thing
+to take away here is
+
+359
+00:19:52,680 --> 00:19:57,290
+that we're using the query strings
+to set parameters on the query.
+
+360
+00:19:57,290 --> 00:20:02,760
+And it lets you control
+what you get back.
+
+361
+00:20:02,760 --> 00:20:05,980
+>> Another tool that you can use,--
+
+362
+00:20:05,980 --> 00:20:09,250
+>> And this is really helpful in
+terms of exploring the data.
+
+363
+00:20:09,250 --> 00:20:10,840
+>> --is something called faceting.
+
+364
+00:20:10,840 --> 00:20:15,530
+So the term faceting is
+not necessarily common.
+
+365
+00:20:15,530 --> 00:20:16,880
+But you've all seen it before.
+
+366
+00:20:16,880 --> 00:20:18,630
+If you take a look at
+Amazon, for example,
+
+367
+00:20:18,630 --> 00:20:20,870
+and you do a search for
+donuts in the books,
+
+368
+00:20:20,870 --> 00:20:27,080
+here they've got a series of books,
+and they're grouped by category,
+
+369
+00:20:27,080 --> 00:20:30,470
+and you get the different categories,
+and how many books in each category
+
+370
+00:20:30,470 --> 00:20:31,330
+show up.
+
+371
+00:20:31,330 --> 00:20:33,420
+>> So this is basically a facet.
+
+372
+00:20:33,420 --> 00:20:37,570
+You take all their books, the 1,800
+books that match donuts at Amazon.
+
+373
+00:20:37,570 --> 00:20:39,820
+12 of them are in the
+breakfast category.
+
+374
+00:20:39,820 --> 00:20:43,100
+21 in pastry and baking,
+and so on and so forth.
+
+375
+00:20:43,100 --> 00:20:47,670
+>> So this is really a useful
+tool for exploring the content
+
+376
+00:20:47,670 --> 00:20:53,260
+within the library as well
+because when you look at a facet,
+
+377
+00:20:53,260 --> 00:20:56,520
+it gives you an idea of what subjects
+exists, like what types of subjects
+
+378
+00:20:56,520 --> 00:20:58,510
+are most popular within your query set.
+
+379
+00:20:58,510 --> 00:21:00,950
+And it helps you drive off and explore.
+
+380
+00:21:00,950 --> 00:21:02,770
+So we can do the same thing.
+
+381
+00:21:02,770 --> 00:21:05,940
+>> If we want to use the
+API and look at facets,
+
+382
+00:21:05,940 --> 00:21:08,950
+we add another parameter to
+our friend the query string.
+
+383
+00:21:08,950 --> 00:21:12,540
+So facets equals a comma separated
+list of what we want to facet on.
+
+384
+00:21:12,540 --> 00:21:14,790
+So one of the facets might be subject.
+
+385
+00:21:14,790 --> 00:21:16,565
+Another might be language.
+
+386
+00:21:16,565 --> 00:21:19,665
+And so if we run that query, we get--
+
+387
+00:21:19,665 --> 00:21:23,372
+
+388
+00:21:23,372 --> 00:21:24,830
+It looks pretty much the same here.
+
+389
+00:21:24,830 --> 00:21:29,010
+But we've added to the end
+of the list a set of facets.
+
+390
+00:21:29,010 --> 00:21:34,060
+So we have a facet called subject.
+
+391
+00:21:34,060 --> 00:21:40,250
+So this is telling us that if I look
+at my 80 results from the donut query,
+
+392
+00:21:40,250 --> 00:21:42,100
+13 of them have the
+subject United States.
+
+393
+00:21:42,100 --> 00:21:43,684
+Three have the subject donuts.
+
+394
+00:21:43,684 --> 00:21:45,600
+Three have the subject
+of wetland restoration,
+
+395
+00:21:45,600 --> 00:21:47,720
+which may be our hole in the donut.
+
+396
+00:21:47,720 --> 00:21:51,780
+Two of them, the Simpsons,
+and so on and so forth.
+
+397
+00:21:51,780 --> 00:21:59,211
+>> So this can be useful if you
+want to narrow down your search.
+
+398
+00:21:59,211 --> 00:22:00,210
+It can help you do that.
+
+399
+00:22:00,210 --> 00:22:03,580
+Especially if you have
+more than, say, 80 results.
+
+400
+00:22:03,580 --> 00:22:05,980
+>> Similarly, we also asked
+for facets on language.
+
+401
+00:22:05,980 --> 00:22:14,790
+So if we look at our results, we see 76
+of them are in English, four in French,
+
+402
+00:22:14,790 --> 00:22:19,620
+two in Spanish, two, I think that's
+undefined or unknown, Dutch and Latin.
+
+403
+00:22:19,620 --> 00:22:22,830
+So I think the Latin
+donut result, again,
+
+404
+00:22:22,830 --> 00:22:24,922
+has nothing to do with baked goods.
+
+405
+00:22:24,922 --> 00:22:25,630
+But there you go.
+
+406
+00:22:25,630 --> 00:22:31,420
+
+407
+00:22:31,420 --> 00:22:38,630
+>> So this is sort of showing you
+how you can pull the content back
+
+408
+00:22:38,630 --> 00:22:41,270
+from the API just through
+web browser, which is great.
+
+409
+00:22:41,270 --> 00:22:44,320
+But it's not really what you would
+normally be using in API for it.
+
+410
+00:22:44,320 --> 00:22:48,710
+So one example of how you
+could actually do this is I've
+
+411
+00:22:48,710 --> 00:22:54,720
+written a super small program,
+which, again, does my donut search
+
+412
+00:22:54,720 --> 00:22:59,010
+and selects a couple fields
+and displays them in a table.
+
+413
+00:22:59,010 --> 00:23:01,610
+So this is very much the
+same content that we just
+
+414
+00:23:01,610 --> 00:23:04,830
+saw with a few fields pulled out.
+
+415
+00:23:04,830 --> 00:23:12,090
+So list of titles, the
+location of what the book
+
+416
+00:23:12,090 --> 00:23:15,120
+is about, the language,
+and so on and so forth.
+
+417
+00:23:15,120 --> 00:23:20,480
+>> So how this actually happened, since
+I guess we have to look at some code,
+
+418
+00:23:20,480 --> 00:23:22,420
+is--
+
+419
+00:23:22,420 --> 00:23:28,060
+>> What we have here is a simple HTML
+page, which displays the text,
+
+420
+00:23:28,060 --> 00:23:32,900
+welcome to library cloud and
+then displays a table of results.
+
+421
+00:23:32,900 --> 00:23:37,790
+And there are obviously no results in
+the table when the page gets loaded.
+
+422
+00:23:37,790 --> 00:23:41,380
+But what we're doing
+is, first of all, we
+
+423
+00:23:41,380 --> 00:23:46,290
+are loading a library called
+jQuery, which is basically
+
+424
+00:23:46,290 --> 00:23:52,030
+a JavaScript library, which makes it
+very easy to manipulate JavaScript
+
+425
+00:23:52,030 --> 00:23:58,780
+natively, HTML, and create web pages,
+client-side logic and web pages.
+
+426
+00:23:58,780 --> 00:24:01,595
+>> So what we have here is jQuery
+has a method called Get,
+
+427
+00:24:01,595 --> 00:24:05,270
+which essentially will go to
+a URL, which, in this case,
+
+428
+00:24:05,270 --> 00:24:09,070
+is this familiar looking URL.
+
+429
+00:24:09,070 --> 00:24:14,440
+And will then get the content from
+that URL and then run a function on it.
+
+430
+00:24:14,440 --> 00:24:19,240
+So we said go to api.lib.harvard/edu.
+
+431
+00:24:19,240 --> 00:24:20,060
+Search for donuts.
+
+432
+00:24:20,060 --> 00:24:21,300
+Give us 20 records.
+
+433
+00:24:21,300 --> 00:24:28,590
+And then run this function, which
+I've selected, passing it the data.
+
+434
+00:24:28,590 --> 00:24:34,430
+And the data is the JSON that
+got returned from the API.
+
+435
+00:24:34,430 --> 00:24:40,120
+>> And then we're saying, within that
+data there's a field called item.
+
+436
+00:24:40,120 --> 00:24:48,117
+And if I go take a look back at
+one of these results that's here,
+
+437
+00:24:48,117 --> 00:24:49,200
+there's something called--
+
+438
+00:24:49,200 --> 00:24:50,220
+>> Well, it's called item.
+
+439
+00:24:50,220 --> 00:24:53,520
+So that may be that.
+
+440
+00:24:53,520 --> 00:25:01,840
+And what it does is it
+goes through each item
+
+441
+00:25:01,840 --> 00:25:05,300
+and then calls another
+function on each item.
+
+442
+00:25:05,300 --> 00:25:08,440
+And that function basically
+is taking the value
+
+443
+00:25:08,440 --> 00:25:12,010
+of the item, which is
+essentially the individual record
+
+444
+00:25:12,010 --> 00:25:18,220
+and allows us to pull out the title,
+the coverage and the language.
+
+445
+00:25:18,220 --> 00:25:21,640
+>> So we call a function on every
+item that we got back from the API.
+
+446
+00:25:21,640 --> 00:25:25,397
+And if you just take a look
+at this piece right here,
+
+447
+00:25:25,397 --> 00:25:27,230
+what we're doing is
+we're creating a string,
+
+448
+00:25:27,230 --> 00:25:31,810
+which is essentially some HTML markup
+around a table, with value.title,
+
+449
+00:25:31,810 --> 00:25:35,790
+which is the title of the
+object, value.coverage,
+
+450
+00:25:35,790 --> 00:25:36,790
+which is the coverage,--
+
+451
+00:25:36,790 --> 00:25:38,225
+>> And we're doing a check
+here to see who's undefined
+
+452
+00:25:38,225 --> 00:25:40,570
+and hiding it if it says undefined,
+because we're not really interested
+
+453
+00:25:40,570 --> 00:25:41,600
+in that.
+
+454
+00:25:41,600 --> 00:25:42,939
+>> --and then the language.
+
+455
+00:25:42,939 --> 00:25:44,730
+And then what we're
+doing is appending that
+
+456
+00:25:44,730 --> 00:25:48,510
+to the table that is
+identified by this string here.
+
+457
+00:25:48,510 --> 00:25:50,790
+And how jQuery works
+is what this is saying
+
+458
+00:25:50,790 --> 00:25:56,420
+is look for the table with idea
+results and add this text to it.
+
+459
+00:25:56,420 --> 00:25:59,380
+And this is the table with idea results.
+
+460
+00:25:59,380 --> 00:26:04,998
+So what you end up
+with is this page here.
+
+461
+00:26:04,998 --> 00:26:06,206
+And in order to view source--
+
+462
+00:26:06,206 --> 00:26:11,310
+
+463
+00:26:11,310 --> 00:26:13,810
+Well, the source is not actually
+updated when that happened.
+
+464
+00:26:13,810 --> 00:26:18,740
+So you can see the actual
+results of the table here though.
+
+465
+00:26:18,740 --> 00:26:24,770
+>> So that's just a simple example of
+doing a very basic query against the API
+
+466
+00:26:24,770 --> 00:26:29,020
+and displaying information in some other
+form, and not doing anything too fancy.
+
+467
+00:26:29,020 --> 00:26:36,370
+Now, another example is like an
+application written by David Weinberger
+
+468
+00:26:36,370 --> 00:26:39,120
+as a demo of this, which
+essentially shows you
+
+469
+00:26:39,120 --> 00:26:44,620
+how you can mash up the results you're
+getting from the library cloud API
+
+470
+00:26:44,620 --> 00:26:46,250
+with, say, Google Books.
+
+471
+00:26:46,250 --> 00:26:52,225
+>> And the thinking here is that I can
+run a query against Google Books,
+
+472
+00:26:52,225 --> 00:26:56,060
+get a full text search, get some results
+back, find out which of those items
+
+473
+00:26:56,060 --> 00:27:01,180
+actually exist in Hollis,
+the library system,
+
+474
+00:27:01,180 --> 00:27:03,200
+and then give me links
+back to those items.
+
+475
+00:27:03,200 --> 00:27:12,730
+So if I search for, it was
+a dark and stormy night, I
+
+476
+00:27:12,730 --> 00:27:16,210
+get back a bunch of results
+from Google, and then one result
+
+477
+00:27:16,210 --> 00:27:19,460
+which is A Wrinkle in Time.
+
+478
+00:27:19,460 --> 00:27:29,330
+And these are links to books that exist
+within the Harvard Library system.
+
+479
+00:27:29,330 --> 00:27:32,160
+>> So I guess the point here is not
+so much that this may or may not
+
+480
+00:27:32,160 --> 00:27:34,118
+be the way that you want
+to search the library,
+
+481
+00:27:34,118 --> 00:27:38,310
+but it is a completely different
+way that was not available to you
+
+482
+00:27:38,310 --> 00:27:42,884
+before, like you had no way of doing
+full text searches on books that even
+
+483
+00:27:42,884 --> 00:27:44,550
+were part of the Harvard Library system.
+
+484
+00:27:44,550 --> 00:27:46,870
+So now this is a way
+that you can do that.
+
+485
+00:27:46,870 --> 00:27:51,930
+And you can display them in
+whatever format you want.
+
+486
+00:27:51,930 --> 00:27:55,990
+So the point here is, basically,
+we're opening up new ways for people
+
+487
+00:27:55,990 --> 00:27:59,080
+to work with the data.
+
+488
+00:27:59,080 --> 00:28:07,925
+>> Another piece of library cloud is that
+it helps expose some of the usage data
+
+489
+00:28:07,925 --> 00:28:08,800
+that the library has.
+
+490
+00:28:08,800 --> 00:28:12,630
+So if you go to the library,
+and you're looking for books,
+
+491
+00:28:12,630 --> 00:28:15,770
+you don't necessarily
+actually have an idea of,
+
+492
+00:28:15,770 --> 00:28:19,080
+for all the items in a
+particular subject, what
+
+493
+00:28:19,080 --> 00:28:21,200
+are people in the
+community, whether it's
+
+494
+00:28:21,200 --> 00:28:24,890
+defined as Harvard or the
+country or your class,
+
+495
+00:28:24,890 --> 00:28:26,421
+what have they found most useful?
+
+496
+00:28:26,421 --> 00:28:28,920
+And the library actually has a
+ton of information about what
+
+497
+00:28:28,920 --> 00:28:32,999
+is most useful because if a lot
+of people are checking out a book,
+
+498
+00:28:32,999 --> 00:28:34,040
+that tells you something.
+
+499
+00:28:34,040 --> 00:28:36,498
+There must have been some reason
+they want to check it out.
+
+500
+00:28:36,498 --> 00:28:38,270
+A lot of people put it on reserve.
+
+501
+00:28:38,270 --> 00:28:42,520
+>> If it's on the reserve list for a lot
+of classes, that tells you something.
+
+502
+00:28:42,520 --> 00:28:45,960
+If faculty members are checking it
+out a lot and undergraduates are not,
+
+503
+00:28:45,960 --> 00:28:47,200
+that tells me something.
+
+504
+00:28:47,200 --> 00:28:49,280
+Vice versa, that also
+tells you something.
+
+505
+00:28:49,280 --> 00:28:54,680
+So it would be really interesting to
+put that information out there and let
+
+506
+00:28:54,680 --> 00:28:59,969
+people use it to help them find
+works within the library system.
+
+507
+00:28:59,969 --> 00:29:02,260
+The flip side of this is
+there are some serious privacy
+
+508
+00:29:02,260 --> 00:29:07,854
+concerns because one of the
+core tenets of the library
+
+509
+00:29:07,854 --> 00:29:10,770
+is we're not going to be telling
+people what other people are reading.
+
+510
+00:29:10,770 --> 00:29:17,360
+And even if you are saying this
+book was checked out four times
+
+511
+00:29:17,360 --> 00:29:20,070
+in a particular month,
+that could be used
+
+512
+00:29:20,070 --> 00:29:25,252
+to link back to a particular
+person by de-anonymizing data
+
+513
+00:29:25,252 --> 00:29:26,710
+and finding out who checked it out.
+
+514
+00:29:26,710 --> 00:29:30,792
+So the way that we can avoid--
+
+515
+00:29:30,792 --> 00:29:33,750
+The way that we can try to extract
+some signal from all the information
+
+516
+00:29:33,750 --> 00:29:36,740
+without infringing
+anybody's privacy concerns
+
+517
+00:29:36,740 --> 00:29:42,150
+is essentially we look at
+10 years of usage data,--
+
+518
+00:29:42,150 --> 00:29:43,930
+>> So it's over a long period of time.
+
+519
+00:29:43,930 --> 00:29:50,639
+>> --and say, OK, let's see how
+many times this work was used,
+
+520
+00:29:50,639 --> 00:29:52,930
+and by who over this period
+of time, and then basically
+
+521
+00:29:52,930 --> 00:29:56,300
+give back a number, which we call
+a stack score, which basically
+
+522
+00:29:56,300 --> 00:29:59,910
+represents how much it's been used.
+
+523
+00:29:59,910 --> 00:30:01,084
+And that number--
+
+524
+00:30:01,084 --> 00:30:03,250
+A lot of different calculations
+go into that number.
+
+525
+00:30:03,250 --> 00:30:05,150
+--but it's a very rough
+metric that gives you
+
+526
+00:30:05,150 --> 00:30:11,300
+some idea of how the
+community may value that work.
+
+527
+00:30:11,300 --> 00:30:16,772
+>> And so another sort of even
+more fleshed out application
+
+528
+00:30:16,772 --> 00:30:18,480
+that takes advantage
+of this is something
+
+529
+00:30:18,480 --> 00:30:24,000
+called Stacklife, which is actually
+available through the main Harvard
+
+530
+00:30:24,000 --> 00:30:24,880
+Library portal.
+
+531
+00:30:24,880 --> 00:30:26,700
+So you go to library.harvard.edu.
+
+532
+00:30:26,700 --> 00:30:29,360
+You'll see a number of different
+ways of searching the library.
+
+533
+00:30:29,360 --> 00:30:32,300
+And one of them is called Stacklife.
+
+534
+00:30:32,300 --> 00:30:38,980
+>> And this is an application that
+browses the content of the library,
+
+535
+00:30:38,980 --> 00:30:43,490
+but is completely built
+on top of these APIs.
+
+536
+00:30:43,490 --> 00:30:46,910
+So there's no special stuff
+going on behind the scenes.
+
+537
+00:30:46,910 --> 00:30:49,570
+There's no access to
+data that you don't have.
+
+538
+00:30:49,570 --> 00:30:54,090
+It's using the APIs to provide you
+with a completely different browsing
+
+539
+00:30:54,090 --> 00:30:55,480
+experience.
+
+540
+00:30:55,480 --> 00:30:58,570
+>> So if I search for Alice
+in Wonderland in this case,
+
+541
+00:30:58,570 --> 00:31:02,600
+I get a result that looks like
+this, which is pretty much--
+
+542
+00:31:02,600 --> 00:31:05,430
+
+543
+00:31:05,430 --> 00:31:10,870
+>> It's very similar to any other search
+you might do, except in this case
+
+544
+00:31:10,870 --> 00:31:15,730
+we're ranking the items by
+stackscore, which gives you
+
+545
+00:31:15,730 --> 00:31:19,850
+some idea of how popular these
+items were within the community.
+
+546
+00:31:19,850 --> 00:31:25,610
+And so clearly, Alice in Wonderland
+by Walt Disney is highly popular.
+
+547
+00:31:25,610 --> 00:31:36,570
+But you can also see the top four
+here are ones you might not actually--
+
+548
+00:31:36,570 --> 00:31:39,220
+>> Things that are highly used,
+but you may not immediately
+
+549
+00:31:39,220 --> 00:31:41,240
+connect with Alice in Wonderland.
+
+550
+00:31:41,240 --> 00:31:44,650
+So our old friend The
+Annotated Alice is here.
+
+551
+00:31:44,650 --> 00:31:46,350
+So I can take a look at it.
+
+552
+00:31:46,350 --> 00:31:52,010
+And now what I'm looking
+at is basically a set of--
+
+553
+00:31:52,010 --> 00:31:53,760
+I can have The Annotated
+Alice right here.
+
+554
+00:31:53,760 --> 00:31:56,700
+I have information about it.
+
+555
+00:31:56,700 --> 00:32:00,230
+And I also have a stackscore
+of, in this case, 26.
+
+556
+00:32:00,230 --> 00:32:03,169
+And this tells me sort of roughly
+how we got to this stackscore,
+
+557
+00:32:03,169 --> 00:32:05,835
+like who checked it out, like how
+many times it was checked out,
+
+558
+00:32:05,835 --> 00:32:08,440
+like faculty or undergrads, how
+many copies the library has,
+
+559
+00:32:08,440 --> 00:32:11,300
+and so on and so forth.
+
+560
+00:32:11,300 --> 00:32:16,460
+>> And you can also, interesting enough
+here, browse the stacks virtually.
+
+561
+00:32:16,460 --> 00:32:19,550
+So the data here, this
+is showing you sort
+
+562
+00:32:19,550 --> 00:32:23,547
+of a virtual representation
+of what the shelf might
+
+563
+00:32:23,547 --> 00:32:25,880
+look like if you were to take
+all the library's holdings
+
+564
+00:32:25,880 --> 00:32:28,940
+and put them together
+on one infinite shelf.
+
+565
+00:32:28,940 --> 00:32:30,990
+And the nice thing is that we can--
+
+566
+00:32:30,990 --> 00:32:33,380
+>> First of all, the
+metadata about these books
+
+567
+00:32:33,380 --> 00:32:35,627
+often tells you when it was published.
+
+568
+00:32:35,627 --> 00:32:37,085
+It tells you how many pages it has.
+
+569
+00:32:37,085 --> 00:32:38,459
+It might tell you the dimensions.
+
+570
+00:32:38,459 --> 00:32:42,930
+So you can see that's reflected here
+in terms of the size of the books.
+
+571
+00:32:42,930 --> 00:32:46,740
+>> And then we can use the
+stack score to highlight
+
+572
+00:32:46,740 --> 00:32:49,170
+the books that have higher stack scores.
+
+573
+00:32:49,170 --> 00:32:54,930
+So if it's darker, it means that,
+presumably, it is used more frequently.
+
+574
+00:32:54,930 --> 00:32:57,040
+So in this case, I'm
+going to guess that this
+
+575
+00:32:57,040 --> 00:33:03,226
+is the version of Alice in Wonderland
+that is very commonly used and most
+
+576
+00:33:03,226 --> 00:33:05,100
+accessed, the library
+has the most copies of.
+
+577
+00:33:05,100 --> 00:33:06,975
+So if you're looking
+for Alice in Wonderland,
+
+578
+00:33:06,975 --> 00:33:10,220
+this might be a good place to start.
+
+579
+00:33:10,220 --> 00:33:13,500
+>> And then here you can also link out
+to, say, Amazon to purchase the book,
+
+580
+00:33:13,500 --> 00:33:15,182
+and so on and so forth.
+
+581
+00:33:15,182 --> 00:33:17,140
+The point here, again,
+is not so much that this
+
+582
+00:33:17,140 --> 00:33:25,030
+is the best way to browse the library
+or the right tool for every occasion.
+
+583
+00:33:25,030 --> 00:33:28,400
+But it's another way of doing it.
+
+584
+00:33:28,400 --> 00:33:31,359
+And by making the data
+available through an API, which
+
+585
+00:33:31,359 --> 00:33:34,650
+is made of very simple building blocks,
+which allows you to search the content,
+
+586
+00:33:34,650 --> 00:33:39,420
+you can build something
+like this that can
+
+587
+00:33:39,420 --> 00:33:41,520
+be extraordinarily
+valuable to some people.
+
+588
+00:33:41,520 --> 00:33:46,640
+
+589
+00:33:46,640 --> 00:33:51,860
+>> So that's sort of, as much as I want
+to say really about what the API is
+
+590
+00:33:51,860 --> 00:33:56,070
+and what it exposes, there's a whole
+bunch of stuff behind the scenes, which
+
+591
+00:33:56,070 --> 00:33:59,480
+I'm just going to touch on briefly
+just because it sort of comes at this
+
+592
+00:33:59,480 --> 00:34:03,720
+from a completely different angle in
+terms of how does something like this
+
+593
+00:34:03,720 --> 00:34:04,580
+get put into place?
+
+594
+00:34:04,580 --> 00:34:10,820
+>> So an API is a standard
+interface to all of this content.
+
+595
+00:34:10,820 --> 00:34:13,820
+But to get it there, the
+first thing we had to do
+
+596
+00:34:13,820 --> 00:34:17,260
+was pull together information
+of books and images
+
+597
+00:34:17,260 --> 00:34:21,580
+and the finding aids, the collection
+document from various Harvard systems.
+
+598
+00:34:21,580 --> 00:34:23,929
+Aleph, VIA, and OASIS are
+the names of the systems.
+
+599
+00:34:23,929 --> 00:34:28,820
+And they essentially go into a
+pipeline, a processing pipeline.
+
+600
+00:34:28,820 --> 00:34:33,230
+>> So first of all, we get export
+files from all of these systems.
+
+601
+00:34:33,230 --> 00:34:35,130
+We split them up into individual items.
+
+602
+00:34:35,130 --> 00:34:39,360
+So we have a file, which is a gigabyte,
+which has a million records in it.
+
+603
+00:34:39,360 --> 00:34:42,290
+So we split it up into individual items.
+
+604
+00:34:42,290 --> 00:34:45,374
+Then, for each item, we convert it
+into MODS, because some of these
+
+605
+00:34:45,374 --> 00:34:47,040
+are natively MODS, some of them are not.
+
+606
+00:34:47,040 --> 00:34:49,204
+So we get them all to
+be in the same format.
+
+607
+00:34:49,204 --> 00:34:51,120
+Then there are various
+enrichment steps, where
+
+608
+00:34:51,120 --> 00:34:55,969
+we add more information to the data
+than was available in the library.
+
+609
+00:34:55,969 --> 00:34:59,750
+So we need to add, first of all
+we have what libraries hold it.
+
+610
+00:34:59,750 --> 00:35:02,250
+We go through a step of
+calculating the stackscore.
+
+611
+00:35:02,250 --> 00:35:07,112
+We go through another step of
+adding more metadata in terms
+
+612
+00:35:07,112 --> 00:35:10,730
+of what collections people
+might have added this--
+
+613
+00:35:10,730 --> 00:35:12,532
+>> People are creating
+collections of items.
+
+614
+00:35:12,532 --> 00:35:13,990
+What collections does it belong to?
+
+615
+00:35:13,990 --> 00:35:17,220
+How have people tagged
+this content in the past?
+
+616
+00:35:17,220 --> 00:35:20,750
+Then you filter out, and you restrict
+the records because, as I mentioned,
+
+617
+00:35:20,750 --> 00:35:24,120
+there's some records that, because of
+copyright reasons, we can't display.
+
+618
+00:35:24,120 --> 00:35:26,700
+And then we load them
+into something called
+
+619
+00:35:26,700 --> 00:35:31,680
+Solr, which is not a misspelling, but
+is the name of a piece of software
+
+620
+00:35:31,680 --> 00:35:35,710
+that does search indexing, which
+drives all the search behind the API.
+
+621
+00:35:35,710 --> 00:35:40,110
+And then it becomes available to
+the API, and people can use it.
+
+622
+00:35:40,110 --> 00:35:44,640
+>> So this is like a fairly
+straightforward process.
+
+623
+00:35:44,640 --> 00:35:47,230
+One of the interesting
+things about it is
+
+624
+00:35:47,230 --> 00:35:50,990
+that we are dealing
+with 13 million records
+
+625
+00:35:50,990 --> 00:35:53,820
+and we are going to be dealing or more.
+
+626
+00:35:53,820 --> 00:36:01,260
+And we want to be able to handle
+these in a relatively speedy fashion.
+
+627
+00:36:01,260 --> 00:36:03,630
+It takes a long time to
+process 13 million records.
+
+628
+00:36:03,630 --> 00:36:09,529
+>> So how this pipeline is
+set up is that you can--
+
+629
+00:36:09,529 --> 00:36:12,070
+I guess the advantage of the
+pipeline, the problem that we're
+
+630
+00:36:12,070 --> 00:36:15,580
+trying to solve here, is that
+all the transformations, all
+
+631
+00:36:15,580 --> 00:36:18,729
+these steps in this
+pipeline are separable.
+
+632
+00:36:18,729 --> 00:36:19,645
+There's no dependency.
+
+633
+00:36:19,645 --> 00:36:22,146
+If you're processing
+a record of one book,
+
+634
+00:36:22,146 --> 00:36:24,270
+there's no dependency in
+that between another book.
+
+635
+00:36:24,270 --> 00:36:27,760
+>> So what we can do is basically,
+at each step in the pipeline,
+
+636
+00:36:27,760 --> 00:36:30,470
+we put it into a queue in the cloud.
+
+637
+00:36:30,470 --> 00:36:32,250
+I happened to be on Amazon Web Services.
+
+638
+00:36:32,250 --> 00:36:35,140
+So there's a list of,
+say, 10,000 items that
+
+639
+00:36:35,140 --> 00:36:38,100
+need to be normalized and
+converted to MODS format.
+
+640
+00:36:38,100 --> 00:36:41,620
+And we spin up as many servers
+as we want, maybe 10 servers.
+
+641
+00:36:41,620 --> 00:36:44,860
+And each of those servers just
+sits there, looks in that queue,
+
+642
+00:36:44,860 --> 00:36:46,730
+sees that there's one that needs to
+be processed, pulls it off the queue,
+
+643
+00:36:46,730 --> 00:36:48,740
+processes it, and sticks
+it on the next queue.
+
+644
+00:36:48,740 --> 00:36:54,200
+>> And so what that allows us
+to do is apply, essentially,
+
+645
+00:36:54,200 --> 00:36:58,110
+as much hardware as we want to this
+problem for a very short period of time
+
+646
+00:36:58,110 --> 00:37:02,970
+to process the data as quickly as
+possible, which is something that only,
+
+647
+00:37:02,970 --> 00:37:08,220
+now in the world of cloud computing
+we can provision servers essentially
+
+648
+00:37:08,220 --> 00:37:09,890
+instantaneously, is that useful.
+
+649
+00:37:09,890 --> 00:37:12,260
+So we don't have to have a
+giant server sitting around
+
+650
+00:37:12,260 --> 00:37:16,700
+all the time to do the processing
+that might happen just once a week.
+
+651
+00:37:16,700 --> 00:37:21,440
+>> So that is mostly it.
+
+652
+00:37:21,440 --> 00:37:27,590
+There's documentation available
+for the Library Cloud Item API
+
+653
+00:37:27,590 --> 00:37:31,960
+at this URL, which will
+be available later.
+
+654
+00:37:31,960 --> 00:37:36,730
+And please go take a look at
+it to see if there's anything,
+
+655
+00:37:36,730 --> 00:37:37,579
+you have any ideas.
+
+656
+00:37:37,579 --> 00:37:38,120
+Play with it.
+
+657
+00:37:38,120 --> 00:37:38,830
+Fool around.
+
+658
+00:37:38,830 --> 00:37:42,800
+And hopefully you can come
+up with something great.
+
+659
+00:37:42,800 --> 00:37:44,740
+Thank you.
+
+660
+00:37:44,740 --> 00:37:45,899

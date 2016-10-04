@@ -1,0 +1,1308 @@
+1
+00:00:00,000 --> 00:00:05,640
+
+2
+00:00:05,640 --> 00:00:06,830
+>> DOUG LLOYD: All right GDB.
+
+3
+00:00:06,830 --> 00:00:08,480
+What is it exactly?
+
+4
+00:00:08,480 --> 00:00:11,310
+So GDB, which stands
+for the GNU Debugger,
+
+5
+00:00:11,310 --> 00:00:15,040
+is a really awesome tool that we can
+use to help us debug our programs,
+
+6
+00:00:15,040 --> 00:00:18,210
+or find out where things are
+going wrong in our programs.
+
+7
+00:00:18,210 --> 00:00:22,590
+GDB is amazingly powerful, but
+the output and interaction with it
+
+8
+00:00:22,590 --> 00:00:23,830
+can be a little bit cryptic.
+
+9
+00:00:23,830 --> 00:00:28,210
+It's usually a command line tool, and
+it can throw a lot of messages at you.
+
+10
+00:00:28,210 --> 00:00:31,144
+And it can kind of hard to
+parse exactly what's going on.
+
+11
+00:00:31,144 --> 00:00:33,560
+Fortunately, we've taken steps
+to fix this problem for you
+
+12
+00:00:33,560 --> 00:00:36,281
+as you work through CS50.
+
+13
+00:00:36,281 --> 00:00:39,030
+If you aren't using the graphical
+debugger, which my colleague Dan
+
+14
+00:00:39,030 --> 00:00:41,570
+Armandarse has spoken quite
+a bit about in a video that
+
+15
+00:00:41,570 --> 00:00:44,740
+should be over here
+right now, you might need
+
+16
+00:00:44,740 --> 00:00:48,270
+to use these command line
+tools to work with GDB.
+
+17
+00:00:48,270 --> 00:00:51,250
+If you're working in the CS50
+IDE, you don't need to do this.
+
+18
+00:00:51,250 --> 00:00:53,550
+But if you're not
+working in the CS50 IDE,
+
+19
+00:00:53,550 --> 00:00:55,750
+perhaps using a version
+of CS50 Appliance,
+
+20
+00:00:55,750 --> 00:00:58,860
+or another Linux operating
+system with GDB installed on it,
+
+21
+00:00:58,860 --> 00:01:00,980
+you may need to use
+these command line tools.
+
+22
+00:01:00,980 --> 00:01:02,860
+>> And since you might
+have to do that, it's
+
+23
+00:01:02,860 --> 00:01:06,280
+useful just to understand how
+GDB works from the command line.
+
+24
+00:01:06,280 --> 00:01:09,650
+But again, if you're
+using the CS50 IDE, you
+
+25
+00:01:09,650 --> 00:01:15,400
+can use the graphical debugger
+that is built into the IDE.
+
+26
+00:01:15,400 --> 00:01:18,750
+So to get things going with
+GDB, to start the debugging
+
+27
+00:01:18,750 --> 00:01:21,220
+process of a particular
+program, all you need do
+
+28
+00:01:21,220 --> 00:01:23,810
+is type GDB followed
+by the program name.
+
+29
+00:01:23,810 --> 00:01:28,620
+So for example, if your program is
+hello, you would type GDB hello.
+
+30
+00:01:28,620 --> 00:01:31,210
+>> When you do that, you're going
+to pull up the GDB environment.
+
+31
+00:01:31,210 --> 00:01:33,800
+Your prompt will change, and
+instead of being what it usually
+
+32
+00:01:33,800 --> 00:01:35,841
+is when you type things
+at the command line-- ls,
+
+33
+00:01:35,841 --> 00:01:38,115
+cd-- all of your typical
+Linux commands, your prompt
+
+34
+00:01:38,115 --> 00:01:42,200
+will change to, probably, something
+like parentheses GDB parentheses.
+
+35
+00:01:42,200 --> 00:01:46,630
+That's your new GDB prompt, because
+you're inside the GDB environment.
+
+36
+00:01:46,630 --> 00:01:49,830
+Once inside of that environment,
+there's two major commands
+
+37
+00:01:49,830 --> 00:01:52,290
+that you'll probably use
+in the following order.
+
+38
+00:01:52,290 --> 00:01:55,200
+>> The first is b, which
+is short for break.
+
+39
+00:01:55,200 --> 00:01:58,690
+And after you type b, you typically
+type the name of a function,
+
+40
+00:01:58,690 --> 00:02:01,040
+or if you happen to know
+around what line number
+
+41
+00:02:01,040 --> 00:02:04,100
+your program is starting
+to behave a little weird,
+
+42
+00:02:04,100 --> 00:02:06,370
+you can type a line
+number there as well.
+
+43
+00:02:06,370 --> 00:02:09,660
+What b, or break, does
+is it allows your program
+
+44
+00:02:09,660 --> 00:02:13,270
+to run up until a certain point,
+namely, the name of the function
+
+45
+00:02:13,270 --> 00:02:15,880
+that you specify or the line
+number that you specify.
+
+46
+00:02:15,880 --> 00:02:18,590
+>> And at that point, it
+will freeze execution.
+
+47
+00:02:18,590 --> 00:02:21,670
+This is a really good thing, because
+once execution has been frozen,
+
+48
+00:02:21,670 --> 00:02:25,214
+you can begin to very slowly
+step through your program.
+
+49
+00:02:25,214 --> 00:02:28,130
+Typically, if you've been running
+your programs, they're pretty short.
+
+50
+00:02:28,130 --> 00:02:31,250
+Usually, you type dot slash whatever
+the name of your program is, hit Enter,
+
+51
+00:02:31,250 --> 00:02:33,470
+and before you can blink, your
+program is already finished.
+
+52
+00:02:33,470 --> 00:02:36,620
+It's not really a lot of time to try
+and figure out what's going wrong.
+
+53
+00:02:36,620 --> 00:02:40,920
+So it really to be able to slow things
+down by setting a break point with b,
+
+54
+00:02:40,920 --> 00:02:43,040
+and then stepping in.
+
+55
+00:02:43,040 --> 00:02:46,169
+>> Then once you've set your break
+point, you can run the program.
+
+56
+00:02:46,169 --> 00:02:47,960
+And if you have any
+command line arguments,
+
+57
+00:02:47,960 --> 00:02:51,610
+you specify them here, not when
+you type GDB your program name.
+
+58
+00:02:51,610 --> 00:02:55,980
+You specify all the command line
+arguments by taking r, or run,
+
+59
+00:02:55,980 --> 00:03:00,270
+and then whatever command line arguments
+you need inside of your program.
+
+60
+00:03:00,270 --> 00:03:03,510
+There are a number of other really
+important and useful commands
+
+61
+00:03:03,510 --> 00:03:04,970
+inside of the GDP environment.
+
+62
+00:03:04,970 --> 00:03:07,540
+So let me just quickly
+go over some of them.
+
+63
+00:03:07,540 --> 00:03:11,320
+>> The first is n, which is short for next,
+and you can type next instead of n,
+
+64
+00:03:11,320 --> 00:03:12,304
+both would work.
+
+65
+00:03:12,304 --> 00:03:13,470
+And it's just the shorthand.
+
+66
+00:03:13,470 --> 00:03:17,540
+And as you've probably already gotten
+used to, being able to type things
+
+67
+00:03:17,540 --> 00:03:20,520
+shorter is generally better.
+
+68
+00:03:20,520 --> 00:03:24,100
+And what it will do is it'll
+step forward one block of code.
+
+69
+00:03:24,100 --> 00:03:26,170
+So it'll move forward
+until a function call.
+
+70
+00:03:26,170 --> 00:03:28,350
+And then instead of
+diving into that function
+
+71
+00:03:28,350 --> 00:03:33,130
+and going through all of that functions
+code, it will just have the function.
+
+72
+00:03:33,130 --> 00:03:34,400
+>> The function will be called.
+
+73
+00:03:34,400 --> 00:03:35,733
+It will do whatever its work is.
+
+74
+00:03:35,733 --> 00:03:38,870
+It will return a value to
+the function that called it.
+
+75
+00:03:38,870 --> 00:03:42,490
+And then you'll move on to the
+next line of that calling function.
+
+76
+00:03:42,490 --> 00:03:44,555
+If you want to step
+inside of the function,
+
+77
+00:03:44,555 --> 00:03:46,430
+instead of just having
+it execute, especially
+
+78
+00:03:46,430 --> 00:03:50,004
+if you think that the problem
+might lie inside of that function,
+
+79
+00:03:50,004 --> 00:03:52,670
+you could, of course, set a break
+point inside of that function.
+
+80
+00:03:52,670 --> 00:03:57,820
+Or if you're already running, you can
+use s to step forward one line of code.
+
+81
+00:03:57,820 --> 00:04:01,170
+>> So this will step in
+and dive into functions,
+
+82
+00:04:01,170 --> 00:04:04,750
+instead of just have the execute
+and continuing on in the function
+
+83
+00:04:04,750 --> 00:04:07,380
+that you're in for debugging.
+
+84
+00:04:07,380 --> 00:04:09,870
+If you ever want to know
+the value of a variable,
+
+85
+00:04:09,870 --> 00:04:12,507
+you can type p, or Print,
+and then the variable name.
+
+86
+00:04:12,507 --> 00:04:15,090
+And that will print out to you,
+inside of the GDB environment,
+
+87
+00:04:15,090 --> 00:04:19,110
+the name of the variable, that you--
+excuse me-- the value of the variable
+
+88
+00:04:19,110 --> 00:04:20,064
+that you've named.
+
+89
+00:04:20,064 --> 00:04:23,230
+If you want to know the values of every
+local variable accessible from where
+
+90
+00:04:23,230 --> 00:04:25,970
+you currently are in your
+program, you can type info locals.
+
+91
+00:04:25,970 --> 00:04:28,332
+It's a lot faster than
+typing p and then whatever,
+
+92
+00:04:28,332 --> 00:04:30,540
+listing out all of the
+variables that you know exist.
+
+93
+00:04:30,540 --> 00:04:34,370
+You can type info locals, and it
+will print out everything for you.
+
+94
+00:04:34,370 --> 00:04:37,770
+Next up is bt, which is
+short for Back Trace.
+
+95
+00:04:37,770 --> 00:04:41,680
+Now, generally,
+particularly early in CS50,
+
+96
+00:04:41,680 --> 00:04:44,450
+you won't really have occasion
+to use bt, or Back Trace,
+
+97
+00:04:44,450 --> 00:04:47,860
+because you're not having functions
+that call other functions.
+
+98
+00:04:47,860 --> 00:04:50,450
+>> You might have main call a
+function, but that's probably it.
+
+99
+00:04:50,450 --> 00:04:53,199
+You don't have that other function
+calling another function, which
+
+100
+00:04:53,199 --> 00:04:54,880
+calls another function, and so on.
+
+101
+00:04:54,880 --> 00:04:57,550
+But as your programs get more
+complex, and particularly
+
+102
+00:04:57,550 --> 00:05:00,290
+when you begin working
+with recursion, back trace
+
+103
+00:05:00,290 --> 00:05:05,150
+can be a really useful way to let you
+kind of get some context for where
+
+104
+00:05:05,150 --> 00:05:06,460
+I am in my program.
+
+105
+00:05:06,460 --> 00:05:10,590
+So say you've written your code, and
+you know that main calls a function
+
+106
+00:05:10,590 --> 00:05:14,720
+f, which calls a function
+g, which calls a function h.
+
+107
+00:05:14,720 --> 00:05:17,650
+So we have several layers
+of nesting going on here.
+
+108
+00:05:17,650 --> 00:05:19,440
+>> If you're inside of
+your GDB environment,
+
+109
+00:05:19,440 --> 00:05:21,640
+and you know your inside
+of h, but you forget
+
+110
+00:05:21,640 --> 00:05:27,210
+about what got you to where you
+are-- you can type bt, or back trace,
+
+111
+00:05:27,210 --> 00:05:32,370
+and it will print out h, g, f main,
+alongside some other information, which
+
+112
+00:05:32,370 --> 00:05:35,984
+gives you a clue that, OK main
+called f, f called g, g called h,
+
+113
+00:05:35,984 --> 00:05:37,900
+and that's where I
+currently am in my program.
+
+114
+00:05:37,900 --> 00:05:41,380
+So it can be really useful,
+especially as the cryptic-ness of GDB
+
+115
+00:05:41,380 --> 00:05:45,667
+becomes a little overwhelming, to
+find out exactly where things are.
+
+116
+00:05:45,667 --> 00:05:48,500
+Finally, when your program is done,
+or when you're done debugging it
+
+117
+00:05:48,500 --> 00:05:50,125
+and you want to step away
+from the GDB environment,
+
+118
+00:05:50,125 --> 00:05:51,940
+it helps to know how to get out of it.
+
+119
+00:05:51,940 --> 00:05:55,500
+You can type q, or Quit, to get out.
+
+120
+00:05:55,500 --> 00:05:59,220
+Now, before today's video
+I prepared a buggy program
+
+121
+00:05:59,220 --> 00:06:03,900
+called buggy1, which I compiled
+from a file known as buggy1.c.
+
+122
+00:06:03,900 --> 00:06:06,500
+As you might expect, this
+program is in fact buggy.
+
+123
+00:06:06,500 --> 00:06:08,990
+Something goes wrong
+when I try and run it.
+
+124
+00:06:08,990 --> 00:06:13,014
+Now, unfortunately, I inadvertently
+deleted my buggy1.c file,
+
+125
+00:06:13,014 --> 00:06:15,930
+so in order for me to figure out
+what's going wrong with this program,
+
+126
+00:06:15,930 --> 00:06:18,770
+I'm going to have to use
+GDB kind of blindly, trying
+
+127
+00:06:18,770 --> 00:06:22,372
+to navigate through this program to
+figure out exactly what's going wrong.
+
+128
+00:06:22,372 --> 00:06:24,580
+But using just the tools
+we've already learned about,
+
+129
+00:06:24,580 --> 00:06:27,700
+we can pretty much figure
+out exactly what it is.
+
+130
+00:06:27,700 --> 00:06:30,740
+So let's head over to
+CS50 IDE and have a look.
+
+131
+00:06:30,740 --> 00:06:33,155
+OK, so we're here in my
+CS50 IDE environment,
+
+132
+00:06:33,155 --> 00:06:35,697
+and I'll zoom in a little bit
+so you can see a little more.
+
+133
+00:06:35,697 --> 00:06:38,530
+In my terminal window, if I list
+the contents of my current director
+
+134
+00:06:38,530 --> 00:06:41,250
+with ls, we'll see that I
+have a couple of source files
+
+135
+00:06:41,250 --> 00:06:44,982
+here, including the
+previously discussed buggy1.
+
+136
+00:06:44,982 --> 00:06:46,940
+What exactly goes on when
+I try and run buggy1.
+
+137
+00:06:46,940 --> 00:06:47,773
+Well let's find out.
+
+138
+00:06:47,773 --> 00:06:52,510
+I type dot slash,
+buggy, and I hit Enter.
+
+139
+00:06:52,510 --> 00:06:53,670
+>> Segmentation faults.
+
+140
+00:06:53,670 --> 00:06:55,000
+That's not good.
+
+141
+00:06:55,000 --> 00:06:57,180
+If you recall, a
+segmentation fault typically
+
+142
+00:06:57,180 --> 00:07:01,540
+occurs when we access memory
+that we're not allowed to touch.
+
+143
+00:07:01,540 --> 00:07:03,820
+We've somehow reached
+outside of the bounds
+
+144
+00:07:03,820 --> 00:07:05,995
+of what the program, the
+compiler, has given us.
+
+145
+00:07:05,995 --> 00:07:08,310
+And so already that's a
+clue to keep in the toolbox
+
+146
+00:07:08,310 --> 00:07:10,660
+as we begin the debugging process.
+
+147
+00:07:10,660 --> 00:07:13,620
+Something has gone a little wrong here.
+
+148
+00:07:13,620 --> 00:07:15,935
+>> All right, so let's start
+up the GDB environment
+
+149
+00:07:15,935 --> 00:07:19,030
+and see if we can figure out
+what exactly the problem is.
+
+150
+00:07:19,030 --> 00:07:21,674
+I'm going to clear my screen,
+and I'm going to type GDB
+
+151
+00:07:21,674 --> 00:07:24,340
+again, to enter the GDB environment,
+and the name of the program
+
+152
+00:07:24,340 --> 00:07:27,450
+that I want to debug, buggy1.
+
+153
+00:07:27,450 --> 00:07:30,182
+We get a little message, reading
+symbols from buggy1, done.
+
+154
+00:07:30,182 --> 00:07:32,390
+All that means is it pulled
+together all of the code,
+
+155
+00:07:32,390 --> 00:07:35,570
+and now it's been loaded into
+GDB, and it's ready to go.
+
+156
+00:07:35,570 --> 00:07:37,140
+>> Now, what do I want to do?
+
+157
+00:07:37,140 --> 00:07:39,130
+Do you recall what the
+first step typically is
+
+158
+00:07:39,130 --> 00:07:42,540
+after I'm inside of this environment?
+
+159
+00:07:42,540 --> 00:07:44,540
+Hopefully, you said set
+a break point, because
+
+160
+00:07:44,540 --> 00:07:46,240
+in fact that is what I want to do.
+
+161
+00:07:46,240 --> 00:07:47,990
+Now, I don't have the
+source code for this
+
+162
+00:07:47,990 --> 00:07:50,948
+in front of me, which is probably
+not the typical use case, by the way.
+
+163
+00:07:50,948 --> 00:07:52,055
+You probably will.
+
+164
+00:07:52,055 --> 00:07:52,680
+So that's good.
+
+165
+00:07:52,680 --> 00:07:55,790
+But assuming you don't, what's
+the one function that you know
+
+166
+00:07:55,790 --> 00:07:58,880
+exists in every single C program?
+
+167
+00:07:58,880 --> 00:08:04,420
+No matter how big or how complicated
+it is, this function definitely exists.
+
+168
+00:08:04,420 --> 00:08:05,440
+Main, right?
+
+169
+00:08:05,440 --> 00:08:08,870
+>> So failing all else, we can
+set a break point at main.
+
+170
+00:08:08,870 --> 00:08:12,200
+And again, I could just type
+break main, instead of b.
+
+171
+00:08:12,200 --> 00:08:14,650
+And if you're curious, if you
+ever type out a long command
+
+172
+00:08:14,650 --> 00:08:16,800
+and then realize that you
+typed the wrong thing,
+
+173
+00:08:16,800 --> 00:08:18,770
+and you want to get rid
+of all as I just did,
+
+174
+00:08:18,770 --> 00:08:22,029
+you can take Control U, which will
+delete everything and bring you back
+
+175
+00:08:22,029 --> 00:08:23,570
+to the beginning of the cursor lines.
+
+176
+00:08:23,570 --> 00:08:26,569
+A lot faster than just hold down the
+delete, or hitting it a bunch times
+
+177
+00:08:26,569 --> 00:08:27,080
+over.
+
+178
+00:08:27,080 --> 00:08:28,740
+>> So we'll set a break point at main.
+
+179
+00:08:28,740 --> 00:08:32,970
+And as you can see, it says we've
+set a break point at file buggy1.c,
+
+180
+00:08:32,970 --> 00:08:36,330
+and apparently the first line
+of code of main is line seven.
+
+181
+00:08:36,330 --> 00:08:38,080
+Again, we don't have
+the source file here,
+
+182
+00:08:38,080 --> 00:08:40,429
+but I'll assume that it's
+telling me the truth.
+
+183
+00:08:40,429 --> 00:08:44,510
+And then, I'm just trying
+and run the program, r.
+
+184
+00:08:44,510 --> 00:08:45,360
+Starting program.
+
+185
+00:08:45,360 --> 00:08:48,160
+All right, so this message
+is a little cryptic.
+
+186
+00:08:48,160 --> 00:08:50,160
+But basically what's
+happening here is it's just
+
+187
+00:08:50,160 --> 00:08:53,350
+telling me I've hit my break
+point, break point number 1.
+
+188
+00:08:53,350 --> 00:08:55,877
+>> And then, that line of code,
+no such file or directory.
+
+189
+00:08:55,877 --> 00:08:57,710
+The only reason that
+I'm seeing that message
+
+190
+00:08:57,710 --> 00:09:00,800
+is because I inadvertently
+deleted my buggy.c file.
+
+191
+00:09:00,800 --> 00:09:04,050
+If my buggy1.c file existed
+in the current directory,
+
+192
+00:09:04,050 --> 00:09:06,920
+that line right there would actually
+tell me what the line of code
+
+193
+00:09:06,920 --> 00:09:08,214
+literally reads.
+
+194
+00:09:08,214 --> 00:09:09,380
+Unfortunately, I deleted it.
+
+195
+00:09:09,380 --> 00:09:14,790
+We're going to have to kind of navigate
+through this a little more blindly.
+
+196
+00:09:14,790 --> 00:09:17,330
+>> OK, so let's see, what
+do I want to do here?
+
+197
+00:09:17,330 --> 00:09:21,770
+Well, I would like to know what local
+variables maybe are available to me.
+
+198
+00:09:21,770 --> 00:09:23,570
+I've started my program.
+
+199
+00:09:23,570 --> 00:09:28,515
+Let's see what might be
+already initialized for us.
+
+200
+00:09:28,515 --> 00:09:31,430
+I type Info locals, no locals.
+
+201
+00:09:31,430 --> 00:09:33,960
+All right, so that doesn't
+give me a ton of information.
+
+202
+00:09:33,960 --> 00:09:37,600
+I could try and print out a variable,
+but I don't know any variable names.
+
+203
+00:09:37,600 --> 00:09:39,930
+I could try a back trace,
+but I'm inside of main,
+
+204
+00:09:39,930 --> 00:09:43,710
+so I know I haven't made
+another function call right now.
+
+205
+00:09:43,710 --> 00:09:47,710
+>> So looks like my only options are
+to use n or so and start to dive in.
+
+206
+00:09:47,710 --> 00:09:49,630
+I'm going to use n.
+
+207
+00:09:49,630 --> 00:09:51,180
+So I type n.
+
+208
+00:09:51,180 --> 00:09:53,060
+Oh my gosh, what is going on here.
+
+209
+00:09:53,060 --> 00:09:56,260
+Program received signals,
+SIGSEGV segmentation fault,
+
+210
+00:09:56,260 --> 00:09:57,880
+and then a whole bunch of stuff.
+
+211
+00:09:57,880 --> 00:09:58,880
+I'm already overwhelmed.
+
+212
+00:09:58,880 --> 00:10:00,980
+Well, there's actually a
+lot to be learned here.
+
+213
+00:10:00,980 --> 00:10:02,520
+So what does this tell us?
+
+214
+00:10:02,520 --> 00:10:09,180
+What it tells us is, this program is
+about to, but hasn't yet, seg fault.
+
+215
+00:10:09,180 --> 00:10:12,550
+And in particular, I'm going
+to zoom in even further here,
+
+216
+00:10:12,550 --> 00:10:18,980
+it's about to seg fault about
+something called strcmp.
+
+217
+00:10:18,980 --> 00:10:22,705
+>> Now, we may not have discussed
+this function extensively.
+
+218
+00:10:22,705 --> 00:10:25,580
+But it is-- because we're not going
+to talk about every function that
+
+219
+00:10:25,580 --> 00:10:28,610
+exists in the C standard library--
+but they're all available to you,
+
+220
+00:10:28,610 --> 00:10:32,110
+particularly if you take a
+look at reference.cs50.net.
+
+221
+00:10:32,110 --> 00:10:35,000
+And strcmp is a really powerful
+function that exists inside
+
+222
+00:10:35,000 --> 00:10:38,070
+of the string.h header
+file, which is a header
+
+223
+00:10:38,070 --> 00:10:41,970
+file that is dedicated to functions
+that work with and manipulate strings.
+
+224
+00:10:41,970 --> 00:10:49,830
+>> And in particular, what strcmp does is
+it compares the values of two strings.
+
+225
+00:10:49,830 --> 00:10:54,160
+So I'm about to segmentation fault
+on a call to strcmp it seems.
+
+226
+00:10:54,160 --> 00:10:58,530
+I hit n, and in fact I get the message,
+program terminated with signal SIGSEGV
+
+227
+00:10:58,530 --> 00:11:01,370
+segmentation fault. So now
+I actually have seg faulted,
+
+228
+00:11:01,370 --> 00:11:06,479
+and my program has pretty
+much effectively given up.
+
+229
+00:11:06,479 --> 00:11:07,770
+This is the end of the program.
+
+230
+00:11:07,770 --> 00:11:10,370
+It broke down, it crashed.
+
+231
+00:11:10,370 --> 00:11:14,740
+So wasn't a lot, but I
+actually did learn quite a bit
+
+232
+00:11:14,740 --> 00:11:16,747
+from this little experience.
+
+233
+00:11:16,747 --> 00:11:17,580
+What have I learned?
+
+234
+00:11:17,580 --> 00:11:22,020
+Well, my program crashes
+pretty much immediately.
+
+235
+00:11:22,020 --> 00:11:26,300
+My program crashes on
+a call to strcmp, but I
+
+236
+00:11:26,300 --> 00:11:30,560
+don't have any local variables in my
+program at the time that it crashes.
+
+237
+00:11:30,560 --> 00:11:37,320
+So what string, or strings,
+could I possibly be comparing.
+
+238
+00:11:37,320 --> 00:11:42,140
+If I don't have any local
+variables, you might
+
+239
+00:11:42,140 --> 00:11:45,520
+surmise that I have-- there maybe is a
+global variable, which could be true.
+
+240
+00:11:45,520 --> 00:11:47,670
+>> But generally, it seems
+like I'm comparing
+
+241
+00:11:47,670 --> 00:11:52,070
+to something that doesn't exist.
+
+242
+00:11:52,070 --> 00:11:54,130
+So let's investigate
+that a little further.
+
+243
+00:11:54,130 --> 00:11:55,120
+So I'm going to clear my screen.
+
+244
+00:11:55,120 --> 00:11:57,536
+I'm going to quit out of the
+GDB environment for a second.
+
+245
+00:11:57,536 --> 00:12:01,300
+And I'm thinking, OK, so there's
+no local variables in my program.
+
+246
+00:12:01,300 --> 00:12:06,444
+I wonder if maybe I'm supposed to pass
+in a string as a command line argument.
+
+247
+00:12:06,444 --> 00:12:07,610
+So let's just test this out.
+
+248
+00:12:07,610 --> 00:12:09,020
+I haven't done this before.
+
+249
+00:12:09,020 --> 00:12:14,244
+>> Let's see if maybe if I run this program
+with a command line argument it works.
+
+250
+00:12:14,244 --> 00:12:16,140
+Huh, no segmentation fault there.
+
+251
+00:12:16,140 --> 00:12:17,870
+It just told me that I figured it out.
+
+252
+00:12:17,870 --> 00:12:19,170
+So maybe that's the fix here.
+
+253
+00:12:19,170 --> 00:12:27,560
+And indeed, if I go back and look at
+the actual source code for buggy1.c,
+
+254
+00:12:27,560 --> 00:12:31,180
+it seems as though what I'm doing is
+I'm making a call to strcmp without
+
+255
+00:12:31,180 --> 00:12:34,010
+checking whether in fact argv[1] exists.
+
+256
+00:12:34,010 --> 00:12:36,730
+This is actually the
+source code for buggy1.c.
+
+257
+00:12:36,730 --> 00:12:38,855
+So what I really need to
+do here to fix my program,
+
+258
+00:12:38,855 --> 00:12:40,835
+assuming I have the
+file in front of me, is
+
+259
+00:12:40,835 --> 00:12:44,740
+to just add a check to make
+sure that argc is equal to 2.
+
+260
+00:12:44,740 --> 00:12:47,780
+So this example, again, like I said,
+is a little bit contrived, right?
+
+261
+00:12:47,780 --> 00:12:49,840
+You're generally not going to
+accidentally delete your source code
+
+262
+00:12:49,840 --> 00:12:51,820
+and then have to try
+and debug the program.
+
+263
+00:12:51,820 --> 00:12:53,120
+But hopefully, it gave
+you an illustration
+
+264
+00:12:53,120 --> 00:12:55,120
+of the kinds of things that
+you could be thinking about
+
+265
+00:12:55,120 --> 00:12:56,610
+as you're debugging your program.
+
+266
+00:12:56,610 --> 00:12:58,760
+>> What's the state of affairs here?
+
+267
+00:12:58,760 --> 00:13:00,510
+What variables do I
+have accessible to me?
+
+268
+00:13:00,510 --> 00:13:03,600
+Where exactly is my program
+crashing, on what line,
+
+269
+00:13:03,600 --> 00:13:05,240
+on what call to what function?
+
+270
+00:13:05,240 --> 00:13:06,952
+What kind of clues does that give me?
+
+271
+00:13:06,952 --> 00:13:08,910
+And that's exactly the
+kind of mindset that you
+
+272
+00:13:08,910 --> 00:13:12,820
+should be getting into when you're
+thinking about debugging your programs.
+
+273
+00:13:12,820 --> 00:13:13,820
+>> I'm Doug Lloyd.
+
+274
+00:13:13,820 --> 00:13:16,140
+This is CS50.
+
+275
+00:13:16,140 --> 00:15:08,642

@@ -1,0 +1,673 @@
+1
+00:00:00,000 --> 00:00:05,300
+
+2
+00:00:05,300 --> 00:00:07,300
+DOUG LLOYD: As you start
+working with functions,
+
+3
+00:00:07,300 --> 00:00:09,966
+another thing is going to become
+really important to understand,
+
+4
+00:00:09,966 --> 00:00:12,380
+which is the concept of variable scope.
+
+5
+00:00:12,380 --> 00:00:14,490
+So scope is a
+characteristic of a variable
+
+6
+00:00:14,490 --> 00:00:18,860
+that defines from which functions
+that variable can be accessed.
+
+7
+00:00:18,860 --> 00:00:24,595
+>> There are two primary scopes in C,
+local variables and global variables.
+
+8
+00:00:24,595 --> 00:00:27,830
+Now, local variables can only
+be accessed within the functions
+
+9
+00:00:27,830 --> 00:00:29,045
+in which they're created.
+
+10
+00:00:29,045 --> 00:00:32,170
+They can't be accessed by every other
+function that exists in your program,
+
+11
+00:00:32,170 --> 00:00:34,184
+only the function in
+which it was created.
+
+12
+00:00:34,184 --> 00:00:36,350
+Global variables, on the
+other hand, can be accessed
+
+13
+00:00:36,350 --> 00:00:37,719
+by any function in the program.
+
+14
+00:00:37,719 --> 00:00:40,260
+And the reason for that is
+because they're not created inside
+
+15
+00:00:40,260 --> 00:00:41,441
+of any particular function.
+
+16
+00:00:41,441 --> 00:00:43,690
+We declare them outside of
+all of the functions, which
+
+17
+00:00:43,690 --> 00:00:48,940
+means that every function knows where
+it is and can access and manipulate it.
+
+18
+00:00:48,940 --> 00:00:52,010
+>> So far in the course you've pretty
+much been working exclusively
+
+19
+00:00:52,010 --> 00:00:54,280
+with local variables.
+
+20
+00:00:54,280 --> 00:00:58,320
+Here's an example of a very, very
+simple main function and a very simple
+
+21
+00:00:58,320 --> 00:01:00,680
+additional function that we've written.
+
+22
+00:01:00,680 --> 00:01:03,180
+In this case, x, which
+I've colored green just
+
+23
+00:01:03,180 --> 00:01:07,400
+to highlight the locality or
+the scope of that variable,
+
+24
+00:01:07,400 --> 00:01:09,240
+is local to the function triple.
+
+25
+00:01:09,240 --> 00:01:12,300
+main cannot refer to x at all.
+
+26
+00:01:12,300 --> 00:01:14,259
+It doesn't know what it is.
+
+27
+00:01:14,259 --> 00:01:17,050
+No other function, in fact, if we
+had additional functions in here,
+
+28
+00:01:17,050 --> 00:01:19,360
+could refer to x.
+
+29
+00:01:19,360 --> 00:01:23,520
+>> Similarly, results which I've
+colored blue, is local only to main.
+
+30
+00:01:23,520 --> 00:01:26,980
+Only main knows what
+the variable result is.
+
+31
+00:01:26,980 --> 00:01:30,010
+triple cannot use it.
+
+32
+00:01:30,010 --> 00:01:32,580
+>> Now as I mentioned,
+global variables do exist.
+
+33
+00:01:32,580 --> 00:01:35,575
+If you declare that variable
+outside of any function,
+
+34
+00:01:35,575 --> 00:01:38,290
+all of the functions in the
+program can refer to it.
+
+35
+00:01:38,290 --> 00:01:44,010
+So in this case I've highlighted in
+green a global variable declaration.
+
+36
+00:01:44,010 --> 00:01:45,830
+In this case, the
+variable being declared
+
+37
+00:01:45,830 --> 00:01:48,720
+is called global, just to
+be extremely clear about it.
+
+38
+00:01:48,720 --> 00:01:49,720
+It is of type float.
+
+39
+00:01:49,720 --> 00:01:52,940
+And I assign it the value 0.5050.
+
+40
+00:01:52,940 --> 00:01:58,080
+>> You'll notice that in main and in
+triple, I am able to refer to global.
+
+41
+00:01:58,080 --> 00:02:03,480
+And in fact, if I go through the program
+as indicated, main first calls triple,
+
+42
+00:02:03,480 --> 00:02:10,440
+triple multiplies global by 3, which
+sets its value to 1.5-something,
+
+43
+00:02:10,440 --> 00:02:16,080
+1.51 or something like that, and
+then main also prints out the value
+
+44
+00:02:16,080 --> 00:02:16,620
+of global.
+
+45
+00:02:16,620 --> 00:02:24,424
+So main will not print out 0.5050, it
+will print out global times 3, 1.51.
+
+46
+00:02:24,424 --> 00:02:27,340
+So you've got to be careful when
+you're working with global variables.
+
+47
+00:02:27,340 --> 00:02:30,260
+While they're very flexible in
+being able to pass information
+
+48
+00:02:30,260 --> 00:02:32,650
+around so that every
+function can use it,
+
+49
+00:02:32,650 --> 00:02:34,580
+it also can have some
+dangerous consequences
+
+50
+00:02:34,580 --> 00:02:38,770
+if one function changes
+the value of a variable
+
+51
+00:02:38,770 --> 00:02:42,360
+before you expect it to be changed.
+
+52
+00:02:42,360 --> 00:02:44,200
+>> Why does this distinction matter?
+
+53
+00:02:44,200 --> 00:02:48,070
+Why do we care whether some variables
+are local and others are global?
+
+54
+00:02:48,070 --> 00:02:53,880
+Well, for the most part, local variables
+in C are what's called passed by value
+
+55
+00:02:53,880 --> 00:02:56,087
+when we make a function call.
+
+56
+00:02:56,087 --> 00:02:56,920
+What does that mean?
+
+57
+00:02:56,920 --> 00:03:00,880
+>> Well, when a variable is passed
+by value, the callee, which
+
+58
+00:03:00,880 --> 00:03:04,350
+is another way of saying the function
+that is receiving the variable that
+
+59
+00:03:04,350 --> 00:03:08,465
+gets passed in as an input, it actually
+doesn't receive that variable itself.
+
+60
+00:03:08,465 --> 00:03:12,490
+It receives its own
+copy of it to work with.
+
+61
+00:03:12,490 --> 00:03:14,350
+This is a really important distinction.
+
+62
+00:03:14,350 --> 00:03:18,250
+We just saw a second ago
+that with global variables,
+
+63
+00:03:18,250 --> 00:03:23,240
+if we manipulate the global
+variable in one function, the effect
+
+64
+00:03:23,240 --> 00:03:26,390
+in that one function carries
+through to every other function.
+
+65
+00:03:26,390 --> 00:03:28,920
+>> But with local variables,
+that's not true.
+
+66
+00:03:28,920 --> 00:03:32,060
+Each function when it
+receives variables as input
+
+67
+00:03:32,060 --> 00:03:36,367
+receive copies of those variables,
+not the variables themselves.
+
+68
+00:03:36,367 --> 00:03:37,825
+So what is the side effect of that?
+
+69
+00:03:37,825 --> 00:03:40,450
+That means that the variable in
+the caller, the function that
+
+70
+00:03:40,450 --> 00:03:45,600
+is making the function call, is
+unchanged unless you override it.
+
+71
+00:03:45,600 --> 00:03:50,420
+>> For example, in this code
+foo is not changed at all.
+
+72
+00:03:50,420 --> 00:03:55,450
+Int foo equals 4, call triple
+of foo, inside of triple,
+
+73
+00:03:55,450 --> 00:03:58,850
+we would expect that foo would
+be multiplied by 3 and returned,
+
+74
+00:03:58,850 --> 00:04:01,450
+but there's actually no effect.
+
+75
+00:04:01,450 --> 00:04:03,460
+>> Here though, a very subtle difference.
+
+76
+00:04:03,460 --> 00:04:06,520
+This does have the effect we want.
+
+77
+00:04:06,520 --> 00:04:07,730
+Do you see why?
+
+78
+00:04:07,730 --> 00:04:11,500
+We're overriding foo in main this time.
+
+79
+00:04:11,500 --> 00:04:16,899
+>> So int foo equals 4, foo equals
+triple foo, when we make that call,
+
+80
+00:04:16,899 --> 00:04:21,680
+triple gets its own copy
+of foo, its own copy of 4.
+
+81
+00:04:21,680 --> 00:04:27,340
+It says return 4 times 3, or whatever
+variable gets passed in times 3.
+
+82
+00:04:27,340 --> 00:04:32,109
+And then we assign the return
+value of triple to foo again.
+
+83
+00:04:32,109 --> 00:04:33,650
+So this actually would overwrite foo.
+
+84
+00:04:33,650 --> 00:04:35,816
+This is the only way to do
+this with local variable.
+
+85
+00:04:35,816 --> 00:04:38,120
+So now if we add another
+line of code here
+
+86
+00:04:38,120 --> 00:04:40,870
+at the end of main to
+print out the value of foo,
+
+87
+00:04:40,870 --> 00:04:45,030
+it would in fact print out 12.
+
+88
+00:04:45,030 --> 00:04:48,600
+>> Variable scope is generally
+not too much of a problem
+
+89
+00:04:48,600 --> 00:04:51,190
+if you name all of your
+variables different things.
+
+90
+00:04:51,190 --> 00:04:54,920
+But it can get kind of nasty
+if the same variable name
+
+91
+00:04:54,920 --> 00:04:58,820
+appears in multiple functions,
+which will happen a lot.
+
+92
+00:04:58,820 --> 00:05:02,130
+If you ever do work in
+the real world where
+
+93
+00:05:02,130 --> 00:05:06,080
+you are working on collaborative
+programs and people in different teams
+
+94
+00:05:06,080 --> 00:05:11,000
+are working together to write the same
+program or the same set of programs,
+
+95
+00:05:11,000 --> 00:05:13,900
+they'll frequently reuse variable
+names, particularly common ones
+
+96
+00:05:13,900 --> 00:05:18,020
+like x, y, i, j, and so on.
+
+97
+00:05:18,020 --> 00:05:20,370
+>> But when variables have
+the same name, scope issues
+
+98
+00:05:20,370 --> 00:05:23,080
+can get a little trickier to parse.
+
+99
+00:05:23,080 --> 00:05:26,790
+For example, do you know
+what would be printed out
+
+100
+00:05:26,790 --> 00:05:30,190
+at the end of this particular program?
+
+101
+00:05:30,190 --> 00:05:31,280
+Take a minute.
+
+102
+00:05:31,280 --> 00:05:33,382
+Pause the video and read
+through this program.
+
+103
+00:05:33,382 --> 00:05:35,590
+You can see at the top we
+have a function declaration
+
+104
+00:05:35,590 --> 00:05:37,350
+for a function called increment.
+
+105
+00:05:37,350 --> 00:05:40,800
+That function takes a single
+parameter, an integer which we call x.
+
+106
+00:05:40,800 --> 00:05:42,610
+And it outputs an integer.
+
+107
+00:05:42,610 --> 00:05:44,820
+That's the return type at the beginning.
+
+108
+00:05:44,820 --> 00:05:48,140
+>> Then we have main, a couple of lines
+of code in main, the last of which
+
+109
+00:05:48,140 --> 00:05:49,250
+is a print statement.
+
+110
+00:05:49,250 --> 00:05:51,140
+And remember, that's the question here.
+
+111
+00:05:51,140 --> 00:05:54,240
+What is actually going to be
+printed at the end of this function?
+
+112
+00:05:54,240 --> 00:05:58,110
+And then we actually have the
+definition of increment below.
+
+113
+00:05:58,110 --> 00:06:01,760
+>> So take a minute, step through
+the code, trace things out.
+
+114
+00:06:01,760 --> 00:06:08,100
+Do you know what will be printed at
+the end of this particular program?
+
+115
+00:06:08,100 --> 00:06:08,600
+>> All right.
+
+116
+00:06:08,600 --> 00:06:11,433
+Hopefully, you've taken a few seconds
+to try and parse this one out.
+
+117
+00:06:11,433 --> 00:06:13,370
+Let's do it together.
+
+118
+00:06:13,370 --> 00:06:16,022
+>> So I've crossed out increment's
+declaration at the top there.
+
+119
+00:06:16,022 --> 00:06:17,230
+It was kind of a distraction.
+
+120
+00:06:17,230 --> 00:06:18,570
+It's not its own variable.
+
+121
+00:06:18,570 --> 00:06:19,879
+It doesn't have its own scope.
+
+122
+00:06:19,879 --> 00:06:21,920
+It's just a function
+declaration, so for purposes
+
+123
+00:06:21,920 --> 00:06:24,330
+of trying to parse out what's
+happening in this program,
+
+124
+00:06:24,330 --> 00:06:26,660
+we might as well just avoid it.
+
+125
+00:06:26,660 --> 00:06:29,560
+>> Now we have in this case, the
+reason this problem is tricky
+
+126
+00:06:29,560 --> 00:06:34,030
+is because we have local variables in
+both main and increment, each of which
+
+127
+00:06:34,030 --> 00:06:35,090
+is called x.
+
+128
+00:06:35,090 --> 00:06:39,830
+And of course the crux of this issue is
+trying to suss out which x gets changed
+
+129
+00:06:39,830 --> 00:06:41,890
+and how does it get changed.
+
+130
+00:06:41,890 --> 00:06:46,900
+So I've colored every instance
+of x that's local to main red.
+
+131
+00:06:46,900 --> 00:06:52,040
+And I've colored every instance of
+x that's local to increment blue.
+
+132
+00:06:52,040 --> 00:06:55,220
+>> Notice in that third line
+of main, y equals increment
+
+133
+00:06:55,220 --> 00:07:00,800
+x, that increment is not being
+passed main's x, or the red x.
+
+134
+00:07:00,800 --> 00:07:03,320
+It's getting passed a copy of it.
+
+135
+00:07:03,320 --> 00:07:06,987
+And it's only going to work with
+that copy of it, the blue x.
+
+136
+00:07:06,987 --> 00:07:08,820
+If you're mathematically
+inclined, you might
+
+137
+00:07:08,820 --> 00:07:14,230
+have instead thought of this as x sub
+m for main and x sub i for increment.
+
+138
+00:07:14,230 --> 00:07:15,700
+But it's the same idea.
+
+139
+00:07:15,700 --> 00:07:18,999
+x sub m, or the red x's
+in the previous slide,
+
+140
+00:07:18,999 --> 00:07:21,790
+are the variables that are local--
+is the instance of x rather that
+
+141
+00:07:21,790 --> 00:07:26,900
+is local to main, and x sub i, or the
+blue variables in the previous slide,
+
+142
+00:07:26,900 --> 00:07:30,760
+are the instances of x that
+are local to increment.
+
+143
+00:07:30,760 --> 00:07:36,220
+>> So, were you able to figure out what
+this function printed at the end?
+
+144
+00:07:36,220 --> 00:07:39,420
+I'm Doug Lloyd, and this is CS50.
+
+145
+00:07:39,420 --> 00:07:41,542
