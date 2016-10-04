@@ -2,6 +2,8 @@
 
 A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections, and walkthroughs, in different languages.
 
+---
+
 | Language      | Name             | Role          |
 | ------------- | ---------------- | ------------- |
 | English       | Colton Ogden     | Moderator     |
@@ -9,32 +11,6 @@ A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections
 | Arabic        | Mohamed Ashraf   | Moderator     |
 
 ---
-
-## [English](en/README.md)
-
-### Moderator
-Colton Ogden
-
----
-
-## [Spanish](es/README.md)
-
-### Moderator
-Walter J. Méndez
-
-#### Contributors
-- Arturo Real
-
----
-
-## [Arabic](ar/README.md)
-
-### Moderator
-Mohamed Ashraf
-
-#### Contributors
-- Kareem Zidane
-
 
 # Lectures Subtitles
 
