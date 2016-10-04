@@ -6,7 +6,7 @@ For any questions, please contact Christian Saravia (christian@cs50.harvard.edu)
 
 ---
 
-## Spanish
+## [Spanish](spanish/README.md)
 
 ### Lead collaborator
 Walter J. Méndez
@@ -17,7 +17,7 @@ Walter J. Méndez
 
 ---
 
-## Arabic
+## [Arabic](arabic/README.md)
 
 ### Lead collaborator
 Mohamed Ashraf
