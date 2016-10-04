@@ -8,4 +8,6 @@
        * [Week 0](english/lectures/week0.md)
        * [Week 1](english/lectures/week1.md)
        * [Week 2](english/lectures/week2.md)
-
+       * [Week 3](english/lectures/week3.md)
+       * [Week 4](english/lectures/week4.md)
+       * [Week 5](english/lectures/week5.md)
