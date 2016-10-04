@@ -13,15 +13,17 @@ A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections
 1. Make sure you have Git installed on your computer.
 2. Open Terminal for Mac / PowerShell for Windows.
 3. Clone the repository:
-```
-git clone git@github.com:cs50/tracks.git
-```
+    ```
+    git clone git@github.com:cs50/tracks.git
+    ```
 
 ### Contributing
 
-1. Make sure you have the latest version of the repository:
+1.  Make sure you have the latest version of the repository:
     ```
     git checkout master
+    ```
+    ```
     git pull origin master
     ```
 2. Create your feature branch:
@@ -29,12 +31,12 @@ git clone git@github.com:cs50/tracks.git
     git checkout -b new-feature
     ```
 3. Go to the file you wish to translate, and make edits.
-. Once you're done making changes, commit your changes:
+4. Once you're done making changes, commit your changes:
     ```
     git commit -am "Translates text in [x] section"
     ```
-4. Push to the branch:
+5. Push to the branch:
     ```
     git push origin new-feature
     ```
-5. Submit a pull request at https://github.com/cs50/tracks/pulls.
+6. Submit a pull request at https://github.com/cs50/tracks/pulls.
