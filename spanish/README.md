@@ -1,1 +1,0 @@
-In this folder, we'll organize all of CS50's content translated to Spanish.
