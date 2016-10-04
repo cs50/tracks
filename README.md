@@ -20,21 +20,21 @@ git clone git@github.com:cs50/tracks.git
 ### Contributing
 
 1. Make sure you have the latest version of the repository:
-```
-git checkout master
-git pull origin master
-```
+    ```
+    git checkout master
+    git pull origin master
+    ```
 2. Create your feature branch:
-```
-git checkout -b new-feature
-```
-2. Go to the file you wish to translate, and make edits.
-3. Once you're done making changes, commit your changes:
-```
-git commit -am "Translates text in [x] section"
-```
+    ```
+    git checkout -b new-feature
+    ```
+3. Go to the file you wish to translate, and make edits.
+. Once you're done making changes, commit your changes:
+    ```
+    git commit -am "Translates text in [x] section"
+    ```
 4. Push to the branch:
-```
-git push origin new-feature
-```
+    ```
+    git push origin new-feature
+    ```
 5. Submit a pull request at https://github.com/cs50/tracks/pulls.
