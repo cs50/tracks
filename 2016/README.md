@@ -1,8 +1,4 @@
-# CS50 Translations 2016
-
-A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections, and walkthroughs, in different languages.
-
----
+# Translations 2016
 
 | Language      | Name             | Role          |
 | ------------- | ---------------- | ------------- |
@@ -12,7 +8,7 @@ A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections
 
 ---
 
-# Lectures Subtitles
+# Lecture Subtitles
 
 | Episode       | English       | Spanish       | Arabic        |
 | ------------- | ------------- | ------------- | ------------- |
@@ -24,7 +20,7 @@ A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections
 | Week 5        | &#10004;      |               |               |
 
 
-# Lectures Chapters
+# Lecture Chapters
 
 | Episode       | English       | Spanish       | Arabic        |
 | ------------- | ------------- | ------------- | ------------- |
