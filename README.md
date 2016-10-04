@@ -1,3 +1,3 @@
-# My Awesome Book
+# CS50 Translations
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+A compilation of CS50's lecture subtitles, lecture notes, and problem sets, in different languages.
