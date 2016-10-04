@@ -5,4 +5,5 @@
 * [Arabic](arabic/README.md)
 * [English](english/README.md)
    * [Lecture Subtitles](english/lectures/README.md)
+       * Week 0
 
