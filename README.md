@@ -1,12 +1,15 @@
-# CS50 Translations
+# CS50 Translate
 
-A compilation of CS50's lecture subtitles, lecture notes, problem sets, sections, and walkthroughs, in different languages.
+CS50 provide subtitle tracks, chapter files and other learning materials in American English. These resources are made open and available to be translated into other languages by the community. If you would like to help us on our mission to introduce people all over the world to computer science, and are fluent in a language other than English, then help us out by joining our growing community of translators.
 
-* [2016](2016/README.md)
-* [2015](2015/README.md)
-* [2014](2014/README.md)
+We currently support translations from English to:
 
-## Instructions
+- Arabic
+- Spanish
+
+These are the languages we currently have moderators for. Moderators are volunteers who are in charge of proofing and organizing translations of resources in a given language. If you would like to see your language added to the list and are comfortable taking on the role of moderator for your language, then please get in touch with us at translate@cs50.harvard.edu.
+
+## Getting Started
 
 ### Setup
 

@@ -1,8 +1,6 @@
 # Lectures
 
-This is the base set of resources for translating to other languages.
-
-## Subtitles Created
+## Subtitles Translated
 
 - [x] Week 0
 - [x] Week 1
@@ -18,7 +16,7 @@ This is the base set of resources for translating to other languages.
 - [ ] Week 11
 - [ ] Week 12
 
-## Chapters Created
+## Chapters Translated
 
 - [x] Week 0
 - [x] Week 1
