@@ -1,5 +1,5 @@
 # Summary
 
 * [Introduction](README.md)
-* Spanish
+* [Spanish](spanish/2016-lecture-subtitles.md)
 
