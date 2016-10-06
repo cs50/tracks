@@ -1,6 +1,6 @@
 # CS50 Translate
 
-CS50 provide subtitle tracks, chapter files and other learning materials in American English. These resources are made open and available to be translated into other languages by the community. If you would like to help us on our mission to introduce people all over the world to computer science, and are fluent in a language other than English, then help us out by joining our growing community of translators.
+CS50 provides subtitle tracks, chapter files and other learning materials in American English. These resources are made open and available to be translated into other languages by the community. If you would like to help us on our mission to introduce people all over the world to computer science, and are fluent in a language other than English, then help us out by joining our growing community of translators.
 
 We currently support translations from English to:
 
