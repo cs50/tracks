@@ -14,7 +14,7 @@ These are the languages we currently have moderators for. Moderators are volunte
 ### Setup
 
 1. Make sure you have Git installed on your computer.
-2. Open Terminal for Mac / PowerShell for Windows.
+2. Open Terminal for Mac; or PowerShell or Git Bash for Windows.
 3. Clone the repository:<br>
     ```
     git clone git@github.com:cs50/tracks.git
