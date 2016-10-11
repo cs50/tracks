@@ -6,6 +6,7 @@ We currently support translations from English to:
 
 - Arabic
 - Spanish
+- Urdu
 
 These are the languages we currently have moderators for. Moderators are volunteers who are in charge of proofing and organizing translations of resources in a given language. If you would like to see your language added to the list and are comfortable taking on the role of moderator for your language, then please get in touch with us at translate@cs50.harvard.edu.
 

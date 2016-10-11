@@ -5,6 +5,7 @@
 | English       | Colton Ogden     | Moderator     |
 | Spanish       | Walter J. Méndez | Moderator     |
 | Arabic        | Mohamed Ashraf   | Moderator     |
+| Urdu          | Rahul Nagshi     | Moderator     |
 
 ## Lecture Subtitles
 
